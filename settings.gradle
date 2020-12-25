@@ -1,2 +1,6 @@
+include ':library_common'
+include ':library_network'
+include ':library_componentbase'
+include ':library_base'
 include ':app'
 rootProject.name = "wanandroid"

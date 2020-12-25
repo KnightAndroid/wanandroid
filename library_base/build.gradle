@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion rootProject.ext.compile_sdk_version
@@ -9,8 +9,8 @@ android {
         targetSdkVersion rootProject.ext.target_sdk_version
         versionCode rootProject.ext.appVersionCode
         versionName rootProject.ext.appVersionName
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
 
         javaCompileOptions{
             annotationProcessorOptions{
@@ -26,40 +26,29 @@ android {
         }
     }
 
-    // 支持 JDK 1.8 编译
-    compileOptions {
-        targetCompatibility JavaVersion.VERSION_1_8
-        sourceCompatibility JavaVersion.VERSION_1_8
-    }
-
-    signingConfigs {
-        debug{
-
-        }
-
-        release {
-            storeFile file('../wanandroid.jks')//密钥文件路径
-            storePassword "wanandroid"//密钥文件密码
-            keyAlias "wanandroid"//key别名
-            keyPassword "wanandroid"//key密码
-        }
-
-    }
-
-
     //是否开启DataBinding
     dataBinding {
         enabled = true
     }
 
+    // 支持 JDK 1.8
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
+
 }
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$junitextVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCoreVersion"
+    api "com.alibaba:arouter-api:$arouterVersion"
+    annotationProcessor "com.alibaba:arouter-compiler:$arouterVersion"
+    //在module里使用api 主app依赖了这个module,则可以直接使用这些库,不用重新导入
+    api "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    api project (':library_componentbase')
 
 }

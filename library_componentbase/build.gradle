@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion rootProject.ext.compile_sdk_version
@@ -11,6 +11,7 @@ android {
         versionName rootProject.ext.appVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
 
         javaCompileOptions{
             annotationProcessorOptions{
@@ -26,40 +27,15 @@ android {
         }
     }
 
-    // 支持 JDK 1.8 编译
+    // 支持 JDK 1.8
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
     }
-
-    signingConfigs {
-        debug{
-
-        }
-
-        release {
-            storeFile file('../wanandroid.jks')//密钥文件路径
-            storePassword "wanandroid"//密钥文件密码
-            keyAlias "wanandroid"//key别名
-            keyPassword "wanandroid"//key密码
-        }
-
-    }
-
-
-    //是否开启DataBinding
-    dataBinding {
-        enabled = true
-    }
-
 }
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    api project (':library_common')
 
 }
