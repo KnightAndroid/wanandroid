@@ -28,6 +28,7 @@ import com.knight.wanandroid.library_network.json.IntegerTypeAdapter;
 import com.knight.wanandroid.library_network.json.ListTypeAdapter;
 import com.knight.wanandroid.library_network.json.LongTypeAdapter;
 import com.knight.wanandroid.library_network.json.StringTypeAdapter;
+import com.knight.wanandroid.library_util.ActivityManagerUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -159,28 +160,36 @@ public final class RequestHandler implements IRequestHandler {
         if (e instanceof HttpException) {
             if (e instanceof TokenException) {
                 // 登录信息失效，跳转到登录页
+                Application application = ActivityManagerUtils.getInstance().getApplication();
 
             }
-        } else {
-            if (e instanceof SocketTimeoutException) {
-                e = new TimeoutException(mApplication.getString(R.string.library_network_http_server_out_time), e);
-            } else if (e instanceof UnknownHostException) {
-                NetworkInfo info = ((ConnectivityManager) mApplication.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
-                // 判断网络是否连接
-                if (info != null && info.isConnected()) {
-                    // 有连接就是服务器的问题
-                    e = new ServerException(mApplication.getString(R.string.library_network_http_server_error), e);
-                } else {
-                    // 没有连接就是网络异常
-                    e = new NetworkException(mApplication.getString(R.string.library_network_http_network_error), e);
-                }
-            } else if (e instanceof IOException) {
-                //e = new CancelException(context.getString(R.string.http_request_cancel), e);
-                e = new CancelException("", e);
-            } else {
-                e = new HttpException(e.getMessage(), e);
-            }
+
+            return e;
         }
-        return e;
+
+        if(e instanceof SocketTimeoutException){
+            return new TimeoutException(mApplication.getString(R.string.library_network_http_server_out_time), e);
+        }
+
+
+        if(e instanceof UnknownHostException){
+            NetworkInfo info = ((ConnectivityManager) mApplication.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
+
+            // 判断网络是否连接
+            if(info != null && info.isConnected()){
+                 //有连接就是服务问题
+                 return new ServerException(mApplication.getString(R.string.library_network_http_server_error), e);
+            }
+
+            //没有连接就是网络异常
+            return new NetworkException(mApplication.getString(R.string.library_network_http_network_error), e);
+        }
+
+        if(e instanceof IOException){
+            return new CancelException("",e);
+        }
+
+        return new HttpException(e.getMessage(),e);
+
     }
 }

@@ -36,6 +36,6 @@ dependencies {
     api "com.squareup.retrofit2:converter-gson:2.6.2"
 
     //implementation "androidx.annotation:annotation:$annoationVersion"
-    api project(":library_common")
+
 
 }

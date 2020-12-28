@@ -32,4 +32,5 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     api "androidx.appcompat:appcompat:$appcompatVersion"
 
+
 }
