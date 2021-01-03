@@ -11,17 +11,24 @@ import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Lifecycle;
 
+import com.knight.wanandroid.library_base.model.BaseModel;
+import com.knight.wanandroid.library_base.presenter.BasePresenter;
+import com.knight.wanandroid.library_util.CreateUtils;
+
 /**
  * @author created by knight
  * @organize wanandroid
  * @Date 2020/12/28 18:59
  * @descript:fragment基类
  */
-public abstract class BaseFragment<DB extends ViewDataBinding> extends Fragment {
+public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePresenter,M extends BaseModel> extends Fragment {
 
     //是否第一次加载
     private boolean isFirst = true;
     protected DB mDatabind;
+
+    public T mPresenter;
+    public M mModel;
 
 
     /**
@@ -81,6 +88,13 @@ public abstract class BaseFragment<DB extends ViewDataBinding> extends Fragment 
     @Override
     public void onViewCreated(View view,Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
+        initView(savedInstanceState);
+        //从内部获取第二个类型参数的真实类型，反射出new对象
+        mPresenter = CreateUtils.get(this,1);
+        //从内部获取第三个类型参数的真实类型，反射出new对象
+        mModel = CreateUtils.get(this,2);
+        //使得p层绑定M层和V层，持有M和V的引用
+        mPresenter.attachModelView(mModel,this);
         onVisible();
         initData();
     }
@@ -104,6 +118,13 @@ public abstract class BaseFragment<DB extends ViewDataBinding> extends Fragment 
             lazyLoadData();
             isFirst = false;
         }
+    }
+
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        mPresenter.onDettach();
     }
 
 

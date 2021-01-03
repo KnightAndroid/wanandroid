@@ -51,5 +51,6 @@ dependencies {
     api "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
     api project (':library_componentbase')
     api project (':library_util')
+    api project (':library_common')
 
 }
