@@ -17,7 +17,6 @@ public class SingleClickAspect {
     public void onClickListener(ProceedingJoinPoint joinPoint) throws Throwable{
         if(!NoDoubbleClickUtils.isDoubleClick()){
             try{
-
                 joinPoint.proceed();
             } catch (Throwable throwable){
                 throwable.printStackTrace();

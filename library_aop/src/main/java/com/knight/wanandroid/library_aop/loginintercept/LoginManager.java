@@ -26,6 +26,11 @@ public class LoginManager {
           return instance;
       }
 
+    /**
+     * 初始化
+     * @param context
+     * @param iLoginFilter
+     */
       public void init(Context context,ILoginFilter iLoginFilter){
           LoginAssistant.getInstance().setApplicationContext(context);
           LoginAssistant.getInstance().setiLoginFilter(iLoginFilter);
