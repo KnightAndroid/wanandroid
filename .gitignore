@@ -14,4 +14,10 @@
 .cxx
 /.idea
 app/build
-base/build
+library_base/build
+library_aop/build
+library_common/build
+library_componentbase/build
+library_network/build
+library_util/build
+module_home/build

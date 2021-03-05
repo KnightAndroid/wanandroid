@@ -34,7 +34,7 @@ dependencies {
     api "com.squareup.okhttp3:okhttp:$okHttpVersion"
     //gson
     api "com.squareup.retrofit2:converter-gson:2.6.2"
-    implementation project(':library_base')
+//    implementation project(':library_base')
 
     //implementation "androidx.annotation:annotation:$annoationVersion"
 
