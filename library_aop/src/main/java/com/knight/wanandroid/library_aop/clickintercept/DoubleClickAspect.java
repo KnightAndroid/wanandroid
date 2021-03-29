@@ -10,7 +10,7 @@ import org.aspectj.lang.annotation.Before;
  * @author created by knight
  * @organize wanandroid
  * @Date 2021/3/5 10:13
- * @descript:双击切面
+ * @descript:双击切面 用法@DoubleClick
  */
 
 @Aspect

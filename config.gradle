@@ -32,5 +32,7 @@ ext{
     gsonVersion = "2.6.2"
     //annoation
     annoationVersion = "1.1.0"
+    //底部导航栏
+    bottom_navigatVersion = "1.2.4-beta2"
 
 }

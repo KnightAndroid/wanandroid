@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="home_login_colorPrimary">#6200EE</color>
+    <color name="home_login_colorPrimaryDark">#3700B3</color>
+    <color name="home_login_colorAccent">#03DAC5</color>
+</resources>

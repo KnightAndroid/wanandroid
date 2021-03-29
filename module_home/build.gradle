@@ -1,18 +1,46 @@
-apply plugin: 'com.android.application'
+if(isRunAlone.toBoolean()){
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "29.0.3"
+    compileSdkVersion rootProject.ext.compile_sdk_version
+    buildToolsVersion rootProject.ext.build_tools_version
 
     defaultConfig {
-        applicationId "com.knight.wanandroid.module_home"
-        minSdkVersion 16
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
-
+        if(isRunAlone.toBoolean()){
+            applicationId "com.knight.wanandroid.module_home"
+        }
+        minSdkVersion rootProject.ext.min_sdk_version
+        targetSdkVersion rootProject.ext.target_sdk_version
+        versionCode rootProject.ext.appVersionCode
+        versionName rootProject.ext.appVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        javaCompileOptions{
+            annotationProcessorOptions{
+                arguments = [AROUTER_MODULE_NAME : project.getName()]
+            }
+        }
     }
+
+    //是否开启DataBinding
+    dataBinding {
+        enabled = true
+    }
+
+
+    sourceSets {
+        main {
+            if(isRunAlone.toBoolean()){
+               manifest.srcFile 'src/main/manifest/AndroidManifest.xml'
+            } else {
+               manifest.srcFile 'src/main/AndroidManifest.xml'
+            }
+        }
+
+    }
+
 
     buildTypes {
         release {
@@ -20,14 +48,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    //限定资源前缀命名
+    resourcePrefix "home_"
+
 }
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation project (':library_base')
+    annotationProcessor "com.alibaba:arouter-compiler:$arouterVersion"
+
 
 }
