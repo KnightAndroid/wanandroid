@@ -28,8 +28,6 @@ import com.knight.wanandroid.library_network.json.IntegerTypeAdapter;
 import com.knight.wanandroid.library_network.json.ListTypeAdapter;
 import com.knight.wanandroid.library_network.json.LongTypeAdapter;
 import com.knight.wanandroid.library_network.json.StringTypeAdapter;
-import com.knight.wanandroid.library_util.ActivityManagerUtils;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -160,7 +158,7 @@ public final class RequestHandler implements IRequestHandler {
         if (e instanceof HttpException) {
             if (e instanceof TokenException) {
                 // 登录信息失效，跳转到登录页
-                Application application = ActivityManagerUtils.getInstance().getApplication();
+             //   Application application = ActivityManagerUtils.getInstance().getApplication();
 
             }
 

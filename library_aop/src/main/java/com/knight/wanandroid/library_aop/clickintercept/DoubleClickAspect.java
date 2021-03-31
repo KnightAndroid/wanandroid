@@ -21,7 +21,7 @@ public class DoubleClickAspect {
 
 
 
-    @Before("execution(@com.knight.wanandroid.library_aop.clickintercept.DoubleClick * * (..))")
+    @Before("execution(@com.knight.wanandroid.library_aop.clickintercept.DoubleClick * *(..))")
     public void beforeEnableDoubleClick(JoinPoint joinPoint) throws Throwable{
          isDoubleClick = true;
     }
