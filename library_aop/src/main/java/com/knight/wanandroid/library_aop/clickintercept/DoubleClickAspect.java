@@ -21,14 +21,14 @@ public class DoubleClickAspect {
 
 
 
-    @Before("execution(@com.knight.wanandroid.library_aop.clickintercept.DoubleClick * *(..))")
+    @Before("execution(@com.knight.wanandroid.library_aop.clickintercept.DoubleClick * * (..))")
     public void beforeEnableDoubleClick(JoinPoint joinPoint) throws Throwable{
          isDoubleClick = true;
     }
 
 
     @Around("execution(* android.view.View.OnClickListener.onClick(..))")
-    public void onCLickLitener(ProceedingJoinPoint proceedingJoinPoint) throws Throwable{
+    public void onClickListener(ProceedingJoinPoint proceedingJoinPoint) throws Throwable{
         if(isDoubleClick || !NoDoubbleClickUtils.isDoubleClick()){
              proceedingJoinPoint.proceed();
              isDoubleClick = false;

@@ -12,24 +12,18 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:id="@+id/main_viewpager"
-        >
+        />
         <cn.onestravel.one.navigation.androidx.OneBottomNavigationBar
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:background="@color/color_white"
-            app:itemTextColor="@drawable/main_bottom_color_selector"
-            app:menu="@menu/menu_main"
+            app:oneItemTextColor="@drawable/main_bottom_color_selector"
+            app:oneFloatingEnable="true"
+            app:oneFloatingUp="25dp"
+            app:oneMenu="@menu/menu_main"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+
             />
-
-    </androidx.viewpager2.widget.ViewPager2>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </LinearLayout>

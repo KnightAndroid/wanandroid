@@ -20,7 +20,6 @@
         android:id="@+id/projectFragment"
         android:icon="@drawable/main_bottom_project_selector"
         app:floating="true"
-        android:checkable="false"
         android:title="项目"
         />
 
