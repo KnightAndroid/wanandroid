@@ -8,8 +8,8 @@ package com.knight.wanandroid.library_base;
  */
 public class AppConfig {
 
-    private static final String HomeApp = "";
-    private static final String SquareApp = "";
+    private static final String HomeApp = "com.knight.wanandroid.module_home.HomeApp";
+    private static final String SquareApp = "com.knight.wanandroid.module_square.SquareApp";
     private static final String ProductApp = "";
     private static final String NavigateApp = "";
     private static final String MineApp = "";

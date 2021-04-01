@@ -38,7 +38,10 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
         //内部获取第三个类型参数的真实类型，反射new出对手
         mModel = CreateUtils.get(this,2);
         //使得p层绑定M层和V层，持有M和V的引用
-        mPresenter.attachModelView(mModel,this);
+        if(mPresenter!= null){
+            mPresenter.attachModelView(mModel,this);
+        }
+
 
     }
 
@@ -52,7 +55,10 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
     @Override
     public void onDestroy(){
         super.onDestroy();
-        mPresenter.onDettach();
+        if(mPresenter!=null){
+            mPresenter.onDettach();
+        }
+
     }
 
 }

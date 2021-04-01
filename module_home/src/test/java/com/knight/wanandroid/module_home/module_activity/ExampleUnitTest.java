@@ -1,4 +1,4 @@
-package com.knight.wanandroid.module_home;
+package com.knight.wanandroid.module_home.module_activity;
 
 import org.junit.Test;
 

@@ -37,7 +37,27 @@ android {
             } else {
                manifest.srcFile 'src/main/AndroidManifest.xml'
             }
+
+
+            res.srcDirs =
+                    [
+                            'src/main/res/layouts/activitys',
+                            'src/main/res/layouts/fragments',
+                            'src/main/res/layouts/adapters',
+                            'src/main/res/layouts/items',
+                            'src/main/res/layouts/dialogs',
+                            'src/main/res/layouts',
+                            'src/main/res'
+
+                    ]
+            assets.srcDirs = ['src/main/assets', 'src/main/assets/']
+
+
+            jniLibs.srcDirs = ['libs']
         }
+
+
+
 
     }
 

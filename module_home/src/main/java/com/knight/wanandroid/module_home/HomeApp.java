@@ -1,4 +1,4 @@
-package com.knight.wanandroid;
+package com.knight.wanandroid.module_home;
 
 import android.app.Application;
 
@@ -11,13 +11,22 @@ import com.knight.wanandroid.library_base.BaseApp;
  * @descript: home module下的application
  */
 public class HomeApp extends BaseApp {
+
+
+
+    @Override
+    public void onCreate(){
+        super.onCreate();
+        initModuleApp(this);
+        initModuleData(this);
+    }
     @Override
     public void initModuleApp(Application application) {
 
     }
 
     @Override
-    public void initModuleData() {
+    public void initModuleData(Application application) {
 
     }
 }

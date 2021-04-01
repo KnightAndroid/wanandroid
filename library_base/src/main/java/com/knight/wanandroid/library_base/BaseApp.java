@@ -24,7 +24,7 @@ public abstract class BaseApp extends Application {
      * 所有Application 初始化后的自定义操作
      *
      */
-    public abstract void initModuleData();
+    public abstract void initModuleData(Application application);
 
 
 }

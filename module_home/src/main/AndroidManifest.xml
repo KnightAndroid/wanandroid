@@ -3,7 +3,7 @@
     package="com.knight.wanandroid.module_home">
 
     <application>
-        <activity android:name=".HomeActivity">
+        <activity android:name="com.knight.wanandroid.module_home.module_activity.HomeActivity">
         </activity>
     </application>
 
