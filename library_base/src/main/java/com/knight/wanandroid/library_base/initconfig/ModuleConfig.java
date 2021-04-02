@@ -6,6 +6,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.knight.wanandroid.library_base.AppConfig;
 import com.knight.wanandroid.library_base.BaseApp;
 import com.knight.wanandroid.library_base.BuildConfig;
+import com.knight.wanandroid.library_util.ToastUtils;
 
 import androidx.annotation.Nullable;
 
@@ -44,7 +45,10 @@ public class ModuleConfig {
             ARouter.openDebug();
         }
 
+        //初始化路由
         ARouter.init(application);
+        //初始化Toast
+        ToastUtils.getInstance().initApplicaion(application);
     }
     /**
      *

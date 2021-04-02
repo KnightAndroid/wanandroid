@@ -49,7 +49,8 @@ dependencies {
     annotationProcessor "com.alibaba:arouter-compiler:$arouterVersion"
     //在module里使用api 主app依赖了这个module,则可以直接使用这些库,不用重新导入
     api "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
-    api "androidx.appcompat:appcompat:1.0.0"
+    api "androidx.appcompat:appcompat:$appcompatVersion"
+    api "me.jessyan:autosize:$autoSizeViersion"
     api project (':library_componentbase')
     api project (':library_util')
     api project (':library_aop')

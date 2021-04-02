@@ -5,9 +5,7 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.knight.wanandroid.databinding.ActivityMainBinding;
-import com.knight.wanandroid.library_base.activity.BaseActivity;
-import com.knight.wanandroid.library_base.model.BaseModel;
-import com.knight.wanandroid.library_base.presenter.BasePresenter;
+import com.knight.wanandroid.library_base.activity.BaseDBActivity;
 import com.knight.wanandroid.library_util.ViewSetUtils;
 import com.knight.wanandroid.module_home.module_fragment.HomeFragment;
 import com.knight.wanandroid.module_square.module_fragment.SquareFragment;
@@ -17,7 +15,7 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-public class MainActivity extends BaseActivity<ActivityMainBinding, BasePresenter, BaseModel> {
+public class MainActivity extends BaseDBActivity<ActivityMainBinding> {
 
     ArrayList<Fragment> fragments = new ArrayList<Fragment>();
 

@@ -34,5 +34,8 @@ ext{
     annoationVersion = "1.1.0"
     //底部导航栏
     bottom_navigatVersion = "1.2.4-beta2"
+    //屏幕适配
+    autoSizeViersion = "1.2.0"
+
 
 }
