@@ -25,20 +25,12 @@ public final class Permission {
     /** 系统设置权限（特殊权限，需要 Android 6.0 及以上） */
     public static final String WRITE_SETTINGS = "android.permission.WRITE_SETTINGS";
 
-    /**
-     * 读取外部存储
-     *
-     * @deprecated         在 Android 11 已经过时，请使用 {@link Permission#MANAGE_EXTERNAL_STORAGE}
-     */
-    @Deprecated
+    /** 读取外部存储 **/
     public static final String READ_EXTERNAL_STORAGE = "android.permission.READ_EXTERNAL_STORAGE";
 
     /**
      * 写入外部存储
-     *
-     * @deprecated         在 Android 11 已经过时，请使用 {@link Permission#MANAGE_EXTERNAL_STORAGE}
      */
-    @Deprecated
     public static final String WRITE_EXTERNAL_STORAGE = "android.permission.WRITE_EXTERNAL_STORAGE";
 
     /** 读取日历 */
@@ -120,10 +112,7 @@ public final class Permission {
 
         /**
          * 存储权限
-         *
-         * @deprecated         在 Android 11 已经过时，请使用 {@link Permission#MANAGE_EXTERNAL_STORAGE} 权限
          */
-        @Deprecated
         public static final String[] STORAGE = new String[]{
                 Permission.READ_EXTERNAL_STORAGE,
                 Permission.WRITE_EXTERNAL_STORAGE};

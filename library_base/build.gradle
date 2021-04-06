@@ -50,10 +50,12 @@ dependencies {
     //在module里使用api 主app依赖了这个module,则可以直接使用这些库,不用重新导入
     api "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
     api "androidx.appcompat:appcompat:$appcompatVersion"
+    //暂时先使用 有个问题就是闪屏会抖动
     api "me.jessyan:autosize:$autoSizeViersion"
     api project (':library_componentbase')
     api project (':library_util')
     api project (':library_aop')
     api project (':library_network')
+    api project (':library_permiss')
 
 }

@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    >
     <item>
         <shape>
-            <solid android:color="@color/color_white"></solid>
+
+            <solid
+                android:color="@color/color_white"
+                ></solid>
+
         </shape>
     </item>
 
     <item android:top="20dp"
         >
-          <bitmap android:src="@drawable/icon_splash_top" android:gravity="center|top"></bitmap>
+          <bitmap android:src="@drawable/icon_splash_top" android:gravity="center|top" ></bitmap>
     </item>
 
     <item android:bottom="30dp">

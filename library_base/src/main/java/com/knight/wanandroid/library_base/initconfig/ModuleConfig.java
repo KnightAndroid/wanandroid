@@ -6,6 +6,8 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.knight.wanandroid.library_base.AppConfig;
 import com.knight.wanandroid.library_base.BaseApp;
 import com.knight.wanandroid.library_base.BuildConfig;
+import com.knight.wanandroid.library_base.interceptor.PermissionInterceptor;
+import com.knight.wanandroid.library_permiss.XXPermissions;
 import com.knight.wanandroid.library_util.ToastUtils;
 
 import androidx.annotation.Nullable;
@@ -49,6 +51,8 @@ public class ModuleConfig {
         ARouter.init(application);
         //初始化Toast
         ToastUtils.getInstance().initApplicaion(application);
+        //初始化权限拦截器
+        XXPermissions.setPermissionInterceptor(new PermissionInterceptor());
     }
     /**
      *

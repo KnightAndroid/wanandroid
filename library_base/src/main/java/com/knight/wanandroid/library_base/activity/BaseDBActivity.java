@@ -2,6 +2,8 @@ package com.knight.wanandroid.library_base.activity;
 
 import android.os.Bundle;
 
+import com.knight.wanandroid.library_util.StatusBarUtils;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
@@ -23,6 +25,7 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         createViewDataBinding();
+        StatusBarUtils.transparentStatusBar(this);
         initView(savedInstanceState);
     }
 
