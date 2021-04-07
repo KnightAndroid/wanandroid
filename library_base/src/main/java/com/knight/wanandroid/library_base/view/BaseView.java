@@ -9,5 +9,5 @@ package com.knight.wanandroid.library_base.view;
 public interface BaseView {
     void showLoading();
     void hideLoading();
-    void showError();
+    void showError(String errorMsg);
 }

@@ -36,6 +36,10 @@ ext{
     bottom_navigatVersion = "1.2.4-beta2"
     //屏幕适配
     autoSizeViersion = "1.2.0"
+    //全局加载视图框架
+    loadsirVersion = "1.3.8"
+    //cookie自动化管理
+    CookieVersion = "v1.0.0"
 
 
 }

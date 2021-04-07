@@ -52,6 +52,8 @@ dependencies {
     api "androidx.appcompat:appcompat:$appcompatVersion"
     //暂时先使用 有个问题就是闪屏会抖动
     api "me.jessyan:autosize:$autoSizeViersion"
+    //全局加载视图框架
+    api "com.kingja.loadsir:loadsir:$loadsirVersion"
     api project (':library_componentbase')
     api project (':library_util')
     api project (':library_aop')

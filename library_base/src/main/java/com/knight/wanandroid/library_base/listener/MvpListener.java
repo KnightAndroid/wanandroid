@@ -28,5 +28,5 @@ public interface MvpListener<E> {
      * 失败的适合回调
      *
      */
-    void onError(String erroeMsg);
+    void onError(String errorMsg);
 }

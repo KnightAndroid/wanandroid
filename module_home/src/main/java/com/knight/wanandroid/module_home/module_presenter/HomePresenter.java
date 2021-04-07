@@ -1,6 +1,11 @@
 package com.knight.wanandroid.module_home.module_presenter;
 
+import com.knight.wanandroid.library_base.activity.BaseDBActivity;
+import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.module_home.module_contract.HomeContract;
+import com.knight.wanandroid.module_home.module_entity.BannerModel;
+
+import java.util.List;
 
 /**
  * @author created by knight
@@ -12,7 +17,21 @@ public class HomePresenter extends HomeContract.HomeDataPresenter {
 
 
     @Override
-    public void requestBannerData() {
+    public void requestBannerData(BaseDBActivity activity) {
+        final HomeContract.HomeView mView = getView();
+        if(mView == null){
+            return;
+        }
+        mModel.requestBannerData(activity, new MvpListener<List<BannerModel>>() {
+            @Override
+            public void onSuccess(List<BannerModel> bannerModel) {
+               mView.setBannerData(bannerModel);
+            }
 
+            @Override
+            public void onError(String errorMsg) {
+               mView.showError(errorMsg);
+            }
+        });
     }
 }

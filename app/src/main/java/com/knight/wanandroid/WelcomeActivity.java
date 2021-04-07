@@ -39,4 +39,14 @@ public class WelcomeActivity extends BaseDBActivity<ActivityWelcomeBinding> {
                 });
 
     }
+
+    @Override
+    public void onSucceed(Object result) {
+
+    }
+
+    @Override
+    public void onFail(Exception e) {
+
+    }
 }

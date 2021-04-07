@@ -51,7 +51,7 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
     }
 
     @Override
-    public void showError() {
+    public void showError(String errorMsg) {
 
     }
 

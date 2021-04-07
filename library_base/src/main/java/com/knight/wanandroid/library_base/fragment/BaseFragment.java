@@ -5,15 +5,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.kingja.loadsir.callback.Callback;
+import com.kingja.loadsir.core.LoadService;
+import com.kingja.loadsir.core.LoadSir;
+import com.knight.wanandroid.library_base.loadsir.LoadCallBack;
+import com.knight.wanandroid.library_base.model.BaseModel;
+import com.knight.wanandroid.library_base.presenter.BasePresenter;
+import com.knight.wanandroid.library_util.CreateUtils;
+
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Lifecycle;
-
-import com.knight.wanandroid.library_base.model.BaseModel;
-import com.knight.wanandroid.library_base.presenter.BasePresenter;
-import com.knight.wanandroid.library_util.CreateUtils;
 
 /**
  * @author created by knight
@@ -29,7 +33,7 @@ public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePres
 
     public T mPresenter;
     public M mModel;
-
+    public LoadService mLoadService;
 
     /**
      *
@@ -80,7 +84,15 @@ public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePres
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,@Nullable Bundle savedInstanceState){
          mDatabind = DataBindingUtil.inflate(inflater,layoutId(),container,false);
          mDatabind.setLifecycleOwner(this);
-         return mDatabind.getRoot();
+         mLoadService = LoadSir.getDefault().register(mDatabind.getRoot(), new Callback.OnReloadListener() {
+            @Override
+            public void onReload(View v) {
+                mLoadService.showCallback(LoadCallBack.class);
+            }
+        });
+
+      //   return mDatabind.getRoot();
+        return mLoadService.getLoadLayout();
     }
 
 

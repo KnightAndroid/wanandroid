@@ -1,9 +1,15 @@
 package com.knight.wanandroid.library_base.activity;
 
 import android.os.Bundle;
+import android.view.View;
 
+import com.kingja.loadsir.callback.Callback;
+import com.kingja.loadsir.core.LoadService;
+import com.kingja.loadsir.core.LoadSir;
+import com.knight.wanandroid.library_base.loadsir.LoadCallBack;
 import com.knight.wanandroid.library_base.model.BaseModel;
 import com.knight.wanandroid.library_base.presenter.BasePresenter;
+import com.knight.wanandroid.library_network.listener.OnHttpListener;
 import com.knight.wanandroid.library_util.CreateUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,13 +22,17 @@ import androidx.databinding.ViewDataBinding;
  * @Date 2020/12/28 19:54
  * @descript:Activity基类
  */
-public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePresenter,M extends BaseModel> extends AppCompatActivity {
+public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePresenter,M extends BaseModel> extends AppCompatActivity implements OnHttpListener {
 
     public abstract int layoutId();
 
     public DB mDatabind;
     public T mPresenter;
     public M mModel;
+
+    public LoadService mLoadService;
+
+
 
 
     public abstract void initView(Bundle savedInstanceState);
@@ -39,6 +49,13 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
         mModel = CreateUtils.get(this,2);
         //使得p层绑定M层和V层，持有M和V的引用
         mPresenter.attachModelView(mModel,this);
+
+        mLoadService = LoadSir.getDefault().register(this, new Callback.OnReloadListener() {
+            @Override
+            public void onReload(View v) {
+                mLoadService.showCallback(LoadCallBack.class);
+            }
+        });
 
 
 

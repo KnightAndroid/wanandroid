@@ -67,4 +67,13 @@ public class MainActivity extends BaseDBActivity<ActivityMainBinding> {
 //        });
     }
 
+    @Override
+    public void onSucceed(Object result) {
+
+    }
+
+    @Override
+    public void onFail(Exception e) {
+
+    }
 }

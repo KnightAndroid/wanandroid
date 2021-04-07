@@ -30,4 +30,7 @@
     <string name="base_permission_window">悬浮窗权限</string>
     <string name="base_permission_setting">系统设置权限</string>
 
+    <string name="base_no_data">暂无数据,请点击重试</string>
+    <string name="base_error_data">出错了,请点击重试</string>
+
 </resources>
