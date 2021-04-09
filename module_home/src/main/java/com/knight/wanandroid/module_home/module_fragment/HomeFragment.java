@@ -16,6 +16,7 @@ import com.knight.wanandroid.module_home.module_adapter.TopArticleAdapter;
 import com.knight.wanandroid.module_home.module_contract.HomeContract;
 import com.knight.wanandroid.module_home.module_entity.BannerModel;
 import com.knight.wanandroid.module_home.module_entity.TopArticleModel;
+import com.knight.wanandroid.module_home.module_logic.HomeArticleLogic;
 import com.knight.wanandroid.module_home.module_model.HomeModel;
 import com.knight.wanandroid.module_home.module_presenter.HomePresenter;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
@@ -81,7 +82,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     public void setTopArticle(List<TopArticleModel> topArticleModelList) {
         mLoadService.showSuccess();
         mDatabind.homeRefreshLayout.finishRefresh();
-        mTopArticleAdapter.setNewInstance(topArticleModelList);
+        HomeArticleLogic.setTopArticleStatus(topArticleModelList,mTopArticleAdapter);
         if(mDatabind.homeTopArticleRv.getFooterCount() == 0){
             mDatabind.homeTopArticleRv.addFooterView(topArticleFootView);
         }
