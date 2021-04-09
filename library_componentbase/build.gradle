@@ -13,11 +13,11 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        javaCompileOptions{
-            annotationProcessorOptions{
-                arguments = [AROUTER_MODULE_NAME : project.getName()]
-            }
-        }
+//        javaCompileOptions{
+//            annotationProcessorOptions{
+//                arguments = [AROUTER_MODULE_NAME : project.getName()]
+//            }
+//        }
     }
 
     buildTypes {

@@ -3,5 +3,11 @@
     <color name="home_colorPrimary">#6200EE</color>
     <color name="home_colorPrimaryDark">#3700B3</color>
     <color name="home_colorAccent">#03DAC5</color>
-
+    <color name="home_white">#FFFFFF</color>
+    <color name="home_color333333">#333333</color>
+    <color name="home_color767680">#1f767680</color>
+    <color name="home_color999999">#999999</color>
+    <color name="home_colorf9f9f9">#f9f9f9</color>
+    <color name="home_colordddddd">#dddddd</color>
+    <color name="home_colora6a6a6">#a6a6a6</color>
 </resources>

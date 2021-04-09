@@ -18,9 +18,9 @@ android {
         versionCode rootProject.ext.appVersionCode
         versionName rootProject.ext.appVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        javaCompileOptions{
-            annotationProcessorOptions{
-                arguments = [AROUTER_MODULE_NAME : project.getName()]
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
     }
@@ -80,6 +80,7 @@ android {
 }
 
 dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation project (':library_base')
     annotationProcessor "com.alibaba:arouter-compiler:$arouterVersion"
 }

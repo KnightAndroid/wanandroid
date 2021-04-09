@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-aspectjx'
+
 android {
     compileSdkVersion rootProject.ext.compile_sdk_version
     buildToolsVersion rootProject.ext.build_tools_version
@@ -10,12 +11,11 @@ android {
         targetSdkVersion rootProject.ext.target_sdk_version
         versionCode rootProject.ext.appVersionCode
         versionName rootProject.ext.appVersionName
-
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        javaCompileOptions{
-            annotationProcessorOptions{
-                arguments = [AROUTER_MODULE_NAME : project.getName()]
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
     }

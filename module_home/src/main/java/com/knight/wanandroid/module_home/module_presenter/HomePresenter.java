@@ -4,6 +4,7 @@ import com.knight.wanandroid.library_base.activity.BaseDBActivity;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.module_home.module_contract.HomeContract;
 import com.knight.wanandroid.module_home.module_entity.BannerModel;
+import com.knight.wanandroid.module_home.module_entity.TopArticleModel;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class HomePresenter extends HomeContract.HomeDataPresenter {
     @Override
     public void requestBannerData(BaseDBActivity activity) {
         final HomeContract.HomeView mView = getView();
-        if(mView == null){
+        if (mView == null) {
             return;
         }
         mModel.requestBannerData(activity, new MvpListener<List<BannerModel>>() {
@@ -31,6 +32,26 @@ public class HomePresenter extends HomeContract.HomeDataPresenter {
             @Override
             public void onError(String errorMsg) {
                mView.showError(errorMsg);
+            }
+        });
+    }
+
+    @Override
+    public void requestTopArticle(BaseDBActivity activity) {
+        final HomeContract.HomeView mView = getView();
+        if (mView == null) {
+            return;
+        }
+
+        mModel.requestTopArticle(activity, new MvpListener<List<TopArticleModel>>() {
+            @Override
+            public void onSuccess(List<TopArticleModel> topArticleModels) {
+                mView.setTopArticle(topArticleModels);
+            }
+
+            @Override
+            public void onError(String errorMsg) {
+                mView.showError(errorMsg);
             }
         });
     }

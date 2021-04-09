@@ -7,7 +7,9 @@ import com.knight.wanandroid.library_network.listener.HttpCallback;
 import com.knight.wanandroid.library_network.model.HttpData;
 import com.knight.wanandroid.module_home.module_contract.HomeContract;
 import com.knight.wanandroid.module_home.module_entity.BannerModel;
+import com.knight.wanandroid.module_home.module_entity.TopArticleModel;
 import com.knight.wanandroid.module_home.module_request.HomeBannerApi;
+import com.knight.wanandroid.module_home.module_request.TopArticleApi;
 
 import java.util.List;
 
@@ -20,7 +22,35 @@ import java.util.List;
 public class HomeModel implements HomeContract.HomeModel {
 
 
-    //请求数据
+    /**
+     *
+     * 请求置顶文章数据
+     * @param activity
+     * @param mvpListener
+     */
+    @Override
+    public void requestTopArticle(BaseDBActivity activity, MvpListener mvpListener) {
+        GoHttp.get(activity)
+                .api(new TopArticleApi())
+                .request(new HttpCallback<HttpData<List<TopArticleModel>>>(activity){
+                    @Override
+                    public void onSucceed(HttpData<List<TopArticleModel>> topArticleModels) {
+                        mvpListener.onSuccess(topArticleModels.getData());
+                    }
+
+                    @Override
+                    public void onFail(Exception e){
+                        mvpListener.onError(e.getMessage());
+                    }
+
+        });
+    }
+
+    /**
+     * 请求轮播图数据
+     * @param activity
+     * @param mvpListener
+     */
     @Override
     public void requestBannerData(BaseDBActivity activity, final MvpListener mvpListener) {
         GoHttp.get(activity)

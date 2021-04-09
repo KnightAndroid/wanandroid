@@ -12,11 +12,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        // 支持 JDK 1.8
-        compileOptions {
-            targetCompatibility JavaVersion.VERSION_1_8
-            sourceCompatibility JavaVersion.VERSION_1_8
-        }
+
     }
     //限定资源前缀命名
     resourcePrefix "library_network_"
@@ -25,6 +21,12 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    // 支持 JDK 1.8
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -37,7 +39,7 @@ dependencies {
     //Cookie
     api "com.github.franmontiel:PersistentCookieJar:$CookieVersion"
 
-    implementation "androidx.appcompat:appcompat:1.0.0"
+    implementation "androidx.appcompat:appcompat:1.2.0"
     implementation "androidx.annotation:annotation:$annoationVersion"
     implementation 'androidx.lifecycle:lifecycle-common:2.1.0'
     // noinspection GradleDependency

@@ -1,12 +1,14 @@
 package com.knight.wanandroid.module_home.module_entity;
 
+import com.knight.wanandroid.library_base.entity.BaseEntity;
+
 /**
  * @author created by knight
  * @organize wanandroid
  * @Date 2021/4/7 16:26
  * @descript:首页banner数据模型
  */
-public class BannerModel {
+public class BannerModel extends BaseEntity {
 
     /**
      * desc : 享学~

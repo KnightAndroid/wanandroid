@@ -17,9 +17,9 @@ android {
         versionCode rootProject.ext.appVersionCode
         versionName rootProject.ext.appVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        javaCompileOptions{
-            annotationProcessorOptions{
-                arguments = [AROUTER_MODULE_NAME : project.getName()]
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
     }
@@ -27,6 +27,11 @@ android {
     //是否开启DataBinding
     dataBinding {
         enabled = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
 
@@ -78,6 +83,7 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation project (':library_base')
     annotationProcessor "com.alibaba:arouter-compiler:$arouterVersion"
+    implementation "com.youth.banner:banner:$bannerVersion"
 
 
 }

@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion rootProject.ext.compile_sdk_version
-    buildToolsVersion rootProject.ext.build_tools_version
+   // buildToolsVersion rootProject.ext.build_tools_version
 
     defaultConfig {
         minSdkVersion rootProject.ext.min_sdk_version
@@ -12,11 +12,11 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        javaCompileOptions{
-            annotationProcessorOptions{
-                arguments = [AROUTER_MODULE_NAME : project.getName()]
-            }
-        }
+//        javaCompileOptions{
+//            annotationProcessorOptions{
+//                arguments = [AROUTER_MODULE_NAME : project.getName()]
+//            }
+//        }
     }
 
     buildTypes {
@@ -46,7 +46,7 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$junitextVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCoreVersion"
     api "com.alibaba:arouter-api:$arouterVersion"
-    annotationProcessor "com.alibaba:arouter-compiler:$arouterVersion"
+    //annotationProcessor "com.alibaba:arouter-compiler:$arouterVersion"
     //在module里使用api 主app依赖了这个module,则可以直接使用这些库,不用重新导入
     api "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
     api "androidx.appcompat:appcompat:$appcompatVersion"
@@ -54,10 +54,19 @@ dependencies {
     api "me.jessyan:autosize:$autoSizeViersion"
     //全局加载视图框架
     api "com.kingja.loadsir:loadsir:$loadsirVersion"
+    //核心必须依赖
+    api "com.scwang.smart:refresh-layout-kernel:$smartRefreshVersion"
+    //经典谷歌刷新头
+    api "com.scwang.smart:refresh-header-material:$smartRefreshVersion"
+    //经典加载
+    api "com.scwang.smart:refresh-footer-classics:$smartRefreshVersion"
     api project (':library_componentbase')
     api project (':library_util')
     api project (':library_aop')
     api project (':library_network')
     api project (':library_permiss')
+    api project (':library_widget')
+    //分包
+    api "com.android.support:multidex:$multidexVersion"
 
 }

@@ -3,6 +3,9 @@
     package="com.knight.wanandroid">
 
     <uses-permission android:name="android.permission.CAMERA"/>
+    <!--网络状态-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:name=".WanandroidApp"
