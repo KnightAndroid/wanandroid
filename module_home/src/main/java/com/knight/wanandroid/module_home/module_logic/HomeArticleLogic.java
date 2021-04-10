@@ -1,9 +1,15 @@
 package com.knight.wanandroid.module_home.module_logic;
 
+import androidx.recyclerview.widget.DiffUtil;
+
+import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;
 import com.knight.wanandroid.module_home.module_adapter.TopArticleAdapter;
 import com.knight.wanandroid.module_home.module_entity.TopArticleModel;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  * @author created by knight
@@ -14,18 +20,23 @@ import java.util.List;
 public class HomeArticleLogic {
 
 
-    /**
-     *
-     * 设置三条顶部数据
-     * @param topArticleModelList
-     * @param mTopArticleAdapter
-     */
-    public static void setTopArticleStatus(List<TopArticleModel> topArticleModelList, TopArticleAdapter mTopArticleAdapter) {
-        if (topArticleModelList.size() >= 3) {
-            mTopArticleAdapter.setNewInstance(topArticleModelList.subList(0,3));
-        } else {
-            mTopArticleAdapter.setNewInstance(topArticleModelList);
-        }
+    private static HomeArticleLogic instance = null;
+    private HomeArticleLogic () {
 
     }
+
+    public static HomeArticleLogic getInstance() {
+        if (null == instance) {
+            synchronized (HomeArticleLogic.class) {
+                if (null == instance) {
+                    instance = new HomeArticleLogic();
+                }
+            }
+        }
+        return instance;
+    }
+
+
+
+
 }

@@ -1,7 +1,6 @@
 package com.knight.wanandroid.library_widget;
 
 import com.yanzhenjie.recyclerview.SwipeRecyclerView;
-
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
@@ -21,7 +20,7 @@ public class SetInitCustomView {
      * @param isScroll
      * @return
      */
-    public static void initSwipeRecycleview(SwipeRecyclerView swipeRecyclerView,RecyclerView.LayoutManager layoutManger,RecyclerView.Adapter<?> bindAdapter,boolean isScroll) {
+    public static void initSwipeRecycleview(SwipeRecyclerView swipeRecyclerView, RecyclerView.LayoutManager layoutManger, RecyclerView.Adapter<?> bindAdapter, boolean isScroll) {
         swipeRecyclerView.setLayoutManager(layoutManger);
         swipeRecyclerView.setHasFixedSize(true);
         swipeRecyclerView.setAdapter(bindAdapter);

@@ -3,7 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="click"
+            type="com.knight.wanandroid.module_home.module_fragment.HomeFragment.ProcyClick" />
 
+
+    </data>
 
     <com.knight.wanandroid.library_widget.CompatToobar
         android:layout_width="match_parent"
@@ -39,7 +45,8 @@
                 android:layout_toEndOf="@id/home_tv_loginname"
                 android:layout_marginLeft="@dimen/base_dimen_10"
                 android:layout_marginRight="@dimen/base_dimen_10"
-                android:background="@drawable/home_bg_filtrate_shape">
+                android:background="@drawable/home_bg_filtrate_shape"
+                android:onClick="@{()->click.searchArticles()}">
 
 
 

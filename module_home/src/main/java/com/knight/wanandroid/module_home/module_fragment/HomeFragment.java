@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 /**
@@ -42,6 +43,9 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
 
     private TopArticleAdapter mTopArticleAdapter;
     private View topArticleFootView;
+    private List<TopArticleModel> topArticleModels;
+    private boolean isShowOnlythree = false;
+
 
 
     @Override
@@ -53,14 +57,19 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     public void initView(Bundle savedInstanceState) {
         mDatabind.setClick(new ProcyClick());
         SetInitCustomView.initSwipeRecycleview(mDatabind.homeTopArticleRv,new LinearLayoutManager(getActivity()),mTopArticleAdapter,false);
-        mTopArticleAdapter = new TopArticleAdapter(new ArrayList<TopArticleModel>());
+        mTopArticleAdapter = new TopArticleAdapter(new ArrayList<>());
+        mTopArticleAdapter.setAnimation();
         mDatabind.homeTopArticleRv.setAdapter(mTopArticleAdapter);
         mDatabind.homeRefreshLayout.setOnRefreshListener(this);
         mDatabind.homeRefreshLayout.setOnRefreshListener(this);
         topArticleFootView = LayoutInflater.from(getActivity()).inflate(R.layout.home_toparticle_foot,null);
-        //         mDatabind.homeRefreshLayout.setRefreshFooter(new ClassicsFooter(getActivity()));
-        //         mDatabind.homeRefreshLayout.setRefreshFooter(new ClassicsFooter(getActivity()));
-
+        topArticleFootView.findViewById(R.id.home_tv_seemorearticles).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mTopArticleAdapter.setShowOnlyThree(isShowOnlythree);
+                isShowOnlythree = !isShowOnlythree;
+            }
+        });
     }
 
 
@@ -80,9 +89,13 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
 
     @Override
     public void setTopArticle(List<TopArticleModel> topArticleModelList) {
+        topArticleModels = topArticleModelList;
         mLoadService.showSuccess();
+        mTopArticleAdapter.setNewInstance(topArticleModelList);
+        if (topArticleModels.size() > 3) {
+            mTopArticleAdapter.setShowOnlyThree(true);
+        }
         mDatabind.homeRefreshLayout.finishRefresh();
-        HomeArticleLogic.setTopArticleStatus(topArticleModelList,mTopArticleAdapter);
         if(mDatabind.homeTopArticleRv.getFooterCount() == 0){
             mDatabind.homeTopArticleRv.addFooterView(topArticleFootView);
         }
@@ -129,8 +142,9 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
 
     public class ProcyClick{
 
-        public void testClick(){
-
+        public void searchArticles(){
+            mTopArticleAdapter.setShowOnlyThree(isShowOnlythree);
+            isShowOnlythree = !isShowOnlythree;
         }
 
     }
