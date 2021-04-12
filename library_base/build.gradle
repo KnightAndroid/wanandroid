@@ -68,5 +68,6 @@ dependencies {
     api project (':library_widget')
     //分包
     api "com.android.support:multidex:$multidexVersion"
+    api 'com.google.android.material:material:1.3.0-alpha01'
 
 }

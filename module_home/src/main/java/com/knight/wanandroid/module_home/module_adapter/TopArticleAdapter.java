@@ -2,13 +2,11 @@ package com.knight.wanandroid.module_home.module_adapter;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
-import com.knight.wanandroid.library_util.LogUtils;
 import com.knight.wanandroid.module_home.R;
 import com.knight.wanandroid.module_home.module_entity.TopArticleModel;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,7 +16,8 @@ import java.util.List;
  * @descript:置顶文章
  */
 public class TopArticleAdapter extends BaseQuickAdapter<TopArticleModel, BaseViewHolder> {
-    private boolean mIsShowOnlyCount;        private int mCount = 3;//设置最多展示几条数据
+    private boolean mIsShowOnlyCount;
+    private int mCount = 3;//设置最多展示几条数据
     public void setAnimation() {
         setAnimationEnable(true);
         this.setAnimationWithDefault(AnimationType.AlphaIn);

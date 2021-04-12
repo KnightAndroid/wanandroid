@@ -53,6 +53,9 @@ ext{
     glideVersion = '4.11.0'
     //banner图加载
     bannerVersion = "2.1.0"
+    //标题滑动导航栏
+    magicIndicatorVersion = "1.7.0"
+
 
 
 }

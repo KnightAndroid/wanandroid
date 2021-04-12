@@ -7,8 +7,10 @@ import com.knight.wanandroid.library_network.listener.HttpCallback;
 import com.knight.wanandroid.library_network.model.HttpData;
 import com.knight.wanandroid.module_home.module_contract.HomeContract;
 import com.knight.wanandroid.module_home.module_entity.BannerModel;
+import com.knight.wanandroid.module_home.module_entity.OfficialAccountModel;
 import com.knight.wanandroid.module_home.module_entity.TopArticleModel;
 import com.knight.wanandroid.module_home.module_request.HomeBannerApi;
+import com.knight.wanandroid.module_home.module_request.HomeOfficialAccountApi;
 import com.knight.wanandroid.module_home.module_request.TopArticleApi;
 
 import java.util.List;
@@ -71,4 +73,26 @@ public class HomeModel implements HomeContract.HomeModel {
 
 
         }
+
+    @Override
+    public void requestOfficialAccountData(BaseDBActivity activity, MvpListener mvpListener) {
+        GoHttp.get(activity)
+                .api(new HomeOfficialAccountApi())
+                .request(new HttpCallback<HttpData<List<OfficialAccountModel>>>(activity){
+
+                    @Override
+                    public void onSucceed(HttpData<List<OfficialAccountModel>> result){
+                        mvpListener.onSuccess(result.getData());
+
+                    }
+
+                    @Override
+                    public void onFail(Exception e){
+                        mvpListener.onError(e.getMessage());
+                    }
+
+                });
+    }
+
+
 }

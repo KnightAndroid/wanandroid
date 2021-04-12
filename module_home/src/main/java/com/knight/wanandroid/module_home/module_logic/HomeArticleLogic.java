@@ -1,15 +1,10 @@
 package com.knight.wanandroid.module_home.module_logic;
 
-import androidx.recyclerview.widget.DiffUtil;
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
+import android.widget.ImageView;
 
-import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;
 import com.knight.wanandroid.module_home.module_adapter.TopArticleAdapter;
-import com.knight.wanandroid.module_home.module_entity.TopArticleModel;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 
 /**
  * @author created by knight
@@ -34,6 +29,41 @@ public class HomeArticleLogic {
             }
         }
         return instance;
+    }
+
+
+    public void setArrowAnimate(TopArticleAdapter mTopArticleAdapter,ImageView view,boolean isShowOnlythree){
+        ObjectAnimator animator;
+        if (isShowOnlythree) {
+            animator = ObjectAnimator.ofFloat(view,"rotation",180f,0f);
+        } else {
+            animator = ObjectAnimator.ofFloat(view,"rotation",0f,180f);
+        }
+        animator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                //结束之后
+                mTopArticleAdapter.setShowOnlyThree(isShowOnlythree);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+        animator.setDuration(500);
+        animator.start();
+
     }
 
 

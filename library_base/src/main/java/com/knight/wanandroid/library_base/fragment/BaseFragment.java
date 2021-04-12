@@ -84,15 +84,15 @@ public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePres
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,@Nullable Bundle savedInstanceState){
          mDatabind = DataBindingUtil.inflate(inflater,layoutId(),container,false);
          mDatabind.setLifecycleOwner(this);
-         mLoadService = LoadSir.getDefault().register(mDatabind.getRoot(), new Callback.OnReloadListener() {
-            @Override
-            public void onReload(View v) {
-                mLoadService.showCallback(LoadCallBack.class);
-            }
-        });
+//         mLoadService = LoadSir.getDefault().register(mDatabind.getRoot(), new Callback.OnReloadListener() {
+//            @Override
+//            public void onReload(View v) {
+//                mLoadService.showCallback(LoadCallBack.class);
+//            }
+//        });
 
-      //   return mDatabind.getRoot();
-        return mLoadService.getLoadLayout();
+         return mDatabind.getRoot();
+      //   return mLoadService.getLoadLayout();
     }
 
 
@@ -118,6 +118,37 @@ public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePres
         super.onResume();
         onVisible();
     }
+
+    /**
+     *
+     * 默认加载
+     * @param view
+     */
+    protected void loadLoading(View view) {
+        if (mLoadService == null) {
+            mLoadService = LoadSir.getDefault().register(view, new Callback.OnReloadListener() {
+                @Override
+                public void onReload(View v) {
+                    mLoadService.showCallback(LoadCallBack.class);
+                }
+            });
+        }
+        mLoadService.showCallback(LoadCallBack.class);
+
+    }
+
+    /**
+     *
+     * 成功请求数据
+     */
+    protected void showSuccess() {
+        if (mLoadService != null) {
+            mLoadService.showSuccess();
+        }
+    }
+
+
+
 
 
     /**

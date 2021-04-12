@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -57,8 +59,27 @@ public class GlideEngineUtils implements ImageEngine  {
      * @param imageView
      */
     @Override
-    public void loadPhoto(@NonNull Context context, @NonNull Uri uri, @NonNull ImageView imageView) {
+    public void loadUriPhoto(@NonNull Context context, @NonNull Uri uri, @NonNull ImageView imageView) {
         Glide.with(context).load(uri).transition(withCrossFade()).into(imageView);
+    }
+
+    @Override
+    public void loadStringPhoto(@NonNull Context context, @NonNull String uri, @NonNull ImageView imageView) {
+        Glide.with(context).load(uri).transition(withCrossFade()).into(imageView);
+    }
+
+    @Override
+    public void loadCirCleStringPhoto(@NonNull Context context, @NonNull String uri, @NonNull ImageView imageView) {
+        Glide.with(context).load(uri).apply(RequestOptions.bitmapTransform(new CircleCrop())
+                        .override(imageView.getWidth(),imageView.getHeight())
+                        ).into(imageView);
+    }
+
+    @Override
+    public void loadCircleIntLocalPhoto(@NonNull Context context, @Nullable Integer resourceId, @NonNull ImageView imageView) {
+        Glide.with(context).load(resourceId).apply(RequestOptions.bitmapTransform(new CircleCrop())
+                .override(imageView.getWidth(),imageView.getHeight())
+        ).into(imageView);
     }
 
     /**

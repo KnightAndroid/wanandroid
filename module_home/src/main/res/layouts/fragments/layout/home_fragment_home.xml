@@ -18,7 +18,7 @@
         <com.scwang.smart.refresh.layout.SmartRefreshLayout
             android:id="@+id/home_refreshLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
 
             <com.scwang.smart.refresh.header.MaterialHeader
@@ -64,7 +64,41 @@
                         android:layout_height="wrap_content"
                         />
 
+                    <com.youth.banner.Banner
+                        android:id="@+id/home_banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp">
 
+
+                    </com.youth.banner.Banner>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/home_shape_lefttop_round"
+                        android:text="@string/home_highquality_officialaccount"
+                        android:textColor="@color/home_white"
+                        android:textSize="@dimen/base_dimen_14"
+                        android:gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/base_dimen_16"
+                        android:layout_marginTop="@dimen/base_dimen_5"
+                        android:onClick="@{()->click.searchArticles()}"
+                        />
+                    <com.yanzhenjie.recyclerview.SwipeRecyclerView
+                        android:id="@+id/home_rv_official_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+
+                    <net.lucode.hackware.magicindicator.MagicIndicator
+                        android:id="@+id/magic_indicator"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"/>
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/view_pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
 
                 </LinearLayout>
 
@@ -74,9 +108,9 @@
 
             </androidx.core.widget.NestedScrollView>
 
-            <com.scwang.smart.refresh.footer.ClassicsFooter
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"/>
+<!--            <com.scwang.smart.refresh.footer.ClassicsFooter-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_width="match_parent"/>-->
         </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
 

@@ -84,6 +84,7 @@ dependencies {
     implementation project (':library_base')
     annotationProcessor "com.alibaba:arouter-compiler:$arouterVersion"
     implementation "com.youth.banner:banner:$bannerVersion"
+    implementation "com.github.hackware1993:MagicIndicator:$magicIndicatorVersion"
 
 
 }

@@ -35,7 +35,34 @@ public interface ImageEngine {
      * @param uri
      * @param imageView
      */
-    void loadPhoto(@NonNull Context context, @NonNull Uri uri, @NonNull ImageView imageView);
+    void loadUriPhoto(@NonNull Context context, @NonNull Uri uri, @NonNull ImageView imageView);
+
+    /**
+     *
+     * 通过String方式加载图片到ImageView
+     * @param context
+     * @param uri
+     * @param imageView
+     */
+    void loadStringPhoto(@NonNull Context context, @NonNull String uri, @NonNull ImageView imageView);
+
+    /**
+     * 加载String方式的圆形图片
+     * @param context
+     * @param uri
+     * @param imageView
+     */
+    void loadCirCleStringPhoto(@NonNull Context context, @NonNull String uri, @NonNull ImageView imageView);
+
+    /**
+     *
+     * 加载Int方式圆形图片
+     * @param context
+     * @param resourceId
+     * @param imageView
+     */
+    void loadCircleIntLocalPhoto(@NonNull Context context,@RawRes @DrawableRes @Nullable Integer resourceId,@NonNull ImageView imageView);
+
 
     /**
      * 通过uri方式加载gif图片到ImageView
