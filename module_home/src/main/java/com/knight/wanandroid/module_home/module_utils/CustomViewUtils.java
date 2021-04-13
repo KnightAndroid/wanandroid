@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.view.View;
 
 import com.knight.wanandroid.library_common.ApplicationProvider;
+import com.knight.wanandroid.library_util.ScreenUtils;
 import com.knight.wanandroid.module_home.module_fragment.HomeArticlesFragment;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
@@ -41,6 +42,7 @@ public class CustomViewUtils {
     public static void bindViewPager2(MagicIndicator magicIndicator,ViewPager2 viewPager2, List<String> mDataList) {
         magicIndicator.setBackgroundColor(Color.WHITE);
         CommonNavigator commonNavigator = new CommonNavigator(ApplicationProvider.getInstance().getApplication());
+        commonNavigator.setLeftPadding(ScreenUtils.dp2px(16));
         commonNavigator.setScrollPivotX(0.35f);
         commonNavigator.setAdapter(new CommonNavigatorAdapter() {
             @Override
@@ -52,8 +54,8 @@ public class CustomViewUtils {
             public IPagerTitleView getTitleView(Context context, final int index) {
                 SimplePagerTitleView simplePagerTitleView = new SimplePagerTitleView(context);
                 simplePagerTitleView.setText(mDataList.get(index));
-                simplePagerTitleView.setNormalColor(Color.parseColor("#333333"));
-                simplePagerTitleView.setSelectedColor(Color.parseColor("#e94220"));
+                simplePagerTitleView.setNormalColor(Color.parseColor("#999999"));
+                simplePagerTitleView.setSelectedColor(Color.parseColor("#ffffff"));
                 simplePagerTitleView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -67,7 +69,9 @@ public class CustomViewUtils {
             @Override
             public IPagerIndicator getIndicator(Context context) {
                 WrapPagerIndicator indicator = new WrapPagerIndicator(context);
-                indicator.setFillColor(Color.parseColor("#ebe4e3"));
+               // indicator.setHorizontalPadding(10);
+                indicator.setRoundRadius(ScreenUtils.dp2px(6));
+                indicator.setFillColor(Color.parseColor("#55aff4"));
                 return indicator;
             }
         });
@@ -106,6 +110,8 @@ public class CustomViewUtils {
      */
     public static void setViewPager2Init(FragmentActivity activity, List<HomeArticlesFragment> fragments, ViewPager2 viewPager2, boolean isUserInputEnabled) {
         viewPager2.setUserInputEnabled(isUserInputEnabled);
+        //暂时解决切换白屏问题
+        viewPager2.setOffscreenPageLimit(fragments.size());
         viewPager2.setAdapter(new FragmentStateAdapter(activity) {
             @NonNull
             @Override

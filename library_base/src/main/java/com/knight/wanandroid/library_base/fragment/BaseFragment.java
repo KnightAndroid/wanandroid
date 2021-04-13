@@ -8,10 +8,12 @@ import android.view.ViewGroup;
 import com.kingja.loadsir.callback.Callback;
 import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
+import com.knight.wanandroid.library_base.loadsir.ErrorCallBack;
 import com.knight.wanandroid.library_base.loadsir.LoadCallBack;
 import com.knight.wanandroid.library_base.model.BaseModel;
 import com.knight.wanandroid.library_base.presenter.BasePresenter;
 import com.knight.wanandroid.library_util.CreateUtils;
+import com.knight.wanandroid.library_widget.loadcircleview.ProgressHUD;
 
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
@@ -34,6 +36,8 @@ public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePres
     public T mPresenter;
     public M mModel;
     public LoadService mLoadService;
+
+    private ProgressHUD mProgressHUD;
 
     /**
      *
@@ -138,6 +142,28 @@ public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePres
     }
 
     /**
+     * 显示请求框
+     * @param loadMessage
+     */
+    protected void showLoadingHud(String loadMessage) {
+        if (mProgressHUD == null) {
+            mProgressHUD = new ProgressHUD(getActivity(),loadMessage);
+        }
+        mProgressHUD.show();
+    }
+
+    /**
+     *
+     * 隐藏请求框
+     *
+     */
+    protected void dismissLoadingHud() {
+        if (mProgressHUD != null) {
+            mProgressHUD.dismiss();
+        }
+    }
+
+    /**
      *
      * 成功请求数据
      */
@@ -146,6 +172,17 @@ public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePres
             mLoadService.showSuccess();
         }
     }
+
+    /**
+     *
+     * 失败请求的界面
+     */
+    protected void showloadFailure() {
+        if (mLoadService != null) {
+            mLoadService.showCallback(ErrorCallBack.class);
+        }
+    }
+
 
 
 

@@ -13,13 +13,13 @@ import com.knight.wanandroid.module_home.module_entity.HomeArticleListModel;
  */
 public class HomeArticlePresenter extends HomeArticleContract.HomeArticleDataPresenter {
     @Override
-    public void requestHomeArticle(BaseDBActivity activity) {
+    public void requestHomeArticle(BaseDBActivity activity,int page) {
         final HomeArticleContract.HomeArticleView mView = getView();
         if (mView == null) {
             return;
         }
 
-        mModel.requestHomeArticle(activity, new MvpListener<HomeArticleListModel>() {
+        mModel.requestHomeArticle(activity, page,new MvpListener<HomeArticleListModel>() {
             @Override
             public void onSuccess(HomeArticleListModel data) {
                 mView.setHomeArticle(data);

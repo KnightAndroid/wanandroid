@@ -1,7 +1,6 @@
 package com.knight.wanandroid.module_home.module_fragment;
 
 import android.os.Bundle;
-import android.os.Handler;
 
 import com.knight.wanandroid.library_base.activity.BaseDBActivity;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
@@ -30,6 +29,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBinding, HomeArticlePresenter, HomeArticleModel> implements HomeArticleContract.HomeArticleView, OnLoadMoreListener {
 
     private HomeArticleAdapter mHomeArticleAdapter;
+    private int currentPage = 0;
 
 
     @Override
@@ -43,6 +43,7 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
         mDatabind.homeArticlerefreshLayout.setOnLoadMoreListener(this);
         SetInitCustomView.initSwipeRecycleview(mDatabind.homeArticleBody,new LinearLayoutManager(getActivity()),mHomeArticleAdapter,true);
         mDatabind.homeArticleBody.setAdapter(mHomeArticleAdapter);
+
     }
 
     /**
@@ -52,7 +53,8 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
      */
     @Override
     protected void lazyLoadData() {
-        mPresenter.requestHomeArticle((BaseDBActivity) getActivity());
+       // showLoadingHud("请求中...");
+        mPresenter.requestHomeArticle((BaseDBActivity) getActivity(),currentPage);
     }
 
 
@@ -69,21 +71,28 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
 
     @Override
     public void showError(String errorMsg) {
-
+        showloadFailure();
     }
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mDatabind.homeArticlerefreshLayout.finishLoadMore();
-            }
-        },2000);
+        mPresenter.requestHomeArticle((BaseDBActivity) getActivity(),currentPage);
     }
 
     @Override
     public void setHomeArticle(HomeArticleListModel result) {
-        mHomeArticleAdapter.setNewInstance(result.getDatas());
+        currentPage = result.getCurPage();
+       // dismissLoadingHud();
+        if (currentPage > 1) {
+            mDatabind.homeArticlerefreshLayout.finishLoadMore();
+            if (result.getDatas().size() > 0) {
+                mHomeArticleAdapter.addData(result.getDatas());
+            } else {
+                mDatabind.homeArticlerefreshLayout.setEnableLoadMore(false);
+            }
+        } else {
+            mHomeArticleAdapter.setNewInstance(result.getDatas());
+        }
+
     }
 }

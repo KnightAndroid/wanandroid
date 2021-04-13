@@ -17,9 +17,10 @@ import com.knight.wanandroid.module_home.module_request.HomeArticleApi;
  */
 public class HomeArticleModel implements HomeArticleContract.HomeArticleModel{
     @Override
-    public void requestHomeArticle(BaseDBActivity activity, MvpListener mvpListener) {
+    public void requestHomeArticle(BaseDBActivity activity, int page,MvpListener mvpListener) {
         GoHttp.get(activity)
-                .api(new HomeArticleApi())
+                .api(new HomeArticleApi()
+                        .setPage(page))
                 .request(new HttpCallback<HttpData<HomeArticleListModel>>(activity){
                     @Override
                     public void onSucceed(HttpData<HomeArticleListModel> result) {

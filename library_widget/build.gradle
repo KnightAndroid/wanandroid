@@ -39,6 +39,7 @@ dependencies {
     api "com.github.CymChad:BaseRecyclerViewAdapterHelper:$BaseAdapterVersion"
     //recycleview
     api "com.yanzhenjie.recyclerview:x:$recycleviewVersion"
+    implementation project(':library_util')
    // api project(':library_base')
     //implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
 }

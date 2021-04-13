@@ -1,6 +1,7 @@
 package com.knight.wanandroid.library_util;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.view.View;
@@ -40,6 +41,17 @@ public class StatusBarUtils {
         } else {
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
+    }
+
+    /**
+     *
+     * 返回状态栏高度
+     * @param context
+     * @return
+     */
+    public static int getStatusBarHeight(Context context){
+        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        return context.getResources().getDimensionPixelSize(resourceId);
     }
 
 

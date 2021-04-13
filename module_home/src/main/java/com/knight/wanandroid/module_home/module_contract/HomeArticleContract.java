@@ -24,12 +24,12 @@ public interface HomeArticleContract {
 
     interface HomeArticleModel extends BaseModel{
         //请求文章数据
-        void requestHomeArticle(BaseDBActivity activity, MvpListener mvpListener);
+        void requestHomeArticle(BaseDBActivity activity, int page,MvpListener mvpListener);
     }
 
     abstract class HomeArticleDataPresenter extends BasePresenter<HomeArticleModel,HomeArticleView>{
         //具体实现
-        public abstract void requestHomeArticle(BaseDBActivity activity);
+        public abstract void requestHomeArticle(BaseDBActivity activity,int page);
     }
 
 }

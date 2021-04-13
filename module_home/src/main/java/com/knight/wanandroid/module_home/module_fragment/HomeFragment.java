@@ -82,7 +82,6 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         });
 
         loadLoading(mDatabind.homeRefreshLayout);
-
     }
 
 
@@ -156,13 +155,10 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     @Override
     public void showError(String errorMsg) {
         ToastUtils.getInstance().showToast(errorMsg);
+        showloadFailure();
 
     }
 
-//    @Override
-//    public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-//
-//    }
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
@@ -196,7 +192,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         mDataList.add("sdsdsd8");
         mDataList.add("sdsdsd9");
         mDataList.add("sdsdsd10");
-
+        mFragments.clear();
         mFragments.add(new HomeArticlesFragment());
         mFragments.add(new HomeArticlesFragment());
         mFragments.add(new HomeArticlesFragment());
@@ -213,10 +209,5 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         CustomViewUtils.bindViewPager2(mDatabind.magicIndicator,mDatabind.viewPager,mDataList);
 
     }
-
-
-
-
-
 
 }

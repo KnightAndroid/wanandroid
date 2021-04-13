@@ -9,8 +9,23 @@ import com.knight.wanandroid.library_network.config.IRequestApi;
  * @descript:
  */
 public class HomeArticleApi implements IRequestApi {
+
+
+    private int page;
+
+    public int getPage() {
+        return page;
+    }
+
+    public HomeArticleApi setPage(int page) {
+        this.page = page;
+        return this;
+    }
+
     @Override
     public String getApi() {
-        return "article/list/0/json";
+        return "article/list/"+page+"/json";
     }
+
+
 }
