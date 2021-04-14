@@ -29,7 +29,7 @@ import java.util.Map;
  * @Version: 1.0
  */
 
-class JsonUtils {
+public class JsonUtils {
 
     public static boolean isPrintException = true;
 

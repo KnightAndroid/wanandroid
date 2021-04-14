@@ -1,9 +1,13 @@
 package com.knight.wanandroid.module_home.module_adapter;
 
+import android.os.Build;
+import android.text.Html;
+import android.text.TextUtils;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.knight.wanandroid.module_home.R;
-import com.knight.wanandroid.module_home.module_entity.TopArticleModel;
+import com.knight.wanandroid.module_home.module_entity.TopArticleEntity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -15,7 +19,7 @@ import java.util.List;
  * @Date 2021/4/9 10:29
  * @descript:置顶文章
  */
-public class TopArticleAdapter extends BaseQuickAdapter<TopArticleModel, BaseViewHolder> {
+public class TopArticleAdapter extends BaseQuickAdapter<TopArticleEntity, BaseViewHolder> {
     private boolean mIsShowOnlyCount;
     private int mCount = 3;//设置最多展示几条数据
     public void setAnimation() {
@@ -24,17 +28,27 @@ public class TopArticleAdapter extends BaseQuickAdapter<TopArticleModel, BaseVie
 
     }
 
-    public TopArticleAdapter(List<TopArticleModel> topArticleModels) {
-        super(R.layout.home_top_article_item, topArticleModels);
+    public TopArticleAdapter(List<TopArticleEntity> topArticleEntities) {
+        super(R.layout.home_top_article_item, topArticleEntities);
     }
 
 
     @Override
-    protected void convert(@NotNull BaseViewHolder baseViewHolder, TopArticleModel topArticleModel) {
+    protected void convert(@NotNull BaseViewHolder baseViewHolder, TopArticleEntity topArticleEntity) {
         //设置标题
-        baseViewHolder.setText(R.id.home_tv_article_title, topArticleModel.getTitle());
-        //设置作者
-        baseViewHolder.setText(R.id.tv_article_author, topArticleModel.getAuthor());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            baseViewHolder.setText(R.id.home_tv_article_title, Html.fromHtml(topArticleEntity.getTitle(),Html.FROM_HTML_MODE_LEGACY));
+        } else {
+            baseViewHolder.setText(R.id.home_tv_article_title,Html.fromHtml(topArticleEntity.getTitle()));
+        }
+        if (!TextUtils.isEmpty(topArticleEntity.getAuthor())) {
+            //设置作者
+            baseViewHolder.setText(R.id.tv_article_author, topArticleEntity.getAuthor());
+        } else {
+            //设置作者
+            baseViewHolder.setText(R.id.tv_article_author, topArticleEntity.getShareUser());
+        }
+
     }
 
     /**

@@ -6,9 +6,9 @@ import com.knight.wanandroid.library_network.GoHttp;
 import com.knight.wanandroid.library_network.listener.HttpCallback;
 import com.knight.wanandroid.library_network.model.HttpData;
 import com.knight.wanandroid.module_home.module_contract.HomeContract;
-import com.knight.wanandroid.module_home.module_entity.BannerModel;
-import com.knight.wanandroid.module_home.module_entity.OfficialAccountModel;
-import com.knight.wanandroid.module_home.module_entity.TopArticleModel;
+import com.knight.wanandroid.module_home.module_entity.BannerEntity;
+import com.knight.wanandroid.module_home.module_entity.OfficialAccountEntity;
+import com.knight.wanandroid.module_home.module_entity.TopArticleEntity;
 import com.knight.wanandroid.module_home.module_request.HomeBannerApi;
 import com.knight.wanandroid.module_home.module_request.HomeOfficialAccountApi;
 import com.knight.wanandroid.module_home.module_request.TopArticleApi;
@@ -34,9 +34,9 @@ public class HomeModel implements HomeContract.HomeModel {
     public void requestTopArticle(BaseDBActivity activity, MvpListener mvpListener) {
         GoHttp.get(activity)
                 .api(new TopArticleApi())
-                .request(new HttpCallback<HttpData<List<TopArticleModel>>>(activity){
+                .request(new HttpCallback<HttpData<List<TopArticleEntity>>>(activity){
                     @Override
-                    public void onSucceed(HttpData<List<TopArticleModel>> topArticleModels) {
+                    public void onSucceed(HttpData<List<TopArticleEntity>> topArticleModels) {
                         mvpListener.onSuccess(topArticleModels.getData());
                     }
 
@@ -57,10 +57,10 @@ public class HomeModel implements HomeContract.HomeModel {
     public void requestBannerData(BaseDBActivity activity, final MvpListener mvpListener) {
         GoHttp.get(activity)
                 .api(new HomeBannerApi())
-                .request(new HttpCallback<HttpData<List<BannerModel>>>(activity){
+                .request(new HttpCallback<HttpData<List<BannerEntity>>>(activity){
 
                     @Override
-                    public void onSucceed(HttpData<List<BannerModel>> result){
+                    public void onSucceed(HttpData<List<BannerEntity>> result){
                          mvpListener.onSuccess(result.getData());
 
                     }
@@ -78,10 +78,10 @@ public class HomeModel implements HomeContract.HomeModel {
     public void requestOfficialAccountData(BaseDBActivity activity, MvpListener mvpListener) {
         GoHttp.get(activity)
                 .api(new HomeOfficialAccountApi())
-                .request(new HttpCallback<HttpData<List<OfficialAccountModel>>>(activity){
+                .request(new HttpCallback<HttpData<List<OfficialAccountEntity>>>(activity){
 
                     @Override
-                    public void onSucceed(HttpData<List<OfficialAccountModel>> result){
+                    public void onSucceed(HttpData<List<OfficialAccountEntity>> result){
                         mvpListener.onSuccess(result.getData());
 
                     }

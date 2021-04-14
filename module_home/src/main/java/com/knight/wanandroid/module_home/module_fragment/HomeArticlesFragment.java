@@ -8,8 +8,9 @@ import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.module_home.R;
 import com.knight.wanandroid.module_home.databinding.HomeFragmentArticleBinding;
 import com.knight.wanandroid.module_home.module_adapter.HomeArticleAdapter;
+import com.knight.wanandroid.module_home.module_constants.HomeConstants;
 import com.knight.wanandroid.module_home.module_contract.HomeArticleContract;
-import com.knight.wanandroid.module_home.module_entity.HomeArticleListModel;
+import com.knight.wanandroid.module_home.module_entity.HomeArticleListEntity;
 import com.knight.wanandroid.module_home.module_model.HomeArticleModel;
 import com.knight.wanandroid.module_home.module_presenter.HomeArticlePresenter;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
@@ -54,9 +55,18 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
     @Override
     protected void lazyLoadData() {
        // showLoadingHud("请求中...");
-        mPresenter.requestHomeArticle((BaseDBActivity) getActivity(),currentPage);
+        if (HomeConstants.ARTICLE_TYPE.equals("全部")) {
+            mPresenter.requestAllHomeArticle((BaseDBActivity) getActivity(),currentPage);
+        } else {
+            mPresenter.requestSearchArticle((BaseDBActivity) getActivity(),currentPage,HomeConstants.ARTICLE_TYPE);
+        }
+
     }
 
+    @Override
+    protected void reLoadData() {
+        lazyLoadData();
+    }
 
 
     @Override
@@ -76,13 +86,28 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        mPresenter.requestHomeArticle((BaseDBActivity) getActivity(),currentPage);
+        mPresenter.requestAllHomeArticle((BaseDBActivity) getActivity(),currentPage);
     }
 
     @Override
-    public void setHomeArticle(HomeArticleListModel result) {
+    public void setAllHomeArticle(HomeArticleListEntity result) {
+        loadArticleData(result);
+    }
+
+    @Override
+    public void setSearchArticle(HomeArticleListEntity result) {
+        loadArticleData(result);
+    }
+
+
+    /**
+     *
+     * 加载文章列表数据
+     * @param result
+     */
+    private void loadArticleData(HomeArticleListEntity result) {
         currentPage = result.getCurPage();
-       // dismissLoadingHud();
+        // dismissLoadingHud();
         if (currentPage > 1) {
             mDatabind.homeArticlerefreshLayout.finishLoadMore();
             if (result.getDatas().size() > 0) {
@@ -93,6 +118,5 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
         } else {
             mHomeArticleAdapter.setNewInstance(result.getDatas());
         }
-
     }
 }

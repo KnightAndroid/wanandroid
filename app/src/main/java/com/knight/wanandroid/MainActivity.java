@@ -8,6 +8,7 @@ import com.knight.wanandroid.databinding.ActivityMainBinding;
 import com.knight.wanandroid.library_base.activity.BaseDBActivity;
 import com.knight.wanandroid.library_util.ViewSetUtils;
 import com.knight.wanandroid.module_home.module_fragment.HomeFragment;
+import com.knight.wanandroid.module_mine.module_fragment.MineFragment;
 import com.knight.wanandroid.module_square.module_fragment.SquareFragment;
 
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class MainActivity extends BaseDBActivity<ActivityMainBinding> {
     private void initFragment(){
         fragments.add(new HomeFragment());
         fragments.add(new SquareFragment());
+        fragments.add(new MineFragment());
 
 
        // mDatabind.mainViewpager
@@ -48,6 +50,8 @@ public class MainActivity extends BaseDBActivity<ActivityMainBinding> {
                     mDatabind.mainViewpager.setCurrentItem(0,false);
                 } else if(item.getItemId() == R.id.squareFragment){
                     mDatabind.mainViewpager.setCurrentItem(1,false);
+                } else if(item.getItemId() == R.id.mineFragment){
+                    mDatabind.mainViewpager.setCurrentItem(2,false);
                 }
                 return true;
             }

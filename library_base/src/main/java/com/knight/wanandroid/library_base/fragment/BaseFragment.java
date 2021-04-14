@@ -76,6 +76,12 @@ public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePres
 
     /**
      *
+     * 重新加载当前页面请求
+     */
+
+    protected abstract void reLoadData();
+    /**
+     *
      *
      * 加载布局
      * @param inflater
@@ -134,6 +140,7 @@ public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePres
                 @Override
                 public void onReload(View v) {
                     mLoadService.showCallback(LoadCallBack.class);
+                    reLoadData();
                 }
             });
         }

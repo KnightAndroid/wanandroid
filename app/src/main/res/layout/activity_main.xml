@@ -13,19 +13,17 @@
 
 
 
-    <LinearLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".MainActivity">
+        android:layout_height="match_parent">
+
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/main_viewpager"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-
+            android:layout_height="match_parent"
             />
+
 
         <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
             android:id="@+id/btn_nav"
@@ -34,24 +32,35 @@
             android:background="@color/color_white"
             app:itemTextColor="@drawable/main_bottom_color_selector"
             app:menu="@menu/menu_main"
-
+            app:layout_behavior=".library_widget.BottomNavigationBehavior"
+            android:layout_gravity="bottom|end"
             />
 
-<!--        <cn.onestravel.one.navigation.androidx.OneBottomNavigationBar-->
-<!--            android:id="@+id/btn_nav"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:background="@color/color_white"-->
-<!--            app:oneItemTextColor="@drawable/main_bottom_color_selector"-->
-<!--            app:oneFloatingEnable="true"-->
-<!--            app:oneFloatingUp="25dp"-->
-<!--            app:oneMenu="@menu/menu_main"-->
-<!--            android:paddingTop="5dp"-->
-<!--            android:paddingBottom="5dp"-->
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-<!--            />-->
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="vertical"-->
+<!--        tools:context=".MainActivity">-->
 
-    </LinearLayout>
+
+
+<!--&lt;!&ndash;        <cn.onestravel.one.navigation.androidx.OneBottomNavigationBar&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/btn_nav"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="50dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:background="@color/color_white"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:oneItemTextColor="@drawable/main_bottom_color_selector"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:oneFloatingEnable="true"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:oneFloatingUp="25dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:oneMenu="@menu/menu_main"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:paddingTop="5dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:paddingBottom="5dp"&ndash;&gt;-->
+
+<!--&lt;!&ndash;            />&ndash;&gt;-->
+
+<!--    </LinearLayout>-->
 </layout>
 
 

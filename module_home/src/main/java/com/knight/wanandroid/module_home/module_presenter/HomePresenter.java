@@ -3,9 +3,9 @@ package com.knight.wanandroid.module_home.module_presenter;
 import com.knight.wanandroid.library_base.activity.BaseDBActivity;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.module_home.module_contract.HomeContract;
-import com.knight.wanandroid.module_home.module_entity.BannerModel;
-import com.knight.wanandroid.module_home.module_entity.OfficialAccountModel;
-import com.knight.wanandroid.module_home.module_entity.TopArticleModel;
+import com.knight.wanandroid.module_home.module_entity.BannerEntity;
+import com.knight.wanandroid.module_home.module_entity.OfficialAccountEntity;
+import com.knight.wanandroid.module_home.module_entity.TopArticleEntity;
 
 import java.util.List;
 
@@ -29,9 +29,9 @@ public class HomePresenter extends HomeContract.HomeDataPresenter {
         if (mView == null) {
             return;
         }
-        mModel.requestBannerData(activity, new MvpListener<List<BannerModel>>() {
+        mModel.requestBannerData(activity, new MvpListener<List<BannerEntity>>() {
             @Override
-            public void onSuccess(List<BannerModel> bannerModel) {
+            public void onSuccess(List<BannerEntity> bannerModel) {
                mView.setBannerData(bannerModel);
             }
 
@@ -54,10 +54,10 @@ public class HomePresenter extends HomeContract.HomeDataPresenter {
             return;
         }
 
-        mModel.requestTopArticle(activity, new MvpListener<List<TopArticleModel>>() {
+        mModel.requestTopArticle(activity, new MvpListener<List<TopArticleEntity>>() {
             @Override
-            public void onSuccess(List<TopArticleModel> topArticleModels) {
-                mView.setTopArticle(topArticleModels);
+            public void onSuccess(List<TopArticleEntity> topArticleEntities) {
+                mView.setTopArticle(topArticleEntities);
             }
 
             @Override
@@ -80,10 +80,10 @@ public class HomePresenter extends HomeContract.HomeDataPresenter {
             return;
         }
 
-        mModel.requestOfficialAccountData(activity, new MvpListener<List<OfficialAccountModel>>() {
+        mModel.requestOfficialAccountData(activity, new MvpListener<List<OfficialAccountEntity>>() {
 
             @Override
-            public void onSuccess(List<OfficialAccountModel> data) {
+            public void onSuccess(List<OfficialAccountEntity> data) {
                 mView.setOfficialAccountData(data);
 
             }

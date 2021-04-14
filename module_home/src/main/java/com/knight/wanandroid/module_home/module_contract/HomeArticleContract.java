@@ -5,7 +5,7 @@ import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_base.model.BaseModel;
 import com.knight.wanandroid.library_base.presenter.BasePresenter;
 import com.knight.wanandroid.library_base.view.BaseView;
-import com.knight.wanandroid.module_home.module_entity.HomeArticleListModel;
+import com.knight.wanandroid.module_home.module_entity.HomeArticleListEntity;
 
 /**
  * @author created by knight
@@ -17,19 +17,26 @@ public interface HomeArticleContract {
 
     interface HomeArticleView extends BaseView{
 
-        //设置文章数据
-        void setHomeArticle(HomeArticleListModel result);
+        //设置全部文章数据
+        void setAllHomeArticle(HomeArticleListEntity result);
+        //设置搜索文章数据
+        void setSearchArticle(HomeArticleListEntity result);
     }
 
 
     interface HomeArticleModel extends BaseModel{
-        //请求文章数据
-        void requestHomeArticle(BaseDBActivity activity, int page,MvpListener mvpListener);
+        //请求全部文章数据
+        void requestAllHomeArticle(BaseDBActivity activity, int page,MvpListener mvpListener);
+        //搜索接口文章数据
+        void requestSerchArticle(BaseDBActivity activity,int page,String keyWords,MvpListener mvpListener);
+
     }
 
     abstract class HomeArticleDataPresenter extends BasePresenter<HomeArticleModel,HomeArticleView>{
         //具体实现
-        public abstract void requestHomeArticle(BaseDBActivity activity,int page);
+        public abstract void requestAllHomeArticle(BaseDBActivity activity,int page);
+
+        public abstract void requestSearchArticle(BaseDBActivity activity,int page,String keyWords);
     }
 
 }

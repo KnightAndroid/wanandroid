@@ -5,9 +5,9 @@ import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_base.model.BaseModel;
 import com.knight.wanandroid.library_base.presenter.BasePresenter;
 import com.knight.wanandroid.library_base.view.BaseView;
-import com.knight.wanandroid.module_home.module_entity.BannerModel;
-import com.knight.wanandroid.module_home.module_entity.OfficialAccountModel;
-import com.knight.wanandroid.module_home.module_entity.TopArticleModel;
+import com.knight.wanandroid.module_home.module_entity.BannerEntity;
+import com.knight.wanandroid.module_home.module_entity.OfficialAccountEntity;
+import com.knight.wanandroid.module_home.module_entity.TopArticleEntity;
 
 import java.util.List;
 
@@ -21,11 +21,11 @@ public interface HomeContract {
 
     interface HomeView extends BaseView{
         //设置置顶文章数据
-        void setTopArticle(List<TopArticleModel> topArticleModelList);
+        void setTopArticle(List<TopArticleEntity> topArticleEntityList);
         //设置banner
-        void setBannerData(List<BannerModel> result);
+        void setBannerData(List<BannerEntity> result);
         //设置公众号数据
-        void setOfficialAccountData(List<OfficialAccountModel> officialAccountModels);
+        void setOfficialAccountData(List<OfficialAccountEntity> officialAccountModels);
 
         //获取列表数据
         void setListData();

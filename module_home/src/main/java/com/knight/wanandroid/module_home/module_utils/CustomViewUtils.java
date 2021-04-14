@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.knight.wanandroid.library_common.ApplicationProvider;
 import com.knight.wanandroid.library_util.ScreenUtils;
+import com.knight.wanandroid.module_home.module_constants.HomeConstants;
 import com.knight.wanandroid.module_home.module_fragment.HomeArticlesFragment;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
@@ -59,6 +60,7 @@ public class CustomViewUtils {
                 simplePagerTitleView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        HomeConstants.ARTICLE_TYPE = mDataList.get(index);
                         viewPager2.setCurrentItem(index);
 
                     }

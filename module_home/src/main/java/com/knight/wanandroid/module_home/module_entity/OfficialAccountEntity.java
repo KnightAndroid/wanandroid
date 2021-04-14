@@ -11,7 +11,7 @@ import java.util.List;
  * @descript:公众号数据
  */
 
-public class OfficialAccountModel extends BaseEntity {
+public class OfficialAccountEntity extends BaseEntity {
 
 
     /**

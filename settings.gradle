@@ -1,3 +1,4 @@
+include ':module_mine'
 include ':module_square'
 include ':library_widget'
 include ':library_permiss'

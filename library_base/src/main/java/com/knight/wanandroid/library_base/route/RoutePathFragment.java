@@ -19,12 +19,26 @@ public class RoutePathFragment {
         public static final String Home_Pager = Home + "/home_main";
     }
 
-
+    /**
+     *
+     * 广场模块
+     */
     public static class Square {
         private static final String Square = "/module_square_fragment";
 
         public static final String Square_pager = Square + "/square_main";
 
+    }
+
+    /**
+     *
+     * 我的页面
+     * 
+     */
+    public static class Mine {
+        private static final String Mine = "/module_mine_fragment";
+
+        public static final String Mine_pager = Mine + "/mine_main";
     }
 
 

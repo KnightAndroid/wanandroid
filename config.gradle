@@ -30,7 +30,7 @@ ext{
     //okhttpVersion
     okHttpVersion = "4.0.0"
     //gsonVersion
-    gsonVersion = "2.6.2"
+    gsonVersion = "2.8.5"
     //annoation
     annoationVersion = "1.1.0"
     //底部导航栏

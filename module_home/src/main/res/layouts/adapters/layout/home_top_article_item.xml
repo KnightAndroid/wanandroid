@@ -41,6 +41,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginRight="@dimen/base_dimen_16"
             android:layout_marginBottom="@dimen/base_dimen_6"
+            android:textColor="@color/home_color999999"
             />
 
 

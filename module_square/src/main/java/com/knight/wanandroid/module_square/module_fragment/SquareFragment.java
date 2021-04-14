@@ -31,6 +31,11 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
     }
 
     @Override
+    protected void reLoadData() {
+
+    }
+
+    @Override
     public void setNewShareData() {
 
     }

@@ -23,173 +23,108 @@
 
 
             <com.scwang.smart.refresh.header.MaterialHeader
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"/>
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <androidx.coordinatorlayout.widget.CoordinatorLayout
+                <include
+                    android:id="@+id/layout_one"
+                    layout="@layout/home_include_home_toolbar"
+                    bind:click="@{click}">
+
+                </include>
+
+                <androidx.core.widget.NestedScrollView
+                    android:id="@+id/home_coordinatorsl"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@color/home_colorAccent"
+                    android:fillViewport="true"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-
-                    <com.google.android.material.appbar.AppBarLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="match_parent"
+                        android:background="@color/home_colorf9f9f9"
+                        android:orientation="vertical">
 
 
-                        <com.google.android.material.appbar.CollapsingToolbarLayout
+                        <LinearLayout
+                            android:id="@+id/home_ll_top"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:fitsSystemWindows="true"
-                            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                            app:statusBarScrim="@android:color/transparent">
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
 
-                            <androidx.appcompat.widget.Toolbar
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/base_dimen_16"
+                                android:layout_marginTop="@dimen/base_dimen_5"
+                                android:background="@drawable/home_shape_lefttop_round"
+                                android:gravity="center_vertical"
+                                android:onClick="@{()->click.searchArticles()}"
+                                android:text="@string/home_topsticky_article"
+                                android:textColor="@color/home_white"
+                                android:textSize="@dimen/base_dimen_14" />
+
+                            <com.yanzhenjie.recyclerview.SwipeRecyclerView
+                                android:id="@+id/home_top_article_rv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                            <com.youth.banner.Banner
+                                android:id="@+id/home_banner"
+                                android:layout_width="match_parent"
+                                android:layout_height="160dp">
+
+
+                            </com.youth.banner.Banner>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/base_dimen_16"
+                                android:layout_marginTop="@dimen/base_dimen_5"
+                                android:background="@drawable/home_shape_lefttop_round"
+                                android:gravity="center_vertical"
+                                android:onClick="@{()->click.searchArticles()}"
+                                android:text="@string/home_highquality_officialaccount"
+                                android:textColor="@color/home_white"
+                                android:textSize="@dimen/base_dimen_14" />
+
+                            <com.yanzhenjie.recyclerview.SwipeRecyclerView
+                                android:id="@+id/home_rv_official_account"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                app:layout_collapseMode="pin">
+                                android:paddingBottom="@dimen/base_dimen_10" />
+                        </LinearLayout>
 
 
-                                <include
-                                    android:id="@+id/layout_one"
-                                    layout="@layout/home_include_home_toolbar"
-                                    bind:click="@{click}"
-                                    >
+                        <net.lucode.hackware.magicindicator.MagicIndicator
+                            android:id="@+id/magic_indicator"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp" />
 
-                                </include>
+                        <androidx.viewpager2.widget.ViewPager2
+                            android:id="@+id/view_pager"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
 
-                            </androidx.appcompat.widget.Toolbar>
-
-
-
-                        </com.google.android.material.appbar.CollapsingToolbarLayout>
+                    </LinearLayout>
 
 
-
-                    </com.google.android.material.appbar.AppBarLayout>
-
+                </androidx.core.widget.NestedScrollView>
 
 
-
-
-
-                   <androidx.core.widget.NestedScrollView
-                       android:id="@+id/home_coordinatorsl"
-                       android:layout_width="match_parent"
-                       android:layout_height="match_parent"
-                       android:background="@color/home_colorAccent"
-                       android:fillViewport="true"
-                       app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                       >
-
-                       <LinearLayout
-                           android:layout_width="match_parent"
-                           android:layout_height="match_parent"
-                           android:background="@color/home_colorf9f9f9"
-                           android:orientation="vertical"
-                           >
-
-
-                           <LinearLayout
-                               android:id="@+id/home_ll_top"
-                               android:layout_width="match_parent"
-                               android:layout_height="wrap_content"
-                               android:orientation="vertical">
-
-                               <TextView
-                                   android:layout_width="wrap_content"
-                                   android:layout_height="wrap_content"
-                                   android:background="@drawable/home_shape_lefttop_round"
-                                   android:text="@string/home_topsticky_article"
-                                   android:textColor="@color/home_white"
-                                   android:textSize="@dimen/base_dimen_14"
-                                   android:gravity="center_vertical"
-                                   android:layout_marginLeft="@dimen/base_dimen_16"
-                                   android:layout_marginTop="@dimen/base_dimen_5"
-                                   android:onClick="@{()->click.searchArticles()}"
-                                   />
-
-                               <com.yanzhenjie.recyclerview.SwipeRecyclerView
-                                   android:id="@+id/home_top_article_rv"
-                                   android:layout_width="match_parent"
-                                   android:layout_height="wrap_content"
-                                   />
-
-                               <com.youth.banner.Banner
-                                   android:id="@+id/home_banner"
-                                   android:layout_width="match_parent"
-                                   android:layout_height="160dp">
-
-
-                               </com.youth.banner.Banner>
-
-                               <TextView
-                                   android:layout_width="wrap_content"
-                                   android:layout_height="wrap_content"
-                                   android:background="@drawable/home_shape_lefttop_round"
-                                   android:text="@string/home_highquality_officialaccount"
-                                   android:textColor="@color/home_white"
-                                   android:textSize="@dimen/base_dimen_14"
-                                   android:gravity="center_vertical"
-                                   android:layout_marginLeft="@dimen/base_dimen_16"
-                                   android:layout_marginTop="@dimen/base_dimen_5"
-                                   android:onClick="@{()->click.searchArticles()}"
-                                   />
-                               <com.yanzhenjie.recyclerview.SwipeRecyclerView
-                                   android:id="@+id/home_rv_official_account"
-                                   android:layout_width="match_parent"
-                                   android:layout_height="wrap_content"
-                                   android:paddingBottom="@dimen/base_dimen_10"
-                                   />
-                           </LinearLayout>
-
-
-
-
-                           <net.lucode.hackware.magicindicator.MagicIndicator
-                               android:id="@+id/magic_indicator"
-                               android:layout_width="match_parent"
-                               android:layout_height="50dp"/>
-
-                           <androidx.viewpager2.widget.ViewPager2
-                               android:id="@+id/view_pager"
-                               android:layout_width="match_parent"
-                               android:layout_height="match_parent"/>
-
-                       </LinearLayout>
-
-
-
-
-
-                   </androidx.core.widget.NestedScrollView>
-
-
-
-
-
-
-                </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
+            </LinearLayout>
 
 
         </com.scwang.smart.refresh.layout.SmartRefreshLayout>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     </RelativeLayout>

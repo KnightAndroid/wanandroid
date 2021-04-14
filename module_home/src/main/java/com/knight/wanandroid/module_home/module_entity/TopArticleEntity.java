@@ -10,7 +10,7 @@ import java.util.List;
  * @Date 2021/4/8 19:38
  * @descript:置顶文章数据模型
  */
-public class TopArticleModel extends BaseEntity {
+public class TopArticleEntity extends BaseEntity {
 
     /**
      * apkLink :
