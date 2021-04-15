@@ -62,7 +62,6 @@ public class CustomViewUtils {
                     public void onClick(View v) {
                         HomeConstants.ARTICLE_TYPE = mDataList.get(index);
                         viewPager2.setCurrentItem(index);
-
                     }
                 });
                 return simplePagerTitleView;

@@ -29,7 +29,7 @@ public class StatusBarUtils {
                 if(ic != null){
                     //让状态栏变亮 0,WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS 让状态栏字体变白
                     ic.setSystemBarsAppearance(WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS);
-                    activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
+                   // activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
                 }
             } else {
                 activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);

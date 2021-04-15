@@ -85,6 +85,9 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         });
 
         loadLoading(mDatabind.homeRefreshLayout);
+
+
+
     }
 
 
@@ -208,9 +211,31 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         mFragments.add(new HomeArticlesFragment());
         mFragments.add(new HomeArticlesFragment());
         mFragments.add(new HomeArticlesFragment());
-        CustomViewUtils.setViewPager2Init(getActivity(),mFragments,mDatabind.viewPager,false);
-        CustomViewUtils.bindViewPager2(mDatabind.magicIndicator,mDatabind.viewPager,mDataList);
 
+        CustomViewUtils.setViewPager2Init(getActivity(), mFragments, mDatabind.viewPager, false);
+        CustomViewUtils.bindViewPager2(mDatabind.magicIndicator, mDatabind.viewPager, mDataList);
+
+
+
+
+//        mDatabind.homeCoordinatorsl.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                ViewGroup.LayoutParams layoutParams = mDatabind.viewPager.getLayoutParams();
+//                layoutParams.width = ScreenUtils.getScreenWidth(getActivity());
+//                layoutParams.height = mDatabind.homeCoordinatorsl.getHeight() - mDatabind.homeLlTop.getHeight();
+//                mDatabind.viewPager.setLayoutParams(layoutParams);
+//            }
+//        });
+//        mDatabind.homeLlTop.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//                        mDatabind.homeCoordinatorsl.setMaxScrollY(mDatabind.homeLlTop.getHeight());
+//
+//
+//            }
+//        },200);
     }
 
 }

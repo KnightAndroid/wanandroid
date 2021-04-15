@@ -12,6 +12,7 @@
     </data>
 
     <com.knight.wanandroid.library_widget.CompatToobar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/home_white"
