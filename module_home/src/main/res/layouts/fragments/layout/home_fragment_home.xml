@@ -17,10 +17,22 @@
         android:background="@color/home_colorf9f9f9"
         >
 
+
+
+        <include
+            android:id="@+id/home_include_toolbar"
+            layout="@layout/home_include_home_toolbar"
+            bind:click="@{click}"
+            >
+
+        </include>
+
+
         <com.scwang.smart.refresh.layout.SmartRefreshLayout
             android:id="@+id/home_refreshLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_below="@id/home_include_toolbar">
 
 
             <com.scwang.smart.refresh.header.MaterialHeader
@@ -58,13 +70,7 @@
                                     >
 
 
-                                    <include
-                                        android:id="@+id/home_include_toolbar"
-                                        layout="@layout/home_include_home_toolbar"
-                                        bind:click="@{click}"
-                                        >
 
-                                    </include>
 
 
 
@@ -120,8 +126,8 @@
                             <net.lucode.hackware.magicindicator.MagicIndicator
                                 android:id="@+id/magic_indicator"
                                 android:layout_width="match_parent"
-                                android:layout_height="80dp"
-                                android:minHeight="80dp"/>
+                                android:layout_height="60dp"
+                                android:minHeight="60dp"/>
 
 
 
