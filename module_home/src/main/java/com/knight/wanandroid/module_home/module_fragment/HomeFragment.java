@@ -213,6 +213,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         mFragments.add(new HomeArticlesFragment());
 
         CustomViewUtils.setViewPager2Init(getActivity(), mFragments, mDatabind.viewPager, false);
+     //   CustomViewUtils.setViewPager2InitFragment(this,mFragments, mDatabind.viewPager, false);
         CustomViewUtils.bindViewPager2(mDatabind.magicIndicator, mDatabind.viewPager, mDataList);
 
 

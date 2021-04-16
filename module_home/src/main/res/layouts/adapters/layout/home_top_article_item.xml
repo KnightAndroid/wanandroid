@@ -30,7 +30,7 @@
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginLeft="@dimen/base_dimen_6"
             android:layout_marginRight="@dimen/base_dimen_6"
-            android:background="@color/home_colordddddd"/>
+            android:background="@color/base_color_dddddd"/>
 
         <TextView
             android:id="@+id/tv_article_author"

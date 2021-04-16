@@ -42,7 +42,6 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-
     sourceSets {
         main {
             if(isRunAlone.toBoolean()){
@@ -73,6 +72,9 @@ android {
 
 
     }
+
+    //限定资源前缀命名
+    resourcePrefix "mine_"
 }
 
 dependencies {

@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">module_mine</string>
+    <string name="mine_app_name">module_mine</string>
+    <string name="mine_me_points">我的积分</string>
+    <string name="mine_me_collect">我的收藏</string>
+    <string name="mine_me_dealt">待办清单To Do</string>
+    <string name="mine_me_system_setting">系统设置</string>
+    <string name="mine_quit_account">退出账户</string>
+    <string name="mine_rule">规则</string>
 </resources>

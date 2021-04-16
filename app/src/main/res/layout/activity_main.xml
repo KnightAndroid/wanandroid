@@ -15,30 +15,54 @@
 
 
 
-        <LinearLayout
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+
+<!--            >-->
+
+<!--            <androidx.viewpager2.widget.ViewPager2-->
+<!--                android:id="@+id/main_viewpager"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_above="@+id/btn_nav"-->
+
+<!--                />-->
+
+<!--            <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx-->
+<!--                android:id="@+id/btn_nav"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@color/color_white"-->
+<!--                app:itemTextColor="@drawable/main_bottom_color_selector"-->
+<!--                app:menu="@menu/menu_main"-->
+<!--                android:layout_alignParentBottom="true"-->
+<!--                />-->
+<!--        </RelativeLayout>-->
+<!--    -->
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/main_viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            />
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/main_viewpager"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
 
-                />
+        <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
+            android:id="@+id/btn_nav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_white"
+            app:itemTextColor="@drawable/main_bottom_color_selector"
+            app:menu="@menu/menu_main"
+            android:layout_gravity="bottom|end"
+            app:layout_behavior=".library_widget.BottomNavigationBehavior"/>
 
-            <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
-                android:id="@+id/btn_nav"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/color_white"
-                app:itemTextColor="@drawable/main_bottom_color_selector"
-                app:menu="@menu/menu_main"
-                android:visibility="gone"
-
-                />
-        </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
 

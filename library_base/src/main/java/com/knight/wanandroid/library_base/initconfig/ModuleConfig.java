@@ -24,6 +24,7 @@ import com.knight.wanandroid.library_network.model.RequestHandler;
 import com.knight.wanandroid.library_network.server.ReleaseServer;
 import com.knight.wanandroid.library_permiss.XXPermissions;
 import com.knight.wanandroid.library_util.ToastUtils;
+import com.tencent.mmkv.MMKV;
 
 import java.util.concurrent.TimeUnit;
 
@@ -83,6 +84,8 @@ public class ModuleConfig {
 
         //网络请求初始化
         initOkhttp(application);
+        //mmkv初始化
+        MMKV.initialize(application);
 
 
 

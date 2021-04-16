@@ -55,6 +55,8 @@ ext{
     bannerVersion = "2.1.0"
     //标题滑动导航栏
     magicIndicatorVersion = "1.7.0"
+    //腾讯存储 类似sp
+    mmkvVersion = '1.2.2'
 
 
 
