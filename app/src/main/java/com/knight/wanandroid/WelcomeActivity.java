@@ -25,8 +25,7 @@ public class WelcomeActivity extends BaseDBActivity<ActivityWelcomeBinding> {
 
     @Override
     public void initView(Bundle savedInstanceState) {
-
-
+        setTheme(getActivityTheme());
         XXPermissions.with(this)
                 .permission(Permission.CAMERA)
                 .request(new OnPermissionCallback() {
@@ -48,5 +47,10 @@ public class WelcomeActivity extends BaseDBActivity<ActivityWelcomeBinding> {
     @Override
     public void onFail(Exception e) {
 
+    }
+
+    @Override
+    public int getActivityTheme(){
+       return R.style.AppSplash;
     }
 }

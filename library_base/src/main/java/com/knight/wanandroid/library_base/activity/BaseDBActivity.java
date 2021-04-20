@@ -2,6 +2,7 @@ package com.knight.wanandroid.library_base.activity;
 
 import android.os.Bundle;
 
+import com.knight.wanandroid.library_base.R;
 import com.knight.wanandroid.library_network.listener.OnHttpListener;
 import com.knight.wanandroid.library_util.StatusBarUtils;
 
@@ -25,6 +26,7 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(getActivityTheme());
         createViewDataBinding();
         StatusBarUtils.transparentStatusBar(this);
         initView(savedInstanceState);
@@ -34,6 +36,11 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
     private void createViewDataBinding() {
         mDatabind = DataBindingUtil.setContentView(this, layoutId());
         mDatabind.setLifecycleOwner(this);
+    }
+
+
+    protected int getActivityTheme(){
+        return R.style.base_AppTheme;
     }
 
 }

@@ -4,9 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
-            name="viewmodel"
-            type="com.knight.wanandroid.module_mine.module_entity.UserInfoEntity" />
+            name="click"
+            type="com.knight.wanandroid.module_mine.module_fragment.MineFragment.ProcyClick" />
+
+<!--        <variable-->
+<!--            name="viewmodel"-->
+<!--            type="com.knight.wanandroid.library_base.entity.UserInfoEntity" />-->
 
 
     </data>
@@ -40,7 +45,8 @@
             android:textColor="@color/base_color_theme"
             android:textSize="@dimen/base_dimen_16"
             android:text="深红骑士"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:onClick="@{()->click.gotoLogin()}"/>
 
 
         <LinearLayout

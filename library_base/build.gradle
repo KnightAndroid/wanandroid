@@ -60,6 +60,8 @@ dependencies {
     api "com.scwang.smart:refresh-header-material:$smartRefreshVersion"
     //经典加载
     api "com.scwang.smart:refresh-footer-classics:$smartRefreshVersion"
+    //Eventbus
+
     api project (':library_componentbase')
     api project (':library_util')
     api project (':library_aop')
@@ -69,5 +71,6 @@ dependencies {
     //分包
     api "com.android.support:multidex:$multidexVersion"
     api 'com.google.android.material:material:1.3.0-alpha01'
+
 
 }

@@ -11,7 +11,8 @@
     <dimen name="base_dimen_18">18dp</dimen>
     <dimen name="base_dimen_20">20dp</dimen>
     <dimen name="base_dimen_24">24dp</dimen>
-
-
+    <dimen name="base_dimen_30">30dp</dimen>
+    <dimen name="base_dimen_40">40dp</dimen>
+    <dimen name="base_dimen_50">50dp</dimen>
 
 </resources>

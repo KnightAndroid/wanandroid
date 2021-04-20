@@ -1,6 +1,7 @@
 package com.knight.wanandroid.library_base.initconfig;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.franmontiel.persistentcookiejar.ClearableCookieJar;
@@ -8,9 +9,12 @@ import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.kingja.loadsir.core.LoadSir;
+import com.knight.wanandroid.library_aop.loginintercept.ILoginFilter;
+import com.knight.wanandroid.library_aop.loginintercept.LoginManager;
 import com.knight.wanandroid.library_base.AppConfig;
 import com.knight.wanandroid.library_base.BaseApp;
 import com.knight.wanandroid.library_base.BuildConfig;
+import com.knight.wanandroid.library_base.entity.UserInfoEntity;
 import com.knight.wanandroid.library_base.interceptor.PermissionInterceptor;
 import com.knight.wanandroid.library_base.loadsir.EmptyCallBack;
 import com.knight.wanandroid.library_base.loadsir.ErrorCallBack;
@@ -23,7 +27,9 @@ import com.knight.wanandroid.library_network.data.HttpParams;
 import com.knight.wanandroid.library_network.model.RequestHandler;
 import com.knight.wanandroid.library_network.server.ReleaseServer;
 import com.knight.wanandroid.library_permiss.XXPermissions;
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
+import com.knight.wanandroid.library_util.constant.MMkvConstants;
 import com.tencent.mmkv.MMKV;
 
 import java.util.concurrent.TimeUnit;
@@ -86,6 +92,8 @@ public class ModuleConfig {
         initOkhttp(application);
         //mmkv初始化
         MMKV.initialize(application);
+        //登录拦截器
+        initLoginFilter(application);
 
 
 
@@ -142,4 +150,42 @@ public class ModuleConfig {
                 .setRetryTime(1000)
                 .into();
     }
+
+    /**
+     *
+     *
+     * @param application
+     */
+    private void initLoginFilter(Application application){
+        ILoginFilter iLoginFilter = new ILoginFilter() {
+            @Override
+            public void login(Context applicationContext, boolean loginDefine) {
+                //没跳过登录
+                if(!loginDefine){
+                    ToastUtils.getInstance().showToast("请先登录");
+                }
+            }
+
+            @Override
+            public boolean isLogin(Context applicationContext) {
+                UserInfoEntity userInfoEntity = CacheUtils.getInstance().getDataInfo(MMkvConstants.USER, UserInfoEntity.class);
+                if (userInfoEntity != null) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+
+            }
+
+            @Override
+            public void clearLoginStatus(Context applicationContext) {
+
+            }
+        };
+        LoginManager.getInstance().init(application,iLoginFilter);
+    }
+
+
+
 }

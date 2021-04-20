@@ -36,7 +36,6 @@ public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePres
     public T mPresenter;
     public M mModel;
     public LoadService mLoadService;
-
     private ProgressHUD mProgressHUD;
 
     /**

@@ -57,6 +57,8 @@ ext{
     magicIndicatorVersion = "1.7.0"
     //腾讯存储 类似sp
     mmkvVersion = '1.2.2'
+    //eventbusVersion
+    eventbusVersion = '3.2.0'
 
 
 

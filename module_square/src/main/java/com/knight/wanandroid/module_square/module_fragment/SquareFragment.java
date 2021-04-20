@@ -18,7 +18,7 @@ import com.knight.wanandroid.module_square.module_presenter.SquarePresenter;
  * @Date 2021/4/1 16:46
  * @descript:
  */
-@Route(path = RoutePathFragment.Square.Square_pager)
+@Route(path = RoutePathFragment.Square.Square_Pager)
 public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, SquarePresenter, SquareModel> implements SquareContact.SquareView {
     @Override
     protected int layoutId() {

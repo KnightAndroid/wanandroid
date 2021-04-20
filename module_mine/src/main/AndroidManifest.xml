@@ -6,6 +6,12 @@
         <activity android:name=".module_activity.MineMainActivity">
 
         </activity>
+
+
+
+        <activity android:name=".module_activity.LoginActivity"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

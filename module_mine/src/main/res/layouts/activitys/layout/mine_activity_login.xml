@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="click"
+            type="com.knight.wanandroid.module_mine.module_activity.LoginActivity.ProcyClick" />
+
+
+    </data>
+
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
+
+
+        <include
+            android:id="@+id/mine_toolbar"
+            layout="@layout/base_include_toolbar"
+            />
+
+        <TextView
+            android:id="@+id/login_tv_appname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/mine_toolbar"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="40dp"
+            android:text="@string/mine_apploginname"
+            android:textColor="@color/base_color_title"
+            android:textSize="26dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="@dimen/base_dimen_20"/>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/mine_login_cardview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/login_tv_appname"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginLeft="@dimen/base_dimen_20"
+            android:layout_marginRight="@dimen/base_dimen_20"
+            app:cardCornerRadius="@dimen/base_dimen_6"
+            android:layout_marginTop="@dimen/base_dimen_20"
+            app:cardBackgroundColor="@android:color/white"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/base_dimen_20"
+                android:layout_marginRight="@dimen/base_dimen_20"
+                android:layout_marginTop="@dimen/base_dimen_30"
+                android:layout_marginBottom="@dimen/base_dimen_50">
+
+                <TextView
+                    android:id="@+id/mine_tv_accountname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/base_color_title"
+                    android:textSize="@dimen/base_dimen_20"
+                    android:textStyle="bold"
+                    android:text="@string/mine_account_name"
+                    />
+
+
+                    <com.knight.wanandroid.library_widget.ClearEditText
+                        android:id="@+id/mine_login_username"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/mine_login_username"
+                        android:maxLength="16"
+                        android:textCursorDrawable="@drawable/base_textcursorcolor"
+                        android:lines="1"
+                        android:layout_marginTop="@dimen/base_dimen_16"
+                        android:textColor="@color/base_color_title"
+                        android:textColorHint="@color/base_color_999999"
+                        android:textSize="@dimen/base_dimen_16"
+                        >
+
+                    </com.knight.wanandroid.library_widget.ClearEditText>
+
+
+
+
+
+
+
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#ECECEE"
+                    android:layout_marginTop="@dimen/base_dimen_12"/>
+
+                <TextView
+                    android:id="@+id/mine_tv_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/base_color_title"
+                    android:textSize="@dimen/base_dimen_20"
+                    android:textStyle="bold"
+                    android:text="@string/mine_login_password"
+                    android:layout_marginTop="@dimen/base_dimen_20"
+                    />
+                <com.knight.wanandroid.library_widget.ClearEditText
+                    android:id="@+id/mine_login_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/mine_hint_password"
+                    android:maxLength="18"
+                    android:layout_marginTop="@dimen/base_dimen_16"
+                    android:textCursorDrawable="@drawable/base_textcursorcolor"
+                    android:lines="1"
+                    android:textColor="@color/base_color_title"
+                    android:textColorHint="@color/base_color_999999"
+                    android:textSize="@dimen/base_dimen_16"
+                    android:inputType="textPassword"
+                    >
+
+
+
+                </com.knight.wanandroid.library_widget.ClearEditText>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#ECECEE"
+                    android:layout_marginTop="@dimen/base_dimen_12"/>
+
+            </LinearLayout>
+
+
+
+        </androidx.cardview.widget.CardView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/mine_login_cardview"
+            android:layout_marginTop="@dimen/base_dimen_20"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <TextView
+                android:id="@+id/mine_tv_login"
+                android:layout_width="160dp"
+                android:layout_height="68dp"
+                android:background="@drawable/mine_bg_btn_login"
+                android:layout_centerHorizontal="true"
+                android:text="@string/mine_login"
+                android:textSize="@dimen/base_dimen_16"
+                android:gravity="center"
+                android:paddingBottom="@dimen/base_dimen_6"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:onClick="@{()->click.loginIn()}"/>
+
+            <TextView
+                android:id="@+id/mine_tv_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mine_register"
+                android:textSize="14dp"
+                android:layout_marginRight="22dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:textColor="@color/base_color_999999"/>
+
+
+
+        </RelativeLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+
+
+

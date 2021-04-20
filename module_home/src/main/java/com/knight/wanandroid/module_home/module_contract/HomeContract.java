@@ -27,8 +27,6 @@ public interface HomeContract {
         //设置公众号数据
         void setOfficialAccountData(List<OfficialAccountEntity> officialAccountModels);
 
-        //获取列表数据
-        void setListData();
     }
 
 

@@ -21,9 +21,31 @@ public class RoutePathActivity {
     }
 
 
+    /**
+     *
+     * 广场模块Activity路由
+     */
     public static class Square{
-        private static final String Square = "/module_square";
+        private static final String Square = "/module_square_activity";
     }
+
+
+    /**
+     *
+     * 我的模块Activity路由
+     */
+    public static class Mine{
+        private static final String Mine = "/module_mine_activity";
+
+        public static final String Login_Pager = Mine + "/mine_login";
+    }
+
+
+
+
+
+
+
 
 
 

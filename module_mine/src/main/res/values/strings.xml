@@ -6,4 +6,13 @@
     <string name="mine_me_system_setting">系统设置</string>
     <string name="mine_quit_account">退出账户</string>
     <string name="mine_rule">规则</string>
+    <string name="mine_apploginname">wanAndroid</string>
+    <string name="mine_account_name">账号</string>
+    <string name="mine_login_username">请输入在wanandroid网站使用的账号</string>
+    <string name="mine_login_password">密码</string>
+    <string name="mine_hint_password">请输入密码</string>
+    <string name="mine_login">登录</string>
+    <string name="mine_register">注册</string>
+    <string name="mine_emptyusername_hint">账号不能为空</string>
+    <string name="mine_emptypassword_hint">密码不能为空</string>
 </resources>

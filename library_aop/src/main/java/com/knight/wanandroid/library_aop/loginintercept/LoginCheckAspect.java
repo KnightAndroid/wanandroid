@@ -56,7 +56,7 @@ public class LoginCheckAspect {
             if(iLoginFilter.isLogin(mContext)){
                 joinPoint.proceed();
             } else {
-                //提示
+                //提示 需要登录
                 iLoginFilter.login(mContext,loginCheck.isSkipLogin());
             }
 

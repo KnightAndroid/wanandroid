@@ -26,7 +26,7 @@ public class RoutePathFragment {
     public static class Square {
         private static final String Square = "/module_square_fragment";
 
-        public static final String Square_pager = Square + "/square_main";
+        public static final String Square_Pager = Square + "/square_main";
 
     }
 
@@ -38,7 +38,8 @@ public class RoutePathFragment {
     public static class Mine {
         private static final String Mine = "/module_mine_fragment";
 
-        public static final String Mine_pager = Mine + "/mine_main";
+        public static final String Mine_Pager = Mine + "/mine_main";
+
     }
 
 

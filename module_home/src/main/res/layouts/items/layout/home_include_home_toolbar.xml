@@ -24,19 +24,24 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <TextView
+            <com.knight.wanandroid.library_widget.MarqueeTextView
                 android:id="@+id/home_tv_loginname"
-                android:layout_width="wrap_content"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/base_dimen_16"
                 android:text="@string/home_tv_login"
                 android:layout_centerVertical="true"
                 android:textColor="@color/home_color333333"
-                android:layout_marginLeft="@dimen/base_dimen_6">
-
-
-            </TextView>
+                android:layout_marginLeft="@dimen/base_dimen_6"
+                android:singleLine="true"
+                android:scrollHorizontally="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="center"
+            >
+            </com.knight.wanandroid.library_widget.MarqueeTextView>
 
 
             <RelativeLayout
@@ -75,7 +80,7 @@
                     android:textColor="@color/home_color333333"
                     android:textColorHint="@color/home_color999999"
                     android:textSize="@dimen/base_dimen_12"
-                    android:textCursorDrawable="@drawable/home_textcursorcolor"
+                    android:textCursorDrawable="@drawable/base_textcursorcolor"
                     />
 
             </RelativeLayout>

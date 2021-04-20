@@ -1,25 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.knight.wanandroid.library_widget.CompatToobar xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@android:color/white">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android" >
 
+    <data>
 
-    <ImageView
-        android:id="@+id/base_iv_back"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:layout_marginLeft="@dimen/base_dimen_20"
-        android:background="@drawable/base_right_arrow"/>
+    </data>
 
-
-    <TextView
-        android:id="@+id/base_tv_title"
-        android:layout_width="wrap_content"
+    <com.knight.wanandroid.library_widget.CompatToobar android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/base_dimen_18"
-        android:gravity="center"
-        android:text="标题"
-        android:textColor="@color/base_color_title"
-        android:layout_gravity="center"/>
+        android:background="@android:color/white">
 
-</com.knight.wanandroid.library_widget.CompatToobar>
+
+        <ImageView
+            android:id="@+id/base_iv_back"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginLeft="@dimen/base_dimen_20"
+            android:background="@drawable/base_right_arrow"/>
+
+
+        <TextView
+            android:id="@+id/base_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/base_dimen_18"
+            android:gravity="center"
+            android:text="标题"
+            android:textColor="@color/base_color_title"
+            android:layout_gravity="center"/>
+
+    </com.knight.wanandroid.library_widget.CompatToobar>
+
+
+
+</layout>
+

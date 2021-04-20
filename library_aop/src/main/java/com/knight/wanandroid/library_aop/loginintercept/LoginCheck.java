@@ -16,5 +16,5 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface LoginCheck {
-    boolean isSkipLogin() default false;//增加额外的信息，决定要不要跳过检查，默认跳过
+    boolean isSkipLogin() default false;//增加额外的信息，决定要不要跳过检查，默认不跳过
 }

@@ -5,14 +5,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.google.gson.reflect.TypeToken;
+import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
 import com.knight.wanandroid.library_base.activity.BaseDBActivity;
+import com.knight.wanandroid.library_base.entity.UserInfoEntity;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
 import com.knight.wanandroid.library_common.ApplicationProvider;
+import com.knight.wanandroid.library_util.CacheUtils;
+import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.GsonUtils;
 import com.knight.wanandroid.library_util.JsonUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
+import com.knight.wanandroid.library_util.constant.MMkvConstants;
 import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.module_home.R;
@@ -32,6 +39,10 @@ import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 import com.youth.banner.adapter.BannerImageAdapter;
 import com.youth.banner.holder.BannerImageHolder;
 import com.youth.banner.indicator.CircleIndicator;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -57,7 +68,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     private View topArticleFootView;
     private List<TopArticleEntity> mTopArticleEntities;
     private boolean isShowOnlythree = false;
-
+    private UserInfoEntity mUserInfoEntity;
     List<HomeArticlesFragment> mFragments = new ArrayList<>();
 
 
@@ -70,6 +81,8 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     @Override
     public void initView(Bundle savedInstanceState) {
         mDatabind.setClick(new ProcyClick());
+        EventBus.getDefault().register(this);
+        initUserData();
         SetInitCustomView.initSwipeRecycleview(mDatabind.homeTopArticleRv,new LinearLayoutManager(getActivity()),mTopArticleAdapter,false);
         mTopArticleAdapter = new TopArticleAdapter(new ArrayList<>());
         mOfficialAccountAdapter = new OfficialAccountAdapter(new ArrayList<>());
@@ -83,7 +96,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
                 isShowOnlythree = !isShowOnlythree;
             }
         });
-
+        iniTopAdapterClick();
         loadLoading(mDatabind.homeRefreshLayout);
 
 
@@ -154,11 +167,6 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     }
 
     @Override
-    public void setListData() {
-
-    }
-
-    @Override
     public void showLoading() {
 
     }
@@ -201,42 +209,56 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         String jsonData = JsonUtils.getJson(getActivity(),"searchkeywords.json");
         List<String> mDataList = GsonUtils.getList(jsonData,type);
         mFragments.clear();
-        mFragments.add(new HomeArticlesFragment());
-        mFragments.add(new HomeArticlesFragment());
-        mFragments.add(new HomeArticlesFragment());
-        mFragments.add(new HomeArticlesFragment());
-        mFragments.add(new HomeArticlesFragment());
-        mFragments.add(new HomeArticlesFragment());
-        mFragments.add(new HomeArticlesFragment());
-        mFragments.add(new HomeArticlesFragment());
-        mFragments.add(new HomeArticlesFragment());
-        mFragments.add(new HomeArticlesFragment());
-
+        for (int i = 0;i < mDataList.size();i++) {
+            mFragments.add(new HomeArticlesFragment());
+        }
         CustomViewUtils.setViewPager2Init(getActivity(), mFragments, mDatabind.viewPager, false);
-     //   CustomViewUtils.setViewPager2InitFragment(this,mFragments, mDatabind.viewPager, false);
         CustomViewUtils.bindViewPager2(mDatabind.magicIndicator, mDatabind.viewPager, mDataList);
 
-
-
-
-//        mDatabind.homeCoordinatorsl.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                ViewGroup.LayoutParams layoutParams = mDatabind.viewPager.getLayoutParams();
-//                layoutParams.width = ScreenUtils.getScreenWidth(getActivity());
-//                layoutParams.height = mDatabind.homeCoordinatorsl.getHeight() - mDatabind.homeLlTop.getHeight();
-//                mDatabind.viewPager.setLayoutParams(layoutParams);
-//            }
-//        });
-//        mDatabind.homeLlTop.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//                        mDatabind.homeCoordinatorsl.setMaxScrollY(mDatabind.homeLlTop.getHeight());
-//
-//
-//            }
-//        },200);
     }
+
+
+    private void iniTopAdapterClick() {
+        mTopArticleAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @LoginCheck
+            @Override
+            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
+                ToastUtils.getInstance().showToast("dfdfdfdf");
+            }
+        });
+    }
+
+    private void initUserData() {
+        mUserInfoEntity = CacheUtils.getInstance().getDataInfo(MMkvConstants.USER,UserInfoEntity.class);
+        if (mUserInfoEntity != null) {
+
+            mDatabind.homeIncludeToolbar.homeTvLoginname.setText(mUserInfoEntity.getUsername());
+        } else {
+            mDatabind.homeIncludeToolbar.homeTvLoginname.setText("登录");
+        }
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onLoginInSuccess(EventBusUtils.LoginInSuccess loginInSuccess){
+        //登录成功
+        mUserInfoEntity = CacheUtils.getInstance().getDataInfo(MMkvConstants.USER,UserInfoEntity.class);
+        mDatabind.homeIncludeToolbar.homeTvLoginname.setText(mUserInfoEntity.getUsername());
+
+    }
+
+
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+
+
+
+
+
 
 }

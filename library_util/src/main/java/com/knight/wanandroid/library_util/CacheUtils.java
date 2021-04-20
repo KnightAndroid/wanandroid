@@ -1,6 +1,7 @@
 package com.knight.wanandroid.library_util;
 
 import com.google.gson.Gson;
+import com.knight.wanandroid.library_util.constant.MMkvConstants;
 import com.tencent.mmkv.MMKV;
 
 /**
@@ -17,6 +18,9 @@ public class CacheUtils {
         mmkv = MMKV.defaultMMKV();
     }
 
+    public static CacheUtils getInstance() {
+        return CacheHolder.INSTANC;
+    }
 
     private static class CacheHolder {
         private static final CacheUtils INSTANC = new CacheUtils();
@@ -45,10 +49,12 @@ public class CacheUtils {
     }
 
 
-
-
-
-
-
+    /**
+     *
+     * 清空用户信息
+     */
+    public void loginOut(){
+        mmkv.remove(MMkvConstants.USER);
+    }
 
 }
