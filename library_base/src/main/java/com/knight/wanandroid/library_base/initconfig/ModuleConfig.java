@@ -48,6 +48,8 @@ public class ModuleConfig {
 
 
     private ClearableCookieJar mCookieJar;
+    public UserInfoEntity user = null;
+
     private ModuleConfig(){
 
     }
@@ -94,6 +96,8 @@ public class ModuleConfig {
         MMKV.initialize(application);
         //登录拦截器
         initLoginFilter(application);
+        //初始化用户信息
+        user = initUser();
 
 
 
@@ -186,6 +190,14 @@ public class ModuleConfig {
         LoginManager.getInstance().init(application,iLoginFilter);
     }
 
+    /**
+     * 初始化用户信息
+     * @return
+     */
+    private UserInfoEntity initUser(){
+        UserInfoEntity userInfoEntity = CacheUtils.getInstance().getDataInfo(MMkvConstants.USER,UserInfoEntity.class);
+        return userInfoEntity;
+    }
 
 
 }

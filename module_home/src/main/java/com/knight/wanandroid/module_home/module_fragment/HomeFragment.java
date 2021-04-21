@@ -12,6 +12,7 @@ import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
 import com.knight.wanandroid.library_base.activity.BaseDBActivity;
 import com.knight.wanandroid.library_base.entity.UserInfoEntity;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
+import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
 import com.knight.wanandroid.library_common.ApplicationProvider;
 import com.knight.wanandroid.library_util.CacheUtils;
@@ -68,7 +69,6 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     private View topArticleFootView;
     private List<TopArticleEntity> mTopArticleEntities;
     private boolean isShowOnlythree = false;
-    private UserInfoEntity mUserInfoEntity;
     List<HomeArticlesFragment> mFragments = new ArrayList<>();
 
 
@@ -229,10 +229,8 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     }
 
     private void initUserData() {
-        mUserInfoEntity = CacheUtils.getInstance().getDataInfo(MMkvConstants.USER,UserInfoEntity.class);
-        if (mUserInfoEntity != null) {
-
-            mDatabind.homeIncludeToolbar.homeTvLoginname.setText(mUserInfoEntity.getUsername());
+        if (ModuleConfig.getInstance().user != null) {
+            mDatabind.homeIncludeToolbar.homeTvLoginname.setText(ModuleConfig.getInstance().user.getUsername());
         } else {
             mDatabind.homeIncludeToolbar.homeTvLoginname.setText("登录");
         }
@@ -242,9 +240,10 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onLoginInSuccess(EventBusUtils.LoginInSuccess loginInSuccess){
         //登录成功
-        mUserInfoEntity = CacheUtils.getInstance().getDataInfo(MMkvConstants.USER,UserInfoEntity.class);
-        mDatabind.homeIncludeToolbar.homeTvLoginname.setText(mUserInfoEntity.getUsername());
-
+        ModuleConfig.getInstance().user = CacheUtils.getInstance().getDataInfo(MMkvConstants.USER,UserInfoEntity.class);
+        mDatabind.homeIncludeToolbar.homeTvLoginname.setText(ModuleConfig.getInstance().user.getUsername());
+        //重新请求公众号数据
+        mPresenter.requestOfficialAccountData((BaseDBActivity) getActivity());
     }
 
 

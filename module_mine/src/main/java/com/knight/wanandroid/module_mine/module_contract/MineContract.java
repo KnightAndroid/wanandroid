@@ -1,8 +1,11 @@
 package com.knight.wanandroid.module_mine.module_contract;
 
+import com.knight.wanandroid.library_base.activity.BaseDBActivity;
+import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_base.model.BaseModel;
 import com.knight.wanandroid.library_base.presenter.BasePresenter;
 import com.knight.wanandroid.library_base.view.BaseView;
+import com.knight.wanandroid.module_mine.module_entity.UserInfoCoinEntity;
 
 /**
  * @author created by knight
@@ -15,17 +18,17 @@ public interface MineContract {
 
 
     interface MineView extends BaseView{
-
-
+        void setUserInfoCoin(UserInfoCoinEntity userInfoCoinEntity);
     }
 
 
     interface MineModel extends BaseModel{
-
+        void requestUserInfoCoin(BaseDBActivity activity, MvpListener mvpListener);
 
     }
 
-    abstract class MineDataPresenter extends BasePresenter<MineView,MineModel>{
+    abstract class MineDataPresenter extends BasePresenter<MineModel,MineView>{
+        public abstract void requestUserInfoCoin(BaseDBActivity activity);
 
     }
 }

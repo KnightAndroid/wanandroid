@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.text.InputType;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -45,12 +46,11 @@ public class ToastUtils {
      * @param message
      */
     public void showToast(String message){
-         if(mToast == null){
-             mToast = Toast.makeText(application,message,Toast.LENGTH_SHORT);
-         } else {
+         if(mToast != null){
              mToast.cancel();
-             mToast = Toast.makeText(application,message,Toast.LENGTH_SHORT);
          }
+         mToast = Toast.makeText(application,message,Toast.LENGTH_SHORT);
+         mToast.setGravity(Gravity.CENTER,0,0);
          mToast.show();
 
     }

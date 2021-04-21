@@ -7,7 +7,7 @@ import com.knight.wanandroid.library_network.config.IRequestApi;
  * @author created by knight
  * @organize wanandroid
  * @Date 2021/4/19 18:20
- * @descript:
+ * @descript:登录接口
  */
 public class LoginApi implements IRequestApi {
 

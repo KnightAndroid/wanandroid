@@ -4,4 +4,8 @@
         <attr name="stuckShadowHeight" format="dimension" />
         <attr name="stuckShadowDrawable" format="reference" />
     </declare-styleable>
+
+    <declare-styleable name="ViewDrag">
+        <attr name="damping" format="integer"/>
+    </declare-styleable>
 </resources>
