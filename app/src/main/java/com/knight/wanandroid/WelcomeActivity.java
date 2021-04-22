@@ -33,6 +33,7 @@ public class WelcomeActivity extends BaseDBActivity<ActivityWelcomeBinding> {
                     public void onGranted(List<String> permissions, boolean all) {
                         if (all) {
                             startActivity(new Intent(WelcomeActivity.this,MainActivity.class));
+                            finish();
                         }
                     }
                 });

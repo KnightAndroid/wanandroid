@@ -1,5 +1,6 @@
 package com.knight.wanandroid.module_mine.module_activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -37,7 +38,8 @@ public class LoginActivity extends BaseActivity<MineActivityLoginBinding, LoginP
     @Override
     public void initView(Bundle savedInstanceState) {
         mDatabind.setClick(new ProcyClick());
-        mDatabind.mineToolbar.baseIvBack.setOnClickListener(new View.OnClickListener() {
+        mDatabind.mineLoginToolbar.baseTvTitle.setText("登录");
+        mDatabind.mineLoginToolbar.baseIvBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -79,6 +81,10 @@ public class LoginActivity extends BaseActivity<MineActivityLoginBinding, LoginP
             if (validateLoginMessage()) {
                 mPresenter.requestUserInfo(LoginActivity.this,mDatabind.mineLoginUsername.getText().toString().trim(),mDatabind.mineLoginPassword.getText().toString().trim());
             }
+        }
+
+        public void goRegister(){
+            startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
         }
     }
 

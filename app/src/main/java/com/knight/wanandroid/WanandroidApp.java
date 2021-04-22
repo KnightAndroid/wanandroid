@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.knight.wanandroid.library_base.BaseApp;
 import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
+import com.knight.wanandroid.library_util.ActivityManagerUtils;
 
 /**
  * @author created by knight
@@ -20,6 +21,7 @@ public class WanandroidApp extends BaseApp {
         super.onCreate();
         initModuleApp(this);
         initModuleData(this);
+        registerActivityLifecycleCallbacks(ActivityManagerUtils.getInstance());
     }
 
     @Override

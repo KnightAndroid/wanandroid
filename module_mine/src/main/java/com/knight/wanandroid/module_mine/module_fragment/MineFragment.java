@@ -10,9 +10,12 @@ import com.knight.wanandroid.library_base.activity.BaseDBActivity;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.ColorUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
+import com.knight.wanandroid.library_util.dialog.DialogUtils;
+import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;
 import com.knight.wanandroid.module_mine.R;
 import com.knight.wanandroid.module_mine.databinding.MineFragmentMineBinding;
 import com.knight.wanandroid.module_mine.module_activity.LoginActivity;
@@ -66,7 +69,9 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
 
     @Override
     protected void reLoadData() {
-
+        if (ModuleConfig.getInstance().user != null) {
+            mPresenter.requestUserInfoCoin((BaseDBActivity) getActivity());
+        }
     }
 
     @Override
@@ -95,12 +100,37 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
 
     }
 
+    @Override
+    public void logoutSuccess() {
+        //退出登录成功
+        CacheUtils.getInstance().loginOut();
+        ModuleConfig.getInstance().user = null;
+        mDatabind.mineTvUserabbr.setText("");
+        mDatabind.mineTvUsername.setText("请登录");
+        mDatabind.mineTvLevel.setText("等级 -");
+        mDatabind.mineTvRank.setText("排名第 -");
+        mDatabind.mineTvPoints.setText("-");
+        mDatabind.mineRlLogout.setVisibility(View.GONE);
+        mDatabind.mineIvHead.setBackground(null);
+        GlideEngineUtils.getInstance().loadCircleIntLocalPhoto(getActivity(),R.drawable.mine_iv_default_head,mDatabind.mineIvHead);
+        EventBus.getDefault().post(new EventBusUtils.LogoutSuccess());
+
+    }
+
 
     public class ProcyClick{
         public void gotoLogin(){
             if (ModuleConfig.getInstance().user == null) {
                 startActivity(new Intent(getActivity(), LoginActivity.class));
             }
+        }
+
+        public void Logout(){
+            DialogUtils.getConfirmDialog(getActivity(), getResources().getString(R.string.mine_confirm_logout), (dialog, which) -> {
+                mPresenter.requestLogout((BaseDBActivity) getActivity());
+            }, (dialog, which) -> {
+
+            }).show();
         }
     }
 

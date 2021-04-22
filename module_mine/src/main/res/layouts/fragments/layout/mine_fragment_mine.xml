@@ -247,7 +247,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/base_dimen_20"
                         android:layout_marginBottom="@dimen/base_dimen_20"
-                        android:visibility="gone">
+                        android:visibility="gone"
+                        android:onClick="@{()->click.Logout()}">
 
                         <TextView
                             android:layout_width="wrap_content"

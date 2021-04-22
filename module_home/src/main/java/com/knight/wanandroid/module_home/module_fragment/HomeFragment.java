@@ -247,6 +247,15 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     }
 
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onLogoutSuccess(EventBusUtils.LogoutSuccess logoutSuccess){
+        //刷新页面
+        mDatabind.homeIncludeToolbar.homeTvLoginname.setText("登录");
+        //重新请求公众号数据
+        mPresenter.requestOfficialAccountData((BaseDBActivity) getActivity());
+    }
+
+
 
     @Override
     public void onDestroy(){

@@ -1,5 +1,6 @@
 package com.knight.wanandroid.library_base.activity;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 
@@ -46,6 +47,7 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTheme(getActivityTheme());
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         createViewDataBinding();
         StatusBarUtils.transparentStatusBar(this);
         initView(savedInstanceState);

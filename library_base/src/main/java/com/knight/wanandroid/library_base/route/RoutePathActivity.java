@@ -36,8 +36,9 @@ public class RoutePathActivity {
      */
     public static class Mine{
         private static final String Mine = "/module_mine_activity";
-
         public static final String Login_Pager = Mine + "/mine_login";
+        public static final String Register_Pager = Mine + "/mine_register";
+
     }
 
 

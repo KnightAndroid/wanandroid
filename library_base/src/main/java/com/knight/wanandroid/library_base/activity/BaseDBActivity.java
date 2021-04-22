@@ -1,10 +1,12 @@
 package com.knight.wanandroid.library_base.activity;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
 import com.knight.wanandroid.library_base.R;
 import com.knight.wanandroid.library_network.listener.OnHttpListener;
 import com.knight.wanandroid.library_util.StatusBarUtils;
+import com.knight.wanandroid.library_widget.loadcircleview.ProgressHUD;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -20,6 +22,7 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
 
     public abstract int layoutId();
     public DB mDatabind;
+    private ProgressHUD mProgressHUD;
 
     public abstract void initView(Bundle savedInstanceState);
 
@@ -27,6 +30,7 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTheme(getActivityTheme());
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         createViewDataBinding();
         StatusBarUtils.transparentStatusBar(this);
         initView(savedInstanceState);
@@ -41,6 +45,28 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
 
     protected int getActivityTheme(){
         return R.style.base_AppTheme;
+    }
+
+    /**
+     * 显示请求框
+     * @param loadMessage
+     */
+    public void showLoadingHud(String loadMessage) {
+        if (mProgressHUD == null) {
+            mProgressHUD = new ProgressHUD(this,loadMessage);
+        }
+        mProgressHUD.show();
+    }
+
+    /**
+     *
+     * 隐藏请求框
+     *
+     */
+    public void dismissLoadingHud() {
+        if (mProgressHUD != null) {
+            mProgressHUD.dismiss();
+        }
     }
 
 }

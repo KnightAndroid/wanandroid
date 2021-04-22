@@ -22,7 +22,7 @@
 
 
         <include
-            android:id="@+id/mine_toolbar"
+            android:id="@+id/mine_login_toolbar"
             layout="@layout/base_include_toolbar"
             />
 
@@ -30,7 +30,7 @@
             android:id="@+id/login_tv_appname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/mine_toolbar"
+            app:layout_constraintTop_toBottomOf="@id/mine_login_toolbar"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginTop="40dp"
             android:text="@string/mine_apploginname"
@@ -179,7 +179,8 @@
                 android:layout_marginRight="22dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:textColor="@color/base_color_999999"/>
+                android:textColor="@color/base_color_999999"
+                android:onClick="@{()->click.goRegister()}"/>
 
 
 

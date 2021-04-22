@@ -14,7 +14,7 @@ public class EventBusUtils {
     }
 
     //退出登录成功
-    public static class LoginOutSuccess{
+    public static class LogoutSuccess{
 
     }
 

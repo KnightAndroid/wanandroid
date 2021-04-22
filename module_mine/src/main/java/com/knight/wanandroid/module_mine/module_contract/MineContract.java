@@ -19,16 +19,19 @@ public interface MineContract {
 
     interface MineView extends BaseView{
         void setUserInfoCoin(UserInfoCoinEntity userInfoCoinEntity);
+        void logoutSuccess();
     }
 
 
     interface MineModel extends BaseModel{
         void requestUserInfoCoin(BaseDBActivity activity, MvpListener mvpListener);
+        void requestLogout(BaseDBActivity activity,MvpListener mvpListener);
 
     }
 
     abstract class MineDataPresenter extends BasePresenter<MineModel,MineView>{
         public abstract void requestUserInfoCoin(BaseDBActivity activity);
+        public abstract void requestLogout(BaseDBActivity activity);
 
     }
 }

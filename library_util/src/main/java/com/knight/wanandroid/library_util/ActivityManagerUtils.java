@@ -20,7 +20,7 @@ public class ActivityManagerUtils implements Application.ActivityLifecycleCallba
 
    private ArrayMap<String,Activity> mActivityArrayMap = new ArrayMap<>();
 
-   private Application mApplication;
+
 
    private String mCurrentTag;
 
@@ -44,23 +44,6 @@ public class ActivityManagerUtils implements Application.ActivityLifecycleCallba
    }
 
 
-    /**
-     *
-     * 初始化application
-     * @param application
-     */
-   public void init(Application application){
-     mApplication = application;
-   }
-
-    /**
-     *
-     * 获取Application 对象
-     * @return
-     */
-    public Application getApplication(){
-       return mApplication;
-    }
 
 
     /**
