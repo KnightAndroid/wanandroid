@@ -38,6 +38,8 @@ public class RoutePathActivity {
         private static final String Mine = "/module_mine_activity";
         public static final String Login_Pager = Mine + "/mine_login";
         public static final String Register_Pager = Mine + "/mine_register";
+        public static final String UserCoin_pager = Mine + "/mine_usercoin";
+        public static final String UserCoinRank_Pager = Mine + "/mine_coinrank";
 
     }
 

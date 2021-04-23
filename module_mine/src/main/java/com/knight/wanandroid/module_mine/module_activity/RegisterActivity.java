@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.knight.wanandroid.library_base.activity.BaseActivity;
 import com.knight.wanandroid.library_base.entity.UserInfoEntity;
+import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_util.ViewSetUtils;
 import com.knight.wanandroid.module_mine.R;
@@ -20,6 +22,7 @@ import com.knight.wanandroid.module_mine.module_presenter.RegisterPresenter;
  * @Date 2021/4/22 15:25
  * @descript:注册页面
  */
+@Route(path = RoutePathActivity.Mine.Register_Pager)
 public class RegisterActivity extends BaseActivity<MineActivityRegisterBinding, RegisterPresenter, RegisterModel> implements RegisterContract.RegisterView {
     @Override
     public int layoutId() {

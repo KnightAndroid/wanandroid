@@ -8,6 +8,7 @@ import com.kingja.loadsir.callback.Callback;
 import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
 import com.knight.wanandroid.library_base.R;
+import com.knight.wanandroid.library_base.loadsir.ErrorCallBack;
 import com.knight.wanandroid.library_base.loadsir.LoadCallBack;
 import com.knight.wanandroid.library_base.model.BaseModel;
 import com.knight.wanandroid.library_base.presenter.BasePresenter;
@@ -43,6 +44,11 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
     public abstract void initView(Bundle savedInstanceState);
 
 
+    protected void initData(){}
+
+    protected void reLoadData(){}
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +63,7 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
         mModel = CreateUtils.get(this,2);
         //使得p层绑定M层和V层，持有M和V的引用
         mPresenter.attachModelView(mModel,this);
+        initData();
 
     }
 
@@ -71,10 +78,32 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
             @Override
             public void onReload(View v) {
                 mLoadService.showCallback(LoadCallBack.class);
+                reLoadData();
             }
         });
 
 
+    }
+
+    /**
+     *
+     * 成功请求数据
+     */
+    protected void showSuccess() {
+        if (mLoadService != null) {
+            mLoadService.showSuccess();
+        }
+    }
+
+
+    /**
+     *
+     * 失败请求的界面
+     */
+    protected void showFailure() {
+        if (mLoadService != null) {
+            mLoadService.showCallback(ErrorCallBack.class);
+        }
     }
 
 

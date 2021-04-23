@@ -6,9 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
 import com.knight.wanandroid.library_base.activity.BaseDBActivity;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
+import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
 import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.ColorUtils;
@@ -123,6 +126,16 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
             if (ModuleConfig.getInstance().user == null) {
                 startActivity(new Intent(getActivity(), LoginActivity.class));
             }
+        }
+
+        @LoginCheck
+        public void goUserCoin(){
+            ARouter.getInstance().build(RoutePathActivity.Mine.UserCoin_pager)
+                    .withString("userCoin",mDatabind.mineTvPoints.getText().toString()).navigation();
+        }
+
+        public void goCoinRank(){
+            ARouter.getInstance().build(RoutePathActivity.Mine.UserCoinRank_Pager).navigation();
         }
 
         public void Logout(){

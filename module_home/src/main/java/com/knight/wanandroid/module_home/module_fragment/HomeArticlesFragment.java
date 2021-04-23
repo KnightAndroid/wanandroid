@@ -30,6 +30,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBinding, HomeArticlePresenter, HomeArticleModel> implements HomeArticleContract.HomeArticleView, OnLoadMoreListener {
 
     private HomeArticleAdapter mHomeArticleAdapter;
+    //页码从0开始
     private int currentPage = 0;
 
 

@@ -21,4 +21,6 @@
     <string name="mine_register_againconfirm">请再一次填写确认密码</string>
     <string name="mine_confirmpassowrd_notempty">确认密码不能为空</string>
     <string name="mine_passworduneaual">密码和确认密码不一致,请重新输入</string>
+    <string name="mine_coin_detail">积分明细</string>
+    <string name="mine_coin_rank">积分排行榜</string>
 </resources>

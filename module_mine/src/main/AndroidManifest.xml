@@ -5,8 +5,9 @@
     <application>
         <activity android:name=".module_activity.MineMainActivity"/>
         <activity android:name=".module_activity.LoginActivity"/>
-        <activity android:name=".module_activity.RegisterActivity"
-            />
+        <activity android:name=".module_activity.RegisterActivity" />
+        <activity android:name=".module_activity.MyPointDetailActivity"/>
+        <activity android:name=".module_activity.CoinRankActivity"/>
     </application>
 
 </manifest>

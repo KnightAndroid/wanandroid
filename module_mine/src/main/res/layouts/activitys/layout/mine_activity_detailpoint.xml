@@ -10,32 +10,44 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
 
 
-        <com.scwang.smart.refresh.layout.SmartRefreshLayout
-            android:id="@+id/mine_detailpoint_freshlayout"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <com.scwang.smart.refresh.header.MaterialHeader
+            <include
+                android:id="@+id/include_point_toolbar"
+                layout="@layout/base_include_toolbar"/>
+
+            <com.scwang.smart.refresh.layout.SmartRefreshLayout
+                android:id="@+id/mine_detailpoint_freshlayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent">
 
-            <com.yanzhenjie.recyclerview.SwipeRecyclerView
-                android:id="@+id/home_article_body"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                <com.scwang.smart.refresh.header.MaterialHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
-            <com.scwang.smart.refresh.footer.ClassicsFooter
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <com.yanzhenjie.recyclerview.SwipeRecyclerView
+                    android:id="@+id/mine_rv_userdetailcoin"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <com.scwang.smart.refresh.footer.ClassicsFooter
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
+
+        </LinearLayout>
+
+
+
+
 
 </layout>
 

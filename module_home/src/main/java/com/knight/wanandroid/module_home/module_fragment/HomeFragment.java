@@ -96,7 +96,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
                 isShowOnlythree = !isShowOnlythree;
             }
         });
-        iniTopAdapterClick();
+        initTopAdapterClick();
         loadLoading(mDatabind.homeRefreshLayout);
 
 
@@ -218,7 +218,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     }
 
 
-    private void iniTopAdapterClick() {
+    private void initTopAdapterClick() {
         mTopArticleAdapter.setOnItemClickListener(new OnItemClickListener() {
             @LoginCheck
             @Override

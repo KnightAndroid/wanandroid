@@ -84,7 +84,8 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_marginTop="@dimen/base_dimen_10"
-                android:gravity="center">
+                android:gravity="center"
+                android:onClick="@{()->click.goCoinRank()}">
 
 
                 <TextView
@@ -143,6 +144,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/base_dimen_20"
                         android:layout_marginBottom="@dimen/base_dimen_20"
+                        android:onClick="@{()->click.goUserCoin()}"
                         >
 
                         <TextView

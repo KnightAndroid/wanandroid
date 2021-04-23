@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="100dp">
+    android:layout_height="80dp">
 
 
     <RelativeLayout
@@ -20,22 +20,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/base_color_title"
-            android:text="分享文章"
             android:textSize="@dimen/base_dimen_16"
             />
 
         <TextView
+            android:id="@+id/mine_tv_timereason"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/base_color_999999"
             android:textSize="@dimen/base_dimen_14"
             android:layout_below="@id/mine_tv_detailpointtitle"
-            android:text="2020-12-18 12:04:12 签到 积分：23+12"
             android:layout_marginTop="@dimen/base_dimen_5"/>
 
     </RelativeLayout>
 
     <TextView
+        android:id="@+id/mine_tv_coincount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/base_color_theme"
@@ -50,12 +50,14 @@
 
     <TextView
         android:id="@+id/mine_detailpoiint_line"
-        android:layout_width="wrap_content"
-        android:layout_height="0.5dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:background="@color/base_color_dddddd"
         />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

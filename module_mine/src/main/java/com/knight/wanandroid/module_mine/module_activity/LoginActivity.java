@@ -45,7 +45,7 @@ public class LoginActivity extends BaseActivity<MineActivityLoginBinding, LoginP
                 finish();
             }
         });
-
+        
     }
 
 
