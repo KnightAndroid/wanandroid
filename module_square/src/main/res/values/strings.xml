@@ -1,3 +1,8 @@
 <resources>
     <string name="square_app_name">module_square</string>
+    <string name="square_click_share">你可以点击</string>
+    <string name="square_share_article">分享文章</string>
+    <string name="square_share_addcoins">每日首次分享加积分</string>
+    <string name="square_every_one_search">大家都在搜</string>
+
 </resources>

@@ -59,6 +59,8 @@ ext{
     mmkvVersion = '1.2.2'
     //eventbusVersion
     eventbusVersion = '3.2.0'
+    //flexbox
+    flexLayoutVersion = '2.0.1'
 
 
 

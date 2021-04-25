@@ -28,7 +28,7 @@
             android:id="@+id/mine_tv_rankusername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/base_dimen_20"
+            android:layout_marginLeft="@dimen/base_dimen_30"
             android:textSize="@dimen/base_dimen_16"
             android:text="深红骑士"/>
 

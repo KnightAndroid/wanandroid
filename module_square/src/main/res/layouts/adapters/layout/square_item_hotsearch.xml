@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/square_tv_hotkey"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textColor="@color/base_color_theme"
+    android:textSize="@dimen/base_dimen_16"
+    android:minWidth="86dp"
+    android:layout_marginLeft="4dp"
+    android:layout_marginRight="4dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="20dp"
+    android:gravity="center"
+    >
+
+</TextView>

@@ -7,4 +7,5 @@
     <color name="square_teal_700">#FF018786</color>
     <color name="square_black">#FF000000</color>
     <color name="square_white">#FFFFFFFF</color>
+    <color name="square_color333333">#333333</color>
 </resources>

@@ -2,6 +2,7 @@ package com.knight.wanandroid.library_base.initconfig;
 
 import android.app.Application;
 import android.content.Context;
+import android.graphics.Color;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.franmontiel.persistentcookiejar.ClearableCookieJar;
@@ -14,6 +15,7 @@ import com.knight.wanandroid.library_aop.loginintercept.LoginManager;
 import com.knight.wanandroid.library_base.AppConfig;
 import com.knight.wanandroid.library_base.BaseApp;
 import com.knight.wanandroid.library_base.BuildConfig;
+import com.knight.wanandroid.library_base.R;
 import com.knight.wanandroid.library_base.entity.UserInfoEntity;
 import com.knight.wanandroid.library_base.interceptor.PermissionInterceptor;
 import com.knight.wanandroid.library_base.loadsir.EmptyCallBack;
@@ -30,10 +32,16 @@ import com.knight.wanandroid.library_permiss.XXPermissions;
 import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_util.constant.MMkvConstants;
+import com.scwang.smart.refresh.header.MaterialHeader;
+import com.scwang.smart.refresh.layout.SmartRefreshLayout;
+import com.scwang.smart.refresh.layout.api.RefreshHeader;
+import com.scwang.smart.refresh.layout.api.RefreshLayout;
+import com.scwang.smart.refresh.layout.listener.DefaultRefreshHeaderCreator;
 import com.tencent.mmkv.MMKV;
 
 import java.util.concurrent.TimeUnit;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import okhttp3.OkHttpClient;
 
@@ -96,6 +104,16 @@ public class ModuleConfig {
         MMKV.initialize(application);
         //登录拦截器
         initLoginFilter(application);
+        //下拉刷新颜色全局设置
+        SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
+            @NonNull
+            @Override
+            public RefreshHeader createRefreshHeader(@NonNull Context context, @NonNull RefreshLayout layout) {
+                MaterialHeader materialHeader = new MaterialHeader(context).setColorSchemeColors(Color.parseColor("#55aff4"));
+                layout.setPrimaryColorsId(R.color.base_color_theme);
+                return materialHeader;
+            }
+        });
         //初始化用户信息
         user = initUser();
 

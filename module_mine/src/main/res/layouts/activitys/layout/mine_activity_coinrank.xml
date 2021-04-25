@@ -27,9 +27,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.scwang.smart.refresh.header.MaterialHeader
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+<!--            <com.scwang.smart.refresh.header.MaterialHeader-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent" />-->
 
 
             <com.yanzhenjie.recyclerview.SwipeRecyclerView

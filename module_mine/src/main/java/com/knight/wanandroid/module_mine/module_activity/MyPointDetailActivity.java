@@ -57,7 +57,6 @@ public class MyPointDetailActivity extends BaseActivity<MineActivityDetailpointB
         mDatabind.includePointToolbar.baseTvTitle.setText(getString(R.string.mine_coin_detail));
         mUserDetailCoinAdapter = new UserDetailCoinAdapter(new ArrayList<>());
         SetInitCustomView.initSwipeRecycleview(mDatabind.mineRvUserdetailcoin,new LinearLayoutManager(this),mUserDetailCoinAdapter,false);
-        mDatabind.mineDetailpointFreshlayout.setPrimaryColorsId(R.color.base_color_theme,R.color.base_color_theme);
         userInfoCoinHeadView = LayoutInflater.from(this).inflate(R.layout.mine_detailpoint_head,null);
         ((TextView)userInfoCoinHeadView.findViewById(R.id.tv_head_detailpoint)).setText(userCoin);
         mDatabind.mineDetailpointFreshlayout.setOnRefreshListener(this);
