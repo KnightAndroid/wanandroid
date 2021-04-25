@@ -5,6 +5,8 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.util.AttributeSet;
 
+import com.knight.wanandroid.library_util.ScreenUtils;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 
@@ -36,7 +38,7 @@ public class CompatToobar extends Toolbar {
              compatPaddingTop = getStatusBarHeight();
         }
 
-        this.setPadding(getPaddingLeft(),getPaddingTop() + compatPaddingTop,getPaddingRight(),getPaddingBottom() + compatPaddingTop / 2);
+        this.setPadding(getPaddingLeft(), ScreenUtils.dp2px(10) + getPaddingTop() + compatPaddingTop,getPaddingRight(),getPaddingBottom() + compatPaddingTop / 2);
     }
 
 

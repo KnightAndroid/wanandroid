@@ -7,7 +7,9 @@ import com.knight.wanandroid.library_network.listener.HttpCallback;
 import com.knight.wanandroid.library_network.model.HttpData;
 import com.knight.wanandroid.module_square.module_contact.SquareContact;
 import com.knight.wanandroid.module_square.module_entity.SearchHotKeyEntity;
+import com.knight.wanandroid.module_square.module_entity.SquareArticleListEntity;
 import com.knight.wanandroid.module_square.module_request.HotKeyApi;
+import com.knight.wanandroid.module_square.module_request.SquareArticleApi;
 
 import java.util.List;
 
@@ -22,23 +24,22 @@ public class SquareModel implements SquareContact.SquareModel {
 
     /**
      * 搜索热词
+     *
      * @param activity
      * @param mvpListener
-     *
-     * 
      */
     @Override
     public void requestHotKey(BaseDBActivity activity, MvpListener mvpListener) {
         GoHttp.get(activity)
                 .api(new HotKeyApi())
-                .request(new HttpCallback<HttpData<List<SearchHotKeyEntity>>>(activity){
+                .request(new HttpCallback<HttpData<List<SearchHotKeyEntity>>>(activity) {
                     @Override
                     public void onSucceed(HttpData<List<SearchHotKeyEntity>> result) {
                         mvpListener.onSuccess(result.getData());
                     }
 
                     @Override
-                    public void onFail(Exception e){
+                    public void onFail(Exception e) {
                         mvpListener.onError(e.getMessage());
                     }
                 });
@@ -46,7 +47,23 @@ public class SquareModel implements SquareContact.SquareModel {
     }
 
     @Override
-    public void requestShareData() {
+    public void requestShareArticles(BaseDBActivity activity, int page, MvpListener mvpListener) {
+        GoHttp.get(activity)
+                .api(new SquareArticleApi().setPage(page))
+                .request(new HttpCallback<HttpData<SquareArticleListEntity>>(activity) {
+                             @Override
+                             public void onSucceed(HttpData<SquareArticleListEntity> result) {
+                                 mvpListener.onSuccess(result.getData());
+                             }
 
+                             @Override
+                             public void onFail(Exception e) {
+                                 mvpListener.onError(e.getMessage());
+                             }
+                         }
+
+                );
     }
+
+
 }

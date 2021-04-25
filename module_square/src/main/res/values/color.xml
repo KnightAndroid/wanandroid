@@ -8,4 +8,5 @@
     <color name="square_black">#FF000000</color>
     <color name="square_white">#FFFFFFFF</color>
     <color name="square_color333333">#333333</color>
+    <color name="square_color999999">#999999</color>
 </resources>

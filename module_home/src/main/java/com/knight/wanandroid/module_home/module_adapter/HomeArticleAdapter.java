@@ -87,6 +87,11 @@ public class HomeArticleAdapter extends BaseQuickAdapter<HomeArticleEntity, Base
             baseViewHolder.setGone(R.id.home_tv_articlesuperchaptername,true);
         }
 
-
+        //是否收藏
+        if (homeArticleEntity.isCollect()) {
+            baseViewHolder.setBackgroundResource(R.id.home_icon_collect,R.drawable.base_icon_collect);
+        } else {
+            baseViewHolder.setBackgroundResource(R.id.home_icon_collect,R.drawable.base_icon_nocollect);
+        }
     }
 }

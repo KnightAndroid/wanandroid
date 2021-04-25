@@ -6,6 +6,7 @@ import com.knight.wanandroid.library_base.model.BaseModel;
 import com.knight.wanandroid.library_base.presenter.BasePresenter;
 import com.knight.wanandroid.library_base.view.BaseView;
 import com.knight.wanandroid.module_square.module_entity.SearchHotKeyEntity;
+import com.knight.wanandroid.module_square.module_entity.SquareArticleListEntity;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public interface SquareContact {
       void setNewShareData();
 
       //分享最新文章
-      void setShareArticle();
+      void setShareArticles(SquareArticleListEntity result);
 
    }
 
@@ -37,7 +38,7 @@ public interface SquareContact {
       //请求热词数据
       void requestHotKey(BaseDBActivity activity, MvpListener mvpListener);
       //请求数据
-      void requestShareData();
+      void requestShareArticles(BaseDBActivity activity, int page,MvpListener mvpListener);
    }
 
 
@@ -46,6 +47,6 @@ public interface SquareContact {
       //请求热词
       public abstract void requestHotKey(BaseDBActivity activity);
       //具体实现
-      public abstract void requestShareData();
+      public abstract void requestShareData(BaseDBActivity activity,int page);
    }
 }
