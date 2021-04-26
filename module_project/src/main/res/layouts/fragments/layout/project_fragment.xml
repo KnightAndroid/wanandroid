@@ -31,6 +31,8 @@
 
         </com.knight.wanandroid.library_widget.CompatToobar>
 
+
+
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/project_view_pager"
             android:layout_width="match_parent"

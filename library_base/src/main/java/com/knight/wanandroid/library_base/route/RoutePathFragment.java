@@ -32,6 +32,15 @@ public class RoutePathFragment {
 
     /**
      *
+     * 项目模块
+     */
+    public static class Project {
+        private static final String Project = "/module_project_fragment";
+        public static final String Project_Pager = Project + "/project_main";
+    }
+
+    /**
+     *
      * 我的页面
      * 
      */
