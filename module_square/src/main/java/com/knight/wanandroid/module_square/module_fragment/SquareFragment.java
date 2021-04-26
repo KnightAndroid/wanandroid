@@ -40,11 +40,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  * @descript:广场页面
  */
 @Route(path = RoutePathFragment.Square.Square_Pager)
-public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, SquarePresenter, SquareModel> implements SquareContact.SquareView, OnRefreshListener, OnLoadMoreListener {
+public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, SquarePresenter, SquareModel> implements SquareContact.SquareView, OnLoadMoreListener, OnRefreshListener {
 
     private HotKeyAdapter mHotKeyAdapter;
     private SquareArticleAdapter mSquareArticleAdapter;
     private int page;
+
 
 
     @Override
@@ -68,6 +69,8 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
         SetInitCustomView.initSwipeRecycleview(mDatabind.squareArticleRv,new LinearLayoutManager(getActivity()),mSquareArticleAdapter,true);
         mDatabind.squareSharearticleFreshlayout.setOnRefreshListener(this);
         mDatabind.squareSharearticleFreshlayout.setOnLoadMoreListener(this);
+
+
     }
 
     @Override
@@ -134,6 +137,9 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
 
     }
 
+
+
+
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
         mPresenter.requestShareData((BaseDBActivity)getActivity(),page);
@@ -146,6 +152,7 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
         mPresenter.requestHotKey((BaseDBActivity) getActivity());
         mPresenter.requestShareData((BaseDBActivity)getActivity(),page);
     }
+
 
     public class ProcyClick{
 

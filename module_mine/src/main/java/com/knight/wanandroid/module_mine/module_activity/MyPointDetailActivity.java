@@ -96,8 +96,8 @@ public class MyPointDetailActivity extends BaseActivity<MineActivityDetailpointB
     @Override
     public void setUserDetailCoin(UserDetailCoinListEntity result) {
         showSuccess();
-        mDatabind.mineDetailpointFreshlayout.finishLoadMore();
         mDatabind.mineDetailpointFreshlayout.finishRefresh();
+        mDatabind.mineDetailpointFreshlayout.finishLoadMore();
         if (result.getDatas().size() > 0) {
             if (page == 1) {
                 mDatabind.mineRvUserdetailcoin.removeHeaderView(userInfoCoinHeadView);
@@ -109,12 +109,18 @@ public class MyPointDetailActivity extends BaseActivity<MineActivityDetailpointB
                 mUserDetailCoinAdapter.addData(result.getDatas());
             }
             page ++;
+
         } else {
             mDatabind.mineDetailpointFreshlayout.setEnableLoadMore(false);
         }
 
 
     }
+
+
+
+
+
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
@@ -126,6 +132,5 @@ public class MyPointDetailActivity extends BaseActivity<MineActivityDetailpointB
         page = 1;
         mPresenter.requestUserDetailCoin(this,page);
         mDatabind.mineDetailpointFreshlayout.setEnableLoadMore(true);
-
     }
 }

@@ -121,6 +121,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
 
     @Override
     protected void reLoadData() {
+
         //请求顶部文章
         mPresenter.requestTopArticle((BaseDBActivity) getActivity());
         //请求轮播图
@@ -140,7 +141,6 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         } else {
             mTopArticleAdapter.setShowOnlyThree(false);
         }
-        mDatabind.homeRefreshLayout.finishRefresh();
         if(mDatabind.homeTopArticleRv.getFooterCount() == 0 && topArticleEntityList.size() > 3){
             mDatabind.homeTopArticleRv.addFooterView(topArticleFootView);
         }
@@ -164,6 +164,8 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         SetInitCustomView.initSwipeRecycleview(mDatabind.homeRvOfficialAccount,new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.HORIZONTAL),mOfficialAccountAdapter,true);
         mOfficialAccountAdapter.setNewInstance(officialAccountModels);
         initMagicIndicator();
+        mDatabind.homeRefreshLayout.finishRefresh();
+
     }
 
     @Override
@@ -182,6 +184,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         showloadFailure();
 
     }
+
 
 
     @Override

@@ -9,8 +9,6 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-
-
     <!-- 确定按钮样式-->
     <style name="base_positiveBtnStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
         <item name="android:textColor">#55aff4</item>
@@ -21,4 +19,10 @@
         <item name="android:textColor">#999999</item>
         <item name="android:textStyle">normal</item>
     </style>
+
+    <style name="base_AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.DayNight.ActionBar">
+
+    </style>
+
+    <style name="base_AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.DayNight"/>
 </resources>

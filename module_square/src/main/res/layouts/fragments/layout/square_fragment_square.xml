@@ -36,7 +36,7 @@
                     android:id="@+id/square_tv_tipshare"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/base_dimen_14"
+                    android:textSize="@dimen/base_dimen_16"
                     android:layout_marginLeft="@dimen/base_dimen_16"
                     android:textColor="@color/square_color333333"
                     android:text="@string/square_click_share"
@@ -54,7 +54,8 @@
                     android:background="@drawable/square_shape_sharearticle"
                     android:text="@string/square_share_article"
                     android:textColor="@color/square_white"
-                    android:layout_centerVertical="true"/>
+                    android:layout_centerVertical="true"
+                    android:textSize="@dimen/base_dimen_16"/>
 
                 <TextView
                     android:id="@+id/square_tv_addcoins"
@@ -65,7 +66,8 @@
                     android:layout_marginLeft="@dimen/base_dimen_16"
                     android:textColor="@color/square_color333333"
                     android:text="@string/square_share_addcoins"
-                    android:layout_marginTop="@dimen/base_dimen_2"/>
+                    android:layout_marginTop="@dimen/base_dimen_2"
+                    android:textSize="@dimen/base_dimen_16"/>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -79,13 +81,18 @@
             android:id="@+id/square_sharearticle_freshlayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/square_toolbar"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/square_toolbar"
+
             >
 
+            <com.scwang.smart.refresh.header.ClassicsHeader
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
             <com.knight.wanandroid.library_widget.StickyScrollView
+                android:id="@+id/square_nestedsv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scrollbars="none"
@@ -123,7 +130,8 @@
                         android:text="@string/square_new_sharearticle"
                         android:layout_marginLeft="@dimen/base_dimen_16"
                         android:textColor="@color/square_color333333"
-                        android:textSize="@dimen/base_dimen_18"/>
+                        android:textSize="@dimen/base_dimen_18"
+                        />
 
 
                     <com.yanzhenjie.recyclerview.SwipeRecyclerView
@@ -142,9 +150,9 @@
             </com.knight.wanandroid.library_widget.StickyScrollView>
 
 
-            <com.scwang.smart.refresh.footer.ClassicsFooter
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                        <com.scwang.smart.refresh.footer.ClassicsFooter
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
         </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
 

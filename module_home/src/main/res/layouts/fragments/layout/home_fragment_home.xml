@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:bind="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
     <data>
 
-       <variable
-           name="click"
-           type="com.knight.wanandroid.module_home.module_fragment.HomeFragment.ProcyClick" />
+        <variable
+            name="click"
+            type="com.knight.wanandroid.module_home.module_fragment.HomeFragment.ProcyClick" />
 
 
     </data>
@@ -14,16 +15,13 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/home_colorf9f9f9"
-        >
-
+        android:background="@color/home_colorf9f9f9">
 
 
         <include
             android:id="@+id/home_include_toolbar"
             layout="@layout/home_include_home_toolbar"
-            bind:click="@{click}"
-            >
+            bind:click="@{click}">
 
         </include>
 
@@ -35,95 +33,93 @@
             android:layout_below="@id/home_include_toolbar">
 
 
-<!--            <com.scwang.smart.refresh.header.MaterialHeader-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent" />-->
+            <com.scwang.smart.refresh.header.ClassicsHeader
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
 
-                        <com.knight.wanandroid.library_widget.StickyScrollView
-                            android:id="@+id/home_coordinatorsl"
+            <com.knight.wanandroid.library_widget.StickyScrollView
+                android:id="@+id/home_coordinatorsl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+                android:scrollbars="none"
+
+                >
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/home_ll_top"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/base_dimen_16"
+                            android:layout_marginTop="@dimen/base_dimen_5"
+                            android:background="@drawable/home_shape_lefttop_round"
+                            android:gravity="center_vertical"
+                            android:onClick="@{()->click.searchArticles()}"
+                            android:text="@string/home_topsticky_article"
+                            android:textColor="@color/home_white"
+                            android:textSize="@dimen/base_dimen_14" />
+
+                        <com.yanzhenjie.recyclerview.SwipeRecyclerView
+                            android:id="@+id/home_top_article_rv"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:fillViewport="true"
-                            android:scrollbars="none"
+                            android:layout_height="wrap_content" />
 
-                            >
-
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical">
-
-                                <LinearLayout
-                                    android:id="@+id/home_ll_top"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    >
+                        <com.youth.banner.Banner
+                            android:id="@+id/home_banner"
+                            android:layout_width="match_parent"
+                            android:layout_height="160dp">
 
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="@dimen/base_dimen_16"
-                                        android:layout_marginTop="@dimen/base_dimen_5"
-                                        android:background="@drawable/home_shape_lefttop_round"
-                                        android:gravity="center_vertical"
-                                        android:onClick="@{()->click.searchArticles()}"
-                                        android:text="@string/home_topsticky_article"
-                                        android:textColor="@color/home_white"
-                                        android:textSize="@dimen/base_dimen_14" />
+                        </com.youth.banner.Banner>
 
-                                    <com.yanzhenjie.recyclerview.SwipeRecyclerView
-                                        android:id="@+id/home_top_article_rv"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/base_dimen_16"
+                            android:layout_marginTop="@dimen/base_dimen_5"
+                            android:background="@drawable/home_shape_lefttop_round"
+                            android:gravity="center_vertical"
+                            android:onClick="@{()->click.searchArticles()}"
+                            android:text="@string/home_highquality_officialaccount"
+                            android:textColor="@color/home_white"
+                            android:textSize="@dimen/base_dimen_14" />
 
-                                    <com.youth.banner.Banner
-                                        android:id="@+id/home_banner"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="160dp">
+                        <com.yanzhenjie.recyclerview.SwipeRecyclerView
+                            android:id="@+id/home_rv_official_account"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/base_dimen_10" />
+                    </LinearLayout>
 
+                    <net.lucode.hackware.magicindicator.MagicIndicator
+                        android:id="@+id/magic_indicator"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:minHeight="60dp"
+                        android:tag="sticky" />
 
-                                    </com.youth.banner.Banner>
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/view_pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="@dimen/base_dimen_16"
-                                        android:layout_marginTop="@dimen/base_dimen_5"
-                                        android:background="@drawable/home_shape_lefttop_round"
-                                        android:gravity="center_vertical"
-                                        android:onClick="@{()->click.searchArticles()}"
-                                        android:text="@string/home_highquality_officialaccount"
-                                        android:textColor="@color/home_white"
-                                        android:textSize="@dimen/base_dimen_14" />
+                        />
+                </LinearLayout>
 
-                                    <com.yanzhenjie.recyclerview.SwipeRecyclerView
-                                        android:id="@+id/home_rv_official_account"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginBottom="@dimen/base_dimen_10"
-                                        />
-                                </LinearLayout>
-
-                                <net.lucode.hackware.magicindicator.MagicIndicator
-                                    android:id="@+id/magic_indicator"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="60dp"
-                                    android:minHeight="60dp"
-                                    android:tag="sticky"/>
-
-                                <androidx.viewpager2.widget.ViewPager2
-                                    android:id="@+id/view_pager"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-
-                                    />
-                            </LinearLayout>
-
-                        </com.knight.wanandroid.library_widget.StickyScrollView>
+            </com.knight.wanandroid.library_widget.StickyScrollView>
 
         </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 

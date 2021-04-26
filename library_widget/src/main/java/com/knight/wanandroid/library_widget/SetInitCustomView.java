@@ -1,6 +1,7 @@
 package com.knight.wanandroid.library_widget;
 
 import com.yanzhenjie.recyclerview.SwipeRecyclerView;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
@@ -27,4 +28,5 @@ public class SetInitCustomView {
         swipeRecyclerView.setNestedScrollingEnabled(isScroll);
 
     }
+
 }

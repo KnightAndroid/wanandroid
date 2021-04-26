@@ -62,6 +62,4 @@ ext{
     //flexbox
     flexLayoutVersion = '2.0.1'
 
-
-
 }

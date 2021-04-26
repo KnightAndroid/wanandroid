@@ -20,20 +20,26 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <com.scwang.smart.refresh.layout.SmartRefreshLayout
-                android:id="@+id/home_articlerefreshLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
-                <com.yanzhenjie.recyclerview.SwipeRecyclerView
-                    android:id="@+id/home_article_body"
+                <com.scwang.smart.refresh.layout.SmartRefreshLayout
+                    android:id="@+id/home_article_freshlayout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content">
 
-                <com.scwang.smart.refresh.footer.ClassicsFooter
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+                    <com.yanzhenjie.recyclerview.SwipeRecyclerView
+                        android:id="@+id/home_article_body"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <com.scwang.smart.refresh.footer.ClassicsFooter
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
+
+
+
+
         </LinearLayout>
 
 

@@ -2,4 +2,5 @@
 <resources>E
     <color name="widget_progress_color">#4E4E4E</color>
     <color name="widget_white">#ffffff</color>
+    <color name="widget_theme_color">#55aff4</color>
 </resources>

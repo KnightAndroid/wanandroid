@@ -16,9 +16,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/home_white"
-        android:theme="@style/home_AppTheme.AppBarOverlay"
+        android:theme="@style/base_AppTheme.AppBarOverlay"
         app:layout_scrollFlags="scroll|enterAlways"
-        app:popupTheme="@style/home_AppTheme.PopupOverlay">
+        app:popupTheme="@style/base_AppTheme.PopupOverlay">
 
 
         <RelativeLayout

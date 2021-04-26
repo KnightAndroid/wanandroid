@@ -56,11 +56,13 @@ dependencies {
     api "com.kingja.loadsir:loadsir:$loadsirVersion"
     //核心必须依赖
     api "com.scwang.smart:refresh-layout-kernel:$smartRefreshVersion"
-    //经典谷歌刷新头
-    api "com.scwang.smart:refresh-header-material:$smartRefreshVersion"
+    //经典刷新头
+    api "com.scwang.smart:refresh-header-classics:$smartRefreshVersion"
     //经典加载
     api "com.scwang.smart:refresh-footer-classics:$smartRefreshVersion"
-    //Eventbus
+
+    //头部切换导航栏
+    api "com.github.hackware1993:MagicIndicator:$magicIndicatorVersion"
 
     api project (':library_componentbase')
     api project (':library_util')

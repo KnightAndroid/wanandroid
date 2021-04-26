@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ProgressBar
+        android:id="@+id/base_loading_view"
+        style="?android:attr/progressBarStyleInverse"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/base_tv_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="6dp"
+        android:textColor="#333333"
+        android:textSize="13dp"
+        android:visibility="gone" />
+
+</merge>

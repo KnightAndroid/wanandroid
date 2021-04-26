@@ -49,6 +49,7 @@ public class CoinRankActivity extends BaseActivity<MineActivityCoinrankBinding, 
         mDatabind.mineCoinrankFreshlayout.setOnRefreshListener(this);
         mDatabind.mineCoinrankFreshlayout.setOnLoadMoreListener(this);
         showLoading(mDatabind.mineCoinrankFreshlayout);
+
     }
 
 
@@ -94,6 +95,10 @@ public class CoinRankActivity extends BaseActivity<MineActivityCoinrankBinding, 
             mDatabind.mineCoinrankFreshlayout.setEnableLoadMore(false);
         }
     }
+
+
+
+
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {

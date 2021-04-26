@@ -42,9 +42,9 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
     @Override
     protected void initView(Bundle savedInstanceState) {
         mHomeArticleAdapter = new HomeArticleAdapter(new ArrayList<>());
-        mDatabind.homeArticlerefreshLayout.setOnLoadMoreListener(this);
         SetInitCustomView.initSwipeRecycleview(mDatabind.homeArticleBody,new LinearLayoutManager(getActivity()),mHomeArticleAdapter,true);
         mDatabind.homeArticleBody.setAdapter(mHomeArticleAdapter);
+        mDatabind.homeArticleFreshlayout.setOnLoadMoreListener(this);
 
     }
 
@@ -85,10 +85,7 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
         showloadFailure();
     }
 
-    @Override
-    public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        mPresenter.requestAllHomeArticle((BaseDBActivity) getActivity(),currentPage);
-    }
+
 
     @Override
     public void setAllHomeArticle(HomeArticleListEntity result) {
@@ -108,16 +105,22 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
      */
     private void loadArticleData(HomeArticleListEntity result) {
         currentPage = result.getCurPage();
+        mDatabind.homeArticleFreshlayout.finishLoadMore();
         // dismissLoadingHud();
         if (currentPage > 1) {
-            mDatabind.homeArticlerefreshLayout.finishLoadMore();
             if (result.getDatas().size() > 0) {
                 mHomeArticleAdapter.addData(result.getDatas());
             } else {
-                mDatabind.homeArticlerefreshLayout.setEnableLoadMore(false);
+                mDatabind.homeArticleFreshlayout.setEnableLoadMore(false);
             }
         } else {
             mHomeArticleAdapter.setNewInstance(result.getDatas());
         }
+    }
+
+
+    @Override
+    public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+        mPresenter.requestAllHomeArticle((BaseDBActivity) getActivity(),currentPage);
     }
 }

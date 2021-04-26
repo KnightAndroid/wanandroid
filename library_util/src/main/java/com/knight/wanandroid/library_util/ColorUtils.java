@@ -1,5 +1,9 @@
 package com.knight.wanandroid.library_util;
 
+import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+
 import java.util.Random;
 
 /**
@@ -37,6 +41,21 @@ public class ColorUtils {
         b = b.length() == 1 ? "0" + b:b;
         return r+g+b;
     }
+
+
+    /**
+     *
+     * 返回colorList
+     * @param context
+     * @return
+     */
+    public static ColorStateList getOneColorStateList(Context context){
+       int colors[] = {Color.parseColor("#55aff4")};
+       int [][]states = new int[][]{new int[0]};
+       return new ColorStateList(states,colors);
+    }
+
+
 
 
 }
