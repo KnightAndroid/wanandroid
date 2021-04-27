@@ -8,6 +8,7 @@
 
     </data>
     <LinearLayout
+        android:id="@+id/project_ll_article"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">

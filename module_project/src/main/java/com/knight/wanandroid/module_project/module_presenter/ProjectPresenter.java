@@ -1,7 +1,11 @@
 package com.knight.wanandroid.module_project.module_presenter;
 
 import com.knight.wanandroid.library_base.activity.BaseDBActivity;
+import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.module_project.module_contract.ProjectContract;
+import com.knight.wanandroid.module_project.module_entity.ProjectTypeEntity;
+
+import java.util.List;
 
 /**
  * @author created by knight
@@ -12,6 +16,25 @@ import com.knight.wanandroid.module_project.module_contract.ProjectContract;
 public class ProjectPresenter extends ProjectContract.ProjectDataPresenter {
     @Override
     public void requestProjectTypes(BaseDBActivity activity) {
+        final ProjectContract.ProjectView mView = getView();
+        if (mView == null) {
+            return;
+        }
+        mModel.requestProjectTypes(activity, new MvpListener<List<ProjectTypeEntity>>() {
+            @Override
+            public void onSuccess(List<ProjectTypeEntity> data) {
+                mView.setProjectTypes(data);
+
+            }
+
+            @Override
+            public void onError(String errorMsg) {
+                mView.showError(errorMsg);
+            }
+        });
+
+
+
 
     }
 }

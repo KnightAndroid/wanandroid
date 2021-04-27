@@ -37,6 +37,7 @@ public class RoutePathFragment {
     public static class Project {
         private static final String Project = "/module_project_fragment";
         public static final String Project_Pager = Project + "/project_main";
+        public static final String Project_Child_Pager = Project + "/project_child_pager";
     }
 
     /**
