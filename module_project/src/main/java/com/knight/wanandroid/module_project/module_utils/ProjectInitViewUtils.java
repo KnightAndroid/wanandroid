@@ -121,6 +121,7 @@ public class ProjectInitViewUtils {
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 magicIndicator.onPageSelected(position);
+
             }
 
             @Override

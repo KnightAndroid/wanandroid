@@ -1,5 +1,8 @@
 package com.knight.wanandroid.module_project.module_entity;
 
+import android.os.Build;
+import android.text.Html;
+
 import com.knight.wanandroid.library_base.entity.BaseEntity;
 
 import java.util.List;
@@ -58,6 +61,11 @@ public class ProjectTypeEntity extends BaseEntity {
     }
 
     public String getName() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+           name = Html.fromHtml(name,Html.FROM_HTML_MODE_LEGACY).toString();
+        } else {
+            name = Html.fromHtml(name).toString();
+        }
         return name;
     }
 

@@ -36,7 +36,7 @@ public class ProjectFragment extends BaseFragment<ProjectFragmentBinding, Projec
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        loadLoading(mDatabind.projectLlArticle);
+        loadLoading(mDatabind.projectViewPager);
 
     }
 
@@ -60,12 +60,15 @@ public class ProjectFragment extends BaseFragment<ProjectFragmentBinding, Projec
     public void setProjectTypes(List<ProjectTypeEntity> projectTypes) {
         showSuccess();
         mFragments.clear();
+        ProjectTypeEntity projectTypeEntity = new ProjectTypeEntity();
+        projectTypeEntity.setName("最新项目");
+        projectTypes.add(0,projectTypeEntity);
+        mFragments.add(ProjectViewpagerFragment.newInstance(0,true));
         for (int i = 0;i < projectTypes.size();i++) {
-            mFragments.add(ProjectViewpagerFragment.newInstance(projectTypes.get(i).getId()));
-
+            mFragments.add(ProjectViewpagerFragment.newInstance(projectTypes.get(i).getId(),false));
         }
         ProjectInitViewUtils.setViewPager2InitFragment(this,mFragments,mDatabind.projectViewPager,false);
-        ProjectInitViewUtils.bindProjectViewPager2(mDatabind.projectIndicator,mDatabind.projectViewPager,projectTypes);
+        ProjectInitViewUtils.bindProjectViewPager2(mDatabind.projectIndicator, mDatabind.projectViewPager, projectTypes);
     }
 
     @Override

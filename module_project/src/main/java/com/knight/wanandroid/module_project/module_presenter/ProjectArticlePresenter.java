@@ -13,12 +13,12 @@ import com.knight.wanandroid.module_project.module_entity.ProjectArticleListEnti
  */
 public class ProjectArticlePresenter extends ProjectArticleContract.ProjectArticleDataPresenter {
     @Override
-    public void requestProjectArticle(BaseDBActivity activity, int page, int cid) {
+    public void requestProjectArticle(BaseDBActivity activity, int page, int cid,boolean isNewProject) {
         final ProjectArticleContract.ProjectArticleView mView = getView();
         if (mView == null) {
             return;
         }
-        mModel.requestProjectArticle(activity, page, cid, new MvpListener<ProjectArticleListEntity>() {
+        mModel.requestProjectArticle(activity, page, cid, isNewProject,new MvpListener<ProjectArticleListEntity>() {
             @Override
             public void onSuccess(ProjectArticleListEntity data) {
                 mView.setProjectArticle(data);
@@ -32,4 +32,6 @@ public class ProjectArticlePresenter extends ProjectArticleContract.ProjectArtic
 
 
     }
+
+
 }

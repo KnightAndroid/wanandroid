@@ -55,7 +55,8 @@
                     android:text="@string/square_share_article"
                     android:textColor="@color/square_white"
                     android:layout_centerVertical="true"
-                    android:textSize="@dimen/base_dimen_16"/>
+                    android:textSize="@dimen/base_dimen_16"
+                    android:layout_marginLeft="@dimen/base_dimen_6"/>
 
                 <TextView
                     android:id="@+id/square_tv_addcoins"
@@ -66,7 +67,7 @@
                     android:layout_marginLeft="@dimen/base_dimen_16"
                     android:textColor="@color/square_color333333"
                     android:text="@string/square_share_addcoins"
-                    android:layout_marginTop="@dimen/base_dimen_2"
+                    android:layout_marginTop="@dimen/base_dimen_6"
                     android:textSize="@dimen/base_dimen_16"/>
 
 

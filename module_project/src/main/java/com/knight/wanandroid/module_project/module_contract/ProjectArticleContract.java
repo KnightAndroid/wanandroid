@@ -16,14 +16,17 @@ import com.knight.wanandroid.module_project.module_entity.ProjectArticleListEnti
 public interface ProjectArticleContract {
     interface ProjectArticleView extends BaseView {
         void setProjectArticle(ProjectArticleListEntity projectArticle);
+
     }
 
     interface ProjectArticleModel extends BaseModel{
-        void requestProjectArticle(BaseDBActivity activity, int page, int cid, MvpListener mvpListener);
+        void requestProjectArticle(BaseDBActivity activity, int page, int cid, boolean isNewProject,MvpListener mvpListener);
+
     }
 
     abstract class ProjectArticleDataPresenter extends BasePresenter<ProjectArticleModel,ProjectArticleView>{
-        public abstract void requestProjectArticle(BaseDBActivity activity, int page, int cid);
+        public abstract void requestProjectArticle(BaseDBActivity activity, int page, int cid,boolean isNewProject);
+
     }
 
 

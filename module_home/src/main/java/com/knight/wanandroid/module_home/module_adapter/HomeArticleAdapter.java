@@ -56,7 +56,7 @@ public class HomeArticleAdapter extends BaseQuickAdapter<HomeArticleEntity, Base
         if (!TextUtils.isEmpty(homeArticleEntity.getNiceDate())) {
             baseViewHolder.setText(R.id.home_item_articledata,homeArticleEntity.getNiceDate());
         } else {
-            baseViewHolder.setText(R.id.home_item_articledata,homeArticleEntity.getNiceDate());
+            baseViewHolder.setText(R.id.home_item_articledata,homeArticleEntity.getNiceShareDate());
         }
 
         //标题

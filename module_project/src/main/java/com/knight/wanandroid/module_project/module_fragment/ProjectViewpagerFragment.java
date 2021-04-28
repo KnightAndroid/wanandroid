@@ -35,12 +35,14 @@ public class ProjectViewpagerFragment extends BaseFragment<ProjectViewpagerFragm
 
     private int page = 1;
     private int cid;
+    private boolean isNewProject;
     private ProjectArticleAdapter mProjectArticleAdapter;
 
-    public static ProjectViewpagerFragment newInstance(int cid){
+    public static ProjectViewpagerFragment newInstance(int cid,boolean isNewProject){
         ProjectViewpagerFragment projectViewpagerFragment = new ProjectViewpagerFragment();
         Bundle args = new Bundle();
         args.putInt("cid",cid);
+        args.putBoolean("isNewProject",isNewProject);
         projectViewpagerFragment.setArguments(args);
         return projectViewpagerFragment;
     }
@@ -54,6 +56,12 @@ public class ProjectViewpagerFragment extends BaseFragment<ProjectViewpagerFragm
     protected void initView(Bundle savedInstanceState) {
         loadLoading(mDatabind.projectListSmartfreshlayout);
         cid = getArguments().getInt("cid");
+        isNewProject = getArguments().getBoolean("isNewProject");
+        if (isNewProject) {
+            page = 0;
+        } else {
+            page = 1;
+        }
         mDatabind.projectListSmartfreshlayout.setOnRefreshListener(this);
         mDatabind.projectListSmartfreshlayout.setOnLoadMoreListener(this);
         mProjectArticleAdapter = new ProjectArticleAdapter(new ArrayList<>());
@@ -63,13 +71,13 @@ public class ProjectViewpagerFragment extends BaseFragment<ProjectViewpagerFragm
 
     @Override
     protected void lazyLoadData() {
-        mPresenter.requestProjectArticle((BaseDBActivity)getActivity(),page,cid);
+        mPresenter.requestProjectArticle((BaseDBActivity)getActivity(),page,cid,isNewProject);
 
     }
 
     @Override
     protected void reLoadData() {
-        mPresenter.requestProjectArticle((BaseDBActivity)getActivity(),page,cid);
+        mPresenter.requestProjectArticle((BaseDBActivity)getActivity(),page,cid,isNewProject);
 
     }
 
@@ -79,12 +87,16 @@ public class ProjectViewpagerFragment extends BaseFragment<ProjectViewpagerFragm
         mDatabind.projectListSmartfreshlayout.finishRefresh();
         mDatabind.projectListSmartfreshlayout.finishLoadMore();
         if (projectArticle.getDatas().size() > 0) {
-            if (page == 1) {
+            if (projectArticle.getCurPage() == 1) {
                 mProjectArticleAdapter.setNewInstance(projectArticle.getDatas());
             } else {
                 mProjectArticleAdapter.addData(projectArticle.getDatas());
             }
-            page++;
+            if (projectArticle.getDatas().size() < 10) {
+                mDatabind.projectListSmartfreshlayout.setEnableLoadMore(false);
+            } else {
+                page++;
+            }
         } else {
             mDatabind.projectListSmartfreshlayout.setEnableLoadMore(false);
         }
@@ -108,13 +120,17 @@ public class ProjectViewpagerFragment extends BaseFragment<ProjectViewpagerFragm
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        mPresenter.requestProjectArticle((BaseDBActivity)getActivity(),page,cid);
+        mPresenter.requestProjectArticle((BaseDBActivity)getActivity(),page,cid,isNewProject);
     }
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-        page = 1;
+        if (isNewProject) {
+            page = 0;
+        } else {
+            page = 1;
+        }
         mDatabind.projectListSmartfreshlayout.setEnableLoadMore(true);
-        mPresenter.requestProjectArticle((BaseDBActivity)getActivity(),page,cid);
+        mPresenter.requestProjectArticle((BaseDBActivity)getActivity(),page,cid,isNewProject);
     }
 }
