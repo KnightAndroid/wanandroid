@@ -19,6 +19,7 @@ import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.GsonUtils;
 import com.knight.wanandroid.library_util.JsonUtils;
+import com.knight.wanandroid.library_util.LogUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_util.constant.MMkvConstants;
 import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;
@@ -83,10 +84,9 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         mDatabind.setClick(new ProcyClick());
         EventBus.getDefault().register(this);
         initUserData();
-        SetInitCustomView.initSwipeRecycleview(mDatabind.homeTopArticleRv,new LinearLayoutManager(getActivity()),mTopArticleAdapter,false);
         mTopArticleAdapter = new TopArticleAdapter(new ArrayList<>());
+        SetInitCustomView.initSwipeRecycleview(mDatabind.homeTopArticleRv,new LinearLayoutManager(getActivity()),mTopArticleAdapter,false);
         mOfficialAccountAdapter = new OfficialAccountAdapter(new ArrayList<>());
-        mDatabind.homeTopArticleRv.setAdapter(mTopArticleAdapter);
         mDatabind.homeRefreshLayout.setOnRefreshListener(this);
         topArticleFootView = LayoutInflater.from(getActivity()).inflate(R.layout.home_toparticle_foot,null);
         topArticleFootView.findViewById(R.id.home_ll_seemorearticles).setOnClickListener(new View.OnClickListener() {
@@ -266,6 +266,24 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
+
+    @Override
+    public void onViewStateRestored(Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        if (savedInstanceState != null) {
+            LogUtils.d("进来恢复");
+            reLoadData();
+        }
+
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        LogUtils.d("进来回收");
+    }
+
+
 
 
 

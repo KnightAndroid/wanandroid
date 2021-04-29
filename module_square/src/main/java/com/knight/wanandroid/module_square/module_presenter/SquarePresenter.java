@@ -2,7 +2,7 @@ package com.knight.wanandroid.module_square.module_presenter;
 
 import com.knight.wanandroid.library_base.activity.BaseDBActivity;
 import com.knight.wanandroid.library_base.listener.MvpListener;
-import com.knight.wanandroid.module_square.module_contact.SquareContact;
+import com.knight.wanandroid.module_square.module_contract.SquareContact;
 import com.knight.wanandroid.module_square.module_entity.SearchHotKeyEntity;
 import com.knight.wanandroid.module_square.module_entity.SquareArticleListEntity;
 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/content"
+    android:layout_width="92dp"
+    android:layout_height="92dp"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/hierachy_tv_content"
+        android:layout_width="61dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/base_dimen_6"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="分类名称"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/base_dimen_12"/>
+</LinearLayout>

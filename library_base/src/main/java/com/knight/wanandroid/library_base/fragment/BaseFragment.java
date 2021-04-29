@@ -33,6 +33,8 @@ public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePres
     private boolean isFirst = true;
     protected DB mDatabind;
 
+    //protected WeakReference<View> mRootView;
+
     public T mPresenter;
     public M mModel;
     public LoadService mLoadService;
@@ -91,17 +93,27 @@ public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePres
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,@Nullable Bundle savedInstanceState){
+//         if(mDatabind != null && mDatabind.getRoot() != null){
+//             return mDatabind.getRoot();
+//         }
+
+//         if (mRootView == null || mRootView.get() == null) {
+//             mDatabind = DataBindingUtil.inflate(inflater,layoutId(),container,false);
+//             mDatabind.setLifecycleOwner(this);
+//             mRootView = new WeakReference<View>(mDatabind.getRoot());
+//         } else {
+//             ViewGroup parent = (ViewGroup) mRootView.get().getParent();
+//             if (parent != null) {
+//                 parent.removeView(mRootView.get());
+//             }
+//         }
+//
+//        return mRootView.get();
+
+
          mDatabind = DataBindingUtil.inflate(inflater,layoutId(),container,false);
          mDatabind.setLifecycleOwner(this);
-//         mLoadService = LoadSir.getDefault().register(mDatabind.getRoot(), new Callback.OnReloadListener() {
-//            @Override
-//            public void onReload(View v) {
-//                mLoadService.showCallback(LoadCallBack.class);
-//            }
-//        });
-
          return mDatabind.getRoot();
-      //   return mLoadService.getLoadLayout();
     }
 
 

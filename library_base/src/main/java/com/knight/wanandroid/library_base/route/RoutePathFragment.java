@@ -42,6 +42,17 @@ public class RoutePathFragment {
 
     /**
      *
+     * 体系模块
+     */
+    public static class Hierachy {
+        private static final String Hierachy = "/module_hierachy_fragment";
+        public static final String Hierachy_Pager = Hierachy + "/hierachy_main";
+        public static final String Hierachy_Right = Hierachy + "/hierachy_right";
+
+    }
+
+    /**
+     *
      * 我的页面
      * 
      */

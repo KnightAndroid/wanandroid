@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <data>
+
+    </data>
+    <LinearLayout
+        android:id="@+id/hierachy_ll_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/hierachy_white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/hierachy_Left_sidebar"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                >
+
+
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <FrameLayout
+                android:id="@+id/hierachy_right_sidebar"
+                android:background="@color/hierachy_white"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3">
+            </FrameLayout>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+</layout>

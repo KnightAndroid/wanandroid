@@ -65,7 +65,9 @@ dependencies {
     implementation project(":module_home")
     implementation project(":module_square")
     implementation project(":module_project")
+    implementation project(":module_hierachy")
     implementation project(":module_mine")
+
     annotationProcessor "com.alibaba:arouter-compiler:$arouterVersion"
   //  implementation "com.github.onestravel:OneBottomNavigationBar:$bottom_navigatVersion"
     implementation 'com.github.ittianyu:BottomNavigationViewEx:2.0.4'

@@ -7,6 +7,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.knight.wanandroid.databinding.ActivityMainBinding;
 import com.knight.wanandroid.library_base.activity.BaseDBActivity;
 import com.knight.wanandroid.library_util.ViewSetUtils;
+import com.knight.wanandroid.module_hierachy.module_fragment.HierachyFragment;
 import com.knight.wanandroid.module_home.module_fragment.HomeFragment;
 import com.knight.wanandroid.module_mine.module_fragment.MineFragment;
 import com.knight.wanandroid.module_project.module_fragment.ProjectFragment;
@@ -39,9 +40,8 @@ public class MainActivity extends BaseDBActivity<ActivityMainBinding> {
         fragments.add(new HomeFragment());
         fragments.add(new SquareFragment());
         fragments.add(new ProjectFragment());
+        fragments.add(new HierachyFragment());
         fragments.add(new MineFragment());
-
-
        // mDatabind.mainViewpager
         ViewSetUtils.setIsUserInputEnable(this,mDatabind.mainViewpager,fragments,false);
 
@@ -54,8 +54,10 @@ public class MainActivity extends BaseDBActivity<ActivityMainBinding> {
                     mDatabind.mainViewpager.setCurrentItem(1,false);
                 } else if(item.getItemId() == R.id.projectFragment){
                     mDatabind.mainViewpager.setCurrentItem(2,false);
-                } else if(item.getItemId() == R.id.mineFragment){
+                } else if(item.getItemId() == R.id.navigateFragment){
                     mDatabind.mainViewpager.setCurrentItem(3,false);
+                } else if(item.getItemId() == R.id.mineFragment){
+                    mDatabind.mainViewpager.setCurrentItem(4,false);
                 }
                 return true;
             }

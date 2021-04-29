@@ -31,6 +31,7 @@ public class ViewSetUtils {
      */
     public static void setIsUserInputEnable(FragmentActivity activity, ViewPager2 viewPager2, final ArrayList<Fragment> fragments, boolean isUserInputEnabled){
         viewPager2.setUserInputEnabled(isUserInputEnabled);
+        viewPager2.setOffscreenPageLimit(fragments.size());
         viewPager2.setAdapter(new FragmentStateAdapter(activity) {
             @NonNull
             @Override

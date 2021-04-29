@@ -1,4 +1,4 @@
-package com.knight.wanandroid.module_square.module_contact;
+package com.knight.wanandroid.module_square.module_contract;
 
 import com.knight.wanandroid.library_base.activity.BaseDBActivity;
 import com.knight.wanandroid.library_base.listener.MvpListener;

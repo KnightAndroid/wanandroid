@@ -17,7 +17,7 @@ import com.knight.wanandroid.module_square.R;
 import com.knight.wanandroid.module_square.databinding.SquareFragmentSquareBinding;
 import com.knight.wanandroid.module_square.module_adapter.HotKeyAdapter;
 import com.knight.wanandroid.module_square.module_adapter.SquareArticleAdapter;
-import com.knight.wanandroid.module_square.module_contact.SquareContact;
+import com.knight.wanandroid.module_square.module_contract.SquareContact;
 import com.knight.wanandroid.module_square.module_entity.SearchHotKeyEntity;
 import com.knight.wanandroid.module_square.module_entity.SquareArticleEntity;
 import com.knight.wanandroid.module_square.module_entity.SquareArticleListEntity;

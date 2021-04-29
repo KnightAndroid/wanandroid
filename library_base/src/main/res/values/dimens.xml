@@ -1,12 +1,15 @@
 <resources>
     <dimen name="base_dimen_2">2dp</dimen>
+    <dimen name="base_dimen_3">3dp</dimen>
     <dimen name="base_dimen_4">4dp</dimen>
     <dimen name="base_dimen_5">5dp</dimen>
     <dimen name="base_dimen_6">6dp</dimen>
     <dimen name="base_dimen_8">8dp</dimen>
     <dimen name="base_dimen_10">10dp</dimen>
     <dimen name="base_dimen_12">12dp</dimen>
+    <dimen name="base_dimen_13">13dp</dimen>
     <dimen name="base_dimen_14">14dp</dimen>
+    <dimen name="base_dimen_15">15dp</dimen>
     <dimen name="base_dimen_16">16dp</dimen>
     <dimen name="base_dimen_18">18dp</dimen>
     <dimen name="base_dimen_20">20dp</dimen>

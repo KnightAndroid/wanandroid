@@ -113,6 +113,7 @@ public class CustomViewUtils {
         viewPager2.setUserInputEnabled(isUserInputEnabled);
         //暂时解决切换白屏问题
         viewPager2.setOffscreenPageLimit(fragments.size());
+        viewPager2.setSaveEnabled(true);
         viewPager2.setAdapter(new FragmentStateAdapter(activity) {
             @NonNull
             @Override

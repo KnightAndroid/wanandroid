@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="33dp"
+    android:id="@+id/hierachy_root"
+    android:background="#f3f3f3"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/base_dimen_3"
+    android:paddingTop="@dimen/base_dimen_3">
+
+    <View
+        android:layout_width="@dimen/dp_4"
+        android:layout_height="@dimen/base_dimen_15"
+        android:layout_marginLeft="@dimen/base_dimen_15"
+        android:background="#55aff4"/>
+
+    <TextView
+        android:id="@+id/hierachy_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:paddingLeft="@dimen/base_dimen_6"
+        android:paddingRight="@dimen/base_dimen_13"
+        android:text=""
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/sp_14"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/hierachy_arrow_right"/>
+</LinearLayout>

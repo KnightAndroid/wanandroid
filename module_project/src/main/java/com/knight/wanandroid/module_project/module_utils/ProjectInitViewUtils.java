@@ -46,6 +46,7 @@ public class ProjectInitViewUtils {
     public static void setViewPager2InitFragment(Fragment fragment, List<ProjectViewpagerFragment> fragments, ViewPager2 viewPager2, boolean isUserInputEnabled) {
         viewPager2.setUserInputEnabled(isUserInputEnabled);
         viewPager2.setOffscreenPageLimit(fragments.size());
+        viewPager2.setSaveEnabled(true);
         viewPager2.setAdapter(new FragmentStateAdapter(fragment) {
             @NonNull
             @Override
