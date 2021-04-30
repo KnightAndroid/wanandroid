@@ -1,20 +1,21 @@
-package com.knight.wanandroid.module_home.module_utils;
+package com.knight.wanandroid.module_hierachy.module_utils;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 
+import com.knight.wanandroid.library_base.view.ScaleTransitionPagerTitleView;
 import com.knight.wanandroid.library_common.ApplicationProvider;
 import com.knight.wanandroid.library_util.ScreenUtils;
-import com.knight.wanandroid.module_home.module_constants.HomeConstants;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.WrapPagerIndicator;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.SimplePagerTitleView;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator;
 
 import java.util.List;
 
@@ -23,10 +24,10 @@ import androidx.viewpager2.widget.ViewPager2;
 /**
  * @author created by knight
  * @organize wanandroid
- * @Date 2021/4/12 19:03
- * @descript:一些view的初始化
+ * @Date 2021/4/30 16:15
+ * @descript:
  */
-public class CustomViewUtils {
+public class ViewInitUtils {
 
     /**
      *
@@ -35,11 +36,8 @@ public class CustomViewUtils {
      * @param viewPager2
      * @param mDataList
      */
-    public static void bindViewPager2(MagicIndicator magicIndicator,ViewPager2 viewPager2, List<String> mDataList) {
-        magicIndicator.setBackgroundColor(Color.WHITE);
+    public static void bindViewPager2(MagicIndicator magicIndicator, ViewPager2 viewPager2, List<String> mDataList) {
         CommonNavigator commonNavigator = new CommonNavigator(ApplicationProvider.getInstance().getApplication());
-        commonNavigator.setLeftPadding(ScreenUtils.dp2px(16));
-        commonNavigator.setScrollPivotX(0.35f);
         commonNavigator.setAdapter(new CommonNavigatorAdapter() {
             @Override
             public int getCount() {
@@ -48,26 +46,33 @@ public class CustomViewUtils {
 
             @Override
             public IPagerTitleView getTitleView(Context context, final int index) {
-                SimplePagerTitleView simplePagerTitleView = new SimplePagerTitleView(context);
-                simplePagerTitleView.setText(mDataList.get(index));
-                simplePagerTitleView.setNormalColor(Color.parseColor("#999999"));
-                simplePagerTitleView.setSelectedColor(Color.parseColor("#ffffff"));
-                simplePagerTitleView.setOnClickListener(new View.OnClickListener() {
+                ScaleTransitionPagerTitleView scaleTransitionPagerTitleView = new ScaleTransitionPagerTitleView(context);
+                if(mDataList.size() != 0){
+                    scaleTransitionPagerTitleView.setText(mDataList.get(index));
+                }
+
+                scaleTransitionPagerTitleView.setTextSize(18f);
+                scaleTransitionPagerTitleView.setNormalColor(Color.parseColor("#333333"));
+                scaleTransitionPagerTitleView.setSelectedColor(Color.parseColor("#333333"));
+                scaleTransitionPagerTitleView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        HomeConstants.ARTICLE_TYPE = mDataList.get(index);
                         viewPager2.setCurrentItem(index);
                     }
                 });
-                return simplePagerTitleView;
+                return scaleTransitionPagerTitleView;
             }
 
             @Override
             public IPagerIndicator getIndicator(Context context) {
-                WrapPagerIndicator indicator = new WrapPagerIndicator(context);
-               // indicator.setHorizontalPadding(10);
-                indicator.setRoundRadius(ScreenUtils.dp2px(6));
-                indicator.setFillColor(Color.parseColor("#55aff4"));
+                LinePagerIndicator indicator = new LinePagerIndicator(context);
+                indicator.setMode(LinePagerIndicator.MODE_EXACTLY);
+                indicator.setLineHeight(ScreenUtils.dp2px(context,3.0f));
+                indicator.setLineWidth(ScreenUtils.dp2px(context,30.0f));
+                indicator.setRoundRadius(ScreenUtils.dp2px(context,6.0f));
+                indicator.setStartInterpolator(new AccelerateInterpolator());
+                indicator.setEndInterpolator(new DecelerateInterpolator(2.0f));
+                indicator.setColors(Color.parseColor("#55aff4"));
                 return indicator;
             }
         });
@@ -84,6 +89,7 @@ public class CustomViewUtils {
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 magicIndicator.onPageSelected(position);
+
             }
 
             @Override
@@ -92,12 +98,6 @@ public class CustomViewUtils {
                 magicIndicator.onPageScrollStateChanged(state);
             }
         });
-
     }
-
-
-
-
-
 
 }

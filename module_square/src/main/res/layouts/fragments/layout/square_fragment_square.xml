@@ -122,6 +122,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/base_dimen_10"
                         android:layout_marginLeft="@dimen/base_dimen_10"
+                        android:layout_marginRight="@dimen/base_dimen_10"
                         />
 
                     <TextView

@@ -7,13 +7,13 @@
 
     </data>
     <LinearLayout
-        android:id="@+id/hierachy_ll_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@color/hierachy_white">
 
         <LinearLayout
+            android:id="@+id/hierachy_ll_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"

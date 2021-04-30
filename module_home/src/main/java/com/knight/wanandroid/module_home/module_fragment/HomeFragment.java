@@ -19,8 +19,8 @@ import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.GsonUtils;
 import com.knight.wanandroid.library_util.JsonUtils;
-import com.knight.wanandroid.library_util.LogUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
+import com.knight.wanandroid.library_util.ViewSetUtils;
 import com.knight.wanandroid.library_util.constant.MMkvConstants;
 import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
@@ -51,6 +51,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -70,7 +71,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     private View topArticleFootView;
     private List<TopArticleEntity> mTopArticleEntities;
     private boolean isShowOnlythree = false;
-    List<HomeArticlesFragment> mFragments = new ArrayList<>();
+    List<Fragment> mFragments = new ArrayList<>();
 
 
 
@@ -216,7 +217,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         for (int i = 0;i < mDataList.size();i++) {
             mFragments.add(new HomeArticlesFragment());
         }
-        CustomViewUtils.setViewPager2Init(getActivity(), mFragments, mDatabind.viewPager, false);
+        ViewSetUtils.setViewPager2Init(getActivity(), mFragments, mDatabind.viewPager, false);
         CustomViewUtils.bindViewPager2(mDatabind.magicIndicator, mDatabind.viewPager, mDataList);
 
     }
@@ -266,29 +267,5 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
-
-    @Override
-    public void onViewStateRestored(Bundle savedInstanceState) {
-        super.onViewStateRestored(savedInstanceState);
-        if (savedInstanceState != null) {
-            LogUtils.d("进来恢复");
-            reLoadData();
-        }
-
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        LogUtils.d("进来回收");
-    }
-
-
-
-
-
-
-
-
 
 }

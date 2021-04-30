@@ -1,7 +1,11 @@
 package com.knight.wanandroid.module_square.module_adapter;
 
+import android.view.ViewGroup;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
+import com.google.android.flexbox.AlignItems;
+import com.google.android.flexbox.FlexboxLayoutManager;
 import com.knight.wanandroid.module_square.R;
 import com.knight.wanandroid.module_square.module_entity.SearchHotKeyEntity;
 
@@ -28,4 +32,25 @@ public class HotKeyAdapter extends BaseQuickAdapter<SearchHotKeyEntity, BaseView
     protected void convert(@NotNull BaseViewHolder baseViewHolder, SearchHotKeyEntity searchHotKeyEntity) {
         baseViewHolder.setText(R.id.square_tv_hotkey,searchHotKeyEntity.getName());
     }
+
+
+    @Override
+    public void onBindViewHolder(@NotNull BaseViewHolder holder, int position) {
+        super.onBindViewHolder(holder, position);
+        ViewGroup.LayoutParams lp = holder.getView(R.id.square_tv_hotkey).getLayoutParams();
+        if (lp instanceof FlexboxLayoutManager.LayoutParams) {
+            FlexboxLayoutManager.LayoutParams flexboxLp =
+                    (FlexboxLayoutManager.LayoutParams) holder.getView(R.id.square_tv_hotkey).getLayoutParams();
+            flexboxLp.setFlexGrow(1.0f);
+            flexboxLp.setAlignSelf(AlignItems.FLEX_END);
+        }
+    }
+
+
+
+
+
+
+
+
 }

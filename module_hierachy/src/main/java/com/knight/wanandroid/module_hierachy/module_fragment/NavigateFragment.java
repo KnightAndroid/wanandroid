@@ -11,13 +11,12 @@ import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.module_hierachy.R;
 import com.knight.wanandroid.module_hierachy.databinding.HierachyFragmentMainBinding;
 import com.knight.wanandroid.module_hierachy.module_adapter.HierachyLeftBarAdapter;
-import com.knight.wanandroid.module_hierachy.module_contract.HierachyContract;
-import com.knight.wanandroid.module_hierachy.module_entity.HierachyListEntity;
+import com.knight.wanandroid.module_hierachy.module_contract.NavigateContract;
 import com.knight.wanandroid.module_hierachy.module_entity.NavigateListEntity;
 import com.knight.wanandroid.module_hierachy.module_listener.CheckListener;
 import com.knight.wanandroid.module_hierachy.module_listener.RvListener;
-import com.knight.wanandroid.module_hierachy.module_model.HierachyModel;
-import com.knight.wanandroid.module_hierachy.module_presenter.HierachyPresenter;
+import com.knight.wanandroid.module_hierachy.module_model.NavigateModel;
+import com.knight.wanandroid.module_hierachy.module_presenter.NavigatePresenter;
 import com.knight.wanandroid.module_hierachy.module_widget.ItemHeaderDecoration;
 
 import java.util.ArrayList;
@@ -30,16 +29,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 /**
  * @author created by knight
  * @organize wanandroid
- * @Date 2021/4/29 15:17
- * @descript:体系fragment
+ * @Date 2021/4/30 11:19
+ * @descript:导航页面
  */
-@Route(path = RoutePathFragment.Hierachy.Hierachy_Pager)
-public class HierachyFragment extends BaseFragment<HierachyFragmentMainBinding, HierachyPresenter, HierachyModel> implements HierachyContract.HierachyView, CheckListener {
+@Route(path = RoutePathFragment.Hierachy.Navigate_pager)
+public class NavigateFragment extends BaseFragment<HierachyFragmentMainBinding, NavigatePresenter, NavigateModel> implements NavigateContract.NavigateView, CheckListener {
 
-    private HierachyLeftBarAdapter mHierachyLeftBarAdapter;
+
+    private HierachyLeftBarAdapter mNavigateLeftBarAdapter;
     private LinearLayoutManager mLinearLayoutManager;
-    private List<HierachyListEntity> mHierachyListEntities;
-    private HierachyRightFragment mHierachyRightFragment;
+    private List<NavigateListEntity> mNavigateListEntities;
+    //右边选择
+    private HierachyRightFragment mNavigateRightFragment;
     private int targetPosition;//点击左边某一个具体的item的位置
     private boolean isMoved;
 
@@ -57,46 +58,18 @@ public class HierachyFragment extends BaseFragment<HierachyFragmentMainBinding, 
         mDatabind.hierachyLeftSidebar.addItemDecoration(decoration);
     }
 
+
     @Override
     protected void lazyLoadData() {
-        mPresenter.requestHierachyData((BaseDBActivity) getActivity());
+        mPresenter.requestNavigateData((BaseDBActivity) getActivity());
     }
 
     @Override
     protected void reLoadData() {
-        mPresenter.requestHierachyData((BaseDBActivity) getActivity());
+        mPresenter.requestNavigateData((BaseDBActivity) getActivity());
     }
 
-    @Override
-    public void setHierachyData(List<HierachyListEntity> data) {
-        showSuccess();
-        mHierachyListEntities = data;
-        List<String> list = new ArrayList<>();
-        for (int i = 0;i < data.size();i++) {
-            list.add(data.get(i).getName());
-        }
-        mHierachyLeftBarAdapter = new HierachyLeftBarAdapter(getActivity(), list, new RvListener() {
-            @Override
-            public void onItemClick(int id, int position) {
-                if (mHierachyRightFragment != null) {
-                    isMoved = true;
-                    targetPosition = position;
 
-                    setChecked(position,true);
-
-                }
-            }
-        });
-        mDatabind.hierachyLeftSidebar.setAdapter(mHierachyLeftBarAdapter);
-        createFragment();
-
-
-    }
-
-    @Override
-    public void setNavigateData(List<NavigateListEntity> navigateListEntity) {
-
-    }
 
     @Override
     public void showLoading() {
@@ -111,25 +84,50 @@ public class HierachyFragment extends BaseFragment<HierachyFragmentMainBinding, 
     @Override
     public void showError(String errorMsg) {
         ToastUtils.getInstance().showToast(errorMsg);
+    }
 
+
+    @Override
+    public void setNavigateData(List<NavigateListEntity> navigateListEntity) {
+        showSuccess();
+        mNavigateListEntities = navigateListEntity;
+        List<String> list = new ArrayList<>();
+        //左边名字
+        for (int i = 0;i < navigateListEntity.size();i++) {
+            list.add(navigateListEntity.get(i).getName());
+        }
+        mNavigateLeftBarAdapter = new HierachyLeftBarAdapter(getActivity(), list, new RvListener() {
+            @Override
+            public void onItemClick(int id, int position) {
+                if (mNavigateRightFragment != null) {
+                    isMoved = true;
+                    targetPosition = position;
+
+                    setChecked(position,true);
+
+                }
+            }
+        });
+        mDatabind.hierachyLeftSidebar.setAdapter(mNavigateLeftBarAdapter);
+        createFragment();
     }
 
     private void setChecked(int position, boolean isLeft) {
         if (isLeft) {
-            mHierachyLeftBarAdapter.setCheckedPosition(position);
+            mNavigateLeftBarAdapter.setCheckedPosition(position);
             //此处的位置需要根据每个分类的集合来进行计算
             int count = 0;
             for (int i = 0; i < position; i++) {
-                count += mHierachyListEntities.get(i).getChildren().size();
+                count += mNavigateListEntities.get(i).getArticles().size();
             }
             count += position;
-            mHierachyRightFragment.setData(count);
+            mNavigateRightFragment.setData(count);
             ItemHeaderDecoration.setCurrentTag(String.valueOf(targetPosition));//凡是点击左边，将左边点击的位置作为当前的tag
         } else {
             if (isMoved) {
                 isMoved = false;
             } else {
-                mHierachyLeftBarAdapter.setCheckedPosition(position);
+                mNavigateLeftBarAdapter.setCheckedPosition(position);
             }
 
             ItemHeaderDecoration.setCurrentTag(String.valueOf(position));//如果是滑动右边联动左边，则按照右边传过来的位置作为tag
@@ -156,10 +154,10 @@ public class HierachyFragment extends BaseFragment<HierachyFragmentMainBinding, 
     }
 
     public void createFragment() {
-        FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
-        mHierachyRightFragment = HierachyRightFragment.newInstance(false);
-        mHierachyRightFragment.setListener(this);
-        fragmentTransaction.add(R.id.hierachy_right_sidebar,mHierachyRightFragment);
+        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+        mNavigateRightFragment = HierachyRightFragment.newInstance(true);
+        mNavigateRightFragment.setListener(this);
+        fragmentTransaction.add(R.id.hierachy_right_sidebar,mNavigateRightFragment);
         fragmentTransaction.commit();
 
     }

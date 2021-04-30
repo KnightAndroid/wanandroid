@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
@@ -59,12 +58,13 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
         loadLoading(mDatabind.squareSharearticleFreshlayout);
         mHotKeyAdapter = new HotKeyAdapter(new ArrayList<SearchHotKeyEntity>());
         mSquareArticleAdapter = new SquareArticleAdapter(new ArrayList<SquareArticleEntity>());
+
         FlexboxLayoutManager flexboxLayoutManager = new FlexboxLayoutManager(getActivity());
         //方向 主轴为水平方向,起点在左端
         flexboxLayoutManager.setFlexDirection(FlexDirection.ROW);
         //左对齐
         flexboxLayoutManager.setJustifyContent(JustifyContent.FLEX_START);
-        flexboxLayoutManager.setAlignItems(AlignItems.CENTER);
+      //  flexboxLayoutManager.setAlignItems(AlignItems.CENTER);
         SetInitCustomView.initSwipeRecycleview(mDatabind.squareSearchhotRv,flexboxLayoutManager,mHotKeyAdapter,false);
         SetInitCustomView.initSwipeRecycleview(mDatabind.squareArticleRv,new LinearLayoutManager(getActivity()),mSquareArticleAdapter,true);
         mDatabind.squareSharearticleFreshlayout.setOnRefreshListener(this);

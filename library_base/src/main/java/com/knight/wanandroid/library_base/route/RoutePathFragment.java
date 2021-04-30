@@ -46,8 +46,10 @@ public class RoutePathFragment {
      */
     public static class Hierachy {
         private static final String Hierachy = "/module_hierachy_fragment";
+        public static final String HierachyNavigate = Hierachy + "/hierachy_navigate";
         public static final String Hierachy_Pager = Hierachy + "/hierachy_main";
         public static final String Hierachy_Right = Hierachy + "/hierachy_right";
+        public static final String Navigate_pager = Hierachy + "/navigate";
 
     }
 

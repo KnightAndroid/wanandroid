@@ -6,7 +6,7 @@ import com.knight.wanandroid.library_base.entity.BaseEntity;
  * @author created by knight
  * @organize wanandroid
  * @Date 2021/4/29 16:45
- * @descript:右边数据
+ * @descript:体系 导航 右边数据
  */
 public class HierachyRightBeanEntity extends BaseEntity {
     private String name;

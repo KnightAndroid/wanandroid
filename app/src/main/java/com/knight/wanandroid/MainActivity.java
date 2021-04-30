@@ -7,7 +7,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.knight.wanandroid.databinding.ActivityMainBinding;
 import com.knight.wanandroid.library_base.activity.BaseDBActivity;
 import com.knight.wanandroid.library_util.ViewSetUtils;
-import com.knight.wanandroid.module_hierachy.module_fragment.HierachyFragment;
+import com.knight.wanandroid.module_hierachy.module_fragment.HierachyNavigateMainFragment;
 import com.knight.wanandroid.module_home.module_fragment.HomeFragment;
 import com.knight.wanandroid.module_mine.module_fragment.MineFragment;
 import com.knight.wanandroid.module_project.module_fragment.ProjectFragment;
@@ -40,7 +40,7 @@ public class MainActivity extends BaseDBActivity<ActivityMainBinding> {
         fragments.add(new HomeFragment());
         fragments.add(new SquareFragment());
         fragments.add(new ProjectFragment());
-        fragments.add(new HierachyFragment());
+        fragments.add(new HierachyNavigateMainFragment());
         fragments.add(new MineFragment());
        // mDatabind.mainViewpager
         ViewSetUtils.setIsUserInputEnable(this,mDatabind.mainViewpager,fragments,false);

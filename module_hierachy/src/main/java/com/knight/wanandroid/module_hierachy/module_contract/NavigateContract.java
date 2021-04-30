@@ -5,7 +5,6 @@ import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_base.model.BaseModel;
 import com.knight.wanandroid.library_base.presenter.BasePresenter;
 import com.knight.wanandroid.library_base.view.BaseView;
-import com.knight.wanandroid.module_hierachy.module_entity.HierachyListEntity;
 import com.knight.wanandroid.module_hierachy.module_entity.NavigateListEntity;
 
 import java.util.List;
@@ -13,28 +12,26 @@ import java.util.List;
 /**
  * @author created by knight
  * @organize wanandroid
- * @Date 2021/4/29 15:31
- * @descript:体系
+ * @Date 2021/4/30 14:18
+ * @descript:
  */
-public interface HierachyContract {
-
-    interface HierachyView extends BaseView {
-        //设置体系数据
-        void setHierachyData(List<HierachyListEntity> data);
+public interface NavigateContract {
+    interface NavigateView extends BaseView{
         //设置导航数据
         void setNavigateData(List<NavigateListEntity> navigateListEntity);
     }
 
-    interface HierachyModel extends BaseModel {
-        void requestHierachyData(BaseDBActivity activity, MvpListener mvpListener);
+    interface NavigateModel extends BaseModel{
         //请求导航数据
         void requestNavigateData(BaseDBActivity activity, MvpListener mvpListener);
     }
 
-    abstract class HierachyDataPresenter extends BasePresenter<HierachyModel,HierachyView>{
-        public abstract void requestHierachyData(BaseDBActivity activity);
+    abstract class NavigateDataPrensenter extends BasePresenter<NavigateModel,NavigateView>{
         public abstract void requestNavigateData(BaseDBActivity activity);
+
     }
+
+
 
 
 

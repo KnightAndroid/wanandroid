@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+
+
+
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.knight.wanandroid.library_widget.CompatToobar
+            android:id="@+id/project_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/hierachy_white"
+            >
+
+            <net.lucode.hackware.magicindicator.MagicIndicator
+                android:id="@+id/hierachy_navigate_indicator"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+
+                />
+        </com.knight.wanandroid.library_widget.CompatToobar>
+
+
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/hierachy_navigate_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            />
+
+    </LinearLayout>
+
+
+</layout>
+

@@ -4,8 +4,10 @@ import com.knight.wanandroid.library_base.activity.BaseDBActivity;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.module_hierachy.module_contract.HierachyContract;
 import com.knight.wanandroid.module_hierachy.module_entity.HierachyListEntity;
+import com.knight.wanandroid.module_hierachy.module_entity.NavigateListEntity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author created by knight
@@ -16,6 +18,11 @@ import java.util.ArrayList;
 public class HierachyPresenter extends HierachyContract.HierachyDataPresenter {
 
 
+    /**
+     *
+     * 体系请求
+     * @param activity
+     */
     @Override
     public void requestHierachyData(BaseDBActivity activity) {
         final HierachyContract.HierachyView mView = getView();
@@ -37,6 +44,27 @@ public class HierachyPresenter extends HierachyContract.HierachyDataPresenter {
             }
         });
 
-
     }
+
+    @Override
+    public void requestNavigateData(BaseDBActivity activity) {
+        final HierachyContract.HierachyView mView = getView();
+        if (mView == null) {
+            return;
+        }
+        mModel.requestNavigateData(activity, new MvpListener<List<NavigateListEntity>>() {
+            @Override
+            public void onSuccess(List<NavigateListEntity> data) {
+                mView.setNavigateData(data);
+
+            }
+
+            @Override
+            public void onError(String errorMsg) {
+                mView.showError(errorMsg);
+            }
+        });
+    }
+
+
 }

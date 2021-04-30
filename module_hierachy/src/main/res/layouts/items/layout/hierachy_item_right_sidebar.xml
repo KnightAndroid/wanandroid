@@ -4,19 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="50dp"
     android:background="@android:color/white"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="horizontal">
+
+
+    <TextView
+        android:id="@+id/hierachy_tv_selectview"
+        android:layout_width="@dimen/base_dimen_16"
+        android:layout_height="match_parent"
+        android:background="#55aff4"/>
 
 
     <TextView
         android:id="@+id/hierachy_tv_sort"
-        android:paddingLeft="@dimen/base_dimen_3"
-        android:paddingRight="@dimen/base_dimen_3"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/base_dimen_6"
-        android:gravity="center"
-        android:text=""
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:text="基础知识"
         android:textColor="@android:color/black"
         android:textSize="14sp"/>
 

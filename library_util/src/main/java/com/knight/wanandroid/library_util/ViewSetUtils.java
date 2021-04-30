@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -45,9 +46,37 @@ public class ViewSetUtils {
             }
         });
 
+    }
 
 
 
+
+
+
+
+    /**
+     *
+     * @param activity
+     * @param fragments
+     * @param viewPager2
+     * @param isUserInputEnabled
+     */
+    public static void setViewPager2Init(FragmentActivity activity, List<Fragment> fragments, ViewPager2 viewPager2, boolean isUserInputEnabled) {
+        viewPager2.setUserInputEnabled(isUserInputEnabled);
+        //暂时解决切换白屏问题
+        viewPager2.setOffscreenPageLimit(fragments.size());
+        viewPager2.setAdapter(new FragmentStateAdapter(activity) {
+            @NonNull
+            @Override
+            public Fragment createFragment(int position) {
+                return fragments.get(position);
+            }
+
+            @Override
+            public int getItemCount() {
+                return fragments.size();
+            }
+        });
     }
 
     /**

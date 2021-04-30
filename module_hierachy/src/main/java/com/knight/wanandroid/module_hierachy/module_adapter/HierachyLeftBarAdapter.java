@@ -42,12 +42,14 @@ public class HierachyLeftBarAdapter extends RvAdapter<String> {
     private class SortHolder extends RvHolder<String> {
 
         private TextView tvName;
+        private TextView hierachy_tv_selectview;
         private View mView;
 
         SortHolder(View itemView, int type, RvListener listener) {
             super(itemView, type, listener);
             this.mView = itemView;
             tvName = (TextView) itemView.findViewById(R.id.hierachy_tv_sort);
+            hierachy_tv_selectview = (TextView)itemView.findViewById(R.id.hierachy_tv_selectview);
         }
 
         @Override
@@ -56,9 +58,11 @@ public class HierachyLeftBarAdapter extends RvAdapter<String> {
             if (position == checkedPosition) {
                 mView.setBackgroundColor(Color.parseColor("#f3f3f3"));
                 tvName.setTextColor(Color.parseColor("#55aff4"));
+                hierachy_tv_selectview.setVisibility(View.VISIBLE);
             } else {
                 mView.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 tvName.setTextColor(Color.parseColor("#333333"));
+                hierachy_tv_selectview.setVisibility(View.INVISIBLE);
             }
         }
 

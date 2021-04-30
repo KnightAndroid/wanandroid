@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,7 +65,6 @@ public class ItemHeaderDecoration extends RecyclerView.ItemDecoration {
         GridLayoutManager.SpanSizeLookup spanSizeLookup = manager.getSpanSizeLookup();
         int pos = ((LinearLayoutManager) (parent.getLayoutManager())).findFirstVisibleItemPosition();
         int spanSize = spanSizeLookup.getSpanSize(pos);
-        Log.d("pos--->", String.valueOf(pos));
         String tag = mDatas.get(pos).getTag();
         View child = parent.findViewHolderForLayoutPosition(pos).itemView;
         boolean isTranslate = false;//canvas是否平移的标志
@@ -76,7 +74,6 @@ public class ItemHeaderDecoration extends RecyclerView.ItemDecoration {
         ) {
             tag = mDatas.get(pos).getTag();
             int i = child.getHeight() + child.getTop();
-            Log.d("i---->", String.valueOf(i));
             if (spanSize == 1) {
                 //body 才平移
                 if (child.getHeight() + child.getTop() < mTitleHeight) {
@@ -93,7 +90,6 @@ public class ItemHeaderDecoration extends RecyclerView.ItemDecoration {
         if (isTranslate) {
             canvas.restore();
         }
-        Log.d("tag--->", tag + "VS" + currentTag);
         if (!TextUtils.equals(tag, currentTag)) {
             currentTag = tag;
 

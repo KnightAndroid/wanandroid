@@ -1,7 +1,6 @@
 package com.knight.wanandroid.module_hierachy.module_fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.knight.wanandroid.library_base.activity.BaseDBActivity;
@@ -15,6 +14,8 @@ import com.knight.wanandroid.module_hierachy.module_contract.HierachyContract;
 import com.knight.wanandroid.module_hierachy.module_entity.HierachyChildrenEntity;
 import com.knight.wanandroid.module_hierachy.module_entity.HierachyListEntity;
 import com.knight.wanandroid.module_hierachy.module_entity.HierachyRightBeanEntity;
+import com.knight.wanandroid.module_hierachy.module_entity.NavigateChildrenEntity;
+import com.knight.wanandroid.module_hierachy.module_entity.NavigateListEntity;
 import com.knight.wanandroid.module_hierachy.module_listener.CheckListener;
 import com.knight.wanandroid.module_hierachy.module_listener.RvListener;
 import com.knight.wanandroid.module_hierachy.module_model.HierachyModel;
@@ -42,6 +43,16 @@ public class HierachyRightFragment extends BaseFragment<HierachyRightFragmentBin
     private int mIndex = 0;
     private GridLayoutManager mManager;
     private CheckListener checkListener;
+    private boolean isNavigate;
+
+
+    public static HierachyRightFragment newInstance(boolean isNavigate){
+        HierachyRightFragment hierachyRightFragment = new HierachyRightFragment();
+        Bundle args = new Bundle();
+        args.putBoolean("isNavigate",isNavigate);
+        hierachyRightFragment.setArguments(args);
+        return hierachyRightFragment;
+    }
 
     @Override
     protected int layoutId() {
@@ -50,7 +61,12 @@ public class HierachyRightFragment extends BaseFragment<HierachyRightFragmentBin
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+        isNavigate = getArguments().getBoolean("isNavigate");
         mDatabind.hierachyRightRv.addOnScrollListener(new RecyclerViewListener());
+
+
+
+
         mManager = new GridLayoutManager(getActivity(), 3);
         //通过isTitle的标志来判断是否是title
         mManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -60,6 +76,17 @@ public class HierachyRightFragment extends BaseFragment<HierachyRightFragmentBin
             }
         });
         mDatabind.hierachyRightRv.setLayoutManager(mManager);
+
+
+
+//        FlexboxLayoutManager flexboxLayoutManager = new FlexboxLayoutManager(getActivity());
+//        //方向 主轴为水平方向,起点在左端
+//        flexboxLayoutManager.setFlexDirection(FlexDirection.ROW);
+//        //左对齐
+//        flexboxLayoutManager.setJustifyContent(JustifyContent.FLEX_START);
+//        flexboxLayoutManager.setAlignItems(AlignItems.CENTER);
+//        flexboxLayoutManager.setS
+//        mDatabind.hierachyRightRv.setLayoutManager(flexboxLayoutManager);
         mHierachyClassifyDetailAdapter = new HierachyClassifyDetailAdapter(getActivity(), mDatas, new RvListener() {
             @Override
             public void onItemClick(int id, int position) {
@@ -80,7 +107,14 @@ public class HierachyRightFragment extends BaseFragment<HierachyRightFragmentBin
 
     @Override
     protected void lazyLoadData() {
-        mPresenter.requestHierachyData((BaseDBActivity) getActivity());
+        //导航请求
+        if (isNavigate) {
+            mPresenter.requestNavigateData((BaseDBActivity) getActivity());
+        } else {
+            //体系请求
+            mPresenter.requestHierachyData((BaseDBActivity) getActivity());
+        }
+
     }
     @Override
     protected void reLoadData() {
@@ -120,6 +154,35 @@ public class HierachyRightFragment extends BaseFragment<HierachyRightFragmentBin
     }
 
     @Override
+    public void setNavigateData(List<NavigateListEntity> navigateListEntity) {
+        for (int i = 0; i < navigateListEntity.size();i++) {
+            HierachyRightBeanEntity hierachyRightBeanEntity = new HierachyRightBeanEntity();
+            hierachyRightBeanEntity.setName(navigateListEntity.get(i).getName());
+            hierachyRightBeanEntity.setTitle(true);
+            hierachyRightBeanEntity.setTitleName(navigateListEntity.get(i).getName());
+            hierachyRightBeanEntity.setTag(String.valueOf(i));
+            mDatas.add(hierachyRightBeanEntity);
+
+            List<NavigateChildrenEntity> navigateChildrenEntities = navigateListEntity.get(i).getArticles();
+            for(int j = 0;j< navigateChildrenEntities.size();j++){
+                HierachyRightBeanEntity hierachyRightBodyBeanEntity = new HierachyRightBeanEntity();
+                hierachyRightBodyBeanEntity.setName(navigateChildrenEntities.get(j).getTitle());
+                hierachyRightBodyBeanEntity.setTag(String.valueOf(i));
+                hierachyRightBodyBeanEntity.setTitleName(navigateChildrenEntities.get(j).getTitle());
+                mDatas.add(hierachyRightBodyBeanEntity);
+            }
+
+        }
+        mDatabind.hierachyRightRv.setAdapter(mHierachyClassifyDetailAdapter);
+        mDecoration = new ItemHeaderDecoration(getActivity(),mDatas);
+        mDatabind.hierachyRightRv.addItemDecoration(mDecoration);
+        mDecoration.setCheckListener(checkListener);
+
+        mHierachyClassifyDetailAdapter.notifyDataSetChanged();
+        mDecoration.setData(mDatas);
+    }
+
+    @Override
     public void showLoading() {
 
     }
@@ -131,7 +194,7 @@ public class HierachyRightFragment extends BaseFragment<HierachyRightFragmentBin
 
     @Override
     public void showError(String errorMsg) {
-
+        ToastUtils.getInstance().showToast(errorMsg);
     }
 
     @Override
@@ -146,10 +209,8 @@ public class HierachyRightFragment extends BaseFragment<HierachyRightFragmentBin
             if (move && newState == RecyclerView.SCROLL_STATE_IDLE) {
                 move = false;
                 int n = mIndex - mManager.findFirstVisibleItemPosition();
-                Log.d("n---->", String.valueOf(n));
                 if (0 <= n && n < mDatabind.hierachyRightRv.getChildCount()) {
                     int top = mDatabind.hierachyRightRv.getChildAt(n).getTop();
-                    Log.d("top--->", String.valueOf(top));
                     mDatabind.hierachyRightRv.smoothScrollBy(0, top);
                 }
             }
@@ -178,14 +239,10 @@ public class HierachyRightFragment extends BaseFragment<HierachyRightFragmentBin
     private void smoothMoveToPosition(int n) {
         int firstItem = mManager.findFirstVisibleItemPosition();
         int lastItem = mManager.findLastVisibleItemPosition();
-        Log.d("first--->", String.valueOf(firstItem));
-        Log.d("last--->", String.valueOf(lastItem));
         if (n <= firstItem) {
             mDatabind.hierachyRightRv.scrollToPosition(n);
         } else if (n <= lastItem) {
-            Log.d("pos---->", String.valueOf(n) + "VS" + firstItem);
             int top = mDatabind.hierachyRightRv.getChildAt(n - firstItem).getTop();
-            Log.d("top---->", String.valueOf(top));
             mDatabind.hierachyRightRv.scrollBy(0, top);
         } else {
             mDatabind.hierachyRightRv.scrollToPosition(n);
