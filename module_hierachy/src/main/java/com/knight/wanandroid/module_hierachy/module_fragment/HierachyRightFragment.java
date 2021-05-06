@@ -3,6 +3,10 @@ package com.knight.wanandroid.module_hierachy.module_fragment;
 import android.os.Bundle;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.google.android.flexbox.AlignItems;
+import com.google.android.flexbox.FlexDirection;
+import com.google.android.flexbox.FlexboxLayoutManager;
+import com.google.android.flexbox.JustifyContent;
 import com.knight.wanandroid.library_base.activity.BaseDBActivity;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
@@ -25,7 +29,6 @@ import com.knight.wanandroid.module_hierachy.module_widget.ItemHeaderDecoration;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
@@ -41,9 +44,10 @@ public class HierachyRightFragment extends BaseFragment<HierachyRightFragmentBin
     private ItemHeaderDecoration mDecoration;
     private boolean move = false;
     private int mIndex = 0;
-    private GridLayoutManager mManager;
+  //  private GridLayoutManager mManager;
     private CheckListener checkListener;
     private boolean isNavigate;
+    private FlexboxLayoutManager mManager;
 
 
     public static HierachyRightFragment newInstance(boolean isNavigate){
@@ -67,14 +71,20 @@ public class HierachyRightFragment extends BaseFragment<HierachyRightFragmentBin
 
 
 
-        mManager = new GridLayoutManager(getActivity(), 3);
-        //通过isTitle的标志来判断是否是title
-        mManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            @Override
-            public int getSpanSize(int position) {
-                return mDatas.get(position).isTitle() ? 3 : 1;
-            }
-        });
+//
+//        mManager = new GridLayoutManager(getActivity(), 3);
+//        //通过isTitle的标志来判断是否是title
+//        mManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+//            @Override
+//            public int getSpanSize(int position) {
+//                return mDatas.get(position).isTitle() ? 3 : 1;
+//            }
+//        });
+        mManager = new FlexboxLayoutManager(getActivity());
+                mManager.setFlexDirection(FlexDirection.ROW);
+                //左对齐
+                mManager.setJustifyContent(JustifyContent.FLEX_START);
+                mManager.setAlignItems(AlignItems.CENTER);
         mDatabind.hierachyRightRv.setLayoutManager(mManager);
 
 
@@ -107,6 +117,7 @@ public class HierachyRightFragment extends BaseFragment<HierachyRightFragmentBin
 
     @Override
     protected void lazyLoadData() {
+        loadLoading(mDatabind.hierachyLlRight);
         //导航请求
         if (isNavigate) {
             mPresenter.requestNavigateData((BaseDBActivity) getActivity());
@@ -118,7 +129,13 @@ public class HierachyRightFragment extends BaseFragment<HierachyRightFragmentBin
     }
     @Override
     protected void reLoadData() {
-
+        //导航请求
+        if (isNavigate) {
+            mPresenter.requestNavigateData((BaseDBActivity) getActivity());
+        } else {
+            //体系请求
+            mPresenter.requestHierachyData((BaseDBActivity) getActivity());
+        }
     }
 
     public void setListener(CheckListener listener) {
@@ -127,6 +144,7 @@ public class HierachyRightFragment extends BaseFragment<HierachyRightFragmentBin
 
     @Override
     public void setHierachyData(List<HierachyListEntity> data) {
+        showSuccess();
         for (int i = 0; i < data.size();i++) {
             HierachyRightBeanEntity hierachyRightBeanEntity = new HierachyRightBeanEntity();
             hierachyRightBeanEntity.setName(data.get(i).getName());
@@ -155,6 +173,7 @@ public class HierachyRightFragment extends BaseFragment<HierachyRightFragmentBin
 
     @Override
     public void setNavigateData(List<NavigateListEntity> navigateListEntity) {
+        showSuccess();
         for (int i = 0; i < navigateListEntity.size();i++) {
             HierachyRightBeanEntity hierachyRightBeanEntity = new HierachyRightBeanEntity();
             hierachyRightBeanEntity.setName(navigateListEntity.get(i).getName());
@@ -168,7 +187,7 @@ public class HierachyRightFragment extends BaseFragment<HierachyRightFragmentBin
                 HierachyRightBeanEntity hierachyRightBodyBeanEntity = new HierachyRightBeanEntity();
                 hierachyRightBodyBeanEntity.setName(navigateChildrenEntities.get(j).getTitle());
                 hierachyRightBodyBeanEntity.setTag(String.valueOf(i));
-                hierachyRightBodyBeanEntity.setTitleName(navigateChildrenEntities.get(j).getTitle());
+                hierachyRightBodyBeanEntity.setTitleName(navigateChildrenEntities.get(j).getChapterName());
                 mDatas.add(hierachyRightBodyBeanEntity);
             }
 

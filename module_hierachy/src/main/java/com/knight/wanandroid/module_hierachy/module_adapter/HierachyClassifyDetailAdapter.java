@@ -2,8 +2,11 @@ package com.knight.wanandroid.module_hierachy.module_adapter;
 
 import android.content.Context;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.flexbox.AlignItems;
+import com.google.android.flexbox.FlexboxLayoutManager;
 import com.knight.wanandroid.module_hierachy.R;
 import com.knight.wanandroid.module_hierachy.module_entity.HierachyRightBeanEntity;
 import com.knight.wanandroid.module_hierachy.module_holder.RvHolder;
@@ -64,6 +67,13 @@ public class HierachyClassifyDetailAdapter extends RvAdapter<HierachyRightBeanEn
                     hierachy_tv_title.setText(hierachyRightBeanEntity.getName());
                     break;
                 case 1:
+                    ViewGroup.LayoutParams lp = hierachy_tv_content.getLayoutParams();
+                    if (lp instanceof FlexboxLayoutManager.LayoutParams) {
+                        FlexboxLayoutManager.LayoutParams flexboxLp =
+                                (FlexboxLayoutManager.LayoutParams) hierachy_tv_content.getLayoutParams();
+                        flexboxLp.setFlexGrow(1.0f);
+                        flexboxLp.setAlignSelf(AlignItems.FLEX_END);
+                    }
                     hierachy_tv_content.setText(hierachyRightBeanEntity.getName());
                     break;
             }

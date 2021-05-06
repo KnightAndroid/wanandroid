@@ -10,14 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.flexbox.FlexboxLayoutManager;
 import com.knight.wanandroid.module_hierachy.R;
 import com.knight.wanandroid.module_hierachy.module_entity.HierachyRightBeanEntity;
 import com.knight.wanandroid.module_hierachy.module_listener.CheckListener;
 
 import java.util.List;
 
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
@@ -61,20 +60,15 @@ public class ItemHeaderDecoration extends RecyclerView.ItemDecoration {
 
     @Override
     public void onDrawOver(Canvas canvas, final RecyclerView parent, RecyclerView.State state) {
-        GridLayoutManager manager = (GridLayoutManager) parent.getLayoutManager();
-        GridLayoutManager.SpanSizeLookup spanSizeLookup = manager.getSpanSizeLookup();
-        int pos = ((LinearLayoutManager) (parent.getLayoutManager())).findFirstVisibleItemPosition();
-        int spanSize = spanSizeLookup.getSpanSize(pos);
+        FlexboxLayoutManager manager = (FlexboxLayoutManager) parent.getLayoutManager();
+        int pos = ((FlexboxLayoutManager) (parent.getLayoutManager())).findFirstVisibleItemPosition();
         String tag = mDatas.get(pos).getTag();
         View child = parent.findViewHolderForLayoutPosition(pos).itemView;
         boolean isTranslate = false;//canvas是否平移的标志
-        if (!TextUtils.equals(mDatas.get(pos).getTag(), mDatas.get(pos + 1).getTag())
-                || !TextUtils.equals(mDatas.get(pos).getTag(), mDatas.get(pos + 2).getTag())
-                || !TextUtils.equals(mDatas.get(pos).getTag(), mDatas.get(pos + 3).getTag())
-        ) {
+        if (!TextUtils.equals(mDatas.get(pos).getTag(), mDatas.get(pos + 1).getTag())) {
             tag = mDatas.get(pos).getTag();
             int i = child.getHeight() + child.getTop();
-            if (spanSize == 1) {
+            if (mDatas.get(pos).isTitle()) {
                 //body 才平移
                 if (child.getHeight() + child.getTop() < mTitleHeight) {
                     canvas.save();
@@ -83,9 +77,8 @@ public class ItemHeaderDecoration extends RecyclerView.ItemDecoration {
                     canvas.translate(0, height);
                 }
             }
-
-
         }
+
         drawHeader(parent, pos, canvas);
         if (isTranslate) {
             canvas.restore();
