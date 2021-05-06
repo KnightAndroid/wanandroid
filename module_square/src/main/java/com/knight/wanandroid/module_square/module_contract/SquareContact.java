@@ -5,7 +5,7 @@ import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_base.model.BaseModel;
 import com.knight.wanandroid.library_base.presenter.BasePresenter;
 import com.knight.wanandroid.library_base.view.BaseView;
-import com.knight.wanandroid.module_square.module_entity.SearchHotKeyEntity;
+import com.knight.wanandroid.library_base.entity.SearchHotKeyEntity;
 import com.knight.wanandroid.module_square.module_entity.SquareArticleListEntity;
 
 import java.util.List;

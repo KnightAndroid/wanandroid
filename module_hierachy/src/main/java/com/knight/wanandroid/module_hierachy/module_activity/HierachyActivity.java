@@ -1,6 +1,8 @@
-package com.knight.wanandroid.module_hierachy;
+package com.knight.wanandroid.module_hierachy.module_activity;
 
 import android.os.Bundle;
+
+import com.knight.wanandroid.module_hierachy.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 

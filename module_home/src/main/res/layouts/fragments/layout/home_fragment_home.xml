@@ -67,7 +67,6 @@
                             android:layout_marginTop="@dimen/base_dimen_5"
                             android:background="@drawable/home_shape_lefttop_round"
                             android:gravity="center_vertical"
-                            android:onClick="@{()->click.searchArticles()}"
                             android:text="@string/home_topsticky_article"
                             android:textColor="@color/home_white"
                             android:textSize="@dimen/base_dimen_14" />
@@ -92,7 +91,6 @@
                             android:layout_marginTop="@dimen/base_dimen_5"
                             android:background="@drawable/home_shape_lefttop_round"
                             android:gravity="center_vertical"
-                            android:onClick="@{()->click.searchArticles()}"
                             android:text="@string/home_highquality_officialaccount"
                             android:textColor="@color/home_white"
                             android:textSize="@dimen/base_dimen_14" />

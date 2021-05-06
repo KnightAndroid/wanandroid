@@ -10,15 +10,15 @@ public class AppConfig {
 
     private static final String HomeApp = "com.knight.wanandroid.module_home.HomeApp";
     private static final String SquareApp = "com.knight.wanandroid.module_square.SquareApp";
-    private static final String ProductApp = "com.knight.wanandroid.module_mine_";
-    private static final String NavigateApp = "";
-    private static final String MineApp = "";
+    private static final String ProjectApp = "com.knight.wanandroid.module_project.ProjectApp";
+    private static final String NavigateApp = "com.knight.wanandroid.module_hierachy.HierachyApp";
+    private static final String MineApp = "com.knight.wanandroid.module_mine.MineApp";
 
 
     public static String[] moduleApps = {
             HomeApp,
             SquareApp,
-            ProductApp,
+            ProjectApp,
             NavigateApp,
             MineApp
     };

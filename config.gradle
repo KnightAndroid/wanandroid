@@ -61,5 +61,7 @@ ext{
     eventbusVersion = '3.2.0'
     //flexbox
     flexLayoutVersion = '2.0.1'
+    //roomVersion
+    roomVersion = '2.2.5'
 
 }

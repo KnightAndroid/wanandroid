@@ -1,9 +1,17 @@
 package com.knight.wanandroid.library_util;
 
+import android.content.Context;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import androidx.core.content.ContextCompat;
 
 /**
  * @ProjectName: wanandroid
@@ -171,10 +179,10 @@ public class StringUtils {
      *
      * @param href
      * @return <ul>
-     *         <li>if href is null, return ""</li>
-     *         <li>if not match regx, return source</li>
-     *         <li>return the last string that match regx</li>
-     *         </ul>
+     * <li>if href is null, return ""</li>
+     * <li>if not match regx, return source</li>
+     * <li>return the last string that match regx</li>
+     * </ul>
      */
     public static String getHrefInnerHtml(String href) {
         if (isEmpty(href)) {
@@ -237,7 +245,7 @@ public class StringUtils {
                 // } else if (source[i] == 12290) {
                 // source[i] = '.';
             } else if (source[i] >= 65281 && source[i] <= 65374) {
-                source[i] = (char)(source[i] - 65248);
+                source[i] = (char) (source[i] - 65248);
             } else {
                 source[i] = source[i];
             }
@@ -266,11 +274,11 @@ public class StringUtils {
         char[] source = s.toCharArray();
         for (int i = 0; i < source.length; i++) {
             if (source[i] == ' ') {
-                source[i] = (char)12288;
+                source[i] = (char) 12288;
                 // } else if (source[i] == '.') {
                 // source[i] = (char)12290;
             } else if (source[i] >= 33 && source[i] <= 126) {
-                source[i] = (char)(source[i] + 65248);
+                source[i] = (char) (source[i] + 65248);
             } else {
                 source[i] = source[i];
             }
@@ -293,31 +301,57 @@ public class StringUtils {
     public static String insertToString(String item, String q) {
         char[] itemChar = item.toCharArray();
         StringBuilder builder = new StringBuilder();
-        for(int i = 0; i < itemChar.length; i++) {
-            builder.append(itemChar[i]+q);
+        for (int i = 0; i < itemChar.length; i++) {
+            builder.append(itemChar[i] + q);
         }
 
         return builder.toString();
     }
 
     /**
-     *
      * 大于13位的把中间那几位去掉
+     *
      * @param address
      * @return
      */
-    public static String splitAddress(String address){
-        if(address.length() > 13){
+    public static String splitAddress(String address) {
+        if (address.length() > 13) {
             StringBuilder sb = new StringBuilder();
-            sb.append(address,0,6);
+            sb.append(address, 0, 6);
             sb.append("...");
             //拼上最后四位
-            sb.append(address,address.length() - 5,address.length());
+            sb.append(address, address.length() - 5, address.length());
             return sb.toString();
         } else {
             return address;
         }
 
+    }
+
+    /**
+     *
+     * 匹配字符串
+     * @param context
+     * @param str
+     * @param keywords
+     * @return
+     */
+    public static SpannableStringBuilder getStyle(Context context, String str, String keywords) {// 将字符串中所有与关键字相同的部分标红
+        str = str == null ? "" : str;
+        keywords = keywords == null ? "" : keywords;
+        SpannableStringBuilder style = new SpannableStringBuilder(str);
+        String sonStr;
+        if (str.length() > 0 && keywords.length() > 0) {
+            for (int i = 0; i < str.length(); i++) {
+                sonStr = str.substring(i, str.length()).toUpperCase(Locale.CHINESE);
+                if (sonStr.startsWith(keywords.toUpperCase(Locale.CHINESE))) {
+
+                    style.setSpan(new ForegroundColorSpan(ContextCompat.getColor(context, R.color.design_default_color_error)), i, i + keywords.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+
+                }
+            }
+        }
+        return style;
     }
 
 

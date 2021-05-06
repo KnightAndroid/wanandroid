@@ -31,6 +31,7 @@ import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_util.constant.MMkvConstants;
 import com.tencent.mmkv.MMKV;
+import com.wanandroid.knight.library_database.repository.HistroyKeywordsRepository;
 
 import java.util.concurrent.TimeUnit;
 
@@ -96,6 +97,8 @@ public class ModuleConfig {
         MMKV.initialize(application);
         //登录拦截器
         initLoginFilter(application);
+        //初始化数据库
+        HistroyKeywordsRepository.getInstance().init(application,"wanandroid_database");
         //初始化用户信息
         user = initUser();
 

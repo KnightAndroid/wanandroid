@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/home_search_llroot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <com.knight.wanandroid.library_widget.CompatToobar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/home_white"
+            android:theme="@style/base_AppTheme.AppBarOverlay"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/base_AppTheme.PopupOverlay">
+
+
+            <ImageView
+                android:id="@+id/home_search_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/base_dimen_10"
+                android:background="@drawable/home_icon_search_edittext"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:layout_marginLeft="@dimen/base_dimen_4"
+                android:layout_marginRight="@dimen/base_dimen_10"
+                >
+
+                <EditText
+                    android:id="@+id/home_search_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/base_dimen_5"
+                    android:layout_marginLeft="@dimen/base_dimen_5"
+                    android:background="@drawable/home_bg_filtrate_shape"
+                    android:gravity="center_vertical"
+                    android:hint="@string/home_hint_search"
+                    android:imeOptions="actionSearch"
+                    android:singleLine="true"
+                    android:textColor="@color/home_color333333"
+                    android:textColorHint="@color/home_color999999"
+                    android:textSize="@dimen/base_dimen_12"
+                    android:textCursorDrawable="@drawable/base_textcursorcolor"
+                    android:paddingLeft="@dimen/base_dimen_10"
+                    android:layout_toLeftOf="@+id/home_tvsearch_cancel"
+
+                    />
+                <TextView
+                    android:id="@+id/home_tvsearch_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/home_cancel"
+                    android:layout_alignParentRight="true"
+                    android:textSize="@dimen/base_dimen_16"
+                    android:textColor="@color/base_color_title"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/base_dimen_10"/>
+            </RelativeLayout>
+
+
+
+
+        </com.knight.wanandroid.library_widget.CompatToobar>
+
+        <com.yanzhenjie.recyclerview.SwipeRecyclerView
+            android:id="@+id/home_searchhistroy_keyword_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        </com.yanzhenjie.recyclerview.SwipeRecyclerView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home_hotsearch"
+            android:textColor="@color/base_color_title"
+            android:layout_marginLeft="@dimen/base_dimen_10"
+            android:layout_marginTop="@dimen/base_dimen_10"
+            android:textSize="@dimen/base_dimen_16"
+            />
+
+        <com.yanzhenjie.recyclerview.SwipeRecyclerView
+            android:id="@+id/home_searchhot_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/base_dimen_10"
+            android:layout_marginLeft="@dimen/base_dimen_10"
+            android:layout_marginRight="@dimen/base_dimen_10"
+            />
+
+
+
+
+    </LinearLayout>
+</layout>
+
+
+
+
+

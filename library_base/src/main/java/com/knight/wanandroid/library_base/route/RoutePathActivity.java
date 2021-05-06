@@ -17,7 +17,8 @@ public class RoutePathActivity {
     public static class Home {
         private static final String Home = "/module_home_activity";
 
-        public static final String dfdfd = Home + "/looff";
+        public static final String search = Home + "/module_search_activity";
+        public static final String searchResult = Home + "/module_search_result";
     }
 
 

@@ -1,6 +1,4 @@
-package com.knight.wanandroid.module_square.module_entity;
-
-import com.knight.wanandroid.library_base.entity.BaseEntity;
+package com.knight.wanandroid.library_base.entity;
 
 /**
  * @author created by knight

@@ -45,10 +45,10 @@ public class CoinRankActivity extends BaseActivity<MineActivityCoinrankBinding, 
         mDatabind.includeCoinrankToolbar.baseTvTitle.setText(getString(R.string.mine_coin_rank));
         mDatabind.includeCoinrankToolbar.baseIvBack.setOnClickListener(v -> finish());
         mUserRankCoinAdapter = new UserRankCoinAdapter(new ArrayList<>());
-        SetInitCustomView.initSwipeRecycleview(mDatabind.mineRvCoinrank,new LinearLayoutManager(this),mUserRankCoinAdapter,false);
-        mDatabind.mineCoinrankFreshlayout.setOnRefreshListener(this);
-        mDatabind.mineCoinrankFreshlayout.setOnLoadMoreListener(this);
-        showLoading(mDatabind.mineCoinrankFreshlayout);
+        SetInitCustomView.initSwipeRecycleview(mDatabind.includeMineCoinrank.baseBodyRv,new LinearLayoutManager(this),mUserRankCoinAdapter,false);
+        mDatabind.includeMineCoinrank.baseFreshlayout.setOnRefreshListener(this);
+        mDatabind.includeMineCoinrank.baseFreshlayout.setOnLoadMoreListener(this);
+        showLoading(mDatabind.includeMineCoinrank.baseFreshlayout);
 
     }
 
@@ -61,6 +61,7 @@ public class CoinRankActivity extends BaseActivity<MineActivityCoinrankBinding, 
 
     @Override
     public void reLoadData(){
+        mDatabind.includeMineCoinrank.baseFreshlayout.setEnableLoadMore(true);
         mPresenter.requestRankCoin(this,page);
     }
 
@@ -82,8 +83,8 @@ public class CoinRankActivity extends BaseActivity<MineActivityCoinrankBinding, 
     @Override
     public void setRankCoin(CoinRankListEntity result) {
         showSuccess();
-        mDatabind.mineCoinrankFreshlayout.finishRefresh();
-        mDatabind.mineCoinrankFreshlayout.finishLoadMore();
+        mDatabind.includeMineCoinrank.baseFreshlayout.finishRefresh();
+        mDatabind.includeMineCoinrank.baseFreshlayout.finishLoadMore();
         if (result.getDatas().size() > 0) {
             if (page == 1) {
                 mUserRankCoinAdapter.setNewInstance(result.getDatas());
@@ -92,7 +93,7 @@ public class CoinRankActivity extends BaseActivity<MineActivityCoinrankBinding, 
             }
             page ++;
         } else {
-            mDatabind.mineCoinrankFreshlayout.setEnableLoadMore(false);
+            mDatabind.includeMineCoinrank.baseFreshlayout.setEnableLoadMore(false);
         }
     }
 
@@ -109,6 +110,6 @@ public class CoinRankActivity extends BaseActivity<MineActivityCoinrankBinding, 
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
         page = 1;
         mPresenter.requestRankCoin(this,page);
-        mDatabind.mineCoinrankFreshlayout.setEnableLoadMore(true);
+        mDatabind.includeMineCoinrank.baseFreshlayout.setEnableLoadMore(true);
     }
 }

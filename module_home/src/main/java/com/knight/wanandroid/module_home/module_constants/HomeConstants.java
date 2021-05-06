@@ -11,5 +11,6 @@ public class HomeConstants {
 
     //首页选了什么
     public static String ARTICLE_TYPE = "全部";
+    public static String SEARCH_KEYWORD = "";
 
 }

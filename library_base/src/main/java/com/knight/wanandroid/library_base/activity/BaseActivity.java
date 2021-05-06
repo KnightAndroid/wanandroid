@@ -8,6 +8,7 @@ import com.kingja.loadsir.callback.Callback;
 import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
 import com.knight.wanandroid.library_base.R;
+import com.knight.wanandroid.library_base.loadsir.EmptyCallBack;
 import com.knight.wanandroid.library_base.loadsir.ErrorCallBack;
 import com.knight.wanandroid.library_base.loadsir.LoadCallBack;
 import com.knight.wanandroid.library_base.model.BaseModel;
@@ -103,6 +104,17 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
     protected void showFailure() {
         if (mLoadService != null) {
             mLoadService.showCallback(ErrorCallBack.class);
+        }
+    }
+
+    /**
+     *
+     * 空数据界面
+     */
+    protected void showEmptyData(){
+        if (mLoadService != null) {
+            mLoadService.showCallback(EmptyCallBack.class);
+
         }
     }
 

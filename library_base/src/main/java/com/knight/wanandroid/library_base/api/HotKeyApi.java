@@ -1,4 +1,4 @@
-package com.knight.wanandroid.module_square.module_request;
+package com.knight.wanandroid.library_base.api;
 
 import com.knight.wanandroid.library_network.config.IRequestApi;
 

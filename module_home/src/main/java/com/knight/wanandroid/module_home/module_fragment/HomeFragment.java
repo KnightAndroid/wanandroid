@@ -1,5 +1,6 @@
 package com.knight.wanandroid.module_home.module_fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,7 @@ import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.module_home.R;
 import com.knight.wanandroid.module_home.databinding.HomeFragmentHomeBinding;
+import com.knight.wanandroid.module_home.module_activity.SearchActivity;
 import com.knight.wanandroid.module_home.module_adapter.OfficialAccountAdapter;
 import com.knight.wanandroid.module_home.module_adapter.TopArticleAdapter;
 import com.knight.wanandroid.module_home.module_contract.HomeContract;
@@ -202,8 +204,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     public class ProcyClick{
 
         public void searchArticles(){
-            mTopArticleAdapter.setShowOnlyThree(isShowOnlythree);
-            isShowOnlythree = !isShowOnlythree;
+            startActivity(new Intent(getActivity(), SearchActivity.class));
         }
 
     }

@@ -56,12 +56,12 @@ public class MyPointDetailActivity extends BaseActivity<MineActivityDetailpointB
         mDatabind.includePointToolbar.baseIvBack.setOnClickListener(v -> finish());
         mDatabind.includePointToolbar.baseTvTitle.setText(getString(R.string.mine_coin_detail));
         mUserDetailCoinAdapter = new UserDetailCoinAdapter(new ArrayList<>());
-        SetInitCustomView.initSwipeRecycleview(mDatabind.mineRvUserdetailcoin,new LinearLayoutManager(this),mUserDetailCoinAdapter,false);
+        SetInitCustomView.initSwipeRecycleview(mDatabind.includeMineDetailpoint.baseBodyRv,new LinearLayoutManager(this),mUserDetailCoinAdapter,false);
         userInfoCoinHeadView = LayoutInflater.from(this).inflate(R.layout.mine_detailpoint_head,null);
         ((TextView)userInfoCoinHeadView.findViewById(R.id.tv_head_detailpoint)).setText(userCoin);
-        mDatabind.mineDetailpointFreshlayout.setOnRefreshListener(this);
-        mDatabind.mineDetailpointFreshlayout.setOnLoadMoreListener(this);
-        showLoading(mDatabind.mineDetailpointFreshlayout);
+        mDatabind.includeMineDetailpoint.baseFreshlayout.setOnRefreshListener(this);
+        mDatabind.includeMineDetailpoint.baseFreshlayout.setOnLoadMoreListener(this);
+        showLoading(mDatabind.includeMineDetailpoint.baseFreshlayout);
 
     }
 
@@ -74,6 +74,7 @@ public class MyPointDetailActivity extends BaseActivity<MineActivityDetailpointB
 
     @Override
     public void reLoadData(){
+        mDatabind.includeMineDetailpoint.baseFreshlayout.setEnableLoadMore(true);
         mPresenter.requestUserDetailCoin(this,page);
     }
 
@@ -96,13 +97,13 @@ public class MyPointDetailActivity extends BaseActivity<MineActivityDetailpointB
     @Override
     public void setUserDetailCoin(UserDetailCoinListEntity result) {
         showSuccess();
-        mDatabind.mineDetailpointFreshlayout.finishRefresh();
-        mDatabind.mineDetailpointFreshlayout.finishLoadMore();
+        mDatabind.includeMineDetailpoint.baseFreshlayout.finishRefresh();
+        mDatabind.includeMineDetailpoint.baseFreshlayout.finishLoadMore();
         if (result.getDatas().size() > 0) {
             if (page == 1) {
-                mDatabind.mineRvUserdetailcoin.removeHeaderView(userInfoCoinHeadView);
-                if (mDatabind.mineRvUserdetailcoin.getHeaderCount() == 0) {
-                    mDatabind.mineRvUserdetailcoin.addHeaderView(userInfoCoinHeadView);
+                mDatabind.includeMineDetailpoint.baseBodyRv.removeHeaderView(userInfoCoinHeadView);
+                if (mDatabind.includeMineDetailpoint.baseBodyRv.getHeaderCount() == 0) {
+                    mDatabind.includeMineDetailpoint.baseBodyRv.addHeaderView(userInfoCoinHeadView);
                 }
                 mUserDetailCoinAdapter.setNewInstance(result.getDatas());
             } else {
@@ -111,7 +112,7 @@ public class MyPointDetailActivity extends BaseActivity<MineActivityDetailpointB
             page ++;
 
         } else {
-            mDatabind.mineDetailpointFreshlayout.setEnableLoadMore(false);
+            mDatabind.includeMineDetailpoint.baseFreshlayout.setEnableLoadMore(false);
         }
 
 
@@ -131,6 +132,6 @@ public class MyPointDetailActivity extends BaseActivity<MineActivityDetailpointB
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
         page = 1;
         mPresenter.requestUserDetailCoin(this,page);
-        mDatabind.mineDetailpointFreshlayout.setEnableLoadMore(true);
+        mDatabind.includeMineDetailpoint.baseFreshlayout.setEnableLoadMore(true);
     }
 }

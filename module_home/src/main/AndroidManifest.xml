@@ -5,6 +5,8 @@
     <application>
         <activity android:name="com.knight.wanandroid.module_home.module_activity.HomeActivity">
         </activity>
+        <activity android:name=".module_activity.SearchActivity"/>
+        <activity android:name=".module_activity.SearchResultActivity" />
     </application>
 
 </manifest>

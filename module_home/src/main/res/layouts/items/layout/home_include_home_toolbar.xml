@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
+<layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -40,7 +40,7 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:gravity="center"
-            >
+                tools:ignore="SpUsage">
             </com.knight.wanandroid.library_widget.MarqueeTextView>
 
 
@@ -52,7 +52,8 @@
                 android:layout_marginLeft="@dimen/base_dimen_10"
                 android:layout_marginRight="@dimen/base_dimen_10"
                 android:background="@drawable/home_bg_filtrate_shape"
-                android:onClick="@{()->click.searchArticles()}">
+                android:onClick="@{()->click.searchArticles()}"
+               >
 
 
 
@@ -64,7 +65,7 @@
                     android:layout_marginLeft="@dimen/base_dimen_4"
                     android:background="@drawable/home_icon_search_edittext"/>
 
-                <EditText
+                <TextView
                     android:id="@+id/home_et_search"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
@@ -72,7 +73,6 @@
                     android:layout_marginStart="@dimen/base_dimen_5"
                     android:layout_marginLeft="@dimen/base_dimen_5"
                     android:layout_toRightOf="@id/home_iv_search"
-                    android:background="@null"
                     android:gravity="center_vertical"
                     android:hint="@string/home_hint_search"
                     android:imeOptions="actionSearch"
@@ -81,6 +81,7 @@
                     android:textColorHint="@color/home_color999999"
                     android:textSize="@dimen/base_dimen_12"
                     android:textCursorDrawable="@drawable/base_textcursorcolor"
+
                     />
 
             </RelativeLayout>
