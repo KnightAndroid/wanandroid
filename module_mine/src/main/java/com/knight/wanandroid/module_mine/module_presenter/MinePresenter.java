@@ -1,6 +1,6 @@
 package com.knight.wanandroid.module_mine.module_presenter;
 
-import com.knight.wanandroid.library_base.activity.BaseDBActivity;
+import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.module_mine.module_contract.MineContract;
 import com.knight.wanandroid.module_mine.module_entity.UserInfoCoinEntity;
@@ -15,12 +15,12 @@ public class MinePresenter extends MineContract.MineDataPresenter {
 
 
     @Override
-    public void requestUserInfoCoin(BaseDBActivity activity) {
+    public void requestUserInfoCoin() {
         final MineContract.MineView mView = getView();
         if (mView ==null) {
             return;
         }
-        mModel.requestUserInfoCoin(activity, new MvpListener<UserInfoCoinEntity>() {
+        mModel.requestUserInfoCoin((BaseFragment) mView, new MvpListener<UserInfoCoinEntity>() {
             @Override
             public void onSuccess(UserInfoCoinEntity userInfoCoinEntity) {
                     mView.setUserInfoCoin(userInfoCoinEntity);
@@ -36,12 +36,12 @@ public class MinePresenter extends MineContract.MineDataPresenter {
     }
 
     @Override
-    public void requestLogout(BaseDBActivity activity) {
+    public void requestLogout() {
         final MineContract.MineView mView = getView();
         if (mView == null) {
             return;
         }
-        mModel.requestLogout(activity, new MvpListener() {
+        mModel.requestLogout((BaseFragment) mView, new MvpListener() {
             @Override
             public void onSuccess(Object data) {
                 mView.logoutSuccess();

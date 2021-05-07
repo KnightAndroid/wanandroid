@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.knight.wanandroid.library_base.activity.BaseDBActivity;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
 import com.knight.wanandroid.library_util.ToastUtils;
@@ -59,12 +58,12 @@ public class HierachyFragment extends BaseFragment<HierachyFragmentMainBinding, 
 
     @Override
     protected void lazyLoadData() {
-        mPresenter.requestHierachyData((BaseDBActivity) getActivity());
+        mPresenter.requestHierachyData();
     }
 
     @Override
     protected void reLoadData() {
-        mPresenter.requestHierachyData((BaseDBActivity) getActivity());
+        mPresenter.requestHierachyData();
     }
 
     @Override

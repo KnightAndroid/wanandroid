@@ -68,14 +68,14 @@ public class MyPointDetailActivity extends BaseActivity<MineActivityDetailpointB
 
     @Override
     public void initData(){
-        mPresenter.requestUserDetailCoin(this,page);
+        mPresenter.requestUserDetailCoin(page);
     }
 
 
     @Override
     public void reLoadData(){
         mDatabind.includeMineDetailpoint.baseFreshlayout.setEnableLoadMore(true);
-        mPresenter.requestUserDetailCoin(this,page);
+        mPresenter.requestUserDetailCoin(page);
     }
 
     @Override
@@ -125,13 +125,13 @@ public class MyPointDetailActivity extends BaseActivity<MineActivityDetailpointB
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        mPresenter.requestUserDetailCoin(this,page);
+        mPresenter.requestUserDetailCoin(page);
     }
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
         page = 1;
-        mPresenter.requestUserDetailCoin(this,page);
+        mPresenter.requestUserDetailCoin(page);
         mDatabind.includeMineDetailpoint.baseFreshlayout.setEnableLoadMore(true);
     }
 }

@@ -1,6 +1,6 @@
 package com.knight.wanandroid.module_home.module_contract;
 
-import com.knight.wanandroid.library_base.activity.BaseDBActivity;
+import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_base.model.BaseModel;
 import com.knight.wanandroid.library_base.presenter.BasePresenter;
@@ -26,17 +26,17 @@ public interface HomeArticleContract {
 
     interface HomeArticleModel extends BaseModel{
         //请求全部文章数据
-        void requestAllHomeArticle(BaseDBActivity activity, int page,MvpListener mvpListener);
+        void requestAllHomeArticle(BaseFragment fragment, int page, MvpListener mvpListener);
         //搜索接口文章数据
-        void requestSerchArticle(BaseDBActivity activity,int page,String keyWords,MvpListener mvpListener);
+        void requestSerchArticle(BaseFragment fragment,int page,String keyWords,MvpListener mvpListener);
 
     }
 
     abstract class HomeArticleDataPresenter extends BasePresenter<HomeArticleModel,HomeArticleView>{
         //具体实现
-        public abstract void requestAllHomeArticle(BaseDBActivity activity,int page);
+        public abstract void requestAllHomeArticle(int page);
 
-        public abstract void requestSearchArticle(BaseDBActivity activity,int page,String keyWords);
+        public abstract void requestSearchArticle(int page,String keyWords);
     }
 
 }

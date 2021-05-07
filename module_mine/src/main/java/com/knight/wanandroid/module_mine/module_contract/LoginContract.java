@@ -28,7 +28,7 @@ public interface LoginContract {
     }
 
     abstract class LoginDataPresenter extends BasePresenter<LoginModel,LoginView>{
-        public abstract void requestUserInfo(BaseActivity activity, String username, String password);
+        public abstract void requestUserInfo(String username, String password);
     }
 
 }

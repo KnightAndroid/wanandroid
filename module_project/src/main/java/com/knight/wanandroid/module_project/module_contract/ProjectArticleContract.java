@@ -1,6 +1,6 @@
 package com.knight.wanandroid.module_project.module_contract;
 
-import com.knight.wanandroid.library_base.activity.BaseDBActivity;
+import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_base.model.BaseModel;
 import com.knight.wanandroid.library_base.presenter.BasePresenter;
@@ -20,12 +20,12 @@ public interface ProjectArticleContract {
     }
 
     interface ProjectArticleModel extends BaseModel{
-        void requestProjectArticle(BaseDBActivity activity, int page, int cid, boolean isNewProject,MvpListener mvpListener);
+        void requestProjectArticle(BaseFragment fragment, int page, int cid, boolean isNewProject, MvpListener mvpListener);
 
     }
 
     abstract class ProjectArticleDataPresenter extends BasePresenter<ProjectArticleModel,ProjectArticleView>{
-        public abstract void requestProjectArticle(BaseDBActivity activity, int page, int cid,boolean isNewProject);
+        public abstract void requestProjectArticle(int page, int cid,boolean isNewProject);
 
     }
 

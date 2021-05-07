@@ -1,6 +1,6 @@
 package com.knight.wanandroid.module_hierachy.module_model;
 
-import com.knight.wanandroid.library_base.activity.BaseDBActivity;
+import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_network.GoHttp;
 import com.knight.wanandroid.library_network.listener.HttpCallback;
@@ -19,10 +19,10 @@ import java.util.List;
  */
 public class NavigateModel implements NavigateContract.NavigateModel {
     @Override
-    public void requestNavigateData(BaseDBActivity activity, MvpListener mvpListener) {
-        GoHttp.get(activity)
+    public void requestNavigateData(BaseFragment fragment, MvpListener mvpListener) {
+        GoHttp.get(fragment)
                 .api(new NavigateApi())
-                .request(new HttpCallback<HttpData<List<NavigateListEntity>>>(activity){
+                .request(new HttpCallback<HttpData<List<NavigateListEntity>>>(fragment){
                     @Override
                     public void onSucceed(HttpData<List<NavigateListEntity>> result) {
                         mvpListener.onSuccess(result.getData());

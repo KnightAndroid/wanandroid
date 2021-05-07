@@ -13,12 +13,12 @@ import com.knight.wanandroid.module_mine.module_contract.LoginContract;
  */
 public class LoginPresenter extends LoginContract.LoginDataPresenter {
     @Override
-    public void requestUserInfo(BaseActivity activity, String username, String password) {
+    public void requestUserInfo(String username, String password) {
         final LoginContract.LoginView mView = getView();
         if (mView == null) {
             return;
         }
-        mModel.requestUserInfo(activity, username, password, new MvpListener<UserInfoEntity>() {
+        mModel.requestUserInfo((BaseActivity) mView, username, password, new MvpListener<UserInfoEntity>() {
             @Override
             public void onSuccess(UserInfoEntity data) {
                 mView.setUserInfo(data);

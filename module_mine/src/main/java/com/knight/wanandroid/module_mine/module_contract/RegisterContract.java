@@ -24,7 +24,7 @@ public interface  RegisterContract {
         }
 
         abstract class RegisterDataPresenter extends BasePresenter<RegisterModel,RegisterView>{
-            public abstract void requestRegister(BaseActivity activity,String username,String password,String repassword);
+            public abstract void requestRegister(String username,String password,String repassword);
         }
 
 }

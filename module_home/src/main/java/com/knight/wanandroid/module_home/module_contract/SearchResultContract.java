@@ -26,7 +26,7 @@ public interface SearchResultContract {
     }
 
     abstract class SearchResultDataPresenter extends BasePresenter<SearchResultModel,SearchResultView>{
-        public abstract void requestSearchResult(BaseActivity activity, int page, String keyWords);
+        public abstract void requestSearchResult(int page, String keyWords);
     }
 
 

@@ -25,7 +25,7 @@ public interface UserDetailCoinContract {
     }
 
     abstract class DetailCoinDataPresenter extends BasePresenter<DetailCoinModel,DetailCoinView>{
-        public abstract void requestUserDetailCoin(BaseActivity activity,int page);
+        public abstract void requestUserDetailCoin(int page);
     }
 
 

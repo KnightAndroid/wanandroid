@@ -39,6 +39,7 @@ import java.util.List;
 public class SearchActivity extends BaseActivity<HomeSearchActivityBinding, SearchPresenter, SearchModel> implements SearchContract.SearchView {
 
     private HomeHotKeyAdapter mHomeHotKeyAdapter;
+    private String keyword;
 
     @Override
     public int layoutId() {
@@ -47,6 +48,7 @@ public class SearchActivity extends BaseActivity<HomeSearchActivityBinding, Sear
 
     @Override
     public void initView(Bundle savedInstanceState) {
+        mDatabind.setClick(new ProcyClick());
         showLoading(mDatabind.homeSearchhotRv);
         mHomeHotKeyAdapter = new HomeHotKeyAdapter(new ArrayList<>());
         FlexboxLayoutManager flexboxLayoutManager = new FlexboxLayoutManager(this);
@@ -60,7 +62,7 @@ public class SearchActivity extends BaseActivity<HomeSearchActivityBinding, Sear
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    String keyword = mDatabind.homeSearchEt.getText().toString().trim();
+                    keyword = mDatabind.homeSearchEt.getText().toString().trim();
                     if (TextUtils.isEmpty(keyword)) {
                         ToastUtils.getInstance().showToast("请输入内容再搜索");
                     } else {
@@ -73,11 +75,13 @@ public class SearchActivity extends BaseActivity<HomeSearchActivityBinding, Sear
                 return false;
             }
         });
+
+        SystemUtils.seteditTextChangeListener(mDatabind.homeSearchEt,mDatabind.homeTvsearchCancel);
     }
 
     @Override
     public void initData(){
-        mPresenter.requestSearchHotkey(this);
+        mPresenter.requestSearchHotkey();
     }
 
     @Override
@@ -92,7 +96,7 @@ public class SearchActivity extends BaseActivity<HomeSearchActivityBinding, Sear
 
     @Override
     public void reLoadData(){
-        mPresenter.requestSearchHotkey(this);
+        mPresenter.requestSearchHotkey();
 
     }
 
@@ -107,5 +111,17 @@ public class SearchActivity extends BaseActivity<HomeSearchActivityBinding, Sear
         showSuccess();
         mHomeHotKeyAdapter.setNewInstance(searchHotKeyEntities);
 
+    }
+
+    public class ProcyClick {
+        public void searchByKeyword() {
+            if (mDatabind.homeTvsearchCancel.getText().toString().equals("取消")) {
+                    finish();
+            } else {
+                keyword = mDatabind.homeSearchEt.getText().toString().trim();
+                HomeConstants.SEARCH_KEYWORD = keyword;
+                startActivity(new Intent(SearchActivity.this,SearchResultActivity.class).putExtra("keyword",keyword));
+            }
+        }
     }
 }

@@ -1,6 +1,6 @@
 package com.knight.wanandroid.module_project.module_presenter;
 
-import com.knight.wanandroid.library_base.activity.BaseDBActivity;
+import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.module_project.module_contract.ProjectArticleContract;
 import com.knight.wanandroid.module_project.module_entity.ProjectArticleListEntity;
@@ -13,12 +13,12 @@ import com.knight.wanandroid.module_project.module_entity.ProjectArticleListEnti
  */
 public class ProjectArticlePresenter extends ProjectArticleContract.ProjectArticleDataPresenter {
     @Override
-    public void requestProjectArticle(BaseDBActivity activity, int page, int cid,boolean isNewProject) {
+    public void requestProjectArticle(int page, int cid,boolean isNewProject) {
         final ProjectArticleContract.ProjectArticleView mView = getView();
         if (mView == null) {
             return;
         }
-        mModel.requestProjectArticle(activity, page, cid, isNewProject,new MvpListener<ProjectArticleListEntity>() {
+        mModel.requestProjectArticle((BaseFragment)mView, page, cid, isNewProject,new MvpListener<ProjectArticleListEntity>() {
             @Override
             public void onSuccess(ProjectArticleListEntity data) {
                 mView.setProjectArticle(data);

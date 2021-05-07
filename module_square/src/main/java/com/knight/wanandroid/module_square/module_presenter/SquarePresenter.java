@@ -1,9 +1,9 @@
 package com.knight.wanandroid.module_square.module_presenter;
 
-import com.knight.wanandroid.library_base.activity.BaseDBActivity;
+import com.knight.wanandroid.library_base.entity.SearchHotKeyEntity;
+import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.module_square.module_contract.SquareContact;
-import com.knight.wanandroid.library_base.entity.SearchHotKeyEntity;
 import com.knight.wanandroid.module_square.module_entity.SquareArticleListEntity;
 
 import java.util.List;
@@ -18,13 +18,13 @@ public class SquarePresenter extends SquareContact.SquareDataPresenter{
 
 
     @Override
-    public void requestHotKey(BaseDBActivity activity) {
+    public void requestHotKey() {
         final SquareContact.SquareView mView = getView();
         if (mView == null) {
             return;
         }
 
-        mModel.requestHotKey(activity, new MvpListener<List<SearchHotKeyEntity>>() {
+        mModel.requestHotKey((BaseFragment)mView, new MvpListener<List<SearchHotKeyEntity>>() {
             @Override
             public void onSuccess(List<SearchHotKeyEntity> data) {
                 mView.setHotKey(data);
@@ -40,13 +40,13 @@ public class SquarePresenter extends SquareContact.SquareDataPresenter{
     }
 
     @Override
-    public void requestShareData(BaseDBActivity activity, int page) {
+    public void requestShareData( int page) {
         final SquareContact.SquareView mView = getView();
         if (mView == null) {
             return;
         }
 
-        mModel.requestShareArticles(activity, page,new MvpListener<SquareArticleListEntity>() {
+        mModel.requestShareArticles((BaseFragment)mView, page,new MvpListener<SquareArticleListEntity>() {
             @Override
             public void onSuccess(SquareArticleListEntity data) {
                 mView.setShareArticles(data);

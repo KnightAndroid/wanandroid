@@ -5,7 +5,9 @@
     xmlns:bind="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="click"
+            type="com.knight.wanandroid.module_home.module_activity.SearchActivity.ProcyClick"/>
 
     </data>
 
@@ -37,7 +39,7 @@
                 android:layout_marginRight="@dimen/base_dimen_10"
                 >
 
-                <EditText
+                <com.knight.wanandroid.library_widget.ClearEditText
                     android:id="@+id/home_search_et"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -54,6 +56,7 @@
                     android:textSize="@dimen/base_dimen_12"
                     android:textCursorDrawable="@drawable/base_textcursorcolor"
                     android:paddingLeft="@dimen/base_dimen_10"
+                    android:paddingRight="@dimen/base_dimen_10"
                     android:layout_toLeftOf="@+id/home_tvsearch_cancel"
 
                     />
@@ -66,7 +69,8 @@
                     android:textSize="@dimen/base_dimen_16"
                     android:textColor="@color/base_color_title"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/base_dimen_10"/>
+                    android:layout_marginLeft="@dimen/base_dimen_10"
+                    android:onClick="@{()->click.searchByKeyword()}"/>
             </RelativeLayout>
 
 

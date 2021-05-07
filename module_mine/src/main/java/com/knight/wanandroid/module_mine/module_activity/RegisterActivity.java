@@ -68,7 +68,7 @@ public class RegisterActivity extends BaseActivity<MineActivityRegisterBinding, 
     public class ProcyClick{
         public void register(){
             if(validateRegisterMessage()){
-                mPresenter.requestRegister(RegisterActivity.this,
+                mPresenter.requestRegister(
                         mDatabind.mineRegisterUsername.getText().toString().trim(),mDatabind.mineRegisterPassword.getText().toString().trim(),mDatabind.mineRegisterConfirmpassword.getText().toString().trim());
             }
         }

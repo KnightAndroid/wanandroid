@@ -1,6 +1,6 @@
 package com.knight.wanandroid.module_project.module_presenter;
 
-import com.knight.wanandroid.library_base.activity.BaseDBActivity;
+import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.module_project.module_contract.ProjectContract;
 import com.knight.wanandroid.module_project.module_entity.ProjectTypeEntity;
@@ -15,12 +15,12 @@ import java.util.List;
  */
 public class ProjectPresenter extends ProjectContract.ProjectDataPresenter {
     @Override
-    public void requestProjectTypes(BaseDBActivity activity) {
+    public void requestProjectTypes() {
         final ProjectContract.ProjectView mView = getView();
         if (mView == null) {
             return;
         }
-        mModel.requestProjectTypes(activity, new MvpListener<List<ProjectTypeEntity>>() {
+        mModel.requestProjectTypes((BaseFragment)mView, new MvpListener<List<ProjectTypeEntity>>() {
             @Override
             public void onSuccess(List<ProjectTypeEntity> data) {
                 mView.setProjectTypes(data);

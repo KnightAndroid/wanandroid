@@ -55,14 +55,14 @@ public class CoinRankActivity extends BaseActivity<MineActivityCoinrankBinding, 
 
     @Override
     public void initData(){
-        mPresenter.requestRankCoin(this,page);
+        mPresenter.requestRankCoin(page);
     }
 
 
     @Override
     public void reLoadData(){
         mDatabind.includeMineCoinrank.baseFreshlayout.setEnableLoadMore(true);
-        mPresenter.requestRankCoin(this,page);
+        mPresenter.requestRankCoin(page);
     }
 
     @Override
@@ -103,13 +103,13 @@ public class CoinRankActivity extends BaseActivity<MineActivityCoinrankBinding, 
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        mPresenter.requestRankCoin(this,page);
+        mPresenter.requestRankCoin(page);
     }
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
         page = 1;
-        mPresenter.requestRankCoin(this,page);
+        mPresenter.requestRankCoin(page);
         mDatabind.includeMineCoinrank.baseFreshlayout.setEnableLoadMore(true);
     }
 }

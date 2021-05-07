@@ -120,10 +120,10 @@ public class HierachyRightFragment extends BaseFragment<HierachyRightFragmentBin
         loadLoading(mDatabind.hierachyLlRight);
         //导航请求
         if (isNavigate) {
-            mPresenter.requestNavigateData((BaseDBActivity) getActivity());
+            mPresenter.requestNavigateData();
         } else {
             //体系请求
-            mPresenter.requestHierachyData((BaseDBActivity) getActivity());
+            mPresenter.requestHierachyData();
         }
 
     }
@@ -131,10 +131,10 @@ public class HierachyRightFragment extends BaseFragment<HierachyRightFragmentBin
     protected void reLoadData() {
         //导航请求
         if (isNavigate) {
-            mPresenter.requestNavigateData((BaseDBActivity) getActivity());
+            mPresenter.requestNavigateData();
         } else {
             //体系请求
-            mPresenter.requestHierachyData((BaseDBActivity) getActivity());
+            mPresenter.requestHierachyData();
         }
     }
 

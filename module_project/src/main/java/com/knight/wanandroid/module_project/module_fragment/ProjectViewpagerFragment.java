@@ -3,7 +3,6 @@ package com.knight.wanandroid.module_project.module_fragment;
 import android.os.Bundle;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.knight.wanandroid.library_base.activity.BaseDBActivity;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
 import com.knight.wanandroid.library_util.ToastUtils;
@@ -71,13 +70,13 @@ public class ProjectViewpagerFragment extends BaseFragment<ProjectViewpagerFragm
 
     @Override
     protected void lazyLoadData() {
-        mPresenter.requestProjectArticle((BaseDBActivity)getActivity(),page,cid,isNewProject);
+        mPresenter.requestProjectArticle(page,cid,isNewProject);
 
     }
 
     @Override
     protected void reLoadData() {
-        mPresenter.requestProjectArticle((BaseDBActivity)getActivity(),page,cid,isNewProject);
+        mPresenter.requestProjectArticle(page,cid,isNewProject);
 
     }
 
@@ -120,7 +119,7 @@ public class ProjectViewpagerFragment extends BaseFragment<ProjectViewpagerFragm
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        mPresenter.requestProjectArticle((BaseDBActivity)getActivity(),page,cid,isNewProject);
+        mPresenter.requestProjectArticle(page,cid,isNewProject);
     }
 
     @Override
@@ -131,6 +130,6 @@ public class ProjectViewpagerFragment extends BaseFragment<ProjectViewpagerFragm
             page = 1;
         }
         mDatabind.projectListSmartfreshlayout.setEnableLoadMore(true);
-        mPresenter.requestProjectArticle((BaseDBActivity)getActivity(),page,cid,isNewProject);
+        mPresenter.requestProjectArticle(page,cid,isNewProject);
     }
 }

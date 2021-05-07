@@ -10,7 +10,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.google.gson.reflect.TypeToken;
 import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
-import com.knight.wanandroid.library_base.activity.BaseDBActivity;
 import com.knight.wanandroid.library_base.entity.UserInfoEntity;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
@@ -116,22 +115,22 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     @Override
     protected void lazyLoadData(){
         //请求顶部文章
-        mPresenter.requestTopArticle((BaseDBActivity) getActivity());
+        mPresenter.requestTopArticle();
         //请求轮播图
-        mPresenter.requestBannerData((BaseDBActivity) getActivity());
+        mPresenter.requestBannerData();
         //请求公众号数据
-        mPresenter.requestOfficialAccountData((BaseDBActivity) getActivity());
+        mPresenter.requestOfficialAccountData();
     }
 
     @Override
     protected void reLoadData() {
 
         //请求顶部文章
-        mPresenter.requestTopArticle((BaseDBActivity) getActivity());
+        mPresenter.requestTopArticle();
         //请求轮播图
-        mPresenter.requestBannerData((BaseDBActivity) getActivity());
+        mPresenter.requestBannerData();
         //请求公众号数据
-        mPresenter.requestOfficialAccountData((BaseDBActivity) getActivity());
+        mPresenter.requestOfficialAccountData();
     }
 
 
@@ -194,11 +193,11 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
         //请求顶部文章
-        mPresenter.requestTopArticle((BaseDBActivity) getActivity());
+        mPresenter.requestTopArticle();
         //请求轮播图
-        mPresenter.requestBannerData((BaseDBActivity) getActivity());
+        mPresenter.requestBannerData();
         //请求公众号数据
-        mPresenter.requestOfficialAccountData((BaseDBActivity) getActivity());
+        mPresenter.requestOfficialAccountData();
     }
 
     public class ProcyClick{
@@ -249,7 +248,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         ModuleConfig.getInstance().user = CacheUtils.getInstance().getDataInfo(MMkvConstants.USER,UserInfoEntity.class);
         mDatabind.homeIncludeToolbar.homeTvLoginname.setText(ModuleConfig.getInstance().user.getUsername());
         //重新请求公众号数据
-        mPresenter.requestOfficialAccountData((BaseDBActivity) getActivity());
+        mPresenter.requestOfficialAccountData();
     }
 
 
@@ -258,7 +257,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         //刷新页面
         mDatabind.homeIncludeToolbar.homeTvLoginname.setText("登录");
         //重新请求公众号数据
-        mPresenter.requestOfficialAccountData((BaseDBActivity) getActivity());
+        mPresenter.requestOfficialAccountData();
     }
 
 

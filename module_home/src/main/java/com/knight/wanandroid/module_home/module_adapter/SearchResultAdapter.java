@@ -42,8 +42,6 @@ public class SearchResultAdapter extends BaseQuickAdapter<HomeArticleEntity, Bas
         if (!TextUtils.isEmpty(homeArticleEntity.getSuperChapterName()) || !TextUtils.isEmpty(homeArticleEntity.getChapterName())) {
             baseViewHolder.setVisible(R.id.home_search_tv_articlesuperchaptername,true);
             if (!TextUtils.isEmpty(homeArticleEntity.getSuperChapterName())) {
-              //  baseViewHolder.setText(R.id.home_search_tv_articlesuperchaptername,homeArticleEntity.getSuperChapterName());
-
                 if (!TextUtils.isEmpty(homeArticleEntity.getChapterName())) {
                     baseViewHolder.setText(R.id.home_search_tv_articlesuperchaptername,homeArticleEntity.getSuperChapterName() + "/" +homeArticleEntity.getChapterName());
                 } else {

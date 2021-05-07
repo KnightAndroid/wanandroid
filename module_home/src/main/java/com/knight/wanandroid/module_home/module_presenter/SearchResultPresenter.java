@@ -13,13 +13,13 @@ import com.knight.wanandroid.module_home.module_entity.HomeArticleListEntity;
  */
 public class SearchResultPresenter extends SearchResultContract.SearchResultDataPresenter {
     @Override
-    public void requestSearchResult(BaseActivity activity, int page, String keyWords) {
+    public void requestSearchResult(int page, String keyWords) {
         final SearchResultContract.SearchResultView mView = getView();
         if (mView == null) {
             return;
         }
 
-        mModel.requestSerchArticle(activity, page, keyWords, new MvpListener<HomeArticleListEntity>() {
+        mModel.requestSerchArticle((BaseActivity)mView, page, keyWords, new MvpListener<HomeArticleListEntity>() {
             @Override
             public void onSuccess(HomeArticleListEntity data) {
                 mView.setSearchResultData(data);

@@ -1,6 +1,6 @@
 package com.knight.wanandroid.module_project.module_contract;
 
-import com.knight.wanandroid.library_base.activity.BaseDBActivity;
+import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_base.model.BaseModel;
 import com.knight.wanandroid.library_base.presenter.BasePresenter;
@@ -22,11 +22,11 @@ public interface ProjectContract {
     }
 
     interface ProjectModel extends BaseModel{
-        void requestProjectTypes(BaseDBActivity activity, MvpListener mvpListener);
+        void requestProjectTypes(BaseFragment fragment, MvpListener mvpListener);
     }
 
     abstract class ProjectDataPresenter extends BasePresenter<ProjectModel,ProjectView>{
-        public abstract void requestProjectTypes(BaseDBActivity activity);
+        public abstract void requestProjectTypes();
     }
 
 

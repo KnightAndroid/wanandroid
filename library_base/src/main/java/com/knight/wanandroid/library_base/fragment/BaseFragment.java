@@ -12,6 +12,7 @@ import com.knight.wanandroid.library_base.loadsir.ErrorCallBack;
 import com.knight.wanandroid.library_base.loadsir.LoadCallBack;
 import com.knight.wanandroid.library_base.model.BaseModel;
 import com.knight.wanandroid.library_base.presenter.BasePresenter;
+import com.knight.wanandroid.library_network.listener.OnHttpListener;
 import com.knight.wanandroid.library_util.CreateUtils;
 import com.knight.wanandroid.library_widget.loadcircleview.ProgressHUD;
 
@@ -27,7 +28,7 @@ import androidx.lifecycle.Lifecycle;
  * @Date 2020/12/28 18:59
  * @descript:fragment基类
  */
-public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePresenter,M extends BaseModel> extends Fragment {
+public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePresenter,M extends BaseModel> extends Fragment implements OnHttpListener {
 
     //是否第一次加载
     private boolean isFirst = true;
@@ -225,6 +226,16 @@ public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePres
         mPresenter.onDettach();
     }
 
+
+    @Override
+    public void onSucceed(Object result) {
+
+    }
+
+    @Override
+    public void onFail(Exception e) {
+
+    }
 
 
 

@@ -24,7 +24,7 @@ public interface CoinRankContract {
         }
 
         abstract class CoinRankDataPresenter extends BasePresenter<CoinRankModel,CoinRankView>{
-            public abstract void requestRankCoin(BaseActivity activity,int page);
+            public abstract void requestRankCoin(int page);
 
         }
 }

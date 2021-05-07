@@ -1,6 +1,7 @@
 package com.knight.wanandroid.module_home.module_presenter;
 
 import com.knight.wanandroid.library_base.activity.BaseDBActivity;
+import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.module_home.module_contract.HomeArticleContract;
 import com.knight.wanandroid.module_home.module_entity.HomeArticleListEntity;
@@ -18,17 +19,17 @@ public class HomeArticlePresenter extends HomeArticleContract.HomeArticleDataPre
      *
      * 首页列表请求api
      *
-     * @param activity
+     *
      * @param page
      */
     @Override
-    public void requestAllHomeArticle(BaseDBActivity activity,int page) {
+    public void requestAllHomeArticle(int page) {
         final HomeArticleContract.HomeArticleView mView = getView();
         if (mView == null) {
             return;
         }
 
-        mModel.requestAllHomeArticle(activity, page,new MvpListener<HomeArticleListEntity>() {
+        mModel.requestAllHomeArticle((BaseFragment)mView, page,new MvpListener<HomeArticleListEntity>() {
             @Override
             public void onSuccess(HomeArticleListEntity data) {
                 mView.setAllHomeArticle(data);
@@ -45,18 +46,18 @@ public class HomeArticlePresenter extends HomeArticleContract.HomeArticleDataPre
     /**
      *
      * 根据搜索去获取文章数据
-     * @param activity
+     *
      * @param page
      * @param keyWords
      */
     @Override
-    public void requestSearchArticle(BaseDBActivity activity, int page, String keyWords) {
+    public void requestSearchArticle(int page, String keyWords) {
         final HomeArticleContract.HomeArticleView mView = getView();
         if (mView == null) {
             return;
         }
 
-        mModel.requestSerchArticle(activity, page, keyWords, new MvpListener<HomeArticleListEntity>() {
+        mModel.requestSerchArticle((BaseFragment)mView, page, keyWords, new MvpListener<HomeArticleListEntity>() {
             @Override
             public void onSuccess(HomeArticleListEntity data) {
                 mView.setSearchArticle(data);

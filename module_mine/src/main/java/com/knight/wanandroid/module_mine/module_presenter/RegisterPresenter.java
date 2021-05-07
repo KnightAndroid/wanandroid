@@ -16,12 +16,12 @@ public class RegisterPresenter extends RegisterContract.RegisterDataPresenter {
 
 
     @Override
-    public void requestRegister(BaseActivity activity,String username,String password,String repassword) {
+    public void requestRegister(String username,String password,String repassword) {
         final RegisterContract.RegisterView mView = getView();
         if (mView == null) {
             return;
         }
-        mModel.requestRegister(activity, username,password,repassword,new MvpListener<UserInfoEntity>() {
+        mModel.requestRegister((BaseActivity) mView, username,password,repassword,new MvpListener<UserInfoEntity>() {
             @Override
             public void onSuccess(UserInfoEntity data) {
                 mView.setUserInfo(data);

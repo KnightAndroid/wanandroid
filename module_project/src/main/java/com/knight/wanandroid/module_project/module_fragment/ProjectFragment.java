@@ -3,7 +3,6 @@ package com.knight.wanandroid.module_project.module_fragment;
 import android.os.Bundle;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.knight.wanandroid.library_base.activity.BaseDBActivity;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
 import com.knight.wanandroid.library_util.ToastUtils;
@@ -42,7 +41,7 @@ public class ProjectFragment extends BaseFragment<ProjectFragmentBinding, Projec
 
     @Override
     protected void reLoadData() {
-        mPresenter.requestProjectTypes((BaseDBActivity) getActivity());
+        mPresenter.requestProjectTypes();
     }
 
     /**
@@ -52,7 +51,7 @@ public class ProjectFragment extends BaseFragment<ProjectFragmentBinding, Projec
      */
     @Override
     protected void lazyLoadData() {
-        mPresenter.requestProjectTypes((BaseDBActivity) getActivity());
+        mPresenter.requestProjectTypes();
 
     }
 

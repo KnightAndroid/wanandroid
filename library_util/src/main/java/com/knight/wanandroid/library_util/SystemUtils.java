@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * @author created by knight
@@ -43,12 +46,6 @@ public class SystemUtils {
     }
 
 
-
-
-
-
-
-
     /**
      *
      * 显示软键盘
@@ -65,8 +62,42 @@ public class SystemUtils {
                     InputMethodManager.HIDE_IMPLICIT_ONLY);
 
         } catch (Exception e) {
-            Log.e("TAG", "********************" + e.toString());
+            e.printStackTrace();
         }
+    }
+
+
+    /**
+     *
+     * 监听输入框
+     * @param et
+     * @param tv
+     */
+    public static void seteditTextChangeListener(EditText et, TextView tv){
+        et.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                if (!s.toString().equals("")) {
+                    tv.setText("搜索");
+                } else {
+                    tv.setText("取消");
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!s.toString().equals("")) {
+                    tv.setText("搜索");
+                } else {
+                    tv.setText("取消");
+                }
+            }
+        });
     }
 
 

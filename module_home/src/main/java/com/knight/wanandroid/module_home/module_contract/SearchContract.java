@@ -31,7 +31,7 @@ public interface SearchContract {
     }
 
     abstract class SearchDataPresenter extends BasePresenter<SearchModel,SearchView>{
-        public abstract void requestSearchHotkey(BaseActivity activity);
+        public abstract void requestSearchHotkey();
 
     }
 

@@ -1,6 +1,7 @@
 package com.knight.wanandroid.module_mine.module_model;
 
 import com.knight.wanandroid.library_base.activity.BaseDBActivity;
+import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_network.GoHttp;
 import com.knight.wanandroid.library_network.listener.HttpCallback;
@@ -22,11 +23,11 @@ public class MineModel implements MineContract.MineModel {
 
 
     @Override
-    public void requestUserInfoCoin(BaseDBActivity activity, MvpListener mvpListener) {
-        activity.showLoadingHud("个人信息获取中...");
-        GoHttp.get(activity)
+    public void requestUserInfoCoin(BaseFragment fragment, MvpListener mvpListener) {
+        ((BaseDBActivity)fragment.getActivity()).showLoadingHud("个人信息获取中...");
+        GoHttp.get(fragment)
                 .api(new PersonalCoinApi())
-                .request(new HttpCallback<HttpData<UserInfoCoinEntity>>(activity) {
+                .request(new HttpCallback<HttpData<UserInfoCoinEntity>>(fragment) {
                     @Override
                     public void onSucceed(HttpData<UserInfoCoinEntity> result) {
                         mvpListener.onSuccess(result.getData());
@@ -39,18 +40,18 @@ public class MineModel implements MineContract.MineModel {
 
                     @Override
                     public void onEnd(Call call){
-                        activity.dismissLoadingHud();
+                        ((BaseDBActivity)fragment.getActivity()).dismissLoadingHud();
                     }
                 });
 
     }
 
     @Override
-    public void requestLogout(BaseDBActivity activity, MvpListener mvpListener) {
-        activity.showLoadingHud("登录请求中...");
-        GoHttp.get(activity)
+    public void requestLogout(BaseFragment fragment, MvpListener mvpListener) {
+        ((BaseDBActivity)fragment.getActivity()).showLoadingHud("登录请求中...");
+        GoHttp.get(fragment)
                 .api(new LogoutApi())
-                .request(new HttpCallback<HttpData>(activity){
+                .request(new HttpCallback<HttpData>(fragment){
 
                     @Override
                     public void onSucceed(HttpData httpData){
@@ -65,7 +66,7 @@ public class MineModel implements MineContract.MineModel {
 
                     @Override
                     public void onEnd(Call call){
-                        activity.dismissLoadingHud();
+                        ((BaseDBActivity)fragment.getActivity()).dismissLoadingHud();
                     }
 
                 });

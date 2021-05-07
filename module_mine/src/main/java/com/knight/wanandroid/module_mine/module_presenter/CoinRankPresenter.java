@@ -13,13 +13,13 @@ import com.knight.wanandroid.module_mine.module_entity.CoinRankListEntity;
  */
 public class CoinRankPresenter extends CoinRankContract.CoinRankDataPresenter {
     @Override
-    public void requestRankCoin(BaseActivity activity, int page) {
+    public void requestRankCoin(int page) {
         final CoinRankContract.CoinRankView mView = getView();
         if (mView == null) {
             return;
         }
 
-        mModel.requestRankCoin(activity, page, new MvpListener<CoinRankListEntity>() {
+        mModel.requestRankCoin((BaseActivity)mView, page, new MvpListener<CoinRankListEntity>() {
             @Override
             public void onSuccess(CoinRankListEntity data) {
                 mView.setRankCoin(data);

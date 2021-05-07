@@ -15,13 +15,13 @@ import java.util.List;
  */
 public class SearchPresenter extends SearchContract.SearchDataPresenter {
     @Override
-    public void requestSearchHotkey(BaseActivity activity) {
+    public void requestSearchHotkey() {
         final SearchContract.SearchView mView = getView();
         if (mView == null) {
             return;
         }
 
-        mModel.requestSearchHotkey(activity,new MvpListener<List< SearchHotKeyEntity >>() {
+        mModel.requestSearchHotkey((BaseActivity)mView,new MvpListener<List< SearchHotKeyEntity >>() {
             @Override
             public void onSuccess(List<SearchHotKeyEntity> data) {
                 mView.setSearchHotKey(data);

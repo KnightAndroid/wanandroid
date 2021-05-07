@@ -79,7 +79,7 @@ public class LoginActivity extends BaseActivity<MineActivityLoginBinding, LoginP
     public class ProcyClick{
         public void loginIn(){
             if (validateLoginMessage()) {
-                mPresenter.requestUserInfo(LoginActivity.this,mDatabind.mineLoginUsername.getText().toString().trim(),mDatabind.mineLoginPassword.getText().toString().trim());
+                mPresenter.requestUserInfo(mDatabind.mineLoginUsername.getText().toString().trim(),mDatabind.mineLoginPassword.getText().toString().trim());
             }
         }
 

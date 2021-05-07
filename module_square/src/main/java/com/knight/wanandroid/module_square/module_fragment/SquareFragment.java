@@ -7,7 +7,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
-import com.knight.wanandroid.library_base.activity.BaseDBActivity;
+import com.knight.wanandroid.library_base.entity.SearchHotKeyEntity;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
 import com.knight.wanandroid.library_util.ToastUtils;
@@ -17,7 +17,6 @@ import com.knight.wanandroid.module_square.databinding.SquareFragmentSquareBindi
 import com.knight.wanandroid.module_square.module_adapter.HotKeyAdapter;
 import com.knight.wanandroid.module_square.module_adapter.SquareArticleAdapter;
 import com.knight.wanandroid.module_square.module_contract.SquareContact;
-import com.knight.wanandroid.library_base.entity.SearchHotKeyEntity;
 import com.knight.wanandroid.module_square.module_entity.SquareArticleEntity;
 import com.knight.wanandroid.module_square.module_entity.SquareArticleListEntity;
 import com.knight.wanandroid.module_square.module_model.SquareModel;
@@ -75,8 +74,8 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
 
     @Override
     protected void reLoadData() {
-        mPresenter.requestHotKey((BaseDBActivity) getActivity());
-        mPresenter.requestShareData((BaseDBActivity)getActivity(),page);
+        mPresenter.requestHotKey();
+        mPresenter.requestShareData(page);
     }
 
     /**
@@ -86,8 +85,8 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
      */
     @Override
     protected void lazyLoadData() {
-        mPresenter.requestHotKey((BaseDBActivity) getActivity());
-        mPresenter.requestShareData((BaseDBActivity)getActivity(),page);
+        mPresenter.requestHotKey();
+        mPresenter.requestShareData(page);
 
     }
 
@@ -142,15 +141,15 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        mPresenter.requestShareData((BaseDBActivity)getActivity(),page);
+        mPresenter.requestShareData(page);
     }
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
         page = 0;
         mDatabind.squareSharearticleFreshlayout.setEnableLoadMore(true);
-        mPresenter.requestHotKey((BaseDBActivity) getActivity());
-        mPresenter.requestShareData((BaseDBActivity)getActivity(),page);
+        mPresenter.requestHotKey();
+        mPresenter.requestShareData(page);
     }
 
 

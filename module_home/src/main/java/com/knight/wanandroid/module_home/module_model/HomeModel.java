@@ -1,6 +1,6 @@
 package com.knight.wanandroid.module_home.module_model;
 
-import com.knight.wanandroid.library_base.activity.BaseDBActivity;
+import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_network.GoHttp;
 import com.knight.wanandroid.library_network.listener.HttpCallback;
@@ -27,14 +27,14 @@ public class HomeModel implements HomeContract.HomeModel {
     /**
      *
      * 请求置顶文章数据
-     * @param activity
+     * @param fragment
      * @param mvpListener
      */
     @Override
-    public void requestTopArticle(BaseDBActivity activity, MvpListener mvpListener) {
-        GoHttp.get(activity)
+    public void requestTopArticle(BaseFragment fragment, MvpListener mvpListener) {
+        GoHttp.get(fragment)
                 .api(new TopArticleApi())
-                .request(new HttpCallback<HttpData<List<TopArticleEntity>>>(activity){
+                .request(new HttpCallback<HttpData<List<TopArticleEntity>>>(fragment){
                     @Override
                     public void onSucceed(HttpData<List<TopArticleEntity>> topArticleModels) {
                         mvpListener.onSuccess(topArticleModels.getData());
@@ -50,14 +50,14 @@ public class HomeModel implements HomeContract.HomeModel {
 
     /**
      * 请求轮播图数据
-     * @param activity
+     * @param fragment
      * @param mvpListener
      */
     @Override
-    public void requestBannerData(BaseDBActivity activity, final MvpListener mvpListener) {
-        GoHttp.get(activity)
+    public void requestBannerData(BaseFragment fragment, final MvpListener mvpListener) {
+        GoHttp.get(fragment)
                 .api(new HomeBannerApi())
-                .request(new HttpCallback<HttpData<List<BannerEntity>>>(activity){
+                .request(new HttpCallback<HttpData<List<BannerEntity>>>(fragment){
 
                     @Override
                     public void onSucceed(HttpData<List<BannerEntity>> result){
@@ -75,10 +75,10 @@ public class HomeModel implements HomeContract.HomeModel {
         }
 
     @Override
-    public void requestOfficialAccountData(BaseDBActivity activity, MvpListener mvpListener) {
-        GoHttp.get(activity)
+    public void requestOfficialAccountData(BaseFragment fragment, MvpListener mvpListener) {
+        GoHttp.get(fragment)
                 .api(new HomeOfficialAccountApi())
-                .request(new HttpCallback<HttpData<List<OfficialAccountEntity>>>(activity){
+                .request(new HttpCallback<HttpData<List<OfficialAccountEntity>>>(fragment){
 
                     @Override
                     public void onSucceed(HttpData<List<OfficialAccountEntity>> result){

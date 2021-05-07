@@ -2,7 +2,6 @@ package com.knight.wanandroid.module_home.module_fragment;
 
 import android.os.Bundle;
 
-import com.knight.wanandroid.library_base.activity.BaseDBActivity;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.module_home.R;
@@ -57,9 +56,9 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
     protected void lazyLoadData() {
        // showLoadingHud("请求中...");
         if (HomeConstants.ARTICLE_TYPE.equals("全部")) {
-            mPresenter.requestAllHomeArticle((BaseDBActivity) getActivity(),currentPage);
+            mPresenter.requestAllHomeArticle(currentPage);
         } else {
-            mPresenter.requestSearchArticle((BaseDBActivity) getActivity(),currentPage,HomeConstants.ARTICLE_TYPE);
+            mPresenter.requestSearchArticle(currentPage,HomeConstants.ARTICLE_TYPE);
         }
 
     }
@@ -121,6 +120,6 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        mPresenter.requestAllHomeArticle((BaseDBActivity) getActivity(),currentPage);
+        mPresenter.requestAllHomeArticle(currentPage);
     }
 }

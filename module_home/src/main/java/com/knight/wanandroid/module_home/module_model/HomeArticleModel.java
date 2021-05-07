@@ -1,6 +1,6 @@
 package com.knight.wanandroid.module_home.module_model;
 
-import com.knight.wanandroid.library_base.activity.BaseDBActivity;
+import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_network.GoHttp;
 import com.knight.wanandroid.library_network.listener.HttpCallback;
@@ -21,16 +21,16 @@ public class HomeArticleModel implements HomeArticleContract.HomeArticleModel{
     /**
      *
      * 请求文章数据
-     * @param activity
+     * @param fragment
      * @param page
      * @param mvpListener
      */
     @Override
-    public void requestAllHomeArticle(BaseDBActivity activity, int page,MvpListener mvpListener) {
-        GoHttp.get(activity)
+    public void requestAllHomeArticle(BaseFragment fragment, int page, MvpListener mvpListener) {
+        GoHttp.get(fragment)
                 .api(new HomeArticleApi()
                         .setPage(page))
-                .request(new HttpCallback<HttpData<HomeArticleListEntity>>(activity){
+                .request(new HttpCallback<HttpData<HomeArticleListEntity>>(fragment){
                     @Override
                     public void onSucceed(HttpData<HomeArticleListEntity> result) {
                         mvpListener.onSuccess(result.getData());
@@ -47,16 +47,16 @@ public class HomeArticleModel implements HomeArticleContract.HomeArticleModel{
     /**
      *
      * 搜索文章请求数据
-     * @param activity
+     * @param fragment
      * @param page
      * @param keyWords
      * @param mvpListener
      */
     @Override
-    public void requestSerchArticle(BaseDBActivity activity, int page, String keyWords, MvpListener mvpListener) {
-        GoHttp.post(activity)
+    public void requestSerchArticle(BaseFragment fragment, int page, String keyWords, MvpListener mvpListener) {
+        GoHttp.post(fragment)
                 .api(new SearchArticleApi().setPage(page).setKeyWord(keyWords))
-                .request(new HttpCallback<HttpData<HomeArticleListEntity>>(activity){
+                .request(new HttpCallback<HttpData<HomeArticleListEntity>>(fragment){
                     @Override
                     public void onSucceed(HttpData<HomeArticleListEntity> result) {
                         mvpListener.onSuccess(result.getData());

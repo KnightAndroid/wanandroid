@@ -1,15 +1,21 @@
 package com.knight.wanandroid.module_home.module_activity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.KeyEvent;
+import android.view.inputmethod.EditorInfo;
+import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.knight.wanandroid.library_base.activity.BaseActivity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
+import com.knight.wanandroid.library_util.SystemUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.module_home.R;
 import com.knight.wanandroid.module_home.databinding.HomeSearchresultActivityBinding;
 import com.knight.wanandroid.module_home.module_adapter.SearchResultAdapter;
+import com.knight.wanandroid.module_home.module_constants.HomeConstants;
 import com.knight.wanandroid.module_home.module_contract.SearchResultContract;
 import com.knight.wanandroid.module_home.module_entity.HomeArticleListEntity;
 import com.knight.wanandroid.module_home.module_model.SearchResultModel;
@@ -46,23 +52,44 @@ public class SearchResultActivity extends BaseActivity<HomeSearchresultActivityB
 
     @Override
     public void initView(Bundle savedInstanceState) {
+        mDatabind.setClick(new ProcyClick());
         showLoading(mDatabind.includeSearchresult.baseFreshlayout);
         keyword = getIntent().getStringExtra("keyword");
+        mDatabind.searchresultEt.setText(keyword);
         mSearchResultAdapter = new SearchResultAdapter(new ArrayList<>());
         SetInitCustomView.initSwipeRecycleview(mDatabind.includeSearchresult.baseBodyRv,new LinearLayoutManager(this),mSearchResultAdapter,true);
         mDatabind.includeSearchresult.baseFreshlayout.setOnLoadMoreListener(this);
         mDatabind.includeSearchresult.baseFreshlayout.setOnRefreshListener(this);
+        mDatabind.searchresultIvBack.setOnClickListener(v -> finish());
+        SystemUtils.seteditTextChangeListener(mDatabind.searchresultEt,mDatabind.searchresultTvCancel);
+        mDatabind.searchresultEt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    keyword = mDatabind.searchresultEt.getText().toString().trim();
+                    if (TextUtils.isEmpty(keyword)) {
+                        ToastUtils.getInstance().showToast("请输入内容再搜索");
+                    } else {
+                        searchNewKeywords();
+                    }
+                    return true;
+
+                }
+                return false;
+            }
+        });
+
     }
 
     @Override
     public void initData(){
-        mPresenter.requestSearchResult(this,page,keyword);
+        mPresenter.requestSearchResult(page,keyword);
     }
 
     @Override
     public void reLoadData(){
         mDatabind.includeSearchresult.baseFreshlayout.setEnableLoadMore(true);
-        mPresenter.requestSearchResult(this,page,keyword);
+        mPresenter.requestSearchResult(page,keyword);
     }
 
     @Override
@@ -87,7 +114,6 @@ public class SearchResultActivity extends BaseActivity<HomeSearchresultActivityB
         mDatabind.includeSearchresult.baseFreshlayout.finishLoadMore();
         mDatabind.includeSearchresult.baseFreshlayout.finishRefresh();
         if (result.getDatas().size() > 0) {
-
             if (page == 0) {
                 mSearchResultAdapter.setNewInstance(result.getDatas());
             } else {
@@ -105,13 +131,34 @@ public class SearchResultActivity extends BaseActivity<HomeSearchresultActivityB
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        mPresenter.requestSearchResult(this,page,keyword);
+        mPresenter.requestSearchResult(page,keyword);
     }
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
         page = 0;
         mDatabind.includeSearchresult.baseFreshlayout.setEnableLoadMore(true);
-        mPresenter.requestSearchResult(this,page,keyword);
+        mPresenter.requestSearchResult(page,keyword);
     }
+
+    public class ProcyClick {
+        public void searchByKeyword(){
+            if (mDatabind.searchresultTvCancel.getText().toString().equals("取消")){
+                finish();
+            } else {
+                searchNewKeywords();
+            }
+        }
+    }
+
+    private void searchNewKeywords(){
+        mDatabind.includeSearchresult.baseFreshlayout.autoRefresh();
+        page = 0;
+        keyword = mDatabind.searchresultEt.getText().toString();
+        HomeConstants.SEARCH_KEYWORD = keyword;
+        mDatabind.includeSearchresult.baseFreshlayout.setEnableLoadMore(true);
+        mPresenter.requestSearchResult(page,keyword);
+    }
+
+
 }

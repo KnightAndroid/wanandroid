@@ -1,6 +1,6 @@
 package com.knight.wanandroid.module_hierachy.module_presenter;
 
-import com.knight.wanandroid.library_base.activity.BaseDBActivity;
+import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.module_hierachy.module_contract.HierachyContract;
 import com.knight.wanandroid.module_hierachy.module_entity.HierachyListEntity;
@@ -21,16 +21,16 @@ public class HierachyPresenter extends HierachyContract.HierachyDataPresenter {
     /**
      *
      * 体系请求
-     * @param activity
+     *
      */
     @Override
-    public void requestHierachyData(BaseDBActivity activity) {
+    public void requestHierachyData() {
         final HierachyContract.HierachyView mView = getView();
         if (mView == null) {
             return;
         }
 
-        mModel.requestHierachyData(activity, new MvpListener<ArrayList<HierachyListEntity>>() {
+        mModel.requestHierachyData((BaseFragment)mView, new MvpListener<ArrayList<HierachyListEntity>>() {
             @Override
             public void onSuccess(ArrayList<HierachyListEntity> data) {
                 mView.setHierachyData(data);
@@ -47,12 +47,12 @@ public class HierachyPresenter extends HierachyContract.HierachyDataPresenter {
     }
 
     @Override
-    public void requestNavigateData(BaseDBActivity activity) {
+    public void requestNavigateData() {
         final HierachyContract.HierachyView mView = getView();
         if (mView == null) {
             return;
         }
-        mModel.requestNavigateData(activity, new MvpListener<List<NavigateListEntity>>() {
+        mModel.requestNavigateData((BaseFragment)mView, new MvpListener<List<NavigateListEntity>>() {
             @Override
             public void onSuccess(List<NavigateListEntity> data) {
                 mView.setNavigateData(data);

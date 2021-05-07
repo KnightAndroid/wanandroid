@@ -1,6 +1,6 @@
 package com.knight.wanandroid.module_project.module_model;
 
-import com.knight.wanandroid.library_base.activity.BaseDBActivity;
+import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_network.GoHttp;
 import com.knight.wanandroid.library_network.listener.HttpCallback;
@@ -19,10 +19,10 @@ import java.util.List;
  */
 public class ProjectModel implements ProjectContract.ProjectModel {
     @Override
-    public void requestProjectTypes(BaseDBActivity activity, MvpListener mvpListener) {
-        GoHttp.get(activity)
+    public void requestProjectTypes(BaseFragment fragment, MvpListener mvpListener) {
+        GoHttp.get(fragment)
                 .api(new ProjectTitleApi())
-                .request(new HttpCallback<HttpData<List<ProjectTypeEntity>>>(activity){
+                .request(new HttpCallback<HttpData<List<ProjectTypeEntity>>>(fragment){
 
 
                     @Override

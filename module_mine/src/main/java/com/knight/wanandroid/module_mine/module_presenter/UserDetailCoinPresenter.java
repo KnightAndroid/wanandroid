@@ -15,13 +15,13 @@ public class UserDetailCoinPresenter extends UserDetailCoinContract.DetailCoinDa
 
     
     @Override
-    public void requestUserDetailCoin(BaseActivity activity, int page) {
+    public void requestUserDetailCoin(int page) {
         final UserDetailCoinContract.DetailCoinView mView = getView();
         if (mView == null) {
             return;
         }
 
-        mModel.requestUserDetailCoin(activity, page, new MvpListener<UserDetailCoinListEntity>() {
+        mModel.requestUserDetailCoin((BaseActivity) mView, page, new MvpListener<UserDetailCoinListEntity>() {
             @Override
             public void onSuccess(UserDetailCoinListEntity data) {
                 mView.setUserDetailCoin(data);

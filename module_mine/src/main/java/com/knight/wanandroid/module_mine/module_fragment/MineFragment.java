@@ -8,7 +8,6 @@ import android.view.View;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
-import com.knight.wanandroid.library_base.activity.BaseDBActivity;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
@@ -56,7 +55,6 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
         }
     }
 
-
     /**
      *
      * 懒加载
@@ -65,7 +63,7 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
     @Override
     protected void lazyLoadData() {
         if (ModuleConfig.getInstance().user != null) {
-            mPresenter.requestUserInfoCoin((BaseDBActivity) getActivity());
+            mPresenter.requestUserInfoCoin();
         }
 
     }
@@ -73,7 +71,7 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
     @Override
     protected void reLoadData() {
         if (ModuleConfig.getInstance().user != null) {
-            mPresenter.requestUserInfoCoin((BaseDBActivity) getActivity());
+            mPresenter.requestUserInfoCoin();
         }
     }
 
@@ -140,7 +138,7 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
 
         public void Logout(){
             DialogUtils.getConfirmDialog(getActivity(), getResources().getString(R.string.mine_confirm_logout), (dialog, which) -> {
-                mPresenter.requestLogout((BaseDBActivity) getActivity());
+                mPresenter.requestLogout();
             }, (dialog, which) -> {
 
             }).show();
@@ -154,7 +152,7 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onLoginInSuccess(EventBusUtils.LoginInSuccess loginInSuccess){
-        mPresenter.requestUserInfoCoin((BaseDBActivity) getActivity());
+        mPresenter.requestUserInfoCoin();
         mDatabind.mineRlLogout.setVisibility(View.VISIBLE);
     }
 
