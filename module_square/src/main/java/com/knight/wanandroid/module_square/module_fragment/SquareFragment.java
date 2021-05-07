@@ -1,19 +1,22 @@
 package com.knight.wanandroid.module_square.module_fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
+import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
 import com.knight.wanandroid.library_base.entity.SearchHotKeyEntity;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
+import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.module_square.R;
 import com.knight.wanandroid.module_square.databinding.SquareFragmentSquareBinding;
+import com.knight.wanandroid.module_square.module_activity.SquareShareArticleActivity;
 import com.knight.wanandroid.module_square.module_adapter.HotKeyAdapter;
 import com.knight.wanandroid.module_square.module_adapter.SquareArticleAdapter;
 import com.knight.wanandroid.module_square.module_contract.SquareContact;
@@ -24,6 +27,10 @@ import com.knight.wanandroid.module_square.module_presenter.SquarePresenter;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +75,7 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
         SetInitCustomView.initSwipeRecycleview(mDatabind.squareArticleRv,new LinearLayoutManager(getActivity()),mSquareArticleAdapter,true);
         mDatabind.squareSharearticleFreshlayout.setOnRefreshListener(this);
         mDatabind.squareSharearticleFreshlayout.setOnLoadMoreListener(this);
+        EventBus.getDefault().register(this);
 
 
     }
@@ -95,10 +103,7 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
         mHotKeyAdapter.setNewInstance(searchHotKeyEntities);
     }
 
-    @Override
-    public void setNewShareData() {
 
-    }
 
     @Override
     public void setShareArticles(SquareArticleListEntity result) {
@@ -154,12 +159,21 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
 
 
     public class ProcyClick{
-
-        public void squareClick(){
-
-            //点击事件
-            Toast.makeText(getActivity(),"广场界面",Toast.LENGTH_SHORT).show();
+        @LoginCheck
+        public void goShareArticle(){
+            startActivity(new Intent(getActivity(), SquareShareArticleActivity.class));
         }
 
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void ShareArticleSuccess(EventBusUtils.ShareArticleSuccess shareArticleSuccess){
+        onRefresh(mDatabind.squareSharearticleFreshlayout);
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

@@ -56,7 +56,8 @@
                     android:textColor="@color/square_white"
                     android:layout_centerVertical="true"
                     android:textSize="@dimen/base_dimen_16"
-                    android:layout_marginLeft="@dimen/base_dimen_6"/>
+                    android:layout_marginLeft="@dimen/base_dimen_6"
+                    android:onClick="@{()->click.goShareArticle()}"/>
 
                 <TextView
                     android:id="@+id/square_tv_addcoins"

@@ -24,10 +24,7 @@ public interface SquareContact {
 
       //搜索热词
       void setHotKey(List<SearchHotKeyEntity> searchHotKeyEntities);
-
-      //获取最新分享
-      void setNewShareData();
-
+      
       //分享最新文章
       void setShareArticles(SquareArticleListEntity result);
 

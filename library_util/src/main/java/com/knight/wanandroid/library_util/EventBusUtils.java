@@ -18,4 +18,9 @@ public class EventBusUtils {
 
     }
 
+    //分享文章成功
+    public static class ShareArticleSuccess{
+
+    }
+
 }

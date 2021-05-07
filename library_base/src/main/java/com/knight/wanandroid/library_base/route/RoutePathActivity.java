@@ -28,6 +28,7 @@ public class RoutePathActivity {
      */
     public static class Square{
         private static final String Square = "/module_square_activity";
+        public static final String ShareArticle = Square + "/square_share";
     }
 
 

@@ -191,6 +191,29 @@
 
                     </RelativeLayout>
 
+                    <!--我的分享-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/base_dimen_20"
+                        android:layout_marginBottom="@dimen/base_dimen_20"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mine_me_sharearticles"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/base_dimen_18"
+                            />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/mine_iv_white_arrow"/>
+
+                    </RelativeLayout>
+
                     <!--代办清单-->
                     <RelativeLayout
                         android:layout_width="match_parent"

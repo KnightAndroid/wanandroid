@@ -1,6 +1,10 @@
 package com.knight.wanandroid.module_home.module_entity;
 
+import android.text.TextUtils;
+
+import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.knight.wanandroid.library_base.entity.BaseEntity;
+import com.knight.wanandroid.module_home.module_constants.HomeConstants;
 
 import java.util.List;
 
@@ -10,7 +14,7 @@ import java.util.List;
  * @Date 2021/4/12 19:33
  * @descript:
  */
-public class HomeArticleEntity extends BaseEntity {
+public class HomeArticleEntity extends BaseEntity implements MultiItemEntity {
 
     /**
      * apkLink :
@@ -337,5 +341,11 @@ public class HomeArticleEntity extends BaseEntity {
     }
 
 
-
+    @Override
+    public int getItemType() {
+        if (TextUtils.isEmpty(envelopePic)) {
+            return HomeConstants.ARTICLE_TEXT_TYPE;
+        }
+        return HomeConstants.ARTICLE_PICTURE_TYPE;
+    }
 }

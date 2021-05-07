@@ -19,7 +19,7 @@
         android:paddingLeft="@dimen/base_dimen_8">
 
         <TextView
-            android:id="@+id/item_tv_project_author"
+            android:id="@+id/base_item_tv_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
@@ -30,7 +30,7 @@
             />
 
         <TextView
-            android:id="@+id/item_tv_project_time"
+            android:id="@+id/base_item_tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/base_dimen_12"
@@ -41,21 +41,21 @@
 
 
         <ImageView
-            android:id="@+id/item_project_imageview"
+            android:id="@+id/base_item_imageview"
             android:layout_width="130dp"
             android:layout_height="160dp"
-            app:layout_constraintTop_toBottomOf="@id/item_tv_project_author"
+            app:layout_constraintTop_toBottomOf="@id/base_item_tv_author"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginTop="@dimen/base_dimen_12"
             android:scaleType="centerCrop"
              />
 
         <TextView
-            android:id="@+id/item_tv_project_title"
+            android:id="@+id/base_tv_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/item_project_imageview"
-            app:layout_constraintLeft_toRightOf="@id/item_project_imageview"
+            app:layout_constraintTop_toTopOf="@id/base_item_imageview"
+            app:layout_constraintLeft_toRightOf="@id/base_item_imageview"
             app:layout_constraintRight_toRightOf="parent"
             android:textSize="@dimen/base_dimen_16"
             android:textStyle="bold"
@@ -66,11 +66,11 @@
             android:ellipsize="end"/>
 
         <TextView
-            android:id="@+id/item_tv_project_desc"
+            android:id="@+id/base_tv_project_desc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toRightOf="@id/item_project_imageview"
-            app:layout_constraintTop_toBottomOf="@id/item_tv_project_title"
+            app:layout_constraintLeft_toRightOf="@id/base_item_imageview"
+            app:layout_constraintTop_toBottomOf="@id/base_tv_title"
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginLeft="@dimen/base_dimen_10"
             android:layout_marginTop="@dimen/base_dimen_12"
@@ -83,9 +83,9 @@
 
 
         <TextView
-            android:id="@+id/item_tv_project_superchapter"
-            app:layout_constraintBottom_toBottomOf="@id/item_project_imageview"
-            app:layout_constraintLeft_toRightOf="@id/item_project_imageview"
+            android:id="@+id/base_tv_superchapter"
+            app:layout_constraintBottom_toBottomOf="@id/base_item_imageview"
+            app:layout_constraintLeft_toRightOf="@id/base_item_imageview"
             android:layout_marginLeft="@dimen/base_dimen_10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -94,11 +94,11 @@
             android:textSize="@dimen/base_dimen_12"/>
 
         <ImageView
-            android:id="@+id/item_projectarticle_collect"
+            android:id="@+id/base_article_collect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/item_tv_project_superchapter"
-            app:layout_constraintTop_toTopOf="@id/item_tv_project_superchapter"
+            app:layout_constraintBottom_toBottomOf="@id/base_tv_superchapter"
+            app:layout_constraintTop_toTopOf="@id/base_tv_superchapter"
             app:layout_constraintRight_toRightOf="parent"
             android:background="@drawable/base_icon_nocollect"
             />

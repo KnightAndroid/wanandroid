@@ -56,7 +56,7 @@ public class SearchResultActivity extends BaseActivity<HomeSearchresultActivityB
         showLoading(mDatabind.includeSearchresult.baseFreshlayout);
         keyword = getIntent().getStringExtra("keyword");
         mDatabind.searchresultEt.setText(keyword);
-        mSearchResultAdapter = new SearchResultAdapter(new ArrayList<>());
+        mSearchResultAdapter = new SearchResultAdapter();
         SetInitCustomView.initSwipeRecycleview(mDatabind.includeSearchresult.baseBodyRv,new LinearLayoutManager(this),mSearchResultAdapter,true);
         mDatabind.includeSearchresult.baseFreshlayout.setOnLoadMoreListener(this);
         mDatabind.includeSearchresult.baseFreshlayout.setOnRefreshListener(this);

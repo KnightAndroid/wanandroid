@@ -2,11 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.knight.wanandroid.module_square">
 
-    <application
-    >
-        <activity android:name="com.knight.wanandroid.module_square.module_activity.SquareActivity">
-
-        </activity>
+    <application>
+        <activity android:name="com.knight.wanandroid.module_square.module_activity.SquareActivity"/>
+        <activity android:name=".module_activity.SquareShareArticleActivity"/>
     </application>
 
 </manifest>
