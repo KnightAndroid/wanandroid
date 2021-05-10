@@ -35,6 +35,7 @@ public abstract class AppDataBase extends RoomDatabase {
             synchronized (AppDataBase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),AppDataBase.class, dbName)
+                            .allowMainThreadQueries()
                             .enableMultiInstanceInvalidation()
                             .build();
                 }

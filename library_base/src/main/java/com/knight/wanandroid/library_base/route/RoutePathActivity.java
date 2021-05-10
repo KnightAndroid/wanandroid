@@ -42,11 +42,21 @@ public class RoutePathActivity {
         public static final String Register_Pager = Mine + "/mine_register";
         public static final String UserCoin_pager = Mine + "/mine_usercoin";
         public static final String UserCoinRank_Pager = Mine + "/mine_coinrank";
+        public static final String MyShareArticle_Pager = Mine + "/mine_sharearticle";
 
     }
 
 
+    /**
+     * 我的网页模块
+     *
+     *
+     */
+    public static class Web{
+        private static final String Web = "/module_web_activity";
 
+        public static final String Web_Pager = Web + "/web_pager";
+    }
 
 
 

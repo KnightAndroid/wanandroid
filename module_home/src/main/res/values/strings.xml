@@ -7,4 +7,7 @@
     <string name="home_highquality_officialaccount">优质公众号</string>
     <string name="home_cancel">取消</string>
     <string name="home_hotsearch">热门搜索</string>
+    <string name="home_search_histroy">搜索历史</string>
+    <string name="home_clear">清空</string>
+    <string name="home_clearall_searchrecord">是否清空搜索记录</string>
 </resources>

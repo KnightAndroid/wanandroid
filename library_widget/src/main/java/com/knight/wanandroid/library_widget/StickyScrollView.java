@@ -53,7 +53,6 @@ public class StickyScrollView extends NestedScrollView {
 
     private int mShadowHeight;
     private Drawable mShadowDrawable;
-
     private final Runnable invalidateRunnable = new Runnable() {
 
         @Override

@@ -4,7 +4,7 @@
         android:color="@color/base_color_theme"/>
     <padding android:top="@dimen/base_dimen_2"
         android:bottom="@dimen/base_dimen_2"
-        android:right="@dimen/base_dimen_2"
-        android:left="@dimen/base_dimen_2"/>
+        android:right="@dimen/base_dimen_4"
+        android:left="@dimen/base_dimen_4"/>
 
 </shape>

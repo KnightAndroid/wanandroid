@@ -4,10 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
@@ -16,17 +19,24 @@ import com.knight.wanandroid.library_base.entity.SearchHotKeyEntity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_util.SystemUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
+import com.knight.wanandroid.library_util.dialog.DialogUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.module_home.R;
 import com.knight.wanandroid.module_home.databinding.HomeSearchActivityBinding;
 import com.knight.wanandroid.module_home.module_adapter.HomeHotKeyAdapter;
+import com.knight.wanandroid.module_home.module_adapter.SearchRecordAdapter;
 import com.knight.wanandroid.module_home.module_constants.HomeConstants;
 import com.knight.wanandroid.module_home.module_contract.SearchContract;
 import com.knight.wanandroid.module_home.module_model.SearchModel;
 import com.knight.wanandroid.module_home.module_presenter.SearchPresenter;
+import com.wanandroid.knight.library_database.entity.SearchHistroyKeywordEntity;
+import com.wanandroid.knight.library_database.repository.HistroyKeywordsRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 /**
  * @author created by knight
@@ -38,8 +48,12 @@ import java.util.List;
 @Route(path = RoutePathActivity.Home.search)
 public class SearchActivity extends BaseActivity<HomeSearchActivityBinding, SearchPresenter, SearchModel> implements SearchContract.SearchView {
 
+    //热词适配器
     private HomeHotKeyAdapter mHomeHotKeyAdapter;
+    //搜索记录适配器
+    private SearchRecordAdapter mSearchRecordAdapter;
     private String keyword;
+
 
     @Override
     public int layoutId() {
@@ -58,6 +72,8 @@ public class SearchActivity extends BaseActivity<HomeSearchActivityBinding, Sear
         flexboxLayoutManager.setJustifyContent(JustifyContent.FLEX_START);
         SetInitCustomView.initSwipeRecycleview(mDatabind.homeSearchhotRv,flexboxLayoutManager,mHomeHotKeyAdapter,false);
         SystemUtils.showDelaySoftKeyBoard(mDatabind.homeSearchEt);
+        mSearchRecordAdapter = new SearchRecordAdapter(new ArrayList<>());
+        SetInitCustomView.initSwipeRecycleview(mDatabind.homeSearchhistroyKeywordRv,new LinearLayoutManager(this),mSearchRecordAdapter,false);
         mDatabind.homeSearchEt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -77,6 +93,7 @@ public class SearchActivity extends BaseActivity<HomeSearchActivityBinding, Sear
         });
 
         SystemUtils.seteditTextChangeListener(mDatabind.homeSearchEt,mDatabind.homeTvsearchCancel);
+        initClickListener();
     }
 
     @Override
@@ -101,6 +118,14 @@ public class SearchActivity extends BaseActivity<HomeSearchActivityBinding, Sear
     }
 
     @Override
+    protected void onResume(){
+        super.onResume();
+        queryLocalSearchRecord();
+
+    }
+
+
+    @Override
     public void showError(String errorMsg) {
         showFailure();
         ToastUtils.getInstance().showToast(errorMsg);
@@ -120,8 +145,88 @@ public class SearchActivity extends BaseActivity<HomeSearchActivityBinding, Sear
             } else {
                 keyword = mDatabind.homeSearchEt.getText().toString().trim();
                 HomeConstants.SEARCH_KEYWORD = keyword;
+                saveSearchKeyword(keyword);
                 startActivity(new Intent(SearchActivity.this,SearchResultActivity.class).putExtra("keyword",keyword));
             }
         }
+
+        //删除所有数据
+        public void clearAllSearchRecord(){
+            DialogUtils.getConfirmDialog(SearchActivity.this, getResources().getString(R.string.home_clearall_searchrecord), (dialog, which) -> {
+                HistroyKeywordsRepository.getInstance().deleteAllKeywords();
+                queryLocalSearchRecord();
+            }, (dialog, which) -> {
+
+            }).show();
+        }
+    }
+
+
+    /**
+     *
+     * 保存搜索关键词
+     * @param keyword
+     */
+    private void saveSearchKeyword(String keyword) {
+        HistroyKeywordsRepository.getInstance().queryHistroyKeywords(new HistroyKeywordsRepository.OnQuerySuccessCallBack() {
+            @Override
+            public void onQuerySuccessCallBack(List<SearchHistroyKeywordEntity> mSearchHistroyKeywordEntities) {
+                long id = 0;
+                for (SearchHistroyKeywordEntity searchHistroyKeywordEntity : mSearchHistroyKeywordEntities) {
+                    if (TextUtils.equals(searchHistroyKeywordEntity.getName(), keyword)) {
+                        id = searchHistroyKeywordEntity.getId();
+                        break;
+                    }
+                }
+                if (id != 0) {
+                    HistroyKeywordsRepository.getInstance().deleteHistroyKeyword(id);
+                }
+                HistroyKeywordsRepository.getInstance().insertHistroyKeyword(new SearchHistroyKeywordEntity(keyword));
+            }
+        });
+    }
+
+    /**
+     *
+     * 查询本地记录
+     */
+    private void queryLocalSearchRecord() {
+        HistroyKeywordsRepository.getInstance().queryHistroyKeywords(mSearchHistroyKeywordEntities -> {
+            if (mSearchHistroyKeywordEntities != null && mSearchHistroyKeywordEntities.size() > 0) {
+                mDatabind.homeSearchkeywordHeadRl.setVisibility(View.VISIBLE);
+                mDatabind.homeSearchhistroyKeywordRv.setVisibility(View.VISIBLE);
+                mSearchRecordAdapter.setNewInstance(mSearchHistroyKeywordEntities);
+            } else {
+                mDatabind.homeSearchkeywordHeadRl.setVisibility(View.GONE);
+                mDatabind.homeSearchhistroyKeywordRv.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    private void initClickListener() {
+        //适配器点击监听事件
+        mSearchRecordAdapter.addChildClickViewIds(R.id.iv_searchkeyword_delete);
+        mSearchRecordAdapter.setOnItemChildClickListener((adapter, view, position) -> {
+            if (view.getId() == R.id.iv_searchkeyword_delete) {
+                HistroyKeywordsRepository.getInstance().deleteHistroyKeyword(mSearchRecordAdapter.getData().get(position).getId());
+                mSearchRecordAdapter.getData().remove(position);
+                mSearchRecordAdapter.notifyItemRemoved(position);
+                if (mSearchRecordAdapter.getData().size() == 0) {
+                    mDatabind.homeSearchkeywordHeadRl.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        mHomeHotKeyAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+                keyword = mHomeHotKeyAdapter.getData().get(position).getName();
+                HomeConstants.SEARCH_KEYWORD = keyword;
+                saveSearchKeyword(keyword);
+                startActivity(new Intent(SearchActivity.this,SearchResultActivity.class).putExtra("keyword",keyword));
+            }
+        });
+
+
     }
 }

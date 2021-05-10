@@ -26,6 +26,10 @@ public class SearchHistroyKeywordEntity {
     @NonNull
     private Date insertTime;
 
+    public  SearchHistroyKeywordEntity(String name){
+        this.name = name;
+    }
+
     public long getId() {
         return id;
     }

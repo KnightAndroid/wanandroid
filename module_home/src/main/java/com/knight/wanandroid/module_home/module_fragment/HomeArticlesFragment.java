@@ -1,8 +1,13 @@
 package com.knight.wanandroid.module_home.module_fragment;
 
 import android.os.Bundle;
+import android.view.View;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
+import com.knight.wanandroid.library_base.util.ARouterUtils;
+import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.module_home.R;
 import com.knight.wanandroid.module_home.databinding.HomeFragmentArticleBinding;
@@ -44,6 +49,14 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
         SetInitCustomView.initSwipeRecycleview(mDatabind.homeArticleBody,new LinearLayoutManager(getActivity()),mHomeArticleAdapter,true);
         mDatabind.homeArticleBody.setAdapter(mHomeArticleAdapter);
         mDatabind.homeArticleFreshlayout.setOnLoadMoreListener(this);
+        mHomeArticleAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+                ARouterUtils.startWeb(mHomeArticleAdapter.getData().get(position).getLink());
+            }
+        });
+        loadLoading(mDatabind.llHome);
+
 
     }
 
@@ -81,18 +94,21 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
 
     @Override
     public void showError(String errorMsg) {
-        showloadFailure();
+
+        ToastUtils.getInstance().showToast(errorMsg);
     }
 
 
 
     @Override
     public void setAllHomeArticle(HomeArticleListEntity result) {
+
         loadArticleData(result);
     }
 
     @Override
     public void setSearchArticle(HomeArticleListEntity result) {
+
         loadArticleData(result);
     }
 
@@ -103,6 +119,7 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
      * @param result
      */
     private void loadArticleData(HomeArticleListEntity result) {
+        showSuccess();
         currentPage = result.getCurPage();
         mDatabind.homeArticleFreshlayout.finishLoadMore();
         // dismissLoadingHud();
@@ -120,6 +137,9 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+
         mPresenter.requestAllHomeArticle(currentPage);
     }
+
+
 }

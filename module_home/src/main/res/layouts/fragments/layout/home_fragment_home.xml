@@ -106,7 +106,7 @@
                         android:id="@+id/magic_indicator"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:minHeight="60dp"
+                        android:minHeight="50dp"
                         android:tag="sticky" />
 
                     <androidx.viewpager2.widget.ViewPager2

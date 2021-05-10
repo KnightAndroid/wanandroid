@@ -24,7 +24,6 @@ public class MineModel implements MineContract.MineModel {
 
     @Override
     public void requestUserInfoCoin(BaseFragment fragment, MvpListener mvpListener) {
-        ((BaseDBActivity)fragment.getActivity()).showLoadingHud("个人信息获取中...");
         GoHttp.get(fragment)
                 .api(new PersonalCoinApi())
                 .request(new HttpCallback<HttpData<UserInfoCoinEntity>>(fragment) {
@@ -40,7 +39,7 @@ public class MineModel implements MineContract.MineModel {
 
                     @Override
                     public void onEnd(Call call){
-                        ((BaseDBActivity)fragment.getActivity()).dismissLoadingHud();
+                        
                     }
                 });
 

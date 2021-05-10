@@ -34,4 +34,13 @@ public class SearchPresenter extends SearchContract.SearchDataPresenter {
         });
 
     }
+
+    @Override
+    public void saveSearchKeyword(String keyword) {
+        final SearchContract.SearchView mView = getView();
+        if (mView == null) {
+            return;
+        }
+        
+    }
 }

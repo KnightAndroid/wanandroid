@@ -63,5 +63,8 @@ ext{
     flexLayoutVersion = '2.0.1'
     //roomVersion
     roomVersion = '2.2.5'
+    //agentVersion
+    AgentVersion = '4.1.9-androidx'
+
 
 }

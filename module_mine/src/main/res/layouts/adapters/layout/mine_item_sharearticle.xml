@@ -69,17 +69,36 @@
             android:textColor="@color/base_color_theme"
             android:background="@drawable/base_articlechapter_type"/>
 
-        <TextView
-            android:id="@+id/mine_item_articlenew"
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:text="新"
-            android:textSize="@dimen/base_dimen_12"
-            android:textColor="@android:color/holo_red_light"
             android:layout_marginRight="@dimen/base_dimen_8"
-            android:background="@drawable/base_article_new"/>
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/mine_iv_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/mine_icon_delete"
+                android:layout_marginRight="@dimen/base_dimen_8"/>
+
+
+            <TextView
+                android:id="@+id/mine_item_articlenew"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="新"
+                android:textSize="@dimen/base_dimen_12"
+                android:textColor="@android:color/holo_red_light"
+                android:background="@drawable/base_article_new"/>
+
+        </LinearLayout>
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

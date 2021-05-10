@@ -19,6 +19,8 @@ import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.GsonUtils;
 import com.knight.wanandroid.library_util.JsonUtils;
+import com.knight.wanandroid.library_util.ScreenUtils;
+import com.knight.wanandroid.library_util.StatusBarUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_util.ViewSetUtils;
 import com.knight.wanandroid.library_util.constant.MMkvConstants;
@@ -55,6 +57,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+import kotlin.jvm.functions.Function1;
 
 /**
  * @author created by knight
@@ -218,7 +221,17 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
             mFragments.add(new HomeArticlesFragment());
         }
         ViewSetUtils.setViewPager2Init(getActivity(), mFragments, mDatabind.viewPager, false);
-        CustomViewUtils.bindViewPager2(mDatabind.magicIndicator, mDatabind.viewPager, mDataList);
+        
+        CustomViewUtils.bindViewPager2(mDatabind.magicIndicator, mDatabind.viewPager, mDataList, new Function1() {
+            @Override
+            public Object invoke(Object o) {
+                int[] position = new int[2];
+                mDatabind.homeLlTop.getLocationOnScreen(position);
+                mDatabind.homeCoordinatorsl.fling(mDatabind.homeLlTop.getHeight() + position[1] - StatusBarUtils.getStatusBarHeight(getActivity()) - mDatabind.magicIndicator.getHeight() - ScreenUtils.dp2px(10));
+                mDatabind.homeCoordinatorsl.smoothScrollBy(0,mDatabind.homeLlTop.getHeight() + position[1] - StatusBarUtils.getStatusBarHeight(getActivity()) - mDatabind.magicIndicator.getHeight() - ScreenUtils.dp2px(10),1000);
+                return null;
+            }
+        });
 
     }
 

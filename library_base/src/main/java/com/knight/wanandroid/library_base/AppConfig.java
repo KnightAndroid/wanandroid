@@ -13,6 +13,7 @@ public class AppConfig {
     private static final String ProjectApp = "com.knight.wanandroid.module_project.ProjectApp";
     private static final String NavigateApp = "com.knight.wanandroid.module_hierachy.HierachyApp";
     private static final String MineApp = "com.knight.wanandroid.module_mine.MineApp";
+    private static final String WebApp = "com.knight.wanandroid.module_web.WebApp";
 
 
     public static String[] moduleApps = {
@@ -20,7 +21,8 @@ public class AppConfig {
             SquareApp,
             ProjectApp,
             NavigateApp,
-            MineApp
+            MineApp,
+            WebApp
     };
 
 }

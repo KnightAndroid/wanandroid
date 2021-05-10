@@ -18,6 +18,7 @@
 
 
     <com.knight.wanandroid.library_widget.ReboundLayout
+        android:id="@+id/mine_reboundlayout_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:damping="3">
@@ -197,6 +198,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/base_dimen_20"
                         android:layout_marginBottom="@dimen/base_dimen_20"
+                        android:onClick="@{()->click.goMyShareArticles()}"
                         >
                         <TextView
                             android:layout_width="wrap_content"

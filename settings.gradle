@@ -1,3 +1,4 @@
+include ':module_web'
 include ':library_database'
 include ':module_hierachy'
 include ':module_project'

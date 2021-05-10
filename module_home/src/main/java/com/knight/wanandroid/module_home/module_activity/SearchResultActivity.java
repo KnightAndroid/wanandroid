@@ -23,8 +23,10 @@ import com.knight.wanandroid.module_home.module_presenter.SearchResultPresenter;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
+import com.wanandroid.knight.library_database.entity.SearchHistroyKeywordEntity;
+import com.wanandroid.knight.library_database.repository.HistroyKeywordsRepository;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -155,9 +157,34 @@ public class SearchResultActivity extends BaseActivity<HomeSearchresultActivityB
         mDatabind.includeSearchresult.baseFreshlayout.autoRefresh();
         page = 0;
         keyword = mDatabind.searchresultEt.getText().toString();
+        saveSearchKeyword(keyword);
         HomeConstants.SEARCH_KEYWORD = keyword;
         mDatabind.includeSearchresult.baseFreshlayout.setEnableLoadMore(true);
         mPresenter.requestSearchResult(page,keyword);
+    }
+
+    /**
+     *
+     * 保存搜索关键词
+     * @param keyword
+     */
+    private void saveSearchKeyword(String keyword) {
+        HistroyKeywordsRepository.getInstance().queryHistroyKeywords(new HistroyKeywordsRepository.OnQuerySuccessCallBack() {
+            @Override
+            public void onQuerySuccessCallBack(List<SearchHistroyKeywordEntity> mSearchHistroyKeywordEntities) {
+                long id = 0;
+                for (SearchHistroyKeywordEntity searchHistroyKeywordEntity : mSearchHistroyKeywordEntities) {
+                    if (TextUtils.equals(searchHistroyKeywordEntity.getName(), keyword)) {
+                        id = searchHistroyKeywordEntity.getId();
+                        break;
+                    }
+                }
+                if (id != 0) {
+                    HistroyKeywordsRepository.getInstance().deleteHistroyKeyword(id);
+                }
+                HistroyKeywordsRepository.getInstance().insertHistroyKeyword(new SearchHistroyKeywordEntity(keyword));
+            }
+        });
     }
 
 

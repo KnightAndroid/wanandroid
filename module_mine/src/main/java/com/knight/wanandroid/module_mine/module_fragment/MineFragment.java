@@ -21,6 +21,7 @@ import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;
 import com.knight.wanandroid.module_mine.R;
 import com.knight.wanandroid.module_mine.databinding.MineFragmentMineBinding;
 import com.knight.wanandroid.module_mine.module_activity.LoginActivity;
+import com.knight.wanandroid.module_mine.module_activity.MyShareArticleActivity;
 import com.knight.wanandroid.module_mine.module_contract.MineContract;
 import com.knight.wanandroid.module_mine.module_entity.UserInfoCoinEntity;
 import com.knight.wanandroid.module_mine.module_model.MineModel;
@@ -63,6 +64,7 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
     @Override
     protected void lazyLoadData() {
         if (ModuleConfig.getInstance().user != null) {
+            loadLoading(mDatabind.mineReboundlayoutRoot);
             mPresenter.requestUserInfoCoin();
         }
 
@@ -70,6 +72,7 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
 
     @Override
     protected void reLoadData() {
+        loadLoading(mDatabind.mineReboundlayoutRoot);
         if (ModuleConfig.getInstance().user != null) {
             mPresenter.requestUserInfoCoin();
         }
@@ -87,6 +90,7 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
 
     @Override
     public void setUserInfoCoin(UserInfoCoinEntity userInfoCoinEntity) {
+        showSuccess();
         //设置头像
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setShape(GradientDrawable.OVAL);
@@ -136,6 +140,11 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
             ARouter.getInstance().build(RoutePathActivity.Mine.UserCoinRank_Pager).navigation();
         }
 
+        @LoginCheck
+        public void goMyShareArticles() {
+            startActivity(new Intent(getActivity(), MyShareArticleActivity.class));
+        }
+
         public void Logout(){
             DialogUtils.getConfirmDialog(getActivity(), getResources().getString(R.string.mine_confirm_logout), (dialog, which) -> {
                 mPresenter.requestLogout();
@@ -148,6 +157,7 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
     @Override
     public void showError(String errorMsg) {
         ToastUtils.getInstance().showToast(errorMsg);
+        showloadFailure();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

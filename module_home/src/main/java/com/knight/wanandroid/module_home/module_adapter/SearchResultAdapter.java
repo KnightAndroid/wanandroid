@@ -39,9 +39,9 @@ public class SearchResultAdapter extends BaseMultiItemQuickAdapter<HomeArticleEn
             case HomeConstants.ARTICLE_TEXT_TYPE:
                 //作者
                 if (!TextUtils.isEmpty(homeArticleEntity.getAuthor())) {
-                    baseViewHolder.setText(R.id.home_search_item_articleauthor,homeArticleEntity.getAuthor());
+                    baseViewHolder.setText(R.id.home_search_item_articleauthor,StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),homeArticleEntity.getAuthor(),HomeConstants.SEARCH_KEYWORD));
                 } else {
-                    baseViewHolder.setText(R.id.home_search_item_articleauthor,homeArticleEntity.getShareUser());
+                    baseViewHolder.setText(R.id.home_search_item_articleauthor,StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),homeArticleEntity.getShareUser(),HomeConstants.SEARCH_KEYWORD));
                 }
                 //一级分类
                 if (!TextUtils.isEmpty(homeArticleEntity.getSuperChapterName()) || !TextUtils.isEmpty(homeArticleEntity.getChapterName())) {
@@ -87,9 +87,9 @@ public class SearchResultAdapter extends BaseMultiItemQuickAdapter<HomeArticleEn
                 GlideEngineUtils.getInstance().loadStringPhoto(ApplicationProvider.getInstance().getApplication(),homeArticleEntity.getEnvelopePic(),baseViewHolder.getView(R.id.base_item_imageview));
                 //作者
                 if (!TextUtils.isEmpty(homeArticleEntity.getAuthor())) {
-                    baseViewHolder.setText(R.id.base_item_tv_author,homeArticleEntity.getAuthor());
+                    baseViewHolder.setText(R.id.base_item_tv_author,StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),homeArticleEntity.getAuthor(),HomeConstants.SEARCH_KEYWORD));
                 } else {
-                    baseViewHolder.setText(R.id.base_item_tv_author,homeArticleEntity.getShareUser());
+                    baseViewHolder.setText(R.id.base_item_tv_author,StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),homeArticleEntity.getShareUser(),HomeConstants.SEARCH_KEYWORD));
                 }
 
                 //时间赋值
@@ -101,9 +101,9 @@ public class SearchResultAdapter extends BaseMultiItemQuickAdapter<HomeArticleEn
 
                 //标题
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    baseViewHolder.setText(R.id.base_tv_title, Html.fromHtml(homeArticleEntity.getTitle(),Html.FROM_HTML_MODE_LEGACY));
+                    baseViewHolder.setText(R.id.base_tv_title, StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),Html.fromHtml(homeArticleEntity.getTitle(),Html.FROM_HTML_MODE_LEGACY).toString(), HomeConstants.SEARCH_KEYWORD));
                 } else {
-                    baseViewHolder.setText(R.id.base_tv_title,Html.fromHtml(homeArticleEntity.getTitle()));
+                    baseViewHolder.setText(R.id.base_tv_title,StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),Html.fromHtml(homeArticleEntity.getTitle()).toString(),HomeConstants.SEARCH_KEYWORD));
                 }
 
                 //描述
@@ -111,9 +111,9 @@ public class SearchResultAdapter extends BaseMultiItemQuickAdapter<HomeArticleEn
                     baseViewHolder.setVisible(R.id.base_tv_project_desc,true);
                     //标题
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        baseViewHolder.setText(R.id.base_tv_project_desc, Html.fromHtml(homeArticleEntity.getDesc(),Html.FROM_HTML_MODE_LEGACY));
+                        baseViewHolder.setText(R.id.base_tv_project_desc, StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),Html.fromHtml(homeArticleEntity.getDesc(),Html.FROM_HTML_MODE_LEGACY).toString(), HomeConstants.SEARCH_KEYWORD));
                     } else {
-                        baseViewHolder.setText(R.id.base_tv_project_desc,Html.fromHtml(homeArticleEntity.getDesc()));
+                        baseViewHolder.setText(R.id.base_tv_project_desc,StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),Html.fromHtml(homeArticleEntity.getDesc()).toString(),HomeConstants.SEARCH_KEYWORD));
                     }
                 } else {
                     baseViewHolder.setGone(R.id.base_tv_project_desc,true);

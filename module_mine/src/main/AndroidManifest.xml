@@ -8,6 +8,7 @@
         <activity android:name=".module_activity.RegisterActivity" />
         <activity android:name=".module_activity.MyPointDetailActivity"/>
         <activity android:name=".module_activity.CoinRankActivity"/>
+        <activity android:name=".module_activity.MyShareArticleActivity"/>
     </application>
 
 </manifest>

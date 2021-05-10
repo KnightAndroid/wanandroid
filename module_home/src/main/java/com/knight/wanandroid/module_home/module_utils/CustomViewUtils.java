@@ -19,6 +19,7 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.Simple
 import java.util.List;
 
 import androidx.viewpager2.widget.ViewPager2;
+import kotlin.jvm.functions.Function1;
 
 /**
  * @author created by knight
@@ -35,7 +36,7 @@ public class CustomViewUtils {
      * @param viewPager2
      * @param mDataList
      */
-    public static void bindViewPager2(MagicIndicator magicIndicator,ViewPager2 viewPager2, List<String> mDataList) {
+    public static void bindViewPager2(MagicIndicator magicIndicator, ViewPager2 viewPager2, List<String> mDataList, Function1 action) {
         magicIndicator.setBackgroundColor(Color.WHITE);
         CommonNavigator commonNavigator = new CommonNavigator(ApplicationProvider.getInstance().getApplication());
         commonNavigator.setLeftPadding(ScreenUtils.dp2px(16));
@@ -57,6 +58,7 @@ public class CustomViewUtils {
                     public void onClick(View v) {
                         HomeConstants.ARTICLE_TYPE = mDataList.get(index);
                         viewPager2.setCurrentItem(index);
+                        action.invoke(index);
                     }
                 });
                 return simplePagerTitleView;
