@@ -3,8 +3,8 @@ package com.knight.wanandroid.module_home.module_entity;
 import android.text.TextUtils;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
+import com.knight.wanandroid.library_base.AppConfig;
 import com.knight.wanandroid.library_base.entity.BaseEntity;
-import com.knight.wanandroid.module_home.module_constants.HomeConstants;
 
 import java.util.List;
 
@@ -63,7 +63,7 @@ public class HomeArticleEntity extends BaseEntity implements MultiItemEntity {
     private String descMd;
     private String envelopePic;
     private boolean fresh;
-    private String id;
+    private int id;
     private String link;
     private String niceDate;
     private String niceShareDate;
@@ -180,11 +180,11 @@ public class HomeArticleEntity extends BaseEntity implements MultiItemEntity {
         this.fresh = fresh;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -344,8 +344,8 @@ public class HomeArticleEntity extends BaseEntity implements MultiItemEntity {
     @Override
     public int getItemType() {
         if (TextUtils.isEmpty(envelopePic)) {
-            return HomeConstants.ARTICLE_TEXT_TYPE;
+            return AppConfig.ARTICLE_TEXT_TYPE;
         }
-        return HomeConstants.ARTICLE_PICTURE_TYPE;
+        return AppConfig.ARTICLE_PICTURE_TYPE;
     }
 }

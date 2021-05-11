@@ -8,6 +8,7 @@
     android:layout_marginLeft="@dimen/base_dimen_8"
     android:layout_marginRight="@dimen/base_dimen_8"
     app:cardCornerRadius="@dimen/base_dimen_6"
+    android:foreground="?android:attr/selectableItemBackground"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

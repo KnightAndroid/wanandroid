@@ -2,6 +2,7 @@ package com.knight.wanandroid.module_web.module_activity;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
@@ -17,6 +18,7 @@ import com.knight.wanandroid.library_base.activity.BaseDBActivity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.module_web.R;
 import com.knight.wanandroid.module_web.databinding.WebActivityMainBinding;
+import com.knight.wanandroid.module_web.module_fragment.WebBottomFragment;
 import com.knight.wanandroid.module_web.module_view.WebLayout;
 
 import androidx.core.content.ContextCompat;
@@ -32,7 +34,17 @@ public class WebActivity extends BaseDBActivity<WebActivityMainBinding> {
 
     @Autowired(name = "webUrl")
     String webUrl = "";
+
+
+    @Autowired(name = "title")
+    String title = "";
     private AgentWeb mAgentWeb;
+
+
+    @Autowired(name = "articleId")
+    int articleId = 0;
+
+
 
 
     @Override
@@ -43,6 +55,7 @@ public class WebActivity extends BaseDBActivity<WebActivityMainBinding> {
     @Override
     public void initView(Bundle savedInstanceState) {
         ARouter.getInstance().inject(this);
+        mDatabind.includeWebToolbar.baseIvRight.setVisibility(View.VISIBLE);
         mAgentWeb = AgentWeb.with(this)
                 .setAgentWebParent(mDatabind.webLl, new LinearLayout.LayoutParams(-1, -1))
                 .useDefaultIndicator(ContextCompat.getColor(this,R.color.base_color_theme),2)
@@ -56,7 +69,14 @@ public class WebActivity extends BaseDBActivity<WebActivityMainBinding> {
                 .createAgentWeb()
                 .ready()
                 .go(webUrl);
+        mDatabind.includeWebToolbar.baseTvTitle.setText(title);
         mDatabind.includeWebToolbar.baseIvBack.setOnClickListener(v -> finish());
+        mDatabind.includeWebToolbar.baseIvRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WebBottomFragment.newInstance(webUrl,title,articleId).show(getSupportFragmentManager(),"dialog_web");
+            }
+        });
 
     }
 
@@ -76,7 +96,7 @@ public class WebActivity extends BaseDBActivity<WebActivityMainBinding> {
         @Override
         public void onReceivedTitle(WebView view, String title) {
             super.onReceivedTitle(view, title);
-            mDatabind.includeWebToolbar.baseTvTitle.setText(title);
+
         }
     };
 

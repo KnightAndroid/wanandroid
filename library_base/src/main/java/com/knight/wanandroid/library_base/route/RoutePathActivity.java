@@ -43,6 +43,7 @@ public class RoutePathActivity {
         public static final String UserCoin_pager = Mine + "/mine_usercoin";
         public static final String UserCoinRank_Pager = Mine + "/mine_coinrank";
         public static final String MyShareArticle_Pager = Mine + "/mine_sharearticle";
+        public static final String MyCollectArticle_Pager = Mine + "/mine_collectarticle";
 
     }
 

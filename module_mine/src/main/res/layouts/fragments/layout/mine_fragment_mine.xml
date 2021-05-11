@@ -175,6 +175,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/base_dimen_20"
                         android:layout_marginBottom="@dimen/base_dimen_20"
+                        android:onClick="@{()->click.goMyCollectArticles()}"
                         >
                         <TextView
                             android:layout_width="wrap_content"
@@ -203,7 +204,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/mine_me_sharearticles"
+                            android:text="@string/mine_me_shareArticles"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/base_dimen_18"
                             />

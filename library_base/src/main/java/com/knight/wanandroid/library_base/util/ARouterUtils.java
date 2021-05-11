@@ -17,9 +17,22 @@ public final class ARouterUtils {
      * 跳转到webActivity
      * @param webUrl
      */
-    public static void startWeb(String webUrl){
+    public static void startWeb(String webUrl,String title,int articleId){
         ARouter.getInstance().build(RoutePathActivity.Web.Web_Pager)
-                .withString("webUrl",webUrl).navigation();
+                .withString("webUrl",webUrl)
+                .withString("title",title)
+                .withInt("articleId",articleId)
+                .navigation();
+    }
+
+
+    /**
+     *
+     * 跳转到目标Activity
+     * @param activity
+     */
+    public static void startActivity(String activity){
+        ARouter.getInstance().build(activity).navigation();
     }
 
 }

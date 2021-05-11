@@ -1,3 +1,7 @@
 <resources>
     <string name="web_app_name">module_web</string>
+    <string name="web_open_browser">在浏览器打开</string>
+    <string name="web_open_share">分享</string>
+    <string name="web_collect">收藏</string>
+    <string name="web_share_article_url">%1$s分享【%2$s】：%3$s</string>
 </resources>

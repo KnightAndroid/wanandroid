@@ -13,14 +13,14 @@ import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
 import com.knight.wanandroid.library_base.entity.UserInfoEntity;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
+import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
+import com.knight.wanandroid.library_base.util.ARouterUtils;
 import com.knight.wanandroid.library_common.ApplicationProvider;
 import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.GsonUtils;
 import com.knight.wanandroid.library_util.JsonUtils;
-import com.knight.wanandroid.library_util.ScreenUtils;
-import com.knight.wanandroid.library_util.StatusBarUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_util.ViewSetUtils;
 import com.knight.wanandroid.library_util.constant.MMkvConstants;
@@ -209,6 +209,12 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
             startActivity(new Intent(getActivity(), SearchActivity.class));
         }
 
+        public void goLogin(){
+            if (mDatabind.homeIncludeToolbar.homeTvLoginname.getText().toString().equals("登录")) {
+                ARouterUtils.startActivity(RoutePathActivity.Mine.Login_Pager);
+            }
+        }
+
     }
 
     private void initMagicIndicator() {
@@ -227,8 +233,8 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
             public Object invoke(Object o) {
                 int[] position = new int[2];
                 mDatabind.homeLlTop.getLocationOnScreen(position);
-                mDatabind.homeCoordinatorsl.fling(mDatabind.homeLlTop.getHeight() + position[1] - StatusBarUtils.getStatusBarHeight(getActivity()) - mDatabind.magicIndicator.getHeight() - ScreenUtils.dp2px(10));
-                mDatabind.homeCoordinatorsl.smoothScrollBy(0,mDatabind.homeLlTop.getHeight() + position[1] - StatusBarUtils.getStatusBarHeight(getActivity()) - mDatabind.magicIndicator.getHeight() - ScreenUtils.dp2px(10),1000);
+                mDatabind.homeCoordinatorsl.fling(mDatabind.homeLlTop.getHeight() + position[1]  - mDatabind.homeIncludeToolbar.toolbar.getHeight());
+                mDatabind.homeCoordinatorsl.smoothScrollBy(0,mDatabind.homeLlTop.getHeight() + position[1]  - mDatabind.homeIncludeToolbar.toolbar.getHeight(),600);
                 return null;
             }
         });

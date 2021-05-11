@@ -1,5 +1,5 @@
 <resources>
-
+    <string name="base_app">wanandroid</string>
     <string name="base_permission_hint">授权提示</string>
     <string name="base_permission_message">使用此功能需要授予权限</string>
     <string name="base_permission_granted">授予</string>

@@ -52,7 +52,7 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
         mHomeArticleAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
-                ARouterUtils.startWeb(mHomeArticleAdapter.getData().get(position).getLink());
+                ARouterUtils.startWeb(mHomeArticleAdapter.getData().get(position).getLink(),mHomeArticleAdapter.getData().get(position).getTitle(),mHomeArticleAdapter.getData().get(position).getId());
             }
         });
         loadLoading(mDatabind.llHome);

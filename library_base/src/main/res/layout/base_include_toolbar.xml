@@ -19,7 +19,7 @@
             android:background="@drawable/base_right_arrow"/>
 
 
-        <TextView
+        <com.knight.wanandroid.library_widget.MarqueeTextView
             android:id="@+id/base_tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,7 +27,23 @@
             android:gravity="center"
             android:text="标题"
             android:textColor="@color/base_color_title"
-            android:layout_gravity="center"/>
+            android:singleLine="true"
+            android:scrollHorizontally="true"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_gravity="center"
+            android:maxEms="12"/>
+
+        <ImageView
+            android:id="@+id/base_iv_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/base_icon_more"
+            android:layout_gravity="right|center"
+            android:layout_marginRight="@dimen/base_dimen_12"
+            android:visibility="gone"/>
 
     </com.knight.wanandroid.library_widget.CompatToobar>
 

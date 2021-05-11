@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <data>
+
+
+        <variable
+            name="click"
+            type="com.knight.wanandroid.module_web.module_fragment.WebBottomFragment.ProcyClick" />
+
+    </data>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/web_top_round_white"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/web_share_article"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:gravity="center"
+                android:text="@string/web_open_share"
+                android:background="?attr/selectableItemBackground"
+                android:textColor="@color/base_color_title"
+                android:textSize="@dimen/base_dimen_16"
+                android:onClick="@{()->click.shareArticle()}"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5px"
+                android:background="#dddddd" />
+
+            <TextView
+                android:id="@+id/web_collect_article"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:gravity="center"
+                android:text="@string/web_collect"
+                android:background="?attr/selectableItemBackground"
+                android:textColor="@color/base_color_title"
+                android:textSize="@dimen/base_dimen_16" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5px"
+                android:background="#dddddd" />
+            <TextView
+                android:id="@+id/web_open_browser"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:gravity="center"
+                android:background="?attr/selectableItemBackground"
+                android:text="@string/web_open_browser"
+                android:textColor="@color/base_color_title"
+                android:textSize="@dimen/base_dimen_16" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>
+
