@@ -21,6 +21,10 @@ public interface HomeArticleContract {
         void setAllHomeArticle(HomeArticleListEntity result);
         //设置搜索文章数据
         void setSearchArticle(HomeArticleListEntity result);
+        //收藏站内文章
+        void collectArticle(boolean isCollectSuccess,int position);
+        //取消站内文章
+        void cancelArticle(boolean isCancelSuccess,int position);
     }
 
 
@@ -29,7 +33,10 @@ public interface HomeArticleContract {
         void requestAllHomeArticle(BaseFragment fragment, int page, MvpListener mvpListener);
         //搜索接口文章数据
         void requestSerchArticle(BaseFragment fragment,int page,String keyWords,MvpListener mvpListener);
-
+        //收藏站内文章
+        void requestCollectArticle(BaseFragment fragment,int collectArticleId,MvpListener mvpListener);
+        //取消收藏站内文章
+        void requestCancelCollectArticle(BaseFragment fragment,int collectArticleId,MvpListener mvpListener);
     }
 
     abstract class HomeArticleDataPresenter extends BasePresenter<HomeArticleModel,HomeArticleView>{
@@ -37,6 +44,8 @@ public interface HomeArticleContract {
         public abstract void requestAllHomeArticle(int page);
 
         public abstract void requestSearchArticle(int page,String keyWords);
+        public abstract void requestCollectArticle(int collectArticleId,int position);
+        public abstract void requestCancelCollectArticle(int collectArticleId,int position);
     }
 
 }

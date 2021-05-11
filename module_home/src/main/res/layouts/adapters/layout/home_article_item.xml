@@ -95,7 +95,7 @@
             app:layout_constraintTop_toBottomOf="@id/home_tv_articletitle"
             android:layout_marginLeft="@dimen/base_dimen_8"
             android:layout_marginTop="@dimen/base_dimen_12"
-            android:background="@drawable/base_icon_nocollect"
+
             />
 
 

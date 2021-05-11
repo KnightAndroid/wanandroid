@@ -9,7 +9,6 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.google.gson.reflect.TypeToken;
-import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
 import com.knight.wanandroid.library_base.entity.UserInfoEntity;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
@@ -127,7 +126,6 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
 
     @Override
     protected void reLoadData() {
-
         //请求顶部文章
         mPresenter.requestTopArticle();
         //请求轮播图
@@ -158,6 +156,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
             @Override
             public void onBindView(BannerImageHolder holder, BannerEntity data, int position, int size) {
                 GlideEngineUtils.getInstance().loadStringPhoto(ApplicationProvider.getInstance().getApplication(),data.getImagePath(),holder.imageView);
+                holder.imageView.setOnClickListener(v -> ARouterUtils.startWeb(data.getUrl(),data.getTitle(),data.getId()));
             }
         })
         .addBannerLifecycleObserver(this)
@@ -244,10 +243,9 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
 
     private void initTopAdapterClick() {
         mTopArticleAdapter.setOnItemClickListener(new OnItemClickListener() {
-            @LoginCheck
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
-                ToastUtils.getInstance().showToast("dfdfdfdf");
+                ARouterUtils.startWeb(mTopArticleAdapter.getData().get(position).getLink(),mTopArticleAdapter.getData().get(position).getTitle(),mTopArticleAdapter.getData().get(position).getId());
             }
         });
     }

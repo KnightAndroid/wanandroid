@@ -7,6 +7,8 @@ import com.knight.wanandroid.library_network.listener.HttpCallback;
 import com.knight.wanandroid.library_network.model.HttpData;
 import com.knight.wanandroid.module_home.module_contract.HomeArticleContract;
 import com.knight.wanandroid.module_home.module_entity.HomeArticleListEntity;
+import com.knight.wanandroid.module_home.module_request.CancelCollectArticleApi;
+import com.knight.wanandroid.module_home.module_request.CollectArticleApi;
 import com.knight.wanandroid.module_home.module_request.HomeArticleApi;
 import com.knight.wanandroid.module_home.module_request.SearchArticleApi;
 
@@ -70,5 +72,43 @@ public class HomeArticleModel implements HomeArticleContract.HomeArticleModel{
 
                 });
 
+    }
+
+    @Override
+    public void requestCollectArticle(BaseFragment fragment, int collectArticleId,MvpListener mvpListener) {
+        GoHttp.post(fragment)
+                .api(new CollectArticleApi().setCollectArticleId(collectArticleId))
+                .request(new HttpCallback<HttpData>(fragment){
+                    @Override
+                    public void onSucceed(HttpData result) {
+                        mvpListener.onSuccess(result);
+                    }
+
+                    @Override
+                    public void onFail(Exception e){
+                        mvpListener.onError(e.getMessage());
+                    }
+
+
+                });
+    }
+
+    @Override
+    public void requestCancelCollectArticle(BaseFragment fragment, int collectArticleId, MvpListener mvpListener) {
+        GoHttp.post(fragment)
+                .api(new CancelCollectArticleApi().setCancelArticleId(collectArticleId))
+                .request(new HttpCallback<HttpData>(fragment){
+                    @Override
+                    public void onSucceed(HttpData result) {
+                        mvpListener.onSuccess(result);
+                    }
+
+                    @Override
+                    public void onFail(Exception e){
+                        mvpListener.onError(e.getMessage());
+                    }
+
+
+                });
     }
 }

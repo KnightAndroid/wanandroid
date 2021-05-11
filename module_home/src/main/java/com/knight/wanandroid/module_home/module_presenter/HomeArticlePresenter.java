@@ -1,8 +1,8 @@
 package com.knight.wanandroid.module_home.module_presenter;
 
-import com.knight.wanandroid.library_base.activity.BaseDBActivity;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
+import com.knight.wanandroid.library_network.model.HttpData;
 import com.knight.wanandroid.module_home.module_contract.HomeArticleContract;
 import com.knight.wanandroid.module_home.module_entity.HomeArticleListEntity;
 
@@ -62,6 +62,53 @@ public class HomeArticlePresenter extends HomeArticleContract.HomeArticleDataPre
             public void onSuccess(HomeArticleListEntity data) {
                 mView.setSearchArticle(data);
 
+            }
+
+            @Override
+            public void onError(String errorMsg) {
+                mView.showError(errorMsg);
+            }
+        });
+    }
+
+    @Override
+    public void requestCollectArticle(int collectArticleId,int position) {
+        final HomeArticleContract.HomeArticleView mView = getView();
+        if (mView == null) {
+            return;
+        }
+        mModel.requestCollectArticle((BaseFragment)mView,collectArticleId,new MvpListener<HttpData>(){
+            @Override
+            public void onSuccess(HttpData data) {
+                if (data.getCode() == 0) {
+                    mView.collectArticle(true,position);
+                } else {
+                    mView.collectArticle(false,position);
+                }
+            }
+
+            @Override
+            public void onError(String errorMsg) {
+                mView.showError(errorMsg);
+            }
+        });
+
+    }
+
+    @Override
+    public void requestCancelCollectArticle(int collectArticleId, int position) {
+        final HomeArticleContract.HomeArticleView mView = getView();
+        if (mView == null) {
+            return;
+        }
+        mModel.requestCancelCollectArticle((BaseFragment)mView,collectArticleId,new MvpListener<HttpData>(){
+            @Override
+            public void onSuccess(HttpData data) {
+                if (data.getCode() == 0) {
+                    mView.cancelArticle(true,position);
+                } else {
+                    mView.cancelArticle(false,position);
+                }
             }
 
             @Override

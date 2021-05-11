@@ -59,7 +59,7 @@ public class TopArticleEntity extends BaseEntity {
     private String descMd;
     private String envelopePic;
     private boolean fresh;
-    private String id;
+    private int id;
     private String link;
     private String niceDate;
     private String niceShareDate;
@@ -176,11 +176,11 @@ public class TopArticleEntity extends BaseEntity {
         this.fresh = fresh;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

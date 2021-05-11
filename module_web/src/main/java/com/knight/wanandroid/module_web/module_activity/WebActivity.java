@@ -1,7 +1,9 @@
 package com.knight.wanandroid.module_web.module_activity;
 
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
@@ -69,7 +71,11 @@ public class WebActivity extends BaseDBActivity<WebActivityMainBinding> {
                 .createAgentWeb()
                 .ready()
                 .go(webUrl);
-        mDatabind.includeWebToolbar.baseTvTitle.setText(title);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            mDatabind.includeWebToolbar.baseTvTitle.setText(Html.fromHtml(title,Html.FROM_HTML_MODE_LEGACY));
+        } else {
+            mDatabind.includeWebToolbar.baseTvTitle.setText(Html.fromHtml(title));
+        }
         mDatabind.includeWebToolbar.baseIvBack.setOnClickListener(v -> finish());
         mDatabind.includeWebToolbar.baseIvRight.setOnClickListener(new View.OnClickListener() {
             @Override

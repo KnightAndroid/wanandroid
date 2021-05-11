@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.util.ARouterUtils;
@@ -53,6 +54,21 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
                 ARouterUtils.startWeb(mHomeArticleAdapter.getData().get(position).getLink(),mHomeArticleAdapter.getData().get(position).getTitle(),mHomeArticleAdapter.getData().get(position).getId());
+            }
+        });
+
+        mHomeArticleAdapter.addChildClickViewIds(R.id.home_icon_collect);
+        mHomeArticleAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+                if (view.getId() == R.id.home_icon_collect) {
+                    if (mHomeArticleAdapter.getData().get(position).isCollect()) {
+                        mPresenter.requestCancelCollectArticle(mHomeArticleAdapter.getData().get(position).getId(),position);
+                    } else {
+                        mPresenter.requestCollectArticle(mHomeArticleAdapter.getData().get(position).getId(),position);
+                    }
+
+                }
             }
         });
         loadLoading(mDatabind.llHome);
@@ -110,6 +126,19 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
     public void setSearchArticle(HomeArticleListEntity result) {
 
         loadArticleData(result);
+    }
+
+    @Override
+    public void collectArticle(boolean isCollectSuccess,int position) {
+        mHomeArticleAdapter.getData().get(position).setCollect(true);
+        mHomeArticleAdapter.notifyItemChanged(position);
+
+    }
+
+    @Override
+    public void cancelArticle(boolean isCancelSuccess, int position) {
+        mHomeArticleAdapter.getData().get(position).setCollect(false);
+        mHomeArticleAdapter.notifyItemChanged(position);
     }
 
 
