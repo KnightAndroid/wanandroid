@@ -7,9 +7,9 @@ import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
-import com.knight.wanandroid.library_base.activity.BaseDBActivity;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
+import com.knight.wanandroid.library_base.util.ARouterUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.module_hierachy.R;
 import com.knight.wanandroid.module_hierachy.databinding.HierachyRightFragmentBinding;
@@ -100,13 +100,17 @@ public class HierachyRightFragment extends BaseFragment<HierachyRightFragmentBin
         mHierachyClassifyDetailAdapter = new HierachyClassifyDetailAdapter(getActivity(), mDatas, new RvListener() {
             @Override
             public void onItemClick(int id, int position) {
-                String content = "";
                 if (id == R.id.hierachy_root) {
-                    content = "title";
-                } else if (id == R.id.content) {
-                    content = "content";
+
+
+                } else if (id == R.id.hierachy_tv_content) {
+                    if (isNavigate) {
+                        ARouterUtils.startWeb(mDatas.get(position).getLink(),mDatas.get(position).getName(),mDatas.get(position).getId());
+                    }
+
                 }
-                ToastUtils.getInstance().showToast("当前点击的是"+content+":"+mDatas.get(position).getName());
+
+
             }
         });
 
@@ -188,6 +192,9 @@ public class HierachyRightFragment extends BaseFragment<HierachyRightFragmentBin
                 hierachyRightBodyBeanEntity.setName(navigateChildrenEntities.get(j).getTitle());
                 hierachyRightBodyBeanEntity.setTag(String.valueOf(i));
                 hierachyRightBodyBeanEntity.setTitleName(navigateChildrenEntities.get(j).getChapterName());
+                hierachyRightBodyBeanEntity.setLink(navigateChildrenEntities.get(j).getLink());
+                hierachyRightBodyBeanEntity.setId(navigateChildrenEntities.get(j).getId());
+                hierachyRightBodyBeanEntity.setTitle(false);
                 mDatas.add(hierachyRightBodyBeanEntity);
             }
 

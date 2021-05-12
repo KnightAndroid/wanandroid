@@ -22,17 +22,18 @@ public interface SearchContract {
     interface SearchView extends BaseView {
         //获取搜索热词
         void setSearchHotKey(List<SearchHotKeyEntity> searchHotKeyEntities);
+
     }
 
 
     interface SearchModel extends BaseModel{
         //请求搜索热词
         void requestSearchHotkey(BaseActivity activity, MvpListener mvpListener);
+
     }
 
     abstract class SearchDataPresenter extends BasePresenter<SearchModel,SearchView>{
         public abstract void requestSearchHotkey();
-        public abstract void saveSearchKeyword(String keyword);
 
 
     }

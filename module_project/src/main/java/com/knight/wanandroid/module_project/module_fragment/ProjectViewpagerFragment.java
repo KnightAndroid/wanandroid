@@ -1,8 +1,11 @@
 package com.knight.wanandroid.module_project.module_fragment;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
 import com.knight.wanandroid.library_util.ToastUtils;
@@ -65,7 +68,7 @@ public class ProjectViewpagerFragment extends BaseFragment<ProjectViewpagerFragm
         mDatabind.projectListSmartfreshlayout.setOnLoadMoreListener(this);
         mProjectArticleAdapter = new ProjectArticleAdapter(new ArrayList<>());
         SetInitCustomView.initSwipeRecycleview(mDatabind.projectListRv,new LinearLayoutManager(getActivity()),mProjectArticleAdapter,true);
-
+        initListener();
     }
 
     @Override
@@ -102,6 +105,18 @@ public class ProjectViewpagerFragment extends BaseFragment<ProjectViewpagerFragm
     }
 
     @Override
+    public void collectArticleSuccess(int position) {
+        mProjectArticleAdapter.getData().get(position).setCollect(true);
+        mProjectArticleAdapter.notifyItemChanged(position);
+    }
+
+    @Override
+    public void cancelArticleSuccess(int position) {
+        mProjectArticleAdapter.getData().get(position).setCollect(false);
+        mProjectArticleAdapter.notifyItemChanged(position);
+    }
+
+    @Override
     public void showLoading() {
 
     }
@@ -131,5 +146,21 @@ public class ProjectViewpagerFragment extends BaseFragment<ProjectViewpagerFragm
         }
         mDatabind.projectListSmartfreshlayout.setEnableLoadMore(true);
         mPresenter.requestProjectArticle(page,cid,isNewProject);
+    }
+
+    private void initListener(){
+        mProjectArticleAdapter.addChildClickViewIds(R.id.base_article_collect);
+        mProjectArticleAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+                if (view.getId() == R.id.base_article_collect) {
+                    if (mProjectArticleAdapter.getData().get(position).isCollect()) {
+                        mPresenter.requestCancelCollectArticle(mProjectArticleAdapter.getData().get(position).getId(),position);
+                    } else {
+                        mPresenter.requestCollectArticle(mProjectArticleAdapter.getData().get(position).getId(),position);
+                    }
+                }
+            }
+        });
     }
 }

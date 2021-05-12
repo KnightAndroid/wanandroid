@@ -28,7 +28,19 @@ public final class ARouterUtils {
 
     /**
      *
-     * 跳转到目标Activity
+     * 带参数跳转到目标Activity
+     * @param activity
+     */
+    public static void startActivity(String activity,String parameterKey,String parameter){
+        ARouter.getInstance().build(activity).
+                withString(parameterKey,parameter).navigation();
+    }
+
+
+
+    /**
+     *
+     * 带参数跳转到目标Activity
      * @param activity
      */
     public static void startActivity(String activity){

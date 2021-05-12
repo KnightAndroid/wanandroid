@@ -22,9 +22,9 @@ public interface HomeArticleContract {
         //设置搜索文章数据
         void setSearchArticle(HomeArticleListEntity result);
         //收藏站内文章
-        void collectArticle(boolean isCollectSuccess,int position);
+        void collectArticleSuccess(int position);
         //取消站内文章
-        void cancelArticle(boolean isCancelSuccess,int position);
+        void cancelArticleSuccess(int position);
     }
 
 

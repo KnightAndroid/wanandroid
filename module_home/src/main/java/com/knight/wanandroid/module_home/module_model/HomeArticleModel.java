@@ -7,8 +7,8 @@ import com.knight.wanandroid.library_network.listener.HttpCallback;
 import com.knight.wanandroid.library_network.model.HttpData;
 import com.knight.wanandroid.module_home.module_contract.HomeArticleContract;
 import com.knight.wanandroid.module_home.module_entity.HomeArticleListEntity;
-import com.knight.wanandroid.module_home.module_request.CancelCollectArticleApi;
-import com.knight.wanandroid.module_home.module_request.CollectArticleApi;
+import com.knight.wanandroid.library_base.api.CancelCollectArticleApi;
+import com.knight.wanandroid.library_base.api.CollectArticleApi;
 import com.knight.wanandroid.module_home.module_request.HomeArticleApi;
 import com.knight.wanandroid.module_home.module_request.SearchArticleApi;
 

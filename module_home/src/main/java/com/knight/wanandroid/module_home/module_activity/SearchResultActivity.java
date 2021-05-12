@@ -3,19 +3,27 @@ package com.knight.wanandroid.module_home.module_activity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemChildClickListener;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
+import com.knight.wanandroid.library_base.AppConfig;
 import com.knight.wanandroid.library_base.activity.BaseActivity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
+import com.knight.wanandroid.library_base.util.ARouterUtils;
+import com.knight.wanandroid.library_base.util.DataBaseUtils;
 import com.knight.wanandroid.library_util.SystemUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.module_home.R;
 import com.knight.wanandroid.module_home.databinding.HomeSearchresultActivityBinding;
 import com.knight.wanandroid.module_home.module_adapter.SearchResultAdapter;
-import com.knight.wanandroid.module_home.module_constants.HomeConstants;
 import com.knight.wanandroid.module_home.module_contract.SearchResultContract;
 import com.knight.wanandroid.module_home.module_entity.HomeArticleListEntity;
 import com.knight.wanandroid.module_home.module_model.SearchResultModel;
@@ -23,10 +31,6 @@ import com.knight.wanandroid.module_home.module_presenter.SearchResultPresenter;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
-import com.wanandroid.knight.library_database.entity.SearchHistroyKeywordEntity;
-import com.wanandroid.knight.library_database.repository.HistroyKeywordsRepository;
-
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -41,8 +45,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 public class SearchResultActivity extends BaseActivity<HomeSearchresultActivityBinding, SearchResultPresenter, SearchResultModel> implements SearchResultContract.SearchResultView,
         OnRefreshListener, OnLoadMoreListener {
     private SearchResultAdapter mSearchResultAdapter;
-    private String keyword;
+
     private int page = 0;
+
+
+    @Autowired(name = "keyword")
+    String keyword = "";
 
 
     @Override
@@ -54,14 +62,15 @@ public class SearchResultActivity extends BaseActivity<HomeSearchresultActivityB
 
     @Override
     public void initView(Bundle savedInstanceState) {
+        ARouter.getInstance().inject(this);
         mDatabind.setClick(new ProcyClick());
         showLoading(mDatabind.includeSearchresult.baseFreshlayout);
-        keyword = getIntent().getStringExtra("keyword");
         mDatabind.searchresultEt.setText(keyword);
         mSearchResultAdapter = new SearchResultAdapter();
         SetInitCustomView.initSwipeRecycleview(mDatabind.includeSearchresult.baseBodyRv,new LinearLayoutManager(this),mSearchResultAdapter,true);
         mDatabind.includeSearchresult.baseFreshlayout.setOnLoadMoreListener(this);
         mDatabind.includeSearchresult.baseFreshlayout.setOnRefreshListener(this);
+        initListener();
         mDatabind.searchresultIvBack.setOnClickListener(v -> finish());
         SystemUtils.seteditTextChangeListener(mDatabind.searchresultEt,mDatabind.searchresultTvCancel);
         mDatabind.searchresultEt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -132,6 +141,18 @@ public class SearchResultActivity extends BaseActivity<HomeSearchresultActivityB
     }
 
     @Override
+    public void collectArticleSuccess(int position) {
+        mSearchResultAdapter.getData().get(position).setCollect(true);
+        mSearchResultAdapter.notifyItemChanged(position);
+    }
+
+    @Override
+    public void cancelArticleSuccess(int position) {
+        mSearchResultAdapter.getData().get(position).setCollect(false);
+        mSearchResultAdapter.notifyItemChanged(position);
+    }
+
+    @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
         mPresenter.requestSearchResult(page,keyword);
     }
@@ -157,35 +178,36 @@ public class SearchResultActivity extends BaseActivity<HomeSearchresultActivityB
         mDatabind.includeSearchresult.baseFreshlayout.autoRefresh();
         page = 0;
         keyword = mDatabind.searchresultEt.getText().toString();
-        saveSearchKeyword(keyword);
-        HomeConstants.SEARCH_KEYWORD = keyword;
+        DataBaseUtils.saveSearchKeyword(keyword);
+        AppConfig.SEARCH_KEYWORD = keyword;
         mDatabind.includeSearchresult.baseFreshlayout.setEnableLoadMore(true);
         mPresenter.requestSearchResult(page,keyword);
     }
 
-    /**
-     *
-     * 保存搜索关键词
-     * @param keyword
-     */
-    private void saveSearchKeyword(String keyword) {
-        HistroyKeywordsRepository.getInstance().queryHistroyKeywords(new HistroyKeywordsRepository.OnQuerySuccessCallBack() {
+
+    private void initListener(){
+        mSearchResultAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void onQuerySuccessCallBack(List<SearchHistroyKeywordEntity> mSearchHistroyKeywordEntities) {
-                long id = 0;
-                for (SearchHistroyKeywordEntity searchHistroyKeywordEntity : mSearchHistroyKeywordEntities) {
-                    if (TextUtils.equals(searchHistroyKeywordEntity.getName(), keyword)) {
-                        id = searchHistroyKeywordEntity.getId();
-                        break;
-                    }
-                }
-                if (id != 0) {
-                    HistroyKeywordsRepository.getInstance().deleteHistroyKeyword(id);
-                }
-                HistroyKeywordsRepository.getInstance().insertHistroyKeyword(new SearchHistroyKeywordEntity(keyword));
+            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
+                ARouterUtils.startWeb(mSearchResultAdapter.getData().get(position).getLink(),mSearchResultAdapter.getData().get(position).getTitle(),mSearchResultAdapter.getData().get(position).getId());
             }
         });
-    }
 
+
+        mSearchResultAdapter.addChildClickViewIds(R.id.base_icon_collect,R.id.base_article_collect);
+        mSearchResultAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+                if(view.getId() == R.id.base_icon_collect || view.getId() == R.id.base_article_collect) {
+                    if (mSearchResultAdapter.getData().get(position).isCollect()) {
+                        mPresenter.requestCancelCollectArticle(mSearchResultAdapter.getData().get(position).getId(),position);
+                    } else {
+                        mPresenter.requestCollectArticle(mSearchResultAdapter.getData().get(position).getId(),position);
+                    }
+                }
+            }
+        });
+
+    }
 
 }

@@ -2,15 +2,23 @@ package com.knight.wanandroid.module_square.module_fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemChildClickListener;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
 import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
+import com.knight.wanandroid.library_base.AppConfig;
 import com.knight.wanandroid.library_base.entity.SearchHotKeyEntity;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
+import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
+import com.knight.wanandroid.library_base.util.ARouterUtils;
+import com.knight.wanandroid.library_base.util.DataBaseUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
@@ -64,7 +72,7 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
         loadLoading(mDatabind.squareSharearticleFreshlayout);
         mHotKeyAdapter = new HotKeyAdapter(new ArrayList<SearchHotKeyEntity>());
         mSquareArticleAdapter = new SquareArticleAdapter(new ArrayList<SquareArticleEntity>());
-
+        initListener();
         FlexboxLayoutManager flexboxLayoutManager = new FlexboxLayoutManager(getActivity());
         //方向 主轴为水平方向,起点在左端
         flexboxLayoutManager.setFlexDirection(FlexDirection.ROW);
@@ -84,6 +92,47 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
     protected void reLoadData() {
         mPresenter.requestHotKey();
         mPresenter.requestShareData(page);
+    }
+
+
+    private void initListener(){
+        mHotKeyAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
+                AppConfig.SEARCH_KEYWORD = mHotKeyAdapter.getData().get(position).getName();
+                DataBaseUtils.saveSearchKeyword(AppConfig.SEARCH_KEYWORD);
+                ARouterUtils.startActivity(RoutePathActivity.Home.searchResult,"keyword",AppConfig.SEARCH_KEYWORD);
+            }
+        });
+
+        mSquareArticleAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
+                ARouterUtils.startWeb(mSquareArticleAdapter.getData().get(position).getLink(),mSquareArticleAdapter.getData().get(position).getTitle(),mSquareArticleAdapter.getData().get(position).getId());
+            }
+        });
+
+        mSquareArticleAdapter.addChildClickViewIds(R.id.square_icon_collect);
+        mSquareArticleAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+                if (view.getId() == R.id.square_icon_collect) {
+                    if (mSquareArticleAdapter.getData().get(position).isCollect()) {
+                        mPresenter.requestCancelCollectArticle(mSquareArticleAdapter.getData().get(position).getId(),position);
+                    } else {
+                        mPresenter.requestCollectArticle(mSquareArticleAdapter.getData().get(position).getId(),position);
+                    }
+                }
+            }
+        });
+
+
+
+
+
+
+
+
     }
 
     /**
@@ -121,6 +170,18 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
             mDatabind.squareSharearticleFreshlayout.setEnableLoadMore(false);
         }
 
+    }
+
+    @Override
+    public void collectArticleSuccess(int position) {
+        mSquareArticleAdapter.getData().get(position).setCollect(true);
+        mSquareArticleAdapter.notifyItemChanged(position);
+    }
+
+    @Override
+    public void cancelArticleSuccess(int position) {
+        mSquareArticleAdapter.getData().get(position).setCollect(false);
+        mSquareArticleAdapter.notifyItemChanged(position);
     }
 
 

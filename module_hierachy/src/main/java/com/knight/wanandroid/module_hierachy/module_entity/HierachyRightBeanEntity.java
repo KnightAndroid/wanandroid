@@ -13,6 +13,12 @@ public class HierachyRightBeanEntity extends BaseEntity {
     private String titleName;
     private String tag;
     private boolean isTitle;
+    private String link;
+
+
+
+    //跳转到webview要用
+    private int id;
 
     public String getName() {
         return name == null ? "" : name;
@@ -44,5 +50,21 @@ public class HierachyRightBeanEntity extends BaseEntity {
 
     public void setTitle(boolean title) {
         isTitle = title;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getLink() {
+        return link == null ? "" : link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 }

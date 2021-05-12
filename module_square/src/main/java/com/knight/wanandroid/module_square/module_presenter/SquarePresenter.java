@@ -3,6 +3,7 @@ package com.knight.wanandroid.module_square.module_presenter;
 import com.knight.wanandroid.library_base.entity.SearchHotKeyEntity;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
+import com.knight.wanandroid.library_network.model.HttpData;
 import com.knight.wanandroid.module_square.module_contract.SquareContact;
 import com.knight.wanandroid.module_square.module_entity.SquareArticleListEntity;
 
@@ -50,6 +51,44 @@ public class SquarePresenter extends SquareContact.SquareDataPresenter{
             @Override
             public void onSuccess(SquareArticleListEntity data) {
                 mView.setShareArticles(data);
+            }
+
+            @Override
+            public void onError(String errorMsg) {
+                mView.showError(errorMsg);
+            }
+        });
+    }
+
+    @Override
+    public void requestCollectArticle(int collectArticleId, int position) {
+        final SquareContact.SquareView mView = getView();
+        if (mView == null) {
+            return;
+        }
+        mModel.requestCollectArticle((BaseFragment) mView,collectArticleId,new MvpListener<HttpData>(){
+            @Override
+            public void onSuccess(HttpData data) {
+                mView.collectArticleSuccess(position);
+            }
+
+            @Override
+            public void onError(String errorMsg) {
+                mView.showError(errorMsg);
+            }
+        });
+    }
+
+    @Override
+    public void requestCancelCollectArticle(int collectArticleId, int position) {
+        final SquareContact.SquareView mView = getView();
+        if (mView == null) {
+            return;
+        }
+        mModel.requestCancelCollectArticle((BaseFragment) mView,collectArticleId,new MvpListener<HttpData>(){
+            @Override
+            public void onSuccess(HttpData data) {
+                mView.cancelArticleSuccess(position);
             }
 
             @Override

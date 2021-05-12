@@ -25,8 +25,12 @@ public interface SquareContact {
       //搜索热词
       void setHotKey(List<SearchHotKeyEntity> searchHotKeyEntities);
       
-      //分享最新文章
+      //最新文章
       void setShareArticles(SquareArticleListEntity result);
+      //收藏站内文章
+      void collectArticleSuccess(int position);
+      //取消站内文章
+      void cancelArticleSuccess(int position);
 
    }
 
@@ -36,14 +40,19 @@ public interface SquareContact {
       void requestHotKey(BaseFragment fragment, MvpListener mvpListener);
       //请求数据
       void requestShareArticles(BaseFragment fragment, int page,MvpListener mvpListener);
+      //收藏站内文章
+      void requestCollectArticle(BaseFragment fragment, int collectArticleId, MvpListener mvpListener);
+      //取消收藏站内文章
+      void requestCancelCollectArticle(BaseFragment fragment,int collectArticleId,MvpListener mvpListener);
    }
 
 
    abstract class SquareDataPresenter extends BasePresenter<SquareModel,SquareView>{
-
       //请求热词
       public abstract void requestHotKey();
       //具体实现
       public abstract void requestShareData(int page);
+      public abstract void requestCollectArticle(int collectArticleId,int position);
+      public abstract void requestCancelCollectArticle(int collectArticleId,int position);
    }
 }

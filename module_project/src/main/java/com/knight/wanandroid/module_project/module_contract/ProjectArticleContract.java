@@ -16,17 +16,25 @@ import com.knight.wanandroid.module_project.module_entity.ProjectArticleListEnti
 public interface ProjectArticleContract {
     interface ProjectArticleView extends BaseView {
         void setProjectArticle(ProjectArticleListEntity projectArticle);
+        //收藏站内文章
+        void collectArticleSuccess(int position);
+        //取消站内文章
+        void cancelArticleSuccess(int position);
 
     }
 
     interface ProjectArticleModel extends BaseModel{
         void requestProjectArticle(BaseFragment fragment, int page, int cid, boolean isNewProject, MvpListener mvpListener);
-
+        //收藏站内文章
+        void requestCollectArticle(BaseFragment fragment,int collectArticleId,MvpListener mvpListener);
+        //取消收藏站内文章
+        void requestCancelCollectArticle(BaseFragment fragment,int collectArticleId,MvpListener mvpListener);
     }
 
     abstract class ProjectArticleDataPresenter extends BasePresenter<ProjectArticleModel,ProjectArticleView>{
         public abstract void requestProjectArticle(int page, int cid,boolean isNewProject);
-
+        public abstract void requestCollectArticle(int collectArticleId,int position);
+        public abstract void requestCancelCollectArticle(int collectArticleId,int position);
     }
 
 

@@ -7,6 +7,8 @@ import com.knight.wanandroid.library_network.listener.HttpCallback;
 import com.knight.wanandroid.library_network.model.HttpData;
 import com.knight.wanandroid.module_home.module_contract.SearchResultContract;
 import com.knight.wanandroid.module_home.module_entity.HomeArticleListEntity;
+import com.knight.wanandroid.library_base.api.CancelCollectArticleApi;
+import com.knight.wanandroid.library_base.api.CollectArticleApi;
 import com.knight.wanandroid.module_home.module_request.SearchKeywordsApi;
 
 /**
@@ -24,6 +26,44 @@ public class SearchResultModel implements SearchResultContract.SearchResultModel
                     @Override
                     public void onSucceed(HttpData<HomeArticleListEntity> result) {
                         mvpListener.onSuccess(result.getData());
+                    }
+
+                    @Override
+                    public void onFail(Exception e){
+                        mvpListener.onError(e.getMessage());
+                    }
+
+
+                });
+    }
+
+    @Override
+    public void requestCollectArticle(BaseActivity activity, int collectArticleId, MvpListener mvpListener) {
+        GoHttp.post(activity)
+                .api(new CollectArticleApi().setCollectArticleId(collectArticleId))
+                .request(new HttpCallback<HttpData>(activity){
+                    @Override
+                    public void onSucceed(HttpData result) {
+                        mvpListener.onSuccess(result);
+                    }
+
+                    @Override
+                    public void onFail(Exception e){
+                        mvpListener.onError(e.getMessage());
+                    }
+
+
+                });
+    }
+
+    @Override
+    public void requestCancelCollectArticle(BaseActivity activity, int collectArticleId, MvpListener mvpListener) {
+        GoHttp.post(activity)
+                .api(new CancelCollectArticleApi().setCancelArticleId(collectArticleId))
+                .request(new HttpCallback<HttpData>(activity){
+                    @Override
+                    public void onSucceed(HttpData result) {
+                        mvpListener.onSuccess(result);
                     }
 
                     @Override

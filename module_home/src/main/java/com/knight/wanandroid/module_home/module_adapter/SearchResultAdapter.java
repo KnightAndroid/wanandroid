@@ -11,7 +11,6 @@ import com.knight.wanandroid.library_common.ApplicationProvider;
 import com.knight.wanandroid.library_util.StringUtils;
 import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;
 import com.knight.wanandroid.module_home.R;
-import com.knight.wanandroid.module_home.module_constants.HomeConstants;
 import com.knight.wanandroid.module_home.module_entity.HomeArticleEntity;
 
 import org.jetbrains.annotations.NotNull;
@@ -40,9 +39,9 @@ public class SearchResultAdapter extends BaseMultiItemQuickAdapter<HomeArticleEn
             case AppConfig.ARTICLE_TEXT_TYPE:
                 //作者
                 if (!TextUtils.isEmpty(homeArticleEntity.getAuthor())) {
-                    baseViewHolder.setText(R.id.base_item_articleauthor,StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),homeArticleEntity.getAuthor(),HomeConstants.SEARCH_KEYWORD));
+                    baseViewHolder.setText(R.id.base_item_articleauthor,StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),homeArticleEntity.getAuthor(),AppConfig.SEARCH_KEYWORD));
                 } else {
-                    baseViewHolder.setText(R.id.base_item_articleauthor,StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),homeArticleEntity.getShareUser(),HomeConstants.SEARCH_KEYWORD));
+                    baseViewHolder.setText(R.id.base_item_articleauthor,StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),homeArticleEntity.getShareUser(),AppConfig.SEARCH_KEYWORD));
                 }
                 //一级分类
                 if (!TextUtils.isEmpty(homeArticleEntity.getSuperChapterName()) || !TextUtils.isEmpty(homeArticleEntity.getChapterName())) {
@@ -72,9 +71,9 @@ public class SearchResultAdapter extends BaseMultiItemQuickAdapter<HomeArticleEn
                 }
                 //标题
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    baseViewHolder.setText(R.id.base_tv_articletitle, StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),Html.fromHtml(homeArticleEntity.getTitle(),Html.FROM_HTML_MODE_LEGACY).toString(), HomeConstants.SEARCH_KEYWORD));
+                    baseViewHolder.setText(R.id.base_tv_articletitle, StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),Html.fromHtml(homeArticleEntity.getTitle(),Html.FROM_HTML_MODE_LEGACY).toString(), AppConfig.SEARCH_KEYWORD));
                 } else {
-                    baseViewHolder.setText(R.id.base_tv_articletitle,StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),Html.fromHtml(homeArticleEntity.getTitle()).toString(),HomeConstants.SEARCH_KEYWORD));
+                    baseViewHolder.setText(R.id.base_tv_articletitle,StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),Html.fromHtml(homeArticleEntity.getTitle()).toString(),AppConfig.SEARCH_KEYWORD));
                 }
                 //是否收藏
                 if (homeArticleEntity.isCollect()) {
@@ -88,9 +87,9 @@ public class SearchResultAdapter extends BaseMultiItemQuickAdapter<HomeArticleEn
                 GlideEngineUtils.getInstance().loadStringPhoto(ApplicationProvider.getInstance().getApplication(),homeArticleEntity.getEnvelopePic(),baseViewHolder.getView(R.id.base_item_imageview));
                 //作者
                 if (!TextUtils.isEmpty(homeArticleEntity.getAuthor())) {
-                    baseViewHolder.setText(R.id.base_item_tv_author,StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),homeArticleEntity.getAuthor(),HomeConstants.SEARCH_KEYWORD));
+                    baseViewHolder.setText(R.id.base_item_tv_author,StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),homeArticleEntity.getAuthor(),AppConfig.SEARCH_KEYWORD));
                 } else {
-                    baseViewHolder.setText(R.id.base_item_tv_author,StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),homeArticleEntity.getShareUser(),HomeConstants.SEARCH_KEYWORD));
+                    baseViewHolder.setText(R.id.base_item_tv_author,StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),homeArticleEntity.getShareUser(),AppConfig.SEARCH_KEYWORD));
                 }
 
                 //时间赋值
@@ -102,9 +101,9 @@ public class SearchResultAdapter extends BaseMultiItemQuickAdapter<HomeArticleEn
 
                 //标题
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    baseViewHolder.setText(R.id.base_tv_title, StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),Html.fromHtml(homeArticleEntity.getTitle(),Html.FROM_HTML_MODE_LEGACY).toString(), HomeConstants.SEARCH_KEYWORD));
+                    baseViewHolder.setText(R.id.base_tv_title, StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),Html.fromHtml(homeArticleEntity.getTitle(),Html.FROM_HTML_MODE_LEGACY).toString(), AppConfig.SEARCH_KEYWORD));
                 } else {
-                    baseViewHolder.setText(R.id.base_tv_title,StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),Html.fromHtml(homeArticleEntity.getTitle()).toString(),HomeConstants.SEARCH_KEYWORD));
+                    baseViewHolder.setText(R.id.base_tv_title,StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),Html.fromHtml(homeArticleEntity.getTitle()).toString(),AppConfig.SEARCH_KEYWORD));
                 }
 
                 //描述
@@ -112,9 +111,9 @@ public class SearchResultAdapter extends BaseMultiItemQuickAdapter<HomeArticleEn
                     baseViewHolder.setVisible(R.id.base_tv_project_desc,true);
                     //标题
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        baseViewHolder.setText(R.id.base_tv_project_desc, StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),Html.fromHtml(homeArticleEntity.getDesc(),Html.FROM_HTML_MODE_LEGACY).toString(), HomeConstants.SEARCH_KEYWORD));
+                        baseViewHolder.setText(R.id.base_tv_project_desc, StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),Html.fromHtml(homeArticleEntity.getDesc(),Html.FROM_HTML_MODE_LEGACY).toString(), AppConfig.SEARCH_KEYWORD));
                     } else {
-                        baseViewHolder.setText(R.id.base_tv_project_desc,StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),Html.fromHtml(homeArticleEntity.getDesc()).toString(),HomeConstants.SEARCH_KEYWORD));
+                        baseViewHolder.setText(R.id.base_tv_project_desc,StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),Html.fromHtml(homeArticleEntity.getDesc()).toString(),AppConfig.SEARCH_KEYWORD));
                     }
                 } else {
                     baseViewHolder.setGone(R.id.base_tv_project_desc,true);

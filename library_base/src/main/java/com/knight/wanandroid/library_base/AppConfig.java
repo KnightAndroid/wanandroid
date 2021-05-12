@@ -19,6 +19,8 @@ public class AppConfig {
     public static final int ARTICLE_TEXT_TYPE = 0;
     //文章有文字和图片
     public static final int ARTICLE_PICTURE_TYPE = 1;
+    //搜索字段
+    public static String SEARCH_KEYWORD = "";
 
 
     public static String[] moduleApps = {

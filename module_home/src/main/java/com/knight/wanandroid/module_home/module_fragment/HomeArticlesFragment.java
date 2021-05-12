@@ -129,14 +129,14 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
     }
 
     @Override
-    public void collectArticle(boolean isCollectSuccess,int position) {
+    public void collectArticleSuccess(int position) {
         mHomeArticleAdapter.getData().get(position).setCollect(true);
         mHomeArticleAdapter.notifyItemChanged(position);
 
     }
 
     @Override
-    public void cancelArticle(boolean isCancelSuccess, int position) {
+    public void cancelArticleSuccess(int position) {
         mHomeArticleAdapter.getData().get(position).setCollect(false);
         mHomeArticleAdapter.notifyItemChanged(position);
     }

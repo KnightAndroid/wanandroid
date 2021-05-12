@@ -80,11 +80,7 @@ public class HomeArticlePresenter extends HomeArticleContract.HomeArticleDataPre
         mModel.requestCollectArticle((BaseFragment)mView,collectArticleId,new MvpListener<HttpData>(){
             @Override
             public void onSuccess(HttpData data) {
-                if (data.getCode() == 0) {
-                    mView.collectArticle(true,position);
-                } else {
-                    mView.collectArticle(false,position);
-                }
+                mView.collectArticleSuccess(position);
             }
 
             @Override
@@ -104,11 +100,7 @@ public class HomeArticlePresenter extends HomeArticleContract.HomeArticleDataPre
         mModel.requestCancelCollectArticle((BaseFragment)mView,collectArticleId,new MvpListener<HttpData>(){
             @Override
             public void onSuccess(HttpData data) {
-                if (data.getCode() == 0) {
-                    mView.cancelArticle(true,position);
-                } else {
-                    mView.cancelArticle(false,position);
-                }
+                mView.cancelArticleSuccess(position);
             }
 
             @Override
