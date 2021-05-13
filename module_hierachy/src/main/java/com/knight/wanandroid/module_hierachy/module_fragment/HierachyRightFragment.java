@@ -68,36 +68,12 @@ public class HierachyRightFragment extends BaseFragment<HierachyRightFragmentBin
     protected void initView(Bundle savedInstanceState) {
         isNavigate = getArguments().getBoolean("isNavigate");
         mDatabind.hierachyRightRv.addOnScrollListener(new RecyclerViewListener());
-
-
-
-
-//
-//        mManager = new GridLayoutManager(getActivity(), 3);
-//        //通过isTitle的标志来判断是否是title
-//        mManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-//            @Override
-//            public int getSpanSize(int position) {
-//                return mDatas.get(position).isTitle() ? 3 : 1;
-//            }
-//        });
         mManager = new FlexboxLayoutManager(getActivity());
                 mManager.setFlexDirection(FlexDirection.ROW);
                 //左对齐
                 mManager.setJustifyContent(JustifyContent.FLEX_START);
                 mManager.setAlignItems(AlignItems.CENTER);
         mDatabind.hierachyRightRv.setLayoutManager(mManager);
-
-
-
-//        FlexboxLayoutManager flexboxLayoutManager = new FlexboxLayoutManager(getActivity());
-//        //方向 主轴为水平方向,起点在左端
-//        flexboxLayoutManager.setFlexDirection(FlexDirection.ROW);
-//        //左对齐
-//        flexboxLayoutManager.setJustifyContent(JustifyContent.FLEX_START);
-//        flexboxLayoutManager.setAlignItems(AlignItems.CENTER);
-//        flexboxLayoutManager.setS
-//        mDatabind.hierachyRightRv.setLayoutManager(flexboxLayoutManager);
         mHierachyClassifyDetailAdapter = new HierachyClassifyDetailAdapter(getActivity(), mDatas, new RvListener() {
             @Override
             public void onItemClick(int id, int position) {

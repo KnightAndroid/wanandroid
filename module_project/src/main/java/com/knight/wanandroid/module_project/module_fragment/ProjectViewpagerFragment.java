@@ -57,6 +57,7 @@ public class ProjectViewpagerFragment extends BaseFragment<ProjectViewpagerFragm
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+        mDatabind.setClick(new ProcyClick());
         loadLoading(mDatabind.projectListSmartfreshlayout);
         cid = getArguments().getInt("cid");
         isNewProject = getArguments().getBoolean("isNewProject");
@@ -164,6 +165,13 @@ public class ProjectViewpagerFragment extends BaseFragment<ProjectViewpagerFragm
                 }
             }
         });
+    }
+
+    public class ProcyClick{
+
+        public void scrollTop(){
+            mDatabind.projectListRv.smoothScrollToPosition(0);
+        }
     }
 
 

@@ -69,4 +69,14 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
         }
     }
 
+    @Override
+    public void onSucceed(Object result) {
+
+    }
+
+    @Override
+    public void onFail(Exception e) {
+
+    }
+
 }

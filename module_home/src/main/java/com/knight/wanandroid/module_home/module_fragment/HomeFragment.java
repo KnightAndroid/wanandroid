@@ -279,6 +279,12 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
 
 
 
+    public void scrollTop(){
+        mDatabind.homeCoordinatorsl.fullScroll(View.FOCUS_UP);
+    }
+
+
+
     @Override
     public void onDestroy(){
         super.onDestroy();

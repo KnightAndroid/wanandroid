@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="click"
+            type="com.knight.wanandroid.module_project.module_fragment.ProjectViewpagerFragment.ProcyClick" />
+
 
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,6 +42,22 @@
 
         </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
+        <!--        -->
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/project_float_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:src="@drawable/base_icon_up"
+            android:layout_marginEnd="@dimen/base_dimen_20"
+            android:layout_marginRight="@dimen/base_dimen_20"
+            android:layout_marginBottom="@dimen/base_dimen_70"
+            app:backgroundTint="@color/base_color_theme"
+            app:layout_behavior=".library_widget.FloatButtonBehavior"
+            android:onClick="@{()->click.scrollTop()}"
+            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

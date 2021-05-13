@@ -6,40 +6,12 @@
 
     <data>
 
-
+        <variable
+            name="click"
+            type="com.knight.wanandroid.MainActivity.ProcyClick" />
 
 
     </data>
-
-
-
-
-
-<!--        <RelativeLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-
-<!--            >-->
-
-<!--            <androidx.viewpager2.widget.ViewPager2-->
-<!--                android:id="@+id/main_viewpager"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_above="@+id/btn_nav"-->
-
-<!--                />-->
-
-<!--            <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx-->
-<!--                android:id="@+id/btn_nav"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:background="@color/color_white"-->
-<!--                app:itemTextColor="@drawable/main_bottom_color_selector"-->
-<!--                app:menu="@menu/menu_main"-->
-<!--                android:layout_alignParentBottom="true"-->
-<!--                />-->
-<!--        </RelativeLayout>-->
-<!--    -->
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -62,42 +34,22 @@
             android:layout_gravity="bottom|end"
             app:layout_behavior=".library_widget.BottomNavigationBehavior"/>
 
+<!--        app:layout_behavior=".library_widget.FloatButtonBehavior"-->
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/main_float_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:src="@drawable/base_icon_up"
+            android:layout_marginEnd="@dimen/base_dimen_20"
+            android:layout_marginRight="@dimen/base_dimen_20"
+            android:layout_marginBottom="@dimen/base_dimen_70"
+            app:backgroundTint="@color/base_color_theme"
+            android:onClick="@{()->click.scrollTop()}"/>
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-
-
-
-
-<!--    <androidx.coordinatorlayout.widget.CoordinatorLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent">-->
-<!--        app:layout_behavior=".library_widget.BottomNavigationBehavior"-->
-<!--        android:layout_gravity="bottom|end"-->
-<!--    </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
-
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:orientation="vertical"-->
-<!--        tools:context=".MainActivity">-->
-
-
-
-<!--&lt;!&ndash;        <cn.onestravel.one.navigation.androidx.OneBottomNavigationBar&ndash;&gt;-->
-<!--&lt;!&ndash;            android:id="@+id/btn_nav"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_height="50dp"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:background="@color/color_white"&ndash;&gt;-->
-<!--&lt;!&ndash;            app:oneItemTextColor="@drawable/main_bottom_color_selector"&ndash;&gt;-->
-<!--&lt;!&ndash;            app:oneFloatingEnable="true"&ndash;&gt;-->
-<!--&lt;!&ndash;            app:oneFloatingUp="25dp"&ndash;&gt;-->
-<!--&lt;!&ndash;            app:oneMenu="@menu/menu_main"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:paddingTop="5dp"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:paddingBottom="5dp"&ndash;&gt;-->
-
-<!--&lt;!&ndash;            />&ndash;&gt;-->
-
-<!--    </LinearLayout>-->
 </layout>
 
 

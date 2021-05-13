@@ -219,6 +219,10 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
         mPresenter.requestShareData(page);
     }
 
+    public void scrollTop(){
+        mDatabind.squareNestedsv.fullScroll(View.FOCUS_UP);
+    }
+
 
     public class ProcyClick{
         @LoginCheck
