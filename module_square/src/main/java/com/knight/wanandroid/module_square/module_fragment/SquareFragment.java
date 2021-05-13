@@ -114,6 +114,7 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
 
         mSquareArticleAdapter.addChildClickViewIds(R.id.square_icon_collect);
         mSquareArticleAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+            @LoginCheck
             @Override
             public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
                 if (view.getId() == R.id.square_icon_collect) {

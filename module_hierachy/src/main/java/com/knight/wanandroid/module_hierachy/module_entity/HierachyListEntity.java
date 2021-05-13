@@ -18,7 +18,7 @@ public class HierachyListEntity extends BaseEntity  {
 
     /*体系*/
     private String courseId;
-    private String id;
+    private int id;
     private int order;
     private int parentChapterId;
     private boolean userControlSetTop;
@@ -41,11 +41,11 @@ public class HierachyListEntity extends BaseEntity  {
         this.courseId = courseId;
     }
 
-    public String getId() {
-        return id == null ? "" : id;
+    public int getId() {
+        return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

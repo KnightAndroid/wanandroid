@@ -25,7 +25,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 /**
  * @author created by luguian
- * @organize 车童网
+ * @organize wanandroid
  * @Date 2021/4/23 17:25
  * @descript:
  */

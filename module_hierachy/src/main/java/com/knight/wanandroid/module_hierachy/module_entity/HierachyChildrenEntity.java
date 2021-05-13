@@ -25,7 +25,7 @@ public class HierachyChildrenEntity extends BaseEntity {
      */
 
     private String courseId;
-    private String id;
+    private int id;
     private String name;
 
     public List<?> getChildren() {
@@ -53,11 +53,11 @@ public class HierachyChildrenEntity extends BaseEntity {
         this.courseId = courseId;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

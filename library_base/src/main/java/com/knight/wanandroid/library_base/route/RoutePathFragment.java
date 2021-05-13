@@ -50,6 +50,7 @@ public class RoutePathFragment {
         public static final String Hierachy_Pager = Hierachy + "/hierachy_main";
         public static final String Hierachy_Right = Hierachy + "/hierachy_right";
         public static final String Navigate_pager = Hierachy + "/navigate";
+        public static final String Hierachy_TabArticle_Pager = Hierachy + "/hierachy_tab_article";
 
     }
 

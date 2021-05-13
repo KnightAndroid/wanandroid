@@ -2,7 +2,7 @@ package com.knight.wanandroid.library_network.exception;
 
 /**
  * @author created by luguian
- * @organize 车童网
+ * @organize wanandroid
  * @Date 2020/12/25 17:50
  * @descript:空实体异常
  */

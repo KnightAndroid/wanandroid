@@ -5,7 +5,7 @@ import com.knight.wanandroid.library_network.config.IRequestApi;
 
 /**
  * @author created by knight
- * @organize 车童网
+ * @organize wanandroid
  * @Date 2021/4/22 16:45
  * @descript:注册接口
  */

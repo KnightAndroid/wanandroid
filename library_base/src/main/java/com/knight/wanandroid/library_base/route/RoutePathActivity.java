@@ -34,6 +34,16 @@ public class RoutePathActivity {
 
     /**
      *
+     * 体系模块
+     */
+    public static class Hierachy{
+        private static final String Hierachy = "/module_hierachy_activity";
+        public static final String HierachyTab = Hierachy + "/hierachy_tab";
+    }
+
+
+    /**
+     *
      * 我的模块Activity路由
      */
     public static class Mine{

@@ -3,11 +3,13 @@ package com.knight.wanandroid.module_hierachy.module_fragment;
 import android.os.Bundle;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
+import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
 import com.knight.wanandroid.library_base.util.ARouterUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
@@ -40,7 +42,7 @@ import androidx.recyclerview.widget.RecyclerView;
 @Route(path = RoutePathFragment.Hierachy.Hierachy_Right)
 public class HierachyRightFragment extends BaseFragment<HierachyRightFragmentBinding, HierachyPresenter, HierachyModel> implements HierachyContract.HierachyView, CheckListener {
     private HierachyClassifyDetailAdapter mHierachyClassifyDetailAdapter;
-    private List<HierachyRightBeanEntity> mDatas = new ArrayList<>();
+    private ArrayList<HierachyRightBeanEntity> mDatas = new ArrayList<>();
     private ItemHeaderDecoration mDecoration;
     private boolean move = false;
     private int mIndex = 0;
@@ -48,7 +50,6 @@ public class HierachyRightFragment extends BaseFragment<HierachyRightFragmentBin
     private CheckListener checkListener;
     private boolean isNavigate;
     private FlexboxLayoutManager mManager;
-
 
     public static HierachyRightFragment newInstance(boolean isNavigate){
         HierachyRightFragment hierachyRightFragment = new HierachyRightFragment();
@@ -101,8 +102,13 @@ public class HierachyRightFragment extends BaseFragment<HierachyRightFragmentBin
             @Override
             public void onItemClick(int id, int position) {
                 if (id == R.id.hierachy_root) {
-
-
+                    if (!isNavigate) {
+                        ARouter.getInstance().build(RoutePathActivity.Hierachy.HierachyTab)
+                                .withStringArrayList("childrenNames",mDatas.get(position).getChildrenName())
+                                .withIntegerArrayList("cids",mDatas.get(position).getCid())
+                                .withString("titleName",mDatas.get(position).getTitleName())
+                                .navigation();
+                    }
                 } else if (id == R.id.hierachy_tv_content) {
                     if (isNavigate) {
                         ARouterUtils.startWeb(mDatas.get(position).getLink(),mDatas.get(position).getName(),mDatas.get(position).getId());
@@ -149,19 +155,40 @@ public class HierachyRightFragment extends BaseFragment<HierachyRightFragmentBin
     @Override
     public void setHierachyData(List<HierachyListEntity> data) {
         showSuccess();
+        int total = 0;
         for (int i = 0; i < data.size();i++) {
+            //一级标签 也就是大标题
             HierachyRightBeanEntity hierachyRightBeanEntity = new HierachyRightBeanEntity();
             hierachyRightBeanEntity.setName(data.get(i).getName());
             hierachyRightBeanEntity.setTitle(true);
             hierachyRightBeanEntity.setTitleName(data.get(i).getName());
             hierachyRightBeanEntity.setTag(String.valueOf(i));
+            hierachyRightBeanEntity.setId(data.get(i).getId());
+
+            hierachyRightBeanEntity.setParentName(data.get(i).getName());
+            hierachyRightBeanEntity.setTotal(data.get(i).getChildren().size());
+
+            hierachyRightBeanEntity.setPosition(total);
+            List<HierachyChildrenEntity> hierachyChildrenEntities1 = data.get(i).getChildren();
+            ArrayList<String> childName = new ArrayList<>();
+            ArrayList<Integer> childCid = new ArrayList<>();
+            for(int k = 0;k< hierachyChildrenEntities1.size();k++){
+                childName.add(hierachyChildrenEntities1.get(k).getName());
+                childCid.add(hierachyChildrenEntities1.get(k).getId());
+            }
+            hierachyRightBeanEntity.setChildrenName(childName);
+            hierachyRightBeanEntity.setCid(childCid);
             mDatas.add(hierachyRightBeanEntity);
+            total++;
             List<HierachyChildrenEntity> hierachyChildrenEntities = data.get(i).getChildren();
             for(int j = 0;j< hierachyChildrenEntities.size();j++){
                 HierachyRightBeanEntity hierachyRightBodyBeanEntity = new HierachyRightBeanEntity();
                 hierachyRightBodyBeanEntity.setName(hierachyChildrenEntities.get(j).getName());
                 hierachyRightBodyBeanEntity.setTag(String.valueOf(i));
                 hierachyRightBodyBeanEntity.setTitleName(data.get(i).getName());
+                hierachyRightBodyBeanEntity.setId(hierachyChildrenEntities.get(j).getId());
+                hierachyRightBodyBeanEntity.setPosition(total);
+                total++;
                 mDatas.add(hierachyRightBodyBeanEntity);
             }
 

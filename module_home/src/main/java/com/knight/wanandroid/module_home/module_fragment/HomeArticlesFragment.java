@@ -6,6 +6,7 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
+import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.util.ARouterUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
@@ -59,6 +60,7 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
 
         mHomeArticleAdapter.addChildClickViewIds(R.id.home_icon_collect);
         mHomeArticleAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+            @LoginCheck
             @Override
             public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
                 if (view.getId() == R.id.home_icon_collect) {

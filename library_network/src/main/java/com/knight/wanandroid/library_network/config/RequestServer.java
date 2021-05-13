@@ -4,7 +4,7 @@ import com.knight.wanandroid.library_network.annotation.HttpIgnore;
 
 /**
  * @author created by luguian
- * @organize 车童网
+ * @organize wanandroid
  * @Date 2020/12/25 17:34
  * @descript:服务器简单配置
  */
