@@ -7,11 +7,11 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.knight.wanandroid.library_base.activity.BaseDBActivity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
+import com.knight.wanandroid.library_base.util.InitCustomViewUtils;
 import com.knight.wanandroid.library_util.ViewSetUtils;
 import com.knight.wanandroid.module_hierachy.R;
 import com.knight.wanandroid.module_hierachy.databinding.HierachyActivityTabBinding;
 import com.knight.wanandroid.module_hierachy.module_fragment.HierachyTabArticleFragment;
-import com.knight.wanandroid.module_hierachy.module_utils.ViewInitUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +57,7 @@ public class HierachyTabActivity extends BaseDBActivity<HierachyActivityTabBindi
             titleDatas.add(childrenNames.get(i));
         }
         ViewSetUtils.setViewPager2Init(this, hierachyTabFragments, mDatabind.hierachyViewPager, false);
-        ViewInitUtils.bindViewPager2(mDatabind.hierachyIndicator, mDatabind.hierachyViewPager, titleDatas);
+        InitCustomViewUtils.bindViewPager2(mDatabind.hierachyIndicator, mDatabind.hierachyViewPager, titleDatas);
     }
 
     @Override

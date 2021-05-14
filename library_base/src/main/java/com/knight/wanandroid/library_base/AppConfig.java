@@ -15,6 +15,7 @@ public class AppConfig {
     private static final String MineApp = "com.knight.wanandroid.module_mine.MineApp";
     private static final String WebApp = "com.knight.wanandroid.module_web.WebApp";
 
+    private static final String WechatApp = "com.knight.wanandroid.module_wechat.WechatApp";
     //文章只有文字
     public static final int ARTICLE_TEXT_TYPE = 0;
     //文章有文字和图片
@@ -29,7 +30,8 @@ public class AppConfig {
             ProjectApp,
             NavigateApp,
             MineApp,
-            WebApp
+            WebApp,
+            WechatApp
     };
 
 }

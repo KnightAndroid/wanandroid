@@ -5,10 +5,10 @@ import android.os.Bundle;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.knight.wanandroid.library_base.fragment.BaseDBFragment;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
+import com.knight.wanandroid.library_base.util.InitCustomViewUtils;
 import com.knight.wanandroid.library_util.ViewSetUtils;
 import com.knight.wanandroid.module_hierachy.R;
 import com.knight.wanandroid.module_hierachy.databinding.HierachyNavigateMainFragmentBinding;
-import com.knight.wanandroid.module_hierachy.module_utils.ViewInitUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +54,6 @@ public class HierachyNavigateMainFragment extends BaseDBFragment<HierachyNavigat
         mFragments.add(new NavigateFragment());
         mFragments.add(new HierachyFragment());
         ViewSetUtils.setViewPager2Init(getActivity(), mFragments, mDatabind.hierachyNavigateViewpager, false);
-        ViewInitUtils.bindViewPager2(mDatabind.hierachyNavigateIndicator, mDatabind.hierachyNavigateViewpager, mTitleList);
+        InitCustomViewUtils.bindViewPager2(mDatabind.hierachyNavigateIndicator, mDatabind.hierachyNavigateViewpager, mTitleList);
     }
 }

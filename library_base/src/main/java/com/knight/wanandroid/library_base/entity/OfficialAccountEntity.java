@@ -1,8 +1,7 @@
-package com.knight.wanandroid.module_home.module_entity;
+package com.knight.wanandroid.library_base.entity;
 
-import com.knight.wanandroid.library_base.entity.BaseEntity;
-
-import java.util.List;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 /**
  * @author created by knight
@@ -11,7 +10,7 @@ import java.util.List;
  * @descript:公众号数据
  */
 
-public class OfficialAccountEntity extends BaseEntity {
+public class OfficialAccountEntity implements Parcelable {
 
 
     /**
@@ -25,7 +24,6 @@ public class OfficialAccountEntity extends BaseEntity {
      * visible : 1
      */
 
-    private List<?> children;
     private int courseId;
     private int id;
     private String name;
@@ -34,13 +32,7 @@ public class OfficialAccountEntity extends BaseEntity {
     private boolean userControlSetTop;
     private int visible;
 
-    public List<?> getChildren() {
-        return children;
-    }
 
-    public void setChildren(List<?> children) {
-        this.children = children;
-    }
 
     public int getCourseId() {
         return courseId;
@@ -97,4 +89,45 @@ public class OfficialAccountEntity extends BaseEntity {
     public void setVisible(int visible) {
         this.visible = visible;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.courseId);
+        dest.writeInt(this.id);
+        dest.writeString(this.name);
+        dest.writeInt(this.order);
+        dest.writeInt(this.parentChapterId);
+        dest.writeByte(this.userControlSetTop ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.visible);
+    }
+
+    public OfficialAccountEntity() {
+    }
+
+    protected OfficialAccountEntity(Parcel in) {
+        this.courseId = in.readInt();
+        this.id = in.readInt();
+        this.name = in.readString();
+        this.order = in.readInt();
+        this.parentChapterId = in.readInt();
+        this.userControlSetTop = in.readByte() != 0;
+        this.visible = in.readInt();
+    }
+
+    public static final Parcelable.Creator<OfficialAccountEntity> CREATOR = new Parcelable.Creator<OfficialAccountEntity>() {
+        @Override
+        public OfficialAccountEntity createFromParcel(Parcel source) {
+            return new OfficialAccountEntity(source);
+        }
+
+        @Override
+        public OfficialAccountEntity[] newArray(int size) {
+            return new OfficialAccountEntity[size];
+        }
+    };
 }

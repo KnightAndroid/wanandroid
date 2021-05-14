@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.google.gson.reflect.TypeToken;
@@ -32,7 +33,7 @@ import com.knight.wanandroid.module_home.module_adapter.OfficialAccountAdapter;
 import com.knight.wanandroid.module_home.module_adapter.TopArticleAdapter;
 import com.knight.wanandroid.module_home.module_contract.HomeContract;
 import com.knight.wanandroid.module_home.module_entity.BannerEntity;
-import com.knight.wanandroid.module_home.module_entity.OfficialAccountEntity;
+import com.knight.wanandroid.library_base.entity.OfficialAccountEntity;
 import com.knight.wanandroid.module_home.module_entity.TopArticleEntity;
 import com.knight.wanandroid.module_home.module_logic.HomeArticleLogic;
 import com.knight.wanandroid.module_home.module_model.HomeModel;
@@ -101,6 +102,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
             }
         });
         initTopAdapterClick();
+        initOfficialAccountClick();
         loadLoading(mDatabind.homeRefreshLayout);
 
 
@@ -246,6 +248,22 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
                 ARouterUtils.startWeb(mTopArticleAdapter.getData().get(position).getLink(),mTopArticleAdapter.getData().get(position).getTitle(),mTopArticleAdapter.getData().get(position).getId());
+            }
+        });
+    }
+
+
+
+    private void initOfficialAccountClick(){
+        mOfficialAccountAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
+                ArrayList<OfficialAccountEntity> arrayList = new ArrayList<>();
+                arrayList.addAll(mOfficialAccountAdapter.getData());
+                ARouter.getInstance().build(RoutePathActivity.Wechat.Wechat_Pager)
+                        .withParcelableArrayList("data",arrayList)
+                        .withInt("position",position)
+                        .navigation();
             }
         });
     }

@@ -7,7 +7,7 @@ import com.knight.wanandroid.library_network.listener.HttpCallback;
 import com.knight.wanandroid.library_network.model.HttpData;
 import com.knight.wanandroid.module_home.module_contract.HomeContract;
 import com.knight.wanandroid.module_home.module_entity.BannerEntity;
-import com.knight.wanandroid.module_home.module_entity.OfficialAccountEntity;
+import com.knight.wanandroid.library_base.entity.OfficialAccountEntity;
 import com.knight.wanandroid.module_home.module_entity.TopArticleEntity;
 import com.knight.wanandroid.module_home.module_request.HomeBannerApi;
 import com.knight.wanandroid.module_home.module_request.HomeOfficialAccountApi;

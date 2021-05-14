@@ -1,4 +1,4 @@
-package com.knight.wanandroid.module_hierachy.module_utils;
+package com.knight.wanandroid.library_base.util;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -24,10 +24,10 @@ import androidx.viewpager2.widget.ViewPager2;
 /**
  * @author created by knight
  * @organize wanandroid
- * @Date 2021/4/30 16:15
+ * @Date 2021/5/14 16:09
  * @descript:
  */
-public class ViewInitUtils {
+public class InitCustomViewUtils {
 
     /**
      *
@@ -99,5 +99,4 @@ public class ViewInitUtils {
             }
         });
     }
-
 }

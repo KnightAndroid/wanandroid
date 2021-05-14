@@ -59,6 +59,16 @@ public class RoutePathActivity {
 
 
     /**
+     *
+     * 公众号模块
+     */
+    public static class Wechat{
+        private static final String Wechat = "/module_wechat_activity";
+        public static final String Wechat_Pager = Wechat + "/magicIndicator_pager";
+    }
+
+
+    /**
      * 我的网页模块
      *
      *

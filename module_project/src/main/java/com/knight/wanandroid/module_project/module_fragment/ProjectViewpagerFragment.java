@@ -6,9 +6,11 @@ import android.view.View;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
+import com.knight.wanandroid.library_base.util.ARouterUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.module_project.R;
@@ -163,6 +165,13 @@ public class ProjectViewpagerFragment extends BaseFragment<ProjectViewpagerFragm
                         mPresenter.requestCollectArticle(mProjectArticleAdapter.getData().get(position).getId(),position);
                     }
                 }
+            }
+        });
+
+        mProjectArticleAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
+                ARouterUtils.startWeb(mProjectArticleAdapter.getData().get(position).getLink(),mProjectArticleAdapter.getData().get(position).getTitle(),mProjectArticleAdapter.getData().get(position).getId());
             }
         });
     }

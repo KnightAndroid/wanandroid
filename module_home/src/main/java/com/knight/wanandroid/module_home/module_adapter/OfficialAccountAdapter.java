@@ -6,7 +6,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.knight.wanandroid.library_util.ColorUtils;
 import com.knight.wanandroid.module_home.R;
-import com.knight.wanandroid.module_home.module_entity.OfficialAccountEntity;
+import com.knight.wanandroid.library_base.entity.OfficialAccountEntity;
 
 import org.jetbrains.annotations.NotNull;
 
