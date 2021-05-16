@@ -38,7 +38,7 @@ public class CompatToobar extends Toolbar {
              compatPaddingTop = getStatusBarHeight();
         }
 
-        this.setPadding(getPaddingLeft(), ScreenUtils.dp2px(10) + getPaddingTop() + compatPaddingTop,getPaddingRight(),getPaddingBottom() + compatPaddingTop / 2);
+        this.setPadding(getPaddingLeft(), ScreenUtils.dp2px(10) +compatPaddingTop,getPaddingRight(),getPaddingBottom() + compatPaddingTop / 2);
     }
 
 

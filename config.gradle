@@ -28,7 +28,7 @@ ext{
     //constraintlayout
     constraintLayoutVersion = "2.0.4"
     //okhttpVersion
-    okHttpVersion = "4.0.0"
+    okHttpVersion = "3.12.11"
     //gsonVersion
     gsonVersion = "2.8.5"
     //annoation
