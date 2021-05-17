@@ -6,9 +6,6 @@
 
     <data>
 
-        <variable
-            name="click"
-            type="com.knight.wanandroid.MainActivity.ProcyClick" />
 
 
     </data>
@@ -36,17 +33,7 @@
 
 <!--        app:layout_behavior=".library_widget.FloatButtonBehavior"-->
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/main_float_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:src="@drawable/base_icon_up"
-            android:layout_marginEnd="@dimen/base_dimen_20"
-            android:layout_marginRight="@dimen/base_dimen_20"
-            android:layout_marginBottom="@dimen/base_dimen_70"
-            app:backgroundTint="@color/base_color_theme"
-            android:onClick="@{()->click.scrollTop()}"/>
+
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

@@ -6,7 +6,7 @@ import android.content.DialogInterface;
 import androidx.appcompat.app.AlertDialog;
 
 /**
- * @author created by luguian
+ * @author created by knight
  * @organize wanandroid
  * @Date 2021/4/21 16:53
  * @descript:

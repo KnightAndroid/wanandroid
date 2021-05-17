@@ -2,6 +2,7 @@ package com.knight.wanandroid.module_square.module_fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -11,10 +12,14 @@ import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
+import com.kingja.loadsir.callback.Callback;
+import com.kingja.loadsir.core.LoadService;
+import com.kingja.loadsir.core.LoadSir;
 import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
 import com.knight.wanandroid.library_base.AppConfig;
 import com.knight.wanandroid.library_base.entity.SearchHotKeyEntity;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
+import com.knight.wanandroid.library_base.loadsir.LoadCallBack;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
 import com.knight.wanandroid.library_base.util.ARouterUtils;
@@ -22,19 +27,25 @@ import com.knight.wanandroid.library_base.util.DataBaseUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
+import com.knight.wanandroid.library_widget.lottie.RightLottieAnimation;
+import com.knight.wanandroid.library_widget.lottie.RightLottieListener;
 import com.knight.wanandroid.module_square.R;
 import com.knight.wanandroid.module_square.databinding.SquareFragmentSquareBinding;
 import com.knight.wanandroid.module_square.module_activity.SquareShareArticleActivity;
 import com.knight.wanandroid.module_square.module_adapter.HotKeyAdapter;
 import com.knight.wanandroid.module_square.module_adapter.SquareArticleAdapter;
+import com.knight.wanandroid.module_square.module_adapter.SquareQuestionAdapter;
 import com.knight.wanandroid.module_square.module_contract.SquareContact;
 import com.knight.wanandroid.module_square.module_entity.SquareArticleEntity;
 import com.knight.wanandroid.module_square.module_entity.SquareArticleListEntity;
+import com.knight.wanandroid.module_square.module_entity.SquareQuestionListEntity;
 import com.knight.wanandroid.module_square.module_model.SquareModel;
 import com.knight.wanandroid.module_square.module_presenter.SquarePresenter;
+import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
+import com.yanzhenjie.recyclerview.SwipeRecyclerView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -58,6 +69,15 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
     private HotKeyAdapter mHotKeyAdapter;
     private SquareArticleAdapter mSquareArticleAdapter;
     private int page;
+    private int questionPage = 1;
+
+    private SquareQuestionAdapter mSquareQuestionAdapter;
+    private SwipeRecyclerView baserecycleview;
+    private RightLottieAnimation mRightLottieAnimation;
+    private static final long RIPPLE_DURATION = 150;
+
+    public LoadService mViewLoadService;
+    SmartRefreshLayout smartRefreshLayout;
 
 
 
@@ -85,13 +105,60 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
         mDatabind.squareSharearticleFreshlayout.setOnLoadMoreListener(this);
         EventBus.getDefault().register(this);
 
+        View QuestionMenu = LayoutInflater.from(getActivity()).inflate(R.layout.square_question_activity,null);
+        mSquareQuestionAdapter = new SquareQuestionAdapter(new ArrayList<>());
+        baserecycleview = QuestionMenu.findViewById(R.id.base_body_rv);
+        smartRefreshLayout = (SmartRefreshLayout) QuestionMenu.findViewById(R.id.include_square_question);
+        smartRefreshLayout.setOnRefreshListener(refreshLayout -> {
+            questionPage = 1;
+            mPresenter.requestSquareQuestion(questionPage);
+        });
+        smartRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                mPresenter.requestSquareQuestion(questionPage);
+            }
+        });
 
+        SetInitCustomView.initSwipeRecycleview(baserecycleview,new LinearLayoutManager(getActivity()),mSquareQuestionAdapter,true);
+        mDatabind.squareRoot.addView(QuestionMenu);
+
+
+        LoadSir loadSir =  LoadSir.getDefault();
+        mViewLoadService = loadSir.register(QuestionMenu.findViewById(R.id.include_square_question), new Callback.OnReloadListener() {
+            @Override
+            public void onReload(View v) {
+                mViewLoadService.showCallback(LoadCallBack.class);
+            }
+        });
+        mViewLoadService.showCallback(LoadCallBack.class);
+        mRightLottieAnimation = new RightLottieAnimation.GuillotineBuilder(QuestionMenu,QuestionMenu.findViewById(R.id.square_question_lefticon),mDatabind.squareIvQuestion,mSquareQuestionAdapter)
+                .setStartDelay(RIPPLE_DURATION)
+                .setActionBarViewForAnimation(mDatabind.squareToolbar)
+                .setClosedOnStart(true)
+                .setGuillotineListener(new RightLottieListener() {
+                    @Override
+                    public void onRightLottieOpened() {
+                        mDatabind.squareFabUp.setVisibility(View.GONE);
+                        mViewLoadService.showCallback(LoadCallBack.class);
+                        mPresenter.requestSquareQuestion(questionPage);
+                    }
+
+                    @Override
+                    public void onRightLottieClosed() {
+                        questionPage = 1;
+                        mDatabind.squareFabUp.setVisibility(View.VISIBLE);
+                    }
+                })
+                .build();
     }
 
     @Override
     protected void reLoadData() {
         mPresenter.requestHotKey();
         mPresenter.requestShareData(page);
+       // mPresenter.requestSquareQuestion(questionPage);
+
     }
 
 
@@ -145,6 +212,7 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
     protected void lazyLoadData() {
         mPresenter.requestHotKey();
         mPresenter.requestShareData(page);
+    //    mPresenter.requestSquareQuestion(questionPage);
 
     }
 
@@ -185,6 +253,25 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
         mSquareArticleAdapter.notifyItemChanged(position);
     }
 
+    @Override
+    public void setSquareQuestionData(SquareQuestionListEntity squareQuestionListEntity) {
+        if (mViewLoadService != null) {
+            mViewLoadService.showSuccess();
+        }
+        smartRefreshLayout.finishLoadMore();
+        smartRefreshLayout.finishRefresh();
+        if (squareQuestionListEntity.getDatas().size() > 0) {
+            if(questionPage == 1){
+                mSquareQuestionAdapter.setNewInstance(squareQuestionListEntity.getDatas());
+            } else {
+                mSquareQuestionAdapter.addData(squareQuestionListEntity.getDatas());
+            }
+            questionPage++;
+        } else {
+            smartRefreshLayout.setEnableLoadMore(false);
+        }
+    }
+
 
     @Override
     public void showLoading() {
@@ -219,10 +306,6 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
         mPresenter.requestShareData(page);
     }
 
-    public void scrollTop(){
-        mDatabind.squareNestedsv.fullScroll(View.FOCUS_UP);
-    }
-
 
     public class ProcyClick{
         @LoginCheck
@@ -230,6 +313,9 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
             startActivity(new Intent(getActivity(), SquareShareArticleActivity.class));
         }
 
+        public void scrollToUp(){
+            mDatabind.squareNestedsv.fullScroll(View.FOCUS_UP);
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

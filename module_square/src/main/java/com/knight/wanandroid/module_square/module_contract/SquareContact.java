@@ -7,6 +7,7 @@ import com.knight.wanandroid.library_base.model.BaseModel;
 import com.knight.wanandroid.library_base.presenter.BasePresenter;
 import com.knight.wanandroid.library_base.view.BaseView;
 import com.knight.wanandroid.module_square.module_entity.SquareArticleListEntity;
+import com.knight.wanandroid.module_square.module_entity.SquareQuestionListEntity;
 
 import java.util.List;
 
@@ -32,6 +33,10 @@ public interface SquareContact {
       //取消站内文章
       void cancelArticleSuccess(int position);
 
+      void setSquareQuestionData(SquareQuestionListEntity squareQuestionListEntity);
+
+
+
    }
 
    interface SquareModel extends BaseModel{
@@ -44,6 +49,8 @@ public interface SquareContact {
       void requestCollectArticle(BaseFragment fragment, int collectArticleId, MvpListener mvpListener);
       //取消收藏站内文章
       void requestCancelCollectArticle(BaseFragment fragment,int collectArticleId,MvpListener mvpListener);
+      //问答数据请求
+      void requestQuestions(BaseFragment fragment, int page, MvpListener mvpListener);
    }
 
 
@@ -54,5 +61,7 @@ public interface SquareContact {
       public abstract void requestShareData(int page);
       public abstract void requestCollectArticle(int collectArticleId,int position);
       public abstract void requestCancelCollectArticle(int collectArticleId,int position);
+
+      public abstract void requestSquareQuestion(int page);
    }
 }

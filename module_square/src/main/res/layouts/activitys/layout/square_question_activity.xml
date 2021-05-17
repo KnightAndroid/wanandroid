@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+
+
+    </data>
+
+
+    <LinearLayout  android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@android:color/white">
+
+
+        <com.knight.wanandroid.library_widget.CompatToobar android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+
+            <ImageView
+                android:id="@+id/square_question_lefticon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base_dimen_16"
+                android:background="@drawable/square_icon_question"/>
+
+
+            <com.knight.wanandroid.library_widget.MarqueeTextView
+                android:id="@+id/square_question_tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/base_dimen_18"
+                android:gravity="center"
+                android:text="标题"
+                android:textColor="@color/base_color_title"
+                android:singleLine="true"
+                android:scrollHorizontally="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_gravity="center"
+                android:maxEms="12"/>
+
+
+        </com.knight.wanandroid.library_widget.CompatToobar>
+
+
+
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@color/base_color_theme"></View>-->
+        <include
+            android:id="@+id/include_square_question"
+            layout="@layout/base_layout_recycleview" />
+    </LinearLayout>
+</layout>
+
+

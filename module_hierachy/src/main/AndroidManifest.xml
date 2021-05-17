@@ -5,6 +5,7 @@
     <application
      >
      <activity android:name=".module_activity.HierachyTabActivity"/>
+     <activity android:name=".module_activity.HierachyDetailActivity"/>
     </application>
 
 </manifest>

@@ -10,11 +10,28 @@
     </data>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.knight.wanandroid.library_widget.AnimLogoView
+            android:id="@+id/logo_anim"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:autoPlay="false"
+            app:gradientAnimDuration="1600"
+            app:gradientColor="@color/base_color_theme"
+            app:logoName="Wanandroid"
+            app:offsetAnimDuration="1500"
+            app:showGradient="true"
+            app:textColor="@color/base_color_theme"
+            app:textSize="30sp"
+            app:verticalOffset="0dp">
+
+
+        </com.knight.wanandroid.library_widget.AnimLogoView>
+
+    </FrameLayout>
 
 
 </layout>

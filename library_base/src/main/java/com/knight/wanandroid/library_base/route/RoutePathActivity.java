@@ -39,6 +39,7 @@ public class RoutePathActivity {
     public static class Hierachy{
         private static final String Hierachy = "/module_hierachy_activity";
         public static final String HierachyTab = Hierachy + "/hierachy_tab";
+        public static final String HierachyDetail = Hierachy + "/hierachy_detail";
     }
 
 

@@ -1,15 +1,12 @@
 package com.knight.wanandroid;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.knight.wanandroid.databinding.ActivityWelcomeBinding;
 import com.knight.wanandroid.library_base.activity.BaseDBActivity;
-import com.knight.wanandroid.library_permiss.OnPermissionCallback;
-import com.knight.wanandroid.library_permiss.Permission;
-import com.knight.wanandroid.library_permiss.XXPermissions;
-
-import java.util.List;
 
 /**
  * @author created by knight
@@ -26,17 +23,28 @@ public class WelcomeActivity extends BaseDBActivity<ActivityWelcomeBinding> {
     @Override
     public void initView(Bundle savedInstanceState) {
         setTheme(getActivityTheme());
-        XXPermissions.with(this)
-                .permission(Permission.CAMERA)
-                .request(new OnPermissionCallback() {
-                    @Override
-                    public void onGranted(List<String> permissions, boolean all) {
-                        if (all) {
-                            startActivity(new Intent(WelcomeActivity.this,MainActivity.class));
-                            finish();
-                        }
-                    }
-                });
+
+        mDatabind.logoAnim.addOffsetAnimListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                startActivity(new Intent(WelcomeActivity.this,MainActivity.class));
+                finish();
+
+            }
+        });
+        mDatabind.logoAnim.startAnimation();
+//        XXPermissions.with(this)
+//                .permission(Permission.CAMERA)
+//                .request(new OnPermissionCallback() {
+//                    @Override
+//                    public void onGranted(List<String> permissions, boolean all) {
+//                        if (all) {
+//                            startActivity(new Intent(WelcomeActivity.this,MainActivity.class));
+//                            finish();
+//                        }
+//                    }
+//                });
 
     }
 

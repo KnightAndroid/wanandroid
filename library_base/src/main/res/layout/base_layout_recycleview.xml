@@ -8,7 +8,8 @@
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
         android:id="@+id/base_freshlayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
 
         <com.scwang.smart.refresh.header.ClassicsHeader
             android:layout_width="match_parent"

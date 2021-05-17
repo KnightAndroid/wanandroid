@@ -24,7 +24,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 /**
- * @author created by luguian
+ * @author created by knight
  * @organize wanandroid
  * @Date 2021/4/23 17:25
  * @descript:

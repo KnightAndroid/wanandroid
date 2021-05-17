@@ -215,6 +215,10 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
                 ARouterUtils.startActivity(RoutePathActivity.Mine.Login_Pager);
             }
         }
+        
+        public void scrollUp(){
+            scrollTop();
+        }
 
     }
 

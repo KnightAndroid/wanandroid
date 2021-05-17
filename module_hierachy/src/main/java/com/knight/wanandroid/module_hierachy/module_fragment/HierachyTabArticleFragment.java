@@ -30,7 +30,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  * @author created by knight
  * @organize wanandroid
  * @Date 2021/5/12 18:27
- * @descript:
+ * @descript:体系切换列表界面
  */
 @Route(path = RoutePathFragment.Hierachy.Hierachy_TabArticle_Pager)
 public class HierachyTabArticleFragment extends BaseFragment<HierachyFragmentTabarticleBinding, HierachyTabArticlePresenter, HierachyTabArticleModel> implements HierachyTabContract.HierachyTabView, OnLoadMoreListener, OnRefreshListener {

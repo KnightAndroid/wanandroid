@@ -1,4 +1,4 @@
-package com.knight.wanandroid.module_mine.module_entity;
+package com.knight.wanandroid.module_square.module_entity;
 
 import com.knight.wanandroid.library_base.entity.BaseEntity;
 
@@ -8,17 +8,19 @@ import java.util.List;
 /**
  * @author created by knight
  * @organize wanandroid
- * @Date 2021/4/23 16:30
+ * @Date 2021/5/17 14:20
  * @descript:
  */
-public class CoinRankListEntity extends BaseEntity {
+public class SquareQuestionListEntity extends BaseEntity {
+
     private int curPage;
     private int offset;
     private boolean over;
     private int pageCount;
     private int size;
     private int total;
-    private List<CoinRankEntity> datas;
+
+    private List<SquareQuestionEntity> datas;
 
     public int getCurPage() {
         return curPage;
@@ -68,14 +70,14 @@ public class CoinRankListEntity extends BaseEntity {
         this.total = total;
     }
 
-    public List<CoinRankEntity> getDatas() {
+    public List<SquareQuestionEntity> getDatas() {
         if (datas == null) {
             return new ArrayList<>();
         }
         return datas;
     }
 
-    public void setDatas(List<CoinRankEntity> datas) {
+    public void setDatas(List<SquareQuestionEntity> datas) {
         this.datas = datas;
     }
 }

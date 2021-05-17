@@ -5,7 +5,7 @@ import com.knight.wanandroid.library_network.data.HttpHeaders;
 import com.knight.wanandroid.library_network.data.HttpParams;
 
 /**
- * @author created by luguian
+ * @author created by knight
  * @organize wanandroid
  * @Date 2020/12/25 17:28
  * @descript:请求参数拦截器

@@ -11,7 +11,9 @@ import com.knight.wanandroid.library_network.listener.HttpCallback;
 import com.knight.wanandroid.library_network.model.HttpData;
 import com.knight.wanandroid.module_square.module_contract.SquareContact;
 import com.knight.wanandroid.module_square.module_entity.SquareArticleListEntity;
+import com.knight.wanandroid.module_square.module_entity.SquareQuestionListEntity;
 import com.knight.wanandroid.module_square.module_request.SquareArticleApi;
+import com.knight.wanandroid.module_square.module_request.SquareQuestionApi;
 
 import java.util.List;
 
@@ -102,6 +104,23 @@ public class SquareModel implements SquareContact.SquareModel {
                     }
 
 
+                });
+    }
+
+    @Override
+    public void requestQuestions(BaseFragment fragment, int page, MvpListener mvpListener) {
+        GoHttp.get(fragment)
+                .api(new SquareQuestionApi().setPage(page))
+                .request(new HttpCallback<HttpData<SquareQuestionListEntity>>(fragment) {
+                    @Override
+                    public void onSucceed(HttpData<SquareQuestionListEntity> result) {
+                        mvpListener.onSuccess(result.getData());
+                    }
+
+                    @Override
+                    public void onFail(Exception e) {
+                        mvpListener.onError(e.getMessage());
+                    }
                 });
     }
 

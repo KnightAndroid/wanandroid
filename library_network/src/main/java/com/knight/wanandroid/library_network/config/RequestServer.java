@@ -3,7 +3,7 @@ package com.knight.wanandroid.library_network.config;
 import com.knight.wanandroid.library_network.annotation.HttpIgnore;
 
 /**
- * @author created by luguian
+ * @author created by knight
  * @organize wanandroid
  * @Date 2020/12/25 17:34
  * @descript:服务器简单配置
