@@ -8,8 +8,8 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.knight.wanandroid.library_base.activity.BaseActivity;
 import com.knight.wanandroid.library_base.entity.UserInfoEntity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
+import com.knight.wanandroid.library_util.SoftInputScrollUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
-import com.knight.wanandroid.library_util.ViewSetUtils;
 import com.knight.wanandroid.module_mine.R;
 import com.knight.wanandroid.module_mine.databinding.MineActivityRegisterBinding;
 import com.knight.wanandroid.module_mine.module_contract.RegisterContract;
@@ -24,6 +24,9 @@ import com.knight.wanandroid.module_mine.module_presenter.RegisterPresenter;
  */
 @Route(path = RoutePathActivity.Mine.Register_Pager)
 public class RegisterActivity extends BaseActivity<MineActivityRegisterBinding, RegisterPresenter, RegisterModel> implements RegisterContract.RegisterView {
+    private SoftInputScrollUtils mSoftInputScrollUtils;
+
+
     @Override
     public int layoutId() {
         return R.layout.mine_activity_register;
@@ -32,6 +35,8 @@ public class RegisterActivity extends BaseActivity<MineActivityRegisterBinding, 
     @Override
     public void initView(Bundle savedInstanceState) {
         mDatabind.setClick(new ProcyClick());
+        mSoftInputScrollUtils = SoftInputScrollUtils.attach(this).moveBy(mDatabind.mineRegisterRoot);
+        mSoftInputScrollUtils.moveWith(mDatabind.mineTvRegister,mDatabind.mineRegisterUsername,mDatabind.mineRegisterPassword,mDatabind.mineRegisterConfirmpassword);
         mDatabind.mineRegisterToolbar.baseTvTitle.setText("注册");
         mDatabind.mineRegisterToolbar.baseIvBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,7 +45,7 @@ public class RegisterActivity extends BaseActivity<MineActivityRegisterBinding, 
             }
         });
 
-        ViewSetUtils.controlKeyboardLayout(mDatabind.mineRegisterRoot,mDatabind.mineTvRegister);
+
     }
 
     @Override

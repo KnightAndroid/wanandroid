@@ -107,6 +107,7 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
 
         View QuestionMenu = LayoutInflater.from(getActivity()).inflate(R.layout.square_question_activity,null);
         mSquareQuestionAdapter = new SquareQuestionAdapter(new ArrayList<>());
+        initAdapterListener();
         baserecycleview = QuestionMenu.findViewById(R.id.base_body_rv);
         smartRefreshLayout = (SmartRefreshLayout) QuestionMenu.findViewById(R.id.include_square_question);
         smartRefreshLayout.setOnRefreshListener(refreshLayout -> {
@@ -157,8 +158,6 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
     protected void reLoadData() {
         mPresenter.requestHotKey();
         mPresenter.requestShareData(page);
-       // mPresenter.requestSquareQuestion(questionPage);
-
     }
 
 
@@ -186,9 +185,9 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
             public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
                 if (view.getId() == R.id.square_icon_collect) {
                     if (mSquareArticleAdapter.getData().get(position).isCollect()) {
-                        mPresenter.requestCancelCollectArticle(mSquareArticleAdapter.getData().get(position).getId(),position);
+                        mPresenter.requestCancelCollectArticle(mSquareArticleAdapter.getData().get(position).getId(),false,position);
                     } else {
-                        mPresenter.requestCollectArticle(mSquareArticleAdapter.getData().get(position).getId(),position);
+                        mPresenter.requestCollectArticle(mSquareArticleAdapter.getData().get(position).getId(),false,position);
                     }
                 }
             }
@@ -212,8 +211,6 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
     protected void lazyLoadData() {
         mPresenter.requestHotKey();
         mPresenter.requestShareData(page);
-    //    mPresenter.requestSquareQuestion(questionPage);
-
     }
 
     @Override
@@ -242,15 +239,27 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
     }
 
     @Override
-    public void collectArticleSuccess(int position) {
-        mSquareArticleAdapter.getData().get(position).setCollect(true);
-        mSquareArticleAdapter.notifyItemChanged(position);
+    public void collectArticleSuccess(int position,boolean question) {
+        if(question){
+            mSquareQuestionAdapter.getData().get(position).setCollect(true);
+            mSquareQuestionAdapter.notifyItemChanged(position);
+        } else {
+            mSquareArticleAdapter.getData().get(position).setCollect(true);
+            mSquareArticleAdapter.notifyItemChanged(position);
+        }
+
     }
 
     @Override
-    public void cancelArticleSuccess(int position) {
-        mSquareArticleAdapter.getData().get(position).setCollect(false);
-        mSquareArticleAdapter.notifyItemChanged(position);
+    public void cancelArticleSuccess(int position,boolean question) {
+        if (question) {
+            mSquareQuestionAdapter.getData().get(position).setCollect(false);
+            mSquareQuestionAdapter.notifyItemChanged(position);
+        } else {
+            mSquareArticleAdapter.getData().get(position).setCollect(false);
+            mSquareArticleAdapter.notifyItemChanged(position);
+        }
+
     }
 
     @Override
@@ -322,6 +331,50 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
     public void ShareArticleSuccess(EventBusUtils.ShareArticleSuccess shareArticleSuccess){
         onRefresh(mDatabind.squareSharearticleFreshlayout);
     }
+
+
+    private void initAdapterListener(){
+        mSquareQuestionAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
+                ARouterUtils.startWeb(mSquareQuestionAdapter.getData().get(position).getLink(),mSquareQuestionAdapter.getData().get(position).getTitle(),mSquareQuestionAdapter.getData().get(position).getId());
+            }
+        });
+
+        mSquareQuestionAdapter.addChildClickViewIds(R.id.base_icon_collect);
+        mSquareQuestionAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+            @LoginCheck
+            @Override
+            public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+                if (view.getId() == R.id.base_icon_collect) {
+                    if (mSquareQuestionAdapter.getData().get(position).isCollect()) {
+                        mPresenter.requestCancelCollectArticle(mSquareQuestionAdapter.getData().get(position).getId(),true,position);
+                    } else {
+                        mPresenter.requestCollectArticle(mSquareQuestionAdapter.getData().get(position).getId(),true,position);
+                    }
+                }
+            }
+        });
+
+
+
+        mSquareArticleAdapter.addChildClickViewIds(R.id.square_icon_collect);
+        mSquareArticleAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+            @LoginCheck
+            @Override
+            public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+                if (view.getId() == R.id.square_icon_collect) {
+                    if (mSquareArticleAdapter.getData().get(position).isCollect()) {
+                        mPresenter.requestCancelCollectArticle(mSquareArticleAdapter.getData().get(position).getId(),false,position);
+                    } else {
+                        mPresenter.requestCollectArticle(mSquareArticleAdapter.getData().get(position).getId(),false,position);
+                    }
+                }
+            }
+        });
+    }
+
+
 
     @Override
     public void onDestroy(){

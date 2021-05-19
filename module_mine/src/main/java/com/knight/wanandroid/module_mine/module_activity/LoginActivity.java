@@ -11,6 +11,7 @@ import com.knight.wanandroid.library_base.entity.UserInfoEntity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
+import com.knight.wanandroid.library_util.SoftInputScrollUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_util.constant.MMkvConstants;
 import com.knight.wanandroid.module_mine.R;
@@ -30,6 +31,10 @@ import org.greenrobot.eventbus.EventBus;
 
 @Route(path = RoutePathActivity.Mine.Login_Pager)
 public class LoginActivity extends BaseActivity<MineActivityLoginBinding, LoginPresenter, LoginModel> implements LoginContract.LoginView {
+
+    private SoftInputScrollUtils mSoftInputScrollUtils;
+
+
     @Override
     public int layoutId() {
         return R.layout.mine_activity_login;
@@ -38,6 +43,8 @@ public class LoginActivity extends BaseActivity<MineActivityLoginBinding, LoginP
     @Override
     public void initView(Bundle savedInstanceState) {
         mDatabind.setClick(new ProcyClick());
+        mSoftInputScrollUtils = SoftInputScrollUtils.attach(this).moveBy(mDatabind.mineLoginRoot);
+        mSoftInputScrollUtils.moveWith(mDatabind.mineTvLogin,mDatabind.mineLoginUsername,mDatabind.mineLoginPassword);
         mDatabind.mineLoginToolbar.baseTvTitle.setText("登录");
         mDatabind.mineLoginToolbar.baseIvBack.setOnClickListener(new View.OnClickListener() {
             @Override

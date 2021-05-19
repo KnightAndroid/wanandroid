@@ -62,7 +62,7 @@ public class SquarePresenter extends SquareContact.SquareDataPresenter{
     }
 
     @Override
-    public void requestCollectArticle(int collectArticleId, int position) {
+    public void requestCollectArticle(int collectArticleId, boolean question,int position) {
         final SquareContact.SquareView mView = getView();
         if (mView == null) {
             return;
@@ -70,7 +70,7 @@ public class SquarePresenter extends SquareContact.SquareDataPresenter{
         mModel.requestCollectArticle((BaseFragment) mView,collectArticleId,new MvpListener<HttpData>(){
             @Override
             public void onSuccess(HttpData data) {
-                mView.collectArticleSuccess(position);
+                mView.collectArticleSuccess(position,question);
             }
 
             @Override
@@ -81,7 +81,7 @@ public class SquarePresenter extends SquareContact.SquareDataPresenter{
     }
 
     @Override
-    public void requestCancelCollectArticle(int collectArticleId, int position) {
+    public void requestCancelCollectArticle(int collectArticleId, boolean question,int position) {
         final SquareContact.SquareView mView = getView();
         if (mView == null) {
             return;
@@ -89,7 +89,7 @@ public class SquarePresenter extends SquareContact.SquareDataPresenter{
         mModel.requestCancelCollectArticle((BaseFragment) mView,collectArticleId,new MvpListener<HttpData>(){
             @Override
             public void onSuccess(HttpData data) {
-                mView.cancelArticleSuccess(position);
+                mView.cancelArticleSuccess(position,question);
             }
 
             @Override

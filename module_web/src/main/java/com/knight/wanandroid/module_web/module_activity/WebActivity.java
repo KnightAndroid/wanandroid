@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
 import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
 
@@ -46,6 +47,8 @@ public class WebActivity extends BaseDBActivity<WebActivityMainBinding> {
     @Autowired(name = "articleId")
     int articleId = 0;
 
+    private WebView mWebView;
+
 
 
 
@@ -71,6 +74,9 @@ public class WebActivity extends BaseDBActivity<WebActivityMainBinding> {
                 .createAgentWeb()
                 .ready()
                 .go(webUrl);
+
+        mWebView = mAgentWeb.getWebCreator().getWebView();
+        initWebView(mWebView);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             mDatabind.includeWebToolbar.baseTvTitle.setText(Html.fromHtml(title,Html.FROM_HTML_MODE_LEGACY));
         } else {
@@ -105,6 +111,21 @@ public class WebActivity extends BaseDBActivity<WebActivityMainBinding> {
 
         }
     };
+
+    private void initWebView(WebView webView){
+        WebSettings settings = webView.getSettings();
+        webView.setOverScrollMode(WebView.OVER_SCROLL_NEVER);
+        settings.setDomStorageEnabled(true);
+        settings.setJavaScriptEnabled(true);
+        settings.setLoadsImagesAutomatically(true);
+        settings.setUseWideViewPort(true);
+        settings.setLoadWithOverviewMode(true);
+        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            settings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        }
+
+    }
 
 
 

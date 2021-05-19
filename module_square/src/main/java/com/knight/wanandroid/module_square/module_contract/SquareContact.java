@@ -29,9 +29,9 @@ public interface SquareContact {
       //最新文章
       void setShareArticles(SquareArticleListEntity result);
       //收藏站内文章
-      void collectArticleSuccess(int position);
+      void collectArticleSuccess(int position,boolean question);
       //取消站内文章
-      void cancelArticleSuccess(int position);
+      void cancelArticleSuccess(int position,boolean question);
 
       void setSquareQuestionData(SquareQuestionListEntity squareQuestionListEntity);
 
@@ -59,8 +59,8 @@ public interface SquareContact {
       public abstract void requestHotKey();
       //具体实现
       public abstract void requestShareData(int page);
-      public abstract void requestCollectArticle(int collectArticleId,int position);
-      public abstract void requestCancelCollectArticle(int collectArticleId,int position);
+      public abstract void requestCollectArticle(int collectArticleId,boolean question,int position);
+      public abstract void requestCancelCollectArticle(int collectArticleId,boolean question,int position);
 
       public abstract void requestSquareQuestion(int page);
    }
