@@ -9,6 +9,7 @@ import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.util.ARouterUtils;
+import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.module_home.R;
@@ -21,6 +22,10 @@ import com.knight.wanandroid.module_home.module_model.HomeArticleModel;
 import com.knight.wanandroid.module_home.module_presenter.HomeArticlePresenter;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 
@@ -47,6 +52,7 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+        EventBus.getDefault().register(this);
         mHomeArticleAdapter = new HomeArticleAdapter(new ArrayList<>());
         SetInitCustomView.initSwipeRecycleview(mDatabind.homeArticleBody,new LinearLayoutManager(getActivity()),mHomeArticleAdapter,true);
         mDatabind.homeArticleBody.setAdapter(mHomeArticleAdapter);
@@ -54,7 +60,10 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
         mHomeArticleAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
-                ARouterUtils.startWeb(mHomeArticleAdapter.getData().get(position).getLink(),mHomeArticleAdapter.getData().get(position).getTitle(),mHomeArticleAdapter.getData().get(position).getId());
+                ARouterUtils.startWeb(mHomeArticleAdapter.getData().get(position).getLink(),
+                        mHomeArticleAdapter.getData().get(position).getTitle(),
+                        mHomeArticleAdapter.getData().get(position).getId(),
+                        mHomeArticleAdapter.getData().get(position).isCollect());
             }
         });
 
@@ -144,6 +153,18 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
     }
 
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void oncollectSuccess(EventBusUtils.CollectSuccess collectSuccess){
+        //刷新重新请求公众号数据
+        currentPage = 0;
+        if (HomeConstants.ARTICLE_TYPE.equals("全部")) {
+            mPresenter.requestAllHomeArticle(currentPage);
+        } else {
+            mPresenter.requestSearchArticle(currentPage,HomeConstants.ARTICLE_TYPE);
+        }
+    }
+
+
     /**
      *
      * 加载文章列表数据
@@ -170,6 +191,12 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
 
         mPresenter.requestAllHomeArticle(currentPage);
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
 

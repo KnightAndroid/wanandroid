@@ -5,7 +5,7 @@ ext{
     //编译版本
     compile_sdk_version = 30
     //最小运行版本
-    min_sdk_version = 16
+    min_sdk_version = 21
     //目标版本
     target_sdk_version = 30
     //构建版本
@@ -65,6 +65,14 @@ ext{
     roomVersion = '2.2.5'
     //agentVersion
     AgentVersion = '4.1.9-androidx'
-
-
+    //cameraX
+    cameraXVersion = '1.0.0-beta12'
+    //ktx
+    ktxVersion = '1.3.2'
+    //cameraView
+    cameraViewVersion = '1.0.0-alpha19'
+    //zxing
+    zingVersion = "3.4.1"
+    //lifecycle
+    lifecycleVersion = '2.2.0'
 }

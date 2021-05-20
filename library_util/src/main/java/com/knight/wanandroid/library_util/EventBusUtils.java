@@ -23,4 +23,9 @@ public class EventBusUtils {
 
     }
 
+    //webActivity收藏成功
+    public static class CollectSuccess{
+
+    }
+
 }

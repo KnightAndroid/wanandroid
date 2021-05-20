@@ -34,17 +34,7 @@ public class WelcomeActivity extends BaseDBActivity<ActivityWelcomeBinding> {
             }
         });
         mDatabind.logoAnim.startAnimation();
-//        XXPermissions.with(this)
-//                .permission(Permission.CAMERA)
-//                .request(new OnPermissionCallback() {
-//                    @Override
-//                    public void onGranted(List<String> permissions, boolean all) {
-//                        if (all) {
-//                            startActivity(new Intent(WelcomeActivity.this,MainActivity.class));
-//                            finish();
-//                        }
-//                    }
-//                });
+
 
     }
 

@@ -47,7 +47,7 @@ public class MineModel implements MineContract.MineModel {
 
     @Override
     public void requestLogout(BaseFragment fragment, MvpListener mvpListener) {
-        ((BaseDBActivity)fragment.getActivity()).showLoadingHud("登录请求中...");
+        ((BaseDBActivity)fragment.getActivity()).showLoadingHud("退出登录中...");
         GoHttp.get(fragment)
                 .api(new LogoutApi())
                 .request(new HttpCallback<HttpData>(fragment){

@@ -36,6 +36,8 @@
             android:layout_gravity="center"
             android:maxEms="12"/>
 
+
+
         <ImageView
             android:id="@+id/base_iv_right"
             android:layout_width="wrap_content"
@@ -43,7 +45,7 @@
             android:background="@drawable/base_icon_more"
             android:layout_gravity="right|center"
             android:layout_marginRight="@dimen/base_dimen_12"
-            android:visibility="gone"/>
+            />
 
     </com.knight.wanandroid.library_widget.CompatToobar>
 

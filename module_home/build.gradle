@@ -81,7 +81,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation project (':library_base')
+    implementation project(':library_base')
+    implementation project(':library_scan')
     annotationProcessor "com.alibaba:arouter-compiler:$arouterVersion"
     implementation "com.youth.banner:banner:$bannerVersion"
     if (isRunAlone.toBoolean()) {

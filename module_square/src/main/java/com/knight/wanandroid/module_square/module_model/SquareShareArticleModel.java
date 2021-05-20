@@ -8,6 +8,8 @@ import com.knight.wanandroid.library_network.model.HttpData;
 import com.knight.wanandroid.module_square.module_contract.SquareShareArticleContact;
 import com.knight.wanandroid.module_square.module_request.SquareShareArticleApi;
 
+import okhttp3.Call;
+
 /**
  * @author created by knight
  * @organize wanandroid
@@ -17,6 +19,8 @@ import com.knight.wanandroid.module_square.module_request.SquareShareArticleApi;
 public class SquareShareArticleModel implements SquareShareArticleContact.SquareShareArticleModel {
     @Override
     public void requestShareArticle(BaseActivity activity, String title,String link,MvpListener mvpListener) {
+
+        activity.showLoadingHud("分享文章中,请稍后...");
         GoHttp.post(activity)
                 .api(new SquareShareArticleApi().setTitle(title).setLink(link))
                 .request(new HttpCallback<HttpData>(activity){
@@ -28,6 +32,11 @@ public class SquareShareArticleModel implements SquareShareArticleContact.Square
                     @Override
                     public void onFail(Exception e) {
                         mvpListener.onError(e.getMessage());
+                    }
+
+                    @Override
+                    public void onEnd(Call call){
+                        activity.dismissLoadingHud();
                     }
                 });
     }

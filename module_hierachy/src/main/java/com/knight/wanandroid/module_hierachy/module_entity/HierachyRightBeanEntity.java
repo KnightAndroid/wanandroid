@@ -28,6 +28,17 @@ public class HierachyRightBeanEntity implements Parcelable {
     private ArrayList<String> childrenName;
     private ArrayList<Integer> cid;
 
+
+    //文章是否被收藏
+    private boolean collect;
+    public boolean isCollect() {
+        return collect;
+    }
+
+    public void setCollect(boolean collect) {
+        this.collect = collect;
+    }
+
     public String getName() {
         return name == null ? "" : name;
     }

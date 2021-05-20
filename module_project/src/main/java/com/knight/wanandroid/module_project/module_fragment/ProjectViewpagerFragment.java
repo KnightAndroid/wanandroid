@@ -11,6 +11,7 @@ import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
 import com.knight.wanandroid.library_base.util.ARouterUtils;
+import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.module_project.R;
@@ -23,6 +24,10 @@ import com.knight.wanandroid.module_project.module_presenter.ProjectArticlePrese
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 
@@ -59,6 +64,7 @@ public class ProjectViewpagerFragment extends BaseFragment<ProjectViewpagerFragm
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+        EventBus.getDefault().register(this);
         mDatabind.setClick(new ProcyClick());
         loadLoading(mDatabind.projectListSmartfreshlayout);
         cid = getArguments().getInt("cid");
@@ -120,6 +126,11 @@ public class ProjectViewpagerFragment extends BaseFragment<ProjectViewpagerFragm
         mProjectArticleAdapter.notifyItemChanged(position);
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void oncollectSuccess(EventBusUtils.CollectSuccess collectSuccess){
+        onRefresh(mDatabind.projectListSmartfreshlayout);
+    }
+
     @Override
     public void showLoading() {
 
@@ -171,7 +182,10 @@ public class ProjectViewpagerFragment extends BaseFragment<ProjectViewpagerFragm
         mProjectArticleAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
-                ARouterUtils.startWeb(mProjectArticleAdapter.getData().get(position).getLink(),mProjectArticleAdapter.getData().get(position).getTitle(),mProjectArticleAdapter.getData().get(position).getId());
+                ARouterUtils.startWeb(mProjectArticleAdapter.getData().get(position).getLink(),
+                        mProjectArticleAdapter.getData().get(position).getTitle(),
+                        mProjectArticleAdapter.getData().get(position).getId(),
+                        mProjectArticleAdapter.getData().get(position).isCollect());
             }
         });
     }
@@ -181,6 +195,12 @@ public class ProjectViewpagerFragment extends BaseFragment<ProjectViewpagerFragm
         public void scrollTop(){
             mDatabind.projectListRv.smoothScrollToPosition(0);
         }
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
 

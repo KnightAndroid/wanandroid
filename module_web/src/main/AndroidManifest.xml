@@ -4,6 +4,7 @@
 
     <application>
         <activity android:name=".module_activity.WebActivity"/>
+        <activity android:name=".module_activity.WebNormalActivity"/>
 
     </application>
 

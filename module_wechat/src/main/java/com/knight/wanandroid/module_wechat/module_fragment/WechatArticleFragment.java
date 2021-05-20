@@ -163,7 +163,10 @@ public class WechatArticleFragment extends BaseFragment<WechatOfficialaccountVie
         mWechatArticleAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
-                ARouterUtils.startWeb(mWechatArticleAdapter.getData().get(position).getLink(),mWechatArticleAdapter.getData().get(position).getTitle(),mWechatArticleAdapter.getData().get(position).getId());
+                ARouterUtils.startWeb(mWechatArticleAdapter.getData().get(position).getLink(),
+                        mWechatArticleAdapter.getData().get(position).getTitle(),
+                        mWechatArticleAdapter.getData().get(position).getId(),
+                        mWechatArticleAdapter.getData().get(position).isCollect());
             }
         });
     }

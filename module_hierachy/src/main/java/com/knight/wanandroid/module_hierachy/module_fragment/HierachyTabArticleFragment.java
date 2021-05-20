@@ -149,7 +149,10 @@ public class HierachyTabArticleFragment extends BaseFragment<HierachyFragmentTab
         mHierachyTabAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
-                ARouterUtils.startWeb(mHierachyTabAdapter.getData().get(position).getLink(),mHierachyTabAdapter.getData().get(position).getTitle(),mHierachyTabAdapter.getData().get(position).getId());
+                ARouterUtils.startWeb(mHierachyTabAdapter.getData().get(position).getLink(),
+                        mHierachyTabAdapter.getData().get(position).getTitle(),
+                        mHierachyTabAdapter.getData().get(position).getId(),
+                        mHierachyTabAdapter.getData().get(position).isCollect());
             }
         });
 

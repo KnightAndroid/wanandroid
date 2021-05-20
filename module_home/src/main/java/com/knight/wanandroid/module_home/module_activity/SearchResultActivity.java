@@ -189,7 +189,10 @@ public class SearchResultActivity extends BaseActivity<HomeSearchresultActivityB
         mSearchResultAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
-                ARouterUtils.startWeb(mSearchResultAdapter.getData().get(position).getLink(),mSearchResultAdapter.getData().get(position).getTitle(),mSearchResultAdapter.getData().get(position).getId());
+                ARouterUtils.startWeb(mSearchResultAdapter.getData().get(position).getLink(),
+                        mSearchResultAdapter.getData().get(position).getTitle(),
+                        mSearchResultAdapter.getData().get(position).getId(),
+                        mSearchResultAdapter.getData().get(position).isCollect());
             }
         });
 

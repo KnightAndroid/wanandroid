@@ -174,7 +174,10 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
         mSquareArticleAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
-                ARouterUtils.startWeb(mSquareArticleAdapter.getData().get(position).getLink(),mSquareArticleAdapter.getData().get(position).getTitle(),mSquareArticleAdapter.getData().get(position).getId());
+                ARouterUtils.startWeb(mSquareArticleAdapter.getData().get(position).getLink(),
+                        mSquareArticleAdapter.getData().get(position).getTitle(),
+                        mSquareArticleAdapter.getData().get(position).getId(),
+                        mSquareArticleAdapter.getData().get(position).isCollect());
             }
         });
 
@@ -332,12 +335,20 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
         onRefresh(mDatabind.squareSharearticleFreshlayout);
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void oncollectSuccess(EventBusUtils.CollectSuccess collectSuccess){
+        onRefresh(mDatabind.squareSharearticleFreshlayout);
+    }
 
     private void initAdapterListener(){
         mSquareQuestionAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
-                ARouterUtils.startWeb(mSquareQuestionAdapter.getData().get(position).getLink(),mSquareQuestionAdapter.getData().get(position).getTitle(),mSquareQuestionAdapter.getData().get(position).getId());
+                ARouterUtils.startWeb(
+                        mSquareQuestionAdapter.getData().get(position).getLink(),
+                        mSquareQuestionAdapter.getData().get(position).getTitle(),
+                        mSquareQuestionAdapter.getData().get(position).getId(),
+                        mSquareQuestionAdapter.getData().get(position).isCollect());
             }
         });
 

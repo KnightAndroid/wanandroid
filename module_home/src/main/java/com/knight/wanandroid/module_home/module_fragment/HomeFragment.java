@@ -10,6 +10,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.google.gson.reflect.TypeToken;
+import com.knight.wanandroid.library_base.entity.OfficialAccountEntity;
 import com.knight.wanandroid.library_base.entity.UserInfoEntity;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
@@ -17,6 +18,12 @@ import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
 import com.knight.wanandroid.library_base.util.ARouterUtils;
 import com.knight.wanandroid.library_common.ApplicationProvider;
+import com.knight.wanandroid.library_permiss.OnPermissionCallback;
+import com.knight.wanandroid.library_permiss.Permission;
+import com.knight.wanandroid.library_permiss.XXPermissions;
+import com.knight.wanandroid.library_scan.activity.ScanCodeActivity;
+import com.knight.wanandroid.library_scan.annoation.ScanStyle;
+import com.knight.wanandroid.library_scan.decode.ScanCodeConfig;
 import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.GsonUtils;
@@ -33,7 +40,6 @@ import com.knight.wanandroid.module_home.module_adapter.OfficialAccountAdapter;
 import com.knight.wanandroid.module_home.module_adapter.TopArticleAdapter;
 import com.knight.wanandroid.module_home.module_contract.HomeContract;
 import com.knight.wanandroid.module_home.module_entity.BannerEntity;
-import com.knight.wanandroid.library_base.entity.OfficialAccountEntity;
 import com.knight.wanandroid.module_home.module_entity.TopArticleEntity;
 import com.knight.wanandroid.module_home.module_logic.HomeArticleLogic;
 import com.knight.wanandroid.module_home.module_model.HomeModel;
@@ -54,10 +60,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import kotlin.jvm.functions.Function1;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * @author created by knight
@@ -158,7 +167,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
             @Override
             public void onBindView(BannerImageHolder holder, BannerEntity data, int position, int size) {
                 GlideEngineUtils.getInstance().loadStringPhoto(ApplicationProvider.getInstance().getApplication(),data.getImagePath(),holder.imageView);
-                holder.imageView.setOnClickListener(v -> ARouterUtils.startWeb(data.getUrl(),data.getTitle(),data.getId()));
+                holder.imageView.setOnClickListener(v -> ARouterUtils.startWeb(data.getUrl(),data.getTitle(),data.getId(),false));
             }
         })
         .addBannerLifecycleObserver(this)
@@ -220,6 +229,24 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
             scrollTop();
         }
 
+        public void scanCode(){
+                    XXPermissions.with(HomeFragment.this)
+                            .permission(Permission.CAMERA)
+                            .request(new OnPermissionCallback() {
+                                @Override
+                                public void onGranted(List<String> permissions, boolean all) {
+                                    if (all) {
+                                        new ScanCodeConfig.Builder()
+                                                .setFragment(HomeFragment.this)
+                                                .setActivity(getActivity())
+                                                .setPlayAudio(true)
+                                                .setStyle(ScanStyle.FULL_SCREEN)
+                                                .build().start(ScanCodeActivity.class);
+                                    }
+                                }
+                            });
+        }
+
     }
 
     private void initMagicIndicator() {
@@ -251,7 +278,10 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         mTopArticleAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
-                ARouterUtils.startWeb(mTopArticleAdapter.getData().get(position).getLink(),mTopArticleAdapter.getData().get(position).getTitle(),mTopArticleAdapter.getData().get(position).getId());
+                ARouterUtils.startWeb(mTopArticleAdapter.getData().get(position).getLink(),
+                        mTopArticleAdapter.getData().get(position).getTitle(),
+                        mTopArticleAdapter.getData().get(position).getId(),
+                        mTopArticleAdapter.getData().get(position).isCollect());
             }
         });
     }
@@ -281,6 +311,10 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     }
 
 
+    /**
+     * 登录成功
+     * @param loginInSuccess
+     */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onLoginInSuccess(EventBusUtils.LoginInSuccess loginInSuccess){
         //登录成功
@@ -291,6 +325,10 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     }
 
 
+    /**
+     * 登录失败
+     * @param logoutSuccess
+     */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onLogoutSuccess(EventBusUtils.LogoutSuccess logoutSuccess){
         //刷新页面
@@ -301,8 +339,14 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
 
 
 
+
+
+
+
+
     public void scrollTop(){
         mDatabind.homeCoordinatorsl.fullScroll(View.FOCUS_UP);
+
     }
 
 
@@ -311,6 +355,23 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     public void onDestroy(){
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //接收扫码结果
+        if(resultCode == RESULT_OK && requestCode == ScanCodeConfig.QUESTCODE && data != null){
+            Bundle extras = data.getExtras();
+            if(extras != null){
+                String result = extras.getString(ScanCodeConfig.CODE_KEY);
+                //跳到webview
+                ARouter.getInstance().build(RoutePathActivity.Web.Web_Normal)
+                        .withString("webUrl",result)
+                        .withString("webTitle","扫码结果")
+                        .navigation();
+            }
+        }
     }
 
 }

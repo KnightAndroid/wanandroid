@@ -78,6 +78,7 @@ public class RoutePathActivity {
         private static final String Web = "/module_web_activity";
 
         public static final String Web_Pager = Web + "/web_pager";
+        public static final String Web_Normal = Web + "/web_normal_pager";
     }
 
 

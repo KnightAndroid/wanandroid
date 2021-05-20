@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
@@ -17,12 +18,21 @@ import com.just.agentweb.AgentWeb;
 import com.just.agentweb.DefaultWebClient;
 import com.just.agentweb.WebChromeClient;
 import com.just.agentweb.WebViewClient;
-import com.knight.wanandroid.library_base.activity.BaseDBActivity;
+import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
+import com.knight.wanandroid.library_base.activity.BaseActivity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
+import com.knight.wanandroid.library_util.EventBusUtils;
+import com.knight.wanandroid.library_util.ToastUtils;
+import com.knight.wanandroid.library_widget.LoveAnimatorRelativeLayout;
 import com.knight.wanandroid.module_web.R;
 import com.knight.wanandroid.module_web.databinding.WebActivityMainBinding;
+import com.knight.wanandroid.module_web.module_contract.WebContract;
 import com.knight.wanandroid.module_web.module_fragment.WebBottomFragment;
+import com.knight.wanandroid.module_web.module_model.WebModel;
+import com.knight.wanandroid.module_web.module_presenter.WebPresenter;
 import com.knight.wanandroid.module_web.module_view.WebLayout;
+
+import org.greenrobot.eventbus.EventBus;
 
 import androidx.core.content.ContextCompat;
 
@@ -33,19 +43,24 @@ import androidx.core.content.ContextCompat;
  * @descript:
  */
 @Route(path = RoutePathActivity.Web.Web_Pager)
-public class WebActivity extends BaseDBActivity<WebActivityMainBinding> {
+public class WebActivity extends BaseActivity<WebActivityMainBinding, WebPresenter, WebModel> implements WebContract.WebView,LoveAnimatorRelativeLayout.onCollectListener {
 
+    //文章url
     @Autowired(name = "webUrl")
     String webUrl = "";
 
-
+    //文章标题
     @Autowired(name = "title")
     String title = "";
     private AgentWeb mAgentWeb;
 
-
+    //文章id
     @Autowired(name = "articleId")
     int articleId = 0;
+
+    //是否收藏文章
+    @Autowired(name = "isCollect")
+    boolean isCollect;
 
     private WebView mWebView;
 
@@ -61,6 +76,7 @@ public class WebActivity extends BaseDBActivity<WebActivityMainBinding> {
     public void initView(Bundle savedInstanceState) {
         ARouter.getInstance().inject(this);
         mDatabind.includeWebToolbar.baseIvRight.setVisibility(View.VISIBLE);
+        mDatabind.webLikeRl.setOnCollectListener(this);
         mAgentWeb = AgentWeb.with(this)
                 .setAgentWebParent(mDatabind.webLl, new LinearLayout.LayoutParams(-1, -1))
                 .useDefaultIndicator(ContextCompat.getColor(this,R.color.base_color_theme),2)
@@ -76,6 +92,8 @@ public class WebActivity extends BaseDBActivity<WebActivityMainBinding> {
                 .go(webUrl);
 
         mWebView = mAgentWeb.getWebCreator().getWebView();
+
+
         initWebView(mWebView);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             mDatabind.includeWebToolbar.baseTvTitle.setText(Html.fromHtml(title,Html.FROM_HTML_MODE_LEGACY));
@@ -86,9 +104,10 @@ public class WebActivity extends BaseDBActivity<WebActivityMainBinding> {
         mDatabind.includeWebToolbar.baseIvRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WebBottomFragment.newInstance(webUrl,title,articleId).show(getSupportFragmentManager(),"dialog_web");
+                WebBottomFragment.newInstance(webUrl,title,articleId,isCollect).show(getSupportFragmentManager(),"dialog_web");
             }
         });
+
 
     }
 
@@ -129,17 +148,6 @@ public class WebActivity extends BaseDBActivity<WebActivityMainBinding> {
 
 
 
-
-    @Override
-    public void onSucceed(Object result) {
-
-    }
-
-    @Override
-    public void onFail(Exception e) {
-
-    }
-
     @Override
     protected void onPause() {
         super.onPause();
@@ -154,9 +162,64 @@ public class WebActivity extends BaseDBActivity<WebActivityMainBinding> {
         mAgentWeb.getWebLifeCycle().onResume();
 
     }
+
+
+    @Override
+    public void onBackPressed(){
+        if (mAgentWeb != null) {
+            if(!mAgentWeb.back()){
+                super.onBackPressed();
+            }
+        }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (mAgentWeb.handleKeyEvent(keyCode, event)) {
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
     @Override
     public void onDestroy() {
         super.onDestroy();
         mAgentWeb.getWebLifeCycle().onDestroy();
+    }
+
+
+    @Override
+    public void onCollect() {
+        requestCollect();
+    }
+
+    @LoginCheck
+    private void requestCollect(){
+        if (!isCollect) {
+            mPresenter.requestCollectArticle(articleId);
+        }
+
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void showError(String errorMsg) {
+        ToastUtils.getInstance().showToast(errorMsg);
+    }
+
+    @Override
+    public void collectArticleSuccess() {
+        isCollect = true;
+        ToastUtils.getInstance().showToast("收藏成功");
+        EventBus.getDefault().post(new EventBusUtils.CollectSuccess());
     }
 }
