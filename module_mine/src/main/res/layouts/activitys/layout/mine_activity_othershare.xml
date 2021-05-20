@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:sothree="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+
+    </data>
+
+    <com.knight.wanandroid.library_widget.slidinglayout.SlidingUpPanelLayout
+        android:id="@+id/mine_slidup_panellayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        sothree:umanoShadowHeight="0dp"
+        sothree:umanoParallaxOffset="100dp"
+
+        sothree:umanoOverlay="true"
+        sothree:umanoPanelHeight="68dp"
+        sothree:umanoScrollableView="@+id/mine_otherarticle_rv"
+        sothree:umanoDragView="@+id/mine_drag_view"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/base_include_toolbar"/>
+
+            <ImageView
+                android:id="@+id/mine_other_iv_head"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_gravity="center"
+                android:background="@drawable/mine_iv_default_head"
+                android:layout_marginTop="@dimen/base_dimen_50"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/mine_drag_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="60dp"
+            >
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/mine_otherarticle_rv"
+                android:text="@string/mine_sharearticles"
+                android:paddingLeft="@dimen/base_dimen_16"
+                android:paddingTop="@dimen/base_dimen_20"
+                android:background="@drawable/mine_top_whitearound"
+                android:textSize="@dimen/base_dimen_16"
+                android:textColor="@color/base_color_title"
+                android:paddingBottom="@dimen/base_dimen_10"/>
+
+
+                <include
+                    android:id="@+id/include_other_sharearticle"
+                    layout="@layout/base_layout_recycleview"
+                    />
+
+
+
+
+        </LinearLayout>
+
+    </com.knight.wanandroid.library_widget.slidinglayout.SlidingUpPanelLayout>
+
+
+</layout>

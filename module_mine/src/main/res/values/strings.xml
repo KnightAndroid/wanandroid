@@ -24,4 +24,5 @@
     <string name="mine_coin_detail">积分明细</string>
     <string name="mine_coin_rank">积分排行榜</string>
     <string name="mine_me_shareArticles">我的分享</string>
+    <string name="mine_sharearticles">分享文章</string>
 </resources>

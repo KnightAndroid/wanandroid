@@ -1,8 +1,12 @@
 package com.knight.wanandroid.module_mine.module_activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.knight.wanandroid.library_base.activity.BaseActivity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_util.ToastUtils;
@@ -49,6 +53,7 @@ public class CoinRankActivity extends BaseActivity<MineActivityCoinrankBinding, 
         mDatabind.includeMineCoinrank.baseFreshlayout.setOnRefreshListener(this);
         mDatabind.includeMineCoinrank.baseFreshlayout.setOnLoadMoreListener(this);
         showLoading(mDatabind.includeMineCoinrank.baseFreshlayout);
+        initListener();
 
     }
 
@@ -111,5 +116,15 @@ public class CoinRankActivity extends BaseActivity<MineActivityCoinrankBinding, 
         page = 1;
         mPresenter.requestRankCoin(page);
         mDatabind.includeMineCoinrank.baseFreshlayout.setEnableLoadMore(true);
+    }
+
+    private void initListener(){
+        mUserRankCoinAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
+                startActivity(new Intent(CoinRankActivity.this,OtherShareArticleActivity.class)
+                .putExtra("uid",mUserRankCoinAdapter.getData().get(position).getUserId()));
+            }
+        });
     }
 }
