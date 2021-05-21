@@ -19,6 +19,7 @@ public class RoutePathActivity {
 
         public static final String search = Home + "/module_search_activity";
         public static final String searchResult = Home + "/module_search_result";
+        public static final String HomeTopArticle = Home + "/module_article_tabs";
     }
 
 

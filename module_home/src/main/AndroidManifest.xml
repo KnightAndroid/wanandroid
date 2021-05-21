@@ -7,6 +7,7 @@
         </activity>
         <activity android:name=".module_activity.SearchActivity"/>
         <activity android:name=".module_activity.SearchResultActivity" />
+        <activity android:name=".module_activity.HomeArticlesTabActivity"/>
     </application>
 
 </manifest>

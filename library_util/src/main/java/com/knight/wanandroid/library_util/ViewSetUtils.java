@@ -6,7 +6,10 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.CompositePageTransformer;
+import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 /**
@@ -74,6 +77,30 @@ public class ViewSetUtils {
             }
         });
     }
+
+
+
+    public static CompositePageTransformer setViewPage2(ViewPager2 viewPage2,int multiWidth, int pageMargin){
+        CompositePageTransformer mCompositePageTransformer;
+        viewPage2.setPageTransformer(mCompositePageTransformer = new CompositePageTransformer());
+        if (pageMargin < 0) {
+            pageMargin = 0;
+        }
+        mCompositePageTransformer.addTransformer(new MarginPageTransformer(pageMargin));
+        RecyclerView recyclerView = (RecyclerView) viewPage2.getChildAt(0);
+        if (viewPage2.getOrientation() == ViewPager2.ORIENTATION_VERTICAL) {
+            recyclerView.setPadding(viewPage2.getPaddingLeft(), multiWidth + Math.abs(pageMargin),viewPage2.getPaddingRight(), multiWidth + Math.abs(pageMargin));
+        } else {
+            recyclerView.setPadding(multiWidth + Math.abs(pageMargin), viewPage2.getPaddingTop(), multiWidth + Math.abs(pageMargin),viewPage2.getPaddingBottom());
+        }
+        recyclerView.setClipToPadding(false);
+
+        return mCompositePageTransformer;
+
+    }
+
+
+
 
 
 

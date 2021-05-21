@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <data>
+
+    </data>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <com.knight.wanandroid.library_widget.pagertransformer.DragLayout
+            android:id="@+id/home_toparticle_drawlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:bototmExtraIndicatorHeight="@dimen/base_dimen_20"
+            app:bottomDragVisibleHeight="@dimen/base_dimen_150"
+            >
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="320dp"
+                android:layout_gravity="center_vertical"
+                android:alpha="0"
+                android:background="@drawable/home_white_back">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base_dimen_150"
+                    android:layout_gravity="bottom"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/home_toparticle_desc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/base_dimen_10"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:paddingRight="10dp"
+                        android:text="这是一段描述"
+                        android:textColor="@color/base_color_title"
+                        android:textSize="@dimen/base_dimen_16"/>
+
+                    <TextView
+                        android:id="@+id/home_toparticle_superchaptername"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/base_dimen_10"
+                        android:layout_marginTop="@dimen/base_dimen_10"
+                        android:text="官方"
+                        android:textColor="@color/base_color_title"
+                        android:textSize="@dimen/base_dimen_15"
+                        />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="#f0f0f0" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/base_dimen_10"
+                        android:layout_marginRight="@dimen/base_dimen_10"
+                        android:layout_marginTop="@dimen/base_dimen_10">
+
+
+                        <TextView
+                            android:id="@+id/home_toparticle_chaptername"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/base_dimen_10"
+                            android:text="官方"
+                            android:textColor="@color/base_color_title"
+                            android:textSize="@dimen/base_dimen_15"
+                            android:layout_centerVertical="true"
+                            />
+
+                        <ImageView
+                            android:id="@+id/home_iv_toparticle_collect"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/base_icon_nocollect"
+                            android:layout_centerVertical="true"/>
+
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+            </FrameLayout>
+
+
+            <com.knight.wanandroid.library_widget.pagertransformer.AspectRatioCradView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/base_dimen_20"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="6dp"
+                app:cardMaxElevation="6dp"
+           >
+
+                <ImageView
+                    android:id="@+id/home_toparticle_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    />
+
+
+
+
+                    <TextView
+                        android:id="@+id/home_tv_toparticle_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="这是一段很长的标题标题标题这是一段很长的标题标题"
+                        android:textSize="@dimen/base_dimen_16"
+                        android:textColor="@color/base_color_title"/>
+
+
+
+
+
+
+
+            </com.knight.wanandroid.library_widget.pagertransformer.AspectRatioCradView>
+
+
+        </com.knight.wanandroid.library_widget.pagertransformer.DragLayout>
+
+    </FrameLayout>
+
+</layout>

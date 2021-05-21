@@ -9,6 +9,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
+import com.chad.library.adapter.base.listener.OnItemLongClickListener;
 import com.google.gson.reflect.TypeToken;
 import com.knight.wanandroid.library_base.entity.OfficialAccountEntity;
 import com.knight.wanandroid.library_base.entity.UserInfoEntity;
@@ -24,6 +25,7 @@ import com.knight.wanandroid.library_permiss.XXPermissions;
 import com.knight.wanandroid.library_scan.activity.ScanCodeActivity;
 import com.knight.wanandroid.library_scan.annoation.ScanStyle;
 import com.knight.wanandroid.library_scan.decode.ScanCodeConfig;
+import com.knight.wanandroid.library_util.BlurBuilder;
 import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.GsonUtils;
@@ -35,6 +37,7 @@ import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.module_home.R;
 import com.knight.wanandroid.module_home.databinding.HomeFragmentHomeBinding;
+import com.knight.wanandroid.module_home.module_activity.HomeArticlesTabActivity;
 import com.knight.wanandroid.module_home.module_activity.SearchActivity;
 import com.knight.wanandroid.module_home.module_adapter.OfficialAccountAdapter;
 import com.knight.wanandroid.module_home.module_adapter.TopArticleAdapter;
@@ -282,6 +285,17 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
                         mTopArticleAdapter.getData().get(position).getTitle(),
                         mTopArticleAdapter.getData().get(position).getId(),
                         mTopArticleAdapter.getData().get(position).isCollect());
+            }
+        });
+
+
+        mTopArticleAdapter.setOnItemLongClickListener(new OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+                BlurBuilder.snapShotWithoutStatusBar(getActivity());
+                startActivity(new Intent(getActivity(), HomeArticlesTabActivity.class));
+                getActivity().overridePendingTransition(R.anim.base_scalealpha_in, R.anim.base_scalealpha_slient);
+                return false;
             }
         });
     }
