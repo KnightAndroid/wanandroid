@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="68dp"
+    android:layout_height="68dp"
+    android:layout_centerHorizontal="true">
+
+
+    <RelativeLayout
+        android:id="@+id/home_rl_toparticle"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/home_iv_toparticle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/home_tv_toparticle_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/home_white"
+            android:textSize="@dimen/base_dimen_16"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+</RelativeLayout>

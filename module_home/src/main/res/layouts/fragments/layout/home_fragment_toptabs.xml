@@ -28,7 +28,8 @@
                 android:layout_height="320dp"
                 android:layout_gravity="center_vertical"
                 android:alpha="0"
-                android:background="@drawable/home_white_back">
+                android:background="@drawable/base_white_round"
+            >
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -42,7 +43,7 @@
                         android:id="@+id/home_toparticle_desc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/base_dimen_10"
+                        android:layout_marginLeft="@dimen/base_dimen_16"
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:paddingRight="10dp"
@@ -54,11 +55,12 @@
                         android:id="@+id/home_toparticle_superchaptername"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/base_dimen_10"
+                        android:layout_marginLeft="@dimen/base_dimen_16"
                         android:layout_marginTop="@dimen/base_dimen_10"
                         android:text="官方"
-                        android:textColor="@color/base_color_title"
                         android:textSize="@dimen/base_dimen_15"
+                        android:textColor="@color/base_color_theme"
+                        android:background="@drawable/base_articlechapter_type"
                         />
                     <View
                         android:layout_width="match_parent"
@@ -69,16 +71,15 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/base_dimen_10"
+                        android:layout_marginLeft="@dimen/base_dimen_16"
                         android:layout_marginRight="@dimen/base_dimen_10"
                         android:layout_marginTop="@dimen/base_dimen_10">
 
 
                         <TextView
-                            android:id="@+id/home_toparticle_chaptername"
+                            android:id="@+id/home_toparticle_author"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/base_dimen_10"
                             android:text="官方"
                             android:textColor="@color/base_color_title"
                             android:textSize="@dimen/base_dimen_15"
@@ -102,20 +103,28 @@
             </FrameLayout>
 
 
+
             <com.knight.wanandroid.library_widget.pagertransformer.AspectRatioCradView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_marginBottom="@dimen/base_dimen_20"
                 app:cardCornerRadius="5dp"
                 app:cardElevation="6dp"
                 app:cardMaxElevation="6dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+
            >
+
+
+
+
 
                 <ImageView
                     android:id="@+id/home_toparticle_iv"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:scaleType="fitXY"
                     />
 
@@ -127,9 +136,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="这是一段很长的标题标题标题这是一段很长的标题标题"
+                        android:text=""
                         android:textSize="@dimen/base_dimen_16"
-                        android:textColor="@color/base_color_title"/>
+                        android:textStyle="bold"
+                        android:textColor="@color/home_white"
+                        android:layout_marginLeft="@dimen/base_dimen_16"
+                        android:layout_marginRight="@dimen/base_dimen_16"/>
 
 
 
@@ -141,6 +153,8 @@
 
 
         </com.knight.wanandroid.library_widget.pagertransformer.DragLayout>
+
+
 
     </FrameLayout>
 

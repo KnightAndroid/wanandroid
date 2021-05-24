@@ -58,6 +58,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -293,7 +294,8 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
             @Override
             public boolean onItemLongClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
                 BlurBuilder.snapShotWithoutStatusBar(getActivity());
-                startActivity(new Intent(getActivity(), HomeArticlesTabActivity.class));
+                startActivity(new Intent(getActivity(), HomeArticlesTabActivity.class)
+                .putExtra("toparticles",(Serializable) mTopArticleAdapter.getData()));
                 getActivity().overridePendingTransition(R.anim.base_scalealpha_in, R.anim.base_scalealpha_slient);
                 return false;
             }

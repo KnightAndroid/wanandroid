@@ -22,6 +22,8 @@ public class AppConfig {
     public static final int ARTICLE_PICTURE_TYPE = 1;
     //搜索字段
     public static String SEARCH_KEYWORD = "";
+    //共享元素 图像
+    public static final String IMAGE_TRANSITION_NAME = "transitionImage";
 
 
     public static String[] moduleApps = {

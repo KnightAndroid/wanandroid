@@ -2,6 +2,7 @@ package com.knight.wanandroid.module_home.module_entity;
 
 import com.knight.wanandroid.library_base.entity.BaseEntity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -11,54 +12,63 @@ import java.util.List;
  * @descript:置顶文章数据模型
  */
 public class TopArticleEntity extends BaseEntity {
-
     /**
      * apkLink :
      * audit : 1
-     * author : 小编
+     * author : xiaoyang
      * canEdit : false
-     * chapterId : 272
-     * chapterName : 常用网站
+     * chapterId : 440
+     * chapterName : 官方
      * collect : false
      * courseId : 13
-     * desc :
+     * desc : <p>对于 Intent 大家肯定都不陌生，今天我们聊一聊它的一个近亲：<strong>PendingIntent</strong></p>
+     <p>官方对其描述为：</p>
+     <p>A description of an Intent and target action to perform with it. </p>
+     <p>那么问题来了：</p>
+     <ol>
+     <li>PendingIntent 仅仅是对 Intent 的一个封装吗？</li>
+     <li>如果1 不是，那么为什么 PendingIntent与 Intent 有何不同，它的定位是什么样的呢？</li>
+     <li>对于 2 的回答，如果从源码侧佐证？</li>
+     </ol>
      * descMd :
      * envelopePic :
      * fresh : false
-     * id : 1848
-     * link : https://developers.google.cn/
-     * niceDate : 2018-01-07 18:59
-     * niceShareDate : 未知时间
+     * host :
+     * id : 18072
+     * link : https://www.wanandroid.com/wenda/show/18072
+     * niceDate : 2021-04-24 23:09
+     * niceShareDate : 2021-04-24 22:58
      * origin :
      * prefix :
      * projectLink :
-     * publishTime : 1515322795000
-     * realSuperChapterId : 0
+     * publishTime : 1619276960000
+     * realSuperChapterId : 439
      * selfVisible : 0
-     * shareDate : null
+     * shareDate : 1619276317000
      * shareUser :
-     * superChapterId : 0
-     * superChapterName :
-     * tags : []
-     * title : Google开发者
-     * type : 0
-     * userId : -1
-     * visible : 0
-     * zan : 0
+     * superChapterId : 440
+     * superChapterName : 问答
+     * tags : [{"name":"本站发布","url":"/article/list/0?cid=440"},{"name":"问答","url":"/wenda"}]
+     * title : 每日一问 | 已经有了 Intent，那为啥还要 PendingIntent?
+     * type : 1
+     * userId : 2
+     * visible : 1
+     * zan : 7
      */
 
     private String apkLink;
     private int audit;
     private String author;
     private boolean canEdit;
-    private String chapterId;
+    private int chapterId;
     private String chapterName;
     private boolean collect;
-    private String courseId;
+    private int courseId;
     private String desc;
     private String descMd;
     private String envelopePic;
     private boolean fresh;
+    private String host;
     private int id;
     private String link;
     private String niceDate;
@@ -69,16 +79,16 @@ public class TopArticleEntity extends BaseEntity {
     private long publishTime;
     private int realSuperChapterId;
     private int selfVisible;
-    private Object shareDate;
+    private long shareDate;
     private String shareUser;
     private int superChapterId;
     private String superChapterName;
+    private List<TagsDTO> tags;
     private String title;
     private int type;
     private int userId;
     private int visible;
     private int zan;
-    private List<?> tags;
 
     public String getApkLink() {
         return apkLink;
@@ -112,11 +122,11 @@ public class TopArticleEntity extends BaseEntity {
         this.canEdit = canEdit;
     }
 
-    public String getChapterId() {
+    public int getChapterId() {
         return chapterId;
     }
 
-    public void setChapterId(String chapterId) {
+    public void setChapterId(int chapterId) {
         this.chapterId = chapterId;
     }
 
@@ -136,11 +146,11 @@ public class TopArticleEntity extends BaseEntity {
         this.collect = collect;
     }
 
-    public String getCourseId() {
+    public int getCourseId() {
         return courseId;
     }
 
-    public void setCourseId(String courseId) {
+    public void setCourseId(int courseId) {
         this.courseId = courseId;
     }
 
@@ -174,6 +184,14 @@ public class TopArticleEntity extends BaseEntity {
 
     public void setFresh(boolean fresh) {
         this.fresh = fresh;
+    }
+
+    public String getHost() {
+        return host;
+    }
+
+    public void setHost(String host) {
+        this.host = host;
     }
 
     public int getId() {
@@ -256,11 +274,11 @@ public class TopArticleEntity extends BaseEntity {
         this.selfVisible = selfVisible;
     }
 
-    public Object getShareDate() {
+    public long getShareDate() {
         return shareDate;
     }
 
-    public void setShareDate(Object shareDate) {
+    public void setShareDate(long shareDate) {
         this.shareDate = shareDate;
     }
 
@@ -286,6 +304,14 @@ public class TopArticleEntity extends BaseEntity {
 
     public void setSuperChapterName(String superChapterName) {
         this.superChapterName = superChapterName;
+    }
+
+    public List<TagsDTO> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<TagsDTO> tags) {
+        this.tags = tags;
     }
 
     public String getTitle() {
@@ -328,13 +354,33 @@ public class TopArticleEntity extends BaseEntity {
         this.zan = zan;
     }
 
-    public List<?> getTags() {
-        return tags;
+    public static class TagsDTO implements Serializable {
+        /**
+         * name : 本站发布
+         * url : /article/list/0?cid=440
+         */
+
+        private String name;
+        private String url;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
     }
 
-    public void setTags(List<?> tags) {
-        this.tags = tags;
-    }
+
 
 
 

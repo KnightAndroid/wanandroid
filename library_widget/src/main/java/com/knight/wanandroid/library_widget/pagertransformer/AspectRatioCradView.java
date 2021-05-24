@@ -35,6 +35,8 @@ public class AspectRatioCradView extends CardView {
             int ratioHeight = (int) (getMeasuredWidth() * ratio);
             setMeasuredDimension(getMeasuredWidth(), ratioHeight);
             ViewGroup.LayoutParams lp = getLayoutParams();
+         //   LayoutParams lp = (LayoutParams) getLayoutParams();
+           // lp.setMargins(30,0,30,0);
             lp.height = ratioHeight;
             setLayoutParams(lp);
         }
