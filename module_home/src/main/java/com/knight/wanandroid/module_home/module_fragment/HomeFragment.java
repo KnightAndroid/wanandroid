@@ -297,6 +297,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
                 startActivity(new Intent(getActivity(), HomeArticlesTabActivity.class)
                 .putExtra("toparticles",(Serializable) mTopArticleAdapter.getData()));
                 getActivity().overridePendingTransition(R.anim.base_scalealpha_in, R.anim.base_scalealpha_slient);
+
                 return false;
             }
         });

@@ -1,7 +1,6 @@
 package com.knight.wanandroid.module_home.module_fragment;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,18 +8,18 @@ import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.knight.wanandroid.library_base.AppConfig;
 import com.knight.wanandroid.library_base.fragment.BaseDBFragment;
+import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_util.ColorUtils;
 import com.knight.wanandroid.library_widget.pagertransformer.DragLayout;
 import com.knight.wanandroid.module_home.R;
 import com.knight.wanandroid.module_home.databinding.HomeFragmentToptabsBinding;
-import com.knight.wanandroid.module_home.module_activity.WebTransitionActivity;
 import com.knight.wanandroid.module_home.module_entity.TopArticleEntity;
 
 import java.io.Serializable;
 
-import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
 
@@ -33,6 +32,7 @@ import androidx.core.util.Pair;
 public class HomeTopTabsFragment extends BaseDBFragment<HomeFragmentToptabsBinding> implements DragLayout.GotoDetailListener {
 
     private TopArticleEntity mTopArticleEntity;
+    private int cardBgColor;
 
 
     public static HomeTopTabsFragment newInstance(TopArticleEntity topArticleEntity){
@@ -54,7 +54,8 @@ public class HomeTopTabsFragment extends BaseDBFragment<HomeFragmentToptabsBindi
         mTopArticleEntity  = (TopArticleEntity) getArguments().getSerializable("topdata");
         mDatabind.homeToparticleDrawlayout.setGotoDetailListener(this);
         GradientDrawable gradientDrawable = new GradientDrawable();
-        gradientDrawable.setColor(ColorUtils.getRandColorCode());
+        cardBgColor = ColorUtils.getRandColorCode();
+        gradientDrawable.setColor(cardBgColor);
         mDatabind.homeToparticleIv.setBackground(gradientDrawable);
     }
 
@@ -78,17 +79,23 @@ public class HomeTopTabsFragment extends BaseDBFragment<HomeFragmentToptabsBindi
 
         mDatabind.homeToparticleSuperchaptername.setText(mTopArticleEntity.getSuperChapterName());
         mDatabind.homeToparticleAuthor.setText(mTopArticleEntity.getAuthor());
-
-
-
+        mDatabind.homeToparticleDate.setText(mTopArticleEntity.getNiceDate());
 
     }
 
     @Override
     public void gotoDetail() {
-        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) getContext(),new Pair(mDatabind.homeToparticleIv, AppConfig.IMAGE_TRANSITION_NAME));
-        Intent intent = new Intent(getActivity(), WebTransitionActivity.class);
-        ActivityCompat.startActivity(getActivity(),intent,options.toBundle());
-       // ARouter.getInstance().build(RoutePathActivity.Web.Web_Transtiion).withOptionsCompat(options).navigation(getActivity());
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) getContext(),
+                new Pair(mDatabind.homeToparticleIv, AppConfig.IMAGE_TRANSITION_NAME),
+                new Pair(mDatabind.homeToparticleAuthor,AppConfig.TEXT_AUTHOR_NAME),
+                new Pair(mDatabind.homeToparticleSuperchaptername,AppConfig.TEXT_CHAPTERNAME_NAME));
+        ARouter.getInstance().build(RoutePathActivity.Web.Web_Transition)
+                .withInt("cardBgColor",cardBgColor)
+                .withString("webUrl",mTopArticleEntity.getLink())
+                .withString("title",mTopArticleEntity.getTitle())
+                .withString("author",mTopArticleEntity.getAuthor())
+                .withString("chapterName",mTopArticleEntity.getChapterName())
+                .withOptionsCompat(options)
+                .navigation(getActivity());
     }
 }

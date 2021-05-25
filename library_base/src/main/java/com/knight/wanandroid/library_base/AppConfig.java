@@ -24,6 +24,8 @@ public class AppConfig {
     public static String SEARCH_KEYWORD = "";
     //共享元素 图像
     public static final String IMAGE_TRANSITION_NAME = "transitionImage";
+    public static final String TEXT_AUTHOR_NAME = "authorName";
+    public static final String TEXT_CHAPTERNAME_NAME = "chapterName";
 
 
     public static String[] moduleApps = {

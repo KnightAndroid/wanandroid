@@ -80,6 +80,7 @@ public class RoutePathActivity {
 
         public static final String Web_Pager = Web + "/web_pager";
         public static final String Web_Normal = Web + "/web_normal_pager";
+        public static final String Web_Transition = Web + "/web_transition_pager";
 
     }
 

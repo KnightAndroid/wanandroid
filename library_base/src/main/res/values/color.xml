@@ -4,4 +4,5 @@
     <color name="base_color_title">#333333</color>
     <color name="base_color_999999">#999999</color>
     <color name="base_color_dddddd">#dddddd</color>
+    <color name="base_color_transparent">#00000000</color>
 </resources>

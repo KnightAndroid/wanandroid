@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data
+        >
+
+
+    </data>
+
+
+
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/web_appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:elevation="0dp">
+
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/web_collbarlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:titleEnabled="false">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp">
+
+
+                    <ImageView
+                        android:id="@+id/web_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        />
+
+                    <TextView
+                        android:id="@+id/web_article_author"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/base_dimen_16"
+                        android:textColor="@color/web_white"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="@dimen/base_dimen_20"
+                        android:layout_above="@+id/web_chapterName"
+                        android:layout_marginBottom="@dimen/base_dimen_10"
+                        />
+
+                    <TextView
+                        android:id="@+id/web_chapterName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/base_dimen_16"
+                        android:textColor="@color/web_white"
+                        android:textStyle="bold"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/base_dimen_20"
+                        android:layout_marginBottom="@dimen/base_dimen_10"
+                        />
+                </RelativeLayout>
+
+
+
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/web_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="74dp"
+                    android:minHeight="74dp"
+                    app:layout_collapseMode="pin"
+                    android:background="@android:color/transparent"
+                    app:title=""
+                    app:contentInsetStart="0dp"
+                    app:contentInsetEnd="0dp">
+
+                    <include
+                        android:id="@+id/web_transition_toolbar"
+                        layout="@layout/base_include_toolbar"/>
+
+                </androidx.appcompat.widget.Toolbar>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/web_nestscrollview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
+
+</layout>
