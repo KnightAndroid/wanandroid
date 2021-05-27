@@ -268,6 +268,33 @@
 
                     </RelativeLayout>
 
+
+                    <!--关于-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/base_dimen_20"
+                        android:layout_marginBottom="@dimen/base_dimen_20"
+                        android:onClick="@{()->click.goAbout()}">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mine_about_wanandroid"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/base_dimen_18"
+                            />
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/mine_iv_white_arrow"/>
+
+                    </RelativeLayout>
+
+
                     <!--退出账户-->
                     <RelativeLayout
                         android:id="@+id/mine_rl_logout"

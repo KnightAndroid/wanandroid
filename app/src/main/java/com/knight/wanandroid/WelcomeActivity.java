@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.knight.wanandroid.databinding.ActivityWelcomeBinding;
 import com.knight.wanandroid.library_base.activity.BaseDBActivity;
+import com.knight.wanandroid.library_util.CacheUtils;
 
 /**
  * @author created by knight
@@ -28,8 +29,13 @@ public class WelcomeActivity extends BaseDBActivity<ActivityWelcomeBinding> {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                startActivity(new Intent(WelcomeActivity.this,MainActivity.class));
-                finish();
+                if (CacheUtils.getInstance().getAgreeStatus()) {
+                    startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+                    finish();
+                } else {
+                    new PrivacyDialogFrament().show(getSupportFragmentManager(), "dialog_privacy");
+
+                }
 
             }
         });
@@ -49,7 +55,7 @@ public class WelcomeActivity extends BaseDBActivity<ActivityWelcomeBinding> {
     }
 
     @Override
-    public int getActivityTheme(){
-       return R.style.AppSplash;
+    public int getActivityTheme() {
+        return R.style.AppSplash;
     }
 }

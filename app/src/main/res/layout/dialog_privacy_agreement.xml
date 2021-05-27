@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <data>
+        <variable
+            name="click"
+            type="com.knight.wanandroid.PrivacyDialogFrament.ProcyClick"/>
+
+
+    </data>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/top_white_round"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/base_dimen_30"
+            android:layout_marginRight="@dimen/base_dimen_30">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_privacy_title"
+                android:textColor="@color/base_color_title"
+                android:textSize="@dimen/base_dimen_18"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/base_dimen_15"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/base_dimen_15"
+                android:textSize="@dimen/base_dimen_16"
+                android:text="@string/app_privacy_content"
+                android:textColor="@color/base_color_title"
+                android:lineSpacingExtra="@dimen/base_dimen_4"
+                android:layout_marginLeft="@dimen/base_dimen_16"
+                android:layout_marginRight="@dimen/base_dimen_16"/>
+
+
+            <TextView
+                android:id="@+id/app_privacy_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/base_dimen_20"
+                android:textSize="@dimen/base_dimen_16"
+                android:text="@string/app_privacy_tip"
+                android:layout_marginLeft="@dimen/base_dimen_16"
+                android:layout_marginRight="@dimen/base_dimen_16"
+                android:textColor="@color/base_color_title"
+            />
+
+            <TextView
+                android:id="@+id/tv_confim_privacy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base_dimen_16"
+                android:layout_marginRight="@dimen/base_dimen_16"
+                android:background="@drawable/btn_confim_agree"
+                android:text="@string/app_agree_privacy"
+                android:gravity="center"
+                android:paddingTop="@dimen/base_dimen_15"
+                android:paddingBottom="@dimen/base_dimen_15"
+                android:layout_marginTop="@dimen/base_dimen_10"
+                android:textColor="@color/color_white"
+                android:textStyle="bold"
+                android:onClick="@{()->click.goAgreeToMain()}"
+                />
+
+            <TextView
+                android:id="@+id/tv_disagree_privacy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base_dimen_16"
+                android:layout_marginRight="@dimen/base_dimen_16"
+                android:text="@string/app_disagree_privacy"
+                android:gravity="center"
+                android:paddingTop="@dimen/base_dimen_15"
+                android:paddingBottom="@dimen/base_dimen_15"
+                android:textColor="@color/base_color_999999"
+                android:onClick="@{()-> click.disAgreeExitApp()}"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>
+

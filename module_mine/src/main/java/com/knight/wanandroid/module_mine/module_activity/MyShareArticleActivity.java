@@ -1,11 +1,17 @@
 package com.knight.wanandroid.module_mine.module_activity;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemChildClickListener;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.knight.wanandroid.library_base.activity.BaseActivity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
+import com.knight.wanandroid.library_base.util.ARouterUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
+import com.knight.wanandroid.library_util.dialog.DialogUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.module_mine.R;
 import com.knight.wanandroid.module_mine.databinding.MineActivityMyshareBinding;
@@ -49,6 +55,7 @@ public class MyShareArticleActivity extends BaseActivity<MineActivityMyshareBind
         SetInitCustomView.initSwipeRecycleview(mDatabind.includeMineSharerefreshalayout.baseBodyRv,new LinearLayoutManager(this),mMyShareArticleAdapter,false);
         mDatabind.includeMineSharerefreshalayout.baseFreshlayout.setOnRefreshListener(this);
         mDatabind.includeMineSharerefreshalayout.baseFreshlayout.setOnLoadMoreListener(this);
+        initListener();
     }
 
     @Override
@@ -102,6 +109,12 @@ public class MyShareArticleActivity extends BaseActivity<MineActivityMyshareBind
     }
 
     @Override
+    public void deleteArticleSuccess(int position) {
+        mMyShareArticleAdapter.getData().remove(position);
+        mMyShareArticleAdapter.notifyItemRemoved(position);
+    }
+
+    @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
         mPresenter.requestMyShareArticle(page);
     }
@@ -111,5 +124,35 @@ public class MyShareArticleActivity extends BaseActivity<MineActivityMyshareBind
         page = 1;
         mDatabind.includeMineSharerefreshalayout.baseFreshlayout.setEnableLoadMore(true);
         mPresenter.requestMyShareArticle(page);
+    }
+
+
+    private void initListener(){
+        mMyShareArticleAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
+                ARouterUtils.startWeb(mMyShareArticleAdapter.getData().get(position).getLink(),
+                        mMyShareArticleAdapter.getData().get(position).getTitle(),
+                        mMyShareArticleAdapter.getData().get(position).getId(),
+                        mMyShareArticleAdapter.getData().get(position).isCollect());
+            }
+        });
+
+        mMyShareArticleAdapter.addChildClickViewIds(R.id.mine_iv_delete);
+        mMyShareArticleAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+                if (view.getId() == R.id.mine_iv_delete) {
+                    DialogUtils.getConfirmDialog(MyShareArticleActivity.this, getResources().getString(R.string.mine_confirm_deletearticle), (dialog, which) -> {
+                        mPresenter.requestDeleteCollectArticle(mMyShareArticleAdapter.getData().get(position).getId(),position);
+                    }, (dialog, which) -> {
+
+                    }).show();
+
+                }
+            }
+        });
+
+
     }
 }

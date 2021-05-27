@@ -25,4 +25,11 @@
     <string name="mine_coin_rank">积分排行榜</string>
     <string name="mine_me_shareArticles">我的分享</string>
     <string name="mine_sharearticles">分享文章</string>
+    <string name="mine_confirm_deletearticle">是否要删除此文章</string>
+    <string name="mine_confirm_cancelarticle">是否取消收藏此文章</string>
+    <string name="mine_about_wanandroid">关于wanandroid</string>
+    <string name="mine_update_record">更新日志</string>
+    <string name="mine_check_update">检查更新</string>
+    <string name="mine_service_protocol"><u>软件许可及服务协议</u></string>
+    <string name="mine_privacy_protocol"><u>隐私政策</u></string>
 </resources>

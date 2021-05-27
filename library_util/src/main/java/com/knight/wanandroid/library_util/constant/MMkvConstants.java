@@ -10,4 +10,6 @@ public class MMkvConstants {
 
     //用户信息的key
     public static final String USER = "user";
+    //是否同意用户协议
+    public static final String AGREEMENT = "agreement";
 }

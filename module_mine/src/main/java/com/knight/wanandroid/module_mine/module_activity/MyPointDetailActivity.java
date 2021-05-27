@@ -56,7 +56,7 @@ public class MyPointDetailActivity extends BaseActivity<MineActivityDetailpointB
         mDatabind.includePointToolbar.baseIvBack.setOnClickListener(v -> finish());
         mDatabind.includePointToolbar.baseTvTitle.setText(getString(R.string.mine_coin_detail));
         mUserDetailCoinAdapter = new UserDetailCoinAdapter(new ArrayList<>());
-        SetInitCustomView.initSwipeRecycleview(mDatabind.includeMineDetailpoint.baseBodyRv,new LinearLayoutManager(this),mUserDetailCoinAdapter,false);
+        SetInitCustomView.initSwipeRecycleview(mDatabind.includeMineDetailpoint.baseBodyRv,new LinearLayoutManager(this),mUserDetailCoinAdapter,true);
         userInfoCoinHeadView = LayoutInflater.from(this).inflate(R.layout.mine_detailpoint_head,null);
         ((TextView)userInfoCoinHeadView.findViewById(R.id.tv_head_detailpoint)).setText(userCoin);
         mDatabind.includeMineDetailpoint.baseFreshlayout.setOnRefreshListener(this);
@@ -101,11 +101,12 @@ public class MyPointDetailActivity extends BaseActivity<MineActivityDetailpointB
         mDatabind.includeMineDetailpoint.baseFreshlayout.finishLoadMore();
         if (result.getDatas().size() > 0) {
             if (page == 1) {
-                mDatabind.includeMineDetailpoint.baseBodyRv.removeHeaderView(userInfoCoinHeadView);
-                if (mDatabind.includeMineDetailpoint.baseBodyRv.getHeaderCount() == 0) {
-                    mDatabind.includeMineDetailpoint.baseBodyRv.addHeaderView(userInfoCoinHeadView);
-                }
                 mUserDetailCoinAdapter.setNewInstance(result.getDatas());
+
+                 if (mDatabind.includeMineDetailpoint.baseBodyRv.getHeaderCount() == 0) {
+                     mDatabind.includeMineDetailpoint.baseBodyRv.addHeaderView(userInfoCoinHeadView);
+                  }
+
             } else {
                 mUserDetailCoinAdapter.addData(result.getDatas());
             }

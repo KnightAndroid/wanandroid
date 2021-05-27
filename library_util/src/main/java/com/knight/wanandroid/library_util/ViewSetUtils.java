@@ -1,9 +1,14 @@
 package com.knight.wanandroid.library_util;
 
+import android.os.Build;
+import android.view.View;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -97,6 +102,15 @@ public class ViewSetUtils {
 
         return mCompositePageTransformer;
 
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public static void avoidHintColor (View view){
+        if (view instanceof TextView) {
+            ((TextView) view).setHighlightColor(view.getResources().getColor(
+                    (android.R.color.transparent),null));
+        }
     }
 
 

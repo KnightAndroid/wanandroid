@@ -18,8 +18,9 @@
         sothree:umanoParallaxOffset="100dp"
         sothree:umanoOverlay="true"
         sothree:umanoPanelHeight="68dp"
-        sothree:umanoScrollableView="@+id/mine_otherarticle_rv"
+        sothree:umanoScrollableView="@+id/base_body_rv"
         sothree:umanoDragView="@+id/mine_drag_view"
+
 
         >
 
@@ -128,6 +129,8 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_marginTop="60dp"
+            android:clickable="true"
+            android:focusable="false"
             android:background="@drawable/mine_top_whitearound"
             >
 

@@ -3,6 +3,7 @@ package com.knight.wanandroid.module_web.module_fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 
 import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
@@ -53,6 +54,11 @@ public class WebBottomFragment extends BaseDialogFragment<WebFragmentDialogBindi
     public void initView(){
         mDatabind.setClick(new ProcyClick());
         mDatabind.webCollectArticle.setVisibility(collect? View.GONE : View.VISIBLE);
+    }
+
+    @Override
+    protected int getGravity() {
+        return Gravity.BOTTOM;
     }
 
     @Override

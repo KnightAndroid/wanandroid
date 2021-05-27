@@ -1,11 +1,17 @@
 package com.knight.wanandroid.module_mine.module_activity;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemChildClickListener;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.knight.wanandroid.library_base.activity.BaseActivity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
+import com.knight.wanandroid.library_base.util.ARouterUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
+import com.knight.wanandroid.library_util.dialog.DialogUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.module_mine.R;
 import com.knight.wanandroid.module_mine.databinding.MineActivityCollectarticlesBinding;
@@ -45,6 +51,7 @@ public class MyCollectArticleActivity extends BaseActivity<MineActivityCollectar
         mDatabind.includeMineCollectfreshalayout.baseFreshlayout.setOnRefreshListener(this);
         mDatabind.includeMineCollectfreshalayout.baseFreshlayout.setOnLoadMoreListener(this);
         showLoading(mDatabind.includeMineCollectfreshalayout.baseFreshlayout);
+        initListener();
 
     }
 
@@ -100,6 +107,12 @@ public class MyCollectArticleActivity extends BaseActivity<MineActivityCollectar
     }
 
     @Override
+    public void cancelArticleSuccess(int position) {
+        mMyCollectArticleAdapter.getData().remove(position);
+        mMyCollectArticleAdapter.notifyItemRemoved(position);
+    }
+
+    @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
         mPresenter.requestCollectArticles(page);
     }
@@ -109,5 +122,37 @@ public class MyCollectArticleActivity extends BaseActivity<MineActivityCollectar
         page = 0;
         mDatabind.includeMineCollectfreshalayout.baseFreshlayout.setEnableLoadMore(true);
         mPresenter.requestCollectArticles(page);
+    }
+
+
+
+    private void initListener(){
+
+        mMyCollectArticleAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
+                ARouterUtils.startWeb(mMyCollectArticleAdapter.getData().get(position).getLink(),
+                        mMyCollectArticleAdapter.getData().get(position).getTitle(),
+                        mMyCollectArticleAdapter.getData().get(position).getId(),
+                        true);
+            }
+        });
+
+        mMyCollectArticleAdapter.addChildClickViewIds(R.id.base_article_collect,R.id.base_icon_collect);
+        mMyCollectArticleAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+                if (view.getId() == R.id.base_article_collect || view.getId() == R.id.base_icon_collect) {
+                    DialogUtils.getConfirmDialog(MyCollectArticleActivity.this, getResources().getString(R.string.mine_confirm_cancelarticle), (dialog, which) -> {
+                        mPresenter.requestCancelCollectArticle(mMyCollectArticleAdapter.getData().get(position).getId(),position);
+                    }, (dialog, which) -> {
+
+                    }).show();
+
+                }
+            }
+        });
+
+
     }
 }

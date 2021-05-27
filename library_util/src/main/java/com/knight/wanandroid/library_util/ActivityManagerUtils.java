@@ -61,7 +61,12 @@ public class ActivityManagerUtils implements Application.ActivityLifecycleCallba
      *
      */
     public void finishAllActivity(){
-
+        String[] keys = mActivityArrayMap.keySet().toArray(new String[]{});
+        for(String key : keys) {
+            Activity activity = mActivityArrayMap.get(key);
+            activity.finish();
+            mActivityArrayMap.remove(key);
+        }
     }
 
     @SafeVarargs

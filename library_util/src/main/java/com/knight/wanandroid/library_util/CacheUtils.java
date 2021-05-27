@@ -51,6 +51,26 @@ public class CacheUtils {
 
     /**
      *
+     * 是否点击协议
+     * @param isAgree
+     */
+    public void saveIsAgreeMent(boolean isAgree){
+        mmkv.encode(MMkvConstants.AGREEMENT,isAgree);
+
+    }
+
+    /**
+     *
+     * 返回是否同意协议状态
+     * @return
+     */
+    public boolean getAgreeStatus(){
+        return mmkv.decodeBool(MMkvConstants.AGREEMENT,false);
+    }
+
+
+    /**
+     *
      * 清空用户信息
      */
     public void loginOut(){

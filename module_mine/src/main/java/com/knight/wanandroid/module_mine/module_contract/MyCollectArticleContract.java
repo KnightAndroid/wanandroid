@@ -18,15 +18,21 @@ public interface MyCollectArticleContract {
         interface MyCollectArticleView extends BaseView {
 
                 void setCollectArticles(MyCollectArticleListEntity myCollectArticleListEntity);
+
+                //取消站内文章
+                void cancelArticleSuccess(int position);
         }
 
         interface MyCollectArticleModel extends BaseModel {
                 void requestCollectArticles(BaseActivity activity, int page, MvpListener mvpListener);
+                //取消收藏站内文章
+                void requestCancelCollectArticle(BaseActivity activity,int collectArticleId,MvpListener mvpListener);
 
         }
 
         abstract class MyCollectDataPresenter extends BasePresenter<MyCollectArticleModel,MyCollectArticleView>{
                 public abstract void requestCollectArticles(int page);
+                public abstract void requestCancelCollectArticle(int collectArticleId,int position);
 
         }
 }

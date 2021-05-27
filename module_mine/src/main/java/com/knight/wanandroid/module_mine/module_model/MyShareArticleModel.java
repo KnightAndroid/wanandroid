@@ -7,6 +7,7 @@ import com.knight.wanandroid.library_network.listener.HttpCallback;
 import com.knight.wanandroid.library_network.model.HttpData;
 import com.knight.wanandroid.module_mine.module_contract.MyShareArticleContract;
 import com.knight.wanandroid.module_mine.module_entity.MyShareEntity;
+import com.knight.wanandroid.module_mine.module_request.DeleteShareArticleApi;
 import com.knight.wanandroid.module_mine.module_request.MyShareArticleApi;
 
 /**
@@ -32,6 +33,25 @@ public class MyShareArticleModel implements MyShareArticleContract.MyShareArticl
                     public void onFail(Exception e){
                         mvpListener.onError(e.getMessage());
                     }
+                });
+    }
+
+    @Override
+    public void requestDeleteCollectArticle(BaseActivity activity, int articleId, MvpListener mvpListener) {
+        GoHttp.post(activity)
+                .api(new DeleteShareArticleApi().setArticleId(articleId))
+                .request(new HttpCallback<HttpData>(activity){
+                    @Override
+                    public void onSucceed(HttpData result) {
+                        mvpListener.onSuccess(result);
+                    }
+
+                    @Override
+                    public void onFail(Exception e){
+                        mvpListener.onError(e.getMessage());
+                    }
+
+
                 });
     }
 }

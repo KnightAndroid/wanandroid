@@ -28,6 +28,19 @@
             android:textColor="@color/base_color_999999"
             android:textSize="@dimen/base_dimen_12"/>
 
+        <TextView
+            android:id="@+id/mine_item_articlenew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="新"
+            android:textSize="@dimen/base_dimen_12"
+            android:textColor="@android:color/holo_red_light"
+            android:background="@drawable/base_article_new"
+            app:layout_constraintLeft_toRightOf="@+id/mine_item_articleauthor"
+            app:layout_constraintTop_toTopOf="@+id/mine_item_articleauthor"
+            app:layout_constraintBottom_toBottomOf="@+id/mine_item_articleauthor"
+            android:layout_marginLeft="@dimen/base_dimen_2"/>
+
 
         <TextView
             android:id="@+id/mine_item_articledata"
@@ -87,14 +100,7 @@
                 android:layout_marginRight="@dimen/base_dimen_8"/>
 
 
-            <TextView
-                android:id="@+id/mine_item_articlenew"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="新"
-                android:textSize="@dimen/base_dimen_12"
-                android:textColor="@android:color/holo_red_light"
-                android:background="@drawable/base_article_new"/>
+
 
         </LinearLayout>
 

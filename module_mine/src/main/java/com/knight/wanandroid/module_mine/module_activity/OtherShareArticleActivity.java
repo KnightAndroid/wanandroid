@@ -8,7 +8,13 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
+import com.kingja.loadsir.callback.Callback;
+import com.kingja.loadsir.core.LoadService;
+import com.kingja.loadsir.core.LoadSir;
 import com.knight.wanandroid.library_base.activity.BaseActivity;
+import com.knight.wanandroid.library_base.loadsir.EmptyCallBack;
+import com.knight.wanandroid.library_base.loadsir.ErrorCallBack;
+import com.knight.wanandroid.library_base.loadsir.LoadCallBack;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_base.util.ARouterUtils;
 import com.knight.wanandroid.library_util.ColorUtils;
@@ -50,7 +56,7 @@ public class OtherShareArticleActivity extends BaseActivity<MineActivityOthersha
     private int uid;
     private int page = 1;
     private OtherShareArticleAdapter mOtherShareArticleAdapter;
-
+    public LoadService mViewLoadService;
 
     @Override
     public int layoutId() {
@@ -78,6 +84,8 @@ public class OtherShareArticleActivity extends BaseActivity<MineActivityOthersha
             }
         });
 
+
+
         mDatabind.mineSlidupPanellayout.setFadeOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +96,20 @@ public class OtherShareArticleActivity extends BaseActivity<MineActivityOthersha
         showLoading(mDatabind.mineSlidupPanellayout);
         mDatabind.inculeOthermessageToolbar.baseTvTitle.setText("他的分享");
         initListener();
+
+
+        LoadSir loadSir =  LoadSir.getDefault();
+        mViewLoadService = loadSir.register(mDatabind.includeOtherSharearticle.baseFreshlayout, new Callback.OnReloadListener() {
+            @Override
+            public void onReload(View v) {
+                mPresenter.requestOtherShareArticle(uid,page);
+                mViewLoadService.showCallback(LoadCallBack.class);
+            }
+        });
+        mViewLoadService.showCallback(LoadCallBack.class);
+
+
+
 
     }
 
@@ -116,11 +138,14 @@ public class OtherShareArticleActivity extends BaseActivity<MineActivityOthersha
     @Override
     public void showError(String errorMsg) {
         ToastUtils.getInstance().showToast(errorMsg);
+        showFailure();
+        mViewLoadService.showCallback(ErrorCallBack.class);
     }
 
     @Override
     public void setOtherShareArticle(OtherShareArticleListEntity result) {
         showSuccess();
+        mViewLoadService.showSuccess();
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setShape(GradientDrawable.OVAL);
         gradientDrawable.setColor(ColorUtils.getRandColorCode());
@@ -142,8 +167,10 @@ public class OtherShareArticleActivity extends BaseActivity<MineActivityOthersha
             }
             page ++;
         } else {
+            mViewLoadService.showCallback(EmptyCallBack.class);
             mDatabind.includeOtherSharearticle.baseFreshlayout.setEnableLoadMore(false);
         }
+
     }
 
     @Override
@@ -208,4 +235,8 @@ public class OtherShareArticleActivity extends BaseActivity<MineActivityOthersha
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
+
+
+
+
 }

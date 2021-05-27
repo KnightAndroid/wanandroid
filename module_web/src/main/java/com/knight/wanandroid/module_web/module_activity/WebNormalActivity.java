@@ -41,6 +41,8 @@ public class WebNormalActivity extends BaseDBActivity<WebNormalActivityBinding> 
 
     @Autowired(name = "webTitle")
     String webTitle = "";
+     
+
 
     private AgentWeb mAgentWeb;
     private WebView mWebView;

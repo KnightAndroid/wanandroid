@@ -16,13 +16,14 @@ import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.ColorUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
+import com.knight.wanandroid.library_util.dialog.DialogUtils;
 import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;
 import com.knight.wanandroid.module_mine.R;
 import com.knight.wanandroid.module_mine.databinding.MineFragmentMineBinding;
+import com.knight.wanandroid.module_mine.module_activity.AboutActivity;
 import com.knight.wanandroid.module_mine.module_activity.LoginActivity;
 import com.knight.wanandroid.module_mine.module_activity.MyCollectArticleActivity;
 import com.knight.wanandroid.module_mine.module_activity.MyShareArticleActivity;
-import com.knight.wanandroid.module_mine.module_activity.OtherShareArticleActivity;
 import com.knight.wanandroid.module_mine.module_contract.MineContract;
 import com.knight.wanandroid.module_mine.module_entity.UserInfoCoinEntity;
 import com.knight.wanandroid.module_mine.module_model.MineModel;
@@ -150,14 +151,18 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
         public void goMyCollectArticles(){
             startActivity(new Intent(getActivity(), MyCollectArticleActivity.class));
         }
-        public void Logout(){
-//            DialogUtils.getConfirmDialog(getActivity(), getResources().getString(R.string.mine_confirm_logout), (dialog, which) -> {
-//                mPresenter.requestLogout();
-//            }, (dialog, which) -> {
-//
-//            }).show();
 
-            startActivity(new Intent(getActivity(), OtherShareArticleActivity.class));
+        public void goAbout(){
+            startActivity(new Intent(getActivity(), AboutActivity.class));
+        }
+
+        public void Logout(){
+            DialogUtils.getConfirmDialog(getActivity(), getResources().getString(R.string.mine_confirm_logout), (dialog, which) -> {
+                mPresenter.requestLogout();
+            }, (dialog, which) -> {
+
+            }).show();
+
         }
     }
 

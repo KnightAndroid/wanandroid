@@ -13,7 +13,7 @@ ext{
     //App版本号
     appVersionCode = 1
     //App版本名字
-    appVersionName = "1.1.0"
+    appVersionName = "1.0.0"
     //appcompat 版本
     appcompatVersion = '1.2.0'
     //junit 版本
