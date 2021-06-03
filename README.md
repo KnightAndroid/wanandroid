@@ -36,9 +36,12 @@
 | ![7.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_scan.jpg) | ![8.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_search.jpg) | ![9.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_secondfloor.jpg) |
 
 # 主要GIF展示
-| ![1.gif](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_gif/home_01.gif) | ![2.gif](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_gif/home_02.gif) | ![3.gif](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_gif/home_03.gif) |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ![4.gif](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_gif/home_04.gif) |
+<div align="center">
+<img src="https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_gif/home_01.gif"><img src="https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_gif/home_02.gif">
+</div>
+
+
+
 
 # 主要开源框架
 
