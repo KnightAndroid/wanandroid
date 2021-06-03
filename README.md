@@ -37,7 +37,7 @@
 
 # 主要GIF展示
 <div align="center">
-<img src="https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_gif/home_01.gif"><img src="https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_gif/home_02.gif">
+<img src="https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/21b552684fe6288b578d1ef2a27c7ee05e3ad593/wanandroid_gif/home_01.gif"><img src="https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/21b552684fe6288b578d1ef2a27c7ee05e3ad593/wanandroid_gif/home_02.gif">
 </div>
 
 
