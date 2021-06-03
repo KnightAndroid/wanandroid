@@ -1,7 +1,7 @@
 
 # WanAndroid
 
-一款简单易用得[WanAndroid](https://www.wanandroid.com/)APP
+一款简单易用的[WanAndroid](https://www.wanandroid.com/) APP
 
 
 # 前言
