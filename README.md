@@ -36,9 +36,9 @@
 | ![7.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_scan.jpg) | ![8.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_search.jpg) | ![9.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_secondfloor.jpg) |
 
 # 主要GIF展示
-<div align="center">
-<img src="https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_gif/home_01.gif"><img src="https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/21b552684fe6288b578d1ef2a27c7ee05e3ad593/wanandroid_gif/home_02.gif">
-</div>
+| ![1.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_01.gif) | ![2.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_02.gif) | ![3.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_03.gif) |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| ![4.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_04.gif) |
 
 
 
