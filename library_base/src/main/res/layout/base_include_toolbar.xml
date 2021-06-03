@@ -11,6 +11,10 @@
         android:id="@+id/base_compattoobar"
         android:layout_height="wrap_content"
         app:contentInsetStart="0dp"
+        app:contentInsetEnd="0dp"
+        app:layout_collapseMode="pin"
+
+
         >
 
 

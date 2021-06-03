@@ -14,13 +14,19 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+
+
+
+        >
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/web_appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:elevation="0dp">
+            app:elevation="0dp"
+
+       >
 
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -71,22 +77,22 @@
 
 
 
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/web_toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="74dp"
-                    android:minHeight="74dp"
-                    app:layout_collapseMode="pin"
-                    android:background="@android:color/transparent"
-                    app:title=""
-                    app:contentInsetStart="0dp"
-                    app:contentInsetEnd="0dp">
+<!--                <androidx.appcompat.widget.Toolbar-->
+<!--                    android:id="@+id/web_toolbar"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    app:layout_collapseMode="pin"-->
+<!--                    android:background="@android:color/transparent"-->
+<!--                    app:title=""-->
+<!--                    app:contentInsetStart="0dp"-->
+<!--                    app:contentInsetEnd="0dp">-->
 
                     <include
                         android:id="@+id/web_transition_toolbar"
-                        layout="@layout/base_include_toolbar"/>
+                        layout="@layout/base_include_toolbar"
+                        />
 
-                </androidx.appcompat.widget.Toolbar>
+<!--                </androidx.appcompat.widget.Toolbar>-->
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -102,6 +108,7 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         </androidx.core.widget.NestedScrollView>
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 

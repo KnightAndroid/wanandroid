@@ -12,6 +12,7 @@
         <activity android:name=".module_activity.MyCollectArticleActivity"/>
         <activity android:name=".module_activity.OtherShareArticleActivity"/>
         <activity android:name=".module_activity.AboutActivity"/>
+        <activity android:name=".module_activity.AppUpdateRecordActivity"/>
     </application>
 
 </manifest>

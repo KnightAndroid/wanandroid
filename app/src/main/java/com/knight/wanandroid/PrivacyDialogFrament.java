@@ -57,7 +57,7 @@ public class PrivacyDialogFrament extends BaseDBDialogFragment<DialogPrivacyAgre
             public void goWeb() {
                 ARouter.getInstance().build(RoutePathActivity.Web.Web_Normal)
                         .withString("webUrl","file:android_asset/wanandroid_userprivacy.html")
-                        .withString("webTitle","用户协议")
+                        .withString("webTitle","隐私政策")
                         .navigation();
             }
         }),15,21, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);

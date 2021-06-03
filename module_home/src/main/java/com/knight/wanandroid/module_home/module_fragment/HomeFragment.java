@@ -8,6 +8,7 @@ import android.view.View;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.chad.library.adapter.base.listener.OnItemLongClickListener;
 import com.google.gson.reflect.TypeToken;
@@ -30,6 +31,8 @@ import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.GsonUtils;
 import com.knight.wanandroid.library_util.JsonUtils;
+import com.knight.wanandroid.library_util.ScreenUtils;
+import com.knight.wanandroid.library_util.SystemUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_util.ViewSetUtils;
 import com.knight.wanandroid.library_util.constant.MMkvConstants;
@@ -40,16 +43,22 @@ import com.knight.wanandroid.module_home.databinding.HomeFragmentHomeBinding;
 import com.knight.wanandroid.module_home.module_activity.HomeArticlesTabActivity;
 import com.knight.wanandroid.module_home.module_activity.SearchActivity;
 import com.knight.wanandroid.module_home.module_adapter.OfficialAccountAdapter;
+import com.knight.wanandroid.module_home.module_adapter.OpenSourceAdapter;
 import com.knight.wanandroid.module_home.module_adapter.TopArticleAdapter;
 import com.knight.wanandroid.module_home.module_contract.HomeContract;
 import com.knight.wanandroid.module_home.module_entity.BannerEntity;
+import com.knight.wanandroid.module_home.module_entity.OpenSourceEntity;
 import com.knight.wanandroid.module_home.module_entity.TopArticleEntity;
 import com.knight.wanandroid.module_home.module_logic.HomeArticleLogic;
 import com.knight.wanandroid.module_home.module_model.HomeModel;
 import com.knight.wanandroid.module_home.module_presenter.HomePresenter;
 import com.knight.wanandroid.module_home.module_utils.CustomViewUtils;
+import com.scwang.smart.refresh.header.listener.OnTwoLevelListener;
+import com.scwang.smart.refresh.layout.SmartRefreshLayout;
+import com.scwang.smart.refresh.layout.api.RefreshHeader;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
-import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
+import com.scwang.smart.refresh.layout.constant.RefreshState;
+import com.scwang.smart.refresh.layout.simple.SimpleMultiListener;
 import com.youth.banner.adapter.BannerImageAdapter;
 import com.youth.banner.holder.BannerImageHolder;
 import com.youth.banner.indicator.CircleIndicator;
@@ -65,6 +74,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -81,14 +91,17 @@ import static android.app.Activity.RESULT_OK;
 
 
 @Route(path = RoutePathFragment.Home.Home_Pager)
-public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePresenter, HomeModel> implements HomeContract.HomeView, OnRefreshListener {
+public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePresenter, HomeModel> implements HomeContract.HomeView {
 
     private TopArticleAdapter mTopArticleAdapter;
     private OfficialAccountAdapter mOfficialAccountAdapter;
     private View topArticleFootView;
     private List<TopArticleEntity> mTopArticleEntities;
     private boolean isShowOnlythree = false;
+    private boolean openTwoLevel = false;
     List<Fragment> mFragments = new ArrayList<>();
+    //开源库
+    private OpenSourceAdapter mOpenSourceAdapter;
 
 
 
@@ -104,8 +117,8 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         initUserData();
         mTopArticleAdapter = new TopArticleAdapter(new ArrayList<>());
         SetInitCustomView.initSwipeRecycleview(mDatabind.homeTopArticleRv,new LinearLayoutManager(getActivity()),mTopArticleAdapter,false);
+        initTwoLevel();
         mOfficialAccountAdapter = new OfficialAccountAdapter(new ArrayList<>());
-        mDatabind.homeRefreshLayout.setOnRefreshListener(this);
         topArticleFootView = LayoutInflater.from(getActivity()).inflate(R.layout.home_toparticle_foot,null);
         topArticleFootView.findViewById(R.id.home_ll_seemorearticles).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,6 +130,50 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         initTopAdapterClick();
         initOfficialAccountClick();
         loadLoading(mDatabind.homeRefreshLayout);
+        mDatabind.homeRefreshLayout.setOnMultiListener(new SimpleMultiListener() {
+            @Override
+            public void onHeaderMoving(RefreshHeader header, boolean isDragging, float percent, int offset, int headerHeight, int maxDragHeight) {
+           //     mDatabind.homeIncludeToolbar.toolbar.setAlpha(1 - Math.min(percent, 1));
+            }
+
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                //请求顶部文章
+                mPresenter.requestTopArticle();
+                //请求轮播图
+                mPresenter.requestBannerData();
+                //请求公众号数据
+                mPresenter.requestOfficialAccountData();
+            }
+
+            @Override
+            public void onStateChanged(@NonNull RefreshLayout refreshLayout, @NonNull RefreshState oldState, @NonNull RefreshState newState) {
+
+                if (oldState == RefreshState.TwoLevel) {
+                    mDatabind.homeTwoLevelContent.animate().alpha(0).setDuration(0);
+                } else if (oldState == RefreshState.TwoLevelReleased) {
+                    openTwoLevel = true;
+                    mDatabind.homeIconFab.setImageDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.base_icon_bottom));
+                } else if (oldState == RefreshState.TwoLevelFinish) {
+
+                    openTwoLevel = false;
+                    mDatabind.homeIconFab.setImageDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.base_icon_up));
+                }
+
+            }
+
+        });
+        mDatabind.homeTwoLevelHeader.setOnTwoLevelListener(new OnTwoLevelListener() {
+            @Override
+            public boolean onTwoLevel(@NonNull RefreshLayout refreshLayout) {
+                mDatabind.homeTwoLevelContent.animate().alpha(1).setDuration(1000);
+                return true;
+            }
+        });
+
+        mDatabind.homeTwoLevelHeader.setEnablePullToCloseTwoLevel(false);
+
+
 
 
 
@@ -207,15 +264,15 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
 
 
 
-    @Override
-    public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-        //请求顶部文章
-        mPresenter.requestTopArticle();
-        //请求轮播图
-        mPresenter.requestBannerData();
-        //请求公众号数据
-        mPresenter.requestOfficialAccountData();
-    }
+//    @Override
+//    public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+//        //请求顶部文章
+//        mPresenter.requestTopArticle();
+//        //请求轮播图
+//        mPresenter.requestBannerData();
+//        //请求公众号数据
+//        mPresenter.requestOfficialAccountData();
+//    }
 
     public class ProcyClick{
 
@@ -227,10 +284,16 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
             if (mDatabind.homeIncludeToolbar.homeTvLoginname.getText().toString().equals("登录")) {
                 ARouterUtils.startActivity(RoutePathActivity.Mine.Login_Pager);
             }
+
+
         }
         
         public void scrollUp(){
-            scrollTop();
+            if (openTwoLevel) {
+                mDatabind.homeTwoLevelHeader.finishTwoLevel();
+            } else {
+                scrollTop();
+            }
         }
 
         public void scanCode(){
@@ -325,6 +388,61 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         } else {
             mDatabind.homeIncludeToolbar.homeTvLoginname.setText("登录");
         }
+    }
+
+    private void initTwoLevel(){
+        mOpenSourceAdapter = new OpenSourceAdapter(new ArrayList<>());
+        SetInitCustomView.initSwipeRecycleview(mDatabind.homeIncludeRecyceview.baseBodyRv,new LinearLayoutManager(getActivity()),mOpenSourceAdapter,true);
+        //初始化标签
+        Type type = new TypeToken<List<OpenSourceEntity>>() {}.getType();
+        String jsonData = JsonUtils.getJson(getActivity(),"opensourceproject.json");
+        List<OpenSourceEntity> mDataList = GsonUtils.getList(jsonData,type);
+        mOpenSourceAdapter.setNewInstance(mDataList);
+        mDatabind.homeIncludeRecyceview.baseFreshlayout.setEnableLoadMore(false);
+        mDatabind.homeIncludeRecyceview.baseFreshlayout.setEnableRefresh(false);
+
+        SmartRefreshLayout.LayoutParams params = ( SmartRefreshLayout.LayoutParams) mDatabind.homeIncludeRecyceview.baseBodyRv.getLayoutParams();
+        params.setMargins(0,0,0, ScreenUtils.dp2px(64));
+        mDatabind.homeIncludeRecyceview.baseBodyRv.setLayoutParams(params);
+
+
+
+        mOpenSourceAdapter.addChildClickViewIds(R.id.home_opensource_abroadlink_value,R.id.home_opensource_internallink_value,R.id.home_iv_abroadcopy,R.id.home_iv_internalcopy);
+        mOpenSourceAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+    
+                if(view.getId() == R.id.home_opensource_abroadlink_value){
+                    ARouter.getInstance().build(RoutePathActivity.Web.Web_Normal)
+                            .withString("webUrl",mOpenSourceAdapter.getData().get(position).getAbroadlink())
+                            .withString("webTitle",mOpenSourceAdapter.getData().get(position).getName())
+                            .navigation();
+                } else if(view.getId() == R.id.home_opensource_internallink_value){
+                    ARouter.getInstance().build(RoutePathActivity.Web.Web_Normal)
+                            .withString("webUrl",mOpenSourceAdapter.getData().get(position).getInternallink())
+                            .withString("webTitle",mOpenSourceAdapter.getData().get(position).getName())
+                            .navigation();
+                } else if(view.getId() == R.id.home_iv_abroadcopy){
+                    SystemUtils.copyContent(getActivity(),mOpenSourceAdapter.getData().get(position).getAbroadlink());
+                    ToastUtils.getInstance().showToast("已成功复制链接");
+                } else {
+                    SystemUtils.copyContent(getActivity(),mOpenSourceAdapter.getData().get(position).getInternallink());
+                    ToastUtils.getInstance().showToast("已成功复制链接");
+                }
+            }
+        });
+        mOpenSourceAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
+                //跳到webview
+                ARouter.getInstance().build(RoutePathActivity.Web.Web_Normal)
+                        .withString("webUrl",mOpenSourceAdapter.getData().get(position).getAbroadlink())
+                        .withString("webTitle",mOpenSourceAdapter.getData().get(position).getName())
+                        .navigation();
+            }
+        });
+
+
     }
 
 

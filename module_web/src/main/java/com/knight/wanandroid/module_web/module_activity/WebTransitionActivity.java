@@ -81,9 +81,16 @@ public class WebTransitionActivity extends BaseDBActivity<WebTransitionActivityB
         return R.layout.web_transition_activity;
     }
 
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
     @Override
     public void initView(Bundle savedInstanceState) {
         ARouter.getInstance().inject(this);
+        mDatabind.webTransitionToolbar.baseCompattoobar.setBackgroundColor(ContextCompat.getColor(this,R.color.base_color_transparent));
         mDatabind.webTransitionToolbar.baseIvBack.setOnClickListener(v -> {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 finishAfterTransition();
@@ -98,17 +105,21 @@ public class WebTransitionActivity extends BaseDBActivity<WebTransitionActivityB
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                 // 设置 toolbar 背景
-                mDatabind.webImage.getBackground().setAlpha(255 - (int) (255 * -verticalOffset / (float)alphaMaxOffset));
-                if (255 - (int) (255 * -verticalOffset / (float)alphaMaxOffset) > 127) {
-                      mDatabind.webTransitionToolbar.baseTvTitle.setTextColor(ContextCompat.getColor(WebTransitionActivity.this,R.color.web_white));
+                mDatabind.webImage.getBackground().setAlpha(255 - (int) (255 * -verticalOffset / (float) alphaMaxOffset));
+                if (255 - (int) (255 * -verticalOffset / (float) alphaMaxOffset) > 127) {
+                    mDatabind.webTransitionToolbar.baseTvTitle.setTextColor(ContextCompat.getColor(WebTransitionActivity.this, R.color.web_white));
+                    mDatabind.webTransitionToolbar.baseIvBack.setBackgroundResource(R.drawable.base_right_whitearrow);
+
                 } else {
-                    mDatabind.webTransitionToolbar.baseTvTitle.setTextColor(ContextCompat.getColor(WebTransitionActivity.this,R.color.black));
+
+                    mDatabind.webTransitionToolbar.baseTvTitle.setTextColor(ContextCompat.getColor(WebTransitionActivity.this, R.color.black));
+                    mDatabind.webTransitionToolbar.baseIvBack.setBackgroundResource(R.drawable.base_right_arrow);
                 }
             }
 
         });
 
-        mDatabind.webCollbarlayout.post(() -> alphaMaxOffset = mDatabind.webCollbarlayout.getHeight() - mDatabind.webToolbar.getHeight());
+        mDatabind.webCollbarlayout.post(() -> alphaMaxOffset = mDatabind.webCollbarlayout.getHeight() - mDatabind.webTransitionToolbar.baseCompattoobar.getHeight());
 
     }
 

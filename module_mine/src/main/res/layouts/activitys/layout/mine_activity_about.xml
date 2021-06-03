@@ -5,7 +5,9 @@
     <data>
 
 
-
+        <variable
+            name="click"
+            type="com.knight.wanandroid.module_mine.module_activity.AboutActivity.ProxyClick" />
 
     </data>
 
@@ -68,6 +70,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/base_dimen_20"
                     android:layout_marginBottom="@dimen/base_dimen_20"
+                    android:onClick="@{()->click.goAppUpdateRecord()}"
 
                     >
 
@@ -93,7 +96,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/base_dimen_20"
                     android:layout_marginBottom="@dimen/base_dimen_20"
-
+                    android:onClick="@{()->click.getCheckUpdate()}"
                     >
 
                     <TextView
@@ -105,11 +108,18 @@
                         />
 
 
-                    <ImageView
+
+                    <TextView
+                        android:id="@+id/mine_tv_newversion"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="@dimen/base_dimen_14"
+                        android:textColor="@android:color/white"
                         android:layout_alignParentRight="true"
-                        android:background="@drawable/mine_iv_white_arrow"/>
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:drawableRight="@drawable/mine_iv_white_arrow"/>
+
 
                 </RelativeLayout>
             </LinearLayout>
@@ -138,7 +148,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/mine_service_protocol"
-                      />
+                    android:onClick="@{()->click.goUserAgree()}"/>
 
 
                 <TextView
@@ -148,7 +158,7 @@
                     android:layout_toRightOf="@id/mine_tv_service_protocol"
                     android:layout_marginLeft="@dimen/base_dimen_10"
                     android:text="@string/mine_privacy_protocol"
-                      />
+                    android:onClick="@{()->click.gouserprivacy()}"  />
 
 
 

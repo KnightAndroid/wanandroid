@@ -10,4 +10,7 @@
     <string name="home_search_histroy">搜索历史</string>
     <string name="home_clear">清空</string>
     <string name="home_clearall_searchrecord">是否清空搜索记录</string>
+    <string name="home_open_source">本项目所用开源库</string>
+    <string name="home_opensource_abroadlink">Github链接</string>
+    <string name="home_opensource_internallink">国内代理链接</string>
 </resources>

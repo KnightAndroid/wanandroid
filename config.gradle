@@ -75,4 +75,6 @@ ext{
     zingVersion = "3.4.1"
     //lifecycle
     lifecycleVersion = '2.2.0'
+    //版本更新
+    buglyVersion = "1.5.22"
 }

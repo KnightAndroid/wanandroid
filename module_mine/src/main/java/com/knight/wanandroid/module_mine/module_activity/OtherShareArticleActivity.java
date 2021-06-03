@@ -19,6 +19,7 @@ import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_base.util.ARouterUtils;
 import com.knight.wanandroid.library_util.ColorUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
+import com.knight.wanandroid.library_util.LogUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.library_widget.slidinglayout.SlidingUpPanelLayout;
@@ -66,6 +67,7 @@ public class OtherShareArticleActivity extends BaseActivity<MineActivityOthersha
     @Override
     public void initView(Bundle savedInstanceState) {
         EventBus.getDefault().register(this);
+        mDatabind.setClick(new ProxyClick());
         mDatabind.inculeOthermessageToolbar.baseIvBack.setOnClickListener(v -> finish());
         mDatabind.includeOtherSharearticle.baseFreshlayout.setOnRefreshListener(this);
         mDatabind.includeOtherSharearticle.baseFreshlayout.setOnLoadMoreListener(this);
@@ -228,6 +230,14 @@ public class OtherShareArticleActivity extends BaseActivity<MineActivityOthersha
     public void oncollectSuccess(EventBusUtils.CollectSuccess collectSuccess){
         page = 1;
         mPresenter.requestOtherShareArticle(uid,page);
+    }
+
+
+    public class ProxyClick {
+        public void refresh(){
+            LogUtils.d("进来"+"sdsdsds");
+            mDatabind.includeOtherSharearticle.baseFreshlayout.autoRefresh();
+        }
     }
 
     @Override

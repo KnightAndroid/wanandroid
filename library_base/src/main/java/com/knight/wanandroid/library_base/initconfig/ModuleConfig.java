@@ -30,6 +30,7 @@ import com.knight.wanandroid.library_permiss.XXPermissions;
 import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_util.constant.MMkvConstants;
+import com.tencent.bugly.Bugly;
 import com.tencent.mmkv.MMKV;
 import com.wanandroid.knight.library_database.repository.HistroyKeywordsRepository;
 
@@ -101,6 +102,8 @@ public class ModuleConfig {
         HistroyKeywordsRepository.getInstance().init(application,"wanandroid_database");
         //初始化用户信息
         user = initUser();
+        //bugly版本更新
+        Bugly.init(application,"669abbf2c8",false);
 
 
 

@@ -5,7 +5,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="click"
+            type="com.knight.wanandroid.module_mine.module_activity.OtherShareArticleActivity.ProxyClick" />
 
     </data>
 
@@ -121,6 +123,9 @@
 
             </LinearLayout>
 
+
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -143,15 +148,32 @@
                 android:layout_marginTop="@dimen/base_dimen_10"
                 android:layout_gravity="center_horizontal"/>
 
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:id="@+id/mine_otherarticle_rv"
-                android:text="@string/mine_sharearticles"
-                android:paddingLeft="@dimen/base_dimen_16"
-                android:textSize="@dimen/base_dimen_16"
-                android:textColor="@color/base_color_title"
-                android:paddingBottom="@dimen/base_dimen_10"/>
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/mine_otherarticle_rv"
+                    android:text="@string/mine_sharearticles"
+                    android:paddingLeft="@dimen/base_dimen_16"
+                    android:textSize="@dimen/base_dimen_16"
+                    android:textColor="@color/base_color_title"
+                    android:layout_centerVertical="true"/>
+
+                <ImageView
+                    android:id="@+id/mine_iv_otherrefresh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/mine_iv_refresh"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/base_dimen_16"
+                    android:layout_centerVertical="true"
+                    android:onClick="@{()->click.refresh()}"/>
+            </RelativeLayout>
+
 
 
                 <include
