@@ -82,12 +82,11 @@
 | ![wx_qrcode](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_download.png) |
 |---|
 
--  链接下载
--  [APP下载链接](https://www.pgyer.com/Sdbi)
+-  链接下载 [APP下载链接](https://www.pgyer.com/Sdbi)
 
 ## License
 
-Copyright 2018 knight
+Copyright 2020 knight
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
