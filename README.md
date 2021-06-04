@@ -77,8 +77,13 @@
 
 # 本APP下载链接
 
+-  二维码下载
+
 | ![wx_qrcode](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_download.png) |
 |---|
+
+-  链接下载
+-  [APP下载链接](https://www.pgyer.com/Sdbi)
 
 ## License
 
