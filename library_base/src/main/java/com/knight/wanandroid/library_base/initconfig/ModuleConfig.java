@@ -32,7 +32,7 @@ import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_util.constant.MMkvConstants;
 import com.tencent.bugly.Bugly;
 import com.tencent.mmkv.MMKV;
-import com.wanandroid.knight.library_database.repository.HistroyKeywordsRepository;
+import com.wanandroid.knight.library_database.mananger.DataBaseManager;
 
 import java.util.concurrent.TimeUnit;
 
@@ -99,7 +99,7 @@ public class ModuleConfig {
         //登录拦截器
         initLoginFilter(application);
         //初始化数据库
-        HistroyKeywordsRepository.getInstance().init(application,"wanandroid_database");
+        DataBaseManager.getDataBase(application,"wanandroid_database");
         //初始化用户信息
         user = initUser();
         //bugly版本更新

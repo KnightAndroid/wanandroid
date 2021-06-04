@@ -3,7 +3,9 @@ package com.wanandroid.knight.library_database.db;
 import android.content.Context;
 
 import com.wanandroid.knight.library_database.converter.DateConverter;
+import com.wanandroid.knight.library_database.dao.HistoryReadRecordsDao;
 import com.wanandroid.knight.library_database.dao.SearchHistroyKeywordDao;
+import com.wanandroid.knight.library_database.entity.HistoryReadRecordsEntity;
 import com.wanandroid.knight.library_database.entity.SearchHistroyKeywordEntity;
 
 import java.util.concurrent.ExecutorService;
@@ -21,10 +23,12 @@ import androidx.room.TypeConverters;
  * @descript:database
  */
 @TypeConverters(value = {DateConverter.class})
-@Database(entities = {SearchHistroyKeywordEntity.class},version = 1,exportSchema = false)
+@Database(entities = {SearchHistroyKeywordEntity.class, HistoryReadRecordsEntity.class},version = 2,exportSchema = false)
 public abstract class AppDataBase extends RoomDatabase {
 
     public abstract SearchHistroyKeywordDao mHistroyKeywordDao();
+
+    public abstract HistoryReadRecordsDao mHistoryReadRecordsDao();
 
     private static volatile AppDataBase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
@@ -45,6 +49,13 @@ public abstract class AppDataBase extends RoomDatabase {
         return INSTANCE;
 
     }
+
+
+    public static AppDataBase getInstance(){
+        return INSTANCE;
+    }
+
+
 
 
 }

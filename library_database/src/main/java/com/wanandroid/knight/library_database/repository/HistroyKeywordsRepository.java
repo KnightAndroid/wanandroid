@@ -1,6 +1,5 @@
 package com.wanandroid.knight.library_database.repository;
 
-import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
@@ -25,8 +24,6 @@ public class HistroyKeywordsRepository {
     private SearchHistroyKeywordDao mHistroyKeywordDao;
     private List<SearchHistroyKeywordEntity> mSearchHistroyKeywordEntities;
 
-    private Context context;
-    private String dbName;
 
     private static final Handler HANDLER = new Handler(Looper.getMainLooper());
 
@@ -51,10 +48,8 @@ public class HistroyKeywordsRepository {
         return instance;
     }
 
-    public void init(Context context, String dbName) {
-        this.context = context;
-        this.dbName = dbName;
-        mAppDataBase = AppDataBase.getDatabase(context, dbName);
+    public void init() {
+        mAppDataBase = AppDataBase.getInstance();
         mHistroyKeywordDao = mAppDataBase.mHistroyKeywordDao();
     }
 

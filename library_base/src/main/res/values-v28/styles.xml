@@ -9,6 +9,7 @@
         <item name="windowNoTitle">true</item>
         <item name="buttonBarPositiveButtonStyle">@style/base_positiveBtnStyle</item>
         <item name="buttonBarNegativeButtonStyle">@style/base_negativeBtnStyle</item>
+
     </style>
 
 
