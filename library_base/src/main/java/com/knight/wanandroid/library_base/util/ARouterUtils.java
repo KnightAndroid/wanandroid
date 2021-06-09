@@ -17,12 +17,16 @@ public final class ARouterUtils {
      * 跳转到webActivity
      * @param webUrl
      */
-    public static void startWeb(String webUrl,String title,int articleId,boolean isCollect){
+    public static void startWeb(String webUrl,String title,int articleId,boolean isCollect,String envelopePic,String articledesc,String chapterName,String author){
         ARouter.getInstance().build(RoutePathActivity.Web.Web_Pager)
                 .withString("webUrl",webUrl)
                 .withString("title",title)
                 .withInt("articleId",articleId)
                 .withBoolean("isCollect",isCollect)
+                .withString("envelopePic",envelopePic)
+                .withString("articledesc",articledesc)
+                .withString("chapterName",chapterName)
+                .withString("author",author)
                 .navigation();
     }
 

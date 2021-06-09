@@ -51,7 +51,8 @@ public class AppUpdateRecordActivity extends BaseDBActivity<MineActivityUpdatere
 
 
 
-    private void initData(){
+    @Override
+    public void initData(){
         Type type = new TypeToken<List<VersionRecordEntity>>() {}.getType();
         String jsonData = JsonUtils.getJson(this,"versionrecord.json");
         List<VersionRecordEntity> mDataList = GsonUtils.getList(jsonData,type);

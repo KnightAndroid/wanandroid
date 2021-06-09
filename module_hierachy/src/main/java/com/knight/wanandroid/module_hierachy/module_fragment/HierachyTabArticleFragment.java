@@ -1,6 +1,7 @@
 package com.knight.wanandroid.module_hierachy.module_fragment;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -152,7 +153,11 @@ public class HierachyTabArticleFragment extends BaseFragment<HierachyFragmentTab
                 ARouterUtils.startWeb(mHierachyTabAdapter.getData().get(position).getLink(),
                         mHierachyTabAdapter.getData().get(position).getTitle(),
                         mHierachyTabAdapter.getData().get(position).getId(),
-                        mHierachyTabAdapter.getData().get(position).isCollect());
+                        mHierachyTabAdapter.getData().get(position).isCollect(),
+                        mHierachyTabAdapter.getData().get(position).getEnvelopePic(),
+                        mHierachyTabAdapter.getData().get(position).getDesc(),
+                        mHierachyTabAdapter.getData().get(position).getChapterName(),
+                        TextUtils.isEmpty(mHierachyTabAdapter.getData().get(position).getAuthor()) ? mHierachyTabAdapter.getData().get(position).getShareUser() : mHierachyTabAdapter.getData().get(position).getAuthor());
             }
         });
 

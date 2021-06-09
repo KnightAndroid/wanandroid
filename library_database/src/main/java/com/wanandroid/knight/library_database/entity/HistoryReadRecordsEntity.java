@@ -21,6 +21,12 @@ public class HistoryReadRecordsEntity {
     @PrimaryKey(autoGenerate = true)
     private long id;
 
+
+    private int userId;
+
+    private boolean isCollect;
+
+
     //网页链接
     @NonNull
     private String webUrl;
@@ -46,7 +52,8 @@ public class HistoryReadRecordsEntity {
     private String chapterName;
 
     //描述
-    private String desc;
+    private String articledesc;
+
 
     public long getId() {
         return id;
@@ -115,11 +122,28 @@ public class HistoryReadRecordsEntity {
         this.chapterName = chapterName;
     }
 
-    public String getDesc() {
-        return desc == null ? "" : desc;
+    public String getArticledesc() {
+        return articledesc == null ? "" : articledesc;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setArticledesc(String articledesc) {
+        this.articledesc = articledesc;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+
+    public boolean isCollect() {
+        return isCollect;
+    }
+
+    public void setCollect(boolean collect) {
+        isCollect = collect;
     }
 }

@@ -33,7 +33,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="80dp">
+                android:layout_marginTop="60dp">
 
                 <ImageView
                     android:id="@+id/mine_iv_head"
@@ -217,6 +217,30 @@
 
                     </RelativeLayout>
 
+                    <!--我的分享-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/base_dimen_20"
+                        android:layout_marginBottom="@dimen/base_dimen_20"
+                        android:onClick="@{()->click.goHistoryRecords()}"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mine_historyrecord"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/base_dimen_18"
+                            />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/mine_iv_white_arrow"/>
+
+                    </RelativeLayout>
+
                     <!--代办清单-->
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -271,6 +295,52 @@
                     </RelativeLayout>
 
 
+                    <!--项目仓库-->
+                    <RelativeLayout
+                        android:id="@+id/mine_rl_project_repository"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/base_dimen_20"
+                        android:layout_marginBottom="@dimen/base_dimen_20"
+                        android:onClick="@{()->click.projectRepository()}">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mine_project_repository"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/base_dimen_18"/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/mine_iv_white_arrow"/>
+                    </RelativeLayout>
+
+                    <!--官网-->
+                    <RelativeLayout
+                        android:id="@+id/mine_rl_official_website"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/base_dimen_20"
+                        android:layout_marginBottom="@dimen/base_dimen_20"
+                        android:onClick="@{()->click.goOfficialWebsite()}">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mine_official_website"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/base_dimen_18"/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/mine_iv_white_arrow"/>
+                    </RelativeLayout>
+
                     <!--关于-->
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -295,7 +365,6 @@
                             android:background="@drawable/mine_iv_white_arrow"/>
 
                     </RelativeLayout>
-
 
                     <!--退出账户-->
                     <RelativeLayout

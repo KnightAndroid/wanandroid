@@ -3,8 +3,8 @@ package com.knight.wanandroid.module_square.module_request;
 import com.knight.wanandroid.library_network.config.IRequestApi;
 
 /**
- * @author created by luguian
- * @organize 车童网
+ * @author created by knight
+ * @organize wanandroid
  * @Date 2021/5/17 14:56
  * @descript:
  */

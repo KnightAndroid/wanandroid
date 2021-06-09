@@ -59,6 +59,7 @@ public class RoutePathActivity {
         public static final String OtherShareArticle_Pager = Mine + "/mine_otherarticle";
         public static final String About_Pager = Mine + "/mine_about";
         public static final String AppUpdate_Pager = Mine + "/mine_app_updaterecord";
+        public static final String HistoryRecord_Pager = Mine + "/mine_historyrecord";
     }
 
 

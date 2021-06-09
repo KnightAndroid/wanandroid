@@ -2,6 +2,7 @@ package com.knight.wanandroid.module_mine.module_activity;
 
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -44,8 +45,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 /**
- * @author created by luguian
- * @organize 车童网
+ * @author created by knight
+ * @organize wanandroid
  * @Date 2021/5/20 17:29
  * @descript:
  */
@@ -206,7 +207,11 @@ public class OtherShareArticleActivity extends BaseActivity<MineActivityOthersha
                 ARouterUtils.startWeb(mOtherShareArticleAdapter.getData().get(position).getLink(),
                         mOtherShareArticleAdapter.getData().get(position).getTitle(),
                         mOtherShareArticleAdapter.getData().get(position).getId(),
-                        mOtherShareArticleAdapter.getData().get(position).isCollect());
+                        mOtherShareArticleAdapter.getData().get(position).isCollect(),
+                        mOtherShareArticleAdapter.getData().get(position).getEnvelopePic(),
+                        mOtherShareArticleAdapter.getData().get(position).getDesc(),
+                        mOtherShareArticleAdapter.getData().get(position).getChapterName(),
+                        TextUtils.isEmpty(mOtherShareArticleAdapter.getData().get(position).getAuthor()) ? mOtherShareArticleAdapter.getData().get(position).getShareUser() : mOtherShareArticleAdapter.getData().get(position).getAuthor());
             }
         });
 

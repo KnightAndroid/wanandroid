@@ -1,23 +1,20 @@
 package com.knight.wanandroid.module_home.module_fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
-import com.chad.library.adapter.base.listener.OnItemLongClickListener;
 import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.util.ARouterUtils;
-import com.knight.wanandroid.library_util.BlurBuilder;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.module_home.R;
 import com.knight.wanandroid.module_home.databinding.HomeFragmentArticleBinding;
-import com.knight.wanandroid.module_home.module_activity.HomeArticlesTabActivity;
 import com.knight.wanandroid.module_home.module_adapter.HomeArticleAdapter;
 import com.knight.wanandroid.module_home.module_constants.HomeConstants;
 import com.knight.wanandroid.module_home.module_contract.HomeArticleContract;
@@ -67,7 +64,11 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
                 ARouterUtils.startWeb(mHomeArticleAdapter.getData().get(position).getLink(),
                         mHomeArticleAdapter.getData().get(position).getTitle(),
                         mHomeArticleAdapter.getData().get(position).getId(),
-                        mHomeArticleAdapter.getData().get(position).isCollect());
+                        mHomeArticleAdapter.getData().get(position).isCollect(),
+                        mHomeArticleAdapter.getData().get(position).getEnvelopePic(),
+                        mHomeArticleAdapter.getData().get(position).getDesc(),
+                        mHomeArticleAdapter.getData().get(position).getChapterName(),
+                        TextUtils.isEmpty(mHomeArticleAdapter.getData().get(position).getAuthor()) ? mHomeArticleAdapter.getData().get(position).getShareUser() : mHomeArticleAdapter.getData().get(position).getAuthor());
             }
         });
 

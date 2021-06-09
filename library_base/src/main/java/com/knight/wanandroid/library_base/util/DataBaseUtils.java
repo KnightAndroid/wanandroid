@@ -2,7 +2,10 @@ package com.knight.wanandroid.library_base.util;
 
 import android.text.TextUtils;
 
+import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
+import com.wanandroid.knight.library_database.entity.HistoryReadRecordsEntity;
 import com.wanandroid.knight.library_database.entity.SearchHistroyKeywordEntity;
+import com.wanandroid.knight.library_database.repository.HistoryReadRecordsRepository;
 import com.wanandroid.knight.library_database.repository.HistroyKeywordsRepository;
 
 import java.util.List;
@@ -39,4 +42,33 @@ public class DataBaseUtils {
             }
         });
     }
+
+
+    /**
+     *
+     * 保存阅读历史记录
+     * @param historyReadRecordEntity
+     */
+    public static void saveHistoryRecord(HistoryReadRecordsEntity historyReadRecordEntity) {
+        HistoryReadRecordsRepository.getInstance().findHistoryReadRecords(historyReadRecordEntity.getWebUrl(), historyReadRecordEntity.getArticleId(), ModuleConfig.getInstance().user == null ? 0:ModuleConfig.getInstance().user.getId(),new HistoryReadRecordsRepository.OnQueryRecordsSuccessCallBack() {
+            @Override
+            public void onQueryRecordsSuccessCallBack(List<HistoryReadRecordsEntity> historyReadRecordsEntities) {
+
+            }
+
+            @Override
+            public void onFindReadRecordsEntity(HistoryReadRecordsEntity historyReadRecordsEntity){
+                if (historyReadRecordsEntity != null) {
+                    //更新
+                    HistoryReadRecordsRepository.getInstance().updateHistroyRecord(historyReadRecordsEntity);
+                } else {
+                    //插入
+                    HistoryReadRecordsRepository.getInstance().insertHistroyRecordsKeyword(historyReadRecordEntity);
+                }
+            }
+        });
+    }
+
+
+
 }

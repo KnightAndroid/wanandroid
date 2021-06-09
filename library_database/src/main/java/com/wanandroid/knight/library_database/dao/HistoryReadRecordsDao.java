@@ -8,6 +8,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 /**
  * @author created by knight
@@ -24,6 +25,9 @@ public interface HistoryReadRecordsDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     long insertHistoryReadRecords(HistoryReadRecordsEntity historyReadRecordsEntity);
 
+    //更新
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    int updateHistoryReadRecord(HistoryReadRecordsEntity... historyReadRecordsEntities);
 
     //查询所有历史记录
     @Query("select * from historyreadrecords_table")
@@ -36,4 +40,15 @@ public interface HistoryReadRecordsDao {
     //删除全部
     @Query("delete from historyreadrecords_table")
     void deleteAllHistoryRecords();
+
+    //根据用户Id查询部分
+    @Query("select id,webUrl,articleId,title,envelopePic,insertTime,author,chapterName,articledesc,userId,isCollect FROM historyreadrecords_table  Where userId =:userId order by insertTime desc limit :start,:end ")
+    List<HistoryReadRecordsEntity> queryPartHistoryRecords(int start,int end,int userId);
+
+    //根据用户指定查询
+    @Query("select * from historyreadrecords_table WHERE userId=:userId AND webUrl=:webUrl AND articleId=:articleId")
+    HistoryReadRecordsEntity findHistoryReadRecords(String webUrl,int articleId,int userId);
+
+
+
 }

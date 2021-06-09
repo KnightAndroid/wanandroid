@@ -32,6 +32,13 @@ public class HistoryReadRecordsRepository {
          * 查询成功回调方法
          */
         void onQueryRecordsSuccessCallBack(List<HistoryReadRecordsEntity> historyReadRecordsEntities);
+        /**
+         *
+         * 查询指定一条成功
+         */
+        default void onFindReadRecordsEntity(HistoryReadRecordsEntity historyReadRecordsEntity){
+
+        }
     }
 
 
@@ -54,7 +61,7 @@ public class HistoryReadRecordsRepository {
         mHistoryReadRecordsDao.insertHistoryReadRecords(historyReadRecordsEntity);
     }
 
-    //查询
+    //查询全部
     public void queryHistroyRecordsKeywords(OnQueryRecordsSuccessCallBack onQueryRecordsSuccessCallBack) {
         mAppDataBase.databaseWriteExecutor.execute(() -> {
             mHistoryReadRecordsEntities = mHistoryReadRecordsDao.queryAllHistoryRecords();
@@ -65,6 +72,33 @@ public class HistoryReadRecordsRepository {
         });
 
     }
+
+    //更新
+    public int updateHistroyRecord(HistoryReadRecordsEntity...historyReadRecordsEntities){
+        return mHistoryReadRecordsDao.updateHistoryReadRecord(historyReadRecordsEntities);
+    }
+
+
+    //查询部分阅读历史
+    public void queryPartHistoryRecords(int start,int end,int userId,OnQueryRecordsSuccessCallBack onQueryRecordsSuccessCallBack) {
+        mAppDataBase.databaseWriteExecutor.execute(()->{
+            mHistoryReadRecordsEntities = mHistoryReadRecordsDao.queryPartHistoryRecords(start, end,userId);
+            HANDLER.post(()->{
+                onQueryRecordsSuccessCallBack.onQueryRecordsSuccessCallBack(mHistoryReadRecordsEntities);
+            });
+        });
+    }
+
+    //查询某一条
+    public void findHistoryReadRecords(String webUrl,int articleId,int userId,OnQueryRecordsSuccessCallBack onQueryRecordsSuccessCallBack){
+        mAppDataBase.databaseWriteExecutor.execute(()->{
+            HANDLER.post(()->{
+                onQueryRecordsSuccessCallBack.onFindReadRecordsEntity(mHistoryReadRecordsDao.findHistoryReadRecords(webUrl, articleId,userId));
+            });
+        });
+    }
+
+
 
     //删除单个
     public void deleteHistroyRecord(long id) {

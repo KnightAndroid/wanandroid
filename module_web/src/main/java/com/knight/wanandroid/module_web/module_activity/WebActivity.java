@@ -21,7 +21,10 @@ import com.just.agentweb.WebChromeClient;
 import com.just.agentweb.WebViewClient;
 import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
 import com.knight.wanandroid.library_base.activity.BaseActivity;
+import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
+import com.knight.wanandroid.library_base.util.DataBaseUtils;
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_widget.LoveAnimatorRelativeLayout;
@@ -33,6 +36,7 @@ import com.knight.wanandroid.module_web.module_fragment.WebBottomFragment;
 import com.knight.wanandroid.module_web.module_model.WebModel;
 import com.knight.wanandroid.module_web.module_presenter.WebPresenter;
 import com.knight.wanandroid.module_web.module_view.WebLayout;
+import com.wanandroid.knight.library_database.entity.HistoryReadRecordsEntity;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -63,6 +67,22 @@ public class WebActivity extends BaseActivity<WebActivityMainBinding, WebPresent
     //是否收藏文章
     @Autowired(name = "isCollect")
     boolean isCollect;
+
+    //文章图片
+    @Autowired(name = "envelopePic")
+    String envelopePic = "";
+
+    //文章描述
+    @Autowired(name = "articledesc")
+    String articledesc = "";
+
+    @Autowired(name = "chapterName")
+    String chapterName = "";
+
+    @Autowired(name = "author")
+    String author = "";
+
+
 
     private WebView mWebView;
 
@@ -114,7 +134,7 @@ public class WebActivity extends BaseActivity<WebActivityMainBinding, WebPresent
             }
         });
 
-
+        DataBaseUtils.saveHistoryRecord(setHistoryReadRecord());
     }
 
     private WebViewClient mWebViewClient = new WebViewClient(){
@@ -222,6 +242,25 @@ public class WebActivity extends BaseActivity<WebActivityMainBinding, WebPresent
         ToastUtils.getInstance().showToast(errorMsg);
     }
 
+
+    private HistoryReadRecordsEntity setHistoryReadRecord(){
+        HistoryReadRecordsEntity historyReadRecordsEntity = new HistoryReadRecordsEntity();
+        if (ModuleConfig.getInstance().user != null) {
+            historyReadRecordsEntity.setUserId(ModuleConfig.getInstance().user.getId());
+        } else {
+            historyReadRecordsEntity.setUserId(0);
+        }
+        historyReadRecordsEntity.setCollect(isCollect);
+        historyReadRecordsEntity.setArticledesc(articledesc);
+        historyReadRecordsEntity.setArticleId(articleId);
+        historyReadRecordsEntity.setAuthor(author);
+        historyReadRecordsEntity.setEnvelopePic(envelopePic);
+        historyReadRecordsEntity.setTitle(title);
+        historyReadRecordsEntity.setChapterName(chapterName);
+        historyReadRecordsEntity.setWebUrl(webUrl);
+        return historyReadRecordsEntity;
+
+    }
     @Override
     public void collectArticleSuccess() {
         isCollect = true;

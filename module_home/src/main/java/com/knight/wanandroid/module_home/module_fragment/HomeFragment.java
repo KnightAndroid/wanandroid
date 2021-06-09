@@ -2,6 +2,7 @@ package com.knight.wanandroid.module_home.module_fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -228,7 +229,9 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
             @Override
             public void onBindView(BannerImageHolder holder, BannerEntity data, int position, int size) {
                 GlideEngineUtils.getInstance().loadStringPhoto(ApplicationProvider.getInstance().getApplication(),data.getImagePath(),holder.imageView);
-                holder.imageView.setOnClickListener(v -> ARouterUtils.startWeb(data.getUrl(),data.getTitle(),data.getId(),false));
+                holder.imageView.setOnClickListener(v -> ARouterUtils.startWeb(
+                        data.getUrl(),data.getTitle(),data.getId(),
+                        false,data.getImagePath(),data.getDesc(),"banner",""));
             }
         })
         .addBannerLifecycleObserver(this)
@@ -348,7 +351,10 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
                 ARouterUtils.startWeb(mTopArticleAdapter.getData().get(position).getLink(),
                         mTopArticleAdapter.getData().get(position).getTitle(),
                         mTopArticleAdapter.getData().get(position).getId(),
-                        mTopArticleAdapter.getData().get(position).isCollect());
+                        mTopArticleAdapter.getData().get(position).isCollect(),
+                        mTopArticleAdapter.getData().get(position).getEnvelopePic(),
+                        mTopArticleAdapter.getData().get(position).getDesc(),mTopArticleAdapter.getData().get(position).getChapterName(),
+                        TextUtils.isEmpty(mTopArticleAdapter.getData().get(position).getAuthor()) ? mTopArticleAdapter.getData().get(position).getShareUser() : mTopArticleAdapter.getData().get(position).getAuthor());
             }
         });
 

@@ -50,6 +50,15 @@ public class MyCollectArticleEntity extends BaseEntity implements MultiItemEntit
     private int userId;
     private int visible;
     private int zan;
+    private String shareUser;
+
+    public String getShareUser() {
+        return shareUser == null ? "" : shareUser;
+    }
+
+    public void setShareUser(String shareUser) {
+        this.shareUser = shareUser;
+    }
 
     @Override
     public int getItemType() {

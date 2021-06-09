@@ -2,6 +2,7 @@ package com.knight.wanandroid.module_square.module_fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -177,7 +178,10 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
                 ARouterUtils.startWeb(mSquareArticleAdapter.getData().get(position).getLink(),
                         mSquareArticleAdapter.getData().get(position).getTitle(),
                         mSquareArticleAdapter.getData().get(position).getId(),
-                        mSquareArticleAdapter.getData().get(position).isCollect());
+                        mSquareArticleAdapter.getData().get(position).isCollect(),
+                        mSquareArticleAdapter.getData().get(position).getEnvelopePic(),
+                        mSquareArticleAdapter.getData().get(position).getDesc(),mSquareArticleAdapter.getData().get(position).getChapterName(),
+                        TextUtils.isEmpty(mSquareArticleAdapter.getData().get(position).getAuthor()) ? mSquareArticleAdapter.getData().get(position).getShareUser() : mSquareArticleAdapter.getData().get(position).getAuthor());
             }
         });
 
@@ -348,7 +352,11 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
                         mSquareQuestionAdapter.getData().get(position).getLink(),
                         mSquareQuestionAdapter.getData().get(position).getTitle(),
                         mSquareQuestionAdapter.getData().get(position).getId(),
-                        mSquareQuestionAdapter.getData().get(position).isCollect());
+                        mSquareQuestionAdapter.getData().get(position).isCollect(),
+                        mSquareArticleAdapter.getData().get(position).getEnvelopePic(),
+                        mSquareArticleAdapter.getData().get(position).getDesc(),
+                        mSquareArticleAdapter.getData().get(position).getChapterName(),
+                        TextUtils.isEmpty(mSquareArticleAdapter.getData().get(position).getAuthor()) ? mSquareArticleAdapter.getData().get(position).getShareUser() : mSquareArticleAdapter.getData().get(position).getAuthor());
             }
         });
 

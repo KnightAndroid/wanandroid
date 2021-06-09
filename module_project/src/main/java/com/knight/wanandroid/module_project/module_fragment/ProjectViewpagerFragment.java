@@ -1,6 +1,7 @@
 package com.knight.wanandroid.module_project.module_fragment;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -185,7 +186,11 @@ public class ProjectViewpagerFragment extends BaseFragment<ProjectViewpagerFragm
                 ARouterUtils.startWeb(mProjectArticleAdapter.getData().get(position).getLink(),
                         mProjectArticleAdapter.getData().get(position).getTitle(),
                         mProjectArticleAdapter.getData().get(position).getId(),
-                        mProjectArticleAdapter.getData().get(position).isCollect());
+                        mProjectArticleAdapter.getData().get(position).isCollect(),
+                        mProjectArticleAdapter.getData().get(position).getEnvelopePic(),
+                        mProjectArticleAdapter.getData().get(position).getDesc(),
+                        mProjectArticleAdapter.getData().get(position).getChapterName(),
+                        TextUtils.isEmpty(mProjectArticleAdapter.getData().get(position).getAuthor()) ? mProjectArticleAdapter.getData().get(position).getShareUser() : mProjectArticleAdapter.getData().get(position).getAuthor());
             }
         });
     }

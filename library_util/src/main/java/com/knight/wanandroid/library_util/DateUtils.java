@@ -2,6 +2,7 @@ package com.knight.wanandroid.library_util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -30,5 +31,23 @@ public class DateUtils {
             return null;
         }
 
+    }
+
+    /**
+     *
+     * 时间戳转成yyyy-MM-dd
+     * @param date
+     * @return
+     */
+    public static String ConvertYearMonthDayTime(Date date){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minuter = calendar.get(Calendar.MINUTE);
+        int second = calendar.get(Calendar.SECOND);
+        return year + "-" +month+"-"+day+" "+hour+":"+minuter+":"+second;
     }
 }

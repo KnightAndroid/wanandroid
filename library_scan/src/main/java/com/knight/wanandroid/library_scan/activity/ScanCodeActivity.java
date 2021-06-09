@@ -84,6 +84,7 @@ public class ScanCodeActivity extends BaseDBActivity<ScancodeActivityBinding> {
         initData();
     }
 
+    @Override
     @SuppressLint("NewApi")
     public void initData(){
         mScanCodeEntity = getIntent().getExtras().getParcelable(ScanCodeConfig.MODEL_KEY);

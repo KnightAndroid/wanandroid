@@ -192,7 +192,11 @@ public class SearchResultActivity extends BaseActivity<HomeSearchresultActivityB
                 ARouterUtils.startWeb(mSearchResultAdapter.getData().get(position).getLink(),
                         mSearchResultAdapter.getData().get(position).getTitle(),
                         mSearchResultAdapter.getData().get(position).getId(),
-                        mSearchResultAdapter.getData().get(position).isCollect());
+                        mSearchResultAdapter.getData().get(position).isCollect(),
+                        mSearchResultAdapter.getData().get(position).getEnvelopePic(),
+                        mSearchResultAdapter.getData().get(position).getDesc(),
+                        mSearchResultAdapter.getData().get(position).getChapterName(),
+                        TextUtils.isEmpty(mSearchResultAdapter.getData().get(position).getAuthor()) ?  mSearchResultAdapter.getData().get(position).getShareUser() : mSearchResultAdapter.getData().get(position).getAuthor());
             }
         });
 

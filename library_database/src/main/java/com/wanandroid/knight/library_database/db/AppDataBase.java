@@ -23,7 +23,7 @@ import androidx.room.TypeConverters;
  * @descript:database
  */
 @TypeConverters(value = {DateConverter.class})
-@Database(entities = {SearchHistroyKeywordEntity.class, HistoryReadRecordsEntity.class},version = 2,exportSchema = false)
+@Database(entities = {SearchHistroyKeywordEntity.class, HistoryReadRecordsEntity.class},version = 1,exportSchema = false)
 public abstract class AppDataBase extends RoomDatabase {
 
     public abstract SearchHistroyKeywordDao mHistroyKeywordDao();

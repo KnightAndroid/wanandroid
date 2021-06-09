@@ -21,6 +21,7 @@ import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;
 import com.knight.wanandroid.module_mine.R;
 import com.knight.wanandroid.module_mine.databinding.MineFragmentMineBinding;
 import com.knight.wanandroid.module_mine.module_activity.AboutActivity;
+import com.knight.wanandroid.module_mine.module_activity.HistoryRecordActivity;
 import com.knight.wanandroid.module_mine.module_activity.LoginActivity;
 import com.knight.wanandroid.module_mine.module_activity.MyCollectArticleActivity;
 import com.knight.wanandroid.module_mine.module_activity.MyShareArticleActivity;
@@ -147,6 +148,13 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
             startActivity(new Intent(getActivity(), MyShareArticleActivity.class));
         }
 
+        public void goHistoryRecords(){
+            startActivity(new Intent(getActivity(), HistoryRecordActivity.class));
+        }
+
+
+
+
         @LoginCheck
         public void goMyCollectArticles(){
             startActivity(new Intent(getActivity(), MyCollectArticleActivity.class));
@@ -156,6 +164,19 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
             startActivity(new Intent(getActivity(), AboutActivity.class));
         }
 
+        public void projectRepository(){
+            ARouter.getInstance().build(RoutePathActivity.Web.Web_Normal)
+                    .withString("webUrl","https://github.com/KnightAndroid/wanandroid")
+                    .withString("webTitle",getString(R.string.mine_project_repository))
+                    .navigation();
+        }
+
+        public void goOfficialWebsite(){
+            ARouter.getInstance().build(RoutePathActivity.Web.Web_Normal)
+                    .withString("webUrl","https://www.wanandroid.com/")
+                    .withString("webTitle",getString(R.string.mine_official_website))
+                    .navigation();
+        }
         public void Logout(){
             DialogUtils.getConfirmDialog(getActivity(), getResources().getString(R.string.mine_confirm_logout), (dialog, which) -> {
                 mPresenter.requestLogout();

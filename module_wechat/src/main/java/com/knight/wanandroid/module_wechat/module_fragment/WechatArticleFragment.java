@@ -1,6 +1,7 @@
 package com.knight.wanandroid.module_wechat.module_fragment;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -166,7 +167,11 @@ public class WechatArticleFragment extends BaseFragment<WechatOfficialaccountVie
                 ARouterUtils.startWeb(mWechatArticleAdapter.getData().get(position).getLink(),
                         mWechatArticleAdapter.getData().get(position).getTitle(),
                         mWechatArticleAdapter.getData().get(position).getId(),
-                        mWechatArticleAdapter.getData().get(position).isCollect());
+                        mWechatArticleAdapter.getData().get(position).isCollect(),
+                        mWechatArticleAdapter.getData().get(position).getEnvelopePic(),
+                        mWechatArticleAdapter.getData().get(position).getDesc(),
+                        mWechatArticleAdapter.getData().get(position).getChapterName(),
+                        TextUtils.isEmpty(mWechatArticleAdapter.getData().get(position).getAuthor())? mWechatArticleAdapter.getData().get(position).getShareUser() : mWechatArticleAdapter.getData().get(position).getAuthor());
             }
         });
     }

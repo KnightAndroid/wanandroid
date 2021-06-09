@@ -87,7 +87,11 @@ public class HierachyRightFragment extends BaseFragment<HierachyRightFragmentBin
                     }
                 } else if (id == R.id.hierachy_tv_content) {
                     if (isNavigate) {
-                        ARouterUtils.startWeb(mDatas.get(position).getLink(),mDatas.get(position).getName(),mDatas.get(position).getId(),mDatas.get(position).isCollect());
+                        ARouterUtils.startWeb(mDatas.get(position).getLink(),
+                                mDatas.get(position).getName(),
+                                mDatas.get(position).getId(),
+                                mDatas.get(position).isCollect(),
+                                "","",mDatas.get(position).getName(),mDatas.get(position).getName());
                     } else {
                         ARouter.getInstance().build(RoutePathActivity.Hierachy.HierachyDetail).
                                 withInt("cid",mDatas.get(position).getId()).

@@ -1,6 +1,7 @@
 package com.knight.wanandroid.module_mine.module_activity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -134,7 +135,10 @@ public class MyCollectArticleActivity extends BaseActivity<MineActivityCollectar
                 ARouterUtils.startWeb(mMyCollectArticleAdapter.getData().get(position).getLink(),
                         mMyCollectArticleAdapter.getData().get(position).getTitle(),
                         mMyCollectArticleAdapter.getData().get(position).getId(),
-                        true);
+                        true,mMyCollectArticleAdapter.getData().get(position).getEnvelopePic(),
+                        mMyCollectArticleAdapter.getData().get(position).getDesc(),
+                        mMyCollectArticleAdapter.getData().get(position).getChapterName(),
+                        TextUtils.isEmpty(mMyCollectArticleAdapter.getData().get(position).getAuthor()) ? mMyCollectArticleAdapter.getData().get(position).getShareUser() : mMyCollectArticleAdapter.getData().get(position).getAuthor());
             }
         });
 

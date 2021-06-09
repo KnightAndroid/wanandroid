@@ -1,6 +1,7 @@
 package com.knight.wanandroid.module_mine.module_activity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -134,7 +135,11 @@ public class MyShareArticleActivity extends BaseActivity<MineActivityMyshareBind
                 ARouterUtils.startWeb(mMyShareArticleAdapter.getData().get(position).getLink(),
                         mMyShareArticleAdapter.getData().get(position).getTitle(),
                         mMyShareArticleAdapter.getData().get(position).getId(),
-                        mMyShareArticleAdapter.getData().get(position).isCollect());
+                        mMyShareArticleAdapter.getData().get(position).isCollect(),
+                        mMyShareArticleAdapter.getData().get(position).getEnvelopePic(),
+                        mMyShareArticleAdapter.getData().get(position).getDesc(),
+                        mMyShareArticleAdapter.getData().get(position).getChapterName(),
+                        TextUtils.isEmpty(mMyShareArticleAdapter.getData().get(position).getAuthor()) ? mMyShareArticleAdapter.getData().get(position).getShareUser() : mMyShareArticleAdapter.getData().get(position).getAuthor());
             }
         });
 
