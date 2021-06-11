@@ -19,7 +19,9 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.Li
 
 import java.util.List;
 
+import androidx.annotation.Nullable;
 import androidx.viewpager2.widget.ViewPager2;
+import kotlin.jvm.functions.Function1;
 
 /**
  * @author created by knight
@@ -36,7 +38,7 @@ public class InitCustomViewUtils {
      * @param viewPager2
      * @param mDataList
      */
-    public static void bindViewPager2(MagicIndicator magicIndicator, ViewPager2 viewPager2, List<String> mDataList) {
+    public static void bindViewPager2(MagicIndicator magicIndicator, ViewPager2 viewPager2, List<String> mDataList, @Nullable final Function1 action) {
         CommonNavigator commonNavigator = new CommonNavigator(ApplicationProvider.getInstance().getApplication());
         commonNavigator.setAdapter(new CommonNavigatorAdapter() {
             @Override
@@ -58,6 +60,10 @@ public class InitCustomViewUtils {
                     @Override
                     public void onClick(View v) {
                         viewPager2.setCurrentItem(index);
+                        if (action != null) {
+                            action.invoke(index);
+                        }
+
                     }
                 });
                 return scaleTransitionPagerTitleView;

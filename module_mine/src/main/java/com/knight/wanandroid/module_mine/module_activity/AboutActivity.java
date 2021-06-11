@@ -7,14 +7,17 @@ import android.text.TextUtils;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.knight.wanandroid.library_base.activity.BaseDBActivity;
+import com.knight.wanandroid.library_base.activity.BaseActivity;
+import com.knight.wanandroid.library_base.entity.AppUpdateEntity;
+import com.knight.wanandroid.library_base.fragment.UpdateAppDialogFragment;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_util.SystemUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.module_mine.R;
 import com.knight.wanandroid.module_mine.databinding.MineActivityAboutBinding;
-import com.tencent.bugly.beta.Beta;
-import com.tencent.bugly.beta.UpgradeInfo;
+import com.knight.wanandroid.module_mine.module_contract.AboutContract;
+import com.knight.wanandroid.module_mine.module_model.AboutModel;
+import com.knight.wanandroid.module_mine.module_presenter.AboutPresenter;
 
 import androidx.annotation.RequiresApi;
 
@@ -25,7 +28,11 @@ import androidx.annotation.RequiresApi;
  * @descript:
  */
 @Route(path = RoutePathActivity.Mine.About_Pager)
-public class AboutActivity extends BaseDBActivity<MineActivityAboutBinding> {
+public class AboutActivity extends BaseActivity<MineActivityAboutBinding, AboutPresenter, AboutModel> implements AboutContract.AboutView {
+
+
+    private AppUpdateEntity mAppUpdateEntity;
+
     @Override
     public int layoutId() {
         return R.layout.mine_activity_about;
@@ -39,7 +46,37 @@ public class AboutActivity extends BaseDBActivity<MineActivityAboutBinding> {
         mDatabind.mineIncludeAbout.baseIvBack.setOnClickListener(v -> finish());
         mDatabind.mineTvAppName.setText(SystemUtils.getAppName(this));
         mDatabind.mineTvAppVersion.setText(SystemUtils.getAppVersionName(this)+"("+SystemUtils.getAppVersionCode(this) +")");
-        getUpgradeInfo();
+
+    }
+
+    @Override
+    public void initData(){
+        mPresenter.requestAppVersion();
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void showError(String errorMsg) {
+        ToastUtils.getInstance().showToast(errorMsg);
+    }
+
+    @Override
+    public void setAppVersion(AppUpdateEntity result) {
+         if (!SystemUtils.getAppVersionName(this).equals(result.getVersionName())) {
+             mDatabind.mineTvNewversion.setText(getString(R.string.mine_search_newversion));
+             mAppUpdateEntity = result;
+
+
+         }
     }
 
     public class ProxyClick{
@@ -64,30 +101,16 @@ public class AboutActivity extends BaseDBActivity<MineActivityAboutBinding> {
 
 
         public void getCheckUpdate(){
-            /***** 检查更新 *****/
-            if (TextUtils.isEmpty(mDatabind.mineTvNewversion.getText().toString())) {
-                ToastUtils.getInstance().showToast("已安装最新版本");
-            } else {
-                Beta.checkUpgrade();
+            if (mAppUpdateEntity != null && !TextUtils.isEmpty(mAppUpdateEntity.getVersionName())) {
+                if (!SystemUtils.getAppVersionName(AboutActivity.this).equals(mAppUpdateEntity.getVersionName())) {
+                    new UpdateAppDialogFragment(mAppUpdateEntity).show(getSupportFragmentManager(), "dialog_update");
+                }
             }
 
+
+
         }
     }
     
 
-    
-    @RequiresApi(api = Build.VERSION_CODES.P)
-    private void getUpgradeInfo(){
-        UpgradeInfo upgradeInfo = Beta.getUpgradeInfo();
-
-        if (upgradeInfo == null) {
-            return;
-        }
-
-        if (upgradeInfo.versionCode != SystemUtils.getAppVersionCode(this)) {
-            mDatabind.mineTvNewversion.setText(getString(R.string.mine_search_newversion));
-        } else {
-            mDatabind.mineTvNewversion.setText("");
-        }
-    }
 }

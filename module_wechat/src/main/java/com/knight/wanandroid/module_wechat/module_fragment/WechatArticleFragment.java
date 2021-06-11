@@ -41,8 +41,7 @@ public class WechatArticleFragment extends BaseFragment<WechatOfficialaccountVie
     private int cid;
     private int page = 1;
     private WechatArticleAdapter mWechatArticleAdapter;
-
-
+    private String keyWords = "";
 
     public static WechatArticleFragment newInstance(int cid){
         WechatArticleFragment wechatArticleFragment = new WechatArticleFragment();
@@ -98,25 +97,7 @@ public class WechatArticleFragment extends BaseFragment<WechatOfficialaccountVie
 
     @Override
     public void setWechatArticle(WechatArticleListEntity result) {
-        showSuccess();
-        mDatabind.includeWechatArticles.baseFreshlayout.finishRefresh();
-        mDatabind.includeWechatArticles.baseFreshlayout.finishLoadMore();
-        if (result.getDatas().size() > 0) {
-            if (page == 1) {
-                mWechatArticleAdapter.setNewInstance(result.getDatas());
-            } else {
-                mWechatArticleAdapter.addData(result.getDatas());
-            }
-
-            if (result.getDatas().size() < 10) {
-                mDatabind.includeWechatArticles.baseFreshlayout.setEnableLoadMore(false);
-            } else {
-                page ++;
-            }
-
-        } else {
-            mDatabind.includeWechatArticles.baseFreshlayout.setEnableLoadMore(false);
-        }
+        setData(result);
     }
 
     @Override
@@ -132,10 +113,25 @@ public class WechatArticleFragment extends BaseFragment<WechatOfficialaccountVie
     }
 
     @Override
-    public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        mPresenter.requestWechatArticle(page,cid);
+    public void setSearchArticlesByKeyword(WechatArticleListEntity result) {
+        setData(result);
     }
 
+    @Override
+    public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+        if (!TextUtils.isEmpty(keyWords)) {
+            mPresenter.requestArticlesByKeywords(page,cid,keyWords);
+        } else {
+            mPresenter.requestWechatArticle(page,cid);
+        }
+
+    }
+
+    /**
+     *
+     * 下拉重新刷新
+     * @param refreshLayout
+     */
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
         page = 1;
@@ -174,6 +170,40 @@ public class WechatArticleFragment extends BaseFragment<WechatOfficialaccountVie
                         TextUtils.isEmpty(mWechatArticleAdapter.getData().get(position).getAuthor())? mWechatArticleAdapter.getData().get(position).getShareUser() : mWechatArticleAdapter.getData().get(position).getAuthor());
             }
         });
+    }
+
+    private void setData(WechatArticleListEntity result){
+        showSuccess();
+        mDatabind.includeWechatArticles.baseFreshlayout.finishRefresh();
+        mDatabind.includeWechatArticles.baseFreshlayout.finishLoadMore();
+        if (page == 1) {
+            if (result.getDatas().size() > 0) {
+                mWechatArticleAdapter.setNewInstance(result.getDatas());
+            } else {
+                showEmptyData();
+            }
+        } else {
+            mWechatArticleAdapter.addData(result.getDatas());
+        }
+        if (result.getDatas().size() < 10) {
+            mDatabind.includeWechatArticles.baseFreshlayout.setEnableLoadMore(false);
+        } else {
+            page ++;
+        }
+
+    }
+
+    /**
+     *
+     * 搜索
+     */
+    public void serchArticlesByKeywords(String keyWords){
+        //重新设为1开始
+        page = 1;
+        this.keyWords = keyWords;
+        mPresenter.requestArticlesByKeywords(page,cid,keyWords);
+        mDatabind.includeWechatArticles.baseFreshlayout.autoRefresh();
+
     }
 
 

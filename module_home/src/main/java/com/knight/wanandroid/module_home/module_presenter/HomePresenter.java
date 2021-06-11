@@ -3,6 +3,7 @@ package com.knight.wanandroid.module_home.module_presenter;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.module_home.module_contract.HomeContract;
+import com.knight.wanandroid.library_base.entity.AppUpdateEntity;
 import com.knight.wanandroid.module_home.module_entity.BannerEntity;
 import com.knight.wanandroid.library_base.entity.OfficialAccountEntity;
 import com.knight.wanandroid.module_home.module_entity.TopArticleEntity;
@@ -94,6 +95,27 @@ public class HomePresenter extends HomeContract.HomeDataPresenter {
 
             }
         });
+    }
+
+    @Override
+    public void requestAppUpdateMessage() {
+        final HomeContract.HomeView mView = getView();
+        if (mView == null) {
+            return;
+        }
+
+        mModel.requestAppUpdateMessage((BaseFragment)mView, new MvpListener<AppUpdateEntity>() {
+            @Override
+            public void onSuccess(AppUpdateEntity appUpdateEntity) {
+                mView.setAppUpdateMessage(appUpdateEntity);
+            }
+
+            @Override
+            public void onError(String errorMsg) {
+                mView.showError(errorMsg);
+            }
+        });
+
     }
 
 }

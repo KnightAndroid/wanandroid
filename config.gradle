@@ -76,5 +76,5 @@ ext{
     //lifecycle
     lifecycleVersion = '2.2.0'
     //版本更新
-    buglyVersion = "1.5.22"
+    buglyVersion = "3.3.9"
 }

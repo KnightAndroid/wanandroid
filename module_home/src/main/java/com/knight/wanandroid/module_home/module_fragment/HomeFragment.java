@@ -16,6 +16,7 @@ import com.google.gson.reflect.TypeToken;
 import com.knight.wanandroid.library_base.entity.OfficialAccountEntity;
 import com.knight.wanandroid.library_base.entity.UserInfoEntity;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
+import com.knight.wanandroid.library_base.fragment.UpdateAppDialogFragment;
 import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
@@ -47,6 +48,7 @@ import com.knight.wanandroid.module_home.module_adapter.OfficialAccountAdapter;
 import com.knight.wanandroid.module_home.module_adapter.OpenSourceAdapter;
 import com.knight.wanandroid.module_home.module_adapter.TopArticleAdapter;
 import com.knight.wanandroid.module_home.module_contract.HomeContract;
+import com.knight.wanandroid.library_base.entity.AppUpdateEntity;
 import com.knight.wanandroid.module_home.module_entity.BannerEntity;
 import com.knight.wanandroid.module_home.module_entity.OpenSourceEntity;
 import com.knight.wanandroid.module_home.module_entity.TopArticleEntity;
@@ -178,7 +180,6 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
 
 
 
-
     }
 
 
@@ -195,6 +196,8 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         mPresenter.requestBannerData();
         //请求公众号数据
         mPresenter.requestOfficialAccountData();
+        //请求更新app
+       // mPresenter.requestAppUpdateMessage();
     }
 
     @Override
@@ -246,6 +249,14 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         initMagicIndicator();
         mDatabind.homeRefreshLayout.finishRefresh();
 
+    }
+
+    @Override
+    public void setAppUpdateMessage(AppUpdateEntity appUpdateEntity) {
+        //先判断本地版本和远端版本是否一致
+        if (!appUpdateEntity.getVersionName().equals(SystemUtils.getAppVersionName(getActivity()))) {
+            new UpdateAppDialogFragment(appUpdateEntity).show(getParentFragmentManager(), "dialog_update");
+        }
     }
 
     @Override

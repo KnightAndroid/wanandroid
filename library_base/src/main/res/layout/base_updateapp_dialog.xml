@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <data>
+
+        <variable
+            name="click"
+            type="com.knight.wanandroid.library_base.fragment.UpdateAppDialogFragment.ProcyClick"/>
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/base_ll_update_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/base_dimen_30"
+            android:layout_marginRight="@dimen/base_dimen_30"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/base_updatedialog_top" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/base_updateapp_bottomround"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/base_dimen_20">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/base_dimen_20"
+                    android:text="发现新版本"
+                    android:textColor="@color/base_color_theme"
+                    android:textSize="@dimen/base_dimen_30"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/tv_appupdate_version"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/base_dimen_26"
+                    android:layout_marginTop="@dimen/base_dimen_10"
+                    android:text="v1.0.1"
+                    android:textColor="@color/base_color_theme"
+                    android:textSize="@dimen/base_dimen_18"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/tv_appupdate_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/base_dimen_26"
+                    android:text="2020-08-09"
+                    android:textSize="@dimen/base_dimen_14" />
+
+
+                <TextView
+                    android:id="@+id/tv_appupdate_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/base_dimen_26"
+                    android:layout_marginTop="@dimen/base_dimen_15"
+                    android:lineSpacingExtra="@dimen/base_dimen_10"
+                    android:text="1.新增dfdf\n2.新增积分\n3.sdsdsdsd"
+                    android:textSize="@dimen/base_dimen_16" />
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/base_dimen_16"
+                    android:layout_marginTop="@dimen/base_dimen_16"
+                    android:layout_marginRight="@dimen/base_dimen_16"
+                    android:background="@drawable/base_confim_agree"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/base_dimen_15"
+                    android:paddingBottom="@dimen/base_dimen_15"
+                    android:text="立即更新"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:onClick="@{()->click.downLoadApp()}"
+                    />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/base_appupdate_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/base_ll_update_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/base_dimen_15"
+            android:background="@drawable/base_icon_circleclose"
+            android:onClick="@{()->click.closeUpdateDialog()}"/>
+    </RelativeLayout>
+</layout>
+

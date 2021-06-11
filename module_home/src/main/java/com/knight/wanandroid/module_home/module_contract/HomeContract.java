@@ -5,6 +5,7 @@ import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_base.model.BaseModel;
 import com.knight.wanandroid.library_base.presenter.BasePresenter;
 import com.knight.wanandroid.library_base.view.BaseView;
+import com.knight.wanandroid.library_base.entity.AppUpdateEntity;
 import com.knight.wanandroid.module_home.module_entity.BannerEntity;
 import com.knight.wanandroid.library_base.entity.OfficialAccountEntity;
 import com.knight.wanandroid.module_home.module_entity.TopArticleEntity;
@@ -27,6 +28,9 @@ public interface HomeContract {
         //设置公众号数据
         void setOfficialAccountData(List<OfficialAccountEntity> officialAccountModels);
 
+        //获取版本更新内容
+        void setAppUpdateMessage(AppUpdateEntity appUpdateEntity);
+
     }
 
 
@@ -40,6 +44,9 @@ public interface HomeContract {
         //请求公众号数据
         void requestOfficialAccountData(BaseFragment fragment, MvpListener mvpListener);
 
+        //请求版本更新信息
+        void requestAppUpdateMessage(BaseFragment fragment,MvpListener mvpListener);
+
     }
 
     abstract class HomeDataPresenter extends BasePresenter<HomeModel,HomeView>{
@@ -47,6 +54,7 @@ public interface HomeContract {
         public abstract void requestBannerData();
         public abstract void requestTopArticle();
         public abstract void requestOfficialAccountData();
+        public abstract void requestAppUpdateMessage();
 
 
 

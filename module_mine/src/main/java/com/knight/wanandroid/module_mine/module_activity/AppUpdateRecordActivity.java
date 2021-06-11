@@ -57,6 +57,8 @@ public class AppUpdateRecordActivity extends BaseDBActivity<MineActivityUpdatere
         String jsonData = JsonUtils.getJson(this,"versionrecord.json");
         List<VersionRecordEntity> mDataList = GsonUtils.getList(jsonData,type);
         mVersionRecordAdapter.setNewInstance(mDataList);
+        mDatabind.includeAppUpdaterecord.baseFreshlayout.finishRefresh();
+
     }
 
 

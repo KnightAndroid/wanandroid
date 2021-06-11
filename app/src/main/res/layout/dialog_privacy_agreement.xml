@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/base_dimen_16"
                 android:layout_marginRight="@dimen/base_dimen_16"
-                android:background="@drawable/btn_confim_agree"
+                android:background="@drawable/base_confim_agree"
                 android:text="@string/app_agree_privacy"
                 android:gravity="center"
                 android:paddingTop="@dimen/base_dimen_15"

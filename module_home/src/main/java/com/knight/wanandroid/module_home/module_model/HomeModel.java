@@ -6,9 +6,11 @@ import com.knight.wanandroid.library_network.GoHttp;
 import com.knight.wanandroid.library_network.listener.HttpCallback;
 import com.knight.wanandroid.library_network.model.HttpData;
 import com.knight.wanandroid.module_home.module_contract.HomeContract;
+import com.knight.wanandroid.library_base.entity.AppUpdateEntity;
 import com.knight.wanandroid.module_home.module_entity.BannerEntity;
 import com.knight.wanandroid.library_base.entity.OfficialAccountEntity;
 import com.knight.wanandroid.module_home.module_entity.TopArticleEntity;
+import com.knight.wanandroid.module_home.module_request.AppCheckUpdateApi;
 import com.knight.wanandroid.module_home.module_request.HomeBannerApi;
 import com.knight.wanandroid.module_home.module_request.HomeOfficialAccountApi;
 import com.knight.wanandroid.module_home.module_request.TopArticleApi;
@@ -82,6 +84,26 @@ public class HomeModel implements HomeContract.HomeModel {
 
                     @Override
                     public void onSucceed(HttpData<List<OfficialAccountEntity>> result){
+                        mvpListener.onSuccess(result.getData());
+
+                    }
+
+                    @Override
+                    public void onFail(Exception e){
+                        mvpListener.onError(e.getMessage());
+                    }
+
+                });
+    }
+
+    @Override
+    public void requestAppUpdateMessage(BaseFragment fragment, MvpListener mvpListener) {
+        GoHttp.get(fragment)
+                .api(new AppCheckUpdateApi().setRequestUrl("customServer"))
+                .request(new HttpCallback<HttpData<AppUpdateEntity>>(fragment){
+
+                    @Override
+                    public void onSucceed(HttpData<AppUpdateEntity> result){
                         mvpListener.onSuccess(result.getData());
 
                     }

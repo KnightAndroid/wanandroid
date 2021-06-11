@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
@@ -17,7 +19,11 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.File;
+import java.text.DecimalFormat;
+
 import androidx.annotation.RequiresApi;
+import androidx.core.content.FileProvider;
 
 /**
  * @author created by knight
@@ -167,6 +173,60 @@ public class SystemUtils {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     *
+     * 格式化长度
+     * @param files
+     * @return
+     */
+    public static String formetFileSize(long files){
+        DecimalFormat df = new DecimalFormat("#.00");
+        String fileSizeString = "";
+        String wrongSize = "0B";
+        if (files == 0L) {
+            return wrongSize;
+        }
+        if (files < 1024) {
+            fileSizeString = df.format((double) files).toString() + "B";
+        } else if (files < 1048576) {
+            fileSizeString =df.format((double) files / 1024).toString() + "KB";
+        } else if (files < 1073741824) {
+            fileSizeString =df.format((double) files / 1048576).toString() + "MB";
+        } else {
+            fileSizeString = df.format((double) files / 1073741824).toString() + "GB";
+        }
+
+        return fileSizeString;
+
+
+    }
+
+
+    /**
+     *
+     * 安装apk
+     * @param apkFile
+     * @param context
+     */
+    public static void installApk(File apkFile,Context context){
+        Intent intent = new Intent();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setAction(Intent.ACTION_VIEW);
+            Uri fileUri = FileProvider.getUriForFile(context,context.getApplicationContext().getPackageName() + ".fileprovider",apkFile);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            intent.setDataAndType(fileUri,context.getContentResolver().getType(fileUri));
+            context.startActivity(intent);
+        } else {
+            Uri uri = Uri.fromFile(apkFile);
+            intent.setAction(Intent.ACTION_VIEW);
+            // 指定数据和类型
+            intent.setDataAndType(uri, "application/vnd.android.package-archive");
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        }
     }
 
 

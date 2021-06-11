@@ -9,6 +9,7 @@ import com.knight.wanandroid.library_network.listener.HttpCallback;
 import com.knight.wanandroid.library_network.model.HttpData;
 import com.knight.wanandroid.module_wechat.module_contract.WechatArticleContract;
 import com.knight.wanandroid.module_wechat.module_entity.WechatArticleListEntity;
+import com.knight.wanandroid.module_wechat.module_request.SearchWechatArticlesApi;
 import com.knight.wanandroid.module_wechat.module_request.WechatArticleApi;
 
 /**
@@ -72,6 +73,25 @@ public class WechatArticleModel implements WechatArticleContract.WechatArticleMo
                         mvpListener.onError(e.getMessage());
                     }
 
+
+                });
+    }
+
+    @Override
+    public void requestArticlesByKeywords(BaseFragment fragment, int page, int cid,String keywords, MvpListener mvpListener) {
+        GoHttp.get(fragment)
+                .api(new SearchWechatArticlesApi().setPage(page).setCid(cid).setWearchKeyword(keywords))
+                .request(new HttpCallback<HttpData<WechatArticleListEntity>>(fragment){
+
+                    @Override
+                    public void onSucceed(HttpData<WechatArticleListEntity> result) {
+                        mvpListener.onSuccess(result.getData());
+                    }
+
+                    @Override
+                    public void onFail(Exception e){
+                        mvpListener.onError(e.getMessage());
+                    }
 
                 });
     }

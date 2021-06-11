@@ -78,6 +78,6 @@ dependencies {
     api 'com.google.android.material:material:1.3.0-alpha01'
     api "com.google.android:flexbox:$flexLayoutVersion"
     //版本更新
-    api "com.tencent.bugly:crashreport_upgrade:$buglyVersion"
+    api "com.tencent.bugly:crashreport:$buglyVersion"
 
 }

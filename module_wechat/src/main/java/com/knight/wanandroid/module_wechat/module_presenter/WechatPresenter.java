@@ -72,4 +72,23 @@ public class WechatPresenter extends WechatArticleContract.WechatArticleDataPres
             }
         });
     }
+
+    @Override
+    public void requestArticlesByKeywords(int page, int cid, String keywords) {
+        final WechatArticleContract.WechatArticleView mView = getView();
+        if (mView == null) {
+            return;
+        }
+        mModel.requestArticlesByKeywords((BaseFragment)mView,page,cid,keywords,new MvpListener<WechatArticleListEntity>(){
+            @Override
+            public void onSuccess(WechatArticleListEntity data) {
+                mView.setSearchArticlesByKeyword(data);
+            }
+
+            @Override
+            public void onError(String errorMsg) {
+                mView.showError(errorMsg);
+            }
+        });
+    }
 }

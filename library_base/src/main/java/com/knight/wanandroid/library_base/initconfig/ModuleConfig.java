@@ -24,13 +24,14 @@ import com.knight.wanandroid.library_network.config.IRequestInterceptor;
 import com.knight.wanandroid.library_network.config.IRequestServer;
 import com.knight.wanandroid.library_network.data.HttpHeaders;
 import com.knight.wanandroid.library_network.data.HttpParams;
+import com.knight.wanandroid.library_network.interceptor.BaseUrlInterceptor;
 import com.knight.wanandroid.library_network.model.RequestHandler;
 import com.knight.wanandroid.library_network.server.ReleaseServer;
 import com.knight.wanandroid.library_permiss.XXPermissions;
 import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_util.constant.MMkvConstants;
-import com.tencent.bugly.Bugly;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.mmkv.MMKV;
 import com.wanandroid.knight.library_database.mananger.DataBaseManager;
 
@@ -102,8 +103,8 @@ public class ModuleConfig {
         DataBaseManager.getDataBase(application,"wanandroid_database");
         //初始化用户信息
         user = initUser();
-        //bugly版本更新
-        Bugly.init(application,"669abbf2c8",false);
+        //bugly异常上报
+        CrashReport.initCrashReport(application, "669abbf2c8", false);
 
 
 
@@ -144,6 +145,7 @@ public class ModuleConfig {
                 .connectTimeout(60,TimeUnit.SECONDS)//设置请求超时时间
                 .writeTimeout(60,TimeUnit.SECONDS)//设置写入超时时间
                 .retryOnConnectionFailure(true)//设置出现错误进行重新连接
+                .addInterceptor(new BaseUrlInterceptor())
                 .cookieJar(mCookieJar)
                 .build();
         HttpConfig.with(okHttpClient)

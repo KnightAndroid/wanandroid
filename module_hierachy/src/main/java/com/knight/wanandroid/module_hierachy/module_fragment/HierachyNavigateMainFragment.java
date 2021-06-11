@@ -54,6 +54,6 @@ public class HierachyNavigateMainFragment extends BaseDBFragment<HierachyNavigat
         mFragments.add(new NavigateFragment());
         mFragments.add(new HierachyFragment());
         ViewSetUtils.setViewPager2Init(getActivity(), mFragments, mDatabind.hierachyNavigateViewpager, false);
-        InitCustomViewUtils.bindViewPager2(mDatabind.hierachyNavigateIndicator, mDatabind.hierachyNavigateViewpager, mTitleList);
+        InitCustomViewUtils.bindViewPager2(mDatabind.hierachyNavigateIndicator, mDatabind.hierachyNavigateViewpager, mTitleList,null);
     }
 }

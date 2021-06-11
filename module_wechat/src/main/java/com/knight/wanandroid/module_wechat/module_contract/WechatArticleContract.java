@@ -21,6 +21,8 @@ public interface WechatArticleContract {
         void collectArticleSuccess(int position);
         //取消站内文章
         void cancelArticleSuccess(int position);
+        //搜索本公众号文章数据
+        void setSearchArticlesByKeyword(WechatArticleListEntity result);
     }
 
     interface WechatArticleModel extends BaseModel {
@@ -29,12 +31,15 @@ public interface WechatArticleContract {
         void requestCollectArticle(BaseFragment fragment,int collectArticleId,MvpListener mvpListener);
         //取消收藏站内文章
         void requestCancelCollectArticle(BaseFragment fragment,int collectArticleId,MvpListener mvpListener);
+        //搜索公众号得数据
+        void requestArticlesByKeywords(BaseFragment fragment,int page,int cid,String keywords,MvpListener mvpListener);
     }
 
     abstract class WechatArticleDataPresenter extends BasePresenter<WechatArticleModel,WechatArticleView> {
         public abstract void requestWechatArticle(int page, int cid);
         public abstract void requestCollectArticle(int collectArticleId,int position);
         public abstract void requestCancelCollectArticle(int collectArticleId,int position);
+        public abstract void requestArticlesByKeywords(int page,int cid,String keywords);
     }
 
 }

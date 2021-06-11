@@ -1,10 +1,18 @@
 [
   {
     "title": "1.0.0版本发布",
-    "desc":  "1.0.0版本发布,一个简易的wanandroid APP",
+    "desc":  "1、1.0.0版本发布,一个简易的wanandroid APP",
     "publishTime": "2021-6-03",
     "updateTime": "2021-6-03",
     "versionName": "1.0.0",
     "versionCode": 1
+  },
+  {
+    "title": "1.0.1版本发布",
+    "desc":  "1、新增阅读历史记录\n2、新增搜索公众号\n3、新增文章阅读侧滑返回",
+    "publishTime": "2021-6-10",
+    "updateTime": "2021-6-10",
+    "versionName": "1.0.1",
+    "versionCode": 2
   }
 ]

@@ -57,7 +57,7 @@ public class HierachyTabActivity extends BaseDBActivity<HierachyActivityTabBindi
             titleDatas.add(childrenNames.get(i));
         }
         ViewSetUtils.setViewPager2Init(this, hierachyTabFragments, mDatabind.hierachyViewPager, false);
-        InitCustomViewUtils.bindViewPager2(mDatabind.hierachyIndicator, mDatabind.hierachyViewPager, titleDatas);
+        InitCustomViewUtils.bindViewPager2(mDatabind.hierachyIndicator, mDatabind.hierachyViewPager, titleDatas,null);
     }
 
     @Override
