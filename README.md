@@ -6,7 +6,7 @@
 
 # 前言
 
-本APP是基于鸿洋开放的API来实现，项目采用组Java语言，MVP代码模式，基于组件化+ARouter + okhttp + AOP等开源框架实现，本项目会一直持续维护迭代，后续也许会用kotlin、Flutter等不同开发语言以及不同实现方案来开发同款本APP，
+本APP是基于鸿洋开放的API来实现，项目采用Java语言，MVP代码模式，基于组件化+ARouter + okhttp + Aop等开源框架实现，本项目会一直持续维护迭代，后续也许会用kotlin、Flutter等不同开发语言以及不同实现方案来开发同款本APP，
 
 如果你也觉得好用，欢迎提供建议和想法(issues)，谢谢。
 
