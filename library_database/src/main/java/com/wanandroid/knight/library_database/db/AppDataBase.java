@@ -11,10 +11,13 @@ import com.wanandroid.knight.library_database.entity.SearchHistroyKeywordEntity;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
+import androidx.room.migration.Migration;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
 /**
  * @author created by knight
@@ -23,7 +26,7 @@ import androidx.room.TypeConverters;
  * @descript:database
  */
 @TypeConverters(value = {DateConverter.class})
-@Database(entities = {SearchHistroyKeywordEntity.class, HistoryReadRecordsEntity.class},version = 1,exportSchema = false)
+@Database(entities = {SearchHistroyKeywordEntity.class, HistoryReadRecordsEntity.class},version = 2,exportSchema = false)
 public abstract class AppDataBase extends RoomDatabase {
 
     public abstract SearchHistroyKeywordDao mHistroyKeywordDao();
@@ -41,6 +44,7 @@ public abstract class AppDataBase extends RoomDatabase {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),AppDataBase.class, dbName)
                             .allowMainThreadQueries()
                             .enableMultiInstanceInvalidation()
+                            .addMigrations(MIGRATION_1_2)
                             .build();
                 }
             }
@@ -56,6 +60,15 @@ public abstract class AppDataBase extends RoomDatabase {
     }
 
 
+    static final Migration MIGRATION_1_2 = new Migration(1,2) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL(
+                    "CREATE TABLE IF NOT EXISTS `historyreadrecords_table` (`id` INTEGER PRIMARY KEY autoincrement, `userId` INTEGER , " +
+                            "`isCollect` Boolean, `webUrl` TEXT ,`articleId` INTEGER,`title` TEXT,`envelopePic` TEXT," +
+                            "`author` TEXT,`chapterName` TEXT,`articledesc` TEXT,'insertTime' INTEGER)");
+        }
+    };
 
 
 }
