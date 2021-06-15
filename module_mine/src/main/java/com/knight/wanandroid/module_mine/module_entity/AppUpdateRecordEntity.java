@@ -5,11 +5,10 @@ import com.knight.wanandroid.library_base.entity.BaseEntity;
 /**
  * @author created by knight
  * @organize wanandroid
- * @Date 2021/6/1 14:58
+ * @Date 2021/6/15 16:13
  * @descript:
  */
-public class VersionRecordEntity extends BaseEntity {
-
+public class AppUpdateRecordEntity extends BaseEntity {
     private String title;
     private String desc;
     private String versionName;
@@ -41,12 +40,12 @@ public class VersionRecordEntity extends BaseEntity {
         this.versionName = versionName;
     }
 
-    public int getVersionCode() {
-        return versionCode;
+    public String getUpdateTime() {
+        return updateTime == null ? "" : updateTime;
     }
 
-    public void setVersionCode(int versionCode) {
-        this.versionCode = versionCode;
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime;
     }
 
     public String getPublishTime() {
@@ -57,12 +56,11 @@ public class VersionRecordEntity extends BaseEntity {
         this.publishTime = publishTime;
     }
 
-
-    public String getUpdateTime() {
-        return updateTime == null ? "" : updateTime;
+    public int getVersionCode() {
+        return versionCode;
     }
 
-    public void setUpdateTime(String updateTime) {
-        this.updateTime = updateTime;
+    public void setVersionCode(int versionCode) {
+        this.versionCode = versionCode;
     }
 }

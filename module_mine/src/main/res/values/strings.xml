@@ -38,5 +38,6 @@
     <string name="mine_cleanall">清空</string>
     <string name="mine_project_repository">本项目仓库</string>
     <string name="mine_official_website">官网</string>
+    <string name="mine_app_noupdate">暂无版本更新</string>
 
 </resources>

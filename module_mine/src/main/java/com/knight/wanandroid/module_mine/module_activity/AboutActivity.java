@@ -74,8 +74,6 @@ public class AboutActivity extends BaseActivity<MineActivityAboutBinding, AboutP
          if (!SystemUtils.getAppVersionName(this).equals(result.getVersionName())) {
              mDatabind.mineTvNewversion.setText(getString(R.string.mine_search_newversion));
              mAppUpdateEntity = result;
-
-
          }
     }
 
@@ -104,7 +102,11 @@ public class AboutActivity extends BaseActivity<MineActivityAboutBinding, AboutP
             if (mAppUpdateEntity != null && !TextUtils.isEmpty(mAppUpdateEntity.getVersionName())) {
                 if (!SystemUtils.getAppVersionName(AboutActivity.this).equals(mAppUpdateEntity.getVersionName())) {
                     new UpdateAppDialogFragment(mAppUpdateEntity).show(getSupportFragmentManager(), "dialog_update");
+                } else {
+                    ToastUtils.getInstance().showToast(getString(R.string.mine_app_noupdate));
                 }
+            } else {
+                ToastUtils.getInstance().showToast(getString(R.string.mine_app_noupdate));
             }
 
 
