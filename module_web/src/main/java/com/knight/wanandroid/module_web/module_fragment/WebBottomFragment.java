@@ -12,7 +12,7 @@ import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.SystemUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.module_web.R;
-import com.knight.wanandroid.module_web.databinding.WebFragmentDialogBinding;
+import com.knight.wanandroid.module_web.databinding.WebDialogFragmentBinding;
 import com.knight.wanandroid.module_web.module_contract.WebDialogContract;
 import com.knight.wanandroid.module_web.module_model.WebDialogModel;
 import com.knight.wanandroid.module_web.module_presenter.WebDialogPresenter;
@@ -25,7 +25,7 @@ import org.greenrobot.eventbus.EventBus;
  * @Date 2021/5/11 10:53
  * @descript: webview底部弹出框
  */
-public class WebBottomFragment extends BaseDialogFragment<WebFragmentDialogBinding, WebDialogPresenter, WebDialogModel> implements WebDialogContract.WebDialogView {
+public class WebBottomFragment extends BaseDialogFragment<WebDialogFragmentBinding, WebDialogPresenter, WebDialogModel> implements WebDialogContract.WebDialogView {
 
     private String articleurl;
     private String articleTitle;
@@ -46,7 +46,7 @@ public class WebBottomFragment extends BaseDialogFragment<WebFragmentDialogBindi
 
     @Override
     protected int layoutId() {
-        return R.layout.web_fragment_dialog;
+        return R.layout.web_dialog_fragment;
     }
 
 
@@ -97,7 +97,7 @@ public class WebBottomFragment extends BaseDialogFragment<WebFragmentDialogBindi
 
         public void copyUrlContent(){
             SystemUtils.copyContent(getActivity(),articleurl);
-            ToastUtils.getInstance().showToast("已成功复制网址");
+            ToastUtils.getInstance().showToast(getString(R.string.web_success_copyurl));
             dismiss();
         }
 

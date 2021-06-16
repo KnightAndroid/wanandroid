@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.KeyEvent;
+import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -21,6 +22,7 @@ import com.knight.wanandroid.library_base.activity.BaseDBActivity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.module_web.R;
 import com.knight.wanandroid.module_web.databinding.WebNormalActivityBinding;
+import com.knight.wanandroid.module_web.module_fragment.WebNormalBottomFragment;
 import com.knight.wanandroid.module_web.module_view.WebLayout;
 
 import androidx.core.content.ContextCompat;
@@ -77,6 +79,10 @@ public class WebNormalActivity extends BaseDBActivity<WebNormalActivityBinding> 
         } else {
             mDatabind.includeWebNormaltoolbar.baseTvTitle.setText(Html.fromHtml(webTitle));
         }
+
+        mDatabind.includeWebNormaltoolbar.baseIvRight.setVisibility(View.VISIBLE);
+        mDatabind.includeWebNormaltoolbar.baseIvRight.setOnClickListener(v ->
+                WebNormalBottomFragment.newInstance(webUrl,mWebView).show(getSupportFragmentManager(),"dialog_webnormal"));
         mDatabind.includeWebNormaltoolbar.baseIvBack.setOnClickListener(v -> finish());
 
 
