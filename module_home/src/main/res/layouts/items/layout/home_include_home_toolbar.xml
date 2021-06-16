@@ -49,12 +49,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="38dp"
                 android:layout_toRightOf="@id/home_tv_loginname"
-                android:layout_toEndOf="@id/home_tv_loginname"
                 android:layout_marginLeft="@dimen/base_dimen_10"
-                android:layout_marginRight="@dimen/base_dimen_4"
+                android:layout_marginRight="@dimen/base_dimen_6"
                 android:background="@drawable/base_bg_filtrate_shape"
                 android:onClick="@{()->click.searchArticles()}"
-                android:layout_toLeftOf="@+id/home_scan_icon"
+                android:layout_toLeftOf="@+id/home_iv_add"
                >
 
 
@@ -85,20 +84,28 @@
                     android:textCursorDrawable="@drawable/base_textcursorcolor"
 
                     />
-
+                <ImageView
+                    android:id="@+id/home_scan_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/home_icon_scan"
+                    android:layout_marginRight="@dimen/base_dimen_10"
+                    android:onClick="@{()->click.scanCode()}"/>
 
             </RelativeLayout>
 
-
             <ImageView
-                android:id="@+id/home_scan_icon"
+                android:id="@+id/home_iv_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
+                android:background="@drawable/home_icon_add"
                 android:layout_alignParentRight="true"
-                android:background="@drawable/home_icon_scan"
-                android:layout_marginRight="@dimen/base_dimen_10"
-                android:onClick="@{()->click.scanCode()}"/>
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/base_dimen_6"
+                android:onClick="@{()->click.shareArticle()}"/>
+
 
         </RelativeLayout>
 

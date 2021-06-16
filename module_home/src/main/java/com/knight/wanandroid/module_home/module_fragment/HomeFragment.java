@@ -328,6 +328,11 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
                             });
         }
 
+
+        public void shareArticle(){
+            ARouter.getInstance().build(RoutePathActivity.Square.ShareArticle).navigation();
+        }
+
     }
 
     private void initMagicIndicator() {
