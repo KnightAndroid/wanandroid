@@ -6,17 +6,15 @@ import com.knight.wanandroid.library_network.config.IRequestApi;
 /**
  * @author created by knight
  * @organize wanandroid
- * @Date 2021/6/11 11:32
+ * @Date 2021/6/16 15:17
  * @descript:
  */
-public class AppCheckUpdateApi implements IRequestApi {
+public class EveryDayPushArticleApi implements IRequestApi {
 
     @HttpHeader
     private String requestUrl = "customServer";
-
-    
     @Override
     public String getApi() {
-        return "MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_config/update/update.json";
+        return "MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_config/advert/everyDayPushArticle.json";
     }
 }

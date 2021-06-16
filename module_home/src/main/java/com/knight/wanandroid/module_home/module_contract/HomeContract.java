@@ -9,6 +9,7 @@ import com.knight.wanandroid.library_base.entity.AppUpdateEntity;
 import com.knight.wanandroid.module_home.module_entity.BannerEntity;
 import com.knight.wanandroid.library_base.entity.OfficialAccountEntity;
 import com.knight.wanandroid.module_home.module_entity.TopArticleEntity;
+import com.wanandroid.knight.library_database.entity.EveryDayPushEntity;
 
 import java.util.List;
 
@@ -30,6 +31,8 @@ public interface HomeContract {
 
         //获取版本更新内容
         void setAppUpdateMessage(AppUpdateEntity appUpdateEntity);
+        //获取每日推荐
+        void setEveryDayPushArticle(EveryDayPushEntity everyDayPushEntity);
 
     }
 
@@ -47,6 +50,8 @@ public interface HomeContract {
         //请求版本更新信息
         void requestAppUpdateMessage(BaseFragment fragment,MvpListener mvpListener);
 
+        //请求每日推荐信息
+         void requestEveryDayPushArticle(BaseFragment fragment,MvpListener mvpListener);
     }
 
     abstract class HomeDataPresenter extends BasePresenter<HomeModel,HomeView>{
@@ -55,6 +60,7 @@ public interface HomeContract {
         public abstract void requestTopArticle();
         public abstract void requestOfficialAccountData();
         public abstract void requestAppUpdateMessage();
+        public abstract void requestEveryDayPushArticle();
 
 
 

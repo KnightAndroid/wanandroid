@@ -3,6 +3,7 @@ package com.wanandroid.knight.library_database.mananger;
 import android.content.Context;
 
 import com.wanandroid.knight.library_database.db.AppDataBase;
+import com.wanandroid.knight.library_database.repository.EveryDayPushArticleRepository;
 import com.wanandroid.knight.library_database.repository.HistoryReadRecordsRepository;
 import com.wanandroid.knight.library_database.repository.HistroyKeywordsRepository;
 
@@ -25,5 +26,6 @@ public final class DataBaseManager {
         AppDataBase.getDatabase(context,dbName);
         HistroyKeywordsRepository.getInstance().init();
         HistoryReadRecordsRepository.getInstance().init();
+        EveryDayPushArticleRepository.getInstance().init();
     }
 }

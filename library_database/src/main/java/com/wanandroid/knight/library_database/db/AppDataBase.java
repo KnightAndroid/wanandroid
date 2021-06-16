@@ -3,8 +3,10 @@ package com.wanandroid.knight.library_database.db;
 import android.content.Context;
 
 import com.wanandroid.knight.library_database.converter.DateConverter;
+import com.wanandroid.knight.library_database.dao.EveryDayPushArticleDao;
 import com.wanandroid.knight.library_database.dao.HistoryReadRecordsDao;
 import com.wanandroid.knight.library_database.dao.SearchHistroyKeywordDao;
+import com.wanandroid.knight.library_database.entity.EveryDayPushEntity;
 import com.wanandroid.knight.library_database.entity.HistoryReadRecordsEntity;
 import com.wanandroid.knight.library_database.entity.SearchHistroyKeywordEntity;
 
@@ -26,12 +28,14 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
  * @descript:database
  */
 @TypeConverters(value = {DateConverter.class})
-@Database(entities = {SearchHistroyKeywordEntity.class, HistoryReadRecordsEntity.class},version = 2,exportSchema = false)
+@Database(entities = {SearchHistroyKeywordEntity.class, HistoryReadRecordsEntity.class, EveryDayPushEntity.class},version = 2,exportSchema = false)
 public abstract class AppDataBase extends RoomDatabase {
 
     public abstract SearchHistroyKeywordDao mHistroyKeywordDao();
 
     public abstract HistoryReadRecordsDao mHistoryReadRecordsDao();
+
+    public abstract EveryDayPushArticleDao mEveryDayPushArticleDao();
 
     private static volatile AppDataBase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
@@ -70,6 +74,8 @@ public abstract class AppDataBase extends RoomDatabase {
             database.execSQL("CREATE UNIQUE INDEX `webUrl` On `historyreadrecords_table`(`webUrl`)");
             database.execSQL("CREATE UNIQUE INDEX `articleId` On `historyreadrecords_table`(`articleId`)");
 
+            database.execSQL("CREATE TABLE IF NOT EXISTS `everydaypush_table` (`id` INTEGER NOT NULL PRIMARY KEY autoincrement,`articlePicture` TEXT," +
+                    "`articleLink` TEXT NOT NULL,`time` TEXT NOT NULL,`author` TEXT NOT NULL,`articledesc` TEXT,`articleTitle` TEXT,`popupTitle` TEXT,`pushStatus` Boolean)");
         }
     };
 

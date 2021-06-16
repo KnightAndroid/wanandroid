@@ -16,6 +16,7 @@ import com.google.gson.reflect.TypeToken;
 import com.knight.wanandroid.library_base.entity.OfficialAccountEntity;
 import com.knight.wanandroid.library_base.entity.UserInfoEntity;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
+import com.knight.wanandroid.library_base.fragment.EveryDayPushArticleFragment;
 import com.knight.wanandroid.library_base.fragment.UpdateAppDialogFragment;
 import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
@@ -30,6 +31,7 @@ import com.knight.wanandroid.library_scan.annoation.ScanStyle;
 import com.knight.wanandroid.library_scan.decode.ScanCodeConfig;
 import com.knight.wanandroid.library_util.BlurBuilder;
 import com.knight.wanandroid.library_util.CacheUtils;
+import com.knight.wanandroid.library_util.DateUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.GsonUtils;
 import com.knight.wanandroid.library_util.JsonUtils;
@@ -62,6 +64,8 @@ import com.scwang.smart.refresh.layout.api.RefreshHeader;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.constant.RefreshState;
 import com.scwang.smart.refresh.layout.simple.SimpleMultiListener;
+import com.wanandroid.knight.library_database.entity.EveryDayPushEntity;
+import com.wanandroid.knight.library_database.repository.EveryDayPushArticleRepository;
 import com.youth.banner.adapter.BannerImageAdapter;
 import com.youth.banner.holder.BannerImageHolder;
 import com.youth.banner.indicator.CircleIndicator;
@@ -196,8 +200,10 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         mPresenter.requestBannerData();
         //请求公众号数据
         mPresenter.requestOfficialAccountData();
+        //请求每日更新
+        mPresenter.requestEveryDayPushArticle();
         //请求更新app
-       // mPresenter.requestAppUpdateMessage();
+        mPresenter.requestAppUpdateMessage();
     }
 
     @Override
@@ -260,6 +266,39 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     }
 
     @Override
+    public void setEveryDayPushArticle(EveryDayPushEntity everyDayPushEntity) {
+        //是否要展示每日推送文章
+        if (everyDayPushEntity.isPushStatus() && DateUtils.isToday(everyDayPushEntity.getTime())) {
+            EveryDayPushArticleRepository.getInstance().findHistoryReadRecords(new EveryDayPushArticleRepository.OnQueryEveryDayArticleCallBack() {
+                @Override
+                public void onFindEveryDayArticle(List<EveryDayPushEntity> everyDayPushEntitys) {
+                    if (everyDayPushEntitys != null && everyDayPushEntitys.size() > 0) {
+
+                        //更新
+                        EveryDayPushEntity entity = everyDayPushEntitys.get(0);
+                        if (!entity.getTime().equals(everyDayPushEntity.getTime())) {
+                            entity.setArticledesc(everyDayPushEntity.getArticledesc());
+                            entity.setArticleLink(everyDayPushEntity.getArticleLink());
+                            entity.setAuthor(everyDayPushEntity.getAuthor());
+                            entity.setPushStatus(everyDayPushEntity.isPushStatus());
+                            entity.setTime(everyDayPushEntity.getTime());
+                            EveryDayPushArticleRepository.getInstance().updateEveryDayPushArticle(entity);
+                            //并且展示
+                            new EveryDayPushArticleFragment(everyDayPushEntity).show(getParentFragmentManager(), "dialog_everydaypush");
+                        }
+
+                    } else {
+                        //插入
+                        EveryDayPushArticleRepository.getInstance().insertEveryDayPushArticle(everyDayPushEntity);
+                        //显示
+                        new EveryDayPushArticleFragment(everyDayPushEntity).show(getParentFragmentManager(), "dialog_everydaypush");
+                    }
+                }
+            });
+        }
+    }
+
+    @Override
     public void showLoading() {
 
     }
@@ -272,7 +311,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     @Override
     public void showError(String errorMsg) {
         ToastUtils.getInstance().showToast(errorMsg);
-        showloadFailure();
+
 
     }
 

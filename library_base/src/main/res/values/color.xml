@@ -6,4 +6,5 @@
     <color name="base_color_dddddd">#dddddd</color>
     <color name="base_color_transparent">#00000000</color>
     <color name="base_color767680">#1f767680</color>
+    <color name="base_coloreverypushbg">#29000000</color>
 </resources>

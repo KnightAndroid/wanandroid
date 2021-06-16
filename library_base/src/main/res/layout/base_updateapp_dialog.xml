@@ -6,7 +6,7 @@
 
         <variable
             name="click"
-            type="com.knight.wanandroid.library_base.fragment.UpdateAppDialogFragment.ProcyClick"/>
+            type="com.knight.wanandroid.library_base.fragment.UpdateAppDialogFragment.ProxyClick"/>
     </data>
 
     <RelativeLayout

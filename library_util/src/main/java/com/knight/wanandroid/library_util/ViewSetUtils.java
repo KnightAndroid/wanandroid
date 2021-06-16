@@ -1,5 +1,6 @@
 package com.knight.wanandroid.library_util;
 
+import android.graphics.Color;
 import android.os.Build;
 import android.view.View;
 import android.widget.TextView;
@@ -108,8 +109,8 @@ public class ViewSetUtils {
     @RequiresApi(api = Build.VERSION_CODES.M)
     public static void avoidHintColor (View view){
         if (view instanceof TextView) {
-            ((TextView) view).setHighlightColor(view.getResources().getColor(
-                    (android.R.color.transparent),null));
+            ((TextView) view).setHighlightColor(Color.parseColor("#00000000"));
+            
         }
     }
 

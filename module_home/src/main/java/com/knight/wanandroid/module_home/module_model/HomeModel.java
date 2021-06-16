@@ -11,9 +11,11 @@ import com.knight.wanandroid.module_home.module_entity.BannerEntity;
 import com.knight.wanandroid.library_base.entity.OfficialAccountEntity;
 import com.knight.wanandroid.module_home.module_entity.TopArticleEntity;
 import com.knight.wanandroid.module_home.module_request.AppCheckUpdateApi;
+import com.knight.wanandroid.module_home.module_request.EveryDayPushArticleApi;
 import com.knight.wanandroid.module_home.module_request.HomeBannerApi;
 import com.knight.wanandroid.module_home.module_request.HomeOfficialAccountApi;
 import com.knight.wanandroid.module_home.module_request.TopArticleApi;
+import com.wanandroid.knight.library_database.entity.EveryDayPushEntity;
 
 import java.util.List;
 
@@ -99,7 +101,7 @@ public class HomeModel implements HomeContract.HomeModel {
     @Override
     public void requestAppUpdateMessage(BaseFragment fragment, MvpListener mvpListener) {
         GoHttp.get(fragment)
-                .api(new AppCheckUpdateApi().setRequestUrl("customServer"))
+                .api(new AppCheckUpdateApi())
                 .request(new HttpCallback<HttpData<AppUpdateEntity>>(fragment){
 
                     @Override
@@ -113,6 +115,25 @@ public class HomeModel implements HomeContract.HomeModel {
                         mvpListener.onError(e.getMessage());
                     }
 
+                });
+    }
+
+    @Override
+    public void requestEveryDayPushArticle(BaseFragment fragment, MvpListener mvpListener) {
+        GoHttp.get(fragment)
+                .api(new EveryDayPushArticleApi())
+                .request(new HttpCallback<HttpData<EveryDayPushEntity>>(fragment){
+
+                    @Override
+                    public void onSucceed(HttpData<EveryDayPushEntity> result){
+                        mvpListener.onSuccess(result.getData());
+
+                    }
+
+                    @Override
+                    public void onFail(Exception e){
+                        mvpListener.onError(e.getMessage());
+                    }
                 });
     }
 

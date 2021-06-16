@@ -38,7 +38,7 @@ public class UpdateAppDialogFragment extends BaseDBDialogFragment<BaseUpdateappD
 
     @Override
     protected void initView() {
-        mDatabind.setClick(new ProcyClick());
+        mDatabind.setClick(new ProxyClick());
         mDatabind.tvAppupdateVersion.setText("v"+mAppUpdateEntity.getVersionName());
         mDatabind.tvAppupdateTime.setText(mAppUpdateEntity.getUpdateTime());
         mDatabind.tvAppupdateContent.setText(mAppUpdateEntity.getUpdateDesc());
@@ -75,7 +75,7 @@ public class UpdateAppDialogFragment extends BaseDBDialogFragment<BaseUpdateappD
     }
 
 
-    public class ProcyClick{
+    public class ProxyClick{
         public void downLoadApp(){
             dismiss();
             new DownLoadDialogFragment(mAppUpdateEntity.getDownLoadLink()).show(getParentFragmentManager(), "dialog_downlaod");

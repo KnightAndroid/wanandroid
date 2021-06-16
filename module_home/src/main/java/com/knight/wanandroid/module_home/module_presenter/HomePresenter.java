@@ -7,6 +7,7 @@ import com.knight.wanandroid.library_base.entity.AppUpdateEntity;
 import com.knight.wanandroid.module_home.module_entity.BannerEntity;
 import com.knight.wanandroid.library_base.entity.OfficialAccountEntity;
 import com.knight.wanandroid.module_home.module_entity.TopArticleEntity;
+import com.wanandroid.knight.library_database.entity.EveryDayPushEntity;
 
 import java.util.List;
 
@@ -116,6 +117,27 @@ public class HomePresenter extends HomeContract.HomeDataPresenter {
             }
         });
 
+    }
+
+    @Override
+    public void requestEveryDayPushArticle() {
+        final HomeContract.HomeView mView = getView();
+        if (mView == null) {
+            return;
+        }
+
+        mModel.requestEveryDayPushArticle((BaseFragment) mView, new MvpListener<EveryDayPushEntity>() {
+            @Override
+            public void onSuccess(EveryDayPushEntity everyDayPushEntity) {
+                mView.setEveryDayPushArticle(everyDayPushEntity);
+
+            }
+
+            @Override
+            public void onError(String errorMsg) {
+
+            }
+        });
     }
 
 }
