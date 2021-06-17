@@ -18,154 +18,145 @@
         android:background="@color/home_colorf9f9f9">
 
 
+        <include
+            android:id="@+id/home_include_toolbar"
+            layout="@layout/home_include_home_toolbar"
+            bind:click="@{click}">
 
-            <include
-                android:id="@+id/home_include_toolbar"
-                layout="@layout/home_include_home_toolbar"
-                bind:click="@{click}"
-                >
+        </include>
 
-            </include>
+        <com.scwang.smart.refresh.layout.SmartRefreshLayout
+            android:id="@+id/home_refreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/home_include_toolbar">
 
-            <com.scwang.smart.refresh.layout.SmartRefreshLayout
-                android:id="@+id/home_refreshLayout"
+
+            <com.scwang.smart.refresh.header.TwoLevelHeader
+                android:id="@+id/home_twoLevelHeader"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/home_include_toolbar"
-                >
+                android:layout_height="wrap_content">
 
-
-                <com.scwang.smart.refresh.header.TwoLevelHeader
-                    android:id="@+id/home_twoLevelHeader"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:id="@+id/home_twoLevel_content"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:alpha="0">
-
-<!--                        <include-->
-<!--                            android:id="@+id/home_include_twoLeveltoolbar"-->
-<!--                            layout="@layout/base_include_toolbar"/>-->
-
-                        <include
-                            android:id="@+id/home_include_recyceview"
-                            layout="@layout/base_layout_recycleview"/>
-
-                    </LinearLayout>
-
-
-                    <com.scwang.smart.refresh.header.ClassicsHeader
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </com.scwang.smart.refresh.header.TwoLevelHeader>
-
-
-
-                <com.knight.wanandroid.library_widget.StickyScrollView
-                    android:id="@+id/home_coordinatorsl"
+                <LinearLayout
+                    android:id="@+id/home_twoLevel_content"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:fillViewport="true"
-                    android:scrollbars="none"
+                    android:alpha="0"
+                    android:orientation="vertical">
 
-                    >
+                    <!--                        <include-->
+                    <!--                            android:id="@+id/home_include_twoLeveltoolbar"-->
+                    <!--                            layout="@layout/base_include_toolbar"/>-->
 
+                    <include
+                        android:id="@+id/home_include_recyceview"
+                        layout="@layout/base_layout_recycleview" />
+
+                </LinearLayout>
+
+
+                <com.scwang.smart.refresh.header.ClassicsHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.scwang.smart.refresh.header.TwoLevelHeader>
+
+
+            <com.knight.wanandroid.library_widget.StickyScrollView
+                android:id="@+id/home_coordinatorsl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+                android:scrollbars="none"
+
+                >
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
                     <LinearLayout
+                        android:id="@+id/home_ll_top"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <LinearLayout
-                            android:id="@+id/home_ll_top"
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/base_dimen_16"
+                            android:layout_marginTop="@dimen/base_dimen_5"
+                            android:background="@drawable/home_shape_lefttop_round"
+                            android:gravity="center_vertical"
+                            android:text="@string/home_topsticky_article"
+                            android:textColor="@color/home_white"
+                            android:textSize="@dimen/base_dimen_14" />
+
+                        <com.yanzhenjie.recyclerview.SwipeRecyclerView
+                            android:id="@+id/home_top_article_rv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <com.youth.banner.Banner
+                            android:id="@+id/home_banner"
+                            android:layout_width="match_parent"
+                            android:layout_height="160dp">
+
+
+                        </com.youth.banner.Banner>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/base_dimen_16"
+                            android:layout_marginTop="@dimen/base_dimen_5"
+                            android:background="@drawable/home_shape_lefttop_round"
+                            android:gravity="center_vertical"
+                            android:text="@string/home_highquality_officialaccount"
+                            android:textColor="@color/home_white"
+                            android:textSize="@dimen/base_dimen_14" />
+
+                        <com.yanzhenjie.recyclerview.SwipeRecyclerView
+                            android:id="@+id/home_rv_official_account"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/base_dimen_16"
-                                android:layout_marginTop="@dimen/base_dimen_5"
-                                android:background="@drawable/home_shape_lefttop_round"
-                                android:gravity="center_vertical"
-                                android:text="@string/home_topsticky_article"
-                                android:textColor="@color/home_white"
-                                android:textSize="@dimen/base_dimen_14" />
-
-                            <com.yanzhenjie.recyclerview.SwipeRecyclerView
-                                android:id="@+id/home_top_article_rv"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
-
-                            <com.youth.banner.Banner
-                                android:id="@+id/home_banner"
-                                android:layout_width="match_parent"
-                                android:layout_height="160dp">
-
-
-                            </com.youth.banner.Banner>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/base_dimen_16"
-                                android:layout_marginTop="@dimen/base_dimen_5"
-                                android:background="@drawable/home_shape_lefttop_round"
-                                android:gravity="center_vertical"
-                                android:text="@string/home_highquality_officialaccount"
-                                android:textColor="@color/home_white"
-                                android:textSize="@dimen/base_dimen_14" />
-
-                            <com.yanzhenjie.recyclerview.SwipeRecyclerView
-                                android:id="@+id/home_rv_official_account"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="@dimen/base_dimen_10" />
-                        </LinearLayout>
-
-                        <net.lucode.hackware.magicindicator.MagicIndicator
-                            android:id="@+id/magic_indicator"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:minHeight="50dp"
-                            android:tag="sticky" />
-
-                        <androidx.viewpager2.widget.ViewPager2
-                            android:id="@+id/view_pager"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-
-                            />
+                            android:layout_marginBottom="@dimen/base_dimen_10" />
                     </LinearLayout>
 
-                </com.knight.wanandroid.library_widget.StickyScrollView>
+                    <net.lucode.hackware.magicindicator.MagicIndicator
+                        android:id="@+id/magic_indicator"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:minHeight="50dp"
+                        android:tag="sticky" />
 
-            </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/view_pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
 
+                        />
+                </LinearLayout>
 
+            </com.knight.wanandroid.library_widget.StickyScrollView>
 
-
-
-
+        </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/home_icon_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/base_icon_up"
             android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
             android:layout_marginRight="@dimen/base_dimen_20"
             android:layout_marginBottom="@dimen/base_dimen_70"
-            android:layout_alignParentBottom="true"
-            app:backgroundTint="@color/base_color_theme"
-            android:onClick="@{()->click.scrollUp()}"/>
+            android:onClick="@{()->click.scrollUp()}"
+            android:src="@drawable/base_icon_up"
+            app:backgroundTint="@color/base_color_theme" />
 
     </RelativeLayout>
 

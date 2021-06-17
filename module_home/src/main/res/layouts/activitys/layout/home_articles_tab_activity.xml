@@ -1,55 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
         <variable
             name="click"
-            type="com.knight.wanandroid.module_home.module_activity.HomeArticlesTabActivity.ProxyClick"/>
+            type="com.knight.wanandroid.module_home.module_activity.HomeArticlesTabActivity.ProxyClick" />
     </data>
 
     <RelativeLayout
         android:id="@+id/home_article_ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-
-        >
-
+        android:orientation="vertical">
 
 
         <ImageView
             android:id="@+id/home_iv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-
-
+            android:layout_height="match_parent" />
 
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/home_article_viewpager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+            android:layout_height="match_parent" />
 
 
         <com.yanzhenjie.recyclerview.SwipeRecyclerView
             android:id="@+id/home_rv_toparticles"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_marginLeft="@dimen/base_dimen_30"
-            android:layout_marginBottom="@dimen/base_dimen_50"
-            android:layout_alignParentBottom="true" />
+            android:layout_marginBottom="@dimen/base_dimen_50" />
+
         <ImageView
             android:id="@+id/home_iv_circle_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/home_icon_blurclose"
             android:layout_marginLeft="@dimen/base_dimen_16"
             android:layout_marginTop="@dimen/base_dimen_40"
-            android:onClick="@{()->click.backUpActivity()}"/>
+            android:background="@drawable/home_icon_blurclose"
+            android:onClick="@{()->click.backUpActivity()}" />
 
     </RelativeLayout>
 
