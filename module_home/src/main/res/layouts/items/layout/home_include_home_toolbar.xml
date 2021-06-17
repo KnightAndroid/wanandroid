@@ -53,7 +53,7 @@
                 android:layout_marginRight="@dimen/base_dimen_6"
                 android:background="@drawable/base_bg_filtrate_shape"
                 android:onClick="@{()->click.searchArticles()}"
-                android:layout_toLeftOf="@+id/home_iv_add"
+                android:layout_toLeftOf="@+id/home_iv_everyday"
                >
 
 
@@ -95,6 +95,18 @@
                     android:onClick="@{()->click.scanCode()}"/>
 
             </RelativeLayout>
+
+
+            <ImageView
+                android:id="@+id/home_iv_everyday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/home_icon_everyday"
+                android:layout_toLeftOf="@+id/home_iv_add"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/base_dimen_6"
+                android:layout_marginLeft="@dimen/base_dimen_6"
+                android:onClick="@{()->click.showEveryDayPush()}"/>
 
             <ImageView
                 android:id="@+id/home_iv_add"

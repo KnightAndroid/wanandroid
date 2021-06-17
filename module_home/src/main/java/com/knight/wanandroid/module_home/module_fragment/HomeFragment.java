@@ -13,6 +13,7 @@ import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.chad.library.adapter.base.listener.OnItemLongClickListener;
 import com.google.gson.reflect.TypeToken;
+import com.knight.wanandroid.library_base.entity.AppUpdateEntity;
 import com.knight.wanandroid.library_base.entity.OfficialAccountEntity;
 import com.knight.wanandroid.library_base.entity.UserInfoEntity;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
@@ -50,7 +51,6 @@ import com.knight.wanandroid.module_home.module_adapter.OfficialAccountAdapter;
 import com.knight.wanandroid.module_home.module_adapter.OpenSourceAdapter;
 import com.knight.wanandroid.module_home.module_adapter.TopArticleAdapter;
 import com.knight.wanandroid.module_home.module_contract.HomeContract;
-import com.knight.wanandroid.library_base.entity.AppUpdateEntity;
 import com.knight.wanandroid.module_home.module_entity.BannerEntity;
 import com.knight.wanandroid.module_home.module_entity.OpenSourceEntity;
 import com.knight.wanandroid.module_home.module_entity.TopArticleEntity;
@@ -109,6 +109,8 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     List<Fragment> mFragments = new ArrayList<>();
     //开源库
     private OpenSourceAdapter mOpenSourceAdapter;
+
+    private EveryDayPushEntity mEveryDayPushEntity;
 
 
 
@@ -179,10 +181,6 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         });
 
         mDatabind.homeTwoLevelHeader.setEnablePullToCloseTwoLevel(false);
-
-
-
-
 
     }
 
@@ -267,6 +265,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
 
     @Override
     public void setEveryDayPushArticle(EveryDayPushEntity everyDayPushEntity) {
+        mEveryDayPushEntity = everyDayPushEntity;
         //是否要展示每日推送文章
         if (everyDayPushEntity.isPushStatus() && DateUtils.isToday(everyDayPushEntity.getTime())) {
             EveryDayPushArticleRepository.getInstance().findHistoryReadRecords(new EveryDayPushArticleRepository.OnQueryEveryDayArticleCallBack() {
@@ -311,21 +310,9 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     @Override
     public void showError(String errorMsg) {
         ToastUtils.getInstance().showToast(errorMsg);
-
-
+        showloadFailure();
     }
 
-
-
-//    @Override
-//    public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-//        //请求顶部文章
-//        mPresenter.requestTopArticle();
-//        //请求轮播图
-//        mPresenter.requestBannerData();
-//        //请求公众号数据
-//        mPresenter.requestOfficialAccountData();
-//    }
 
     public class ProcyClick{
 
@@ -370,6 +357,14 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
 
         public void shareArticle(){
             ARouter.getInstance().build(RoutePathActivity.Square.ShareArticle).navigation();
+        }
+
+
+        public void showEveryDayPush(){
+            if (mEveryDayPushEntity != null) {
+                new EveryDayPushArticleFragment(mEveryDayPushEntity).show(getParentFragmentManager(), "dialog_everydaypush");
+            }
+
         }
 
     }

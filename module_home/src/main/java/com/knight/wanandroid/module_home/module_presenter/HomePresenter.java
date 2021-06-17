@@ -39,7 +39,7 @@ public class HomePresenter extends HomeContract.HomeDataPresenter {
 
             @Override
             public void onError(String errorMsg) {
-               mView.showError(errorMsg);
+              // mView.showError(errorMsg);
             }
         });
     }
@@ -64,7 +64,7 @@ public class HomePresenter extends HomeContract.HomeDataPresenter {
 
             @Override
             public void onError(String errorMsg) {
-                mView.showError(errorMsg);
+              //  mView.showError(errorMsg);
             }
         });
     }
@@ -113,7 +113,7 @@ public class HomePresenter extends HomeContract.HomeDataPresenter {
 
             @Override
             public void onError(String errorMsg) {
-                mView.showError(errorMsg);
+               // mView.showError(errorMsg);
             }
         });
 
