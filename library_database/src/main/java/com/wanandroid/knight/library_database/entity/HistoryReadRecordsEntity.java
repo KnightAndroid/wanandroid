@@ -3,6 +3,7 @@ package com.wanandroid.knight.library_database.entity;
 import java.util.Date;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
@@ -22,7 +23,8 @@ public class HistoryReadRecordsEntity {
     private long id;
 
 
-    private int userId;
+    @Nullable
+    private Integer userId;
 
     private boolean isCollect;
 
@@ -32,7 +34,8 @@ public class HistoryReadRecordsEntity {
     private String webUrl;
 
     //网页文章
-    private int articleId;
+    @Nullable
+    private Integer articleId;
 
     //网页标题
     @NonNull
@@ -72,11 +75,12 @@ public class HistoryReadRecordsEntity {
         this.webUrl = webUrl;
     }
 
-    public int getArticleId() {
+    @Nullable
+    public Integer getArticleId() {
         return articleId;
     }
 
-    public void setArticleId(int articleId) {
+    public void setArticleId(@Nullable Integer articleId) {
         this.articleId = articleId;
     }
 
@@ -130,14 +134,14 @@ public class HistoryReadRecordsEntity {
         this.articledesc = articledesc;
     }
 
-    public int getUserId() {
+    @Nullable
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(@Nullable Integer userId) {
         this.userId = userId;
     }
-
 
     public boolean isCollect() {
         return isCollect;
