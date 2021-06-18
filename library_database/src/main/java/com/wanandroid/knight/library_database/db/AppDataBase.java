@@ -68,7 +68,7 @@ public abstract class AppDataBase extends RoomDatabase {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
             database.execSQL(
-                    "CREATE TABLE IF NOT EXISTS `historyreadrecords_table` (`id` INTEGER NOT NULL PRIMARY KEY autoincrement , `userId` INTEGER , " +
+                    "CREATE TABLE IF NOT EXISTS `historyreadrecords_table` (`id` INTEGER NOT NULL PRIMARY KEY autoincrement , `userId` INTEGER NOT NULL, " +
                             "`isCollect` Boolean, `webUrl` TEXT NOT NULL ,`articleId` INTEGER,`title` TEXT NOT NULL,`envelopePic` TEXT," +
                             "`author` TEXT,`chapterName` TEXT,`articledesc` TEXT,'insertTime' INTEGER NOT NULL)");
             database.execSQL("CREATE UNIQUE INDEX `index_historyreadrecords_table_webUrl` On `historyreadrecords_table`(`webUrl`)");
