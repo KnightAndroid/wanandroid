@@ -71,8 +71,8 @@ public abstract class AppDataBase extends RoomDatabase {
                     "CREATE TABLE IF NOT EXISTS `historyreadrecords_table` (`id` INTEGER NOT NULL PRIMARY KEY autoincrement , `userId` INTEGER , " +
                             "`isCollect` Boolean, `webUrl` TEXT NOT NULL ,`articleId` INTEGER,`title` TEXT NOT NULL,`envelopePic` TEXT," +
                             "`author` TEXT,`chapterName` TEXT,`articledesc` TEXT,'insertTime' INTEGER NOT NULL)");
-            database.execSQL("CREATE UNIQUE INDEX `webUrl` On `historyreadrecords_table`(`webUrl`)");
-            database.execSQL("CREATE UNIQUE INDEX `articleId` On `historyreadrecords_table`(`articleId`)");
+            database.execSQL("CREATE UNIQUE INDEX `index_historyreadrecords_table_webUrl` On `historyreadrecords_table`(`webUrl`)");
+            database.execSQL("CREATE UNIQUE INDEX `index_historyreadrecords_table_articleId` On `historyreadrecords_table`(`articleId`)");
 
             database.execSQL("CREATE TABLE IF NOT EXISTS `everydaypush_table` (`id` INTEGER NOT NULL PRIMARY KEY autoincrement,`articlePicture` TEXT," +
                     "`articleLink` TEXT NOT NULL,`time` TEXT NOT NULL,`author` TEXT NOT NULL,`articledesc` TEXT,`articleTitle` TEXT,`popupTitle` TEXT,`pushStatus` Boolean)");
