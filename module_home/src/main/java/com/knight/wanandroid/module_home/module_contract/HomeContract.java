@@ -1,15 +1,15 @@
 package com.knight.wanandroid.module_home.module_contract;
 
+import com.knight.wanandroid.library_base.entity.AppUpdateEntity;
+import com.knight.wanandroid.library_base.entity.OfficialAccountEntity;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_base.model.BaseModel;
 import com.knight.wanandroid.library_base.presenter.BasePresenter;
 import com.knight.wanandroid.library_base.view.BaseView;
-import com.knight.wanandroid.library_base.entity.AppUpdateEntity;
 import com.knight.wanandroid.module_home.module_entity.BannerEntity;
-import com.knight.wanandroid.library_base.entity.OfficialAccountEntity;
+import com.knight.wanandroid.module_home.module_entity.EveryDayPushArticlesEntity;
 import com.knight.wanandroid.module_home.module_entity.TopArticleEntity;
-import com.wanandroid.knight.library_database.entity.EveryDayPushEntity;
 
 import java.util.List;
 
@@ -32,7 +32,7 @@ public interface HomeContract {
         //获取版本更新内容
         void setAppUpdateMessage(AppUpdateEntity appUpdateEntity);
         //获取每日推荐
-        void setEveryDayPushArticle(EveryDayPushEntity everyDayPushEntity);
+        void setEveryDayPushArticle(EveryDayPushArticlesEntity everyDayPushArticlesEntity);
 
     }
 

@@ -15,6 +15,6 @@ public class EveryDayPushArticleApi implements IRequestApi {
     private String requestUrl = "customServer";
     @Override
     public String getApi() {
-        return "MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_config/advert/everyDayPushArticle.json";
+        return "MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_config/advert/dailyPushArticles.json";
     }
 }

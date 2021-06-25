@@ -36,6 +36,7 @@ import com.knight.wanandroid.library_util.DateUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.GsonUtils;
 import com.knight.wanandroid.library_util.JsonUtils;
+import com.knight.wanandroid.library_util.LogUtils;
 import com.knight.wanandroid.library_util.ScreenUtils;
 import com.knight.wanandroid.library_util.SystemUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
@@ -52,6 +53,7 @@ import com.knight.wanandroid.module_home.module_adapter.OpenSourceAdapter;
 import com.knight.wanandroid.module_home.module_adapter.TopArticleAdapter;
 import com.knight.wanandroid.module_home.module_contract.HomeContract;
 import com.knight.wanandroid.module_home.module_entity.BannerEntity;
+import com.knight.wanandroid.module_home.module_entity.EveryDayPushArticlesEntity;
 import com.knight.wanandroid.module_home.module_entity.OpenSourceEntity;
 import com.knight.wanandroid.module_home.module_entity.TopArticleEntity;
 import com.knight.wanandroid.module_home.module_logic.HomeArticleLogic;
@@ -65,7 +67,8 @@ import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.constant.RefreshState;
 import com.scwang.smart.refresh.layout.simple.SimpleMultiListener;
 import com.wanandroid.knight.library_database.entity.EveryDayPushEntity;
-import com.wanandroid.knight.library_database.repository.EveryDayPushArticleRepository;
+import com.wanandroid.knight.library_database.entity.PushDateEntity;
+import com.wanandroid.knight.library_database.repository.PushArticlesDateRepository;
 import com.youth.banner.adapter.BannerImageAdapter;
 import com.youth.banner.holder.BannerImageHolder;
 import com.youth.banner.indicator.CircleIndicator;
@@ -110,7 +113,8 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     //开源库
     private OpenSourceAdapter mOpenSourceAdapter;
 
-    private EveryDayPushEntity mEveryDayPushEntity;
+//    private EveryDayPushEntity mEveryDayPushEntity;
+    private List<EveryDayPushEntity> mEveryDayPushEntities;
 
 
 
@@ -264,36 +268,58 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     }
 
     @Override
-    public void setEveryDayPushArticle(EveryDayPushEntity everyDayPushEntity) {
-        mEveryDayPushEntity = everyDayPushEntity;
+    public void setEveryDayPushArticle(EveryDayPushArticlesEntity everyDayPushArticlesEntity) {
+        mEveryDayPushEntities = everyDayPushArticlesEntity.getDatas();
         //是否要展示每日推送文章
-        if (everyDayPushEntity.isPushStatus() && DateUtils.isToday(everyDayPushEntity.getTime())) {
-            EveryDayPushArticleRepository.getInstance().findHistoryReadRecords(new EveryDayPushArticleRepository.OnQueryEveryDayArticleCallBack() {
+        if (everyDayPushArticlesEntity.isPushStatus() && DateUtils.isToday(everyDayPushArticlesEntity.getTime())) {
+            PushArticlesDateRepository.getInstance().findPushArticlesDate(new PushArticlesDateRepository.OnQueryPushArticlesDateCallBack() {
                 @Override
-                public void onFindEveryDayArticle(List<EveryDayPushEntity> everyDayPushEntitys) {
-                    if (everyDayPushEntitys != null && everyDayPushEntitys.size() > 0) {
-
-                        //更新
-                        EveryDayPushEntity entity = everyDayPushEntitys.get(0);
-                        if (!entity.getTime().equals(everyDayPushEntity.getTime())) {
-                            entity.setArticledesc(everyDayPushEntity.getArticledesc());
-                            entity.setArticleLink(everyDayPushEntity.getArticleLink());
-                            entity.setAuthor(everyDayPushEntity.getAuthor());
-                            entity.setPushStatus(everyDayPushEntity.isPushStatus());
-                            entity.setTime(everyDayPushEntity.getTime());
-                            EveryDayPushArticleRepository.getInstance().updateEveryDayPushArticle(entity);
-                            //并且展示
-                            new EveryDayPushArticleFragment(everyDayPushEntity).show(getParentFragmentManager(), "dialog_everydaypush");
-                        }
+                public void onFindPushArticlesDate(List<PushDateEntity> pushDateEntities) {
+                    if (pushDateEntities != null && pushDateEntities.size() > 0) {
+                       //更新
+                       PushDateEntity pushDateEntity = pushDateEntities.get(0);
+                       if (!pushDateEntity.getTime().equals(everyDayPushArticlesEntity.getTime())) {
+                           pushDateEntity.setTime(everyDayPushArticlesEntity.getTime());
+                           PushArticlesDateRepository.getInstance().updatePushArticlesDate(pushDateEntity);
+                           //并且展示
+                           new EveryDayPushArticleFragment(mEveryDayPushEntities).show(getParentFragmentManager(), "dialog_everydaypush");
+                       }
 
                     } else {
-                        //插入
-                        EveryDayPushArticleRepository.getInstance().insertEveryDayPushArticle(everyDayPushEntity);
-                        //显示
-                        new EveryDayPushArticleFragment(everyDayPushEntity).show(getParentFragmentManager(), "dialog_everydaypush");
+                        PushDateEntity pushDateEntity = new PushDateEntity();
+                        pushDateEntity.setTime(everyDayPushArticlesEntity.getTime());
+                        PushArticlesDateRepository.getInstance().insertPushArticlesDate(pushDateEntity);
+                        new EveryDayPushArticleFragment(mEveryDayPushEntities).show(getParentFragmentManager(), "dialog_everydaypush");
                     }
                 }
             });
+
+//            EveryDayPushArticleRepository.getInstance().findHistoryReadRecords(new EveryDayPushArticleRepository.OnQueryEveryDayArticleCallBack() {
+//                @Override
+//                public void onFindEveryDayArticle(List<EveryDayPushEntity> everyDayPushEntitys) {
+//                    if (everyDayPushEntitys != null && everyDayPushEntitys.size() > 0) {
+//
+//                        //更新
+//                        EveryDayPushEntity entity = everyDayPushEntitys.get(0);
+//                        if (!entity.getTime().equals(everyDayPushEntity.getTime())) {
+//                            entity.setArticledesc(everyDayPushEntity.getArticledesc());
+//                            entity.setArticleLink(everyDayPushEntity.getArticleLink());
+//                            entity.setAuthor(everyDayPushEntity.getAuthor());
+//                            entity.setPushStatus(everyDayPushEntity.isPushStatus());
+//                            entity.setTime(everyDayPushEntity.getTime());
+//                            EveryDayPushArticleRepository.getInstance().updateEveryDayPushArticle(entity);
+//                            //并且展示
+//                            new EveryDayPushArticleFragment(everyDayPushEntity).show(getParentFragmentManager(), "dialog_everydaypush");
+//                        }
+//
+//                    } else {
+//                        //插入
+//                        EveryDayPushArticleRepository.getInstance().insertEveryDayPushArticle(everyDayPushEntity);
+//                        //显示
+//                        new EveryDayPushArticleFragment(everyDayPushEntity).show(getParentFragmentManager(), "dialog_everydaypush");
+//                    }
+//                }
+//            });
         }
     }
 
@@ -361,10 +387,10 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
 
 
         public void showEveryDayPush(){
-            if (mEveryDayPushEntity != null) {
-                new EveryDayPushArticleFragment(mEveryDayPushEntity).show(getParentFragmentManager(), "dialog_everydaypush");
+            if (mEveryDayPushEntities != null) {
+                new EveryDayPushArticleFragment(mEveryDayPushEntities).show(getParentFragmentManager(), "dialog_everydaypush");
             }
-
+            
         }
 
     }

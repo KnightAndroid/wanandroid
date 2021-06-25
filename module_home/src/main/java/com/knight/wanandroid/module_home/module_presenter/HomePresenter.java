@@ -1,13 +1,13 @@
 package com.knight.wanandroid.module_home.module_presenter;
 
+import com.knight.wanandroid.library_base.entity.AppUpdateEntity;
+import com.knight.wanandroid.library_base.entity.OfficialAccountEntity;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.module_home.module_contract.HomeContract;
-import com.knight.wanandroid.library_base.entity.AppUpdateEntity;
 import com.knight.wanandroid.module_home.module_entity.BannerEntity;
-import com.knight.wanandroid.library_base.entity.OfficialAccountEntity;
+import com.knight.wanandroid.module_home.module_entity.EveryDayPushArticlesEntity;
 import com.knight.wanandroid.module_home.module_entity.TopArticleEntity;
-import com.wanandroid.knight.library_database.entity.EveryDayPushEntity;
 
 import java.util.List;
 
@@ -126,10 +126,10 @@ public class HomePresenter extends HomeContract.HomeDataPresenter {
             return;
         }
 
-        mModel.requestEveryDayPushArticle((BaseFragment) mView, new MvpListener<EveryDayPushEntity>() {
+        mModel.requestEveryDayPushArticle((BaseFragment) mView, new MvpListener<EveryDayPushArticlesEntity>() {
             @Override
-            public void onSuccess(EveryDayPushEntity everyDayPushEntity) {
-                mView.setEveryDayPushArticle(everyDayPushEntity);
+            public void onSuccess(EveryDayPushArticlesEntity everyDayPushArticlesEntity) {
+                mView.setEveryDayPushArticle(everyDayPushArticlesEntity);
 
             }
 

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <data>
+        <variable
+            name="click"
+            type="com.knight.wanandroid.library_base.fragment.PushCardFragment.ProxyClick" />
+
+
+    </data>
+
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/base_push_cv"
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        app:cardBackgroundColor="@color/base_color_transparent"
+        app:cardCornerRadius="@dimen/dp_10"
+        android:onClick="@{()->click.goWebActivity()}">
+
+
+        <ImageView
+            android:id="@+id/iv_everyday_pushpicture"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/tv_article_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/base_coloreverypushbg"
+            android:padding="@dimen/base_dimen_4"
+            android:text="鸿洋"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/base_dimen_16"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@android:color/white"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_article_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base_dimen_16"
+                android:layout_marginTop="@dimen/base_dimen_10"
+                android:text="这是标题,这是标题"
+                android:textColor="@color/base_color_title"
+                android:textSize="@dimen/base_dimen_18" />
+
+
+            <TextView
+                android:id="@+id/tv_article_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base_dimen_16"
+                android:layout_marginTop="@dimen/base_dimen_5"
+                android:layout_marginBottom="@dimen/base_dimen_10"
+                android:text="这是副标题"
+                android:textSize="@dimen/base_dimen_16" />
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

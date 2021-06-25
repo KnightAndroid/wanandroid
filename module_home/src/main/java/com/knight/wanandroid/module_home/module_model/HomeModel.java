@@ -1,21 +1,21 @@
 package com.knight.wanandroid.module_home.module_model;
 
+import com.knight.wanandroid.library_base.entity.AppUpdateEntity;
+import com.knight.wanandroid.library_base.entity.OfficialAccountEntity;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_network.GoHttp;
 import com.knight.wanandroid.library_network.listener.HttpCallback;
 import com.knight.wanandroid.library_network.model.HttpData;
 import com.knight.wanandroid.module_home.module_contract.HomeContract;
-import com.knight.wanandroid.library_base.entity.AppUpdateEntity;
 import com.knight.wanandroid.module_home.module_entity.BannerEntity;
-import com.knight.wanandroid.library_base.entity.OfficialAccountEntity;
+import com.knight.wanandroid.module_home.module_entity.EveryDayPushArticlesEntity;
 import com.knight.wanandroid.module_home.module_entity.TopArticleEntity;
 import com.knight.wanandroid.module_home.module_request.AppCheckUpdateApi;
 import com.knight.wanandroid.module_home.module_request.EveryDayPushArticleApi;
 import com.knight.wanandroid.module_home.module_request.HomeBannerApi;
 import com.knight.wanandroid.module_home.module_request.HomeOfficialAccountApi;
 import com.knight.wanandroid.module_home.module_request.TopArticleApi;
-import com.wanandroid.knight.library_database.entity.EveryDayPushEntity;
 
 import java.util.List;
 
@@ -122,10 +122,10 @@ public class HomeModel implements HomeContract.HomeModel {
     public void requestEveryDayPushArticle(BaseFragment fragment, MvpListener mvpListener) {
         GoHttp.get(fragment)
                 .api(new EveryDayPushArticleApi())
-                .request(new HttpCallback<HttpData<EveryDayPushEntity>>(fragment){
+                .request(new HttpCallback<HttpData<EveryDayPushArticlesEntity>>(fragment){
 
                     @Override
-                    public void onSucceed(HttpData<EveryDayPushEntity> result){
+                    public void onSucceed(HttpData<EveryDayPushArticlesEntity> result){
                         mvpListener.onSuccess(result.getData());
 
                     }

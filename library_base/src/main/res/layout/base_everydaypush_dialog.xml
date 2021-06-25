@@ -4,9 +4,10 @@
 
 
     <data>
+
         <variable
             name="click"
-            type="com.knight.wanandroid.library_base.fragment.EveryDayPushArticleFragment.ProxyClick"/>
+            type="com.knight.wanandroid.library_base.fragment.EveryDayPushArticleFragment.ProxyClick" />
 
     </data>
 
@@ -14,84 +15,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
-
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/base_push_cv"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/base_vp"
             android:layout_width="match_parent"
-            android:layout_height="320dp"
-            android:layout_marginLeft="@dimen/base_dimen_20"
-            android:layout_marginRight="@dimen/base_dimen_20"
-            app:cardCornerRadius="@dimen/base_dimen_10"
-            android:layout_marginTop="@dimen/base_dimen_20"
-            app:cardBackgroundColor="@android:color/white"
-            android:onClick="@{()->click.goWebActivity()}"
-            >
+            android:layout_height="360dp">
 
 
-
-            <ImageView
-                android:id="@+id/iv_everyday_pushpicture"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="每日推荐"
-                android:textColor="@android:color/white"
-                android:padding="@dimen/base_dimen_4"
-                android:textSize="@dimen/base_dimen_16"
-                android:background="@color/base_coloreverypushbg"
-                android:textStyle="bold"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="bottom"
-                android:background="@android:color/white">
-
-                <TextView
-                    android:id="@+id/tv_article_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="这是标题,这是标题"
-                    android:textSize="@dimen/base_dimen_16"
-                    android:textColor="@color/base_color_title"
-                    android:layout_marginTop="@dimen/base_dimen_10"
-                    android:layout_marginLeft="@dimen/base_dimen_16"/>
-
-
-
-                <TextView
-                    android:id="@+id/tv_article_desc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="这是副标题"
-                    android:layout_marginTop="@dimen/base_dimen_5"
-                    android:textSize="@dimen/base_dimen_14"
-                    android:layout_marginBottom="@dimen/base_dimen_10"
-                    android:layout_marginLeft="@dimen/base_dimen_16"/>
-
-
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
+        </androidx.viewpager2.widget.ViewPager2>
 
         <ImageView
             android:id="@+id/base_appupdate_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/base_push_cv"
+            android:layout_below="@id/base_vp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/base_dimen_15"
             android:background="@drawable/base_icon_circleclose"
-            android:onClick="@{()->click.dimissDialog()}"/>
+            android:onClick="@{()->click.dimissDialog()}" />
     </RelativeLayout>
 </layout>
 

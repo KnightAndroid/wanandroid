@@ -5,9 +5,11 @@ import android.content.Context;
 import com.wanandroid.knight.library_database.converter.DateConverter;
 import com.wanandroid.knight.library_database.dao.EveryDayPushArticleDao;
 import com.wanandroid.knight.library_database.dao.HistoryReadRecordsDao;
+import com.wanandroid.knight.library_database.dao.PushArticlesDateDao;
 import com.wanandroid.knight.library_database.dao.SearchHistroyKeywordDao;
 import com.wanandroid.knight.library_database.entity.EveryDayPushEntity;
 import com.wanandroid.knight.library_database.entity.HistoryReadRecordsEntity;
+import com.wanandroid.knight.library_database.entity.PushDateEntity;
 import com.wanandroid.knight.library_database.entity.SearchHistroyKeywordEntity;
 
 import java.util.concurrent.ExecutorService;
@@ -28,7 +30,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
  * @descript:database
  */
 @TypeConverters(value = {DateConverter.class})
-@Database(entities = {SearchHistroyKeywordEntity.class, HistoryReadRecordsEntity.class, EveryDayPushEntity.class},version = 2,exportSchema = false)
+@Database(entities = {SearchHistroyKeywordEntity.class, HistoryReadRecordsEntity.class, EveryDayPushEntity.class, PushDateEntity.class},version = 3,exportSchema = false)
 public abstract class AppDataBase extends RoomDatabase {
 
     public abstract SearchHistroyKeywordDao mHistroyKeywordDao();
@@ -36,6 +38,8 @@ public abstract class AppDataBase extends RoomDatabase {
     public abstract HistoryReadRecordsDao mHistoryReadRecordsDao();
 
     public abstract EveryDayPushArticleDao mEveryDayPushArticleDao();
+
+    public abstract PushArticlesDateDao mPushArticlesDateDao();
 
     private static volatile AppDataBase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
@@ -48,7 +52,7 @@ public abstract class AppDataBase extends RoomDatabase {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),AppDataBase.class, dbName)
                             .allowMainThreadQueries()
                             .enableMultiInstanceInvalidation()
-                            .addMigrations(MIGRATION_1_2)
+                            .addMigrations(MIGRATION_1_2,MIGRATION_2_3)
                             .build();
                 }
             }
@@ -77,6 +81,16 @@ public abstract class AppDataBase extends RoomDatabase {
 
             database.execSQL("CREATE TABLE IF NOT EXISTS `everydaypush_table` (`id` INTEGER NOT NULL PRIMARY KEY autoincrement,`articlePicture` TEXT," +
                     "`articleLink` TEXT NOT NULL,`time` TEXT NOT NULL,`author` TEXT NOT NULL,`articledesc` TEXT,`articleTitle` TEXT,`popupTitle` TEXT,`pushStatus` Boolean)");
+        }
+    };
+
+
+    static final Migration MIGRATION_2_3 = new Migration(2,3) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL(
+                    "CREATE TABLE IF NOT EXISTS `pushdate_table` (`id` INTEGER NOT NULL PRIMARY KEY autoincrement,`time` TEXT NOT NULL)"
+            );
         }
     };
 

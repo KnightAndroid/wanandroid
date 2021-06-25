@@ -36,4 +36,13 @@ public interface EveryDayPushArticleDao {
     @Query("select * from everydaypush_table WHERE articleLink=:articleLink")
     EveryDayPushEntity findEveryDayPushArticle(String articleLink);
 
+    //删除全部
+    @Query("delete from everydaypush_table")
+    void deleteAlleverydayArticles();
+
+
+    //批量插入
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertEveryDayArticles(List<EveryDayPushEntity> everyDayPushEntities);
+
 }

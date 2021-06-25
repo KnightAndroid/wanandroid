@@ -6,6 +6,7 @@ import com.wanandroid.knight.library_database.db.AppDataBase;
 import com.wanandroid.knight.library_database.repository.EveryDayPushArticleRepository;
 import com.wanandroid.knight.library_database.repository.HistoryReadRecordsRepository;
 import com.wanandroid.knight.library_database.repository.HistroyKeywordsRepository;
+import com.wanandroid.knight.library_database.repository.PushArticlesDateRepository;
 
 /**
  * @author created by knight
@@ -27,5 +28,6 @@ public final class DataBaseManager {
         HistroyKeywordsRepository.getInstance().init();
         HistoryReadRecordsRepository.getInstance().init();
         EveryDayPushArticleRepository.getInstance().init();
+        PushArticlesDateRepository.getInstance().init();
     }
 }

@@ -2,12 +2,17 @@ package com.knight.wanandroid.library_base.fragment;
 
 import android.view.Gravity;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.knight.wanandroid.library_base.R;
 import com.knight.wanandroid.library_base.databinding.BaseEverydaypushDialogBinding;
-import com.knight.wanandroid.library_base.route.RoutePathActivity;
-import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;
+import com.knight.wanandroid.library_base.util.InitCustomViewUtils;
+import com.knight.wanandroid.library_base.view.CardTransformer;
+import com.knight.wanandroid.library_base.view.UtilShowAnim;
 import com.wanandroid.knight.library_database.entity.EveryDayPushEntity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import androidx.fragment.app.Fragment;
 
 /**
  * @author created by knight
@@ -17,10 +22,25 @@ import com.wanandroid.knight.library_database.entity.EveryDayPushEntity;
  */
 public class EveryDayPushArticleFragment extends BaseDBDialogFragment<BaseEverydaypushDialogBinding> {
 
-    private EveryDayPushEntity mEveryDayPushEntity;
-    public EveryDayPushArticleFragment(EveryDayPushEntity mEveryDayPushEntity){
-        this.mEveryDayPushEntity = mEveryDayPushEntity;
+
+
+    private List<EveryDayPushEntity> mEveryDayPushEntities;
+
+    private List<Fragment> mPushCardFragments = new ArrayList<>();
+    /**
+     * 工具类 用于控制出场动画
+     */
+    private UtilShowAnim mUtilAnim;
+    /**
+     * 切换动画
+     */
+    private CardTransformer mTransformer;
+
+
+    public EveryDayPushArticleFragment(List<EveryDayPushEntity> mEveryDayPushEntities){
+        this.mEveryDayPushEntities = mEveryDayPushEntities;
     }
+
     @Override
     protected int layoutId() {
         return R.layout.base_everydaypush_dialog;
@@ -29,13 +49,7 @@ public class EveryDayPushArticleFragment extends BaseDBDialogFragment<BaseEveryd
     @Override
     protected void initView() {
         mDatabind.setClick(new ProxyClick());
-        //设置图像
-        GlideEngineUtils.getInstance().loadStringPhoto(getActivity(),mEveryDayPushEntity.getArticlePicture(),mDatabind.ivEverydayPushpicture);
-        //设置标题
-        mDatabind.tvArticleTitle.setText(mEveryDayPushEntity.getArticleTitle());
-        //设置副标题
-        mDatabind.tvArticleDesc.setText(mEveryDayPushEntity.getArticledesc());
-
+        initViewPager();
     }
 
     @Override
@@ -44,15 +58,30 @@ public class EveryDayPushArticleFragment extends BaseDBDialogFragment<BaseEveryd
     }
 
 
-    public class ProxyClick {
-        public void goWebActivity(){
-            ARouter.getInstance().build(RoutePathActivity.Web.Web_Normal)
-                    .withString("webUrl",mEveryDayPushEntity.getArticleLink())
-                    .withString("webTitle",mEveryDayPushEntity.getArticleTitle())
-                    .navigation();
-            dismiss();
+    /**
+     *
+     * 初始化viewPager
+     */
+    private void initViewPager() {
+        mPushCardFragments.clear();
+        mUtilAnim = new UtilShowAnim(mDatabind.baseVp);
+        for (EveryDayPushEntity everyDayPushEntity : mEveryDayPushEntities) {
+            mPushCardFragments.add(PushCardFragment.newInstance(everyDayPushEntity.getArticlePicture(),everyDayPushEntity.getArticleTitle(),everyDayPushEntity.getArticledesc(),everyDayPushEntity.getAuthor(),everyDayPushEntity.getArticleLink()));
+
         }
 
+        // 实例化ViewPager切换动画类
+        mTransformer = new CardTransformer();
+        mDatabind.baseVp.setPageTransformer(mTransformer);
+        // 设置切换动画为 风车，并获取预加载数量
+        int offscreen = mTransformer.setTransformerType(CardTransformer.ANIM_TYPE_WINDMILL);
+        mDatabind.baseVp.setOffscreenPageLimit(offscreen);
+        InitCustomViewUtils.setViewPager2InitFragment(this,mPushCardFragments,mDatabind.baseVp,true);
+
+
+    }
+
+    public class ProxyClick {
         public void dimissDialog(){
             dismiss();
         }

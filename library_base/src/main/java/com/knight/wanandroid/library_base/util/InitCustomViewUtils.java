@@ -19,7 +19,10 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.Li
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 import kotlin.jvm.functions.Function1;
 
@@ -102,6 +105,35 @@ public class InitCustomViewUtils {
             public void onPageScrollStateChanged(int state) {
                 super.onPageScrollStateChanged(state);
                 magicIndicator.onPageScrollStateChanged(state);
+            }
+        });
+    }
+
+
+
+    /**
+     *
+     *
+     *
+     * @param fragment
+     * @param fragments
+     * @param viewPager2
+     * @param isUserInputEnabled
+     */
+    public static void setViewPager2InitFragment(Fragment fragment, List<Fragment> fragments, ViewPager2 viewPager2, boolean isUserInputEnabled) {
+        viewPager2.setUserInputEnabled(isUserInputEnabled);
+//        viewPager2.setOffscreenPageLimit(fragments.size());
+        viewPager2.setSaveEnabled(true);
+        viewPager2.setAdapter(new FragmentStateAdapter(fragment) {
+            @NonNull
+            @Override
+            public Fragment createFragment(int position) {
+                return fragments.get(position);
+            }
+
+            @Override
+            public int getItemCount() {
+                return fragments.size();
             }
         });
     }
