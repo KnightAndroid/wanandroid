@@ -67,4 +67,15 @@ public class RoutePathFragment {
     }
 
 
+    /**
+     *
+     * 消息模块
+     */
+    public static class Message {
+        private static final String Message = "/module_message_fragment";
+
+        public static final String Readed_Message = Message + "/readed_message";
+    }
+
+
 }

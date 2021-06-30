@@ -44,10 +44,6 @@
                     android:alpha="0"
                     android:orientation="vertical">
 
-                    <!--                        <include-->
-                    <!--                            android:id="@+id/home_include_twoLeveltoolbar"-->
-                    <!--                            layout="@layout/base_include_toolbar"/>-->
-
                     <include
                         android:id="@+id/home_include_recyceview"
                         layout="@layout/base_layout_recycleview" />
@@ -80,6 +76,46 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
+
+
+                        <!-- 消息中心 -->
+                        <RelativeLayout
+                            android:id="@+id/home_rl_message"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/base_dimen_40"
+                            android:visibility="gone"
+                            android:onClick="@{()->click.goMessage()}">
+
+                            <ImageView
+                                android:id="@+id/home_iv_message"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/home_icon_message"
+                                android:layout_marginLeft="@dimen/base_dimen_16"
+                                android:layout_centerVertical="true"/>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/base_red_round"
+                                android:layout_alignRight="@+id/home_iv_message"
+                                android:layout_marginTop="@dimen/base_dimen_6"/>
+
+                            <TextView
+                                android:id="@+id/home_tv_unread_message"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_toRightOf="@id/home_iv_message"
+                                android:text="你有1条未读消息"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="@dimen/base_dimen_10"
+                                android:textColor="@color/base_color_title"
+                                android:textSize="@dimen/base_dimen_16"/>
+
+
+
+                        </RelativeLayout>
+
 
 
                         <TextView

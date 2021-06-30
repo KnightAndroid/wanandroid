@@ -16,6 +16,7 @@ import com.knight.wanandroid.module_home.module_request.EveryDayPushArticleApi;
 import com.knight.wanandroid.module_home.module_request.HomeBannerApi;
 import com.knight.wanandroid.module_home.module_request.HomeOfficialAccountApi;
 import com.knight.wanandroid.module_home.module_request.TopArticleApi;
+import com.knight.wanandroid.module_home.module_request.UnreadMessageApi;
 
 import java.util.List;
 
@@ -126,6 +127,25 @@ public class HomeModel implements HomeContract.HomeModel {
 
                     @Override
                     public void onSucceed(HttpData<EveryDayPushArticlesEntity> result){
+                        mvpListener.onSuccess(result.getData());
+
+                    }
+
+                    @Override
+                    public void onFail(Exception e){
+                        mvpListener.onError(e.getMessage());
+                    }
+                });
+    }
+
+    @Override
+    public void requestUnreadMessage(BaseFragment fragment, MvpListener mvpListener) {
+        GoHttp.get(fragment)
+                .api(new UnreadMessageApi())
+                .request(new HttpCallback<HttpData<Integer>>(fragment){
+
+                    @Override
+                    public void onSucceed(HttpData<Integer> result){
                         mvpListener.onSuccess(result.getData());
 
                     }

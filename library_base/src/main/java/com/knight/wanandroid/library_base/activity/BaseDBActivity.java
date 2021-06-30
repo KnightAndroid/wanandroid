@@ -1,7 +1,9 @@
 package com.knight.wanandroid.library_base.activity;
 
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.kingja.loadsir.callback.Callback;
@@ -14,6 +16,7 @@ import com.knight.wanandroid.library_base.loadsir.LoadCallBack;
 import com.knight.wanandroid.library_network.listener.OnHttpListener;
 import com.knight.wanandroid.library_util.StatusBarUtils;
 import com.knight.wanandroid.library_widget.loadcircleview.ProgressHUD;
+import com.knight.wanandroid.library_widget.swipeback.SwipeBackHelper;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -33,6 +36,8 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
 
 
     public LoadService mLoadService;
+
+    private SwipeBackHelper mSwipeBackHelper;
     public abstract void initView(Bundle savedInstanceState);
 
 
@@ -50,6 +55,9 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
         createViewDataBinding();
         StatusBarUtils.transparentStatusBar(this);
         initView(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            mSwipeBackHelper = new SwipeBackHelper(this);
+        }
 
 
     }
@@ -146,6 +154,22 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
     @Override
     public void onFail(Exception e) {
 
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if (mSwipeBackHelper != null && mSwipeBackHelper.dispatchTouchEvent(event)) {
+            return true;
+        }
+        return super.dispatchTouchEvent(event);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (mSwipeBackHelper != null) {
+            mSwipeBackHelper.onTouchEvent(event);
+        }
+        return super.onTouchEvent(event);
     }
 
 }

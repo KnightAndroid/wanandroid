@@ -1,7 +1,9 @@
 package com.knight.wanandroid.module_home.module_fragment;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +38,6 @@ import com.knight.wanandroid.library_util.DateUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.GsonUtils;
 import com.knight.wanandroid.library_util.JsonUtils;
-import com.knight.wanandroid.library_util.LogUtils;
 import com.knight.wanandroid.library_util.ScreenUtils;
 import com.knight.wanandroid.library_util.SystemUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
@@ -206,6 +207,11 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         mPresenter.requestEveryDayPushArticle();
         //请求更新app
         mPresenter.requestAppUpdateMessage();
+        //未读数量请求
+        if (ModuleConfig.getInstance().user != null) {
+            mPresenter.requestUnreadMessage();
+        }
+
     }
 
     @Override
@@ -324,6 +330,21 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     }
 
     @Override
+    public void setUnreadMessage(int number) {
+        if (number > 0) {
+            mDatabind.homeRlMessage.setVisibility(View.VISIBLE);
+            String strMsg = "您有<font color=\"#EE7931\"> "+number+"</font> 条未读消息</font>";
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                mDatabind.homeTvUnreadMessage.setText(Html.fromHtml(strMsg,Html.FROM_HTML_MODE_LEGACY));
+            } else {
+                mDatabind.homeTvUnreadMessage.setText(Html.fromHtml(strMsg));
+            }
+        } else {
+            mDatabind.homeRlMessage.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
     public void showLoading() {
 
     }
@@ -391,6 +412,11 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
                 new EveryDayPushArticleFragment(mEveryDayPushEntities).show(getParentFragmentManager(), "dialog_everydaypush");
             }
             
+        }
+
+
+        public void goMessage() {
+            ARouter.getInstance().build(RoutePathActivity.Message.Message_pager).navigation();
         }
 
     }
@@ -539,11 +565,12 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         mDatabind.homeIncludeToolbar.homeTvLoginname.setText(ModuleConfig.getInstance().user.getUsername());
         //重新请求公众号数据
         mPresenter.requestOfficialAccountData();
+        mPresenter.requestUnreadMessage();
     }
 
 
     /**
-     * 登录失败
+     * 退出登录成功
      * @param logoutSuccess
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -552,6 +579,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         mDatabind.homeIncludeToolbar.homeTvLoginname.setText("登录");
         //重新请求公众号数据
         mPresenter.requestOfficialAccountData();
+        mDatabind.homeRlMessage.setVisibility(View.GONE);
     }
 
 

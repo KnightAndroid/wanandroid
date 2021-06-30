@@ -5,7 +5,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
@@ -24,11 +23,9 @@ import com.knight.wanandroid.library_base.activity.BaseActivity;
 import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_base.util.DataBaseUtils;
-import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_widget.LoveAnimatorRelativeLayout;
-import com.knight.wanandroid.library_widget.swipeback.SwipeBackHelper;
 import com.knight.wanandroid.module_web.R;
 import com.knight.wanandroid.module_web.databinding.WebActivityMainBinding;
 import com.knight.wanandroid.module_web.module_contract.WebContract;
@@ -86,8 +83,6 @@ public class WebActivity extends BaseActivity<WebActivityMainBinding, WebPresent
 
     private WebView mWebView;
 
-    private SwipeBackHelper mSwipeBackHelper;
-
 
 
     @Override
@@ -97,9 +92,7 @@ public class WebActivity extends BaseActivity<WebActivityMainBinding, WebPresent
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            mSwipeBackHelper = new SwipeBackHelper(this);
-        }
+
         ARouter.getInstance().inject(this);
         mDatabind.includeWebToolbar.baseIvRight.setVisibility(View.VISIBLE);
         mDatabind.webLikeRl.setOnCollectListener(this);
@@ -268,19 +261,5 @@ public class WebActivity extends BaseActivity<WebActivityMainBinding, WebPresent
         EventBus.getDefault().post(new EventBusUtils.CollectSuccess());
     }
 
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent event) {
-        if (mSwipeBackHelper != null && mSwipeBackHelper.dispatchTouchEvent(event)) {
-            return true;
-        }
-        return super.dispatchTouchEvent(event);
-    }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if (mSwipeBackHelper != null) {
-            mSwipeBackHelper.onTouchEvent(event);
-        }
-        return super.onTouchEvent(event);
-    }
 }

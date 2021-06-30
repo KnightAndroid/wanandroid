@@ -140,4 +140,25 @@ public class HomePresenter extends HomeContract.HomeDataPresenter {
         });
     }
 
+    @Override
+    public void requestUnreadMessage() {
+        final HomeContract.HomeView mView = getView();
+        if (mView == null) {
+            return;
+        }
+
+        mModel.requestUnreadMessage((BaseFragment) mView, new MvpListener<Integer>() {
+            @Override
+            public void onSuccess(Integer data) {
+               mView.setUnreadMessage(data);
+            }
+
+            @Override
+            public void onError(String errorMsg) {
+
+            }
+        });
+
+    }
+
 }

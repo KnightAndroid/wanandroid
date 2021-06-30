@@ -1,7 +1,9 @@
 package com.knight.wanandroid.library_base.activity;
 
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.kingja.loadsir.callback.Callback;
@@ -17,6 +19,7 @@ import com.knight.wanandroid.library_network.listener.OnHttpListener;
 import com.knight.wanandroid.library_util.CreateUtils;
 import com.knight.wanandroid.library_util.StatusBarUtils;
 import com.knight.wanandroid.library_widget.loadcircleview.ProgressHUD;
+import com.knight.wanandroid.library_widget.swipeback.SwipeBackHelper;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -39,6 +42,7 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
     public LoadService mLoadService;
     private ProgressHUD mProgressHUD;
 
+    private SwipeBackHelper mSwipeBackHelper;
 
 
 
@@ -58,6 +62,9 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
         createViewDataBinding();
         StatusBarUtils.transparentStatusBar(this);
         initView(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            mSwipeBackHelper = new SwipeBackHelper(this);
+        }
         //内部获取第二个类型参数的真实类型，反射new出对象
         mPresenter = CreateUtils.get(this,1);
         //内部获取第三个类型参数的真实类型，反射new出对手
@@ -168,6 +175,22 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
     @Override
     public void onFail(Exception e) {
 
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if (mSwipeBackHelper != null && mSwipeBackHelper.dispatchTouchEvent(event)) {
+            return true;
+        }
+        return super.dispatchTouchEvent(event);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (mSwipeBackHelper != null) {
+            mSwipeBackHelper.onTouchEvent(event);
+        }
+        return super.onTouchEvent(event);
     }
 
 }

@@ -87,6 +87,16 @@ public class RoutePathActivity {
 
     }
 
+    /**
+     *
+     * 我的消息模块
+     *
+     */
+    public static class Message{
+        private static final String Message = "/module_message_activity";
+        public static final String Message_pager = Message + "/message_pager";
+    }
+
 
 
 

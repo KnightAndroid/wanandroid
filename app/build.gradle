@@ -74,6 +74,7 @@ dependencies {
     implementation project(":module_mine")
     implementation project(":module_web")
     implementation project(":module_wechat")
+    implementation project(":module_message")
 
     annotationProcessor "com.alibaba:arouter-compiler:$arouterVersion"
   //  implementation "com.github.onestravel:OneBottomNavigationBar:$bottom_navigatVersion"

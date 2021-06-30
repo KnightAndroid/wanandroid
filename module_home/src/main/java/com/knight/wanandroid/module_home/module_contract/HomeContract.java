@@ -28,11 +28,12 @@ public interface HomeContract {
         void setBannerData(List<BannerEntity> result);
         //设置公众号数据
         void setOfficialAccountData(List<OfficialAccountEntity> officialAccountModels);
-
         //获取版本更新内容
         void setAppUpdateMessage(AppUpdateEntity appUpdateEntity);
         //获取每日推荐
         void setEveryDayPushArticle(EveryDayPushArticlesEntity everyDayPushArticlesEntity);
+        //获取未读消息数量
+        void setUnreadMessage(int number);
 
     }
 
@@ -51,7 +52,10 @@ public interface HomeContract {
         void requestAppUpdateMessage(BaseFragment fragment,MvpListener mvpListener);
 
         //请求每日推荐信息
-         void requestEveryDayPushArticle(BaseFragment fragment,MvpListener mvpListener);
+        void requestEveryDayPushArticle(BaseFragment fragment,MvpListener mvpListener);
+
+        //请求每日未读消息数量
+        void requestUnreadMessage(BaseFragment fragment,MvpListener mvpListener);
     }
 
     abstract class HomeDataPresenter extends BasePresenter<HomeModel,HomeView>{
@@ -61,6 +65,7 @@ public interface HomeContract {
         public abstract void requestOfficialAccountData();
         public abstract void requestAppUpdateMessage();
         public abstract void requestEveryDayPushArticle();
+        public abstract void requestUnreadMessage();
 
 
 

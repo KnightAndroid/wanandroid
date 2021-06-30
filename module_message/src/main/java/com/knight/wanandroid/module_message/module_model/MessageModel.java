@@ -1,0 +1,40 @@
+package com.knight.wanandroid.module_message.module_model;
+
+import com.knight.wanandroid.library_base.fragment.BaseFragment;
+import com.knight.wanandroid.library_base.listener.MvpListener;
+import com.knight.wanandroid.library_network.GoHttp;
+import com.knight.wanandroid.library_network.listener.HttpCallback;
+import com.knight.wanandroid.library_network.model.HttpData;
+import com.knight.wanandroid.module_message.module_contract.MessageContract;
+import com.knight.wanandroid.module_message.module_entity.MessageReadedListEntity;
+import com.knight.wanandroid.module_message.module_request.MessageReadedApi;
+
+/**
+ * @author created by knight
+ * @organize wanandroid
+ * @Date 2021/6/30 15:03
+ * @descript:
+ */
+public class MessageModel implements MessageContract.MessageModel {
+
+
+    @Override
+    public void requestMessageReaded(BaseFragment fragment, int page, MvpListener mvpListener) {
+        GoHttp.get(fragment)
+                .api(new MessageReadedApi().setMessageReadedPage(page))
+                .request(new HttpCallback<HttpData<MessageReadedListEntity>>(fragment){
+
+                    @Override
+                    public void onSucceed(HttpData<MessageReadedListEntity> result){
+                        mvpListener.onSuccess(result.getData());
+
+                    }
+
+                    @Override
+                    public void onFail(Exception e){
+                        mvpListener.onError(e.getMessage());
+                    }
+
+                });
+    }
+}

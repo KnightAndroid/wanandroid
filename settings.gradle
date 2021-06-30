@@ -1,3 +1,4 @@
+include ':module_message'
 include ':library_scan'
 include ':module_wechat'
 include ':module_web'
