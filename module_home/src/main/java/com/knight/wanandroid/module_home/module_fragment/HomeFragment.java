@@ -582,6 +582,11 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         mDatabind.homeRlMessage.setVisibility(View.GONE);
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void readAllMessage(EventBusUtils.ReadAllMessage readAllMessage){
+        mDatabind.homeRlMessage.setVisibility(View.GONE);
+    }
+
 
 
 

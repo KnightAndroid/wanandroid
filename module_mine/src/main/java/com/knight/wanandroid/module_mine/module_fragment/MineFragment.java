@@ -54,8 +54,10 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
         if (ModuleConfig.getInstance().user != null) {
             mDatabind.mineTvUsername.setText(ModuleConfig.getInstance().user.getUsername());
             mDatabind.mineRlLogout.setVisibility(View.VISIBLE);
+            mDatabind.mineIvMessage.setVisibility(View.VISIBLE);
         } else {
             mDatabind.mineRlLogout.setVisibility(View.GONE);
+            mDatabind.mineIvMessage.setVisibility(View.GONE);
         }
     }
 
@@ -185,6 +187,13 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
             }).show();
 
         }
+
+        public void goMessage() {
+            ARouter.getInstance().build(RoutePathActivity.Message.Message_pager).navigation();
+        }
+
+
+
     }
 
     @Override

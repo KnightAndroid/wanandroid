@@ -28,4 +28,10 @@ public class EventBusUtils {
 
     }
 
+
+    //消息阅读
+    public static class ReadAllMessage{
+
+    }
+
 }

@@ -11,10 +11,10 @@ import java.util.List;
  * @Date 2021/6/30 14:51
  * @descript:
  */
-public class MessageReadedListEntity extends BaseEntity {
+public class MessageListEntity extends BaseEntity {
 
      private int curPage;
-     private List<MessageReadedEntity> datas;
+     private List<MessageEntity> datas;
      private int offset;
      private boolean over;
      private int pageCount;
@@ -29,14 +29,14 @@ public class MessageReadedListEntity extends BaseEntity {
         this.curPage = curPage;
     }
 
-    public List<MessageReadedEntity> getDatas() {
+    public List<MessageEntity> getDatas() {
         if (datas == null) {
             return new ArrayList<>();
         }
         return datas;
     }
 
-    public void setDatas(List<MessageReadedEntity> datas) {
+    public void setDatas(List<MessageEntity> datas) {
         this.datas = datas;
     }
 

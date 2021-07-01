@@ -26,6 +26,22 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+
+            <ImageView
+                android:id="@+id/mine_iv_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/mine_icon_message"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="@dimen/base_dimen_30"
+                android:layout_marginRight="@dimen/base_dimen_26"
+                android:onClick="@{()->click.goMessage()}"
+                android:visibility="gone"
+                />
+
+
+
             <RelativeLayout
                 android:id="@+id/mine_rl_user_head"
                 android:layout_width="65dp"

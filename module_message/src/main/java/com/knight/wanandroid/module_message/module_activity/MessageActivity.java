@@ -9,7 +9,7 @@ import com.knight.wanandroid.library_base.util.InitCustomViewUtils;
 import com.knight.wanandroid.library_util.ViewSetUtils;
 import com.knight.wanandroid.module_message.R;
 import com.knight.wanandroid.module_message.databinding.MessageActivityBinding;
-import com.knight.wanandroid.module_message.module_fragment.MessageReadedFragment;
+import com.knight.wanandroid.module_message.module_fragment.MessageFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,8 +41,8 @@ public class MessageActivity extends BaseDBActivity<MessageActivityBinding> {
         super.initData();
         messageFragment.clear();
         titleDatas.clear();
-        messageFragment.add(new MessageReadedFragment());
-        messageFragment.add(new MessageReadedFragment());
+        messageFragment.add(MessageFragment.newInstance(true));
+        messageFragment.add(MessageFragment.newInstance(false));
         titleDatas.add(getString(R.string.message_readed));
         titleDatas.add(getString(R.string.message_unread));
         ViewSetUtils.setViewPager2Init(this, messageFragment, mDatabind.messageViewPager, false);

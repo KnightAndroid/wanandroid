@@ -3,7 +3,7 @@ package com.knight.wanandroid.module_message.module_presenter;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.module_message.module_contract.MessageContract;
-import com.knight.wanandroid.module_message.module_entity.MessageReadedListEntity;
+import com.knight.wanandroid.module_message.module_entity.MessageListEntity;
 
 /**
  * @author created by knight
@@ -19,9 +19,9 @@ public class MessagePresenter extends MessageContract.MessageDataPresenter {
             return;
         }
 
-        mModel.requestMessageReaded((BaseFragment) mView, page, new MvpListener<MessageReadedListEntity>() {
+        mModel.requestMessageReaded((BaseFragment) mView, page, new MvpListener<MessageListEntity>() {
             @Override
-            public void onSuccess(MessageReadedListEntity data) {
+            public void onSuccess(MessageListEntity data) {
               mView.setMessageReaded(data);
             }
 
@@ -31,5 +31,24 @@ public class MessagePresenter extends MessageContract.MessageDataPresenter {
             }
         });
 
+    }
+
+    @Override
+    public void requestMessageUnread(int page) {
+        final MessageContract.MessageView mView = getView();
+        if (mView == null) {
+            return;
+        }
+        mModel.requestMessageUnread((BaseFragment) mView, page, new MvpListener<MessageListEntity>() {
+            @Override
+            public void onSuccess(MessageListEntity data) {
+                mView.setMessageUnread(data);
+            }
+
+            @Override
+            public void onError(String errorMsg) {
+
+            }
+        });
     }
 }

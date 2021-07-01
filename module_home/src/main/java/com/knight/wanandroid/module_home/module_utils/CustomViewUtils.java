@@ -37,7 +37,7 @@ public class CustomViewUtils {
      * @param mDataList
      */
     public static void bindViewPager2(MagicIndicator magicIndicator, ViewPager2 viewPager2, List<String> mDataList, Function1 action) {
-        magicIndicator.setBackgroundColor(Color.WHITE);
+       // magicIndicator.setBackgroundColor(Color.WHITE);
         CommonNavigator commonNavigator = new CommonNavigator(ApplicationProvider.getInstance().getApplication());
         commonNavigator.setLeftPadding(ScreenUtils.dp2px(16));
         commonNavigator.setScrollPivotX(0.35f);

@@ -83,39 +83,37 @@
                             android:id="@+id/home_rl_message"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/base_dimen_40"
-                            android:visibility="gone"
-                            android:onClick="@{()->click.goMessage()}">
+                            android:onClick="@{()->click.goMessage()}"
+                            android:visibility="gone">
 
                             <ImageView
                                 android:id="@+id/home_iv_message"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:background="@drawable/home_icon_message"
+                                android:layout_centerVertical="true"
                                 android:layout_marginLeft="@dimen/base_dimen_16"
-                                android:layout_centerVertical="true"/>
+                                android:background="@drawable/home_icon_message" />
 
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:background="@drawable/base_red_round"
                                 android:layout_alignRight="@+id/home_iv_message"
-                                android:layout_marginTop="@dimen/base_dimen_6"/>
+                                android:layout_marginTop="@dimen/base_dimen_6"
+                                android:background="@drawable/base_red_round" />
 
                             <TextView
                                 android:id="@+id/home_tv_unread_message"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_toRightOf="@id/home_iv_message"
-                                android:text="你有1条未读消息"
                                 android:layout_centerVertical="true"
                                 android:layout_marginLeft="@dimen/base_dimen_10"
+                                android:layout_toRightOf="@id/home_iv_message"
+                                android:text="你有1条未读消息"
                                 android:textColor="@color/base_color_title"
-                                android:textSize="@dimen/base_dimen_16"/>
-
+                                android:textSize="@dimen/base_dimen_16" />
 
 
                         </RelativeLayout>
-
 
 
                         <TextView
@@ -160,12 +158,36 @@
                             android:layout_marginBottom="@dimen/base_dimen_10" />
                     </LinearLayout>
 
-                    <net.lucode.hackware.magicindicator.MagicIndicator
-                        android:id="@+id/magic_indicator"
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:minHeight="50dp"
-                        android:tag="sticky" />
+                        android:layout_height="@dimen/base_dimen_50"
+                        android:tag="sticky">
+
+                        <net.lucode.hackware.magicindicator.MagicIndicator
+                            android:id="@+id/magic_indicator"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:minHeight="50dp"
+                            android:layout_toLeftOf="@+id/home_iv_flagmore"
+
+                            />
+
+
+                        <ImageView
+                            android:id="@+id/home_iv_flagmore"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/home_icon_flagmore"
+                            android:layout_marginRight="@dimen/base_dimen_8"
+                            />
+
+
+
+                    </RelativeLayout>
+
 
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/view_pager"
