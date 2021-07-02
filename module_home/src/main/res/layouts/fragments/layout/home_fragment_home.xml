@@ -162,26 +162,28 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/base_dimen_50"
-                        android:tag="sticky">
+                        android:tag="sticky"
+                        android:background="@color/home_white">
 
                         <net.lucode.hackware.magicindicator.MagicIndicator
                             android:id="@+id/magic_indicator"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:minHeight="50dp"
-                            android:layout_toLeftOf="@+id/home_iv_flagmore"
+                            android:layout_toLeftOf="@+id/home_iv_labelmore"
 
                             />
 
 
                         <ImageView
-                            android:id="@+id/home_iv_flagmore"
+                            android:id="@+id/home_iv_labelmore"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:background="@drawable/home_icon_flagmore"
                             android:layout_marginRight="@dimen/base_dimen_8"
+                            android:onClick="@{()->click.goknowledgeLabel()}"
                             />
 
 

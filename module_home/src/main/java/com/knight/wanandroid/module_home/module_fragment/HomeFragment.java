@@ -48,6 +48,7 @@ import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.module_home.R;
 import com.knight.wanandroid.module_home.databinding.HomeFragmentHomeBinding;
 import com.knight.wanandroid.module_home.module_activity.HomeArticlesTabActivity;
+import com.knight.wanandroid.module_home.module_activity.KnowledgeLabelActivity;
 import com.knight.wanandroid.module_home.module_activity.SearchActivity;
 import com.knight.wanandroid.module_home.module_adapter.OfficialAccountAdapter;
 import com.knight.wanandroid.module_home.module_adapter.OpenSourceAdapter;
@@ -113,9 +114,8 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     List<Fragment> mFragments = new ArrayList<>();
     //开源库
     private OpenSourceAdapter mOpenSourceAdapter;
-
-//    private EveryDayPushEntity mEveryDayPushEntity;
     private List<EveryDayPushEntity> mEveryDayPushEntities;
+    List<String> knowledgeLabelList;
 
 
 
@@ -419,20 +419,26 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
             ARouter.getInstance().build(RoutePathActivity.Message.Message_pager).navigation();
         }
 
+
+        public void goknowledgeLabel() {
+            startActivity(new Intent(getActivity(), KnowledgeLabelActivity.class)
+                    .putExtra("data",(Serializable) knowledgeLabelList));
+        }
+
     }
 
     private void initMagicIndicator() {
         //初始化标签
         Type type = new TypeToken<List<String>>() {}.getType();
         String jsonData = JsonUtils.getJson(getActivity(),"searchkeywords.json");
-        List<String> mDataList = GsonUtils.getList(jsonData,type);
+        knowledgeLabelList = GsonUtils.getList(jsonData,type);
         mFragments.clear();
-        for (int i = 0;i < mDataList.size();i++) {
+        for (int i = 0;i < knowledgeLabelList.size();i++) {
             mFragments.add(new HomeArticlesFragment());
         }
         ViewSetUtils.setViewPager2Init(getActivity(), mFragments, mDatabind.viewPager, false);
         
-        CustomViewUtils.bindViewPager2(mDatabind.magicIndicator, mDatabind.viewPager, mDataList, new Function1() {
+        CustomViewUtils.bindViewPager2(mDatabind.magicIndicator, mDatabind.viewPager, knowledgeLabelList, new Function1() {
             @Override
             public Object invoke(Object o) {
                 int[] position = new int[2];
@@ -586,12 +592,6 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     public void readAllMessage(EventBusUtils.ReadAllMessage readAllMessage){
         mDatabind.homeRlMessage.setVisibility(View.GONE);
     }
-
-
-
-
-
-
 
 
     public void scrollTop(){
