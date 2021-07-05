@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string-array name="home_more_knowledge_name">
+        <item>前端</item>
+        <item>设计模式</item>
+        <item>gradle</item>
+        <item>算法</item>
+        <item>音视频开发</item>
+    </string-array>
+</resources>

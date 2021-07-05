@@ -75,6 +75,8 @@ import com.youth.banner.adapter.BannerImageAdapter;
 import com.youth.banner.holder.BannerImageHolder;
 import com.youth.banner.indicator.CircleIndicator;
 
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -421,17 +423,27 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
 
 
         public void goknowledgeLabel() {
-            startActivity(new Intent(getActivity(), KnowledgeLabelActivity.class)
-                    .putExtra("data",(Serializable) knowledgeLabelList));
+//            startActivity(new Intent(getActivity(), KnowledgeLabelActivity.class)
+//                    .putExtra("data",(Serializable) knowledgeLabelList));
+
+
+
+            Intent intent = new Intent(getActivity(),KnowledgeLabelActivity.class);
+            intent.putExtra("data", (Serializable) knowledgeLabelList);
+            startActivityForResult(intent, KnowledgeLabelActivity.QUESTCODE);
+
         }
 
     }
 
     private void initMagicIndicator() {
-        //初始化标签
+       // knowledgeLabelList = CacheUtils.getInstance().getDataInfo("knowledgeLabel",new TypeToken<List<String>>(){}.getType());
         Type type = new TypeToken<List<String>>() {}.getType();
-        String jsonData = JsonUtils.getJson(getActivity(),"searchkeywords.json");
-        knowledgeLabelList = GsonUtils.getList(jsonData,type);
+        //初始化标签
+       // if (knowledgeLabelList == null || knowledgeLabelList.size() == 0) {
+            String jsonData = JsonUtils.getJson(getActivity(),"searchkeywords.json");
+            knowledgeLabelList = GsonUtils.getList(jsonData,type);
+     //   }
         mFragments.clear();
         for (int i = 0;i < knowledgeLabelList.size();i++) {
             mFragments.add(new HomeArticlesFragment());
@@ -611,17 +623,35 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //接收扫码结果
-        if(resultCode == RESULT_OK && requestCode == ScanCodeConfig.QUESTCODE && data != null){
-            Bundle extras = data.getExtras();
-            if(extras != null){
-                String result = extras.getString(ScanCodeConfig.CODE_KEY);
-                //跳到webview
-                ARouter.getInstance().build(RoutePathActivity.Web.Web_Normal)
-                        .withString("webUrl",result)
-                        .withString("webTitle","扫码结果")
-                        .navigation();
+        if (resultCode == RESULT_OK) {
+            if (requestCode == ScanCodeConfig.QUESTCODE && data != null) {
+                Bundle extras = data.getExtras();
+                if (extras != null) {
+                    String result = extras.getString(ScanCodeConfig.CODE_KEY);
+                    //跳到webview
+                    ARouter.getInstance().build(RoutePathActivity.Web.Web_Normal)
+                            .withString("webUrl", result)
+                            .withString("webTitle", "扫码结果")
+                            .navigation();
+                }
+
+            } else if (requestCode == KnowledgeLabelActivity.QUESTCODE && data != null) {
+                Bundle extras = data.getExtras();
+                if (extras != null) {
+                    knowledgeLabelList.clear();
+                    knowledgeLabelList.addAll((List<String>) extras.getSerializable(KnowledgeLabelActivity.DATA_KEY));
+                    mFragments.clear();
+                    for (int i = 0;i < knowledgeLabelList.size();i++) {
+                        mFragments.add(new HomeArticlesFragment());
+                    }
+                    ((CommonNavigator)mDatabind.magicIndicator.getNavigator()).notifyDataSetChanged();
+                    ViewSetUtils.setViewPager2Init(getActivity(), mFragments, mDatabind.viewPager, false);
+                }
+
             }
+
         }
+
     }
 
 }

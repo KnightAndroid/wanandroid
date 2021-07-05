@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.knight.wanandroid.library_util.constant.MMkvConstants;
 import com.tencent.mmkv.MMKV;
 
+import java.lang.reflect.Type;
+
 /**
  * @author created by knight
  * @organize wanandroid
@@ -37,16 +39,19 @@ public class CacheUtils {
         mmkv.encode(tag, new Gson().toJson(data));
     }
 
+
     /**
      * 获取对象信息
      * @param tag
      * @param <T>
      * @return
      */
-    public <T> T getDataInfo(String tag,Class<T> cls){
-         String userStr = mmkv.decodeString(tag);
-         return new Gson().fromJson(userStr,cls);
+    public <T> T getDataInfo(String tag, Type typeOfT){
+        String userStr = mmkv.decodeString(tag);
+        return new Gson().fromJson(userStr,typeOfT);
     }
+
+
 
 
     /**

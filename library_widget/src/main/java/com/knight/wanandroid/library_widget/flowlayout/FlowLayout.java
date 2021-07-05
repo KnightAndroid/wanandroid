@@ -80,7 +80,7 @@ public class FlowLayout extends ViewGroup {
 
         textViewSpacing = ViewSizeUtil.getCustomDimen(context, a.getInt(R.styleable.flowLayout_horizontalSpacingSize, 15));
         verticalSpacing = ViewSizeUtil.getCustomDimen(context, a.getInt(R.styleable.flowLayout_verticalSpacingSize, 15));
-        tagHeight = ViewSizeUtil.getCustomDimen(context, a.getInt(R.styleable.flowLayout_tagHeight, 28));
+        tagHeight = ViewSizeUtil.getCustomDimen(context, a.getInt(R.styleable.flowLayout_tagHeight, 40));
         childViewPadding = ViewSizeUtil.getCustomDimen(context, a.getInt(R.styleable.flowLayout_childViewPadding, 26));
         textSize = ViewSizeUtil.getCustomDimen(context, a.getInt(R.styleable.flowLayout_flowLayoutTextSize, 14)) * 1.0f / ViewSizeUtil.getDensity(context);
 
@@ -223,6 +223,7 @@ public class FlowLayout extends ViewGroup {
             removeViews(tagInfos.size(), getChildCount() - tagInfos.size());
         }
     }
+
 
     public void addTextView(List<TagInfo> tagInfos, int i) {
         TagInfo tagInfo;

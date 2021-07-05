@@ -17,4 +17,6 @@
     <string name="home_edit">编辑</string>
     <string name="home_save">完成</string>
     <string name="home_hold_down_drag">长按可调整顺序</string>
+    <string name="home_more_knowledge">更多标签</string>
+    <string name="home_click_myknowledge">点击添加我的知识标签</string>
 </resources>
