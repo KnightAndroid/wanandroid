@@ -1,5 +1,7 @@
 package com.knight.wanandroid.library_util;
 
+import java.util.List;
+
 /**
  * @author created by knight
  * @organize wanandroid
@@ -28,9 +30,21 @@ public class EventBusUtils {
 
     }
 
-
     //消息阅读
     public static class ReadAllMessage{
+
+    }
+
+    //标签更改
+    public static class ChangeLabel{
+        private List<String> lists;
+        public ChangeLabel (List<String> lists){
+            this.lists = lists;
+        }
+
+        public List<String> getResults(){
+            return  lists;
+        }
 
     }
 

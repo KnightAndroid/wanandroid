@@ -9,6 +9,7 @@
         <activity android:name=".module_activity.SearchResultActivity" />
         <activity android:name=".module_activity.HomeArticlesTabActivity"/>
         <activity android:name=".module_activity.KnowledgeLabelActivity"/>
+        <activity android:name=".module_activity.AddKnowLedgeLabelActivity"/>
     </application>
 
 </manifest>

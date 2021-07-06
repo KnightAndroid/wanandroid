@@ -21,6 +21,7 @@ public class RoutePathActivity {
         public static final String searchResult = Home + "/module_search_result";
         public static final String HomeTopArticle = Home + "/module_article_tabs";
         public static final String KnowLedgeLabel = Home + "/module_knowledge_label";
+        public static final String AddKnowledgeLabel = Home + "/module_add_knowledge";
     }
 
 

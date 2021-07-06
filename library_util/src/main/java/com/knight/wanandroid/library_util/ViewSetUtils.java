@@ -2,7 +2,10 @@ package com.knight.wanandroid.library_util;
 
 import android.graphics.Color;
 import android.os.Build;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -112,6 +115,35 @@ public class ViewSetUtils {
             ((TextView) view).setHighlightColor(Color.parseColor("#00000000"));
             
         }
+    }
+
+
+    /**
+     *
+     * 监听文字输入
+     * @param editText
+     * @param tv
+     */
+    public static void setLinstenerInputNumber(EditText editText,TextView tv){
+        editText.addTextChangedListener(new TextWatcher() {
+            private CharSequence temp;
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                temp = s;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                tv.setText(temp.toString().trim().length() + "/30");
+            }
+        });
+
     }
 
 

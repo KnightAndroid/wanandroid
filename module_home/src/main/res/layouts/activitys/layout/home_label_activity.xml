@@ -126,5 +126,18 @@
             app:layout_constraintRight_toRightOf="parent"
             />
 
+
+        <ImageView
+            android:id="@+id/home_iv_addlabel"
+            android:layout_width="@dimen/base_dimen_26"
+            android:layout_height="@dimen/base_dimen_26"
+            app:layout_constraintTop_toBottomOf="@id/home_moreknowledge_rv"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="@dimen/base_dimen_10"
+            android:layout_marginLeft="@dimen/base_dimen_16"
+            android:background="@drawable/home_icon_add_label"
+            android:onClick="@{()->click.goAddKnowLedgeLabel()}"/>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

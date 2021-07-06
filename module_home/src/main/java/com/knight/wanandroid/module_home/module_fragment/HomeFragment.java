@@ -430,20 +430,21 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
 
             Intent intent = new Intent(getActivity(),KnowledgeLabelActivity.class);
             intent.putExtra("data", (Serializable) knowledgeLabelList);
-            startActivityForResult(intent, KnowledgeLabelActivity.QUESTCODE);
+            startActivity(intent);
+           // startActivityForResult(intent, KnowledgeLabelActivity.QUESTCODE);
 
         }
 
     }
 
     private void initMagicIndicator() {
-       // knowledgeLabelList = CacheUtils.getInstance().getDataInfo("knowledgeLabel",new TypeToken<List<String>>(){}.getType());
-        Type type = new TypeToken<List<String>>() {}.getType();
+        knowledgeLabelList = CacheUtils.getInstance().getDataInfo("knowledgeLabel",new TypeToken<List<String>>(){}.getType());
         //初始化标签
-       // if (knowledgeLabelList == null || knowledgeLabelList.size() == 0) {
+        if (knowledgeLabelList == null || knowledgeLabelList.size() == 0) {
+            Type type = new TypeToken<List<String>>() {}.getType();
             String jsonData = JsonUtils.getJson(getActivity(),"searchkeywords.json");
             knowledgeLabelList = GsonUtils.getList(jsonData,type);
-     //   }
+        }
         mFragments.clear();
         for (int i = 0;i < knowledgeLabelList.size();i++) {
             mFragments.add(new HomeArticlesFragment());
@@ -600,10 +601,31 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         mDatabind.homeRlMessage.setVisibility(View.GONE);
     }
 
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void readAllMessage(EventBusUtils.ReadAllMessage readAllMessage){
         mDatabind.homeRlMessage.setVisibility(View.GONE);
     }
+
+
+    /**
+     *
+     * 更改标签
+     * @param changeLabel
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void changeLabel(EventBusUtils.ChangeLabel changeLabel) {
+        knowledgeLabelList.clear();
+        knowledgeLabelList.addAll(changeLabel.getResults());
+        mFragments.clear();
+        for (int i = 0;i < knowledgeLabelList.size();i++) {
+            mFragments.add(new HomeArticlesFragment());
+        }
+        ((CommonNavigator)mDatabind.magicIndicator.getNavigator()).notifyDataSetChanged();
+        ViewSetUtils.setViewPager2Init(getActivity(), mFragments, mDatabind.viewPager, false);
+
+    }
+
 
 
     public void scrollTop(){
@@ -635,21 +657,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
                             .navigation();
                 }
 
-            } else if (requestCode == KnowledgeLabelActivity.QUESTCODE && data != null) {
-                Bundle extras = data.getExtras();
-                if (extras != null) {
-                    knowledgeLabelList.clear();
-                    knowledgeLabelList.addAll((List<String>) extras.getSerializable(KnowledgeLabelActivity.DATA_KEY));
-                    mFragments.clear();
-                    for (int i = 0;i < knowledgeLabelList.size();i++) {
-                        mFragments.add(new HomeArticlesFragment());
-                    }
-                    ((CommonNavigator)mDatabind.magicIndicator.getNavigator()).notifyDataSetChanged();
-                    ViewSetUtils.setViewPager2Init(getActivity(), mFragments, mDatabind.viewPager, false);
-                }
-
             }
-
         }
 
     }

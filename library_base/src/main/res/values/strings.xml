@@ -33,5 +33,6 @@
     <string name="base_no_data">暂无数据,请点击重试</string>
     <string name="base_error_data">出错了,请点击重试</string>
     <string name="base_downloading_wait">下载更新中,请稍候...</string>
+    <string name="base_save">保存</string>
 
 </resources>
