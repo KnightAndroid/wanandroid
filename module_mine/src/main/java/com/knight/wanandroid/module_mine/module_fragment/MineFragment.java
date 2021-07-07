@@ -121,6 +121,7 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
         mDatabind.mineTvRank.setText("排名第 -");
         mDatabind.mineTvPoints.setText("-");
         mDatabind.mineRlLogout.setVisibility(View.GONE);
+        mDatabind.mineIvMessage.setVisibility(View.GONE);
         mDatabind.mineIvHead.setBackground(null);
         GlideEngineUtils.getInstance().loadCircleIntLocalPhoto(getActivity(),R.drawable.mine_iv_default_head,mDatabind.mineIvHead);
         EventBus.getDefault().post(new EventBusUtils.LogoutSuccess());
@@ -206,6 +207,7 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
     public void onLoginInSuccess(EventBusUtils.LoginInSuccess loginInSuccess){
         mPresenter.requestUserInfoCoin();
         mDatabind.mineRlLogout.setVisibility(View.VISIBLE);
+        mDatabind.mineIvMessage.setVisibility(View.VISIBLE);
     }
 
     @Override

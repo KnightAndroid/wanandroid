@@ -28,7 +28,6 @@ import com.knight.wanandroid.module_home.module_adapter.MoreKnowLedgeAdapter;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -60,6 +59,7 @@ public class KnowledgeLabelActivity extends BaseDBActivity<HomeLabelActivityBind
     private FlexboxLayoutManager mManager;
     private MoreKnowLedgeAdapter mMoreKnowLedgeAdapter;
     private List<TagInfo> moreKnowLedgeList;
+
     @Override
     public int layoutId() {
         return R.layout.home_label_activity;
@@ -70,8 +70,8 @@ public class KnowledgeLabelActivity extends BaseDBActivity<HomeLabelActivityBind
         mDatabind.setClick(new ProxyClick());
         mDatabind.homeIncludeTitle.baseIvBack.setOnClickListener(v -> finish());
         mDatabind.homeIncludeTitle.baseTvTitle.setText(R.string.home_knowledge_label);
-        mDataList = (List<String>)getIntent().getSerializableExtra("data");
-        mDatabind.homeTvMylabel.setText(getString(R.string.home_knowledge_label) +"("+mDataList.size()+"/10)");
+        mDataList = (List<String>) getIntent().getSerializableExtra("data");
+        mDatabind.homeTvMylabel.setText(getString(R.string.home_knowledge_label) + "(" + mDataList.size() + "/10)");
         //固定标签
         fixDataList.add(mDataList.get(0));
         //把首个标签移除，其他就是可编辑标签
@@ -92,7 +92,8 @@ public class KnowledgeLabelActivity extends BaseDBActivity<HomeLabelActivityBind
                 //删除标签 回调这里
                 mMoreKnowLedgeAdapter.getData().add(tagInfo);
                 mMoreKnowLedgeAdapter.notifyItemInserted(mMoreKnowLedgeAdapter.getData().size() - 1);
-                mDatabind.homeTvMylabel.setText(getString(R.string.home_knowledge_label) +"("+mDatabind.homeKnowledgetTag.getTagInfos().size()+"/10)");
+                mDatabind.homeTvMylabel.setText(getString(R.string.home_knowledge_label) + "(" + mDatabind.homeKnowledgetTag.getTagInfos().size() + "/10)");
+                mDatabind.homeTvMorelabel.setText(getString(R.string.home_more_knowledge) + "(" + mMoreKnowLedgeAdapter.getData().size() + "/10)");
             }
         });
         initData();
@@ -100,9 +101,9 @@ public class KnowledgeLabelActivity extends BaseDBActivity<HomeLabelActivityBind
 
 
     @Override
-    public void initData(){
-        myTagInfos.addAll(addTags("fix",fixDataList,TagInfo.TYPE_TAG_SERVICE));
-        myTagInfos.addAll(addTags("default",mDataList,TagInfo.TYPE_TAG_USER));
+    public void initData() {
+        myTagInfos.addAll(addTags("fix", fixDataList, TagInfo.TYPE_TAG_SERVICE));
+        myTagInfos.addAll(addTags("default", mDataList, TagInfo.TYPE_TAG_USER));
         mDatabind.homeKnowledgetTag.setTags(myTagInfos);
 
         mManager = new FlexboxLayoutManager(this);
@@ -113,14 +114,16 @@ public class KnowledgeLabelActivity extends BaseDBActivity<HomeLabelActivityBind
         mDatabind.homeMoreknowledgeRv.setLayoutManager(mManager);
 
         //首先读取本地是否有保存
-        moreKnowLedgeList = CacheUtils.getInstance().getDataInfo("moreknowledgeLabel",new TypeToken<List<TagInfo>>(){}.getType());
+        moreKnowLedgeList = CacheUtils.getInstance().getDataInfo("moreknowledgeLabel", new TypeToken<List<TagInfo>>() {
+        }.getType());
         if (moreKnowLedgeList == null || moreKnowLedgeList.size() == 0) {
             moreKnowLedgeList = new ArrayList<>();
-            String[] tagsMoreKnowledge = getResources().getStringArray(R.array.home_more_knowledge_name);
-            moreKnowLedgeList.addAll(addTags("moreknowledge",Arrays.asList(tagsMoreKnowledge),TagInfo.TYPE_TAG_USER));
+            //String[] tagsMoreKnowledge = getResources().getStringArray(R.array.home_more_knowledge_name);
+            //moreKnowLedgeList.addAll(addTags("moreknowledge",Arrays.asList(tagsMoreKnowledge),TagInfo.TYPE_TAG_USER));
         }
         mMoreKnowLedgeAdapter = new MoreKnowLedgeAdapter(moreKnowLedgeList);
         mDatabind.homeMoreknowledgeRv.setAdapter(mMoreKnowLedgeAdapter);
+        mDatabind.homeTvMorelabel.setText(getString(R.string.home_more_knowledge) + "(" + mMoreKnowLedgeAdapter.getData().size() + "/10)");
         initLinstener();
     }
 
@@ -152,20 +155,20 @@ public class KnowledgeLabelActivity extends BaseDBActivity<HomeLabelActivityBind
                 mMoreKnowLedgeAdapter.setIsEdit(true);
             } else {
                 if (mDatabind.homeKnowledgetTag.getTagInfos().size() > 10) {
-                    ToastUtils.getInstance().showToast(getString(R.string.home_moreenough_tips,10));
+                    ToastUtils.getInstance().showToast(getString(R.string.home_moreenough_tips, 10));
                 } else {
                     isEdit = false;
                     mDatabind.homeLabelEdit.setText(R.string.home_edit);
                     mMoreKnowLedgeAdapter.setIsEdit(false);
                     //保存到mmkv
-                    List <String> mKnowledgeLabelList = new ArrayList<>();
-                    for (int i = 0; i< mDatabind.homeKnowledgetTag.getTagInfos().size();i++) {
+                    List<String> mKnowledgeLabelList = new ArrayList<>();
+                    for (int i = 0; i < mDatabind.homeKnowledgetTag.getTagInfos().size(); i++) {
                         mKnowledgeLabelList.add(mDatabind.homeKnowledgetTag.getTagInfos().get(i).tagName);
                     }
                     //保存我的标签
-                    CacheUtils.getInstance().saveDataInfo("knowledgeLabel",mKnowledgeLabelList);
+                    CacheUtils.getInstance().saveDataInfo("knowledgeLabel", mKnowledgeLabelList);
                     //保存更多标签
-                    CacheUtils.getInstance().saveDataInfo("moreknowledgeLabel",mMoreKnowLedgeAdapter.getData());
+                    CacheUtils.getInstance().saveDataInfo("moreknowledgeLabel", mMoreKnowLedgeAdapter.getData());
                     initTagDefault();
                     EventBus.getDefault().post(new EventBusUtils.ChangeLabel(mKnowledgeLabelList));
                 }
@@ -175,16 +178,14 @@ public class KnowledgeLabelActivity extends BaseDBActivity<HomeLabelActivityBind
 
 
         /**
-         *
          * 去往添加标签
-         *
          */
-        public void goAddKnowLedgeLabel(){
-            if (mMoreKnowLedgeAdapter.getData().size() <= 10) {
-                Intent intent = new Intent(KnowledgeLabelActivity.this,AddKnowLedgeLabelActivity.class);
-                startActivityForResult(intent,AddKnowLedgeLabelActivity.QUESTCODE);
+        public void goAddKnowLedgeLabel() {
+            if (mMoreKnowLedgeAdapter.getData().size() < 10) {
+                Intent intent = new Intent(KnowledgeLabelActivity.this, AddKnowLedgeLabelActivity.class);
+                startActivityForResult(intent, AddKnowLedgeLabelActivity.QUESTCODE);
             } else {
-                ToastUtils.getInstance().showToast(getString(R.string.home_moreenough_tips,10));
+                ToastUtils.getInstance().showToast(getString(R.string.home_moreenough_tips, 10));
             }
 
         }
@@ -194,6 +195,7 @@ public class KnowledgeLabelActivity extends BaseDBActivity<HomeLabelActivityBind
         mDatabind.homeKnowledgetTag.enableDragAndDrop();
         mDatabind.homeKnowledgetTag.setIsEdit(true);
     }
+
     private void initTagDefault() {
         mDatabind.homeKnowledgetTag.setDefault();
         mDatabind.homeKnowledgetTag.setIsEdit(false);
@@ -201,17 +203,27 @@ public class KnowledgeLabelActivity extends BaseDBActivity<HomeLabelActivityBind
 
 
     /**
-     *
      * 点击事件
      */
     private void initLinstener() {
         mMoreKnowLedgeAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
-                mDatabind.homeKnowledgetTag.addTag(mMoreKnowLedgeAdapter.getData().get(position),isEdit);
-                mDatabind.homeTvMylabel.setText(getString(R.string.home_knowledge_label) +"("+mDatabind.homeKnowledgetTag.getTagInfos().size()+"/10)");
-                mMoreKnowLedgeAdapter.getData().remove(position);
-                mMoreKnowLedgeAdapter.notifyItemRemoved(position);
+                if (isEdit) {
+                    for (int i = 0; i < mDatabind.homeKnowledgetTag.getTagInfos().size(); i++) {
+                        if (mMoreKnowLedgeAdapter.getData().get(position).tagName.equals(mDatabind.homeKnowledgetTag.getTagInfos().get(i).tagName)) {
+                            ToastUtils.getInstance().showToast(getString(R.string.home_same_label_tip));
+                            return;
+                        }
+
+                    }
+                    mDatabind.homeKnowledgetTag.addTag(mMoreKnowLedgeAdapter.getData().get(position), isEdit);
+                    mDatabind.homeTvMylabel.setText(getString(R.string.home_knowledge_label) + "(" + mDatabind.homeKnowledgetTag.getTagInfos().size() + "/10)");
+                    mMoreKnowLedgeAdapter.getData().remove(position);
+                    mMoreKnowLedgeAdapter.notifyItemRemoved(position);
+                    mDatabind.homeTvMorelabel.setText(getString(R.string.home_more_knowledge) + "(" + mMoreKnowLedgeAdapter.getData().size() + "/10)");
+                }
+
 
             }
         });
@@ -225,6 +237,7 @@ public class KnowledgeLabelActivity extends BaseDBActivity<HomeLabelActivityBind
                     //删除
                     mMoreKnowLedgeAdapter.getData().remove(position);
                     mMoreKnowLedgeAdapter.notifyItemRemoved(position);
+                    mDatabind.homeTvMorelabel.setText(getString(R.string.home_more_knowledge) + "(" + mMoreKnowLedgeAdapter.getData().size() + "/10)");
                 }
             }
         });
@@ -233,13 +246,13 @@ public class KnowledgeLabelActivity extends BaseDBActivity<HomeLabelActivityBind
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK){
-            if (requestCode == AddKnowLedgeLabelActivity.QUESTCODE && data != null){
+        if (resultCode == RESULT_OK) {
+            if (requestCode == AddKnowLedgeLabelActivity.QUESTCODE && data != null) {
                 Bundle extras = data.getExtras();
                 if (extras != null) {
                     String result = extras.getString(AddKnowLedgeLabelActivity.LABEL_DATA);
                     if (!TextUtils.isEmpty(result)) {
-                        for (int i = 0; i < mMoreKnowLedgeAdapter.getData().size();i++) {
+                        for (int i = 0; i < mMoreKnowLedgeAdapter.getData().size(); i++) {
                             if (result.equals(mMoreKnowLedgeAdapter.getData().get(i).tagName)) {
                                 ToastUtils.getInstance().showToast(getString(R.string.home_same_label_tip));
                                 return;
@@ -251,6 +264,7 @@ public class KnowledgeLabelActivity extends BaseDBActivity<HomeLabelActivityBind
                         tagInfo.tagId = "moreknowledgeLabel" + new Random(1).nextInt(100);
                         mMoreKnowLedgeAdapter.getData().add(tagInfo);
                         mMoreKnowLedgeAdapter.notifyItemInserted(mMoreKnowLedgeAdapter.getData().size() - 1);
+                        mDatabind.homeTvMorelabel.setText(getString(R.string.home_more_knowledge) + "(" + mMoreKnowLedgeAdapter.getData().size() + "/10)");
 
                     }
                 }

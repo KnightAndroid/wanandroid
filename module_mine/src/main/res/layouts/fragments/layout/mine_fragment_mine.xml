@@ -37,7 +37,6 @@
                 android:layout_marginTop="@dimen/base_dimen_30"
                 android:layout_marginRight="@dimen/base_dimen_26"
                 android:onClick="@{()->click.goMessage()}"
-                android:visibility="gone"
                 />
 
 

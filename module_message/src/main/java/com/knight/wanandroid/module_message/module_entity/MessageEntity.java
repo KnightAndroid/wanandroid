@@ -32,6 +32,7 @@ public class MessageEntity extends BaseEntity {
     private int fromUserId;
     private int id;
     private int isRead;
+    private String fullLink;
     private String link;
     private String message;
     private String niceDate;
@@ -133,5 +134,13 @@ public class MessageEntity extends BaseEntity {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public String getFullLink() {
+        return fullLink == null ? "" : fullLink;
+    }
+
+    public void setFullLink(String fullLink) {
+        this.fullLink = fullLink;
     }
 }

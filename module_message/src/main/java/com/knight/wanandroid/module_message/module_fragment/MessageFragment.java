@@ -1,9 +1,14 @@
 package com.knight.wanandroid.module_message.module_fragment;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.knight.wanandroid.library_base.fragment.BaseFragment;
+import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
@@ -50,10 +55,6 @@ public class MessageFragment extends BaseFragment<MessageReadedFragmentBinding, 
     }
 
 
-
-
-
-
     @Override
     protected int layoutId() {
         return R.layout.message_readed_fragment;
@@ -67,7 +68,7 @@ public class MessageFragment extends BaseFragment<MessageReadedFragmentBinding, 
         mDatabind.includeMessage.baseFreshlayout.setOnLoadMoreListener(this);
         mMessageAdapter = new MessageAdapter(new ArrayList<>());
         SetInitCustomView.initSwipeRecycleview(mDatabind.includeMessage.baseBodyRv,new LinearLayoutManager(getActivity()),mMessageAdapter,false);
-
+        initListener();
     }
 
 
@@ -174,5 +175,23 @@ public class MessageFragment extends BaseFragment<MessageReadedFragmentBinding, 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
         lazyLoadData();
+    }
+
+
+    /**
+     *
+     * 点击事件
+     */
+    private void initListener(){
+        mMessageAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
+                ARouter.getInstance().build(RoutePathActivity.Web.Web_Normal)
+                        .withString("webUrl",mMessageAdapter.getData().get(position).getFullLink())
+                        .withString("webTitle",mMessageAdapter.getData().get(position).getTitle())
+                        .navigation();
+            }
+        });
+
     }
 }
