@@ -1,5 +1,6 @@
 package com.knight.wanandroid.module_home.module_entity;
 
+import com.knight.wanandroid.library_base.entity.BaseEntity;
 import com.wanandroid.knight.library_database.entity.EveryDayPushEntity;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.List;
  * @Date 2021/6/24 14:04
  * @descript:
  */
-public class EveryDayPushArticlesEntity{
+public class EveryDayPushArticlesEntity extends BaseEntity {
 
 
     private int total;

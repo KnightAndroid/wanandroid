@@ -42,7 +42,9 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true //开启混淆
+            shrinkResources true //去除无用资源
+            zipAlignEnabled true//压缩优化
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }

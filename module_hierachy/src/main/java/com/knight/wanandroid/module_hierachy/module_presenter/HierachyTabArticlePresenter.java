@@ -1,6 +1,6 @@
 package com.knight.wanandroid.module_hierachy.module_presenter;
 
-import com.knight.wanandroid.library_base.fragment.BaseFragment;
+import com.knight.wanandroid.library_base.basefragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_network.model.HttpData;
 import com.knight.wanandroid.module_hierachy.module_contract.HierachyTabContract;

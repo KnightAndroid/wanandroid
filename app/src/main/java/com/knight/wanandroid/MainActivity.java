@@ -6,7 +6,7 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.knight.wanandroid.databinding.ActivityMainBinding;
-import com.knight.wanandroid.library_base.activity.BaseDBActivity;
+import com.knight.wanandroid.library_base.baseactivity.BaseDBActivity;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_util.ViewSetUtils;
 import com.knight.wanandroid.module_hierachy.module_fragment.HierachyNavigateMainFragment;

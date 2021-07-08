@@ -7,7 +7,7 @@ import android.view.Gravity;
 import android.view.View;
 
 import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
-import com.knight.wanandroid.library_base.fragment.BaseDialogFragment;
+import com.knight.wanandroid.library_base.basefragment.BaseDialogFragment;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.SystemUtils;
 import com.knight.wanandroid.library_util.ToastUtils;

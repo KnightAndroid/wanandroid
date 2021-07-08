@@ -1,6 +1,6 @@
 package com.knight.wanandroid.module_web.module_presenter;
 
-import com.knight.wanandroid.library_base.fragment.BaseDialogFragment;
+import com.knight.wanandroid.library_base.basefragment.BaseDialogFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_network.model.HttpData;
 import com.knight.wanandroid.module_web.module_contract.WebDialogContract;

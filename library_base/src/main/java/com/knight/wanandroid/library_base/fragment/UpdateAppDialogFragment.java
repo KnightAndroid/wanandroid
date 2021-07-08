@@ -8,6 +8,7 @@ import android.view.KeyEvent;
 import android.view.View;
 
 import com.knight.wanandroid.library_base.R;
+import com.knight.wanandroid.library_base.basefragment.BaseDBDialogFragment;
 import com.knight.wanandroid.library_base.databinding.BaseUpdateappDialogBinding;
 import com.knight.wanandroid.library_base.entity.AppUpdateEntity;
 

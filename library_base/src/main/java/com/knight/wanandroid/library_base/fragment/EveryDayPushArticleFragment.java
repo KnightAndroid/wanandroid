@@ -3,6 +3,7 @@ package com.knight.wanandroid.library_base.fragment;
 import android.view.Gravity;
 
 import com.knight.wanandroid.library_base.R;
+import com.knight.wanandroid.library_base.basefragment.BaseDBDialogFragment;
 import com.knight.wanandroid.library_base.databinding.BaseEverydaypushDialogBinding;
 import com.knight.wanandroid.library_base.util.InitCustomViewUtils;
 import com.knight.wanandroid.library_base.view.CardTransformer;

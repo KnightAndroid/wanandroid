@@ -10,7 +10,7 @@ import android.view.View;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.knight.wanandroid.library_base.AppConfig;
-import com.knight.wanandroid.library_base.fragment.BaseDBFragment;
+import com.knight.wanandroid.library_base.basefragment.BaseDBFragment;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_util.ColorUtils;
 import com.knight.wanandroid.library_widget.pagertransformer.DragLayout;

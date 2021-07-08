@@ -4,7 +4,7 @@ import com.knight.wanandroid.library_base.api.CancelCollectArticleApi;
 import com.knight.wanandroid.library_base.api.CollectArticleApi;
 import com.knight.wanandroid.library_base.api.HotKeyApi;
 import com.knight.wanandroid.library_base.entity.SearchHotKeyEntity;
-import com.knight.wanandroid.library_base.fragment.BaseFragment;
+import com.knight.wanandroid.library_base.basefragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_network.GoHttp;
 import com.knight.wanandroid.library_network.listener.HttpCallback;

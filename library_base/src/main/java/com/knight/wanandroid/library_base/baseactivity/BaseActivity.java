@@ -1,4 +1,4 @@
-package com.knight.wanandroid.library_base.activity;
+package com.knight.wanandroid.library_base.baseactivity;
 
 import android.content.pm.ActivityInfo;
 import android.os.Build;
@@ -13,7 +13,10 @@ import com.knight.wanandroid.library_base.R;
 import com.knight.wanandroid.library_base.loadsir.EmptyCallBack;
 import com.knight.wanandroid.library_base.loadsir.ErrorCallBack;
 import com.knight.wanandroid.library_base.loadsir.LoadCallBack;
+import com.knight.wanandroid.library_base.model.BaseModel;
+import com.knight.wanandroid.library_base.presenter.BasePresenter;
 import com.knight.wanandroid.library_network.listener.OnHttpListener;
+import com.knight.wanandroid.library_util.CreateUtils;
 import com.knight.wanandroid.library_util.StatusBarUtils;
 import com.knight.wanandroid.library_widget.loadcircleview.ProgressHUD;
 import com.knight.wanandroid.library_widget.swipeback.SwipeBackHelper;
@@ -25,25 +28,29 @@ import androidx.databinding.ViewDataBinding;
 /**
  * @author created by knight
  * @organize wanandroid
- * @Date 2021/4/2 17:25
- * @descript:非业务界面
+ * @Date 2020/12/28 19:54
+ * @descript:Activity基类
  */
-public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppCompatActivity implements OnHttpListener {
+public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePresenter,M extends BaseModel> extends AppCompatActivity implements OnHttpListener {
 
     public abstract int layoutId();
-    public DB mDatabind;
-    private ProgressHUD mProgressHUD;
 
+    public DB mDatabind;
+    public T mPresenter;
+    public M mModel;
 
     public LoadService mLoadService;
+    private ProgressHUD mProgressHUD;
 
     private SwipeBackHelper mSwipeBackHelper;
+
+
+
     public abstract void initView(Bundle savedInstanceState);
 
 
-    protected void initData(){
+    protected void initData(){}
 
-    }
     protected void reLoadData(){}
 
 
@@ -58,22 +65,15 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             mSwipeBackHelper = new SwipeBackHelper(this);
         }
-
+        //内部获取第二个类型参数的真实类型，反射new出对象
+        mPresenter = CreateUtils.get(this,1);
+        //内部获取第三个类型参数的真实类型，反射new出对手
+        mModel = CreateUtils.get(this,2);
+        //使得p层绑定M层和V层，持有M和V的引用
+        mPresenter.attachModelView(mModel,this);
+        initData();
 
     }
-
-
-    private void createViewDataBinding() {
-        mDatabind = DataBindingUtil.setContentView(this, layoutId());
-        mDatabind.setLifecycleOwner(this);
-    }
-
-
-    protected int getActivityTheme(){
-        return R.style.base_AppTheme;
-    }
-
-
 
 
     /**
@@ -124,6 +124,20 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
 
         }
     }
+
+
+    private void createViewDataBinding() {
+        mDatabind = DataBindingUtil.setContentView(this, layoutId());
+        mDatabind.setLifecycleOwner(this);
+    }
+
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        mPresenter.onDettach();
+    }
+
     /**
      * 显示请求框
      * @param loadMessage
@@ -145,6 +159,13 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
             mProgressHUD.dismiss();
         }
     }
+
+
+    protected int getActivityTheme(){
+        return R.style.base_AppTheme;
+    }
+
+
 
     @Override
     public void onSucceed(Object result) {

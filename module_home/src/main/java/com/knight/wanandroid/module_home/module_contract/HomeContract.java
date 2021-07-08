@@ -2,7 +2,7 @@ package com.knight.wanandroid.module_home.module_contract;
 
 import com.knight.wanandroid.library_base.entity.AppUpdateEntity;
 import com.knight.wanandroid.library_base.entity.OfficialAccountEntity;
-import com.knight.wanandroid.library_base.fragment.BaseFragment;
+import com.knight.wanandroid.library_base.basefragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_base.model.BaseModel;
 import com.knight.wanandroid.library_base.presenter.BasePresenter;

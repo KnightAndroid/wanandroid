@@ -1,6 +1,6 @@
 package com.knight.wanandroid.module_home.module_model;
 
-import com.knight.wanandroid.library_base.activity.BaseActivity;
+import com.knight.wanandroid.library_base.baseactivity.BaseActivity;
 import com.knight.wanandroid.library_base.api.HotKeyApi;
 import com.knight.wanandroid.library_base.entity.SearchHotKeyEntity;
 import com.knight.wanandroid.library_base.listener.MvpListener;

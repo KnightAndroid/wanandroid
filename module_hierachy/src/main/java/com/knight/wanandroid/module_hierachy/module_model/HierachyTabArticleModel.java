@@ -2,7 +2,7 @@ package com.knight.wanandroid.module_hierachy.module_model;
 
 import com.knight.wanandroid.library_base.api.CancelCollectArticleApi;
 import com.knight.wanandroid.library_base.api.CollectArticleApi;
-import com.knight.wanandroid.library_base.fragment.BaseFragment;
+import com.knight.wanandroid.library_base.basefragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_network.GoHttp;
 import com.knight.wanandroid.library_network.listener.HttpCallback;

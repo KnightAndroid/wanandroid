@@ -5,7 +5,7 @@ import android.net.Uri;
 import android.view.Gravity;
 import android.webkit.WebView;
 
-import com.knight.wanandroid.library_base.fragment.BaseDBDialogFragment;
+import com.knight.wanandroid.library_base.basefragment.BaseDBDialogFragment;
 import com.knight.wanandroid.library_util.SystemUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.module_web.R;

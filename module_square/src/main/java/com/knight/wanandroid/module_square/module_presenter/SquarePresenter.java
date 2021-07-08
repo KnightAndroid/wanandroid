@@ -1,7 +1,7 @@
 package com.knight.wanandroid.module_square.module_presenter;
 
 import com.knight.wanandroid.library_base.entity.SearchHotKeyEntity;
-import com.knight.wanandroid.library_base.fragment.BaseFragment;
+import com.knight.wanandroid.library_base.basefragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_network.model.HttpData;
 import com.knight.wanandroid.module_square.module_contract.SquareContact;

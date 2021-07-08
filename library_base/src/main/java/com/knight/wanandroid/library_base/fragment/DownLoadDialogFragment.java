@@ -11,6 +11,7 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 
 import com.knight.wanandroid.library_base.R;
+import com.knight.wanandroid.library_base.basefragment.BaseDBDialogFragment;
 import com.knight.wanandroid.library_base.databinding.BaseDownloadDialogBinding;
 import com.knight.wanandroid.library_util.DownLoadManagerUtils;
 import com.knight.wanandroid.library_util.SystemUtils;
@@ -27,7 +28,7 @@ import androidx.annotation.Nullable;
  * @Date 2021/6/11 14:59
  * @descript:
  */
-public class DownLoadDialogFragment extends BaseDBDialogFragment<BaseDownloadDialogBinding>{
+public class DownLoadDialogFragment extends BaseDBDialogFragment<BaseDownloadDialogBinding> {
 
 
 

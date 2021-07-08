@@ -1,6 +1,6 @@
 package com.knight.wanandroid.module_home.module_model;
 
-import com.knight.wanandroid.library_base.activity.BaseActivity;
+import com.knight.wanandroid.library_base.baseactivity.BaseActivity;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_network.GoHttp;
 import com.knight.wanandroid.library_network.listener.HttpCallback;

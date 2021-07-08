@@ -1,6 +1,6 @@
 package com.knight.wanandroid.module_message.module_presenter;
 
-import com.knight.wanandroid.library_base.fragment.BaseFragment;
+import com.knight.wanandroid.library_base.basefragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.module_message.module_contract.MessageContract;
 import com.knight.wanandroid.module_message.module_entity.MessageListEntity;

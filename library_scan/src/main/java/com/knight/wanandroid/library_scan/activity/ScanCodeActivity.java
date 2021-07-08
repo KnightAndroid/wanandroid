@@ -11,7 +11,7 @@ import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
 import com.google.common.util.concurrent.ListenableFuture;
-import com.knight.wanandroid.library_base.activity.BaseDBActivity;
+import com.knight.wanandroid.library_base.baseactivity.BaseDBActivity;
 import com.knight.wanandroid.library_scan.R;
 import com.knight.wanandroid.library_scan.databinding.ScancodeActivityBinding;
 import com.knight.wanandroid.library_scan.decode.ScanCodeAnalyzer;

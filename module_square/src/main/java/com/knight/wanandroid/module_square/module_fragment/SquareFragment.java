@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -18,8 +19,8 @@ import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
 import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
 import com.knight.wanandroid.library_base.AppConfig;
+import com.knight.wanandroid.library_base.basefragment.BaseFragment;
 import com.knight.wanandroid.library_base.entity.SearchHotKeyEntity;
-import com.knight.wanandroid.library_base.fragment.BaseFragment;
 import com.knight.wanandroid.library_base.loadsir.LoadCallBack;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
@@ -111,6 +112,7 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
         initAdapterListener();
         baserecycleview = QuestionMenu.findViewById(R.id.base_body_rv);
         smartRefreshLayout = (SmartRefreshLayout) QuestionMenu.findViewById(R.id.include_square_question);
+        ((TextView)QuestionMenu.findViewById(R.id.square_question_tv_title)).setText(getString(R.string.square_question));
         smartRefreshLayout.setOnRefreshListener(refreshLayout -> {
             questionPage = 1;
             mPresenter.requestSquareQuestion(questionPage);

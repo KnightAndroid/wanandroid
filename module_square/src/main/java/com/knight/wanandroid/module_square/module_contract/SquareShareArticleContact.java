@@ -1,6 +1,6 @@
 package com.knight.wanandroid.module_square.module_contract;
 
-import com.knight.wanandroid.library_base.activity.BaseActivity;
+import com.knight.wanandroid.library_base.baseactivity.BaseActivity;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_base.model.BaseModel;
 import com.knight.wanandroid.library_base.presenter.BasePresenter;

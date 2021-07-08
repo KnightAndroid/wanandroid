@@ -3,7 +3,7 @@ package com.knight.wanandroid.module_hierachy.module_fragment;
 import android.os.Bundle;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.knight.wanandroid.library_base.fragment.BaseDBFragment;
+import com.knight.wanandroid.library_base.basefragment.BaseDBFragment;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
 import com.knight.wanandroid.library_base.util.InitCustomViewUtils;
 import com.knight.wanandroid.library_util.ViewSetUtils;

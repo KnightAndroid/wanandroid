@@ -1,4 +1,4 @@
-package com.knight.wanandroid.library_base.fragment;
+package com.knight.wanandroid.library_base.basefragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

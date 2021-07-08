@@ -3,7 +3,7 @@ package com.knight.wanandroid.module_message.module_activity;
 import android.os.Bundle;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.knight.wanandroid.library_base.activity.BaseDBActivity;
+import com.knight.wanandroid.library_base.baseactivity.BaseDBActivity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_base.util.InitCustomViewUtils;
 import com.knight.wanandroid.library_util.ViewSetUtils;

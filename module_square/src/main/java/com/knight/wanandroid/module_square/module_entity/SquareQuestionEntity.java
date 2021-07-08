@@ -352,7 +352,7 @@ public class SquareQuestionEntity extends BaseEntity {
         this.zan = zan;
     }
 
-    public static class TagsDTO {
+    public static class TagsDTO extends BaseEntity{
         /**
          * name : 本站发布
          * url : /article/list/0?cid=440

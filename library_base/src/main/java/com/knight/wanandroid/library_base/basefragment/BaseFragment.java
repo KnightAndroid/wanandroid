@@ -1,4 +1,4 @@
-package com.knight.wanandroid.library_base.fragment;
+package com.knight.wanandroid.library_base.basefragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -95,24 +95,6 @@ public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePres
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,@Nullable Bundle savedInstanceState){
-//         if(mDatabind != null && mDatabind.getRoot() != null){
-//             return mDatabind.getRoot();
-//         }
-
-//         if (mRootView == null || mRootView.get() == null) {
-//             mDatabind = DataBindingUtil.inflate(inflater,layoutId(),container,false);
-//             mDatabind.setLifecycleOwner(this);
-//             mRootView = new WeakReference<View>(mDatabind.getRoot());
-//         } else {
-//             ViewGroup parent = (ViewGroup) mRootView.get().getParent();
-//             if (parent != null) {
-//                 parent.removeView(mRootView.get());
-//             }
-//         }
-//
-//        return mRootView.get();
-
-
          mDatabind = DataBindingUtil.inflate(inflater,layoutId(),container,false);
          mDatabind.setLifecycleOwner(this);
          return mDatabind.getRoot();

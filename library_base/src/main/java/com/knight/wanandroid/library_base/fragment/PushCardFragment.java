@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.knight.wanandroid.library_base.R;
+import com.knight.wanandroid.library_base.basefragment.BaseDBFragment;
 import com.knight.wanandroid.library_base.databinding.BasePushcardFragmentBinding;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;

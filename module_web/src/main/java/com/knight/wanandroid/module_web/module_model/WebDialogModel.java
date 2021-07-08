@@ -1,7 +1,7 @@
 package com.knight.wanandroid.module_web.module_model;
 
 import com.knight.wanandroid.library_base.api.CollectArticleApi;
-import com.knight.wanandroid.library_base.fragment.BaseDialogFragment;
+import com.knight.wanandroid.library_base.basefragment.BaseDialogFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_network.GoHttp;
 import com.knight.wanandroid.library_network.listener.HttpCallback;

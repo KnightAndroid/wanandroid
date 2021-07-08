@@ -8,7 +8,7 @@ import android.view.View;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
-import com.knight.wanandroid.library_base.fragment.BaseFragment;
+import com.knight.wanandroid.library_base.basefragment.BaseFragment;
 import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
@@ -102,6 +102,7 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
         gradientDrawable.setColor(ColorUtils.getRandColorCode());
         mDatabind.mineIvHead.setBackground(gradientDrawable);
         mDatabind.mineTvUserabbr.setText(userInfoCoinEntity.getUsername().substring(0,1));
+        mDatabind.mineTvUsername.setText(userInfoCoinEntity.getUsername());
         //显示等级 排名 积分
         mDatabind.mineTvLevel.setText("等级 "+userInfoCoinEntity.getLevel());
         mDatabind.mineTvRank.setText("排名第 "+userInfoCoinEntity.getRank());

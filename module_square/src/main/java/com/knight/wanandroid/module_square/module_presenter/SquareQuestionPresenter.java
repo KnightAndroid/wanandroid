@@ -1,6 +1,6 @@
 package com.knight.wanandroid.module_square.module_presenter;
 
-import com.knight.wanandroid.library_base.fragment.BaseFragment;
+import com.knight.wanandroid.library_base.basefragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.module_square.module_contract.SquareQuestionContract;
 import com.knight.wanandroid.module_square.module_entity.SquareQuestionListEntity;

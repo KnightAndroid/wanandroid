@@ -1,5 +1,7 @@
 package com.knight.wanandroid.module_mine.module_entity;
 
+import com.knight.wanandroid.library_base.entity.BaseEntity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +11,7 @@ import java.util.List;
  * @Date 2021/5/8 14:42
  * @descript:
  */
-public class MyArticleListEntity {
+public class MyArticleListEntity extends BaseEntity {
     private int curPage;
     private int offset;
     private boolean over;

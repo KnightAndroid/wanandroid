@@ -8,7 +8,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
-import com.knight.wanandroid.library_base.fragment.BaseFragment;
+import com.knight.wanandroid.library_base.basefragment.BaseFragment;
 import com.knight.wanandroid.library_base.util.ARouterUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
@@ -135,6 +135,7 @@ public class WechatArticleFragment extends BaseFragment<WechatOfficialaccountVie
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
         page = 1;
+        keyWords = "";
         mDatabind.includeWechatArticles.baseFreshlayout.setEnableLoadMore(true);
         mPresenter.requestWechatArticle(page,cid);
     }
@@ -202,6 +203,7 @@ public class WechatArticleFragment extends BaseFragment<WechatOfficialaccountVie
         page = 1;
         this.keyWords = keyWords;
         mPresenter.requestArticlesByKeywords(page,cid,keyWords);
+        mDatabind.includeWechatArticles.baseFreshlayout.setEnableLoadMore(true);
         mDatabind.includeWechatArticles.baseFreshlayout.autoRefresh();
 
     }
