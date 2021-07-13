@@ -20,3 +20,8 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 ##-keep class com.knight.wanandroid.module_hierachy.module_entity.**{*;}
+
+# hierachy
+-keep class com.knight.wanandroid.module_hierachy.module_model.**{*;}
+-keep class com.knight.wanandroid.module_hierachy.module_request.**{*;}
+-keep class com.knight.wanandroid.module_hierachy.module_presenter.**{*;}

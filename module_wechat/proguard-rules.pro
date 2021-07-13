@@ -22,3 +22,9 @@
 
 ## -keep class com.knight.wanandroid.module_wechat.module_entity.**{*;}
 
+
+#wechat
+-keep class com.knight.wanandroid.module_wechat.module_model.**{*;}
+-keep class com.knight.wanandroid.module_wechat.module_request.**{*;}
+-keep class com.knight.wanandroid.module_wechat.module_presenter.**{*;}
+

@@ -19,3 +19,16 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# aop注解 解决混淆会把注解去掉
+-keep @com.knight.wanandroid.library_aop.clickintercept.* class * {*;}
+-keep @com.knight.wanandroid.library_aop.loginintercept.* class * {*;}
+-keep class * {
+    @com.knight.wanandroid.library_aop.clickintercept.* <fields>;
+    @com.knight.wanandroid.library_aop.loginintercept.* <fields>;
+}
+-keepclassmembers class * {
+    @com.knight.wanandroid.library_aop.clickintercept.* <methods>;
+    @com.knight.wanandroid.library_aop.loginintercept.* <methods>;
+}
+

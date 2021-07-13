@@ -21,3 +21,8 @@
 #-renamesourcefileattribute SourceFile
 ##-keep class com.knight.wanandroid.module_mine.module_entity.**{*;}
 
+# mine
+-keep class com.knight.wanandroid.module_mine.module_model.**{*;}
+-keep class com.knight.wanandroid.module_mine.module_request.**{*;}
+-keep class com.knight.wanandroid.module_mine.module_presenter.**{*;}
+

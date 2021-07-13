@@ -19,3 +19,20 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Aroute
+-keep public class com.alibaba.android.arouter.routes.**{*;}
+-keep public class com.alibaba.android.arouter.facade.**{*;}
+-keep class * implements com.alibaba.android.arouter.facade.template.ISyringe{*;}
+
+-dontwarn com.kingja.loadsir.**
+-keep class com.kingja.loadsir.** {*;}
+
+-dontwarn com.tencent.bugly.**
+-keep public class com.tencent.bugly.**{*;}
+
+# 解决mvp转换报错 Caused by: java.lang.ClassCastException
+# base
+-keep class com.knight.wanandroid.library_base.baseactivity.**{*;}
+-keep class com.knight.wanandroid.library_base.basefragment.**{*;}
+-keep class com.knight.wanandroid.library_base.entity.**{*;}

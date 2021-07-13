@@ -22,3 +22,8 @@
 
 ##-keep class com.knight.wanandroid.module_square.module_entity.**{*;}
 
+#square
+-keep class com.knight.wanandroid.module_square.module_model.**{*;}
+-keep class com.knight.wanandroid.module_square.module_request.**{*;}
+-keep class com.knight.wanandroid.module_square.module_presenter.**{*;}
+

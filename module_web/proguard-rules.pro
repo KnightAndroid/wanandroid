@@ -20,4 +20,12 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
+-keep class com.just.agentweb.** {
+    *;
+}
+-dontwarn com.just.agentweb.**
+#web
+-keep class com.knight.wanandroid.module_web.module_model.**{*;}
+-keep class com.knight.wanandroid.module_web.module_presenter.**{*;}
+
 
