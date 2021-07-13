@@ -385,22 +385,22 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
             }
         }
 
-        public void scanCode(){
-                    XXPermissions.with(HomeFragment.this)
-                            .permission(Permission.CAMERA)
-                            .request(new OnPermissionCallback() {
-                                @Override
-                                public void onGranted(List<String> permissions, boolean all) {
-                                    if (all) {
-                                        new ScanCodeConfig.Builder()
-                                                .setFragment(HomeFragment.this)
-                                                .setActivity(getActivity())
-                                                .setPlayAudio(true)
-                                                .setStyle(ScanStyle.FULL_SCREEN)
-                                                .build().start(ScanCodeActivity.class);
-                                    }
-                                }
-                            });
+        public void scanCode() {
+            XXPermissions.with(HomeFragment.this)
+                    .permission(Permission.CAMERA)
+                    .request(new OnPermissionCallback() {
+                        @Override
+                        public void onGranted(List<String> permissions, boolean all) {
+                            if (all) {
+                                new ScanCodeConfig.Builder()
+                                        .setFragment(HomeFragment.this)
+                                        .setActivity(getActivity())
+                                        .setPlayAudio(true)
+                                        .setStyle(ScanStyle.FULL_SCREEN)
+                                        .build().start(ScanCodeActivity.class);
+                            }
+                        }
+                    });
         }
 
 
@@ -423,16 +423,9 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
 
 
         public void goknowledgeLabel() {
-//            startActivity(new Intent(getActivity(), KnowledgeLabelActivity.class)
-//                    .putExtra("data",(Serializable) knowledgeLabelList));
-
-
-
             Intent intent = new Intent(getActivity(),KnowledgeLabelActivity.class);
             intent.putExtra("data", (Serializable) knowledgeLabelList);
             startActivity(intent);
-           // startActivityForResult(intent, KnowledgeLabelActivity.QUESTCODE);
-
         }
 
     }

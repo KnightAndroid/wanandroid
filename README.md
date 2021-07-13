@@ -26,6 +26,8 @@
 - 文章阅读历史
 - 每日推荐
 - 公众号搜索
+- 消息管理
+- 分类标签
 
 
 
@@ -37,10 +39,12 @@
 | ![4.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_navigate.jpg) | ![5.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_cardblur.jpg) | ![6.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_othershare.jpg) |
 | ![7.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_scan.jpg) | ![8.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_search.jpg) | ![9.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_secondfloor.jpg) |
 | ![10.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_everydaypush.jpg) | ![11.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_historyrecord.jpg) | ![12.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_updateapp.jpg) |
+| ![11.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_knowledgeLabel.jpg) | ![12.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_message_remind.jpg) | ![13.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_messagecenter.jpg) |
+
 # 主要GIF展示
 | ![1.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_01.gif) | ![2.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_02.gif) | ![3.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_03.gif) |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ![4.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_04.gif) |
+| ![4.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_04.gif) |![5.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_05.gif) |
 
 
 
@@ -68,6 +72,14 @@
 
 
 # 更新日志
+## 1.0.1(3)
+-  wanandroid 第三版发布
+-  新增分类标签管理
+-  新增消息中心
+-  新增分module混淆
+-  新增侧滑返回
+-  发布时间：2021/07/14
+
 ## 1.0.1(2)
 
 -  wanandroid 第二版发布

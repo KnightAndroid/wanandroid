@@ -32,3 +32,8 @@
     @com.knight.wanandroid.library_aop.loginintercept.* <methods>;
 }
 
+# Aroute
+-keep public class com.alibaba.android.arouter.routes.**{*;}
+-keep public class com.alibaba.android.arouter.facade.**{*;}
+-keep class * implements com.alibaba.android.arouter.facade.template.ISyringe{*;}
+

@@ -25,3 +25,8 @@
 -keep class com.knight.wanandroid.module_hierachy.module_model.**{*;}
 -keep class com.knight.wanandroid.module_hierachy.module_request.**{*;}
 -keep class com.knight.wanandroid.module_hierachy.module_presenter.**{*;}
+
+# Aroute
+-keep public class com.alibaba.android.arouter.routes.**{*;}
+-keep public class com.alibaba.android.arouter.facade.**{*;}
+-keep class * implements com.alibaba.android.arouter.facade.template.ISyringe{*;}
