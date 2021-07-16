@@ -3,7 +3,7 @@
     <string name="mine_me_points">我的积分</string>
     <string name="mine_me_collect">我的收藏</string>
     <string name="mine_me_dealt">待办清单To Do</string>
-    <string name="mine_me_system_setting">系统设置</string>
+    <string name="mine_me_system_setting">设置</string>
     <string name="mine_quit_account">退出账户</string>
     <string name="mine_rule">规则</string>
     <string name="mine_apploginname">wanAndroid</string>
@@ -15,7 +15,6 @@
     <string name="mine_register">注册</string>
     <string name="mine_emptyusername_hint">账号不能为空</string>
     <string name="mine_emptypassword_hint">密码不能为空</string>
-    <string name="mine_confirm_logout">是否退出当前账号</string>
     <string name="mine_register_namehint">请输入注册账号</string>
     <string name="mine_register_confirm">确认密码</string>
     <string name="mine_register_againconfirm">请再一次填写确认密码</string>
@@ -36,8 +35,6 @@
     <string name="mine_historyrecord">阅读历史</string>
     <string name="mine_cancel_all_historyrecord">是否要删除所有阅读历史记录</string>
     <string name="mine_cleanall">清空</string>
-    <string name="mine_project_repository">本项目仓库</string>
-    <string name="mine_official_website">官网</string>
     <string name="mine_app_noupdate">暂无版本更新</string>
 
 </resources>

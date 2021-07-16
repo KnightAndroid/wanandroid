@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="click"
+            type="com.knight.wanandroid.module_set.module_activity.SetActivity.ProxyClick" />
+    </data>
+
+
+    <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/base_include_toolbar" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base_dimen_26"
+                android:layout_marginTop="@dimen/base_dimen_10"
+                android:text="@string/set_basic"
+                android:textColor="@color/base_color_theme"
+                android:textSize="@dimen/base_dimen_16" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base_dimen_26"
+                android:layout_marginTop="@dimen/base_dimen_2">
+
+                <TextView
+                    android:id="@+id/set_istoparticle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/set_showtoparticle"
+                    android:textColor="@color/base_color_title"
+                    android:textSize="@dimen/base_dimen_18" />
+
+
+                <TextView
+                    android:id="@+id/set_istoparticle_tip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/set_istoparticle"
+                    android:text="@string/set_showtoparticle_tips" />
+
+                <CheckBox
+                    android:id="@+id/set_cb_checktoparticle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/base_dimen_20"
+                    android:button="@drawable/set_checkbox_selector" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base_dimen_26"
+                android:layout_marginTop="@dimen/base_dimen_20">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/set_drak_model"
+                    android:textColor="@color/base_color_title"
+                    android:textSize="@dimen/base_dimen_18" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/base_dimen_20"
+                    android:drawableRight="@drawable/base_iv_userinfo_arrow"
+                    android:gravity="center"
+                    android:text="@string/set_drak_close"
+                    android:textSize="@dimen/base_dimen_16" />
+
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base_dimen_26"
+                android:layout_marginTop="@dimen/base_dimen_30"
+                android:text="@string/set_common"
+                android:textColor="@color/base_color_theme"
+                android:textSize="@dimen/base_dimen_16" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base_dimen_26"
+                android:layout_marginTop="@dimen/base_dimen_2">
+
+                <TextView
+                    android:id="@+id/set_tv_clearcache"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/set_clear_cache"
+                    android:textColor="@color/base_color_title"
+                    android:textSize="@dimen/base_dimen_18" />
+
+
+                <TextView
+                    android:id="@+id/set_cachememory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/set_tv_clearcache"
+                    android:text="10.23MB" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/base_dimen_20"
+                    android:background="@drawable/base_iv_userinfo_arrow" />
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base_dimen_26"
+                android:layout_marginTop="@dimen/base_dimen_30"
+                android:text="@string/set_other"
+                android:textColor="@color/base_color_theme"
+                android:textSize="@dimen/base_dimen_16" />
+
+            <!--本项目仓库-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base_dimen_26"
+                android:layout_marginTop="@dimen/base_dimen_2"
+                android:onClick="@{()->click.projectRepository()}">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/set_project_repository"
+                    android:textColor="@color/base_color_title"
+                    android:textSize="@dimen/base_dimen_18" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/base_dimen_20"
+                    android:background="@drawable/base_iv_userinfo_arrow" />
+            </RelativeLayout>
+
+            <!--官网-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base_dimen_26"
+                android:layout_marginTop="@dimen/base_dimen_20"
+                android:onClick="@{()->click.goOfficialWebsite()}">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/set_official_website"
+                    android:textColor="@color/base_color_title"
+                    android:textSize="@dimen/base_dimen_18" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/base_dimen_20"
+                    android:background="@drawable/base_iv_userinfo_arrow" />
+
+            </RelativeLayout>
+
+
+            <!--关于 -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base_dimen_26"
+                android:layout_marginTop="@dimen/base_dimen_20"
+                android:onClick="@{()->click.goAbout()}">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/set_about_wanandroid"
+                    android:textColor="@color/base_color_title"
+                    android:textSize="@dimen/base_dimen_18" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/base_dimen_20"
+                    android:background="@drawable/base_iv_userinfo_arrow" />
+
+            </RelativeLayout>
+
+            <!--退出账户-->
+            <RelativeLayout
+                android:id="@+id/set_rl_logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base_dimen_26"
+                android:layout_marginTop="@dimen/base_dimen_20"
+                android:onClick="@{()->click.Logout()}">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/set_quit_account"
+                    android:textColor="@color/base_color_title"
+                    android:textSize="@dimen/base_dimen_18" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/base_dimen_20"
+                    android:background="@drawable/base_iv_userinfo_arrow" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</layout>

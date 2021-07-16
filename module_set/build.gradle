@@ -10,9 +10,8 @@ android {
 
     defaultConfig {
         if(isRunAlone.toBoolean()){
-            applicationId "com.knight.wanandroid.module_wechat"
+            applicationId "com.knight.wanandroid.module_set"
         }
-
         minSdkVersion rootProject.ext.min_sdk_version
         targetSdkVersion rootProject.ext.target_sdk_version
         versionCode rootProject.ext.appVersionCode
@@ -24,7 +23,6 @@ android {
             }
         }
     }
-
 
     //是否开启DataBinding
     dataBinding {
@@ -38,14 +36,13 @@ android {
         }
     }
 
-    //限定资源前缀命名
-    resourcePrefix "wechat_"
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    //限定资源前缀命名
+    resourcePrefix "set_"
     sourceSets {
         main {
             if(isRunAlone.toBoolean()){
@@ -71,10 +68,11 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
+
+
 }
 
 dependencies {
-
     implementation project (':library_base')
     annotationProcessor "com.alibaba:arouter-compiler:$arouterVersion"
 }

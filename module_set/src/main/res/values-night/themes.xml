@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="set_Theme.Wanandroid" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/set_purple_200</item>
+        <item name="colorPrimaryVariant">@color/set_purple_700</item>
+        <item name="colorOnPrimary">@color/set_black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/set_teal_200</item>
+        <item name="colorSecondaryVariant">@color/set_teal_200</item>
+        <item name="colorOnSecondary">@color/set_black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+</resources>

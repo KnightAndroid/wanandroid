@@ -100,6 +100,16 @@ public class RoutePathActivity {
     }
 
 
+    /**
+     *
+     *
+     */
+    public static class Set{
+       private static final String Set = "/module_set_activity";
+       public static final String Set_pager = Set + "/set_pager";
+    }
+
+
 
 
 
