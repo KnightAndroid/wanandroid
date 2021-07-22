@@ -29,7 +29,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                android:background="@color/square_white"
+                android:background="@color/base_bg_normal_default"
                 >
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -53,7 +53,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/base_dimen_16"
                         android:layout_marginLeft="@dimen/base_dimen_16"
-                        android:textColor="@color/square_color333333"
+                        android:textColor="@color/base_color_title"
                         android:text="@string/square_click_share"
                         app:layout_constraintRight_toLeftOf="@+id/square_tv_goshare"
                         app:layout_constraintTop_toTopOf="parent"
@@ -80,7 +80,7 @@
                         android:layout_height="wrap_content"
                         app:layout_constraintTop_toBottomOf="@id/square_tv_tipshare"
                         app:layout_constraintLeft_toLeftOf="@id/square_tv_tipshare"
-                        android:textColor="@color/square_color333333"
+                        android:textColor="@color/base_color_title"
                         android:text="@string/square_share_addcoins"
                         android:layout_marginTop="@dimen/base_dimen_6"
                         android:textSize="@dimen/base_dimen_16"/>
@@ -126,7 +126,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/base_dimen_16"
-                            android:textColor="@color/square_color333333"
+                            android:textColor="@color/base_color_title"
                             android:textSize="@dimen/base_dimen_18"
                             android:text="@string/square_every_one_search"
                             android:layout_marginTop="@dimen/base_dimen_10"/>
@@ -146,7 +146,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/square_new_sharearticle"
                             android:layout_marginLeft="@dimen/base_dimen_16"
-                            android:textColor="@color/square_color333333"
+                            android:textColor="@color/base_color_title"
                             android:textSize="@dimen/base_dimen_18"
                             />
 

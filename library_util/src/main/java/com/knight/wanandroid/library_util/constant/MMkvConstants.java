@@ -12,4 +12,8 @@ public class MMkvConstants {
     public static final String USER = "user";
     //是否同意用户协议
     public static final String AGREEMENT = "agreement";
+    //是否跟随系统
+    public static final String ISFOLLOWSYSTEM = "isFollow";
+    //普通模式还是深色模式
+    public static final String NORMALDARK = "normalDark";
 }

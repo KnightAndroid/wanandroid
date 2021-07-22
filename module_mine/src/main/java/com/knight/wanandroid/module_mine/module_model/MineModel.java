@@ -1,6 +1,5 @@
 package com.knight.wanandroid.module_mine.module_model;
 
-import com.knight.wanandroid.library_base.baseactivity.BaseDBActivity;
 import com.knight.wanandroid.library_base.basefragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_network.GoHttp;
@@ -8,7 +7,6 @@ import com.knight.wanandroid.library_network.listener.HttpCallback;
 import com.knight.wanandroid.library_network.model.HttpData;
 import com.knight.wanandroid.module_mine.module_contract.MineContract;
 import com.knight.wanandroid.module_mine.module_entity.UserInfoCoinEntity;
-import com.knight.wanandroid.module_mine.module_request.LogoutApi;
 import com.knight.wanandroid.module_mine.module_request.PersonalCoinApi;
 
 import okhttp3.Call;
@@ -45,30 +43,5 @@ public class MineModel implements MineContract.MineModel {
 
     }
 
-    @Override
-    public void requestLogout(BaseFragment fragment, MvpListener mvpListener) {
-        ((BaseDBActivity)fragment.getActivity()).showLoadingHud("退出登录中...");
-        GoHttp.get(fragment)
-                .api(new LogoutApi())
-                .request(new HttpCallback<HttpData>(fragment){
-
-                    @Override
-                    public void onSucceed(HttpData httpData){
-                        mvpListener.onSuccess(httpData);
-
-                    }
-
-                    @Override
-                    public void onFail(Exception e){
-                        mvpListener.onError(e.getMessage());
-                    }
-
-                    @Override
-                    public void onEnd(Call call){
-                        ((BaseDBActivity)fragment.getActivity()).dismissLoadingHud();
-                    }
-
-                });
-    }
 
 }

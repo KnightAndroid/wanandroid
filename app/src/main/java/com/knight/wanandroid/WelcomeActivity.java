@@ -24,7 +24,6 @@ public class WelcomeActivity extends BaseDBActivity<ActivityWelcomeBinding> {
     @Override
     public void initView(Bundle savedInstanceState) {
         setTheme(getActivityTheme());
-
         mDatabind.logoAnim.addOffsetAnimListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
@@ -34,14 +33,10 @@ public class WelcomeActivity extends BaseDBActivity<ActivityWelcomeBinding> {
                     finish();
                 } else {
                     new PrivacyDialogFrament().show(getSupportFragmentManager(), "dialog_privacy");
-
                 }
-
             }
         });
         mDatabind.logoAnim.startAnimation();
-
-
     }
 
     @Override
@@ -58,4 +53,5 @@ public class WelcomeActivity extends BaseDBActivity<ActivityWelcomeBinding> {
     public int getActivityTheme() {
         return R.style.AppSplash;
     }
+
 }

@@ -15,33 +15,7 @@ import com.knight.wanandroid.module_home.module_entity.HomeArticleListEntity;
 public class HomeArticlePresenter extends HomeArticleContract.HomeArticleDataPresenter {
 
 
-    /**
-     *
-     * 首页列表请求api
-     *
-     *
-     * @param page
-     */
-    @Override
-    public void requestAllHomeArticle(int page) {
-        final HomeArticleContract.HomeArticleView mView = getView();
-        if (mView == null) {
-            return;
-        }
 
-        mModel.requestAllHomeArticle((BaseFragment)mView, page,new MvpListener<HomeArticleListEntity>() {
-            @Override
-            public void onSuccess(HomeArticleListEntity data) {
-                mView.setAllHomeArticle(data);
-
-            }
-
-            @Override
-            public void onError(String errorMsg) {
-                mView.showError(errorMsg);
-            }
-        });
-    }
 
     /**
      *

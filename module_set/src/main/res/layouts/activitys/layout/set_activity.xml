@@ -20,7 +20,9 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <include layout="@layout/base_include_toolbar" />
+            <include
+                android:id="@+id/include_set_toobar"
+                layout="@layout/base_include_toolbar" />
 
 
             <TextView
@@ -69,17 +71,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/base_dimen_26"
-                android:layout_marginTop="@dimen/base_dimen_20">
+                android:layout_marginTop="@dimen/base_dimen_20"
+                android:onClick="@{()->click.goSelectDarkMode()}">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/set_drak_model"
+                    android:text="@string/set_dark_mode"
                     android:textColor="@color/base_color_title"
                     android:textSize="@dimen/base_dimen_18" />
 
 
                 <TextView
+                    android:id="@+id/set_darkmode_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -87,8 +91,9 @@
                     android:layout_marginRight="@dimen/base_dimen_20"
                     android:drawableRight="@drawable/base_iv_userinfo_arrow"
                     android:gravity="center"
-                    android:text="@string/set_drak_close"
-                    android:textSize="@dimen/base_dimen_16" />
+                    android:text="@string/set_dark_close"
+                    android:textSize="@dimen/base_dimen_16"
+                    android:textColor="@color/base_second_title"/>
 
 
             </RelativeLayout>

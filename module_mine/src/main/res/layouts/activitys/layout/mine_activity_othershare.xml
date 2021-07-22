@@ -136,7 +136,7 @@
             android:layout_marginTop="60dp"
             android:clickable="true"
             android:focusable="false"
-            android:background="@drawable/mine_top_whitearound"
+            android:background="@drawable/mine_top_around"
             >
 
 

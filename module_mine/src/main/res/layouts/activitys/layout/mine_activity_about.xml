@@ -52,7 +52,7 @@
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginTop="@dimen/base_dimen_20"
             app:layout_constraintTop_toBottomOf="@id/mine_tv_app_version"
-            app:cardBackgroundColor="@color/base_color_theme"
+            app:cardBackgroundColor="@color/base_bg_card"
             android:layout_marginLeft="@dimen/base_dimen_20"
             android:layout_marginRight="@dimen/base_dimen_20">
 
@@ -78,7 +78,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/mine_update_record"
-                        android:textColor="@android:color/white"
+                        android:textColor="@color/base_bg_me_text"
                         android:textSize="@dimen/base_dimen_18"
                         />
 
@@ -86,7 +86,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:background="@drawable/mine_iv_white_arrow"/>
+                        android:background="@drawable/mine_iv_arrow"/>
 
                 </RelativeLayout>
 
@@ -103,7 +103,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/mine_check_update"
-                        android:textColor="@android:color/white"
+                        android:textColor="@color/base_bg_me_text"
                         android:textSize="@dimen/base_dimen_18"
                         />
 
@@ -118,7 +118,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:gravity="center"
-                        android:drawableRight="@drawable/mine_iv_white_arrow"/>
+                        android:drawableRight="@drawable/mine_iv_arrow"/>
 
 
                 </RelativeLayout>

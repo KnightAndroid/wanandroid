@@ -1,16 +1,17 @@
 package com.knight.wanandroid.module_web.module_activity;
 
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.KeyEvent;
-import android.view.ViewGroup;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.LinearLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -23,6 +24,7 @@ import com.just.agentweb.WebViewClient;
 import com.knight.wanandroid.library_base.AppConfig;
 import com.knight.wanandroid.library_base.baseactivity.BaseDBActivity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.ScreenUtils;
 import com.knight.wanandroid.module_web.R;
 import com.knight.wanandroid.module_web.databinding.WebTransitionActivityBinding;
@@ -153,7 +155,12 @@ public class WebTransitionActivity extends BaseDBActivity<WebTransitionActivityB
 
         mDatabind.webArticleAuthor.setText(author);
         mDatabind.webChapterName.setText(chapterName);
-        mDatabind.webTransitionToolbar.baseTvTitle.setTextColor(ContextCompat.getColor(this,R.color.web_white));
+        if (CacheUtils.getInstance().getNormalDark()) {
+            mDatabind.webTransitionToolbar.baseTvTitle.setTextColor(Color.BLACK);
+        } else {
+            mDatabind.webTransitionToolbar.baseTvTitle.setTextColor(ContextCompat.getColor(this,R.color.web_white));
+        }
+
         mDatabind.webTransitionToolbar.baseTvTitle.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             mDatabind.webTransitionToolbar.baseTvTitle.setText(Html.fromHtml(title,Html.FROM_HTML_MODE_LEGACY));
@@ -166,7 +173,7 @@ public class WebTransitionActivity extends BaseDBActivity<WebTransitionActivityB
 
     private void initWebView(){
         mAgentWeb = AgentWeb.with(this)
-                .setAgentWebParent(mDatabind.webNestscrollview, new ViewGroup.LayoutParams(-1,-1))
+                .setAgentWebParent(mDatabind.webTransitionLl, new LinearLayout.LayoutParams(-1,-1))
                 .useDefaultIndicator(ContextCompat.getColor(this,R.color.base_color_theme),2)
                 .setWebChromeClient(mWebChromeClient)
                 .setWebViewClient(mWebViewClient)

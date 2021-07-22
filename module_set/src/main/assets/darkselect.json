@@ -1,0 +1,13 @@
+[
+  {
+    "name": "普通模式",
+    "isDark": false,
+    "select": false,
+    "showLine": true
+  },{
+    "name": "深色模式",
+    "isDark": true,
+    "select": false,
+    "showLine": false
+  }
+]

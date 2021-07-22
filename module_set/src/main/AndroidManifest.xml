@@ -4,6 +4,7 @@
 
     <application>
         <activity android:name=".module_activity.SetActivity" />
+        <activity android:name=".module_activity.DarkModeActivity"/>
     </application>
 
 </manifest>

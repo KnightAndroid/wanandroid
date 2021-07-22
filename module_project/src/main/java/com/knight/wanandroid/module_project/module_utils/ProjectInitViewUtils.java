@@ -8,6 +8,7 @@ import android.view.animation.DecelerateInterpolator;
 
 import com.knight.wanandroid.library_base.view.ScaleTransitionPagerTitleView;
 import com.knight.wanandroid.library_common.ApplicationProvider;
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.ScreenUtils;
 import com.knight.wanandroid.module_project.module_entity.ProjectTypeEntity;
 import com.knight.wanandroid.module_project.module_fragment.ProjectViewpagerFragment;
@@ -35,9 +36,6 @@ import androidx.viewpager2.widget.ViewPager2;
 public class ProjectInitViewUtils {
 
     /**
-     *
-     *
-     *
      * @param fragment
      * @param fragments
      * @param viewPager2
@@ -63,8 +61,8 @@ public class ProjectInitViewUtils {
 
 
     /**
-     *
      * 设置导航栏绑定Viewpager2
+     *
      * @param magicIndicator
      * @param viewPager2
      * @param mDataList
@@ -80,13 +78,19 @@ public class ProjectInitViewUtils {
             @Override
             public IPagerTitleView getTitleView(Context context, final int index) {
                 ScaleTransitionPagerTitleView scaleTransitionPagerTitleView = new ScaleTransitionPagerTitleView(context);
-                if(mDataList.size() != 0){
+                if (mDataList.size() != 0) {
                     scaleTransitionPagerTitleView.setText(mDataList.get(index).getName());
                 }
 
                 scaleTransitionPagerTitleView.setTextSize(18f);
-                scaleTransitionPagerTitleView.setNormalColor(Color.parseColor("#333333"));
-                scaleTransitionPagerTitleView.setSelectedColor(Color.parseColor("#333333"));
+                if (CacheUtils.getInstance().getNormalDark()) {
+                    scaleTransitionPagerTitleView.setNormalColor(Color.parseColor("#D3D3D3"));
+                    scaleTransitionPagerTitleView.setSelectedColor(Color.parseColor("#D3D3D3"));
+                } else {
+                    scaleTransitionPagerTitleView.setNormalColor(Color.parseColor("#333333"));
+                    scaleTransitionPagerTitleView.setSelectedColor(Color.parseColor("#333333"));
+                }
+
                 scaleTransitionPagerTitleView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -100,9 +104,9 @@ public class ProjectInitViewUtils {
             public IPagerIndicator getIndicator(Context context) {
                 LinePagerIndicator indicator = new LinePagerIndicator(context);
                 indicator.setMode(LinePagerIndicator.MODE_EXACTLY);
-                indicator.setLineHeight(ScreenUtils.dp2px(context,3.0f));
-                indicator.setLineWidth(ScreenUtils.dp2px(context,30.0f));
-                indicator.setRoundRadius(ScreenUtils.dp2px(context,6.0f));
+                indicator.setLineHeight(ScreenUtils.dp2px(context, 3.0f));
+                indicator.setLineWidth(ScreenUtils.dp2px(context, 30.0f));
+                indicator.setRoundRadius(ScreenUtils.dp2px(context, 6.0f));
                 indicator.setStartInterpolator(new AccelerateInterpolator());
                 indicator.setEndInterpolator(new DecelerateInterpolator(2.0f));
                 indicator.setColors(Color.parseColor("#55aff4"));

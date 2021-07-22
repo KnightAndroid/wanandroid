@@ -29,6 +29,7 @@ import com.knight.wanandroid.library_network.model.RequestHandler;
 import com.knight.wanandroid.library_network.server.ReleaseServer;
 import com.knight.wanandroid.library_permiss.XXPermissions;
 import com.knight.wanandroid.library_util.CacheUtils;
+import com.knight.wanandroid.library_util.SystemUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_util.constant.MMkvConstants;
 import com.tencent.bugly.crashreport.CrashReport;
@@ -105,6 +106,7 @@ public class ModuleConfig {
         user = initUser();
         //bugly异常上报
         CrashReport.initCrashReport(application, "669abbf2c8", false);
+        SystemUtils.darkNormal();
 
 
 

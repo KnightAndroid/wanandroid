@@ -29,11 +29,12 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/include_web_toolbar">
 
-            <LinearLayout
+            <com.knight.wanandroid.library_widget.WebContainer
                 android:id="@+id/web_ll"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical" />
+                android:orientation="vertical"
+                />
 
 
         </com.knight.wanandroid.library_widget.LoveAnimatorRelativeLayout>

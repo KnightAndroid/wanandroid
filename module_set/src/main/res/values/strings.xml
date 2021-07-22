@@ -1,10 +1,11 @@
 <resources>
-    <string name="set_app_name">module_set</string>
+    <string name="set_app_name">设置</string>
     <string name="set_basic">基本设置</string>
     <string name="set_showtoparticle">是否显示首页置顶文章</string>
     <string name="set_showtoparticle_tips">开启后将不会显示首页的置顶文章</string>
-    <string name="set_drak_model">深色模式</string>
-    <string name="set_drak_close">已关闭</string>
+    <string name="set_dark_mode">深色模式</string>
+    <string name="set_dark_close">已关闭</string>
+    <string name="set_dark_open">已开启</string>
     <string name="set_common">通用设置</string>
     <string name="set_clear_cache">清除缓存</string>
     <string name="set_other">其他</string>
@@ -13,4 +14,8 @@
     <string name="set_about_wanandroid">关于wanandroid</string>
     <string name="set_quit_account">退出</string>
     <string name="set_confirm_logout">是否退出当前账号</string>
+    <string name="set_follow_system">跟随系统</string>
+    <string name="set_followsystem_tip">开启后，将跟随系统打开或关闭深色模式</string>
+    <string name="set_manual_select">手动选择</string>
+    <string name="set_restart_app">是否要改变模式</string>
 </resources>

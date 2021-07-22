@@ -12,10 +12,11 @@
 
     </data>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/home_colorf9f9f9">
+        android:orientation="vertical"
+        >
 
 
         <include
@@ -25,198 +26,47 @@
 
         </include>
 
-        <com.scwang.smart.refresh.layout.SmartRefreshLayout
-            android:id="@+id/home_refreshLayout"
+        <RelativeLayout
+            android:id="@+id/home_rl_magicindicator"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/home_include_toolbar">
+            android:layout_height="@dimen/base_dimen_46"
+            android:layout_below="@id/home_include_toolbar"
+            android:background="@color/base_bg_normal_default"
+            >
 
-
-            <com.scwang.smart.refresh.header.TwoLevelHeader
-                android:id="@+id/home_twoLevelHeader"
+            <net.lucode.hackware.magicindicator.MagicIndicator
+                android:id="@+id/magic_indicator"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="50dp"
+                android:minHeight="50dp"
+                android:layout_toLeftOf="@+id/home_iv_labelmore"
 
-                <LinearLayout
-                    android:id="@+id/home_twoLevel_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:alpha="0"
-                    android:orientation="vertical">
-
-                    <include
-                        android:id="@+id/home_include_recyceview"
-                        layout="@layout/base_layout_recycleview" />
-
-                </LinearLayout>
+                />
 
 
-                <com.scwang.smart.refresh.header.ClassicsHeader
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+            <ImageView
+                android:id="@+id/home_iv_labelmore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/home_icon_flagmore"
+                android:layout_marginRight="@dimen/base_dimen_8"
+                android:onClick="@{()->click.goknowledgeLabel()}"
+                />
 
-            </com.scwang.smart.refresh.header.TwoLevelHeader>
-
-
-            <com.knight.wanandroid.library_widget.StickyScrollView
-                android:id="@+id/home_coordinatorsl"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fillViewport="true"
-                android:scrollbars="none">
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:id="@+id/home_ll_top"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-
-                        <!-- 消息中心 -->
-                        <RelativeLayout
-                            android:id="@+id/home_rl_message"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/base_dimen_40"
-                            android:onClick="@{()->click.goMessage()}"
-                            android:visibility="gone">
-
-                            <ImageView
-                                android:id="@+id/home_iv_message"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginLeft="@dimen/base_dimen_16"
-                                android:background="@drawable/home_icon_message" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignRight="@+id/home_iv_message"
-                                android:layout_marginTop="@dimen/base_dimen_6"
-                                android:background="@drawable/base_red_round" />
-
-                            <TextView
-                                android:id="@+id/home_tv_unread_message"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginLeft="@dimen/base_dimen_10"
-                                android:layout_toRightOf="@id/home_iv_message"
-                                android:text="你有1条未读消息"
-                                android:textColor="@color/base_color_title"
-                                android:textSize="@dimen/base_dimen_16" />
-
-
-                        </RelativeLayout>
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/base_dimen_16"
-                            android:layout_marginTop="@dimen/base_dimen_5"
-                            android:background="@drawable/home_shape_lefttop_round"
-                            android:gravity="center_vertical"
-                            android:text="@string/home_topsticky_article"
-                            android:textColor="@color/home_white"
-                            android:textSize="@dimen/base_dimen_14" />
-
-                        <com.yanzhenjie.recyclerview.SwipeRecyclerView
-                            android:id="@+id/home_top_article_rv"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-
-                        <com.youth.banner.Banner
-                            android:id="@+id/home_banner"
-                            android:layout_width="match_parent"
-                            android:layout_height="160dp">
-
-
-                        </com.youth.banner.Banner>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/base_dimen_16"
-                            android:layout_marginTop="@dimen/base_dimen_5"
-                            android:background="@drawable/home_shape_lefttop_round"
-                            android:gravity="center_vertical"
-                            android:text="@string/home_highquality_officialaccount"
-                            android:textColor="@color/home_white"
-                            android:textSize="@dimen/base_dimen_14" />
-
-                        <com.yanzhenjie.recyclerview.SwipeRecyclerView
-                            android:id="@+id/home_rv_official_account"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/base_dimen_10" />
-                    </LinearLayout>
-
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/base_dimen_50"
-                        android:tag="sticky"
-                        android:background="@color/home_white">
-
-                        <net.lucode.hackware.magicindicator.MagicIndicator
-                            android:id="@+id/magic_indicator"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:minHeight="50dp"
-                            android:layout_toLeftOf="@+id/home_iv_labelmore"
-
-                            />
-
-
-                        <ImageView
-                            android:id="@+id/home_iv_labelmore"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:background="@drawable/home_icon_flagmore"
-                            android:layout_marginRight="@dimen/base_dimen_8"
-                            android:onClick="@{()->click.goknowledgeLabel()}"
-                            />
+        </RelativeLayout>
 
 
 
-                    </RelativeLayout>
 
 
-                    <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/view_pager"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        />
-                </LinearLayout>
-
-            </com.knight.wanandroid.library_widget.StickyScrollView>
-
-        </com.scwang.smart.refresh.layout.SmartRefreshLayout>
-
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/home_icon_fab"
-            android:layout_width="wrap_content"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="@dimen/base_dimen_20"
-            android:layout_marginBottom="@dimen/base_dimen_70"
-            android:onClick="@{()->click.scrollUp()}"
-            android:src="@drawable/base_icon_up"
-            app:backgroundTint="@color/base_color_theme" />
-
-    </RelativeLayout>
+            />
+    </LinearLayout>
 
 </layout>
 

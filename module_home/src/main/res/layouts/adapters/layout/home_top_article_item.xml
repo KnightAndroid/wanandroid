@@ -16,7 +16,7 @@
             android:layout_marginLeft="@dimen/base_dimen_16"
             android:text="大小厂都问源码，到底有多难"
             android:textSize="@dimen/base_dimen_16"
-            android:textColor="@color/home_color333333"
+            android:textColor="@color/base_color_title"
             android:singleLine="true"
             android:ellipsize="end"
             android:maxEms="15"

@@ -56,7 +56,8 @@
             android:theme="@style/base_AppTheme.AppBarOverlay"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/base_AppTheme.PopupOverlay"
-            android:layout_marginLeft="@dimen/base_dimen_16"/>
+            android:layout_marginLeft="@dimen/base_dimen_16"
+            />
 
 
 

@@ -34,4 +34,6 @@ public class WanandroidApp extends BaseApp {
     public void initModuleData(Application application) {
 
     }
+
+
 }

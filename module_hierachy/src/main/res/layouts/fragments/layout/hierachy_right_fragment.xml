@@ -19,7 +19,7 @@
             android:id="@+id/hierachy_right_rv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/white">
+            android:background="@color/base_bg_normal_default">
         </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
 </layout>

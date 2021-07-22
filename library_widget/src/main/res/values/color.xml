@@ -4,4 +4,5 @@
     <color name="widget_white">#ffffff</color>
     <color name="widget_theme_color">#55aff4</color>
     <color name="widget_gray_color">#DEDEDE</color>
+    <color name="widget_night_color">#111111</color>
 </resources>

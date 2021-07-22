@@ -26,7 +26,7 @@
                 android:theme="@style/base_AppTheme.AppBarOverlay"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/base_AppTheme.PopupOverlay"
-                android:background="@android:color/white"/>
+                android:background="@color/base_bg_normal_default"/>
 
 
 

@@ -8,6 +8,7 @@ import android.view.animation.DecelerateInterpolator;
 
 import com.knight.wanandroid.library_base.view.ScaleTransitionPagerTitleView;
 import com.knight.wanandroid.library_common.ApplicationProvider;
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.ScreenUtils;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
@@ -57,8 +58,14 @@ public class InitCustomViewUtils {
                 }
 
                 scaleTransitionPagerTitleView.setTextSize(18f);
-                scaleTransitionPagerTitleView.setNormalColor(Color.parseColor("#333333"));
-                scaleTransitionPagerTitleView.setSelectedColor(Color.parseColor("#333333"));
+                if (CacheUtils.getInstance().getNormalDark()) {
+                    scaleTransitionPagerTitleView.setNormalColor(Color.parseColor("#D3D3D3"));
+                    scaleTransitionPagerTitleView.setSelectedColor(Color.parseColor("#D3D3D3"));
+                } else {
+                    scaleTransitionPagerTitleView.setNormalColor(Color.parseColor("#333333"));
+                    scaleTransitionPagerTitleView.setSelectedColor(Color.parseColor("#333333"));
+                }
+
                 scaleTransitionPagerTitleView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

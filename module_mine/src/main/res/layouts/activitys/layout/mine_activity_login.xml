@@ -19,7 +19,7 @@
         android:id="@+id/mine_login_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white">
+        android:background="@color/base_bg_normal_default">
 
 
         <include
@@ -52,7 +52,7 @@
             android:layout_marginRight="@dimen/base_dimen_20"
             app:cardCornerRadius="@dimen/base_dimen_6"
             android:layout_marginTop="@dimen/base_dimen_20"
-            app:cardBackgroundColor="@android:color/white"
+
             >
 
             <LinearLayout
@@ -86,7 +86,7 @@
                         android:lines="1"
                         android:layout_marginTop="@dimen/base_dimen_16"
                         android:textColor="@color/base_color_title"
-                        android:textColorHint="@color/base_color_999999"
+                        android:textColorHint="@color/base_second_title"
                         android:textSize="@dimen/base_dimen_16"
                         >
 
@@ -128,7 +128,7 @@
                     android:textCursorDrawable="@drawable/base_textcursorcolor"
                     android:lines="1"
                     android:textColor="@color/base_color_title"
-                    android:textColorHint="@color/base_color_999999"
+                    android:textColorHint="@color/base_second_title"
                     android:textSize="@dimen/base_dimen_16"
                     android:inputType="textPassword"
                     >
@@ -180,7 +180,7 @@
                 android:layout_marginRight="22dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:textColor="@color/base_color_999999"
+                android:textColor="@color/base_second_title"
                 android:onClick="@{()->click.goRegister()}"/>
 
 

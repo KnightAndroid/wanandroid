@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
 
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.module_hierachy.R;
 import com.knight.wanandroid.module_hierachy.module_holder.RvHolder;
 import com.knight.wanandroid.module_hierachy.module_listener.RvListener;
@@ -56,12 +57,23 @@ public class HierachyLeftBarAdapter extends RvAdapter<String> {
         public void bindHolder(String string, int position) {
             tvName.setText(string);
             if (position == checkedPosition) {
-                mView.setBackgroundColor(Color.parseColor("#f3f3f3"));
-                tvName.setTextColor(Color.parseColor("#55aff4"));
+
                 hierachy_tv_selectview.setVisibility(View.VISIBLE);
+                tvName.setTextColor(Color.parseColor("#55aff4"));
+                if (CacheUtils.getInstance().getNormalDark()) {
+                    mView.setBackgroundColor(Color.parseColor("#303030"));
+                } else {
+                    mView.setBackgroundColor(Color.parseColor("#f3f3f3"));
+
+                }
             } else {
-                mView.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                tvName.setTextColor(Color.parseColor("#333333"));
+                if (CacheUtils.getInstance().getNormalDark()) {
+                    mView.setBackgroundColor(Color.parseColor("#303030"));
+                    tvName.setTextColor(Color.parseColor("#D3D3D3"));
+                } else {
+                    mView.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                    tvName.setTextColor(Color.parseColor("#333333"));
+                }
                 hierachy_tv_selectview.setVisibility(View.INVISIBLE);
             }
         }

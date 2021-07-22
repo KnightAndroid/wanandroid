@@ -55,6 +55,23 @@ public class ColorUtils {
        return new ColorStateList(states,colors);
     }
 
+    /**
+     *
+     * 颜色透明度
+     * @param color
+     * @param alpha
+     * @return
+     */
+    public static int alphaColor(int color,float alpha) {
+       int red  = Color.red(color);
+       int green = Color.green(color);
+       int blue = Color.blue(color);
+       return Color.argb((int)(alpha * 255),red,green,blue);
+    }
+
+
+
+
 
 
 

@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/base_dimen_14"
-        android:textColor="@color/home_color333333"
+        android:textColor="@color/base_color_title"
         android:layout_below="@id/home_rl_head"
         android:layout_marginTop="@dimen/base_dimen_5"
         android:layout_centerHorizontal="true"

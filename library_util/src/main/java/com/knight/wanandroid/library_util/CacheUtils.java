@@ -82,4 +82,49 @@ public class CacheUtils {
         mmkv.remove(MMkvConstants.USER);
     }
 
+
+    /**
+     *
+     * 设置是否跟随系统
+     * @param isFollowSystem
+     * @return
+     */
+    public void setFollowSystem(boolean isFollowSystem) {
+        mmkv.encode(MMkvConstants.ISFOLLOWSYSTEM,isFollowSystem);
+    }
+
+    /**
+     *
+     * 返回是否跟随系统 默认不跟随系统
+     * @return
+     */
+    public boolean getFollowSystem() {
+        return mmkv.decodeBool(MMkvConstants.ISFOLLOWSYSTEM,false);
+    }
+
+
+    /**
+     *
+     * 设置普通模式还是深色模式
+     */
+    public void setNormalDark(boolean normalDark) {
+        mmkv.encode(MMkvConstants.NORMALDARK,normalDark);
+    }
+
+    /**
+     *
+     * 获取模式是普通还是深色模式
+     * 默认返回普通
+     * @return true 深色模式 false  不是深色模式
+     */
+    public boolean getNormalDark() {
+        return mmkv.decodeBool(MMkvConstants.NORMALDARK,false);
+    }
+
+
+
+
+
+
+
 }

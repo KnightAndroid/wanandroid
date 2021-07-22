@@ -83,7 +83,7 @@
             app:layout_constraintTop_toBottomOf="@id/home_item_articleauthor"
             android:textSize="@dimen/base_dimen_16"
             android:textStyle="bold"
-            android:textColor="@color/home_color333333"/>
+            android:textColor="@color/base_color_title"/>
 
 
 

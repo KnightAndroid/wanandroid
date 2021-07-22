@@ -27,7 +27,7 @@
             <com.knight.wanandroid.library_widget.CompatToobar
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/home_white"
+                android:background="@color/base_bg_normal_default"
                 android:tag="sticky"
                 android:theme="@style/base_AppTheme.AppBarOverlay"
                 app:layout_scrollFlags="scroll|enterAlways"

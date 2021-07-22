@@ -19,7 +19,7 @@
             android:id="@+id/include_web_normaltoolbar"
             layout="@layout/base_include_toolbar"
             app:layout_constraintTop_toTopOf="parent"/>
-        <LinearLayout
+        <com.knight.wanandroid.library_widget.WebContainer
             android:id="@+id/web_normal_ll"
             android:layout_width="match_parent"
             android:layout_height="0dp"

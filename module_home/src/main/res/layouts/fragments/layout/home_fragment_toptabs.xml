@@ -25,7 +25,7 @@
                 android:layout_height="320dp"
                 android:layout_gravity="center_vertical"
                 android:alpha="0"
-                android:background="@drawable/base_white_round">
+                android:background="@drawable/base_round">
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -23,6 +23,7 @@ import java.io.File;
 import java.text.DecimalFormat;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.FileProvider;
 
 /**
@@ -226,6 +227,43 @@ public class SystemUtils {
             intent.setDataAndType(uri, "application/vnd.android.package-archive");
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
+        }
+    }
+
+
+    /**
+     *
+     * 重启应用
+     * @param context
+     */
+    public static void restartApp(Context context){
+        PackageManager packageManager = context.getPackageManager();
+        if (packageManager == null) {
+            return;
+        }
+        Intent intent = packageManager.getLaunchIntentForPackage(context.getPackageName());
+        if (intent != null) {
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            context.startActivity(intent);
+        }
+
+
+    }
+
+    /**
+     *
+     * 判断是什么模式
+     */
+    public static void darkNormal() {
+        if (CacheUtils.getInstance().getFollowSystem()) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+
+        } else {
+            if (CacheUtils.getInstance().getNormalDark()) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            }
         }
     }
 

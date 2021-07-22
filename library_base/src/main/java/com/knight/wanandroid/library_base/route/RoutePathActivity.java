@@ -101,12 +101,13 @@ public class RoutePathActivity {
 
 
     /**
-     *
+     * 我的设置模块
      *
      */
     public static class Set{
        private static final String Set = "/module_set_activity";
        public static final String Set_pager = Set + "/set_pager";
+       public static final String Set_DarkMode = Set + "/set_darkmode_pager";
     }
 
 

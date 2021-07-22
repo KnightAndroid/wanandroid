@@ -23,6 +23,7 @@ import com.knight.wanandroid.module_home.module_model.HomeArticleModel;
 import com.knight.wanandroid.module_home.module_presenter.HomeArticlePresenter;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -39,12 +40,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  * @Date 2021/4/12 19:14
  * @descript:
  */
-public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBinding, HomeArticlePresenter, HomeArticleModel> implements HomeArticleContract.HomeArticleView, OnLoadMoreListener {
+public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBinding, HomeArticlePresenter, HomeArticleModel> implements HomeArticleContract.HomeArticleView, OnLoadMoreListener, OnRefreshListener {
 
     private HomeArticleAdapter mHomeArticleAdapter;
     //页码从0开始
     private int currentPage = 0;
-
 
     @Override
     protected int layoutId() {
@@ -55,9 +55,10 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
     protected void initView(Bundle savedInstanceState) {
         EventBus.getDefault().register(this);
         mHomeArticleAdapter = new HomeArticleAdapter(new ArrayList<>());
-        SetInitCustomView.initSwipeRecycleview(mDatabind.homeArticleBody,new LinearLayoutManager(getActivity()),mHomeArticleAdapter,true);
+        SetInitCustomView.initSwipeRecycleview(mDatabind.homeArticleBody, new LinearLayoutManager(getActivity()), mHomeArticleAdapter, true);
         mDatabind.homeArticleBody.setAdapter(mHomeArticleAdapter);
         mDatabind.homeArticleFreshlayout.setOnLoadMoreListener(this);
+        mDatabind.homeArticleFreshlayout.setOnRefreshListener(this);
         mHomeArticleAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
@@ -79,9 +80,9 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
             public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
                 if (view.getId() == R.id.home_icon_collect) {
                     if (mHomeArticleAdapter.getData().get(position).isCollect()) {
-                        mPresenter.requestCancelCollectArticle(mHomeArticleAdapter.getData().get(position).getId(),position);
+                        mPresenter.requestCancelCollectArticle(mHomeArticleAdapter.getData().get(position).getId(), position);
                     } else {
-                        mPresenter.requestCollectArticle(mHomeArticleAdapter.getData().get(position).getId(),position);
+                        mPresenter.requestCollectArticle(mHomeArticleAdapter.getData().get(position).getId(), position);
                     }
 
                 }
@@ -95,19 +96,12 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
     }
 
     /**
-     *
      * 懒加载
-     *
      */
     @Override
     protected void lazyLoadData() {
-       // showLoadingHud("请求中...");
-        if (HomeConstants.ARTICLE_TYPE.equals("全部")) {
-            mPresenter.requestAllHomeArticle(currentPage);
-        } else {
-            mPresenter.requestSearchArticle(currentPage,HomeConstants.ARTICLE_TYPE);
-        }
-
+        currentPage = 0;
+        mPresenter.requestSearchArticle(currentPage, HomeConstants.ARTICLE_TYPE);
     }
 
     @Override
@@ -135,12 +129,6 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
 
 
     @Override
-    public void setAllHomeArticle(HomeArticleListEntity result) {
-
-        loadArticleData(result);
-    }
-
-    @Override
     public void setSearchArticle(HomeArticleListEntity result) {
 
         loadArticleData(result);
@@ -161,26 +149,24 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
 
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void oncollectSuccess(EventBusUtils.CollectSuccess collectSuccess){
+    public void oncollectSuccess(EventBusUtils.CollectSuccess collectSuccess) {
         //刷新重新请求公众号数据
         currentPage = 0;
-        if (HomeConstants.ARTICLE_TYPE.equals("全部")) {
-            mPresenter.requestAllHomeArticle(currentPage);
-        } else {
-            mPresenter.requestSearchArticle(currentPage,HomeConstants.ARTICLE_TYPE);
-        }
+        mPresenter.requestSearchArticle(currentPage, HomeConstants.ARTICLE_TYPE);
+
     }
 
 
     /**
-     *
      * 加载文章列表数据
+     *
      * @param result
      */
     private void loadArticleData(HomeArticleListEntity result) {
         showSuccess();
         currentPage = result.getCurPage();
         mDatabind.homeArticleFreshlayout.finishLoadMore();
+        mDatabind.homeArticleFreshlayout.finishRefresh();
         // dismissLoadingHud();
         if (currentPage > 1) {
             if (result.getDatas().size() > 0) {
@@ -196,15 +182,18 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-
-        mPresenter.requestAllHomeArticle(currentPage);
+        mPresenter.requestSearchArticle(currentPage, HomeConstants.ARTICLE_TYPE);
     }
 
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
 
 
+    @Override
+    public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+        lazyLoadData();
+    }
 }

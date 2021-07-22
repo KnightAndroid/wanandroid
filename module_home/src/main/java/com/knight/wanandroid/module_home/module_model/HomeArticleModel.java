@@ -1,5 +1,7 @@
 package com.knight.wanandroid.module_home.module_model;
 
+import com.knight.wanandroid.library_base.api.CancelCollectArticleApi;
+import com.knight.wanandroid.library_base.api.CollectArticleApi;
 import com.knight.wanandroid.library_base.basefragment.BaseFragment;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_network.GoHttp;
@@ -7,9 +9,6 @@ import com.knight.wanandroid.library_network.listener.HttpCallback;
 import com.knight.wanandroid.library_network.model.HttpData;
 import com.knight.wanandroid.module_home.module_contract.HomeArticleContract;
 import com.knight.wanandroid.module_home.module_entity.HomeArticleListEntity;
-import com.knight.wanandroid.library_base.api.CancelCollectArticleApi;
-import com.knight.wanandroid.library_base.api.CollectArticleApi;
-import com.knight.wanandroid.module_home.module_request.HomeArticleApi;
 import com.knight.wanandroid.module_home.module_request.SearchArticleApi;
 
 /**
@@ -19,31 +18,6 @@ import com.knight.wanandroid.module_home.module_request.SearchArticleApi;
  * @descript:
  */
 public class HomeArticleModel implements HomeArticleContract.HomeArticleModel{
-
-    /**
-     *
-     * 请求文章数据
-     * @param fragment
-     * @param page
-     * @param mvpListener
-     */
-    @Override
-    public void requestAllHomeArticle(BaseFragment fragment, int page, MvpListener mvpListener) {
-        GoHttp.get(fragment)
-                .api(new HomeArticleApi()
-                        .setPage(page))
-                .request(new HttpCallback<HttpData<HomeArticleListEntity>>(fragment){
-                    @Override
-                    public void onSucceed(HttpData<HomeArticleListEntity> result) {
-                        mvpListener.onSuccess(result.getData());
-                    }
-
-                    @Override
-                    public void onFail(Exception e){
-                        mvpListener.onError(e.getMessage());
-                    }
-                });
-    }
 
 
     /**

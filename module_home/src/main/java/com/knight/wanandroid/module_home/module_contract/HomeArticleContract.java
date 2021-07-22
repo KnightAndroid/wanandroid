@@ -17,8 +17,7 @@ public interface HomeArticleContract {
 
     interface HomeArticleView extends BaseView{
 
-        //设置全部文章数据
-        void setAllHomeArticle(HomeArticleListEntity result);
+
         //设置搜索文章数据
         void setSearchArticle(HomeArticleListEntity result);
         //收藏站内文章
@@ -29,8 +28,7 @@ public interface HomeArticleContract {
 
 
     interface HomeArticleModel extends BaseModel{
-        //请求全部文章数据
-        void requestAllHomeArticle(BaseFragment fragment, int page, MvpListener mvpListener);
+
         //搜索接口文章数据
         void requestSerchArticle(BaseFragment fragment,int page,String keyWords,MvpListener mvpListener);
         //收藏站内文章
@@ -41,7 +39,7 @@ public interface HomeArticleContract {
 
     abstract class HomeArticleDataPresenter extends BasePresenter<HomeArticleModel,HomeArticleView>{
         //具体实现
-        public abstract void requestAllHomeArticle(int page);
+
 
         public abstract void requestSearchArticle(int page,String keyWords);
         public abstract void requestCollectArticle(int collectArticleId,int position);

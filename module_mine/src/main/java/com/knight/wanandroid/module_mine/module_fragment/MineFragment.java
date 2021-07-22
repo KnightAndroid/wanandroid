@@ -12,7 +12,6 @@ import com.knight.wanandroid.library_base.basefragment.BaseFragment;
 import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
-import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.ColorUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
@@ -107,22 +106,6 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
 
     }
 
-    @Override
-    public void logoutSuccess() {
-        //退出登录成功
-        CacheUtils.getInstance().loginOut();
-        ModuleConfig.getInstance().user = null;
-        mDatabind.mineTvUserabbr.setText("");
-        mDatabind.mineTvUsername.setText("请登录");
-        mDatabind.mineTvLevel.setText("等级 -");
-        mDatabind.mineTvRank.setText("排名第 -");
-        mDatabind.mineTvPoints.setText("-");
-        mDatabind.mineIvMessage.setVisibility(View.GONE);
-        mDatabind.mineIvHead.setBackground(null);
-        GlideEngineUtils.getInstance().loadCircleIntLocalPhoto(getActivity(),R.drawable.mine_iv_default_head,mDatabind.mineIvHead);
-        EventBus.getDefault().post(new EventBusUtils.LogoutSuccess());
-
-    }
 
 
     public class ProcyClick{
@@ -182,6 +165,26 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
 //        mDatabind.mineRlLogout.setVisibility(View.VISIBLE);
         mDatabind.mineIvMessage.setVisibility(View.VISIBLE);
     }
+
+
+    /**
+     * 退出登录成功
+     * @param logoutSuccess
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onLogoutSuccess(EventBusUtils.LogoutSuccess logoutSuccess){
+        mDatabind.mineTvUserabbr.setText("");
+        mDatabind.mineTvUsername.setText("请登录");
+        mDatabind.mineTvLevel.setText("等级 -");
+        mDatabind.mineTvRank.setText("排名第 -");
+        mDatabind.mineTvPoints.setText("-");
+        mDatabind.mineIvMessage.setVisibility(View.GONE);
+        mDatabind.mineIvHead.setBackground(null);
+        GlideEngineUtils.getInstance().loadCircleIntLocalPhoto(getActivity(),R.drawable.mine_iv_default_head,mDatabind.mineIvHead);
+    }
+
+
+
 
     @Override
     public void onDestroy(){

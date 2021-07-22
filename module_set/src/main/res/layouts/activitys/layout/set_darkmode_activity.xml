@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <include
+            android:id="@+id/include_darkmode_toolbar"
+            layout="@layout/base_include_toolbar" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_70"
+            android:paddingLeft="@dimen/base_dimen_16"
+            android:paddingRight="@dimen/base_dimen_16"
+            android:background="@color/base_bg_normal_default">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/base_dimen_8"
+                android:layout_marginRight="@dimen/base_dimen_8">
+
+
+                <TextView
+                    android:id="@+id/set_tv_follow_system"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/set_follow_system"
+                    android:textColor="@color/base_color_title"
+                    android:textSize="@dimen/base_dimen_16"></TextView>
+
+
+                <TextView
+                    android:id="@+id/set_tv_followsystem_tip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/set_tv_follow_system"
+                    android:layout_marginTop="@dimen/base_dimen_2"
+                    android:text="@string/set_followsystem_tip"
+                    android:textColor="@color/base_color_999999"
+                    android:textSize="@dimen/base_dimen_14" />
+
+
+                <CheckBox
+                    android:id="@+id/set_cb_select_system"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:button="@drawable/set_selectdark_selector" />
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+
+
+        <TextView
+            android:id="@+id/set_tv_manual_system"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/base_dimen_14"
+            android:text="@string/set_manual_select"
+            android:textColor="@color/base_color_999999"
+            android:layout_marginLeft="@dimen/base_dimen_24"
+            android:layout_marginTop="@dimen/base_dimen_10"/>
+
+
+        <RelativeLayout
+            android:id="@+id/set_rl_manual_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/base_dimen_5"
+            android:paddingRight="@dimen/base_dimen_24"
+            android:paddingLeft="@dimen/base_dimen_24"
+            android:background="@color/base_bg_normal_default"
+            >
+
+
+
+            <com.yanzhenjie.recyclerview.SwipeRecyclerView
+                android:id="@+id/set_rv_darkmodel_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</layout>

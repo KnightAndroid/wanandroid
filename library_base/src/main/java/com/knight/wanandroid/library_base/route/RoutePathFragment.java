@@ -17,6 +17,7 @@ public class RoutePathFragment {
         private static final String Home = "/module_home_fragment";
 
         public static final String Home_Pager = Home + "/home_main";
+        public static final String Home_Recommend_Pager = Home + "/home_recommend";
     }
 
     /**

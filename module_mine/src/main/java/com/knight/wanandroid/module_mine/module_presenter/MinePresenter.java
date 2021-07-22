@@ -35,24 +35,4 @@ public class MinePresenter extends MineContract.MineDataPresenter {
 
     }
 
-    @Override
-    public void requestLogout() {
-        final MineContract.MineView mView = getView();
-        if (mView == null) {
-            return;
-        }
-        mModel.requestLogout((BaseFragment) mView, new MvpListener() {
-            @Override
-            public void onSuccess(Object data) {
-                mView.logoutSuccess();
-            }
-
-            @Override
-            public void onError(String errorMsg) {
-                mView.showError(errorMsg);
-            }
-        });
-
-
-    }
 }

@@ -12,10 +12,11 @@
     <LinearLayout  android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@android:color/white">
+        android:background="@color/base_bg_normal_default">
 
 
-        <com.knight.wanandroid.library_widget.CompatToobar android:layout_width="match_parent"
+        <com.knight.wanandroid.library_widget.CompatToobar
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
 

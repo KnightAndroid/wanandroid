@@ -19,3 +19,12 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+#wechat
+-keep class com.knight.wanandroid.module_set.module_model.**{*;}
+-keep class com.knight.wanandroid.module_set.module_request.**{*;}
+-keep class com.knight.wanandroid.module_set.module_presenter.**{*;}
+
+# Aroute
+-keep public class com.alibaba.android.arouter.routes.**{*;}
+-keep public class com.alibaba.android.arouter.facade.**{*;}
+-keep class * implements com.alibaba.android.arouter.facade.template.ISyringe{*;}
