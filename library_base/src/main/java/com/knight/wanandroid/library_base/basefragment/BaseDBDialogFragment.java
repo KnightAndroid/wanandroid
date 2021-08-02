@@ -24,7 +24,7 @@ import androidx.fragment.app.DialogFragment;
  * @Date 2021/5/26 17:36
  * @descript:
  */
-public abstract class BaseDBDialogFragment<DB extends ViewDataBinding> extends DialogFragment {
+public abstract class BaseDBDialogFragment<DB extends ViewDataBinding> extends DialogFragment  {
     protected DB mDatabind;
 
 

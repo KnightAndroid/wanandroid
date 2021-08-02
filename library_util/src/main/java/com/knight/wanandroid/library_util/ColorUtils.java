@@ -6,6 +6,8 @@ import android.graphics.Color;
 
 import java.util.Random;
 
+import androidx.annotation.NonNull;
+
 /**
  * @author created by knight
  * @organize wanandroid
@@ -68,6 +70,80 @@ public class ColorUtils {
        int blue = Color.blue(color);
        return Color.argb((int)(alpha * 255),red,green,blue);
     }
+
+
+    /**
+     *
+     * 16进制 转RGB(String)类型颜色(无#号)
+     * @param color
+     * @return
+     */
+    public static String convertToRGB(int color) {
+       String red = Integer.toHexString(Color.red(color));
+       String green = Integer.toHexString(Color.green(color));
+       String blue = Integer.toHexString(Color.blue(color));
+       if (red.length() == 1) red = "0" +red;
+       if (green.length() == 1) green = "0" +green;
+       if (blue.length() == 1) blue = "0" +blue;
+       return red + green +blue;
+    }
+
+
+    /**
+     * ARGB(含RGB)颜色 转 16进制颜色
+     *
+     * @param argb ARGB(含RGB)颜色
+     * @return 16进制颜色
+     * @throws NumberFormatException 当{@param argb}不是一个正确的颜色格式的字符串时
+     */
+    public static int convertToColorInt(@NonNull String argb){
+        if (argb.matches("[0-9a-fA-F]{1,6}")) {
+            switch (argb.length()) {
+                case 1:
+                    return Color.parseColor("#00000" + argb);
+                case 2:
+                    return Color.parseColor("#0000" + argb);
+                case 3:
+                    char r = argb.charAt(0), g = argb.charAt(1), b = argb.charAt(2);
+                    //noinspection StringBufferReplaceableByString
+                    return Color.parseColor(new StringBuilder("#")
+                            .append(r).append(r)
+                            .append(g).append(g)
+                            .append(b).append(b)
+                            .toString());
+                case 4:
+                    return Color.parseColor("#00" + argb);
+                case 5:
+                    return Color.parseColor("#0" + argb);
+                case 6:
+                    return Color.parseColor("#" + argb);
+                default:
+                    return 0;
+            }
+        } else {
+            ToastUtils.getInstance().showToast(argb+"不是合法的颜色值");
+            return 0;
+        }
+
+    }
+
+    /**
+     *
+     * 动态设置按钮选择颜色
+     * @param checked 选择
+     * @param normal 默认
+     * @return
+     */
+    public static ColorStateList createColorStateList(int checked,int normal) {
+        int[] colors = new int[] { checked,  normal};
+        int[][] states = new int[2][];
+        states[0] = new int[] { android.R.attr.state_checked , android.R.attr.state_enabled};
+        states[1] = new int[] { android.R.attr.state_enabled };
+        ColorStateList colorList = new ColorStateList(states, colors);
+        return colorList;
+    }
+
+
 
 
 

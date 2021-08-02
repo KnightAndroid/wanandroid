@@ -55,7 +55,20 @@
                 android:textSize="@dimen/base_dimen_12"
                 android:text="广泛他"
                 android:textColor="@color/base_color_theme"
-                android:background="@drawable/base_articlechapter_type"/>
+                android:layout_marginRight="@dimen/base_dimen_8"
+                android:background="@drawable/base_articlechapter_type"
+                android:paddingTop="@dimen/base_dimen_2"
+                android:paddingBottom="@dimen/base_dimen_2"
+                android:paddingLeft="@dimen/base_dimen_4"
+                android:paddingRight="@dimen/base_dimen_4"/>
+
+            <TextView
+                android:id="@+id/home_tv_articlesuperchaptername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sdsds"
+                android:textSize="@dimen/base_dimen_12"
+                android:textColor="@color/home_color999999"/>
         </LinearLayout>
 
         <TextView
@@ -91,11 +104,11 @@
             android:id="@+id/home_icon_collect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/home_tv_articletitle"
-            android:layout_marginLeft="@dimen/base_dimen_8"
+            android:layout_marginRight="@dimen/base_dimen_8"
             android:layout_marginTop="@dimen/base_dimen_12"
-
+            android:background="@drawable/base_icon_nocollect"
             />
 
 
@@ -103,30 +116,19 @@
             android:id="@+id/home_tv_articledesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toRightOf="@id/home_icon_collect"
+            app:layout_constraintLeft_toLeftOf="@id/home_tv_articletitle"
             app:layout_constraintTop_toTopOf="@id/home_icon_collect"
             app:layout_constraintBottom_toBottomOf="@id/home_icon_collect"
             android:textSize="@dimen/base_dimen_12"
             android:textColor="@color/home_color999999"
             android:text="这是项目描述这是项目描述这是项目描述"
-            android:layout_marginLeft="@dimen/base_dimen_8"
             android:singleLine="true"
             android:ellipsize="end"
             android:maxEms="14"
             />
 
 
-        <TextView
-            android:id="@+id/home_tv_articlesuperchaptername"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/home_icon_collect"
-            app:layout_constraintBottom_toBottomOf="@id/home_icon_collect"
-            app:layout_constraintRight_toRightOf="parent"
-            android:text="sdsds"
-            android:layout_marginRight="@dimen/base_dimen_8"
-            android:textSize="@dimen/base_dimen_12"
-            android:textColor="@color/home_color999999"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

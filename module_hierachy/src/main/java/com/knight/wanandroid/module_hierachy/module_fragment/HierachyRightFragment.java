@@ -65,6 +65,11 @@ public class HierachyRightFragment extends BaseFragment<HierachyRightFragmentBin
     }
 
     @Override
+    protected void setThemeColor() {
+
+    }
+
+    @Override
     protected void initView(Bundle savedInstanceState) {
         isNavigate = getArguments().getBoolean("isNavigate");
         mDatabind.hierachyRightRv.addOnScrollListener(new RecyclerViewListener());

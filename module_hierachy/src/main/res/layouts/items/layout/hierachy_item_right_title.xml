@@ -11,10 +11,11 @@
     android:paddingTop="@dimen/base_dimen_3">
 
     <View
+        android:id="@+id/hierachy_right_view"
         android:layout_width="@dimen/dp_4"
         android:layout_height="@dimen/base_dimen_15"
         android:layout_marginLeft="@dimen/base_dimen_15"
-        android:background="#55aff4"/>
+      />
 
     <TextView
         android:id="@+id/hierachy_tv_title"

@@ -18,4 +18,13 @@
     <string name="set_followsystem_tip">开启后，将跟随系统打开或关闭深色模式</string>
     <string name="set_manual_select">手动选择</string>
     <string name="set_restart_app">是否要改变模式</string>
+    <string name="set_theme_color">主题颜色</string>
+    <string name="set_customize_color">自定义主题颜色</string>
+    <string name="set_status_theme">状态栏着色</string>
+    <string name="set_status_theme_tip">状态栏颜色伴随主题色变化</string>
+    <string name="set_bg_color">页面背景颜色</string>
+    <string name="set_textsize_color">字体颜色</string>
+    <string name="set_recover_themecolor">默认主题颜色</string>
+    <string name="set_recover_textcolor">默认字体颜色</string>
+    <string name="set_recover_bgcolor">默认页面背景颜色</string>
 </resources>

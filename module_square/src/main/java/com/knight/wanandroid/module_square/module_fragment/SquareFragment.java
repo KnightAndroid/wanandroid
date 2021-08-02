@@ -1,6 +1,8 @@
 package com.knight.wanandroid.module_square.module_fragment;
 
 import android.content.Intent;
+import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -26,6 +28,8 @@ import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
 import com.knight.wanandroid.library_base.util.ARouterUtils;
 import com.knight.wanandroid.library_base.util.DataBaseUtils;
+import com.knight.wanandroid.library_util.CacheUtils;
+import com.knight.wanandroid.library_util.ColorUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
@@ -81,11 +85,33 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
     public LoadService mViewLoadService;
     SmartRefreshLayout smartRefreshLayout;
 
+    private TextView tv_question_title;
+
 
 
     @Override
     protected int layoutId() {
         return R.layout.square_fragment_square;
+    }
+
+    @Override
+    protected void setThemeColor() {
+        mDatabind.squareTvTipshare.setTextColor(textColor);
+        GradientDrawable gradientDrawable = new GradientDrawable();
+        gradientDrawable.setShape(GradientDrawable.RECTANGLE);
+        gradientDrawable.setColor(CacheUtils.getInstance().getThemeColor());
+        gradientDrawable.setCornerRadius(4f);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            mDatabind.squareTvGoshare.setBackground(gradientDrawable);
+        } else {
+            mDatabind.squareTvGoshare.setBackgroundDrawable(gradientDrawable);
+        }
+        mDatabind.squareTvAddcoins.setTextColor(CacheUtils.getInstance().getTextColor());
+        mDatabind.squareTvEverysearch.setTextColor(CacheUtils.getInstance().getTextColor());
+        mDatabind.squareTvNewShare.setTextColor(CacheUtils.getInstance().getTextColor());
+        mDatabind.squareFabUp.setBackgroundTintList(ColorUtils.createColorStateList(CacheUtils.getInstance().getThemeColor(),CacheUtils.getInstance().getThemeColor()));
+
+
     }
 
     @Override
@@ -112,7 +138,11 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
         initAdapterListener();
         baserecycleview = QuestionMenu.findViewById(R.id.base_body_rv);
         smartRefreshLayout = (SmartRefreshLayout) QuestionMenu.findViewById(R.id.include_square_question);
-        ((TextView)QuestionMenu.findViewById(R.id.square_question_tv_title)).setText(getString(R.string.square_question));
+        tv_question_title = ((TextView)QuestionMenu.findViewById(R.id.square_question_tv_title));
+        if (!CacheUtils.getInstance().getNormalDark()) {
+            tv_question_title.setTextColor(CacheUtils.getInstance().getTextColor());
+        }
+        tv_question_title.setText(getString(R.string.square_question));
         smartRefreshLayout.setOnRefreshListener(refreshLayout -> {
             questionPage = 1;
             mPresenter.requestSquareQuestion(questionPage);

@@ -14,6 +14,7 @@ import com.knight.wanandroid.library_base.loadsir.EmptyCallBack;
 import com.knight.wanandroid.library_base.loadsir.ErrorCallBack;
 import com.knight.wanandroid.library_base.loadsir.LoadCallBack;
 import com.knight.wanandroid.library_network.listener.OnHttpListener;
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.StatusBarUtils;
 import com.knight.wanandroid.library_widget.loadcircleview.ProgressHUD;
 import com.knight.wanandroid.library_widget.swipeback.SwipeBackHelper;
@@ -38,6 +39,12 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
     public LoadService mLoadService;
 
     private SwipeBackHelper mSwipeBackHelper;
+
+    protected int themeColor;
+    protected int textColor;
+    protected int bgColor;
+    protected boolean isDarkMode;
+
     public abstract void initView(Bundle savedInstanceState);
 
 
@@ -54,10 +61,18 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         createViewDataBinding();
         StatusBarUtils.transparentStatusBar(this);
+        isDarkMode = CacheUtils.getInstance().getNormalDark();
+        if (!isDarkMode) {
+            initThemeColor();
+            initTextColor();
+            initBgColor();
+        }
+
         initView(savedInstanceState);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             mSwipeBackHelper = new SwipeBackHelper(this);
         }
+
 
 
     }
@@ -73,6 +88,31 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
         return R.style.base_AppTheme;
     }
 
+
+    /**
+     *
+     * 获取颜色
+     *
+     */
+    protected void initThemeColor(){
+        themeColor = CacheUtils.getInstance().getThemeColor();
+    }
+
+    /**
+     *
+     * 获取字体颜色
+     */
+    protected void initTextColor(){
+        textColor = CacheUtils.getInstance().getTextColor();
+    }
+
+    /**
+     *
+     * 获取背景颜色
+     */
+    protected void initBgColor() {
+        bgColor = CacheUtils.getInstance().getBgThemeColor();
+    }
 
 
 

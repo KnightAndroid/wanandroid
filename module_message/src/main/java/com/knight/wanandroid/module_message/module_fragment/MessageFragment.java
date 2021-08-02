@@ -61,6 +61,11 @@ public class MessageFragment extends BaseFragment<MessageReadedFragmentBinding, 
     }
 
     @Override
+    protected void setThemeColor() {
+
+    }
+
+    @Override
     protected void initView(Bundle savedInstanceState) {
         readed = getArguments().getBoolean("readed");
         loadLoading(mDatabind.includeMessage.baseFreshlayout);

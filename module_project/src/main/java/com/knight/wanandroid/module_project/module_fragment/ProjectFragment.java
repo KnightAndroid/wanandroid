@@ -34,6 +34,11 @@ public class ProjectFragment extends BaseFragment<ProjectFragmentBinding, Projec
     }
 
     @Override
+    protected void setThemeColor() {
+
+    }
+
+    @Override
     protected void initView(Bundle savedInstanceState) {
         loadLoading(mDatabind.projectViewPager);
 

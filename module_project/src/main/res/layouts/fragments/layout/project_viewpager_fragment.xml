@@ -54,7 +54,6 @@
             android:layout_marginEnd="@dimen/base_dimen_20"
             android:layout_marginRight="@dimen/base_dimen_20"
             android:layout_marginBottom="@dimen/base_dimen_70"
-            app:backgroundTint="@color/base_color_theme"
             app:layout_behavior=".library_widget.FloatButtonBehavior"
             android:onClick="@{()->click.scrollTop()}"
             />

@@ -5,6 +5,7 @@ import android.text.TextUtils;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.module_wechat.R;
 import com.knight.wanandroid.module_wechat.module_entity.WechatArticleEntity;
 
@@ -66,6 +67,12 @@ public class WechatArticleAdapter extends BaseQuickAdapter<WechatArticleEntity, 
             baseViewHolder.setText(R.id.base_tv_articletitle, wechatArticleEntity.getTitle());
         } else {
             baseViewHolder.setText(R.id.base_tv_articletitle,wechatArticleEntity.getTitle());
+        }
+
+        if (!CacheUtils.getInstance().getNormalDark()) {
+            baseViewHolder.setTextColor(R.id.base_tv_articletitle,CacheUtils.getInstance().getTextColor());
+        } else {
+            baseViewHolder.setTextColor(R.id.base_tv_articletitle,R.color.base_color_title);
         }
         //是否收藏
         if (wechatArticleEntity.isCollect()) {

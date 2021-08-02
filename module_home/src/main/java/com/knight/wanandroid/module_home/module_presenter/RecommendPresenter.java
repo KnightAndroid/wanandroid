@@ -3,6 +3,7 @@ package com.knight.wanandroid.module_home.module_presenter;
 import com.knight.wanandroid.library_base.basefragment.BaseFragment;
 import com.knight.wanandroid.library_base.entity.OfficialAccountEntity;
 import com.knight.wanandroid.library_base.listener.MvpListener;
+import com.knight.wanandroid.library_network.model.HttpData;
 import com.knight.wanandroid.module_home.module_contract.RecommendContract;
 import com.knight.wanandroid.module_home.module_entity.BannerEntity;
 import com.knight.wanandroid.module_home.module_entity.HomeArticleListEntity;
@@ -31,7 +32,7 @@ public class RecommendPresenter extends RecommendContract.RecommendDataPresenter
 
             @Override
             public void onError(String errorMsg) {
-
+                mView.showError(errorMsg);
             }
         });
     }
@@ -126,5 +127,43 @@ public class RecommendPresenter extends RecommendContract.RecommendDataPresenter
             }
         });
 
+    }
+
+    @Override
+    public void requestCollectArticle(int collectArticleId, int position) {
+        final RecommendContract.RecommendView mView = getView();
+        if (mView == null) {
+            return;
+        }
+        mModel.requestCollectArticle((BaseFragment)mView,collectArticleId,new MvpListener<HttpData>(){
+            @Override
+            public void onSuccess(HttpData data) {
+                mView.collectArticleSuccess(position);
+            }
+
+            @Override
+            public void onError(String errorMsg) {
+                mView.showError(errorMsg);
+            }
+        });
+    }
+
+    @Override
+    public void requestCancelCollectArticle(int collectArticleId, int position) {
+        final RecommendContract.RecommendView mView = getView();
+        if (mView == null) {
+            return;
+        }
+        mModel.requestCancelCollectArticle((BaseFragment)mView,collectArticleId,new MvpListener<HttpData>(){
+            @Override
+            public void onSuccess(HttpData data) {
+                mView.cancelArticleSuccess(position);
+            }
+
+            @Override
+            public void onError(String errorMsg) {
+                mView.showError(errorMsg);
+            }
+        });
     }
 }

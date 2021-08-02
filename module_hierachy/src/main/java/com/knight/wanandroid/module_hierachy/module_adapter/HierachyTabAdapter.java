@@ -8,6 +8,7 @@ import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.knight.wanandroid.library_base.AppConfig;
 import com.knight.wanandroid.library_common.ApplicationProvider;
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.StringUtils;
 import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;
 import com.knight.wanandroid.module_hierachy.R;
@@ -71,6 +72,12 @@ public class HierachyTabAdapter extends BaseMultiItemQuickAdapter<HierachyTabArt
                     baseViewHolder.setText(R.id.base_tv_articletitle, StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),Html.fromHtml(hierachyTabArticleEntity.getTitle(),Html.FROM_HTML_MODE_LEGACY).toString(), AppConfig.SEARCH_KEYWORD));
                 } else {
                     baseViewHolder.setText(R.id.base_tv_articletitle,StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),Html.fromHtml(hierachyTabArticleEntity.getTitle()).toString(),AppConfig.SEARCH_KEYWORD));
+                }
+
+                if (!CacheUtils.getInstance().getNormalDark()) {
+                    baseViewHolder.setTextColor(R.id.base_tv_articletitle,CacheUtils.getInstance().getTextColor());
+                } else {
+                    baseViewHolder.setTextColor(R.id.base_tv_articletitle,R.color.base_color_title);
                 }
                 //是否收藏
                 if (hierachyTabArticleEntity.isCollect()) {

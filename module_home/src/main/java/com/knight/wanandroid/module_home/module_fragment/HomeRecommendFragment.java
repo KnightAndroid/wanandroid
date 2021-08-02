@@ -17,6 +17,7 @@ import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.chad.library.adapter.base.listener.OnItemLongClickListener;
 import com.google.gson.reflect.TypeToken;
+import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
 import com.knight.wanandroid.library_base.basefragment.BaseFragment;
 import com.knight.wanandroid.library_base.entity.OfficialAccountEntity;
 import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
@@ -25,6 +26,8 @@ import com.knight.wanandroid.library_base.route.RoutePathFragment;
 import com.knight.wanandroid.library_base.util.ARouterUtils;
 import com.knight.wanandroid.library_common.ApplicationProvider;
 import com.knight.wanandroid.library_util.BlurBuilder;
+import com.knight.wanandroid.library_util.CacheUtils;
+import com.knight.wanandroid.library_util.ColorUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.GsonUtils;
 import com.knight.wanandroid.library_util.JsonUtils;
@@ -103,10 +106,15 @@ public class HomeRecommendFragment extends BaseFragment<HomeFragmentRecommendBin
     private TextView home_tv_unread_message;
 
 
-
     @Override
     protected int layoutId() {
         return R.layout.home_fragment_recommend;
+    }
+
+    @Override
+    protected void setThemeColor() {
+
+
     }
 
     @Override
@@ -115,23 +123,25 @@ public class HomeRecommendFragment extends BaseFragment<HomeFragmentRecommendBin
         EventBus.getDefault().register(this);
         bindHeadView();
         mTopArticleAdapter = new TopArticleAdapter(new ArrayList<>());
-        SetInitCustomView.initSwipeRecycleview(home_top_article_rv,new LinearLayoutManager(getActivity()),mTopArticleAdapter,false);
+        SetInitCustomView.initSwipeRecycleview(home_top_article_rv, new LinearLayoutManager(getActivity()), mTopArticleAdapter, false);
         mOfficialAccountAdapter = new OfficialAccountAdapter(new ArrayList<>());
         mHomeArticleAdapter = new HomeArticleAdapter(new ArrayList<>());
         SetInitCustomView.initSwipeRecycleview(mDatabind.homeRecommendArticleBody, new LinearLayoutManager(getActivity()), mHomeArticleAdapter, true);
 
-        topArticleFootView = LayoutInflater.from(getActivity()).inflate(R.layout.home_toparticle_foot,null);
+        topArticleFootView = LayoutInflater.from(getActivity()).inflate(R.layout.home_toparticle_foot, null);
         topArticleFootView.findViewById(R.id.home_ll_seemorearticles).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                HomeArticleLogic.getInstance().setArrowAnimate(mTopArticleAdapter,topArticleFootView.findViewById(R.id.home_iv_toparticlearrow),isShowOnlythree);
+                HomeArticleLogic.getInstance().setArrowAnimate(mTopArticleAdapter, topArticleFootView.findViewById(R.id.home_iv_toparticlearrow), isShowOnlythree);
                 isShowOnlythree = !isShowOnlythree;
             }
         });
+        mDatabind.homeIconFab.setBackgroundTintList(ColorUtils.createColorStateList(CacheUtils.getInstance().getThemeColor(),CacheUtils.getInstance().getThemeColor()));
         initTopAdapterClick();
         initOfficialAccountClick();
+        initArticleLinstener();
         initTwoLevel();
-        loadLoading(mDatabind.homeRefreshLayout);
+        loadLoading(mDatabind.flTest);
         mDatabind.homeRefreshLayout.setOnMultiListener(new SimpleMultiListener() {
             @Override
             public void onHeaderMoving(RefreshHeader header, boolean isDragging, float percent, int offset, int headerHeight, int maxDragHeight) {
@@ -155,11 +165,11 @@ public class HomeRecommendFragment extends BaseFragment<HomeFragmentRecommendBin
                     mDatabind.homeTwoLevelContent.animate().alpha(0).setDuration(0);
                 } else if (oldState == RefreshState.TwoLevelReleased) {
                     openTwoLevel = true;
-                    mDatabind.homeIconFab.setImageDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.base_icon_bottom));
+                    mDatabind.homeIconFab.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.base_icon_bottom));
                 } else if (oldState == RefreshState.TwoLevelFinish) {
 
                     openTwoLevel = false;
-                    mDatabind.homeIconFab.setImageDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.base_icon_up));
+                    mDatabind.homeIconFab.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.base_icon_up));
                 }
 
             }
@@ -178,23 +188,27 @@ public class HomeRecommendFragment extends BaseFragment<HomeFragmentRecommendBin
         mDatabind.homeRefreshLayout.setOnLoadMoreListener(this);
     }
 
-    private void bindHeadView(){
-        recommendHeadView = LayoutInflater.from(getActivity()).inflate(R.layout.home_recommend_head,null);
+    private void bindHeadView() {
+        recommendHeadView = LayoutInflater.from(getActivity()).inflate(R.layout.home_recommend_head, null);
         home_rl_message = recommendHeadView.findViewById(R.id.home_rl_message);
         home_tv_unread_message = recommendHeadView.findViewById(R.id.home_tv_unread_message);
         home_top_article_rv = recommendHeadView.findViewById(R.id.home_top_article_rv);
         home_banner = recommendHeadView.findViewById(R.id.home_banner);
         home_rv_official_account = recommendHeadView.findViewById(R.id.home_rv_official_account);
+        home_rl_message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build(RoutePathActivity.Message.Message_pager).navigation();
+            }
+        });
 
     }
 
     /**
-     *
      * 懒加载
-     *
      */
     @Override
-    protected void lazyLoadData(){
+    protected void lazyLoadData() {
         currentPage = 0;
         //未读数量请求
         if (ModuleConfig.getInstance().user != null) {
@@ -226,8 +240,8 @@ public class HomeRecommendFragment extends BaseFragment<HomeFragmentRecommendBin
 
     @Override
     public void showError(String errorMsg) {
-       ToastUtils.getInstance().showToast(errorMsg);
-       showloadFailure();
+        ToastUtils.getInstance().showToast(errorMsg);
+        showloadFailure();
     }
 
     @Override
@@ -239,7 +253,7 @@ public class HomeRecommendFragment extends BaseFragment<HomeFragmentRecommendBin
         } else {
             mTopArticleAdapter.setShowOnlyThree(false);
         }
-        if(home_top_article_rv.getFooterCount() == 0 && topArticleEntityList.size() > 3){
+        if (home_top_article_rv.getFooterCount() == 0 && topArticleEntityList.size() > 3) {
             home_top_article_rv.addFooterView(topArticleFootView);
         }
     }
@@ -249,10 +263,10 @@ public class HomeRecommendFragment extends BaseFragment<HomeFragmentRecommendBin
         home_banner.setAdapter(new BannerImageAdapter<BannerEntity>(result) {
             @Override
             public void onBindView(BannerImageHolder holder, BannerEntity data, int position, int size) {
-                GlideEngineUtils.getInstance().loadStringPhoto(ApplicationProvider.getInstance().getApplication(),data.getImagePath(),holder.imageView);
+                GlideEngineUtils.getInstance().loadStringPhoto(ApplicationProvider.getInstance().getApplication(), data.getImagePath(), holder.imageView);
                 holder.imageView.setOnClickListener(v -> ARouterUtils.startWeb(
-                        data.getUrl(),data.getTitle(),data.getId(),
-                        false,data.getImagePath(),data.getDesc(),"banner",""));
+                        data.getUrl(), data.getTitle(), data.getId(),
+                        false, data.getImagePath(), data.getDesc(), "banner", ""));
             }
         })
                 .addBannerLifecycleObserver(this)
@@ -264,7 +278,7 @@ public class HomeRecommendFragment extends BaseFragment<HomeFragmentRecommendBin
     @Override
     public void setOfficialAccountData(List<OfficialAccountEntity> officialAccountModels) {
         //设置公众号数据
-        SetInitCustomView.initSwipeRecycleview(home_rv_official_account,new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.HORIZONTAL),mOfficialAccountAdapter,true);
+        SetInitCustomView.initSwipeRecycleview(home_rv_official_account, new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL), mOfficialAccountAdapter, true);
         mOfficialAccountAdapter.setNewInstance(officialAccountModels);
 
     }
@@ -293,15 +307,25 @@ public class HomeRecommendFragment extends BaseFragment<HomeFragmentRecommendBin
     public void setUnreadMessage(int number) {
         if (number > 0) {
             home_rl_message.setVisibility(View.VISIBLE);
-            String strMsg = "您有<font color=\"#EE7931\"> "+number+"</font> 条未读消息</font>";
+            String strMsg = "您有<font color=\"#EE7931\"> " + number + "</font> 条未读消息</font>";
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                home_tv_unread_message.setText(Html.fromHtml(strMsg,Html.FROM_HTML_MODE_LEGACY));
+                home_tv_unread_message.setText(Html.fromHtml(strMsg, Html.FROM_HTML_MODE_LEGACY));
             } else {
                 home_tv_unread_message.setText(Html.fromHtml(strMsg));
             }
         } else {
             home_rl_message.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public void collectArticleSuccess(int position) {
+
+    }
+
+    @Override
+    public void cancelArticleSuccess(int position) {
+
     }
 
 
@@ -314,7 +338,7 @@ public class HomeRecommendFragment extends BaseFragment<HomeFragmentRecommendBin
                         mTopArticleAdapter.getData().get(position).getId(),
                         mTopArticleAdapter.getData().get(position).isCollect(),
                         mTopArticleAdapter.getData().get(position).getEnvelopePic(),
-                        mTopArticleAdapter.getData().get(position).getDesc(),mTopArticleAdapter.getData().get(position).getChapterName(),
+                        mTopArticleAdapter.getData().get(position).getDesc(), mTopArticleAdapter.getData().get(position).getChapterName(),
                         TextUtils.isEmpty(mTopArticleAdapter.getData().get(position).getAuthor()) ? mTopArticleAdapter.getData().get(position).getShareUser() : mTopArticleAdapter.getData().get(position).getAuthor());
             }
         });
@@ -325,7 +349,7 @@ public class HomeRecommendFragment extends BaseFragment<HomeFragmentRecommendBin
             public boolean onItemLongClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
                 BlurBuilder.snapShotWithoutStatusBar(getActivity());
                 startActivity(new Intent(getActivity(), HomeArticlesTabActivity.class)
-                        .putExtra("toparticles",(Serializable) mTopArticleAdapter.getData()));
+                        .putExtra("toparticles", (Serializable) mTopArticleAdapter.getData()));
                 getActivity().overridePendingTransition(R.anim.base_scalealpha_in, R.anim.base_scalealpha_slient);
 
                 return false;
@@ -334,54 +358,87 @@ public class HomeRecommendFragment extends BaseFragment<HomeFragmentRecommendBin
     }
 
 
-
-    private void initOfficialAccountClick(){
+    private void initOfficialAccountClick() {
         mOfficialAccountAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
                 ArrayList<OfficialAccountEntity> arrayList = new ArrayList<>();
                 arrayList.addAll(mOfficialAccountAdapter.getData());
                 ARouter.getInstance().build(RoutePathActivity.Wechat.Wechat_Pager)
-                        .withParcelableArrayList("data",arrayList)
-                        .withInt("position",position)
+                        .withParcelableArrayList("data", arrayList)
+                        .withInt("position", position)
                         .navigation();
             }
         });
     }
 
+    private void initArticleLinstener() {
+        mHomeArticleAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+                ARouterUtils.startWeb(mHomeArticleAdapter.getData().get(position - 1).getLink(),
+                        mHomeArticleAdapter.getData().get(position - 1).getTitle(),
+                        mHomeArticleAdapter.getData().get(position - 1).getId(),
+                        mHomeArticleAdapter.getData().get(position - 1).isCollect(),
+                        mHomeArticleAdapter.getData().get(position - 1).getEnvelopePic(),
+                        mHomeArticleAdapter.getData().get(position - 1).getDesc(),
+                        mHomeArticleAdapter.getData().get(position - 1).getChapterName(),
+                        TextUtils.isEmpty(mHomeArticleAdapter.getData().get(position - 1).getAuthor()) ? mHomeArticleAdapter.getData().get(position - 1).getShareUser() : mHomeArticleAdapter.getData().get(position - 1).getAuthor());
+            }
+        });
+
+        mHomeArticleAdapter.addChildClickViewIds(R.id.home_icon_collect);
+        mHomeArticleAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+            @LoginCheck
+            @Override
+            public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+                if (view.getId() == R.id.home_icon_collect) {
+                    if (mHomeArticleAdapter.getData().get(position - 1).isCollect()) {
+                        mPresenter.requestCancelCollectArticle(mHomeArticleAdapter.getData().get(position - 1).getId(), position - 1);
+                    } else {
+                        mPresenter.requestCollectArticle(mHomeArticleAdapter.getData().get(position - 1).getId(), position - 1);
+                    }
+
+                }
+            }
+        });
+
+
+    }
+
     /**
-     *
      * 初始化二楼
      */
-    private void initTwoLevel(){
+    private void initTwoLevel() {
         mOpenSourceAdapter = new OpenSourceAdapter(new ArrayList<>());
-        SetInitCustomView.initSwipeRecycleview(mDatabind.secondOpenframeRv,new LinearLayoutManager(getActivity()),mOpenSourceAdapter,true);
+        SetInitCustomView.initSwipeRecycleview(mDatabind.secondOpenframeRv, new LinearLayoutManager(getActivity()), mOpenSourceAdapter, true);
         //初始化标签
-        Type type = new TypeToken<List<OpenSourceEntity>>() {}.getType();
-        String jsonData = JsonUtils.getJson(getActivity(),"opensourceproject.json");
-        List<OpenSourceEntity> mDataList = GsonUtils.getList(jsonData,type);
+        Type type = new TypeToken<List<OpenSourceEntity>>() {
+        }.getType();
+        String jsonData = JsonUtils.getJson(getActivity(), "opensourceproject.json");
+        List<OpenSourceEntity> mDataList = GsonUtils.getList(jsonData, type);
         mOpenSourceAdapter.setNewInstance(mDataList);
 
-        mOpenSourceAdapter.addChildClickViewIds(R.id.home_opensource_abroadlink_value,R.id.home_opensource_internallink_value,R.id.home_iv_abroadcopy,R.id.home_iv_internalcopy);
+        mOpenSourceAdapter.addChildClickViewIds(R.id.home_opensource_abroadlink_value, R.id.home_opensource_internallink_value, R.id.home_iv_abroadcopy, R.id.home_iv_internalcopy);
         mOpenSourceAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
             public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
 
-                if(view.getId() == R.id.home_opensource_abroadlink_value){
+                if (view.getId() == R.id.home_opensource_abroadlink_value) {
                     ARouter.getInstance().build(RoutePathActivity.Web.Web_Normal)
-                            .withString("webUrl",mOpenSourceAdapter.getData().get(position).getAbroadlink())
-                            .withString("webTitle",mOpenSourceAdapter.getData().get(position).getName())
+                            .withString("webUrl", mOpenSourceAdapter.getData().get(position).getAbroadlink())
+                            .withString("webTitle", mOpenSourceAdapter.getData().get(position).getName())
                             .navigation();
-                } else if(view.getId() == R.id.home_opensource_internallink_value){
+                } else if (view.getId() == R.id.home_opensource_internallink_value) {
                     ARouter.getInstance().build(RoutePathActivity.Web.Web_Normal)
-                            .withString("webUrl",mOpenSourceAdapter.getData().get(position).getInternallink())
-                            .withString("webTitle",mOpenSourceAdapter.getData().get(position).getName())
+                            .withString("webUrl", mOpenSourceAdapter.getData().get(position).getInternallink())
+                            .withString("webTitle", mOpenSourceAdapter.getData().get(position).getName())
                             .navigation();
-                } else if(view.getId() == R.id.home_iv_abroadcopy){
-                    SystemUtils.copyContent(getActivity(),mOpenSourceAdapter.getData().get(position).getAbroadlink());
+                } else if (view.getId() == R.id.home_iv_abroadcopy) {
+                    SystemUtils.copyContent(getActivity(), mOpenSourceAdapter.getData().get(position).getAbroadlink());
                     ToastUtils.getInstance().showToast("已成功复制链接");
                 } else {
-                    SystemUtils.copyContent(getActivity(),mOpenSourceAdapter.getData().get(position).getInternallink());
+                    SystemUtils.copyContent(getActivity(), mOpenSourceAdapter.getData().get(position).getInternallink());
                     ToastUtils.getInstance().showToast("已成功复制链接");
                 }
             }
@@ -391,8 +448,8 @@ public class HomeRecommendFragment extends BaseFragment<HomeFragmentRecommendBin
             public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
                 //跳到webview
                 ARouter.getInstance().build(RoutePathActivity.Web.Web_Normal)
-                        .withString("webUrl",mOpenSourceAdapter.getData().get(position).getAbroadlink())
-                        .withString("webTitle",mOpenSourceAdapter.getData().get(position).getName())
+                        .withString("webUrl", mOpenSourceAdapter.getData().get(position).getAbroadlink())
+                        .withString("webTitle", mOpenSourceAdapter.getData().get(position).getName())
                         .navigation();
             }
         });
@@ -419,24 +476,28 @@ public class HomeRecommendFragment extends BaseFragment<HomeFragmentRecommendBin
             } else {
                 scrollTop();
             }
-
         }
+
+
     }
 
-    public void scrollTop(){
+    public void scrollTop() {
         mDatabind.homeRecommendArticleBody.smoothScrollToPosition(0);
     }
+
     /**
      * 登录成功
+     *
      * @param loginInSuccess
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onLoginInSuccess(EventBusUtils.LoginInSuccess loginInSuccess){
+    public void onLoginInSuccess(EventBusUtils.LoginInSuccess loginInSuccess) {
         mPresenter.requestUnreadMessage();
     }
 
     /**
      * 退出登录成功
+     *
      * @param logoutSuccess
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -447,12 +508,13 @@ public class HomeRecommendFragment extends BaseFragment<HomeFragmentRecommendBin
 
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void readAllMessage(EventBusUtils.ReadAllMessage readAllMessage){
+    public void readAllMessage(EventBusUtils.ReadAllMessage readAllMessage) {
         home_rl_message.setVisibility(View.GONE);
     }
 
+
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }

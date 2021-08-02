@@ -7,6 +7,9 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.knight.wanandroid.databinding.ActivityMainBinding;
 import com.knight.wanandroid.library_base.baseactivity.BaseDBActivity;
+import com.knight.wanandroid.library_util.CacheUtils;
+import com.knight.wanandroid.library_util.ColorUtils;
+import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_util.ViewSetUtils;
 import com.knight.wanandroid.module_hierachy.module_fragment.HierachyNavigateMainFragment;
@@ -15,50 +18,61 @@ import com.knight.wanandroid.module_mine.module_fragment.MineFragment;
 import com.knight.wanandroid.module_project.module_fragment.ProjectFragment;
 import com.knight.wanandroid.module_square.module_fragment.SquareFragment;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends BaseDBActivity<ActivityMainBinding> {
 
     ArrayList<Fragment> fragments = new ArrayList<Fragment>();
     private long mExitAppTime;
+    private HomeFragment mHomeFragment;
+    private SquareFragment mSquareFragment;
+    private ProjectFragment mProjectFragment;
+    private HierachyNavigateMainFragment mHierachyNavigateMainFragment;
+    private MineFragment mMineFragment;
 
     @Override
     public int layoutId() {
         return R.layout.activity_main;
     }
-    
+
     @Override
     public void initView(Bundle savedInstanceState) {
-       initFragment();
+        EventBus.getDefault().register(this);
+        initFragment();
 
     }
 
 
-
-    private void initFragment(){
-        fragments.add(new HomeFragment());
-        fragments.add(new SquareFragment());
-        fragments.add(new ProjectFragment());
-        fragments.add(new HierachyNavigateMainFragment());
-        fragments.add(new MineFragment());
-        ViewSetUtils.setIsUserInputEnable(this,mDatabind.mainViewpager,fragments,false);
-
+    private void initFragment() {
+        fragments.add(mHomeFragment = new HomeFragment());
+        fragments.add(mSquareFragment = new SquareFragment());
+        fragments.add(mProjectFragment = new ProjectFragment());
+        fragments.add(mHierachyNavigateMainFragment = new HierachyNavigateMainFragment());
+        fragments.add(mMineFragment = new MineFragment());
+        ViewSetUtils.setIsUserInputEnable(this, mDatabind.mainViewpager, fragments, false);
+        mDatabind.btnNav.setItemTextColor(ColorUtils.createColorStateList(CacheUtils.getInstance().getThemeColor(), ColorUtils.convertToColorInt("a6a6a6")));
+        mDatabind.btnNav.setItemIconTintList(ColorUtils.createColorStateList(CacheUtils.getInstance().getThemeColor(), ColorUtils.convertToColorInt("a6a6a6")));
         mDatabind.btnNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if(item.getItemId() == R.id.homeFragment){
-                    mDatabind.mainViewpager.setCurrentItem(0,false);
-                } else if(item.getItemId() == R.id.squareFragment){
-                    mDatabind.mainViewpager.setCurrentItem(1,false);
-                } else if(item.getItemId() == R.id.projectFragment){
-                    mDatabind.mainViewpager.setCurrentItem(2,false);
-                } else if(item.getItemId() == R.id.navigateFragment){
-                    mDatabind.mainViewpager.setCurrentItem(3,false);
-                } else if(item.getItemId() == R.id.mineFragment){
-                    mDatabind.mainViewpager.setCurrentItem(4,false);
+                if (item.getItemId() == R.id.homeFragment) {
+                    mDatabind.mainViewpager.setCurrentItem(0, false);
+                } else if (item.getItemId() == R.id.squareFragment) {
+                    mDatabind.mainViewpager.setCurrentItem(1, false);
+                } else if (item.getItemId() == R.id.projectFragment) {
+                    mDatabind.mainViewpager.setCurrentItem(2, false);
+                } else if (item.getItemId() == R.id.navigateFragment) {
+                    mDatabind.mainViewpager.setCurrentItem(3, false);
+                } else if (item.getItemId() == R.id.mineFragment) {
+                    mDatabind.mainViewpager.setCurrentItem(4, false);
                 }
                 return true;
             }
@@ -67,11 +81,8 @@ public class MainActivity extends BaseDBActivity<ActivityMainBinding> {
     }
 
 
-
-
-
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event){
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (System.currentTimeMillis() - mExitAppTime <= 2000) {
                 finish();
@@ -85,4 +96,47 @@ public class MainActivity extends BaseDBActivity<ActivityMainBinding> {
         return super.onKeyDown(keyCode, event);
 
     }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void changeThemeColor(EventBusUtils.changeColor changeColor) {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        if (mHomeFragment != null) {
+            fragmentTransaction.remove(mHomeFragment);
+        }
+
+        if (mSquareFragment != null) {
+            fragmentTransaction.remove(mSquareFragment);
+        }
+
+        if (mProjectFragment != null) {
+            fragmentTransaction.remove(mProjectFragment);
+        }
+
+        if (mHierachyNavigateMainFragment != null) {
+            fragmentTransaction.remove(mHierachyNavigateMainFragment);
+        }
+
+        if (mMineFragment != null) {
+            fragmentTransaction.remove(mMineFragment);
+        }
+        fragmentTransaction.commitAllowingStateLoss();
+        recreate();
+
+    }
+
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mHomeFragment = null;
+        mSquareFragment = null;
+        mProjectFragment = null;
+        mHierachyNavigateMainFragment = null;
+        mMineFragment = null;
+        EventBus.getDefault().unregister(this);
+
+    }
+
 }

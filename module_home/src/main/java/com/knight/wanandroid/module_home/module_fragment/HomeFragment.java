@@ -43,8 +43,6 @@ import com.wanandroid.knight.library_database.entity.EveryDayPushEntity;
 import com.wanandroid.knight.library_database.entity.PushDateEntity;
 import com.wanandroid.knight.library_database.repository.PushArticlesDateRepository;
 
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -73,13 +71,18 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
 
     List<Fragment> mFragments = new ArrayList<>();
 
-
     private List<EveryDayPushEntity> mEveryDayPushEntities;
     List<String> knowledgeLabelList;
+
 
     @Override
     public int layoutId(){
         return R.layout.home_fragment_home;
+    }
+
+    @Override
+    protected void setThemeColor() {
+        mDatabind.homeIncludeToolbar.homeTvLoginname.setTextColor(textColor);
     }
 
     @Override
@@ -214,13 +217,11 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         }
 
 
-        public void goMessage() {
-            ARouter.getInstance().build(RoutePathActivity.Message.Message_pager).navigation();
-        }
+
 
 
         public void goknowledgeLabel() {
-            Intent intent = new Intent(getActivity(),KnowledgeLabelActivity.class);
+            Intent intent = new Intent(getActivity(), KnowledgeLabelActivity.class);
             intent.putExtra("data", (Serializable) knowledgeLabelList);
             startActivity(intent);
         }
@@ -244,7 +245,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
             }
 
         }
-        ViewSetUtils.setViewPager2Init(getActivity(), mFragments, mDatabind.viewPager, false);
+        ViewSetUtils.setViewPager2Init(getActivity(), mFragments,mDatabind.viewPager, false);
         
 //        CustomViewUtils.bindViewPager2(mDatabind.magicIndicator, mDatabind.viewPager, knowledgeLabelList, new Function1() {
 //            @Override
@@ -315,9 +316,14 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         knowledgeLabelList.addAll(changeLabel.getResults());
         mFragments.clear();
         for (int i = 0;i < knowledgeLabelList.size();i++) {
-            mFragments.add(new HomeArticlesFragment());
+            if (i == 0) {
+                mFragments.add(new HomeRecommendFragment());
+            } else {
+                mFragments.add(new HomeArticlesFragment());
+            }
         }
-        ((CommonNavigator)mDatabind.magicIndicator.getNavigator()).notifyDataSetChanged();
+        mDatabind.magicIndicator.getNavigator().notifyDataSetChanged();
+        mDatabind.viewPager.getAdapter().notifyDataSetChanged();
         ViewSetUtils.setViewPager2Init(getActivity(), mFragments, mDatabind.viewPager, false);
 
     }

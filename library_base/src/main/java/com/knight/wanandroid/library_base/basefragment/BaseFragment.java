@@ -14,6 +14,7 @@ import com.knight.wanandroid.library_base.loadsir.LoadCallBack;
 import com.knight.wanandroid.library_base.model.BaseModel;
 import com.knight.wanandroid.library_base.presenter.BasePresenter;
 import com.knight.wanandroid.library_network.listener.OnHttpListener;
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.CreateUtils;
 import com.knight.wanandroid.library_widget.loadcircleview.ProgressHUD;
 
@@ -42,13 +43,28 @@ public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePres
     public LoadService mLoadService;
     private ProgressHUD mProgressHUD;
 
+    protected int themeColor;
+    protected int textColor;
+    protected int bgColor;
+    protected boolean isDarkMode;
+
+
+
     /**
-     *
      *
      * 布局视图id
      * @return
      */
     protected abstract int layoutId();
+
+    /**
+     * 主题色设置
+     *
+     */
+    protected abstract void setThemeColor();
+
+
+
 
 
     /**
@@ -106,6 +122,14 @@ public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePres
     public void onViewCreated(View view,Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
         initView(savedInstanceState);
+        isDarkMode = CacheUtils.getInstance().getNormalDark();
+        if (!isDarkMode) {
+            initThemeColor();
+            initTextColor();
+            initBgColor();
+            setThemeColor();
+        }
+
         //从内部获取第二个类型参数的真实类型，反射出new对象
         mPresenter = CreateUtils.get(this,1);
         //从内部获取第三个类型参数的真实类型，反射出new对象
@@ -114,6 +138,8 @@ public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePres
         mPresenter.attachModelView(mModel,this);
         onVisible();
         initData();
+
+
     }
 
 
@@ -196,9 +222,31 @@ public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePres
         }
     }
 
+    /**
+     *
+     * 获取主题颜色
+     *
+     */
+    protected void initThemeColor() {
+        themeColor = CacheUtils.getInstance().getThemeColor();
+    }
+
+    /**
+     *
+     * 获取字体颜色
+     */
+    protected void initTextColor() {
+        textColor = CacheUtils.getInstance().getTextColor();
+    }
 
 
-
+    /**
+     *
+     * 获取背景颜色
+     */
+    protected void initBgColor() {
+        bgColor = CacheUtils.getInstance().getBgThemeColor();
+    }
 
 
     /**

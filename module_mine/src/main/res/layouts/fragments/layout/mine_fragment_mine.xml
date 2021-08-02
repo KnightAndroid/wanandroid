@@ -21,7 +21,8 @@
         android:id="@+id/mine_reboundlayout_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:damping="3">
+        app:damping="3"
+        >
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -126,6 +127,7 @@
 
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/mine_cv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="@dimen/base_dimen_6"

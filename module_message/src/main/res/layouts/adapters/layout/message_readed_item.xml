@@ -38,7 +38,11 @@
             android:textSize="@dimen/base_dimen_12"
             app:layout_constraintBottom_toBottomOf="@id/message_item_author"
             app:layout_constraintLeft_toRightOf="@id/message_item_author"
-            app:layout_constraintTop_toTopOf="@id/message_item_author" />
+            app:layout_constraintTop_toTopOf="@id/message_item_author"
+            android:paddingTop="@dimen/base_dimen_2"
+            android:paddingBottom="@dimen/base_dimen_2"
+            android:paddingLeft="@dimen/base_dimen_4"
+            android:paddingRight="@dimen/base_dimen_4"/>
 
 
         <TextView

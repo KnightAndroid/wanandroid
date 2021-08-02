@@ -14,44 +14,19 @@
 
     </data>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/main_viewpager"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            />
-
-        <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
-            android:id="@+id/btn_nav"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/base_bg_normal_default"
-            app:itemTextColor="@drawable/main_bottom_color_selector"
-            app:menu="@menu/menu_main"
-            android:layout_gravity="bottom|end"
-            />
-
-
-    </LinearLayout>
-
-<!--    <androidx.coordinatorlayout.widget.CoordinatorLayout-->
+<!--    <LinearLayout-->
 <!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent">-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="vertical">-->
 
 
 
-<!--                <androidx.viewpager2.widget.ViewPager2-->
-<!--                    android:id="@+id/main_viewpager"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    />-->
+<!--        <androidx.viewpager2.widget.ViewPager2-->
+<!--            android:id="@+id/main_viewpager"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_weight="1"-->
+<!--            />-->
 
 <!--        <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx-->
 <!--            android:id="@+id/btn_nav"-->
@@ -61,13 +36,38 @@
 <!--            app:itemTextColor="@drawable/main_bottom_color_selector"-->
 <!--            app:menu="@menu/menu_main"-->
 <!--            android:layout_gravity="bottom|end"-->
-<!--            app:layout_behavior=".library_widget.BottomNavigationBehavior"/>-->
-
-<!--&lt;!&ndash;        app:layout_behavior=".library_widget.FloatButtonBehavior"&ndash;&gt;-->
+<!--            />-->
 
 
+<!--    </LinearLayout>-->
 
-<!--    </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/main_viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+
+        <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
+            android:id="@+id/btn_nav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/base_bg_normal_default"
+            app:itemTextColor="@drawable/main_bottom_color_selector"
+            app:menu="@menu/menu_main"
+            android:layout_gravity="bottom|end"
+            app:layout_behavior=".library_widget.BottomNavigationBehavior"/>
+
+<!--        app:layout_behavior=".library_widget.FloatButtonBehavior"-->
+
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>
 

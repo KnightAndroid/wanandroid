@@ -80,7 +80,11 @@
             android:layout_marginTop="@dimen/base_dimen_12"
             android:text="广泛他"
             android:textColor="@color/base_color_theme"
-            android:background="@drawable/base_articlechapter_type"/>
+            android:background="@drawable/base_articlechapter_type"
+            android:paddingTop="@dimen/base_dimen_2"
+            android:paddingBottom="@dimen/base_dimen_2"
+            android:paddingLeft="@dimen/base_dimen_4"
+            android:paddingRight="@dimen/base_dimen_4"/>
 
 
         <LinearLayout

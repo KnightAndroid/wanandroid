@@ -26,11 +26,10 @@
                 android:id="@+id/square_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
+                android:background="@color/base_bg_normal_default"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                android:background="@color/base_bg_normal_default"
-                >
+                app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -41,53 +40,54 @@
                         android:id="@+id/square_iv_question"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
                         android:layout_marginLeft="@dimen/base_dimen_16"
                         android:background="@drawable/square_icon_question"
-                        />
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/square_tv_tipshare"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/base_dimen_16"
                         android:layout_marginLeft="@dimen/base_dimen_16"
-                        android:textColor="@color/base_color_title"
                         android:text="@string/square_click_share"
+                        android:textColor="@color/base_color_title"
+                        android:textSize="@dimen/base_dimen_16"
                         app:layout_constraintRight_toLeftOf="@+id/square_tv_goshare"
-                        app:layout_constraintTop_toTopOf="parent"
-                        />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/square_tv_goshare"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/square_tv_tipshare"
-                        app:layout_constraintBottom_toBottomOf="@id/square_tv_tipshare"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/base_dimen_16"
                         android:background="@drawable/square_shape_sharearticle"
+                        android:onClick="@{()->click.goShareArticle()}"
                         android:text="@string/square_share_article"
                         android:textColor="@color/square_white"
-                        android:layout_centerVertical="true"
                         android:textSize="@dimen/base_dimen_16"
-                        android:layout_marginRight="@dimen/base_dimen_16"
-                        android:onClick="@{()->click.goShareArticle()}"/>
+                        app:layout_constraintBottom_toBottomOf="@id/square_tv_tipshare"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/square_tv_tipshare"
+                        android:paddingRight="@dimen/base_dimen_2"
+                        android:paddingLeft="@dimen/base_dimen_2"
+                        android:paddingTop="@dimen/base_dimen_2"
+                        android:paddingBottom="@dimen/base_dimen_2"/>
 
                     <TextView
                         android:id="@+id/square_tv_addcoins"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/square_tv_tipshare"
-                        app:layout_constraintLeft_toLeftOf="@id/square_tv_tipshare"
-                        android:textColor="@color/base_color_title"
-                        android:text="@string/square_share_addcoins"
                         android:layout_marginTop="@dimen/base_dimen_6"
-                        android:textSize="@dimen/base_dimen_16"/>
+                        android:text="@string/square_share_addcoins"
+                        android:textColor="@color/base_color_title"
+                        android:textSize="@dimen/base_dimen_16"
+                        app:layout_constraintLeft_toLeftOf="@id/square_tv_tipshare"
+                        app:layout_constraintTop_toBottomOf="@id/square_tv_tipshare" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
             </com.knight.wanandroid.library_widget.CompatToobar>
@@ -97,23 +97,23 @@
                 android:id="@+id/square_sharearticle_freshlayout"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                app:layout_constraintTop_toBottomOf="@id/square_toolbar"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/square_toolbar"
 
                 >
 
                 <com.scwang.smart.refresh.header.ClassicsHeader
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
+
                 <com.knight.wanandroid.library_widget.StickyScrollView
                     android:id="@+id/square_nestedsv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scrollbars="none"
                     android:fillViewport="true"
-                    >
+                    android:scrollbars="none">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -126,29 +126,27 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/base_dimen_16"
-                            android:textColor="@color/base_color_title"
-                            android:textSize="@dimen/base_dimen_18"
+                            android:layout_marginTop="@dimen/base_dimen_10"
                             android:text="@string/square_every_one_search"
-                            android:layout_marginTop="@dimen/base_dimen_10"/>
+                            android:textColor="@color/base_color_title"
+                            android:textSize="@dimen/base_dimen_18" />
 
                         <com.yanzhenjie.recyclerview.SwipeRecyclerView
                             android:id="@+id/square_searchhot_rv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/base_dimen_10"
                             android:layout_marginLeft="@dimen/base_dimen_10"
-                            android:layout_marginRight="@dimen/base_dimen_10"
-                            />
+                            android:layout_marginTop="@dimen/base_dimen_10"
+                            android:layout_marginRight="@dimen/base_dimen_10" />
 
                         <TextView
                             android:id="@+id/square_tv_new_share"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/square_new_sharearticle"
                             android:layout_marginLeft="@dimen/base_dimen_16"
+                            android:text="@string/square_new_sharearticle"
                             android:textColor="@color/base_color_title"
-                            android:textSize="@dimen/base_dimen_18"
-                            />
+                            android:textSize="@dimen/base_dimen_18" />
 
 
                         <com.yanzhenjie.recyclerview.SwipeRecyclerView
@@ -158,10 +156,6 @@
 
                             />
                     </LinearLayout>
-
-
-
-
 
 
                 </com.knight.wanandroid.library_widget.StickyScrollView>
@@ -176,18 +170,17 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/square_fab_up"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:src="@drawable/base_icon_up"
             android:layout_alignParentRight="true"
+            android:layout_gravity="bottom|end"
             android:layout_marginRight="@dimen/base_dimen_20"
             android:layout_marginBottom="@dimen/base_dimen_70"
-            app:backgroundTint="@color/base_color_theme"
-            android:onClick="@{()->click.scrollToUp()}"/>
+            android:onClick="@{()->click.scrollToUp()}"
+            android:src="@drawable/base_icon_up"
+            app:backgroundTint="@color/base_color_theme" />
     </FrameLayout>
 
 </layout>

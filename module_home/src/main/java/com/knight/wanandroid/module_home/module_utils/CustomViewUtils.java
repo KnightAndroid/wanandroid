@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.view.View;
 
 import com.knight.wanandroid.library_common.ApplicationProvider;
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.ScreenUtils;
 import com.knight.wanandroid.module_home.module_constants.HomeConstants;
 
@@ -69,7 +70,7 @@ public class CustomViewUtils {
                 WrapPagerIndicator indicator = new WrapPagerIndicator(context);
                // indicator.setHorizontalPadding(10);
                 indicator.setRoundRadius(ScreenUtils.dp2px(6));
-                indicator.setFillColor(Color.parseColor("#55aff4"));
+                indicator.setFillColor(CacheUtils.getInstance().getThemeColor());
                 return indicator;
             }
         });

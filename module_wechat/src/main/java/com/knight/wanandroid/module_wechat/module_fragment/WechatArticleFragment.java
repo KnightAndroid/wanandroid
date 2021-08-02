@@ -59,6 +59,11 @@ public class WechatArticleFragment extends BaseFragment<WechatOfficialaccountVie
     }
 
     @Override
+    protected void setThemeColor() {
+        
+    }
+
+    @Override
     protected void initView(Bundle savedInstanceState) {
         mDatabind.setClick(new ProcyClick());
         cid = getArguments().getInt("cid");

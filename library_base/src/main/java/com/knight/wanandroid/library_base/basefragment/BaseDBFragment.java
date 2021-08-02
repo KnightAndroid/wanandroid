@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.knight.wanandroid.library_util.CacheUtils;
+
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
@@ -22,6 +24,11 @@ public abstract class BaseDBFragment<DB extends ViewDataBinding> extends Fragmen
     protected DB mDatabind;
     //是否第一次加载
     private boolean isFirst = true;
+
+    protected int themeColor;
+    protected int textColor;
+    protected int bgColor;
+    protected boolean isDarkMode;
     /**
      *
      *
@@ -83,7 +90,15 @@ public abstract class BaseDBFragment<DB extends ViewDataBinding> extends Fragmen
         super.onViewCreated(view, savedInstanceState);
         initView(savedInstanceState);
         onVisible();
+        isDarkMode = CacheUtils.getInstance().getNormalDark();
+        if (!isDarkMode) {
+            initThemeColor();
+            initTextColor();
+            initBgColor();
+        }
+
         initData();
+
     }
 
 
@@ -104,6 +119,32 @@ public abstract class BaseDBFragment<DB extends ViewDataBinding> extends Fragmen
             lazyLoadData();
             isFirst = false;
         }
+    }
+
+    /**
+     *
+     * 获取主题颜色
+     *
+     */
+    protected void initThemeColor() {
+        themeColor = CacheUtils.getInstance().getThemeColor();
+    }
+
+    /**
+     *
+     * 获取字体颜色
+     */
+    protected void initTextColor() {
+        textColor = CacheUtils.getInstance().getTextColor();
+    }
+
+
+    /**
+     *
+     * 获取背景颜色
+     */
+    protected void initBgColor() {
+        bgColor = CacheUtils.getInstance().getBgThemeColor();
     }
 
 }

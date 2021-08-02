@@ -52,6 +52,11 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
     }
 
     @Override
+    protected void setThemeColor() {
+
+    }
+
+    @Override
     protected void initView(Bundle savedInstanceState) {
         EventBus.getDefault().register(this);
         mHomeArticleAdapter = new HomeArticleAdapter(new ArrayList<>());

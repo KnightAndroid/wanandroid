@@ -54,6 +54,11 @@ public class HierachyTabArticleFragment extends BaseFragment<HierachyFragmentTab
     }
 
     @Override
+    protected void setThemeColor() {
+
+    }
+
+    @Override
     protected void initView(Bundle savedInstanceState) {
         cid = getArguments().getInt("cid");
         mHierachyTabAdapter = new HierachyTabAdapter();

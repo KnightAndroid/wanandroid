@@ -48,4 +48,47 @@ public class EventBusUtils {
 
     }
 
+
+    public static class changeColor{
+
+
+    }
+
+    //主题色更改
+    public static class changeThemeColor{
+        private int color;
+        public changeThemeColor (int color) {
+            this.color = color;
+        }
+
+        public int getColor() {
+            return color;
+        }
+    }
+    //背景颜色更改
+    public static class changeBgColor{
+        private int color;
+        public changeBgColor (int color) {
+            this.color = color;
+        }
+
+
+        public int getColor() {
+            return color;
+        }
+    }
+
+    //字体颜色更改
+    public static class changeTextColor{
+        private int color;
+        public changeTextColor (int color) {
+            this.color = color;
+        }
+        public int getColor() {
+            return color;
+        }
+
+    }
+
+
 }

@@ -1,9 +1,12 @@
 package com.knight.wanandroid.module_message.module_adapter;
 
+import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.text.TextUtils;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.module_message.R;
 import com.knight.wanandroid.module_message.module_entity.MessageEntity;
 
@@ -37,6 +40,16 @@ public class MessageAdapter extends BaseQuickAdapter<MessageEntity, BaseViewHold
         //Tag
         if (!TextUtils.isEmpty(messageEntity.getTag())) {
             baseViewHolder.setText(R.id.message_item_tag, messageEntity.getTag());
+            GradientDrawable gradientDrawable = new GradientDrawable();
+            gradientDrawable.setShape(GradientDrawable.RECTANGLE);
+            gradientDrawable.setStroke(1, CacheUtils.getInstance().getThemeColor());
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                baseViewHolder.getView(R.id.message_item_tag).setBackground(gradientDrawable);
+            } else {
+                baseViewHolder.getView(R.id.message_item_tag).setBackgroundDrawable(gradientDrawable);
+            }
+            baseViewHolder.setTextColor(R.id.message_item_tag,CacheUtils.getInstance().getThemeColor());
+
         } else {
             baseViewHolder.setGone(R.id.message_item_tag,true);
         }
@@ -54,6 +67,16 @@ public class MessageAdapter extends BaseQuickAdapter<MessageEntity, BaseViewHold
         } else {
             baseViewHolder.setText(R.id.message_tv_title,"");
         }
+
+        if (!CacheUtils.getInstance().getNormalDark()) {
+            baseViewHolder.setTextColor(R.id.message_tv_title,CacheUtils.getInstance().getTextColor());
+        } else {
+            baseViewHolder.setTextColor(R.id.message_tv_title,R.color.base_color_title);
+        }
+
+
+
+        
 
         //描述
         if (!TextUtils.isEmpty(messageEntity.getMessage())) {

@@ -44,6 +44,16 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
         return R.layout.mine_fragment_mine;
     }
 
+
+
+    @Override
+    protected void setThemeColor() {
+        mDatabind.mineTvUsername.setTextColor(themeColor);
+        mDatabind.mineTvLevel.setTextColor(themeColor);
+        mDatabind.mineTvRank.setTextColor(themeColor);
+        mDatabind.mineCv.setCardBackgroundColor(themeColor);
+    }
+
     @Override
     protected void initView(Bundle savedInstanceState) {
         mDatabind.setClick(new ProcyClick());
@@ -184,7 +194,23 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
     }
 
 
-
+//    /**
+//     *
+//     * 改主题色
+//     * @param changeThemeColor
+//     */
+//    @Subscribe(threadMode = ThreadMode.MAIN)
+//    public void changeThemeColor(EventBusUtils.changeThemeColor changeThemeColor){
+//        mDatabind.mineTvUsername.setTextColor(changeThemeColor.getColor());
+//        mDatabind.mineTvLevel.setTextColor(changeThemeColor.getColor());
+//        mDatabind.mineTvRank.setTextColor(changeThemeColor.getColor());
+//        mDatabind.mineCv.setCardBackgroundColor(changeThemeColor.getColor());
+//    }
+//
+//    @Subscribe(threadMode = ThreadMode.MAIN)
+//    public void changeBgColor(EventBusUtils.changeBgColor changeBgColor) {
+//        mDatabind.mineReboundlayoutRoot.setBackgroundColor(changeBgColor.getColor());
+//    }
 
     @Override
     public void onDestroy(){

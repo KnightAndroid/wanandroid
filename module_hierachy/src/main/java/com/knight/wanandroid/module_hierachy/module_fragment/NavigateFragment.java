@@ -49,6 +49,11 @@ public class NavigateFragment extends BaseFragment<HierachyFragmentMainBinding, 
     }
 
     @Override
+    protected void setThemeColor() {
+
+    }
+
+    @Override
     protected void initView(Bundle savedInstanceState) {
         loadLoading(mDatabind.hierachyLlMain);
         mLinearLayoutManager = new LinearLayoutManager(getActivity());
@@ -153,11 +158,22 @@ public class NavigateFragment extends BaseFragment<HierachyFragmentMainBinding, 
     }
 
     public void createFragment() {
-        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-        mNavigateRightFragment = HierachyRightFragment.newInstance(true);
-        mNavigateRightFragment.setListener(this);
-        fragmentTransaction.add(R.id.hierachy_right_sidebar,mNavigateRightFragment);
-        fragmentTransaction.commit();
+//        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+//        mNavigateRightFragment = HierachyRightFragment.newInstance(true);
+//        mNavigateRightFragment.setListener(this);
+//        fragmentTransaction.add(R.id.hierachy_right_sidebar,mNavigateRightFragment);
+//        fragmentTransaction.commitAllowingStateLoss();
+
+        FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+        mNavigateRightFragment = (HierachyRightFragment) getChildFragmentManager().findFragmentByTag("navigatefragment");
+        if (mNavigateRightFragment == null) {
+            mNavigateRightFragment = HierachyRightFragment.newInstance(false);
+            mNavigateRightFragment.setListener(this);
+            fragmentTransaction.replace(R.id.hierachy_right_sidebar,mNavigateRightFragment,"navigatefragment");
+            fragmentTransaction.commitNowAllowingStateLoss();
+        }
 
     }
+
+
 }

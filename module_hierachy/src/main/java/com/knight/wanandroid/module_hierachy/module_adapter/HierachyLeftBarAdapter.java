@@ -50,16 +50,16 @@ public class HierachyLeftBarAdapter extends RvAdapter<String> {
             super(itemView, type, listener);
             this.mView = itemView;
             tvName = (TextView) itemView.findViewById(R.id.hierachy_tv_sort);
-            hierachy_tv_selectview = (TextView)itemView.findViewById(R.id.hierachy_tv_selectview);
+            hierachy_tv_selectview = (TextView) itemView.findViewById(R.id.hierachy_tv_selectview);
         }
 
         @Override
         public void bindHolder(String string, int position) {
             tvName.setText(string);
             if (position == checkedPosition) {
-
                 hierachy_tv_selectview.setVisibility(View.VISIBLE);
-                tvName.setTextColor(Color.parseColor("#55aff4"));
+                hierachy_tv_selectview.setBackgroundColor(CacheUtils.getInstance().getThemeColor());
+                tvName.setTextColor(CacheUtils.getInstance().getThemeColor());
                 if (CacheUtils.getInstance().getNormalDark()) {
                     mView.setBackgroundColor(Color.parseColor("#303030"));
                 } else {
@@ -72,7 +72,7 @@ public class HierachyLeftBarAdapter extends RvAdapter<String> {
                     tvName.setTextColor(Color.parseColor("#D3D3D3"));
                 } else {
                     mView.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                    tvName.setTextColor(Color.parseColor("#333333"));
+                    tvName.setTextColor(CacheUtils.getInstance().getTextColor());
                 }
                 hierachy_tv_selectview.setVisibility(View.INVISIBLE);
             }

@@ -1,12 +1,17 @@
 package com.knight.wanandroid.module_hierachy.module_adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexboxLayoutManager;
+import com.knight.wanandroid.library_util.CacheUtils;
+import com.knight.wanandroid.library_util.ScreenUtils;
 import com.knight.wanandroid.module_hierachy.R;
 import com.knight.wanandroid.module_hierachy.module_entity.HierachyRightBeanEntity;
 import com.knight.wanandroid.module_hierachy.module_holder.RvHolder;
@@ -45,12 +50,15 @@ public class HierachyClassifyDetailAdapter extends RvAdapter<HierachyRightBeanEn
         TextView hierachy_tv_content;
         //标题
         TextView hierachy_tv_title;
+        //标题右边颜色条
+        View hierachy_right_view;
 
         public ClassifyHolder(View itemView,int type,RvListener listener){
             super(itemView,type,listener);
             switch (type) {
                 case 0:
                     hierachy_tv_title = itemView.findViewById(R.id.hierachy_tv_title);
+                    hierachy_right_view = itemView.findViewById(R.id.hierachy_right_view);
                     break;
                 case 1:
                     hierachy_tv_content = itemView.findViewById(R.id.hierachy_tv_content);
@@ -59,12 +67,19 @@ public class HierachyClassifyDetailAdapter extends RvAdapter<HierachyRightBeanEn
             }
         }
 
+        @SuppressLint("ResourceAsColor")
         @Override
         public void bindHolder(HierachyRightBeanEntity hierachyRightBeanEntity, int position) {
             int itemViewType = HierachyClassifyDetailAdapter.this.getItemViewType(position);
             switch (itemViewType) {
                 case 0:
                     hierachy_tv_title.setText(hierachyRightBeanEntity.getName());
+                    if (!CacheUtils.getInstance().getNormalDark()) {
+                        hierachy_tv_title.setTextColor(CacheUtils.getInstance().getTextColor());
+                    } else {
+                        hierachy_tv_title.setTextColor(R.color.base_color_title);
+                    }
+                    hierachy_right_view.setBackgroundColor(CacheUtils.getInstance().getThemeColor());
                     break;
                 case 1:
                     ViewGroup.LayoutParams lp = hierachy_tv_content.getLayoutParams();
@@ -75,6 +90,18 @@ public class HierachyClassifyDetailAdapter extends RvAdapter<HierachyRightBeanEn
                         flexboxLp.setAlignSelf(AlignItems.FLEX_END);
                     }
                     hierachy_tv_content.setText(hierachyRightBeanEntity.getName());
+                    hierachy_tv_content.setTextColor(CacheUtils.getInstance().getThemeColor());
+                    GradientDrawable gradientDrawable = new GradientDrawable();
+                    gradientDrawable.setShape(GradientDrawable.RECTANGLE);
+                    gradientDrawable.setStroke(2,CacheUtils.getInstance().getThemeColor());
+                    gradientDrawable.setCornerRadius(ScreenUtils.dp2px(6f));
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                        hierachy_tv_content.setBackground(gradientDrawable);
+                    } else {
+                        hierachy_tv_content.setBackgroundDrawable(gradientDrawable);
+                    }
+                    break;
+                default:
                     break;
             }
 

@@ -84,6 +84,44 @@ public class ViewSetUtils {
             public int getItemCount() {
                 return fragments.size();
             }
+
+        });
+    }
+
+
+    /**
+     *
+     * @param activity
+     * @param fragments
+     * @param viewPager2
+     * @param isUserInputEnabled
+     */
+    public static void setHomeViewPager2Init(FragmentActivity activity, List<Fragment> fragments, List<Integer> mFragmentHashCodes,ViewPager2 viewPager2, boolean isUserInputEnabled) {
+        viewPager2.setUserInputEnabled(isUserInputEnabled);
+        //暂时解决切换白屏问题
+        viewPager2.setOffscreenPageLimit(fragments.size());
+        viewPager2.setAdapter(new FragmentStateAdapter(activity) {
+            @NonNull
+            @Override
+            public Fragment createFragment(int position) {
+                return fragments.get(position);
+            }
+
+            @Override
+            public int getItemCount() {
+                return fragments.size();
+            }
+
+            @Override
+            public long getItemId(int position){
+                return fragments.get(position).hashCode();
+
+            }
+
+            @Override
+            public boolean containsItem(long itemId) {
+                return mFragmentHashCodes.contains(itemId);
+            }
         });
     }
 

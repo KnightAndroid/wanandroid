@@ -1,13 +1,17 @@
 package com.knight.wanandroid.module_square.module_adapter;
 
+import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexboxLayoutManager;
-import com.knight.wanandroid.module_square.R;
 import com.knight.wanandroid.library_base.entity.SearchHotKeyEntity;
+import com.knight.wanandroid.library_util.CacheUtils;
+import com.knight.wanandroid.library_util.ScreenUtils;
+import com.knight.wanandroid.module_square.R;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -31,6 +35,17 @@ public class HotKeyAdapter extends BaseQuickAdapter<SearchHotKeyEntity, BaseView
     @Override
     protected void convert(@NotNull BaseViewHolder baseViewHolder, SearchHotKeyEntity searchHotKeyEntity) {
         baseViewHolder.setText(R.id.square_tv_hotkey,searchHotKeyEntity.getName());
+        baseViewHolder.setTextColor(R.id.square_tv_hotkey, CacheUtils.getInstance().getThemeColor());
+        GradientDrawable gradientDrawable = new GradientDrawable();
+        gradientDrawable.setShape(GradientDrawable.RECTANGLE);
+        gradientDrawable.setStroke(2,CacheUtils.getInstance().getThemeColor());
+        gradientDrawable.setCornerRadius(ScreenUtils.dp2px(6f));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            baseViewHolder.getView(R.id.square_tv_hotkey).setBackground(gradientDrawable);
+        } else {
+            baseViewHolder.getView(R.id.square_tv_hotkey).setBackgroundDrawable(gradientDrawable);
+        }
+
     }
 
 

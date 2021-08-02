@@ -1,5 +1,7 @@
 package com.knight.wanandroid.module_home.module_model;
 
+import com.knight.wanandroid.library_base.api.CancelCollectArticleApi;
+import com.knight.wanandroid.library_base.api.CollectArticleApi;
 import com.knight.wanandroid.library_base.basefragment.BaseFragment;
 import com.knight.wanandroid.library_base.entity.OfficialAccountEntity;
 import com.knight.wanandroid.library_base.listener.MvpListener;
@@ -141,6 +143,44 @@ public class RecommendModel implements RecommendContract.RecommendModel {
                     public void onFail(Exception e){
                         mvpListener.onError(e.getMessage());
                     }
+                });
+    }
+
+    @Override
+    public void requestCollectArticle(BaseFragment fragment, int collectArticleId, MvpListener mvpListener) {
+        GoHttp.post(fragment)
+                .api(new CollectArticleApi().setCollectArticleId(collectArticleId))
+                .request(new HttpCallback<HttpData>(fragment){
+                    @Override
+                    public void onSucceed(HttpData result) {
+                        mvpListener.onSuccess(result);
+                    }
+
+                    @Override
+                    public void onFail(Exception e){
+                        mvpListener.onError(e.getMessage());
+                    }
+
+
+                });
+    }
+
+    @Override
+    public void requestCancelCollectArticle(BaseFragment fragment, int collectArticleId, MvpListener mvpListener) {
+        GoHttp.post(fragment)
+                .api(new CancelCollectArticleApi().setCancelArticleId(collectArticleId))
+                .request(new HttpCallback<HttpData>(fragment){
+                    @Override
+                    public void onSucceed(HttpData result) {
+                        mvpListener.onSuccess(result);
+                    }
+
+                    @Override
+                    public void onFail(Exception e){
+                        mvpListener.onError(e.getMessage());
+                    }
+
+
                 });
     }
 }

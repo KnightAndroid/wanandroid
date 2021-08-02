@@ -12,6 +12,8 @@ import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
 import com.knight.wanandroid.library_base.basefragment.BaseFragment;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
 import com.knight.wanandroid.library_base.util.ARouterUtils;
+import com.knight.wanandroid.library_util.CacheUtils;
+import com.knight.wanandroid.library_util.ColorUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
@@ -64,6 +66,11 @@ public class ProjectViewpagerFragment extends BaseFragment<ProjectViewpagerFragm
     }
 
     @Override
+    protected void setThemeColor() {
+
+    }
+
+    @Override
     protected void initView(Bundle savedInstanceState) {
         EventBus.getDefault().register(this);
         mDatabind.setClick(new ProcyClick());
@@ -80,6 +87,7 @@ public class ProjectViewpagerFragment extends BaseFragment<ProjectViewpagerFragm
         mProjectArticleAdapter = new ProjectArticleAdapter(new ArrayList<>());
         SetInitCustomView.initSwipeRecycleview(mDatabind.projectListRv,new LinearLayoutManager(getActivity()),mProjectArticleAdapter,true);
         initListener();
+        mDatabind.projectFloatBtn.setBackgroundTintList(ColorUtils.createColorStateList(CacheUtils.getInstance().getThemeColor(),CacheUtils.getInstance().getThemeColor()));
     }
 
     @Override

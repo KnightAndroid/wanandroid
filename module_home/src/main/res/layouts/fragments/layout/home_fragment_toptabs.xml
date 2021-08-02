@@ -56,7 +56,11 @@
                         android:background="@drawable/base_articlechapter_type"
                         android:text="官方"
                         android:textColor="@color/base_color_theme"
-                        android:textSize="@dimen/base_dimen_15" />
+                        android:textSize="@dimen/base_dimen_15"
+                        android:paddingTop="@dimen/base_dimen_2"
+                        android:paddingBottom="@dimen/base_dimen_2"
+                        android:paddingLeft="@dimen/base_dimen_4"
+                        android:paddingRight="@dimen/base_dimen_4"/>
 
                     <View
                         android:layout_width="match_parent"

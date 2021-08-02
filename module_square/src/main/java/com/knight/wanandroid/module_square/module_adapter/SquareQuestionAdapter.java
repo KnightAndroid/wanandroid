@@ -1,5 +1,6 @@
 package com.knight.wanandroid.module_square.module_adapter;
 
+import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.text.Html;
 import android.text.TextUtils;
@@ -8,6 +9,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.knight.wanandroid.library_base.AppConfig;
 import com.knight.wanandroid.library_common.ApplicationProvider;
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.StringUtils;
 import com.knight.wanandroid.module_square.R;
 import com.knight.wanandroid.module_square.module_entity.SquareQuestionEntity;
@@ -32,6 +34,18 @@ public class SquareQuestionAdapter extends BaseQuickAdapter<SquareQuestionEntity
 
     @Override
     protected void convert(@NotNull BaseViewHolder baseViewHolder, SquareQuestionEntity squareQuestionEntity) {
+
+
+        GradientDrawable gradientDrawable = new GradientDrawable();
+        gradientDrawable.setShape(GradientDrawable.RECTANGLE);
+        gradientDrawable.setStroke(2, CacheUtils.getInstance().getThemeColor());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            baseViewHolder.getView(R.id.base_item_articlechaptername).setBackground(gradientDrawable);
+        } else {
+            baseViewHolder.getView(R.id.base_item_articlechaptername).setBackgroundDrawable(gradientDrawable);
+        }
+
+
         //作者
         if (!TextUtils.isEmpty(squareQuestionEntity.getAuthor())) {
             baseViewHolder.setText(R.id.base_item_articleauthor,StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),squareQuestionEntity.getAuthor(),AppConfig.SEARCH_KEYWORD));
@@ -43,6 +57,7 @@ public class SquareQuestionAdapter extends BaseQuickAdapter<SquareQuestionEntity
         if (squareQuestionEntity.getTags() != null && squareQuestionEntity.getTags().size() > 0) {
             baseViewHolder.setVisible(R.id.base_item_articlechaptername,true);
             baseViewHolder.setText(R.id.base_item_articlechaptername,squareQuestionEntity.getTags().get(0).getName());
+            baseViewHolder.setTextColor(R.id.base_item_articlechaptername,CacheUtils.getInstance().getThemeColor());
         } else {
             baseViewHolder.setGone(R.id.base_item_articlechaptername,true);
         }
@@ -80,6 +95,14 @@ public class SquareQuestionAdapter extends BaseQuickAdapter<SquareQuestionEntity
         } else {
             baseViewHolder.setText(R.id.base_tv_articletitle,StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),Html.fromHtml(squareQuestionEntity.getTitle()).toString(),AppConfig.SEARCH_KEYWORD));
         }
+
+        if (!CacheUtils.getInstance().getNormalDark()) {
+            baseViewHolder.setTextColor(R.id.base_tv_articletitle,CacheUtils.getInstance().getTextColor());
+        } else {
+            baseViewHolder.setTextColor(R.id.base_tv_articletitle,R.color.base_color_title);
+        }
+
+
         //是否收藏
         if (squareQuestionEntity.isCollect()) {
             baseViewHolder.setBackgroundResource(R.id.base_icon_collect,R.drawable.base_icon_collect);

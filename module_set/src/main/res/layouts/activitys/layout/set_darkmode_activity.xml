@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/tools">
 
+
+
+    <data>
+
+        <variable
+            name="click"
+            type="com.knight.wanandroid.module_set.module_activity.DarkModeActivity.ProxyClick" />
+
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -54,7 +64,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:button="@drawable/set_selectdark_selector" />
+                    android:button="@drawable/set_selectdark_selector"
+                    bind:checkChange="@{click.onCheckedChangeAllowSystem}"/>
 
 
             </RelativeLayout>

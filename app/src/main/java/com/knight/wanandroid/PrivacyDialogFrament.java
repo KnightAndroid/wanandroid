@@ -40,7 +40,7 @@ public class PrivacyDialogFrament extends BaseDBDialogFragment<DialogPrivacyAgre
     @SuppressLint("NewApi")
     @Override
     protected void initView() {
-        mDatabind.setClick(new ProcyClick());
+        mDatabind.setClick(new ProxyClick());
         spannable = new SpannableStringBuilder(mDatabind.appPrivacyTip.getText().toString());
         mDatabind.appPrivacyTip.setMovementMethod(LinkMovementMethod.getInstance());
         spannable.setSpan(new TextClickUtils().setOnClickWebListener(new TextClickUtils.OnClickToWebListener() {
@@ -88,7 +88,7 @@ public class PrivacyDialogFrament extends BaseDBDialogFragment<DialogPrivacyAgre
         return Gravity.CENTER;
     }
 
-    public class ProcyClick{
+    public class ProxyClick{
         //同意进入app
         public void goAgreeToMain(){
               CacheUtils.getInstance().saveIsAgreeMent(true);

@@ -1,5 +1,6 @@
 package com.knight.wanandroid.module_hierachy.module_widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.android.flexbox.FlexboxLayoutManager;
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.module_hierachy.R;
 import com.knight.wanandroid.module_hierachy.module_entity.HierachyRightBeanEntity;
 import com.knight.wanandroid.module_hierachy.module_listener.CheckListener;
@@ -87,7 +89,11 @@ public class ItemHeaderDecoration extends RecyclerView.ItemDecoration {
             currentTag = tag;
 
             Integer integer = Integer.valueOf(tag);
-            mCheckListener.check(integer, false);
+            if (mCheckListener != null) {
+                mCheckListener.check(integer, false);
+
+            }
+
         }
     }
 
@@ -95,10 +101,19 @@ public class ItemHeaderDecoration extends RecyclerView.ItemDecoration {
      * @param parent
      * @param pos
      */
+    @SuppressLint("ResourceAsColor")
     private void drawHeader(RecyclerView parent, int pos, Canvas canvas) {
         View topTitleView = mInflater.inflate(R.layout.hierachy_item_right_title, parent, false);
         TextView tvTitle = (TextView) topTitleView.findViewById(R.id.hierachy_tv_title);
+        View hierachy_right_view = (View) topTitleView.findViewById(R.id.hierachy_right_view);
         tvTitle.setText(mDatas.get(pos).getTitleName());
+        if (!CacheUtils.getInstance().getNormalDark()) {
+            tvTitle.setTextColor(CacheUtils.getInstance().getTextColor());
+        } else {
+            tvTitle.setTextColor(R.color.base_color_title);
+        }
+        hierachy_right_view.setBackgroundColor(CacheUtils.getInstance().getThemeColor());
+
         //绘制title开始
         int toDrawWidthSpec;//用于测量的widthMeasureSpec
         int toDrawHeightSpec;//用于测量的heightMeasureSpec

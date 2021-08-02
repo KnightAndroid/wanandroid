@@ -62,8 +62,8 @@ public class InitCustomViewUtils {
                     scaleTransitionPagerTitleView.setNormalColor(Color.parseColor("#D3D3D3"));
                     scaleTransitionPagerTitleView.setSelectedColor(Color.parseColor("#D3D3D3"));
                 } else {
-                    scaleTransitionPagerTitleView.setNormalColor(Color.parseColor("#333333"));
-                    scaleTransitionPagerTitleView.setSelectedColor(Color.parseColor("#333333"));
+                    scaleTransitionPagerTitleView.setNormalColor(CacheUtils.getInstance().getThemeColor());
+                    scaleTransitionPagerTitleView.setSelectedColor(CacheUtils.getInstance().getThemeColor());
                 }
 
                 scaleTransitionPagerTitleView.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +88,7 @@ public class InitCustomViewUtils {
                 indicator.setRoundRadius(ScreenUtils.dp2px(context,6.0f));
                 indicator.setStartInterpolator(new AccelerateInterpolator());
                 indicator.setEndInterpolator(new DecelerateInterpolator(2.0f));
-                indicator.setColors(Color.parseColor("#55aff4"));
+                indicator.setColors(CacheUtils.getInstance().getThemeColor());
                 return indicator;
             }
         });

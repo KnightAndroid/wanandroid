@@ -1,11 +1,13 @@
 package com.knight.wanandroid.module_square.module_adapter;
 
+import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.text.Html;
 import android.text.TextUtils;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.module_square.R;
 import com.knight.wanandroid.module_square.module_entity.SquareArticleEntity;
 
@@ -36,14 +38,24 @@ public class SquareArticleAdapter extends BaseQuickAdapter<SquareArticleEntity, 
         } else {
             baseViewHolder.setText(R.id.square_item_articleauthor,squareArticleEntity.getShareUser());
         }
+        GradientDrawable gradientDrawable = new GradientDrawable();
+        gradientDrawable.setShape(GradientDrawable.RECTANGLE);
+        gradientDrawable.setStroke(2,CacheUtils.getInstance().getThemeColor());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            baseViewHolder.getView(R.id.square_item_articlechaptername).setBackground(gradientDrawable);
+        } else {
+            baseViewHolder.getView(R.id.square_item_articlechaptername).setBackgroundDrawable(gradientDrawable);
+        }
 
         //二级分类
         if (!TextUtils.isEmpty(squareArticleEntity.getChapterName())) {
             baseViewHolder.setVisible(R.id.square_item_articlechaptername,true);
             baseViewHolder.setText(R.id.square_item_articlechaptername,squareArticleEntity.getChapterName());
+            baseViewHolder.setTextColor(R.id.square_item_articlechaptername,CacheUtils.getInstance().getThemeColor());
         } else {
             baseViewHolder.setGone(R.id.square_item_articlechaptername,true);
         }
+
 
         //时间赋值
         if (!TextUtils.isEmpty(squareArticleEntity.getNiceDate())) {
@@ -57,6 +69,12 @@ public class SquareArticleAdapter extends BaseQuickAdapter<SquareArticleEntity, 
             baseViewHolder.setText(R.id.square_tv_articletitle, Html.fromHtml(squareArticleEntity.getTitle(),Html.FROM_HTML_MODE_LEGACY));
         } else {
             baseViewHolder.setText(R.id.square_tv_articletitle,Html.fromHtml(squareArticleEntity.getTitle()));
+        }
+
+        if (!CacheUtils.getInstance().getNormalDark()) {
+            baseViewHolder.setTextColor(R.id.square_tv_articletitle,CacheUtils.getInstance().getTextColor());
+        } else {
+            baseViewHolder.setTextColor(R.id.square_tv_articletitle,R.color.base_color_title);
         }
 
         if (squareArticleEntity.isCollect()) {

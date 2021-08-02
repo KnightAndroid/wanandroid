@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/set_ll_theme"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/base_round"
+    android:orientation="vertical">
+
+    <com.knight.wanandroid.library_widget.ColorPickerView
+        android:id="@+id/set_color_picker_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/base_dimen_6"
+        android:layout_marginRight="@dimen/base_dimen_6"
+        android:layerType="software"
+        android:tag="portrait" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_40"
+        android:layout_marginLeft="@dimen/base_dimen_14"
+        android:layout_marginTop="@dimen/base_dimen_6"
+        android:layout_marginRight="@dimen/base_dimen_10"
+        android:layout_marginBottom="@dimen/base_dimen_6"
+        android:orientation="horizontal">
+
+
+        <View
+            android:id="@+id/view_color_panel"
+            android:layout_width="@dimen/base_dimen_80"
+            android:layout_height="@dimen/base_dimen_40"
+            android:background="@color/base_color_theme" />
+
+
+        <TextView
+            android:id="@+id/tv_color_prefix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/base_dimen_10"
+            android:layout_toRightOf="@id/view_color_panel"
+            android:gravity="center"
+            android:text="#"
+            android:textSize="@dimen/base_dimen_20" />
+
+        <EditText
+            android:id="@+id/et_color"
+            android:layout_width="@dimen/base_dimen_80"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/tv_color_prefix"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="当前颜色"
+            android:inputType="textCapCharacters"
+            android:maxLength="7"
+            android:maxLines="1" />
+
+        <View
+            android:id="@+id/view_color_bottom"
+            android:layout_width="@dimen/base_dimen_80"
+            android:layout_height="@dimen/base_dimen_1"
+            android:layout_below="@id/et_color"
+            android:layout_toRightOf="@id/tv_color_prefix"
+            android:background="@color/base_color_theme" />
+
+        <TextView
+            android:id="@+id/set_tv_recovertheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="23232323"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/base_dimen_16"
+            android:textColor="@color/base_color_title"/>
+
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="@dimen/base_dimen_10"
+        android:layout_marginRight="@dimen/base_dimen_10"
+        android:layout_marginBottom="@dimen/base_dimen_10">
+
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->click.dimiss()}"
+            android:text="@string/base_permission_denied"
+            android:textColor="@color/base_second_title"
+            android:textSize="@dimen/base_dimen_16" />
+
+
+        <TextView
+            android:id="@+id/tv_confim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/base_dimen_20"
+            android:onClick="@{()->click.confimThemeColor()}"
+            android:text="@string/base_confim"
+            android:textColor="@color/base_color_title"
+            android:textSize="@dimen/base_dimen_16" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
+

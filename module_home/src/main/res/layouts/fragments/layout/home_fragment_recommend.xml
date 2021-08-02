@@ -8,123 +8,66 @@
     </data>
 
 
-    <RelativeLayout
+    <FrameLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
          >
 
-
-        <com.scwang.smart.refresh.layout.SmartRefreshLayout
-            android:id="@+id/home_refreshLayout"
+        <RelativeLayout
+            android:id="@+id/fl_test"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-           >
+            android:layout_height="wrap_content">
 
 
-            <com.scwang.smart.refresh.header.TwoLevelHeader
-                android:id="@+id/home_twoLevelHeader"
+            <com.scwang.smart.refresh.layout.SmartRefreshLayout
+                android:id="@+id/home_refreshLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                >
 
-                <LinearLayout
-                    android:id="@+id/home_twoLevel_content"
+
+                <com.scwang.smart.refresh.header.TwoLevelHeader
+                    android:id="@+id/home_twoLevelHeader"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:alpha="0"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content">
 
-<!--                    <include-->
-<!--                        android:id="@+id/home_include_recyceview"-->
-<!--                        layout="@layout/base_layout_recycleview" />-->
+                    <LinearLayout
+                        android:id="@+id/home_twoLevel_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:alpha="0"
+                        android:orientation="vertical">
 
-                    <com.yanzhenjie.recyclerview.SwipeRecyclerView
-                        android:id="@+id/second_openframe_rv"
+                        <!--                    <include-->
+                        <!--                        android:id="@+id/home_include_recyceview"-->
+                        <!--                        layout="@layout/base_layout_recycleview" />-->
+
+                        <com.yanzhenjie.recyclerview.SwipeRecyclerView
+                            android:id="@+id/second_openframe_rv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+
+                    <com.scwang.smart.refresh.header.ClassicsHeader
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
-                </LinearLayout>
 
+                </com.scwang.smart.refresh.header.TwoLevelHeader>
 
-                <com.scwang.smart.refresh.header.ClassicsHeader
+                <com.yanzhenjie.recyclerview.SwipeRecyclerView
+                    android:id="@+id/home_recommend_article_body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <com.scwang.smart.refresh.footer.ClassicsFooter
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
-            </com.scwang.smart.refresh.header.TwoLevelHeader>
+            </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
-            <com.yanzhenjie.recyclerview.SwipeRecyclerView
-                android:id="@+id/home_recommend_article_body"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-
-
-
-<!--            <androidx.core.widget.NestedScrollView-->
-<!--                android:id="@+id/home_coordinatorsl"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:scrollbars="none"-->
-
-<!--                >-->
-
-
-<!--                <LinearLayout-->
-<!--                    android:id="@+id/home_ll_top"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:orientation="vertical">-->
-
-<!--                    <com.yanzhenjie.recyclerview.SwipeRecyclerView-->
-<!--                        android:id="@+id/home_top_article_rv"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:visibility="gone"/>-->
-
-<!--                    <com.youth.banner.Banner-->
-<!--                        android:id="@+id/home_banner"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="160dp"-->
-<!--                        android:visibility="gone">-->
-
-
-<!--                    </com.youth.banner.Banner>-->
-
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginLeft="@dimen/base_dimen_16"-->
-<!--                        android:layout_marginTop="@dimen/base_dimen_5"-->
-<!--                        android:background="@drawable/home_shape_lefttop_round"-->
-<!--                        android:gravity="center_vertical"-->
-<!--                        android:text="@string/home_highquality_officialaccount"-->
-<!--                        android:textColor="@color/home_white"-->
-<!--                        android:textSize="@dimen/base_dimen_14" />-->
-
-<!--                    <com.yanzhenjie.recyclerview.SwipeRecyclerView-->
-<!--                        android:id="@+id/home_rv_official_account"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginBottom="@dimen/base_dimen_10"-->
-<!--                        android:visibility="gone"/>-->
-
-<!--                    <com.yanzhenjie.recyclerview.SwipeRecyclerView-->
-<!--                        android:id="@+id/home_recommend_article_body"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content" />-->
-
-
-<!--                </LinearLayout>-->
-
-<!--            </androidx.core.widget.NestedScrollView>-->
-
-
-            <com.scwang.smart.refresh.footer.ClassicsFooter
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+        </RelativeLayout>
 
 
 
@@ -136,16 +79,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginRight="@dimen/base_dimen_20"
             android:layout_marginBottom="@dimen/base_dimen_70"
             android:onClick="@{()->click.scrollUp()}"
             android:src="@drawable/base_icon_up"
-            app:backgroundTint="@color/base_color_theme"
+            android:layout_gravity="bottom|end"
+
             />
 
 
-    </RelativeLayout>
+    </FrameLayout>
 
 
 </layout>

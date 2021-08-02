@@ -11,7 +11,7 @@
         android:id="@+id/hierachy_tv_selectview"
         android:layout_width="@dimen/base_dimen_16"
         android:layout_height="match_parent"
-        android:background="#55aff4"/>
+        />
 
 
     <TextView

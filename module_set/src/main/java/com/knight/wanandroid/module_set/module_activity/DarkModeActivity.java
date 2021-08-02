@@ -12,14 +12,17 @@ import com.google.gson.reflect.TypeToken;
 import com.knight.wanandroid.library_base.baseactivity.BaseDBActivity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_util.CacheUtils;
+import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.GsonUtils;
 import com.knight.wanandroid.library_util.JsonUtils;
-import com.knight.wanandroid.library_util.dialog.DialogUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.module_set.R;
 import com.knight.wanandroid.module_set.databinding.SetDarkmodeActivityBinding;
 import com.knight.wanandroid.module_set.module_adapter.SelectDarkModeAdapter;
 import com.knight.wanandroid.module_set.module_entity.DarkSelectEntity;
+
+import org.greenrobot.eventbus.EventBus;
+import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -51,6 +54,7 @@ public class DarkModeActivity extends BaseDBActivity<SetDarkmodeActivityBinding>
 
     @Override
     public void initView(Bundle savedInstanceState) {
+        mDatabind.setClick(new ProxyClick());
         mDatabind.includeDarkmodeToolbar.baseIvBack.setOnClickListener(v -> finish());
         mDatabind.includeDarkmodeToolbar.baseTvTitle.setText(getString(R.string.set_dark_mode));
         mDatabind.includeDarkmodeToolbar.baseTvRight.setVisibility(View.VISIBLE);
@@ -91,19 +95,21 @@ public class DarkModeActivity extends BaseDBActivity<SetDarkmodeActivityBinding>
     }
 
     private void initListener() {
-        mDatabind.setCbSelectSystem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    mDatabind.setRlManualSelect.setVisibility(View.GONE);
-                    mDatabind.setTvManualSystem.setVisibility(View.GONE);
-                } else {
-                    mDatabind.setRlManualSelect.setVisibility(View.VISIBLE);
-                    mDatabind.setTvManualSystem.setVisibility(View.VISIBLE);
-                }
-                isFollowSystem = isChecked;
-            }
-        });
+//        mDatabind.setCbSelectSystem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (isChecked) {
+//                    mDatabind.setRlManualSelect.setVisibility(View.GONE);
+//                    mDatabind.setTvManualSystem.setVisibility(View.GONE);
+//                } else {
+//                    mDatabind.setRlManualSelect.setVisibility(View.VISIBLE);
+//                    mDatabind.setTvManualSystem.setVisibility(View.VISIBLE);
+//                }
+//                isFollowSystem = isChecked;
+//            }
+//        });
+
+
         mSelectDarkModeAdater.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
@@ -141,7 +147,39 @@ public class DarkModeActivity extends BaseDBActivity<SetDarkmodeActivityBinding>
             }
         }
         recreate();
+        EventBus.getDefault().post(new EventBusUtils.changeColor());
+
 
 
     }
+
+
+    public class ProxyClick {
+        private CompoundButton.OnCheckedChangeListener onCheckedChangeAllowSystem = new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    mDatabind.setRlManualSelect.setVisibility(View.GONE);
+                    mDatabind.setTvManualSystem.setVisibility(View.GONE);
+                } else {
+                    mDatabind.setRlManualSelect.setVisibility(View.VISIBLE);
+                    mDatabind.setTvManualSystem.setVisibility(View.VISIBLE);
+                }
+                isFollowSystem = isChecked;
+            }
+        };
+
+        @NotNull
+        public final CompoundButton.OnCheckedChangeListener getOnCheckedChangeAllowSystem() {
+            return onCheckedChangeAllowSystem;
+        }
+
+        public final void setOnCheckedChangeAllowSystem(@NotNull CompoundButton.OnCheckedChangeListener var1) {
+            this.onCheckedChangeAllowSystem = var1;
+        }
+
+    }
+
+
+
 }

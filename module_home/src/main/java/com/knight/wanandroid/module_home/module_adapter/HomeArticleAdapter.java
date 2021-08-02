@@ -1,11 +1,13 @@
 package com.knight.wanandroid.module_home.module_adapter;
 
+import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.text.Html;
 import android.text.TextUtils;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.module_home.R;
 import com.knight.wanandroid.module_home.module_entity.HomeArticleEntity;
 
@@ -48,6 +50,15 @@ public class HomeArticleAdapter extends BaseQuickAdapter<HomeArticleEntity, Base
         if (!TextUtils.isEmpty(homeArticleEntity.getChapterName())) {
             baseViewHolder.setVisible(R.id.home_item_articlechaptername,true);
             baseViewHolder.setText(R.id.home_item_articlechaptername,homeArticleEntity.getChapterName());
+            GradientDrawable gradientDrawable = new GradientDrawable();
+            gradientDrawable.setShape(GradientDrawable.RECTANGLE);
+            gradientDrawable.setStroke(2, CacheUtils.getInstance().getThemeColor());
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                baseViewHolder.getView(R.id.home_item_articlechaptername).setBackground(gradientDrawable);
+            } else {
+                baseViewHolder.getView(R.id.home_item_articlechaptername).setBackgroundDrawable(gradientDrawable);
+            }
+            baseViewHolder.setTextColor(R.id.home_item_articlechaptername,CacheUtils.getInstance().getThemeColor());
         } else {
             baseViewHolder.setGone(R.id.home_item_articlechaptername,true);
         }
@@ -66,10 +77,16 @@ public class HomeArticleAdapter extends BaseQuickAdapter<HomeArticleEntity, Base
             baseViewHolder.setText(R.id.home_tv_articletitle,Html.fromHtml(homeArticleEntity.getTitle()));
         }
 
+        if (!CacheUtils.getInstance().getNormalDark()) {
+            baseViewHolder.setTextColor(R.id.home_tv_articletitle,CacheUtils.getInstance().getTextColor());
+        } else {
+            baseViewHolder.setTextColor(R.id.home_tv_articletitle,R.color.base_color_title);
+        }
+
+
         //描述
         if (!TextUtils.isEmpty(homeArticleEntity.getDesc())) {
             baseViewHolder.setVisible(R.id.home_tv_articledesc,true);
-            //标题
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 baseViewHolder.setText(R.id.home_tv_articledesc, Html.fromHtml(homeArticleEntity.getDesc(),Html.FROM_HTML_MODE_LEGACY));
             } else {

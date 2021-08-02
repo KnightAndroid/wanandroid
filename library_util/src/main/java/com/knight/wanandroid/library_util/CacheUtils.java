@@ -116,10 +116,97 @@ public class CacheUtils {
      * 获取模式是普通还是深色模式
      * 默认返回普通
      * @return true 深色模式 false  不是深色模式
+     *
      */
     public boolean getNormalDark() {
         return mmkv.decodeBool(MMkvConstants.NORMALDARK,false);
     }
+
+
+    /**
+     *
+     * 状态栏是否伴随主题着色
+     * @param withTheme
+     */
+    public void statusBarIsWithTheme(boolean withTheme) {
+        mmkv.encode(MMkvConstants.STATUSWITHTHEME,withTheme);
+
+    }
+
+
+    /**
+     *
+     * 获取状态栏是否伴随着色
+     * @return
+     */
+    public boolean getStatusBarIsWithTheme(){
+        return mmkv.decodeBool(MMkvConstants.STATUSWITHTHEME,false);
+    }
+
+
+    /**
+     *
+     *
+     * 设置主题颜色
+     * @param themecolor
+     */
+    public void setThemeColor(int themecolor){
+       mmkv.encode(MMkvConstants.THEMECOLOR,themecolor);
+    }
+
+
+    /**
+     *
+     * 返回主题颜色
+     * @return
+     */
+    public int getThemeColor(){
+        return mmkv.decodeInt(MMkvConstants.THEMECOLOR,ColorUtils.convertToColorInt("55aff4"));
+    }
+
+
+    /**
+     *
+     *
+     * 设置页面背景颜色
+     * @param themecolor
+     */
+    public void setBgThemeColor(int themecolor){
+        mmkv.encode(MMkvConstants.BGTHEMECOLOR,themecolor);
+    }
+
+
+    /**
+     *
+     * 返回页面背景颜色
+     * @return
+     */
+    public int getBgThemeColor(){
+        return mmkv.decodeInt(MMkvConstants.BGTHEMECOLOR,ColorUtils.convertToColorInt("f9f9f9"));
+    }
+
+
+    /**
+     *
+     * 设置字体颜色
+     * @param textColor
+     */
+    public void setTextColor(int textColor){
+       mmkv.encode(MMkvConstants.TEXTCOLOR,textColor);
+    }
+
+
+    /**
+     *
+     *
+     * 返回一级标题字体颜色
+     * @return
+     */
+    public int getTextColor(){
+       return mmkv.decodeInt(MMkvConstants.TEXTCOLOR,ColorUtils.convertToColorInt("333333"));
+    }
+
+
 
 
 
