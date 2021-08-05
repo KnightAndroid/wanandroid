@@ -40,6 +40,11 @@ public class WelcomeActivity extends BaseDBActivity<ActivityWelcomeBinding> {
     }
 
     @Override
+    protected void setThemeColor(boolean isDarkMode) {
+
+    }
+
+    @Override
     public void onSucceed(Object result) {
 
     }

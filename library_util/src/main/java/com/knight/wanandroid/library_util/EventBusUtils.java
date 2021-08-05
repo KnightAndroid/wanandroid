@@ -55,40 +55,16 @@ public class EventBusUtils {
     }
 
     //主题色更改
-    public static class changeThemeColor{
-        private int color;
-        public changeThemeColor (int color) {
-            this.color = color;
+    public static class changeStatusThemeColor{
+        private boolean isStatusWithTheme;
+        public changeStatusThemeColor (boolean isStatusWithTheme) {
+            this.isStatusWithTheme = isStatusWithTheme;
         }
 
-        public int getColor() {
-            return color;
-        }
-    }
-    //背景颜色更改
-    public static class changeBgColor{
-        private int color;
-        public changeBgColor (int color) {
-            this.color = color;
-        }
-
-
-        public int getColor() {
-            return color;
-        }
-    }
-
-    //字体颜色更改
-    public static class changeTextColor{
-        private int color;
-        public changeTextColor (int color) {
-            this.color = color;
-        }
-        public int getColor() {
-            return color;
+        public boolean isStatusWithTheme() {
+            return isStatusWithTheme;
         }
 
     }
-
 
 }

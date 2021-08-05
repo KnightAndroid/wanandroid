@@ -54,6 +54,8 @@ public class HistoryRecordAdapter extends BaseQuickAdapter<HistoryReadRecordsEnt
         } else {
             baseViewHolder.setText(R.id.base_tv_articletitle,Html.fromHtml(historyReadRecordsEntity.getTitle()).toString());
         }
+
+
         baseViewHolder.setGone(R.id.base_icon_collect,true);
 
     }

@@ -185,33 +185,4 @@ public class CacheUtils {
         return mmkv.decodeInt(MMkvConstants.BGTHEMECOLOR,ColorUtils.convertToColorInt("f9f9f9"));
     }
 
-
-    /**
-     *
-     * 设置字体颜色
-     * @param textColor
-     */
-    public void setTextColor(int textColor){
-       mmkv.encode(MMkvConstants.TEXTCOLOR,textColor);
-    }
-
-
-    /**
-     *
-     *
-     * 返回一级标题字体颜色
-     * @return
-     */
-    public int getTextColor(){
-       return mmkv.decodeInt(MMkvConstants.TEXTCOLOR,ColorUtils.convertToColorInt("333333"));
-    }
-
-
-
-
-
-
-
-
-
 }

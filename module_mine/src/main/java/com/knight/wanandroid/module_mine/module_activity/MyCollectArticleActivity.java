@@ -44,6 +44,11 @@ public class MyCollectArticleActivity extends BaseActivity<MineActivityCollectar
     }
 
     @Override
+    protected void setThemeColor(boolean isDarkMode) {
+
+    }
+
+    @Override
     public void initView(Bundle savedInstanceState) {
         mDatabind.includeMycollectToolbar.baseTvTitle.setText(getString(R.string.mine_me_collect));
         mDatabind.includeMycollectToolbar.baseIvBack.setOnClickListener(v->finish());
@@ -148,10 +153,10 @@ public class MyCollectArticleActivity extends BaseActivity<MineActivityCollectar
             public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
                 if (view.getId() == R.id.base_article_collect || view.getId() == R.id.base_icon_collect) {
                     DialogUtils.getConfirmDialog(MyCollectArticleActivity.this, getResources().getString(R.string.mine_confirm_cancelarticle), (dialog, which) -> {
-                        mPresenter.requestCancelCollectArticle(mMyCollectArticleAdapter.getData().get(position).getId(),position);
+                        mPresenter.requestCancelCollectArticle(mMyCollectArticleAdapter.getData().get(position).getOriginId(),position);
                     }, (dialog, which) -> {
 
-                    }).show();
+                    });
 
                 }
             }

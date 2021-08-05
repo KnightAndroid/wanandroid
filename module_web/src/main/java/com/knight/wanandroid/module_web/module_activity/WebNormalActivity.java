@@ -20,12 +20,11 @@ import com.just.agentweb.WebChromeClient;
 import com.just.agentweb.WebViewClient;
 import com.knight.wanandroid.library_base.baseactivity.BaseDBActivity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.module_web.R;
 import com.knight.wanandroid.module_web.databinding.WebNormalActivityBinding;
 import com.knight.wanandroid.module_web.module_fragment.WebNormalBottomFragment;
 import com.knight.wanandroid.module_web.module_view.WebLayout;
-
-import androidx.core.content.ContextCompat;
 
 /**
  * @author created by knight
@@ -60,7 +59,7 @@ public class WebNormalActivity extends BaseDBActivity<WebNormalActivityBinding> 
 
         mAgentWeb = AgentWeb.with(this)
                 .setAgentWebParent(mDatabind.webNormalLl, new LinearLayout.LayoutParams(-1, -1))
-                .useDefaultIndicator(ContextCompat.getColor(this,R.color.base_color_theme),2)
+                .useDefaultIndicator(CacheUtils.getInstance().getThemeColor(),2)
                 .setWebChromeClient(mWebChromeClient)
                 .setWebViewClient(mWebViewClient)
                 .setMainFrameErrorView(R.layout.agentweb_error_page, -1)
@@ -86,6 +85,10 @@ public class WebNormalActivity extends BaseDBActivity<WebNormalActivityBinding> 
         mDatabind.includeWebNormaltoolbar.baseIvBack.setOnClickListener(v -> finish());
 
 
+    }
+
+    @Override
+    protected void setThemeColor(boolean isDarkMode) {
     }
 
     private WebViewClient mWebViewClient = new WebViewClient(){

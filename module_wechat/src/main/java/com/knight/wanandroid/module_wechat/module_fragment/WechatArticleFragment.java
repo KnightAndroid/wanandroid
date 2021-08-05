@@ -10,6 +10,8 @@ import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
 import com.knight.wanandroid.library_base.basefragment.BaseFragment;
 import com.knight.wanandroid.library_base.util.ARouterUtils;
+import com.knight.wanandroid.library_util.CacheUtils;
+import com.knight.wanandroid.library_util.ColorUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.module_wechat.R;
@@ -59,7 +61,7 @@ public class WechatArticleFragment extends BaseFragment<WechatOfficialaccountVie
     }
 
     @Override
-    protected void setThemeColor() {
+    protected void setThemeColor(boolean isDarkMode) {
         
     }
 
@@ -72,6 +74,7 @@ public class WechatArticleFragment extends BaseFragment<WechatOfficialaccountVie
         mWechatArticleAdapter = new WechatArticleAdapter(new ArrayList<>());
         initListener();
         SetInitCustomView.initSwipeRecycleview(mDatabind.includeWechatArticles.baseBodyRv,new LinearLayoutManager(getActivity()),mWechatArticleAdapter,false);
+        mDatabind.wechatFloatBtn.setBackgroundTintList(ColorUtils.createColorStateList(CacheUtils.getInstance().getThemeColor(),CacheUtils.getInstance().getThemeColor()));
     }
 
     @Override

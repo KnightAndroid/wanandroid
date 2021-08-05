@@ -61,7 +61,7 @@ public class MessageFragment extends BaseFragment<MessageReadedFragmentBinding, 
     }
 
     @Override
-    protected void setThemeColor() {
+    protected void setThemeColor(boolean isDarkMode) {
 
     }
 

@@ -1,8 +1,11 @@
 package com.knight.wanandroid.module_mine.module_adapter;
 
+import android.graphics.Color;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.module_mine.R;
 import com.knight.wanandroid.module_mine.module_entity.CoinRankEntity;
 
@@ -33,16 +36,27 @@ public class UserRankCoinAdapter extends BaseQuickAdapter<CoinRankEntity, BaseVi
         baseViewHolder.setText(R.id.mine_tv_rankcoincount,coinRankEntity.getCoinCount()+"");
         if(ModuleConfig.getInstance().user != null){
             if(ModuleConfig.getInstance().user.getId() == coinRankEntity.getUserId()){
-                baseViewHolder.setTextColorRes(R.id.mine_tv_rank,R.color.base_color_theme);
-                baseViewHolder.setTextColorRes(R.id.mine_tv_rankusername,R.color.base_color_theme);
+                baseViewHolder.setTextColor(R.id.mine_tv_rank, CacheUtils.getInstance().getThemeColor());
+                baseViewHolder.setTextColor(R.id.mine_tv_rankusername,CacheUtils.getInstance().getThemeColor());
             } else {
-                baseViewHolder.setTextColorRes(R.id.mine_tv_rank,R.color.base_color_title);
-                baseViewHolder.setTextColorRes(R.id.mine_tv_rankusername,R.color.base_color_title);
+                if (CacheUtils.getInstance().getNormalDark()) {
+                    baseViewHolder.setTextColor(R.id.mine_tv_rank, Color.parseColor("#D3D3D3"));
+                    baseViewHolder.setTextColor(R.id.mine_tv_rankusername,Color.parseColor("#D3D3D3"));
+                } else {
+                    baseViewHolder.setTextColor(R.id.mine_tv_rank,Color.parseColor("#333333"));
+                    baseViewHolder.setTextColor(R.id.mine_tv_rankusername,Color.parseColor("#333333"));
+                }
+
             }
         } else {
-            baseViewHolder.setTextColorRes(R.id.mine_tv_rank,R.color.base_color_title);
-            baseViewHolder.setTextColorRes(R.id.mine_tv_rankusername,R.color.base_color_title);
+            if (CacheUtils.getInstance().getNormalDark()) {
+                baseViewHolder.setTextColor(R.id.mine_tv_rank, Color.parseColor("#D3D3D3"));
+                baseViewHolder.setTextColor(R.id.mine_tv_rankusername,Color.parseColor("#D3D3D3"));
+            } else {
+                baseViewHolder.setTextColor(R.id.mine_tv_rank,Color.parseColor("#333333"));
+                baseViewHolder.setTextColor(R.id.mine_tv_rankusername,Color.parseColor("#333333"));
+            }
         }
-
+        baseViewHolder.setTextColor(R.id.mine_tv_rankcoincount,CacheUtils.getInstance().getThemeColor());
     }
 }

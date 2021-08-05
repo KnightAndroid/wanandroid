@@ -6,7 +6,6 @@ import android.text.TextUtils;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
-import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.module_home.R;
 import com.knight.wanandroid.module_home.module_entity.TopArticleEntity;
 
@@ -43,12 +42,6 @@ public class TopArticleAdapter extends BaseQuickAdapter<TopArticleEntity, BaseVi
             baseViewHolder.setText(R.id.home_tv_article_title,Html.fromHtml(topArticleEntity.getTitle()));
         }
 
-        //标题颜色
-        if (!CacheUtils.getInstance().getNormalDark()) {
-            baseViewHolder.setTextColor(R.id.home_tv_article_title,CacheUtils.getInstance().getTextColor());
-        } else {
-            baseViewHolder.setTextColor(R.id.home_tv_article_title,R.color.base_color_title);
-        }
         if (!TextUtils.isEmpty(topArticleEntity.getAuthor())) {
             //设置作者
             baseViewHolder.setText(R.id.tv_article_author, topArticleEntity.getAuthor());

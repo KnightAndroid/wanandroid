@@ -45,6 +45,11 @@ public class CoinRankActivity extends BaseActivity<MineActivityCoinrankBinding, 
     }
 
     @Override
+    protected void setThemeColor(boolean isDarkMode) {
+
+    }
+
+    @Override
     public void initView(Bundle savedInstanceState) {
         mDatabind.includeCoinrankToolbar.baseTvTitle.setText(getString(R.string.mine_coin_rank));
         mDatabind.includeCoinrankToolbar.baseIvBack.setOnClickListener(v -> finish());

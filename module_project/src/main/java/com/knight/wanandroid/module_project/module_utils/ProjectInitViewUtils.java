@@ -87,8 +87,8 @@ public class ProjectInitViewUtils {
                     scaleTransitionPagerTitleView.setNormalColor(Color.parseColor("#D3D3D3"));
                     scaleTransitionPagerTitleView.setSelectedColor(Color.parseColor("#D3D3D3"));
                 } else {
-                    scaleTransitionPagerTitleView.setNormalColor(CacheUtils.getInstance().getTextColor());
-                    scaleTransitionPagerTitleView.setSelectedColor(CacheUtils.getInstance().getTextColor());
+                    scaleTransitionPagerTitleView.setNormalColor(Color.parseColor("#333333"));
+                    scaleTransitionPagerTitleView.setSelectedColor(Color.parseColor("#333333"));
                 }
 
                 scaleTransitionPagerTitleView.setOnClickListener(new View.OnClickListener() {

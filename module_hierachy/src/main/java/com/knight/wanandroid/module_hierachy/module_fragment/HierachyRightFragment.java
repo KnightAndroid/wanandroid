@@ -65,7 +65,7 @@ public class HierachyRightFragment extends BaseFragment<HierachyRightFragmentBin
     }
 
     @Override
-    protected void setThemeColor() {
+    protected void setThemeColor(boolean isDarkMode) {
 
     }
 

@@ -26,7 +26,6 @@ public abstract class BaseDBFragment<DB extends ViewDataBinding> extends Fragmen
     private boolean isFirst = true;
 
     protected int themeColor;
-    protected int textColor;
     protected int bgColor;
     protected boolean isDarkMode;
     /**
@@ -36,6 +35,13 @@ public abstract class BaseDBFragment<DB extends ViewDataBinding> extends Fragmen
      * @return
      */
     protected abstract int layoutId();
+
+
+    /**
+     * 主题色设置
+     *
+     */
+    protected abstract void setThemeColor(boolean isDarkMode);
 
 
     /**
@@ -91,12 +97,9 @@ public abstract class BaseDBFragment<DB extends ViewDataBinding> extends Fragmen
         initView(savedInstanceState);
         onVisible();
         isDarkMode = CacheUtils.getInstance().getNormalDark();
-        if (!isDarkMode) {
-            initThemeColor();
-            initTextColor();
-            initBgColor();
-        }
-
+        initThemeColor();
+        initBgColor();
+        setThemeColor(isDarkMode);
         initData();
 
     }
@@ -130,13 +133,6 @@ public abstract class BaseDBFragment<DB extends ViewDataBinding> extends Fragmen
         themeColor = CacheUtils.getInstance().getThemeColor();
     }
 
-    /**
-     *
-     * 获取字体颜色
-     */
-    protected void initTextColor() {
-        textColor = CacheUtils.getInstance().getTextColor();
-    }
 
 
     /**

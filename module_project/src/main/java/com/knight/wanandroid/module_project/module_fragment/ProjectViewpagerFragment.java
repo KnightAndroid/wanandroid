@@ -66,7 +66,7 @@ public class ProjectViewpagerFragment extends BaseFragment<ProjectViewpagerFragm
     }
 
     @Override
-    protected void setThemeColor() {
+    protected void setThemeColor(boolean isDarkMode) {
 
     }
 

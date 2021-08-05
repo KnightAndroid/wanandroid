@@ -20,6 +20,7 @@
             layout="@layout/base_include_toolbar"/>
 
         <TextView
+            android:id="@+id/square_tv_articletitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/square_share_article_title"
@@ -40,11 +41,13 @@
             android:textColorHint="@color/square_color999999"
             android:textSize="@dimen/base_dimen_16"
             android:textCursorDrawable="@drawable/base_textcursorcolor"
+            android:textSelectHandle="@android:color/transparent"
             android:hint="@string/square_max_length"
             android:maxEms="100"
             android:background="@null"/>
 
         <TextView
+            android:id="@+id/square_tv_article_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/base_dimen_24"
@@ -68,6 +71,7 @@
             android:textCursorDrawable="@drawable/base_textcursorcolor"
             android:hint="@string/square_article_hintlink"
             android:background="@drawable/square_article_link_bg"
+            android:textSelectHandle="@android:color/transparent"
             android:paddingLeft="@dimen/base_dimen_5"
             android:paddingTop="@dimen/base_dimen_5"
             android:gravity="top"/>
@@ -76,18 +80,17 @@
 
         <TextView
             android:id="@+id/square_tv_article"
-            android:layout_width="160dp"
-            android:layout_height="68dp"
-            android:background="@drawable/square_sharearticle_btn"
+            android:layout_width="158dp"
+            android:layout_height="52dp"
             android:layout_gravity="center"
             android:text="@string/square_sharearticle"
             android:textSize="@dimen/base_dimen_16"
             android:gravity="center"
-            android:paddingBottom="@dimen/base_dimen_6"
             android:textStyle="bold"
             android:textColor="@android:color/white"
             android:layout_marginTop="@dimen/base_dimen_20"
-            android:onClick="@{()->click.shareArticle()}"/>
+            android:onClick="@{()->click.shareArticle()}"
+            android:background="@drawable/base_confim_agree"/>
 
         <TextView
             android:layout_width="wrap_content"

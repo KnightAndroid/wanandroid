@@ -45,6 +45,7 @@
             android:text="1.0.0(2323)"/>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/mine_cv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="@dimen/base_dimen_6"

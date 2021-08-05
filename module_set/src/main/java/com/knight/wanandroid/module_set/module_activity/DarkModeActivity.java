@@ -66,6 +66,9 @@ public class DarkModeActivity extends BaseDBActivity<SetDarkmodeActivityBinding>
         initListener();
     }
 
+    @Override
+    protected void setThemeColor(boolean isDarkMode) {
+    }
 
 
     private void getDarkModeData() {

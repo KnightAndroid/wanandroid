@@ -1,7 +1,13 @@
 package com.knight.wanandroid.library_base.loadsir;
 
+import android.content.Context;
+import android.content.res.ColorStateList;
+import android.view.View;
+import android.widget.ProgressBar;
+
 import com.kingja.loadsir.callback.Callback;
 import com.knight.wanandroid.library_base.R;
+import com.knight.wanandroid.library_util.CacheUtils;
 
 /**
  * @author created by knight
@@ -11,13 +17,30 @@ import com.knight.wanandroid.library_base.R;
  */
 public class LoadCallBack extends Callback {
 
+    private ProgressBar load_progress_bar;
+
 
     @Override
     protected int onCreateView () {
         return R.layout.base_layout_load;
     }
 
-//    //是否在显示Callback视图的时候显示原始图(SuccessView)，返回true显示，false隐藏
+
+    private void setProgressColor(){
+
+    }
+
+    @Override
+    public void onViewCreate(Context context, View view) {
+        super.onViewCreate(context,view);
+        load_progress_bar = view.findViewById(R.id.load_progress_bar);
+        load_progress_bar.setIndeterminateTintList(ColorStateList.valueOf(CacheUtils.getInstance().getThemeColor()));
+
+    }
+
+
+
+    //    //是否在显示Callback视图的时候显示原始图(SuccessView)，返回true显示，false隐藏
 //    @Override
 //    public boolean getSuccessVisible() {
 //        return true;

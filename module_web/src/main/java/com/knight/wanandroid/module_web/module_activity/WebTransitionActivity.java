@@ -125,6 +125,11 @@ public class WebTransitionActivity extends BaseDBActivity<WebTransitionActivityB
 
     }
 
+    @Override
+    protected void setThemeColor(boolean isDarkMode) {
+
+    }
+
     private WebViewClient mWebViewClient = new WebViewClient(){
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
@@ -174,7 +179,7 @@ public class WebTransitionActivity extends BaseDBActivity<WebTransitionActivityB
     private void initWebView(){
         mAgentWeb = AgentWeb.with(this)
                 .setAgentWebParent(mDatabind.webTransitionLl, new LinearLayout.LayoutParams(-1,-1))
-                .useDefaultIndicator(ContextCompat.getColor(this,R.color.base_color_theme),2)
+                .useDefaultIndicator(CacheUtils.getInstance().getThemeColor(),2)
                 .setWebChromeClient(mWebChromeClient)
                 .setWebViewClient(mWebViewClient)
                 .setMainFrameErrorView(R.layout.agentweb_error_page, -1)

@@ -95,8 +95,7 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
     }
 
     @Override
-    protected void setThemeColor() {
-        mDatabind.squareTvTipshare.setTextColor(textColor);
+    protected void setThemeColor(boolean isDarkMode) {
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setShape(GradientDrawable.RECTANGLE);
         gradientDrawable.setColor(CacheUtils.getInstance().getThemeColor());
@@ -106,9 +105,6 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
         } else {
             mDatabind.squareTvGoshare.setBackgroundDrawable(gradientDrawable);
         }
-        mDatabind.squareTvAddcoins.setTextColor(CacheUtils.getInstance().getTextColor());
-        mDatabind.squareTvEverysearch.setTextColor(CacheUtils.getInstance().getTextColor());
-        mDatabind.squareTvNewShare.setTextColor(CacheUtils.getInstance().getTextColor());
         mDatabind.squareFabUp.setBackgroundTintList(ColorUtils.createColorStateList(CacheUtils.getInstance().getThemeColor(),CacheUtils.getInstance().getThemeColor()));
 
 
@@ -139,9 +135,6 @@ public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, Sq
         baserecycleview = QuestionMenu.findViewById(R.id.base_body_rv);
         smartRefreshLayout = (SmartRefreshLayout) QuestionMenu.findViewById(R.id.include_square_question);
         tv_question_title = ((TextView)QuestionMenu.findViewById(R.id.square_question_tv_title));
-        if (!CacheUtils.getInstance().getNormalDark()) {
-            tv_question_title.setTextColor(CacheUtils.getInstance().getTextColor());
-        }
         tv_question_title.setText(getString(R.string.square_question));
         smartRefreshLayout.setOnRefreshListener(refreshLayout -> {
             questionPage = 1;

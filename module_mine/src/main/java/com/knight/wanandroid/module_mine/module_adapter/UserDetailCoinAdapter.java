@@ -2,6 +2,7 @@ package com.knight.wanandroid.module_mine.module_adapter;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.module_mine.R;
 import com.knight.wanandroid.module_mine.module_entity.UserDetailCoinEntity;
 
@@ -27,6 +28,7 @@ public class UserDetailCoinAdapter extends BaseQuickAdapter<UserDetailCoinEntity
     protected void convert(@NotNull BaseViewHolder baseViewHolder, UserDetailCoinEntity userDetailCoinEntity) {
         baseViewHolder.setText(R.id.mine_tv_detailpointtitle,userDetailCoinEntity.getReason());
         baseViewHolder.setText(R.id.mine_tv_coincount,"+"+userDetailCoinEntity.getCoinCount());
+        baseViewHolder.setTextColor(R.id.mine_tv_coincount, CacheUtils.getInstance().getThemeColor());
         baseViewHolder.setText(R.id.mine_tv_timereason,userDetailCoinEntity.getDesc());
     }
 }

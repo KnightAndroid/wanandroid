@@ -67,6 +67,10 @@ public class HistoryRecordActivity extends BaseDBActivity<MineActivityHistoryrec
 
     }
 
+    @Override
+    protected void setThemeColor(boolean isDarkMode) {
+    }
+
 
     @Override
     public void initData(){
@@ -172,7 +176,7 @@ public class HistoryRecordActivity extends BaseDBActivity<MineActivityHistoryrec
                 reLoadData();
             }, (dialog, which) -> {
 
-            }).show();
+            });
         });
     }
 

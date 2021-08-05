@@ -30,7 +30,7 @@ import androidx.lifecycle.Lifecycle;
  * @Date 2020/12/28 18:59
  * @descript:fragment基类
  */
-public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePresenter,M extends BaseModel> extends Fragment implements OnHttpListener {
+public abstract class BaseFragment<DB extends ViewDataBinding, T extends BasePresenter, M extends BaseModel> extends Fragment implements OnHttpListener {
 
     //是否第一次加载
     private boolean isFirst = true;
@@ -44,65 +44,55 @@ public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePres
     private ProgressHUD mProgressHUD;
 
     protected int themeColor;
-    protected int textColor;
     protected int bgColor;
     protected boolean isDarkMode;
 
 
-
     /**
-     *
      * 布局视图id
+     *
      * @return
      */
     protected abstract int layoutId();
 
     /**
      * 主题色设置
-     *
      */
-    protected abstract void setThemeColor();
-
-
-
+    protected abstract void setThemeColor(boolean isDarkMode);
 
 
     /**
-     *
      * 初始化view
+     *
      * @param savedInstanceState
      */
     protected abstract void initView(Bundle savedInstanceState);
 
 
     /**
-     *
      * 懒加载
-     *
      */
-    protected void lazyLoadData(){
+    protected void lazyLoadData() {
 
     }
 
 
     /**
-     *
      * Fragment执行onCreate后触发的方法
      */
-    protected void initData(){
+    protected void initData() {
 
     }
 
     /**
-     *
      * 重新加载当前页面请求
      */
 
     protected abstract void reLoadData();
+
     /**
-     *
-     *
      * 加载布局
+     *
      * @param inflater
      * @param container
      * @param savedInstanceState
@@ -110,32 +100,28 @@ public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePres
      */
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,@Nullable Bundle savedInstanceState){
-         mDatabind = DataBindingUtil.inflate(inflater,layoutId(),container,false);
-         mDatabind.setLifecycleOwner(this);
-         return mDatabind.getRoot();
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        mDatabind = DataBindingUtil.inflate(inflater, layoutId(), container, false);
+        mDatabind.setLifecycleOwner(this);
+        return mDatabind.getRoot();
     }
 
 
-
     @Override
-    public void onViewCreated(View view,Bundle savedInstanceState){
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initView(savedInstanceState);
         isDarkMode = CacheUtils.getInstance().getNormalDark();
-        if (!isDarkMode) {
-            initThemeColor();
-            initTextColor();
-            initBgColor();
-            setThemeColor();
-        }
+        initThemeColor();
+        initBgColor();
+        setThemeColor(isDarkMode);
 
         //从内部获取第二个类型参数的真实类型，反射出new对象
-        mPresenter = CreateUtils.get(this,1);
+        mPresenter = CreateUtils.get(this, 1);
         //从内部获取第三个类型参数的真实类型，反射出new对象
-        mModel = CreateUtils.get(this,2);
+        mModel = CreateUtils.get(this, 2);
         //使得p层绑定M层和V层，持有M和V的引用
-        mPresenter.attachModelView(mModel,this);
+        mPresenter.attachModelView(mModel, this);
         onVisible();
         initData();
 
@@ -143,16 +129,15 @@ public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePres
     }
 
 
-
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         onVisible();
     }
 
     /**
-     *
      * 默认加载
+     *
      * @param view
      */
     protected void loadLoading(View view) {
@@ -171,19 +156,18 @@ public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePres
 
     /**
      * 显示请求框
+     *
      * @param loadMessage
      */
     protected void showLoadingHud(String loadMessage) {
         if (mProgressHUD == null) {
-            mProgressHUD = new ProgressHUD(getActivity(),loadMessage);
+            mProgressHUD = new ProgressHUD(getActivity(), loadMessage);
         }
         mProgressHUD.show();
     }
 
     /**
-     *
      * 隐藏请求框
-     *
      */
     protected void dismissLoadingHud() {
         if (mProgressHUD != null) {
@@ -192,7 +176,6 @@ public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePres
     }
 
     /**
-     *
      * 成功请求数据
      */
     protected void showSuccess() {
@@ -202,7 +185,6 @@ public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePres
     }
 
     /**
-     *
      * 失败请求的界面
      */
     protected void showloadFailure() {
@@ -213,35 +195,22 @@ public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePres
 
 
     /**
-     *
      * 空数据请求界面
      */
-    protected void showEmptyData(){
+    protected void showEmptyData() {
         if (mLoadService != null) {
             mLoadService.showCallback(EmptyCallBack.class);
         }
     }
 
     /**
-     *
      * 获取主题颜色
-     *
      */
     protected void initThemeColor() {
         themeColor = CacheUtils.getInstance().getThemeColor();
     }
 
     /**
-     *
-     * 获取字体颜色
-     */
-    protected void initTextColor() {
-        textColor = CacheUtils.getInstance().getTextColor();
-    }
-
-
-    /**
-     *
      * 获取背景颜色
      */
     protected void initBgColor() {
@@ -250,12 +219,10 @@ public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePres
 
 
     /**
-     *
-     *  是否需要懒加载
-     *
+     * 是否需要懒加载
      */
-    private void onVisible(){
-        if(getLifecycle().getCurrentState() == Lifecycle.State.STARTED && isFirst){
+    private void onVisible() {
+        if (getLifecycle().getCurrentState() == Lifecycle.State.STARTED && isFirst) {
             lazyLoadData();
             isFirst = false;
         }
@@ -263,7 +230,7 @@ public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePres
 
 
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
         super.onDestroy();
         mPresenter.onDettach();
     }
@@ -278,12 +245,6 @@ public abstract class BaseFragment<DB extends ViewDataBinding,T extends BasePres
     public void onFail(Exception e) {
 
     }
-
-
-
-
-
-
 
 
 }

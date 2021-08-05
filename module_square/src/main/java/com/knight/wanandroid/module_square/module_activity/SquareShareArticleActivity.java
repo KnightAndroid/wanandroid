@@ -1,12 +1,17 @@
 package com.knight.wanandroid.module_square.module_activity;
 
+import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.knight.wanandroid.library_base.baseactivity.BaseActivity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
+import com.knight.wanandroid.library_util.ScreenUtils;
+import com.knight.wanandroid.library_util.SystemUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.module_square.R;
 import com.knight.wanandroid.module_square.databinding.SquareActivitySharearticleBinding;
@@ -31,6 +36,31 @@ public class SquareShareArticleActivity extends BaseActivity<SquareActivityShare
     @Override
     public int layoutId() {
         return R.layout.square_activity_sharearticle;
+    }
+
+    @Override
+    protected void setThemeColor(boolean isDarkMode) {
+        GradientDrawable gradientDrawable = new GradientDrawable();
+        gradientDrawable.setShape(GradientDrawable.RECTANGLE);
+        gradientDrawable.setColor(CacheUtils.getInstance().getThemeColor());
+        gradientDrawable.setCornerRadius(ScreenUtils.dp2px(45));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            mDatabind.squareTvArticle.setBackground(gradientDrawable);
+        } else {
+            mDatabind.squareTvArticle.setBackgroundDrawable(gradientDrawable);
+        }
+
+        GradientDrawable cursorDrawable = new GradientDrawable();
+        cursorDrawable.setShape(GradientDrawable.RECTANGLE);
+        cursorDrawable.setColor(themeColor);
+        cursorDrawable.setSize(ScreenUtils.dp2px(2),ScreenUtils.dp2px(2));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            mDatabind.squareSharearticleEt.setTextCursorDrawable(cursorDrawable);
+            mDatabind.squareSharearticleLink.setTextCursorDrawable(cursorDrawable);
+        } else {
+            SystemUtils.setCursorDrawableColor(mDatabind.squareSharearticleEt,themeColor);
+            SystemUtils.setCursorDrawableColor(mDatabind.squareSharearticleLink,themeColor);
+        }
     }
 
     @Override

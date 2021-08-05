@@ -45,13 +45,14 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
 
     private SwipeBackHelper mSwipeBackHelper;
     protected int themeColor;
-    protected int textColor;
     protected int bgColor;
     protected boolean isDarkMode;
 
-
-
-
+    /**
+     * 主题色设置
+     *
+     */
+    protected abstract void setThemeColor(boolean isDarkMode);
 
 
 
@@ -71,12 +72,9 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
         createViewDataBinding();
         StatusBarUtils.transparentStatusBar(this);
         isDarkMode = CacheUtils.getInstance().getNormalDark();
-        if (!isDarkMode) {
-            initThemeColor();
-            initTextColor();
-            initBgColor();
-        }
-
+        initThemeColor();
+        initBgColor();
+        setThemeColor(isDarkMode);
         initView(savedInstanceState);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             mSwipeBackHelper = new SwipeBackHelper(this);
@@ -100,14 +98,6 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
      */
     protected void initThemeColor() {
         themeColor = CacheUtils.getInstance().getThemeColor();
-    }
-
-    /**
-     *
-     * 获取字体颜色
-     */
-    protected void initTextColor() {
-        textColor = CacheUtils.getInstance().getTextColor();
     }
 
 

@@ -19,8 +19,7 @@
         <com.knight.wanandroid.library_widget.CompatToobar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/base_bg_normal_default"
-          >
+            android:background="@color/base_bg_normal_default">
 
             <ImageView
                 android:id="@+id/searchresult_iv_back"

@@ -74,11 +74,6 @@ public class HierachyClassifyDetailAdapter extends RvAdapter<HierachyRightBeanEn
             switch (itemViewType) {
                 case 0:
                     hierachy_tv_title.setText(hierachyRightBeanEntity.getName());
-                    if (!CacheUtils.getInstance().getNormalDark()) {
-                        hierachy_tv_title.setTextColor(CacheUtils.getInstance().getTextColor());
-                    } else {
-                        hierachy_tv_title.setTextColor(R.color.base_color_title);
-                    }
                     hierachy_right_view.setBackgroundColor(CacheUtils.getInstance().getThemeColor());
                     break;
                 case 1:

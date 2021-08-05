@@ -54,7 +54,7 @@ public class HierachyTabArticleFragment extends BaseFragment<HierachyFragmentTab
     }
 
     @Override
-    protected void setThemeColor() {
+    protected void setThemeColor(boolean isDarkMode) {
 
     }
 

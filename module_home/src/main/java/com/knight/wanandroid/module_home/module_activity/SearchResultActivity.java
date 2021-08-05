@@ -58,6 +58,10 @@ public class SearchResultActivity extends BaseActivity<HomeSearchresultActivityB
         return R.layout.home_searchresult_activity;
     }
 
+    @Override
+    protected void setThemeColor(boolean isDarkMode) {
+
+    }
 
 
     @Override

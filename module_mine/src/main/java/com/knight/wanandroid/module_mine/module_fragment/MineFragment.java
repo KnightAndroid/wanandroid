@@ -47,7 +47,7 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
 
 
     @Override
-    protected void setThemeColor() {
+    protected void setThemeColor(boolean isDarkMode) {
         mDatabind.mineTvUsername.setTextColor(themeColor);
         mDatabind.mineTvLevel.setTextColor(themeColor);
         mDatabind.mineTvRank.setTextColor(themeColor);

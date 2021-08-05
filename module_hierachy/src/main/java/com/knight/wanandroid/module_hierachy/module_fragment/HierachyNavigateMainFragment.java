@@ -36,6 +36,11 @@ public class HierachyNavigateMainFragment extends BaseDBFragment<HierachyNavigat
     }
 
     @Override
+    protected void setThemeColor(boolean isDarkMode) {
+
+    }
+
+    @Override
     protected void initView(Bundle savedInstanceState) {
 
     }

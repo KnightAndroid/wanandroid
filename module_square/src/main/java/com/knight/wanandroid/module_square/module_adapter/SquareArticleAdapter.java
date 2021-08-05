@@ -71,12 +71,6 @@ public class SquareArticleAdapter extends BaseQuickAdapter<SquareArticleEntity, 
             baseViewHolder.setText(R.id.square_tv_articletitle,Html.fromHtml(squareArticleEntity.getTitle()));
         }
 
-        if (!CacheUtils.getInstance().getNormalDark()) {
-            baseViewHolder.setTextColor(R.id.square_tv_articletitle,CacheUtils.getInstance().getTextColor());
-        } else {
-            baseViewHolder.setTextColor(R.id.square_tv_articletitle,R.color.base_color_title);
-        }
-
         if (squareArticleEntity.isCollect()) {
             baseViewHolder.setBackgroundResource(R.id.square_icon_collect,R.drawable.base_icon_collect);
         } else {

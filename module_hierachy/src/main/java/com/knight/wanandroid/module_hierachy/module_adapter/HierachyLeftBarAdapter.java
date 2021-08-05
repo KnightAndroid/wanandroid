@@ -69,10 +69,8 @@ public class HierachyLeftBarAdapter extends RvAdapter<String> {
             } else {
                 if (CacheUtils.getInstance().getNormalDark()) {
                     mView.setBackgroundColor(Color.parseColor("#303030"));
-                    tvName.setTextColor(Color.parseColor("#D3D3D3"));
                 } else {
                     mView.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                    tvName.setTextColor(CacheUtils.getInstance().getTextColor());
                 }
                 hierachy_tv_selectview.setVisibility(View.INVISIBLE);
             }

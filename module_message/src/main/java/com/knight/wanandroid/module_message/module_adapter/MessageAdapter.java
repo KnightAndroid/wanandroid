@@ -68,15 +68,6 @@ public class MessageAdapter extends BaseQuickAdapter<MessageEntity, BaseViewHold
             baseViewHolder.setText(R.id.message_tv_title,"");
         }
 
-        if (!CacheUtils.getInstance().getNormalDark()) {
-            baseViewHolder.setTextColor(R.id.message_tv_title,CacheUtils.getInstance().getTextColor());
-        } else {
-            baseViewHolder.setTextColor(R.id.message_tv_title,R.color.base_color_title);
-        }
-
-
-
-        
 
         //描述
         if (!TextUtils.isEmpty(messageEntity.getMessage())) {

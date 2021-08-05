@@ -7,6 +7,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
+import android.graphics.BlendMode;
+import android.graphics.BlendModeColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
@@ -20,10 +26,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.File;
+import java.lang.reflect.Field;
 import java.text.DecimalFormat;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 /**
@@ -266,6 +274,51 @@ public class SystemUtils {
             }
         }
     }
+
+    /**
+     *
+     * 设置颜色
+     * @param editText
+     * @param color
+     */
+    public static void setCursorDrawableColor(EditText editText, int color) {
+        try {
+            Field cursorDrawableResField = TextView.class.getDeclaredField("mCursorDrawableRes");
+            cursorDrawableResField.setAccessible(true);
+            int cursorDrawableRes = cursorDrawableResField.getInt(editText);
+            Field editorField = TextView.class.getDeclaredField("mEditor");
+            editorField.setAccessible(true);
+            Object editor = editorField.get(editText);
+            Class<?> clazz = editor.getClass();
+            Resources res = editText.getContext().getResources();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                Field drawableForCursorField = clazz.getDeclaredField("mDrawableForCursor");
+                drawableForCursorField.setAccessible(true);
+                Drawable drawable = res.getDrawable(cursorDrawableRes,editText.getContext().getTheme());
+                drawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
+                drawableForCursorField.set(editor, drawable);
+            } else {
+                Field cursorDrawableField = clazz.getDeclaredField("mCursorDrawable");
+                cursorDrawableField.setAccessible(true);
+                Drawable[] drawables = new Drawable[2];
+                drawables[0] = ContextCompat.getDrawable(editText.getContext(),cursorDrawableRes);
+                drawables[1] = ContextCompat.getDrawable(editText.getContext(),cursorDrawableRes);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    drawables[0].setColorFilter(new BlendModeColorFilter(color, BlendMode.SRC_IN));
+                    drawables[1].setColorFilter(new BlendModeColorFilter(color, BlendMode.SRC_IN));
+                } else {
+                    drawables[0].setColorFilter(color, PorterDuff.Mode.SRC_IN);
+                    drawables[1].setColorFilter(color, PorterDuff.Mode.SRC_IN);
+                }
+                cursorDrawableField.set(editor, drawables);
+            }
+        } catch (Throwable t) {
+
+        }
+    }
+
+
+
 
 
 

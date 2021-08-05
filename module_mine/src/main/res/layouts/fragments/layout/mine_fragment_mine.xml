@@ -85,7 +85,6 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_marginTop="@dimen/base_dimen_10"
-                android:textColor="@color/base_bg_card"
                 android:textSize="@dimen/base_dimen_16"
                 android:text="请登录"
                 android:textStyle="bold"
@@ -110,7 +109,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/base_dimen_14"
-                    android:textColor="@color/base_bg_card"
                     android:text="等级 -"/>
 
                 <TextView
@@ -118,7 +116,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/base_dimen_14"
-                    android:textColor="@color/base_bg_card"
                     android:layout_marginLeft="@dimen/base_dimen_10"
                     android:text="排名第 -"
                     />
@@ -135,7 +132,6 @@
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_marginTop="@dimen/base_dimen_20"
                 app:layout_constraintTop_toBottomOf="@id/mine_ll_rank"
-                app:cardBackgroundColor="@color/base_bg_card"
                 android:layout_marginLeft="@dimen/base_dimen_20"
                 android:layout_marginRight="@dimen/base_dimen_20">
 

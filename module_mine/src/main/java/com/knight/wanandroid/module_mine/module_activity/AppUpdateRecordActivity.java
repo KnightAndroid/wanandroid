@@ -38,6 +38,11 @@ public class AppUpdateRecordActivity extends BaseActivity<MineActivityUpdatereco
     }
 
     @Override
+    protected void setThemeColor(boolean isDarkMode) {
+
+    }
+
+    @Override
     public void initView(Bundle savedInstanceState) {
         mDatabind.includeUpdaterecordToolbar.baseTvTitle.setText(getString(R.string.mine_update_record));
         mDatabind.includeUpdaterecordToolbar.baseIvBack.setOnClickListener(v -> finish());

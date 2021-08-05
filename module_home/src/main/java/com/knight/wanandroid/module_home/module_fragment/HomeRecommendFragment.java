@@ -112,7 +112,7 @@ public class HomeRecommendFragment extends BaseFragment<HomeFragmentRecommendBin
     }
 
     @Override
-    protected void setThemeColor() {
+    protected void setThemeColor(boolean isDarkMode) {
 
 
     }
@@ -320,12 +320,14 @@ public class HomeRecommendFragment extends BaseFragment<HomeFragmentRecommendBin
 
     @Override
     public void collectArticleSuccess(int position) {
-
+        mHomeArticleAdapter.getData().get(position).setCollect(true);
+        mHomeArticleAdapter.notifyItemChanged(position);
     }
 
     @Override
     public void cancelArticleSuccess(int position) {
-
+        mHomeArticleAdapter.getData().get(position).setCollect(false);
+        mHomeArticleAdapter.notifyItemChanged(position);
     }
 
 

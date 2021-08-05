@@ -82,8 +82,9 @@
                         android:background="@android:color/transparent"
                         android:hint="@string/mine_login_username"
                         android:maxLength="16"
-                        android:textCursorDrawable="@drawable/base_textcursorcolor"
                         android:lines="1"
+                        android:textCursorDrawable="@drawable/base_textcursorcolor"
+                        android:textSelectHandle="@android:color/transparent"
                         android:layout_marginTop="@dimen/base_dimen_16"
                         android:textColor="@color/base_color_title"
                         android:textColorHint="@color/base_second_title"
@@ -91,13 +92,6 @@
                         >
 
                     </com.knight.wanandroid.library_widget.ClearEditText>
-
-
-
-
-
-
-
 
 
 
@@ -126,6 +120,7 @@
                     android:maxLength="18"
                     android:layout_marginTop="@dimen/base_dimen_16"
                     android:textCursorDrawable="@drawable/base_textcursorcolor"
+                    android:textSelectHandle="@android:color/transparent"
                     android:lines="1"
                     android:textColor="@color/base_color_title"
                     android:textColorHint="@color/base_second_title"
@@ -159,17 +154,16 @@
 
             <TextView
                 android:id="@+id/mine_tv_login"
-                android:layout_width="160dp"
-                android:layout_height="68dp"
-                android:background="@drawable/mine_bg_btn_login"
+                android:layout_width="158dp"
+                android:layout_height="52dp"
                 android:layout_centerHorizontal="true"
                 android:text="@string/mine_login"
                 android:textSize="@dimen/base_dimen_16"
                 android:gravity="center"
-                android:paddingBottom="@dimen/base_dimen_6"
                 android:textStyle="bold"
                 android:textColor="@android:color/white"
-                android:onClick="@{()->click.loginIn()}"/>
+                android:onClick="@{()->click.loginIn()}"
+                android:background="@drawable/base_confim_agree"/>
 
             <TextView
                 android:id="@+id/mine_tv_register"

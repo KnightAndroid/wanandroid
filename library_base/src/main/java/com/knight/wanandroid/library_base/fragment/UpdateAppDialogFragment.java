@@ -2,6 +2,8 @@ package com.knight.wanandroid.library_base.fragment;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -11,6 +13,8 @@ import com.knight.wanandroid.library_base.R;
 import com.knight.wanandroid.library_base.basefragment.BaseDBDialogFragment;
 import com.knight.wanandroid.library_base.databinding.BaseUpdateappDialogBinding;
 import com.knight.wanandroid.library_base.entity.AppUpdateEntity;
+import com.knight.wanandroid.library_util.CacheUtils;
+import com.knight.wanandroid.library_util.ScreenUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -47,6 +51,17 @@ public class UpdateAppDialogFragment extends BaseDBDialogFragment<BaseUpdateappD
             mDatabind.baseAppupdateClose.setVisibility(View.GONE);
         } else {
             mDatabind.baseAppupdateClose.setVisibility(View.VISIBLE);
+        }
+        mDatabind.tvAppupdateTitlename.setTextColor(CacheUtils.getInstance().getThemeColor());
+        mDatabind.tvAppupdateVersion.setTextColor(CacheUtils.getInstance().getThemeColor());
+        GradientDrawable gradientDrawable = new GradientDrawable();
+        gradientDrawable.setShape(GradientDrawable.RECTANGLE);
+        gradientDrawable.setColor(CacheUtils.getInstance().getThemeColor());
+        gradientDrawable.setCornerRadius(ScreenUtils.dp2px(45));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            mDatabind.tvConfimUpdate.setBackground(gradientDrawable);
+        } else {
+            mDatabind.tvConfimUpdate.setBackgroundDrawable(gradientDrawable);
         }
 
     }

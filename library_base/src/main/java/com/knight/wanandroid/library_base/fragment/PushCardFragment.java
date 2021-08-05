@@ -43,6 +43,13 @@ public class PushCardFragment extends BaseDBFragment<BasePushcardFragmentBinding
         return R.layout.base_pushcard_fragment;
     }
 
+
+
+    @Override
+    protected void setThemeColor(boolean isDarkMode) {
+
+    }
+
     @Override
     protected void initView(Bundle savedInstanceState) {
         mDatabind.setClick(new ProxyClick());

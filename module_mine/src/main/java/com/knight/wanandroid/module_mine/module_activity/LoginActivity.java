@@ -1,6 +1,8 @@
 package com.knight.wanandroid.module_mine.module_activity;
 
 import android.content.Intent;
+import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,7 +13,9 @@ import com.knight.wanandroid.library_base.entity.UserInfoEntity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
+import com.knight.wanandroid.library_util.ScreenUtils;
 import com.knight.wanandroid.library_util.SoftInputScrollUtils;
+import com.knight.wanandroid.library_util.SystemUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_util.constant.MMkvConstants;
 import com.knight.wanandroid.module_mine.R;
@@ -38,6 +42,31 @@ public class LoginActivity extends BaseActivity<MineActivityLoginBinding, LoginP
     @Override
     public int layoutId() {
         return R.layout.mine_activity_login;
+    }
+
+    @Override
+    protected void setThemeColor(boolean isDarkMode) {
+        GradientDrawable gradientDrawable = new GradientDrawable();
+        gradientDrawable.setShape(GradientDrawable.RECTANGLE);
+        gradientDrawable.setColor(CacheUtils.getInstance().getThemeColor());
+        gradientDrawable.setCornerRadius(ScreenUtils.dp2px(45));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            mDatabind.mineTvLogin.setBackground(gradientDrawable);
+        } else {
+            mDatabind.mineTvLogin.setBackgroundDrawable(gradientDrawable);
+        }
+        GradientDrawable cursorDrawable = new GradientDrawable();
+        cursorDrawable.setShape(GradientDrawable.RECTANGLE);
+        cursorDrawable.setColor(themeColor);
+        cursorDrawable.setSize(ScreenUtils.dp2px(2),ScreenUtils.dp2px(2));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            mDatabind.mineLoginUsername.setTextCursorDrawable(cursorDrawable);
+            mDatabind.mineLoginPassword.setTextCursorDrawable(cursorDrawable);
+        } else {
+            SystemUtils.setCursorDrawableColor(mDatabind.mineLoginUsername,themeColor);
+            SystemUtils.setCursorDrawableColor(mDatabind.mineLoginPassword,themeColor);
+        }
+
     }
 
     @Override

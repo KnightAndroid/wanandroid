@@ -52,7 +52,7 @@ public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBindin
     }
 
     @Override
-    protected void setThemeColor() {
+    protected void setThemeColor(boolean isDarkMode) {
 
     }
 

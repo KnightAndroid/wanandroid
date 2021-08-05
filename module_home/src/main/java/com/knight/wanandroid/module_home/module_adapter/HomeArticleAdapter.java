@@ -77,13 +77,6 @@ public class HomeArticleAdapter extends BaseQuickAdapter<HomeArticleEntity, Base
             baseViewHolder.setText(R.id.home_tv_articletitle,Html.fromHtml(homeArticleEntity.getTitle()));
         }
 
-        if (!CacheUtils.getInstance().getNormalDark()) {
-            baseViewHolder.setTextColor(R.id.home_tv_articletitle,CacheUtils.getInstance().getTextColor());
-        } else {
-            baseViewHolder.setTextColor(R.id.home_tv_articletitle,R.color.base_color_title);
-        }
-
-
         //描述
         if (!TextUtils.isEmpty(homeArticleEntity.getDesc())) {
             baseViewHolder.setVisible(R.id.home_tv_articledesc,true);

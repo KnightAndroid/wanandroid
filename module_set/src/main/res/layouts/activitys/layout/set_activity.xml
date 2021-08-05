@@ -46,10 +46,10 @@
                     android:id="@+id/set_istoparticle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:tag="oneLevelText"
                     android:text="@string/set_showtoparticle"
                     android:textColor="@color/base_color_title"
-                    android:textSize="@dimen/base_dimen_18"
-                    android:tag="oneLevelText"/>
+                    android:textSize="@dimen/base_dimen_18" />
 
 
                 <TextView
@@ -80,10 +80,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:tag="oneLevelText"
                     android:text="@string/set_dark_mode"
                     android:textColor="@color/base_color_title"
-                    android:textSize="@dimen/base_dimen_18"
-                    android:tag="oneLevelText"/>
+                    android:textSize="@dimen/base_dimen_18" />
 
 
                 <TextView
@@ -96,14 +96,15 @@
                     android:drawableRight="@drawable/base_iv_userinfo_arrow"
                     android:gravity="center"
                     android:text="@string/set_dark_close"
-                    android:textSize="@dimen/base_dimen_16"
-                    android:textColor="@color/base_second_title"/>
+                    android:textColor="@color/base_second_title"
+                    android:textSize="@dimen/base_dimen_16" />
 
 
             </RelativeLayout>
 
 
             <RelativeLayout
+                android:id="@+id/set_rl_statustheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/base_dimen_26"
@@ -113,10 +114,10 @@
                     android:id="@+id/set_status_theme"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:tag="oneLevelText"
                     android:text="@string/set_status_theme"
                     android:textColor="@color/base_color_title"
-                    android:textSize="@dimen/base_dimen_18"
-                    android:tag="oneLevelText"/>
+                    android:textSize="@dimen/base_dimen_18" />
 
 
                 <TextView
@@ -150,10 +151,10 @@
                     android:id="@+id/set_theme_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:tag="oneLevelText"
                     android:text="@string/set_theme_color"
                     android:textColor="@color/base_color_title"
-                    android:textSize="@dimen/base_dimen_18"
-                    android:tag="oneLevelText"/>
+                    android:textSize="@dimen/base_dimen_18" />
 
 
                 <TextView
@@ -167,11 +168,10 @@
                     android:id="@+id/set_show_themecolor"
                     android:layout_width="42dp"
                     android:layout_height="42dp"
-                    android:background="@android:color/holo_red_light"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/base_dimen_20"
-                    />
+                    android:background="@android:color/holo_red_light" />
             </RelativeLayout>
 
 
@@ -181,18 +181,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/base_dimen_26"
                 android:layout_marginTop="@dimen/base_dimen_20"
-                android:onClick="@{()->click.showBgThemeDialog()}">
+                android:onClick="@{()->click.showBgThemeDialog()}"
+                android:visibility="gone">
 
 
                 <TextView
                     android:id="@+id/set_bg_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:tag="oneLevelText"
                     android:text="@string/set_bg_color"
                     android:textColor="@color/base_color_title"
-                    android:textSize="@dimen/base_dimen_18"
-                    android:layout_centerVertical="true"
-                    android:tag="oneLevelText"/>
+                    android:textSize="@dimen/base_dimen_18" />
 
                 <TextView
                     android:id="@+id/tv_bgcolor_arrow"
@@ -204,40 +205,6 @@
                     android:background="@drawable/base_iv_userinfo_arrow" />
 
             </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/set_rl_textcolor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/base_dimen_26"
-                android:layout_marginTop="@dimen/base_dimen_20"
-                android:onClick="@{()->click.showTextColorDialog()}">
-
-
-                <TextView
-                    android:id="@+id/set_tv_textsize_color"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/set_textsize_color"
-                    android:textColor="@color/base_color_title"
-                    android:textSize="@dimen/base_dimen_18"
-                    android:layout_centerVertical="true"
-                    android:tag="oneLevelText"/>
-
-                <ImageView
-                    android:id="@+id/set_iv_textcolor"
-                    android:layout_width="42dp"
-                    android:layout_height="42dp"
-                    android:background="@android:color/holo_red_light"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="@dimen/base_dimen_20"
-
-                    />
-
-            </RelativeLayout>
-
-
 
 
             <TextView
@@ -260,10 +227,10 @@
                     android:id="@+id/set_tv_clearcache"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:tag="oneLevelText"
                     android:text="@string/set_clear_cache"
                     android:textColor="@color/base_color_title"
-                    android:textSize="@dimen/base_dimen_18"
-                    android:tag="oneLevelText"/>
+                    android:textSize="@dimen/base_dimen_18" />
 
 
                 <TextView
@@ -306,10 +273,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:tag="oneLevelText"
                     android:text="@string/set_project_repository"
                     android:textColor="@color/base_color_title"
-                    android:textSize="@dimen/base_dimen_18"
-                    android:tag="oneLevelText"/>
+                    android:textSize="@dimen/base_dimen_18" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -331,10 +298,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:tag="oneLevelText"
                     android:text="@string/set_official_website"
                     android:textColor="@color/base_color_title"
-                    android:textSize="@dimen/base_dimen_18"
-                    android:tag="oneLevelText"/>
+                    android:textSize="@dimen/base_dimen_18" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -358,10 +325,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:tag="oneLevelText"
                     android:text="@string/set_about_wanandroid"
                     android:textColor="@color/base_color_title"
-                    android:textSize="@dimen/base_dimen_18"
-                    android:tag="oneLevelText"/>
+                    android:textSize="@dimen/base_dimen_18" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -385,10 +352,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:tag="oneLevelText"
                     android:text="@string/set_quit_account"
                     android:textColor="@color/base_color_title"
-                    android:textSize="@dimen/base_dimen_18"
-                    android:tag="oneLevelText"/>
+                    android:textSize="@dimen/base_dimen_18" />
 
 
                 <TextView

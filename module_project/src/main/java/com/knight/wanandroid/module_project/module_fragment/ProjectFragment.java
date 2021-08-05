@@ -34,7 +34,7 @@ public class ProjectFragment extends BaseFragment<ProjectFragmentBinding, Projec
     }
 
     @Override
-    protected void setThemeColor() {
+    protected void setThemeColor(boolean isDarkMode) {
 
     }
 

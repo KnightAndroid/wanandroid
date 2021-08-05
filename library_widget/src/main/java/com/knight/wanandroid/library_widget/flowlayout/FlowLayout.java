@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.util.SparseArray;
@@ -19,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.ScreenUtils;
 import com.knight.wanandroid.library_widget.R;
 import com.knight.wanandroid.library_widget.flowlayout.listener.OnTagClickListener;
@@ -39,11 +42,41 @@ public class FlowLayout extends ViewGroup {
     private final int tagHeight;
     private final int deleteIconMargin;
     private final int childViewPadding;
-    private final int defaultViewBackground;
-    private final int selectViewBackground;
-    private final int fixViewEditingBackground;
-    private final int fixViewEditingTextColor;
-    private final int selectTextColor;
+//    private int defaultViewBackground;
+//    private int selectViewBackground;
+//    private int fixViewEditingBackground;
+
+    private Drawable defaultViewBackground;
+
+    public Drawable getDefaultViewBackground() {
+        return defaultViewBackground;
+    }
+
+    public void setDefaultViewBackground(Drawable defaultViewBackground) {
+        this.defaultViewBackground = defaultViewBackground;
+    }
+
+    public Drawable getSelectViewBackground() {
+        return selectViewBackground;
+    }
+
+    public void setSelectViewBackground(Drawable selectViewBackground) {
+        this.selectViewBackground = selectViewBackground;
+    }
+
+    public Drawable getFixViewEditingBackground() {
+        return fixViewEditingBackground;
+    }
+
+    public void setFixViewEditingBackground(Drawable fixViewEditingBackground) {
+        this.fixViewEditingBackground = fixViewEditingBackground;
+    }
+
+    private Drawable selectViewBackground;
+    private Drawable fixViewEditingBackground;
+
+    private int fixViewEditingTextColor;
+    private int selectTextColor;
     private int textViewSpacing;
     private int verticalSpacing;
     private int defaultTextColor;
@@ -74,6 +107,31 @@ public class FlowLayout extends ViewGroup {
     private List<TagInfo> tagInfos;
     private boolean isSettingAnimation = false;
 
+
+    public int getFixViewEditingTextColor() {
+        return fixViewEditingTextColor;
+    }
+
+    public void setFixViewEditingTextColor(int fixViewEditingTextColor) {
+        this.fixViewEditingTextColor = fixViewEditingTextColor;
+    }
+
+    public int getSelectTextColor() {
+        return selectTextColor;
+    }
+
+    public void setSelectTextColor(int selectTextColor) {
+        this.selectTextColor = selectTextColor;
+    }
+
+    public int getDefaultTextColor() {
+        return defaultTextColor;
+    }
+
+    public void setDefaultTextColor(int defaultTextColor) {
+        this.defaultTextColor = defaultTextColor;
+    }
+
     public FlowLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.flowLayout, defStyle, 0);
@@ -88,20 +146,20 @@ public class FlowLayout extends ViewGroup {
         deleteIconMargin = ViewSizeUtil.getCustomDimen(context, a.getInt(R.styleable.flowLayout_deleteIconMargin, 10));
 
         //(当前所在标签背景颜色)
-        selectViewBackground = a.getResourceId(R.styleable.flowLayout_selectViewBackground, R.drawable.widget_label_bg);
+      //  selectViewBackground = a.getResourceId(R.styleable.flowLayout_selectViewBackground, R.drawable.widget_label_bg);
         //(当前所在标签文字颜色)
         selectTextColor = a.getColor(R.styleable.flowLayout_selectTextColor, 0x55aff4);
 
         //默认标签文字颜色
         defaultTextColor = a.getColor(R.styleable.flowLayout_defaultTextColor, 0x55aff4);
         //默认标签背景颜色
-        defaultViewBackground = a.getResourceId(R.styleable.flowLayout_defaultViewBackground, R.drawable.widget_label_bg);
+     //   defaultViewBackground = a.getResourceId(R.styleable.flowLayout_defaultViewBackground, R.drawable.widget_label_bg);
 
         //编辑状态下
         //固定标签背景
         fixViewEditingTextColor = a.getColor(R.styleable.flowLayout_fixViewTextColor, 0x55aff4);
         //固定标签文字颜色
-        fixViewEditingBackground = a.getResourceId(R.styleable.flowLayout_fixViewEditingBackground, R.drawable.widget_label_bg);
+      //  fixViewEditingBackground = a.getResourceId(R.styleable.flowLayout_fixViewEditingBackground, R.drawable.widget_label_bg);
 
 
         a.recycle();
@@ -292,8 +350,13 @@ public class FlowLayout extends ViewGroup {
     }
 
 
-    private void setTextViewColor(TextView textView, int backgroundRes, int color) {
-        textView.setBackgroundResource(backgroundRes);
+    private void setTextViewColor(TextView textView, Drawable backgroundRes, int color) {
+        GradientDrawable gradientDrawable = new GradientDrawable();
+        gradientDrawable.setShape(GradientDrawable.RECTANGLE);
+        gradientDrawable.setStroke(2, CacheUtils.getInstance().getThemeColor());
+        gradientDrawable.setCornerRadius(ScreenUtils.dp2px(6f));
+        //textView.setBackground(backgroundRes);
+        textView.setBackground(gradientDrawable);
         textView.setTextColor(color);
     }
 

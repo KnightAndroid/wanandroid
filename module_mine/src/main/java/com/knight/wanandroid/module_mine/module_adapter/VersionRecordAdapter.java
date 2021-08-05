@@ -2,6 +2,7 @@ package com.knight.wanandroid.module_mine.module_adapter;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.module_mine.R;
 import com.knight.wanandroid.module_mine.module_entity.AppUpdateRecordEntity;
 
@@ -24,6 +25,7 @@ public class VersionRecordAdapter extends BaseQuickAdapter<AppUpdateRecordEntity
     @Override
     protected void convert(@NotNull BaseViewHolder baseViewHolder, AppUpdateRecordEntity appUpdateRecordEntity) {
         baseViewHolder.setText(R.id.mine_appupdate_title,appUpdateRecordEntity.getTitle());
+        baseViewHolder.setTextColor(R.id.mine_appupdate_title, CacheUtils.getInstance().getThemeColor());
         baseViewHolder.setText(R.id.mine_appupdate_tv_time,appUpdateRecordEntity.getPublishTime());
         baseViewHolder.setText(R.id.mine_appupdate_desc,appUpdateRecordEntity.getDesc());
     }

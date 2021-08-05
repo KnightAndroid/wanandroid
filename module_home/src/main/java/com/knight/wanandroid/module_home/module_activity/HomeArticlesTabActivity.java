@@ -105,6 +105,11 @@ public class HomeArticlesTabActivity extends BaseDBActivity<HomeArticlesTabActiv
 
     }
 
+    @Override
+    protected void setThemeColor(boolean isDarkMode) {
+
+    }
+
 
     @Override
     //安卓重写返回键事件

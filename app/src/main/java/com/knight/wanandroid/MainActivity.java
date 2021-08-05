@@ -50,6 +50,11 @@ public class MainActivity extends BaseDBActivity<ActivityMainBinding> {
 
     }
 
+    @Override
+    protected void setThemeColor(boolean isDarkMode) {
+
+    }
+
 
     private void initFragment() {
         fragments.add(mHomeFragment = new HomeFragment());

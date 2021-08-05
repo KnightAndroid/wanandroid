@@ -49,7 +49,7 @@ public class NavigateFragment extends BaseFragment<HierachyFragmentMainBinding, 
     }
 
     @Override
-    protected void setThemeColor() {
+    protected void setThemeColor(boolean isDarkMode) {
 
     }
 

@@ -45,6 +45,10 @@ public class HierachyDetailActivity extends BaseDBActivity<HierachyDetailActivit
 
     }
 
+    @Override
+    protected void setThemeColor(boolean isDarkMode) {
+    }
+
 
     public void createFragment() {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();

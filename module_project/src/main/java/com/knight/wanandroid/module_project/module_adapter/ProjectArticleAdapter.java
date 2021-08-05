@@ -7,7 +7,6 @@ import android.text.TextUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.knight.wanandroid.library_common.ApplicationProvider;
-import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;
 import com.knight.wanandroid.module_project.R;
 import com.knight.wanandroid.module_project.module_entity.ProjectArticleEntity;
@@ -55,11 +54,6 @@ public class ProjectArticleAdapter extends BaseQuickAdapter<ProjectArticleEntity
             baseViewHolder.setText(R.id.base_tv_title, Html.fromHtml(projectArticleEntity.getTitle(),Html.FROM_HTML_MODE_LEGACY));
         } else {
             baseViewHolder.setText(R.id.base_tv_title,Html.fromHtml(projectArticleEntity.getTitle()));
-        }
-        if (!CacheUtils.getInstance().getNormalDark()) {
-            baseViewHolder.setTextColor(R.id.base_tv_title,CacheUtils.getInstance().getTextColor());
-        } else {
-            baseViewHolder.setTextColor(R.id.base_tv_title,R.color.base_color_title);
         }
 
         //描述

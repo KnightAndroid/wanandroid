@@ -25,7 +25,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/base_dimen_10"
-            android:background="@drawable/base_select_check" />
+            android:src="@drawable/base_select_check" />
 
 
         <TextView

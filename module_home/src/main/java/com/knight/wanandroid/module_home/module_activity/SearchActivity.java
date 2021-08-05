@@ -1,5 +1,7 @@
 package com.knight.wanandroid.module_home.module_activity;
 
+import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -19,6 +21,7 @@ import com.knight.wanandroid.library_base.entity.SearchHotKeyEntity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_base.util.ARouterUtils;
 import com.knight.wanandroid.library_base.util.DataBaseUtils;
+import com.knight.wanandroid.library_util.ScreenUtils;
 import com.knight.wanandroid.library_util.SystemUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_util.dialog.DialogUtils;
@@ -58,6 +61,20 @@ public class SearchActivity extends BaseActivity<HomeSearchActivityBinding, Sear
     @Override
     public int layoutId() {
         return R.layout.home_search_activity;
+    }
+
+    @Override
+    protected void setThemeColor(boolean isDarkMode) {
+        GradientDrawable cursorDrawable = new GradientDrawable();
+        cursorDrawable.setShape(GradientDrawable.RECTANGLE);
+        cursorDrawable.setColor(themeColor);
+        cursorDrawable.setSize(ScreenUtils.dp2px(2),ScreenUtils.dp2px(2));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            mDatabind.homeSearchEt.setTextCursorDrawable(cursorDrawable);
+        } else {
+            SystemUtils.setCursorDrawableColor(mDatabind.homeSearchEt,themeColor);
+        }
+
     }
 
     @Override
@@ -157,7 +174,7 @@ public class SearchActivity extends BaseActivity<HomeSearchActivityBinding, Sear
                 queryLocalSearchRecord();
             }, (dialog, which) -> {
 
-            }).show();
+            });
         }
     }
 

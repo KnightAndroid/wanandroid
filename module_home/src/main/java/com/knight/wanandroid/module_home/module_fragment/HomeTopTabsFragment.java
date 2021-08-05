@@ -12,7 +12,9 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.knight.wanandroid.library_base.AppConfig;
 import com.knight.wanandroid.library_base.basefragment.BaseDBFragment;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.ColorUtils;
+import com.knight.wanandroid.library_util.ScreenUtils;
 import com.knight.wanandroid.library_widget.pagertransformer.DragLayout;
 import com.knight.wanandroid.module_home.R;
 import com.knight.wanandroid.module_home.databinding.HomeFragmentToptabsBinding;
@@ -47,6 +49,30 @@ public class HomeTopTabsFragment extends BaseDBFragment<HomeFragmentToptabsBindi
     @Override
     protected int layoutId() {
         return R.layout.home_fragment_toptabs;
+    }
+
+    @Override
+    protected void setThemeColor(boolean isDarkMode) {
+        GradientDrawable gradientChapterNameDrawable = new GradientDrawable();
+        gradientChapterNameDrawable.setShape(GradientDrawable.RECTANGLE);
+        gradientChapterNameDrawable.setStroke(ScreenUtils.dp2px(1), CacheUtils.getInstance().getThemeColor());
+
+        GradientDrawable gradientAuthorDrawable = new GradientDrawable();
+        gradientAuthorDrawable.setShape(GradientDrawable.RECTANGLE);
+        gradientAuthorDrawable.setStroke(ScreenUtils.dp2px(1), CacheUtils.getInstance().getThemeColor());
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            mDatabind.homeToparticleSuperchaptername.setBackground(gradientChapterNameDrawable);
+            mDatabind.homeToparticleAuthor.setBackground(gradientAuthorDrawable);
+        } else {
+            mDatabind.homeToparticleSuperchaptername.setBackgroundDrawable(gradientChapterNameDrawable);
+            mDatabind.homeToparticleAuthor.setBackgroundDrawable(gradientAuthorDrawable);
+
+        }
+        mDatabind.homeToparticleAuthor.setTextColor(themeColor);
+        mDatabind.homeToparticleSuperchaptername.setTextColor(themeColor);
+
     }
 
     @Override

@@ -13,6 +13,7 @@ import com.knight.wanandroid.library_base.baseactivity.BaseActivity;
 import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_util.CacheUtils;
+import com.knight.wanandroid.library_util.ColorUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_util.dialog.DialogUtils;
@@ -46,6 +47,16 @@ public class SetActivity extends BaseActivity<SetActivityBinding, SetPresenter, 
     }
 
     @Override
+    protected void setThemeColor(boolean isDarkMode) {
+        updateTextColor(themeColor);
+        setThemeTextColor();
+        if (!isDarkMode) {
+            updateBgColor(bgColor);
+        }
+
+    }
+
+    @Override
     public void initView(Bundle savedInstanceState) {
         mDatabind.setClick(new ProxyClick());
         mDatabind.includeSetToobar.baseIvBack.setOnClickListener(v -> finish());
@@ -58,26 +69,14 @@ public class SetActivity extends BaseActivity<SetActivityBinding, SetPresenter, 
         statusIsWithTheme = CacheUtils.getInstance().getStatusBarIsWithTheme();
         mDatabind.setCbStatusTheme.setChecked(statusIsWithTheme);
 
-
+        mDatabind.setCbStatusTheme.setButtonTintList(ColorUtils.createColorStateList(CacheUtils.getInstance().getThemeColor(), ColorUtils.convertToColorInt("a6a6a6")));
         initDarkMode();
         initListener();
-        if (!CacheUtils.getInstance().getNormalDark()) {
-            updateTextColor(themeColor);
-            updateBgColor(bgColor);
-            mChildViews = getAllChildViews(mDatabind.setRoot, textColor);
-        } else {
+        if (CacheUtils.getInstance().getNormalDark()) {
             mDatabind.setRlTheme.setVisibility(View.GONE);
             mDatabind.setRlBg.setVisibility(View.GONE);
-            mDatabind.setRlTextcolor.setVisibility(View.GONE);
-
+            mDatabind.setRlStatustheme.setVisibility(View.GONE);
         }
-        setThemeColor();
-
-        //        mChildViews = new View[mDatabind.setRoot.getChildCount()];
-        //        for (int i = 0; i < mChildViews.length; i++) {
-        //            mChildViews[i] = mDatabind.setRoot.getChildAt(i);
-        //        }
-
     }
 
     @Override
@@ -147,29 +146,6 @@ public class SetActivity extends BaseActivity<SetActivityBinding, SetPresenter, 
                     }).build().show();
         }
 
-
-        /**
-         * 字体颜色
-         */
-        public void showTextColorDialog() {
-            new ColorPickerDialog.Builder(SetActivity.this, CacheUtils.getInstance().getTextColor(), ColorStyle.TEXTCOLOR, getString(R.string.set_recover_textcolor))
-                    .setOnColorPickedListener(new ColorPickerDialog.OnColorPickedListener() {
-                        @Override
-                        public void onColorPicked(int color) {
-                            textColor = color;
-                            CacheUtils.getInstance().setTextColor(color);
-                            getAllChildViews(mDatabind.setRoot, color);
-                            //设置字体颜色
-                            GradientDrawable gradientTextDrawable = new GradientDrawable();
-                            gradientTextDrawable.setShape(GradientDrawable.OVAL);
-                            gradientTextDrawable.setColor(CacheUtils.getInstance().getTextColor());
-                            mDatabind.setIvTextcolor.setBackground(gradientTextDrawable);
-                            EventBus.getDefault().post(new EventBusUtils.changeColor());
-                        }
-                    }).build().show();
-        }
-
-
         public void projectRepository() {
             ARouter.getInstance().build(RoutePathActivity.Web.Web_Normal)
                     .withString("webUrl", "https://github.com/KnightAndroid/wanandroid")
@@ -189,7 +165,7 @@ public class SetActivity extends BaseActivity<SetActivityBinding, SetPresenter, 
                 mPresenter.requestLogout();
             }, (dialog, which) -> {
 
-            }).show();
+            });
 
         }
 
@@ -231,22 +207,20 @@ public class SetActivity extends BaseActivity<SetActivityBinding, SetPresenter, 
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 statusIsWithTheme = isChecked;
                 CacheUtils.getInstance().statusBarIsWithTheme(isChecked);
+                buttonView.setButtonTintList(ColorUtils.createColorStateList(CacheUtils.getInstance().getThemeColor(), ColorUtils.convertToColorInt("a6a6a6")));
+                EventBus.getDefault().post(new EventBusUtils.changeStatusThemeColor(isChecked));
             }
         });
     }
 
 
-    private void setThemeColor() {
+    private void setThemeTextColor() {
         //设置主题颜色
         GradientDrawable gradientThemeDrawable = new GradientDrawable();
         gradientThemeDrawable.setShape(GradientDrawable.OVAL);
         gradientThemeDrawable.setColor(CacheUtils.getInstance().getThemeColor());
         mDatabind.setShowThemecolor.setBackground(gradientThemeDrawable);
-        //设置字体颜色
-        GradientDrawable gradientTextDrawable = new GradientDrawable();
-        gradientTextDrawable.setShape(GradientDrawable.OVAL);
-        gradientTextDrawable.setColor(CacheUtils.getInstance().getTextColor());
-        mDatabind.setIvTextcolor.setBackground(gradientTextDrawable);
+
     }
 
     /**

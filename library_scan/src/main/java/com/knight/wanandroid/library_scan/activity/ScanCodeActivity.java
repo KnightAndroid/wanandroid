@@ -85,6 +85,11 @@ public class ScanCodeActivity extends BaseDBActivity<ScancodeActivityBinding> {
     }
 
     @Override
+    protected void setThemeColor(boolean isDarkMode) {
+
+    }
+
+    @Override
     @SuppressLint("NewApi")
     public void initData(){
         mScanCodeEntity = getIntent().getExtras().getParcelable(ScanCodeConfig.MODEL_KEY);

@@ -46,6 +46,7 @@
 
 
             <RelativeLayout
+                android:id="@+id/home_rl_search"
                 android:layout_width="wrap_content"
                 android:layout_height="38dp"
                 android:layout_toRightOf="@id/home_tv_loginname"
@@ -101,7 +102,7 @@
                 android:id="@+id/home_iv_everyday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/home_icon_everyday"
+                android:src="@drawable/home_icon_everyday"
                 android:layout_toLeftOf="@+id/home_iv_add"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/base_dimen_6"
@@ -112,12 +113,11 @@
                 android:id="@+id/home_iv_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/home_icon_add"
+                android:src="@drawable/home_icon_add"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/base_dimen_6"
                 android:onClick="@{()->click.shareArticle()}"/>
-
 
         </RelativeLayout>
 

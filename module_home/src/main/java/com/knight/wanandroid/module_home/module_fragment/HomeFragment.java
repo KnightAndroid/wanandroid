@@ -1,6 +1,9 @@
 package com.knight.wanandroid.module_home.module_fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -26,6 +29,7 @@ import com.knight.wanandroid.library_util.DateUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.GsonUtils;
 import com.knight.wanandroid.library_util.JsonUtils;
+import com.knight.wanandroid.library_util.ScreenUtils;
 import com.knight.wanandroid.library_util.SystemUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_util.ViewSetUtils;
@@ -81,8 +85,13 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     }
 
     @Override
-    protected void setThemeColor() {
-        mDatabind.homeIncludeToolbar.homeTvLoginname.setTextColor(textColor);
+    protected void setThemeColor(boolean isDarkMode) {
+        if (!isDarkMode) {
+            if (CacheUtils.getInstance().getStatusBarIsWithTheme()) {
+                mDatabind.homeIncludeToolbar.toolbar.setBackgroundColor(CacheUtils.getInstance().getThemeColor());
+            }
+            isWithStatusTheme(CacheUtils.getInstance().getStatusBarIsWithTheme());
+        }
     }
 
     @Override
@@ -217,9 +226,6 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         }
 
 
-
-
-
         public void goknowledgeLabel() {
             Intent intent = new Intent(getActivity(), KnowledgeLabelActivity.class);
             intent.putExtra("data", (Serializable) knowledgeLabelList);
@@ -246,17 +252,6 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
 
         }
         ViewSetUtils.setViewPager2Init(getActivity(), mFragments,mDatabind.viewPager, false);
-        
-//        CustomViewUtils.bindViewPager2(mDatabind.magicIndicator, mDatabind.viewPager, knowledgeLabelList, new Function1() {
-//            @Override
-//            public Object invoke(Object o) {
-//                int[] position = new int[2];
-//                mDatabind.homeLlTop.getLocationOnScreen(position);
-//                mDatabind.homeCoordinatorsl.fling(mDatabind.homeLlTop.getHeight() + position[1]  - mDatabind.homeIncludeToolbar.toolbar.getHeight());
-//                mDatabind.homeCoordinatorsl.smoothScrollBy(0,mDatabind.homeLlTop.getHeight() + position[1]  - mDatabind.homeIncludeToolbar.toolbar.getHeight(),600);
-//                return null;
-//            }
-//        });
         CustomViewUtils.bindViewPager2(mDatabind.magicIndicator, mDatabind.viewPager, knowledgeLabelList, new Function1() {
             @Override
             public Object invoke(Object o) {
@@ -265,8 +260,6 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         });
 
     }
-
-
 
 
     private void initUserData() {
@@ -328,9 +321,40 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
 
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void changeStatusTheme(EventBusUtils.changeStatusThemeColor changeStatusThemeColor) {
+        isWithStatusTheme(changeStatusThemeColor.isStatusWithTheme());
+    }
 
+    /**
+     *
+     * 状态栏是否跟随主题色变化
+     * @param statusWithTheme
+     */
+    private void isWithStatusTheme(boolean statusWithTheme){
+        GradientDrawable gradientDrawable = new GradientDrawable();
+        gradientDrawable.setShape(GradientDrawable.RECTANGLE);
+        gradientDrawable.setCornerRadius(ScreenUtils.dp2px(45));
+        if (statusWithTheme) {
+            gradientDrawable.setColor(Color.WHITE);
+            mDatabind.homeIncludeToolbar.homeTvLoginname.setTextColor(Color.WHITE);
+            mDatabind.homeIncludeToolbar.homeIvEveryday.setColorFilter(Color.WHITE);
+            mDatabind.homeIncludeToolbar.homeIvAdd.setColorFilter(Color.WHITE);
+            mDatabind.homeIncludeToolbar.toolbar.setBackgroundColor(CacheUtils.getInstance().getThemeColor());
+        } else {
+            gradientDrawable.setColor(Color.parseColor("#1f767680"));
+            mDatabind.homeIncludeToolbar.homeTvLoginname.setTextColor(Color.parseColor("#333333"));
+            mDatabind.homeIncludeToolbar.homeIvEveryday.setColorFilter(R.color.base_color_homeimage);
+            mDatabind.homeIncludeToolbar.homeIvAdd.setColorFilter(R.color.base_color_homeimage);
+            mDatabind.homeIncludeToolbar.toolbar.setBackgroundColor(Color.WHITE);
+        }
 
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            mDatabind.homeIncludeToolbar.homeRlSearch.setBackground(gradientDrawable);
+        } else {
+            mDatabind.homeIncludeToolbar.homeRlSearch.setBackgroundDrawable(gradientDrawable);
+        }
+    }
 
 
     @Override

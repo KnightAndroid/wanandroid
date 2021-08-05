@@ -36,6 +36,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_appupdate_titlename"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -64,7 +65,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/base_dimen_26"
                     android:text="2020-08-09"
-                    android:textSize="@dimen/base_dimen_14" />
+                    android:textSize="@dimen/base_dimen_14"
+                    android:textColor="@color/base_second_title"
+                    />
 
 
                 <TextView
@@ -75,16 +78,17 @@
                     android:layout_marginTop="@dimen/base_dimen_15"
                     android:lineSpacingExtra="@dimen/base_dimen_10"
                     android:text="1.新增dfdf\n2.新增积分\n3.sdsdsdsd"
-                    android:textSize="@dimen/base_dimen_16" />
+                    android:textSize="@dimen/base_dimen_16"
+                    android:textColor="@color/base_second_title"/>
 
                 <TextView
+                    android:id="@+id/tv_confim_update"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/base_dimen_16"
                     android:layout_marginTop="@dimen/base_dimen_16"
                     android:layout_marginRight="@dimen/base_dimen_16"
-                    android:background="@drawable/base_confim_agree"
                     android:gravity="center"
                     android:paddingTop="@dimen/base_dimen_15"
                     android:paddingBottom="@dimen/base_dimen_15"

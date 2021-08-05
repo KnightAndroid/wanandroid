@@ -88,6 +88,7 @@
 
 
             <TextView
+                android:id="@+id/home_tv_hotsearch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/base_dimen_16"
@@ -112,6 +113,7 @@
                 android:layout_marginRight="@dimen/base_dimen_16">
 
                 <TextView
+                    android:id="@+id/home_tv_search_history"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/base_dimen_10"

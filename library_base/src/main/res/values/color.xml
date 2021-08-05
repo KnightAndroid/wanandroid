@@ -13,4 +13,5 @@
     <color name="base_bg_card">#55aff4</color>
     <color name="base_bg_me_text">#ffffff</color>
     <color name="base_navigate_title">#f3f3f3</color>
+    <color name="base_color_homeimage">#E6e6e6e6</color>
 </resources>

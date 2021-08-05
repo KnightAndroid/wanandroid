@@ -48,6 +48,11 @@ public class MyShareArticleActivity extends BaseActivity<MineActivityMyshareBind
     }
 
     @Override
+    protected void setThemeColor(boolean isDarkMode) {
+
+    }
+
+    @Override
     public void initView(Bundle savedInstanceState) {
         mDatabind.includeMineshareToolbar.baseTvTitle.setText("我的分享");
         mDatabind.includeMineshareToolbar.baseIvBack.setOnClickListener(v -> finish());
@@ -152,7 +157,7 @@ public class MyShareArticleActivity extends BaseActivity<MineActivityMyshareBind
                         mPresenter.requestDeleteCollectArticle(mMyShareArticleAdapter.getData().get(position).getId(),position);
                     }, (dialog, which) -> {
 
-                    }).show();
+                    });
 
                 }
             }

@@ -38,6 +38,12 @@ public class AboutActivity extends BaseActivity<MineActivityAboutBinding, AboutP
         return R.layout.mine_activity_about;
     }
 
+    @Override
+    protected void setThemeColor(boolean isDarkMode) {
+        mDatabind.mineTvAppName.setTextColor(themeColor);
+        mDatabind.mineCv.setBackgroundColor(themeColor);
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     public void initView(Bundle savedInstanceState) {

@@ -80,6 +80,7 @@ public class KnowledgeLabelActivity extends BaseDBActivity<HomeLabelActivityBind
         if (currentId == null) {
             currentId = "-1";
         }
+
         mDatabind.homeKnowledgetTag.setSelectTagId(currentId);
         mDatabind.homeKnowledgetTag.setOnTagClickListener(new OnTagClickListener() {
             @Override
@@ -97,6 +98,17 @@ public class KnowledgeLabelActivity extends BaseDBActivity<HomeLabelActivityBind
             }
         });
         initData();
+    }
+
+    @Override
+    protected void setThemeColor(boolean isDarkMode) {
+        mDatabind.homeLabelEdit.setTextColor(themeColor);
+        mDatabind.homeIvAddlabel.setColorFilter(themeColor);
+        mDatabind.homeKnowledgetTag.setDefaultTextColor(themeColor);
+        mDatabind.homeKnowledgetTag.setFixViewEditingTextColor(themeColor);
+        mDatabind.homeKnowledgetTag.setSelectTextColor(themeColor);
+
+
     }
 
 

@@ -35,6 +35,11 @@ public class MessageActivity extends BaseDBActivity<MessageActivityBinding> {
 
     }
 
+    @Override
+    protected void setThemeColor(boolean isDarkMode) {
+
+    }
+
 
     @Override
     public void initData(){

@@ -61,6 +61,10 @@ public class HierachyTabActivity extends BaseDBActivity<HierachyActivityTabBindi
     }
 
     @Override
+    protected void setThemeColor(boolean isDarkMode) {
+    }
+
+    @Override
     public void onSucceed(Object result) {
 
     }

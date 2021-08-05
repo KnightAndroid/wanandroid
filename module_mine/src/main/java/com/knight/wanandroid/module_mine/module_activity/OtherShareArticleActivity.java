@@ -66,6 +66,14 @@ public class OtherShareArticleActivity extends BaseActivity<MineActivityOthersha
     }
 
     @Override
+    protected void setThemeColor(boolean isDarkMode) {
+        mDatabind.mineTvUsername.setTextColor(themeColor);
+        mDatabind.mineOtherCoincount.setTextColor(themeColor);
+        mDatabind.mineOtherTvLevel.setTextColor(themeColor);
+        mDatabind.mineOtherTvRank.setTextColor(themeColor);
+    }
+
+    @Override
     public void initView(Bundle savedInstanceState) {
         EventBus.getDefault().register(this);
         mDatabind.setClick(new ProxyClick());

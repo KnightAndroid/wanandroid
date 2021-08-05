@@ -1,7 +1,12 @@
 package com.knight.wanandroid.module_home.module_adapter;
 
+import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
+import com.knight.wanandroid.library_util.CacheUtils;
+import com.knight.wanandroid.library_util.ScreenUtils;
 import com.knight.wanandroid.library_widget.flowlayout.TagInfo;
 import com.knight.wanandroid.module_home.R;
 
@@ -21,31 +26,42 @@ public class MoreKnowLedgeAdapter extends BaseQuickAdapter<TagInfo, BaseViewHold
 
     private boolean isEdit;
 
-    public MoreKnowLedgeAdapter(@Nullable List<TagInfo> data){
-        super(R.layout.home_knowledgelabel_item,data);
+    public MoreKnowLedgeAdapter(@Nullable List<TagInfo> data) {
+        super(R.layout.home_knowledgelabel_item, data);
     }
 
     @Override
     protected void convert(@NotNull BaseViewHolder baseViewHolder, TagInfo tagInfo) {
-          baseViewHolder.setText(R.id.home_tv_knowledge,tagInfo.tagName);
-          //如果是编辑状态
-          if (isEdit) {
-             baseViewHolder.setVisible(R.id.home_iv_moreknowledge_delete,true);
-          } else {
-              baseViewHolder.setGone(R.id.home_iv_moreknowledge_delete,true);
-          }
+        baseViewHolder.setText(R.id.home_tv_knowledge, tagInfo.tagName);
+        baseViewHolder.setTextColor(R.id.home_tv_knowledge,CacheUtils.getInstance().getThemeColor());
+        GradientDrawable gradientDrawable = new GradientDrawable();
+        gradientDrawable.setShape(GradientDrawable.RECTANGLE);
+        gradientDrawable.setStroke(2, CacheUtils.getInstance().getThemeColor());
+        gradientDrawable.setCornerRadius(ScreenUtils.dp2px(6f));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            baseViewHolder.getView(R.id.home_tv_knowledge).setBackground(gradientDrawable);
+        } else {
+            baseViewHolder.getView(R.id.home_tv_knowledge).setBackgroundDrawable(gradientDrawable);
+        }
+        //如果是编辑状态
+        if (isEdit) {
+            baseViewHolder.setVisible(R.id.home_iv_moreknowledge_delete, true);
+        } else {
+            baseViewHolder.setGone(R.id.home_iv_moreknowledge_delete, true);
+        }
+
+
     }
 
 
-    public void setIsEdit(boolean isEdit){
+    public void setIsEdit(boolean isEdit) {
         this.isEdit = isEdit;
         notifyDataSetChanged();
     }
 
-    public boolean getIsEdit(){
+    public boolean getIsEdit() {
         return isEdit;
     }
-
 
 
 }

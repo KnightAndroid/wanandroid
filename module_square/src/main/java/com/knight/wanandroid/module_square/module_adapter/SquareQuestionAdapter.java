@@ -96,13 +96,6 @@ public class SquareQuestionAdapter extends BaseQuickAdapter<SquareQuestionEntity
             baseViewHolder.setText(R.id.base_tv_articletitle,StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),Html.fromHtml(squareQuestionEntity.getTitle()).toString(),AppConfig.SEARCH_KEYWORD));
         }
 
-        if (!CacheUtils.getInstance().getNormalDark()) {
-            baseViewHolder.setTextColor(R.id.base_tv_articletitle,CacheUtils.getInstance().getTextColor());
-        } else {
-            baseViewHolder.setTextColor(R.id.base_tv_articletitle,R.color.base_color_title);
-        }
-
-
         //是否收藏
         if (squareQuestionEntity.isCollect()) {
             baseViewHolder.setBackgroundResource(R.id.base_icon_collect,R.drawable.base_icon_collect);

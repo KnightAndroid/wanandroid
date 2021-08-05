@@ -134,7 +134,12 @@
                     android:drawablePadding="@dimen/base_dimen_2"
                     android:text="官方"
                     android:textColor="@color/base_color_title"
-                    android:textSize="@dimen/base_dimen_15" />
+                    android:textSize="@dimen/base_dimen_15"
+                    android:paddingTop="@dimen/base_dimen_2"
+                    android:paddingBottom="@dimen/base_dimen_2"
+                    android:paddingLeft="@dimen/base_dimen_4"
+                    android:paddingRight="@dimen/base_dimen_4"
+                 />
 
                 <TextView
                     android:id="@+id/home_tv_toparticle_title"

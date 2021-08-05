@@ -45,9 +45,15 @@ public class MyPointDetailActivity extends BaseActivity<MineActivityDetailpointB
     private UserDetailCoinAdapter mUserDetailCoinAdapter;
     private int page = 1;
     private View userInfoCoinHeadView;
+    private TextView tv_head_detailpoint;
     @Override
     public int layoutId() {
         return R.layout.mine_activity_detailpoint;
+    }
+
+    @Override
+    protected void setThemeColor(boolean isDarkMode) {
+
     }
 
     @Override
@@ -58,7 +64,9 @@ public class MyPointDetailActivity extends BaseActivity<MineActivityDetailpointB
         mUserDetailCoinAdapter = new UserDetailCoinAdapter(new ArrayList<>());
         SetInitCustomView.initSwipeRecycleview(mDatabind.includeMineDetailpoint.baseBodyRv,new LinearLayoutManager(this),mUserDetailCoinAdapter,true);
         userInfoCoinHeadView = LayoutInflater.from(this).inflate(R.layout.mine_detailpoint_head,null);
-        ((TextView)userInfoCoinHeadView.findViewById(R.id.tv_head_detailpoint)).setText(userCoin);
+        tv_head_detailpoint = ((TextView)userInfoCoinHeadView.findViewById(R.id.tv_head_detailpoint));
+        tv_head_detailpoint.setTextColor(themeColor);
+        tv_head_detailpoint.setText(userCoin);
         mDatabind.includeMineDetailpoint.baseFreshlayout.setOnRefreshListener(this);
         mDatabind.includeMineDetailpoint.baseFreshlayout.setOnLoadMoreListener(this);
         showLoading(mDatabind.includeMineDetailpoint.baseFreshlayout);

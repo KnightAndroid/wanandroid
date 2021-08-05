@@ -1,11 +1,13 @@
 package com.knight.wanandroid.module_mine.module_adapter;
 
+import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.text.Html;
 import android.text.TextUtils;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.module_mine.R;
 import com.knight.wanandroid.module_mine.module_entity.MyArticleEntity;
 
@@ -40,13 +42,24 @@ public class MyShareArticleAdapter extends BaseQuickAdapter<MyArticleEntity, Bas
         } else {
             baseViewHolder.setText(R.id.mine_tv_articletitle,Html.fromHtml(myArticleEntity.getTitle()));
         }
-        //文章类别
 
+
+        //文章类别
         if (TextUtils.isEmpty(myArticleEntity.getChapterName())) {
             baseViewHolder.setText(R.id.mine_item_articlechaptername,myArticleEntity.getSuperChapterName());
         } else {
             baseViewHolder.setText(R.id.mine_item_articlechaptername,myArticleEntity.getSuperChapterName() + "/" +myArticleEntity.getChapterName());
         }
+
+        GradientDrawable gradientDrawable = new GradientDrawable();
+        gradientDrawable.setShape(GradientDrawable.RECTANGLE);
+        gradientDrawable.setStroke(2, CacheUtils.getInstance().getThemeColor());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            baseViewHolder.getView(R.id.mine_item_articlechaptername).setBackground(gradientDrawable);
+        } else {
+            baseViewHolder.getView(R.id.mine_item_articlechaptername).setBackgroundDrawable(gradientDrawable);
+        }
+        baseViewHolder.setTextColor(R.id.mine_item_articlechaptername,CacheUtils.getInstance().getThemeColor());
 
         //是否是新文章
         if (myArticleEntity.isFresh()) {

@@ -3,6 +3,8 @@ package com.knight.wanandroid.library_util.dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
+import com.knight.wanandroid.library_util.CacheUtils;
+
 import androidx.appcompat.app.AlertDialog;
 
 /**
@@ -68,12 +70,14 @@ public class DialogUtils {
      * @param cancelClickListener
      * @return
      */
-    public static AlertDialog.Builder getConfirmDialog(Context context,String message,DialogInterface.OnClickListener okClickListener,DialogInterface.OnClickListener cancelClickListener){
+    public static void getConfirmDialog(Context context,String message,DialogInterface.OnClickListener okClickListener,DialogInterface.OnClickListener cancelClickListener){
         AlertDialog.Builder builder = getDialog(context);
         builder.setMessage(message);
         builder.setPositiveButton("确定",okClickListener);
         builder.setNegativeButton("取消",cancelClickListener);
-        return builder;
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(CacheUtils.getInstance().getThemeColor());
     }
 
 

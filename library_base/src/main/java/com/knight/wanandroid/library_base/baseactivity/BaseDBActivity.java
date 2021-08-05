@@ -32,6 +32,7 @@ import androidx.databinding.ViewDataBinding;
 public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppCompatActivity implements OnHttpListener {
 
     public abstract int layoutId();
+
     public DB mDatabind;
     private ProgressHUD mProgressHUD;
 
@@ -41,17 +42,23 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
     private SwipeBackHelper mSwipeBackHelper;
 
     protected int themeColor;
-    protected int textColor;
     protected int bgColor;
     protected boolean isDarkMode;
 
     public abstract void initView(Bundle savedInstanceState);
 
 
-    protected void initData(){
+    /**
+     * 主题色设置
+     */
+    protected abstract void setThemeColor(boolean isDarkMode);
+
+    protected void initData() {
 
     }
-    protected void reLoadData(){}
+
+    protected void reLoadData() {
+    }
 
 
     @Override
@@ -62,17 +69,13 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
         createViewDataBinding();
         StatusBarUtils.transparentStatusBar(this);
         isDarkMode = CacheUtils.getInstance().getNormalDark();
-        if (!isDarkMode) {
-            initThemeColor();
-            initTextColor();
-            initBgColor();
-        }
-
+        initThemeColor();
+        initBgColor();
+        setThemeColor(isDarkMode);
         initView(savedInstanceState);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             mSwipeBackHelper = new SwipeBackHelper(this);
         }
-
 
 
     }
@@ -84,30 +87,19 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
     }
 
 
-    protected int getActivityTheme(){
+    protected int getActivityTheme() {
         return R.style.base_AppTheme;
     }
 
 
     /**
-     *
      * 获取颜色
-     *
      */
-    protected void initThemeColor(){
+    protected void initThemeColor() {
         themeColor = CacheUtils.getInstance().getThemeColor();
     }
 
     /**
-     *
-     * 获取字体颜色
-     */
-    protected void initTextColor(){
-        textColor = CacheUtils.getInstance().getTextColor();
-    }
-
-    /**
-     *
      * 获取背景颜色
      */
     protected void initBgColor() {
@@ -115,13 +107,12 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
     }
 
 
-
     /**
-     *
      * 显示加载进度布局
+     *
      * @param view
      */
-    public void showLoading(View view){
+    public void showLoading(View view) {
         mLoadService = LoadSir.getDefault().register(view, new Callback.OnReloadListener() {
             @Override
             public void onReload(View v) {
@@ -134,7 +125,6 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
     }
 
     /**
-     *
      * 成功请求数据
      */
     protected void showSuccess() {
@@ -145,7 +135,6 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
 
 
     /**
-     *
      * 失败请求的界面
      */
     protected void showFailure() {
@@ -155,30 +144,29 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
     }
 
     /**
-     *
      * 空数据界面
      */
-    protected void showEmptyData(){
+    protected void showEmptyData() {
         if (mLoadService != null) {
             mLoadService.showCallback(EmptyCallBack.class);
 
         }
     }
+
     /**
      * 显示请求框
+     *
      * @param loadMessage
      */
     public void showLoadingHud(String loadMessage) {
         if (mProgressHUD == null) {
-            mProgressHUD = new ProgressHUD(this,loadMessage);
+            mProgressHUD = new ProgressHUD(this, loadMessage);
         }
         mProgressHUD.show();
     }
 
     /**
-     *
      * 隐藏请求框
-     *
      */
     public void dismissLoadingHud() {
         if (mProgressHUD != null) {

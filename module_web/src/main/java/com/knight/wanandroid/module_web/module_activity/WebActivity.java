@@ -23,6 +23,7 @@ import com.knight.wanandroid.library_base.baseactivity.BaseActivity;
 import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_base.util.DataBaseUtils;
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_widget.LoveAnimatorRelativeLayout;
@@ -36,8 +37,6 @@ import com.knight.wanandroid.module_web.module_view.WebLayout;
 import com.wanandroid.knight.library_database.entity.HistoryReadRecordsEntity;
 
 import org.greenrobot.eventbus.EventBus;
-
-import androidx.core.content.ContextCompat;
 
 /**
  * @author created by knight
@@ -91,6 +90,10 @@ public class WebActivity extends BaseActivity<WebActivityMainBinding, WebPresent
     }
 
     @Override
+    protected void setThemeColor(boolean isDarkMode) {
+    }
+
+    @Override
     public void initView(Bundle savedInstanceState) {
 
         ARouter.getInstance().inject(this);
@@ -98,7 +101,7 @@ public class WebActivity extends BaseActivity<WebActivityMainBinding, WebPresent
         mDatabind.webLikeRl.setOnCollectListener(this);
         mAgentWeb = AgentWeb.with(this)
                 .setAgentWebParent(mDatabind.webLl, new LinearLayout.LayoutParams(-1, -1))
-                .useDefaultIndicator(ContextCompat.getColor(this,R.color.base_color_theme),2)
+                .useDefaultIndicator(CacheUtils.getInstance().getThemeColor(),2)
                 .setWebChromeClient(mWebChromeClient)
                 .setWebViewClient(mWebViewClient)
                 .setMainFrameErrorView(R.layout.agentweb_error_page, -1)
