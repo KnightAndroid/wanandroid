@@ -135,7 +135,7 @@ public class WebNormalActivity extends BaseDBActivity<WebNormalActivityBinding> 
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         mAgentWeb.getWebLifeCycle().onResume();
 

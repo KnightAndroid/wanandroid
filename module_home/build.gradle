@@ -87,6 +87,7 @@ dependencies {
     implementation project(':library_scan')
     annotationProcessor "com.alibaba:arouter-compiler:$arouterVersion"
     implementation "com.youth.banner:banner:$bannerVersion"
+    implementation project (':library_componentbase')
     if (isRunAlone.toBoolean()) {
         implementation project(':module-web')
     }

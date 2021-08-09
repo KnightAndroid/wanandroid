@@ -215,7 +215,7 @@ public class WebTransitionActivity extends BaseDBActivity<WebTransitionActivityB
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         mAgentWeb.getWebLifeCycle().onResume();
 

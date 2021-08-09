@@ -171,7 +171,7 @@ public class WebActivity extends BaseActivity<WebActivityMainBinding, WebPresent
 
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         mAgentWeb.getWebLifeCycle().onPause();
 
@@ -179,7 +179,7 @@ public class WebActivity extends BaseActivity<WebActivityMainBinding, WebPresent
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         mAgentWeb.getWebLifeCycle().onResume();
 

@@ -135,7 +135,7 @@ public class SearchActivity extends BaseActivity<HomeSearchActivityBinding, Sear
     }
 
     @Override
-    protected void onResume(){
+    public void onResume(){
         super.onResume();
         queryLocalSearchRecord();
 

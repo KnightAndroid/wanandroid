@@ -37,40 +37,7 @@
                 android:textSize="@dimen/base_dimen_16" />
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/base_dimen_26"
-                android:layout_marginTop="@dimen/base_dimen_2">
-
-                <TextView
-                    android:id="@+id/set_istoparticle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:tag="oneLevelText"
-                    android:text="@string/set_showtoparticle"
-                    android:textColor="@color/base_color_title"
-                    android:textSize="@dimen/base_dimen_18" />
-
-
-                <TextView
-                    android:id="@+id/set_istoparticle_tip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/set_istoparticle"
-                    android:text="@string/set_showtoparticle_tips" />
-
-                <CheckBox
-                    android:id="@+id/set_cb_checktoparticle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/base_dimen_20"
-                    android:button="@drawable/set_checkbox_selector" />
-            </RelativeLayout>
-
-
-            <RelativeLayout
+                android:id="@+id/set_rl_darkmode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/base_dimen_26"
@@ -176,34 +143,29 @@
 
 
             <RelativeLayout
-                android:id="@+id/set_rl_bg"
+                android:id="@+id/set_rl_eyecare"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/base_dimen_26"
-                android:layout_marginTop="@dimen/base_dimen_20"
-                android:onClick="@{()->click.showBgThemeDialog()}"
-                android:visibility="gone">
-
+                android:layout_marginTop="@dimen/base_dimen_20">
 
                 <TextView
-                    android:id="@+id/set_bg_color"
+                    android:id="@+id/set_tv_eyecare"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:tag="oneLevelText"
-                    android:text="@string/set_bg_color"
+                    android:text="@string/set_eyecare"
                     android:textColor="@color/base_color_title"
                     android:textSize="@dimen/base_dimen_18" />
 
-                <TextView
-                    android:id="@+id/tv_bgcolor_arrow"
+                <CheckBox
+                    android:id="@+id/set_cb_eyecare"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/base_dimen_20"
-                    android:background="@drawable/base_iv_userinfo_arrow" />
-
+                    android:button="@drawable/set_checkbox_selector" />
             </RelativeLayout>
 
 
@@ -221,7 +183,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/base_dimen_26"
-                android:layout_marginTop="@dimen/base_dimen_2">
+                android:layout_marginTop="@dimen/base_dimen_2"
+                android:onClick="@{()->click.clearCache()}"
+                >
 
                 <TextView
                     android:id="@+id/set_tv_clearcache"

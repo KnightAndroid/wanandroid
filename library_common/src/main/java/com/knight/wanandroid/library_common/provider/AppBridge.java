@@ -1,4 +1,4 @@
-package com.knight.wanandroid.library_common;
+package com.knight.wanandroid.library_common.provider;
 
 import android.app.Application;
 

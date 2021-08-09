@@ -48,10 +48,44 @@ public class EventBusUtils {
 
     }
 
+    /**
+     *
+     * 改变主题色
+     */
+    public static class ChangeColor{
 
-    public static class changeColor{
 
+    }
 
+    /**
+     *
+     * 护眼模式
+     */
+    public static class ChangeEyeCare{
+        private boolean eyeCare;
+        public ChangeEyeCare (boolean eyeCare) {
+            this.eyeCare = eyeCare;
+        }
+
+        public boolean isEyeCare() {
+            return eyeCare;
+        }
+    }
+
+    /**
+     *
+     * 网络监听
+     */
+    public static class NetWorkState{
+        private boolean isConnected;
+        public NetWorkState (boolean isConnected) {
+            this.isConnected = isConnected;
+        }
+
+        public boolean isConnected() {
+            return isConnected;
+        }
+        
     }
 
     //主题色更改

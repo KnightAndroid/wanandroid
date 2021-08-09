@@ -1,10 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.knight.wanandroid.library_common">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application>
         <provider
             android:authorities="${applicationId}.contentprovider"
-            android:name=".AppContentProvider"
+            android:name=".provider.AppContentProvider"
             android:exported="false"
             android:multiprocess="true"/>
     </application>

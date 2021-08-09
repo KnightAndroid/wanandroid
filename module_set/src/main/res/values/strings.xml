@@ -27,4 +27,7 @@
     <string name="set_recover_themecolor">默认主题颜色</string>
     <string name="set_recover_textcolor">默认字体颜色</string>
     <string name="set_recover_bgcolor">默认页面背景颜色</string>
+    <string name="set_eyecare">护眼模式</string>
+    <string name="set_clearcache_tip">确定要删除所有缓存?</string>
+    <string name="set_clearchae_successfully">清除缓存成功</string>
 </resources>

@@ -44,6 +44,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-common:2.1.0'
     // noinspection GradleDependency
     implementation 'androidx.lifecycle:lifecycle-runtime:2.1.0'
+    implementation project (':library_componentbase')
 
 
 }

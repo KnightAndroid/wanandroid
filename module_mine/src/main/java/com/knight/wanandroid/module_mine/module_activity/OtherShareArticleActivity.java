@@ -75,7 +75,6 @@ public class OtherShareArticleActivity extends BaseActivity<MineActivityOthersha
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        EventBus.getDefault().register(this);
         mDatabind.setClick(new ProxyClick());
         mDatabind.inculeOthermessageToolbar.baseIvBack.setOnClickListener(v -> finish());
         mDatabind.includeOtherSharearticle.baseFreshlayout.setOnRefreshListener(this);
@@ -248,7 +247,6 @@ public class OtherShareArticleActivity extends BaseActivity<MineActivityOthersha
 
     public class ProxyClick {
         public void refresh(){
-            LogUtils.d("进来"+"sdsdsds");
             mDatabind.includeOtherSharearticle.baseFreshlayout.autoRefresh();
         }
     }

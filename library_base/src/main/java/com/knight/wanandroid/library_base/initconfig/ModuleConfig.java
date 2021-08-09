@@ -25,6 +25,7 @@ import com.knight.wanandroid.library_network.config.IRequestServer;
 import com.knight.wanandroid.library_network.data.HttpHeaders;
 import com.knight.wanandroid.library_network.data.HttpParams;
 import com.knight.wanandroid.library_network.interceptor.BaseUrlInterceptor;
+import com.knight.wanandroid.library_network.interceptor.CacheInterceptor;
 import com.knight.wanandroid.library_network.model.RequestHandler;
 import com.knight.wanandroid.library_network.server.ReleaseServer;
 import com.knight.wanandroid.library_permiss.XXPermissions;
@@ -36,9 +37,11 @@ import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.mmkv.MMKV;
 import com.wanandroid.knight.library_database.mananger.DataBaseManager;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.Nullable;
+import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 
 /**
@@ -140,8 +143,16 @@ public class ModuleConfig {
     }
 
 
+    /**
+     *
+     * 初始化okhttp
+     * @param application
+     */
     private void initOkhttp(Application application) {
         mCookieJar = new PersistentCookieJar(new SetCookieCache(),new SharedPrefsCookiePersistor(application));
+        //缓存目录
+        File cacheFile = new File(application.getCacheDir(), "knight_wanandroid");
+        Cache cache = new Cache(cacheFile, 1024 * 1024 * 50);
         IRequestServer server = new ReleaseServer();
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(60, TimeUnit.SECONDS)//设置读取超时时间
@@ -149,6 +160,8 @@ public class ModuleConfig {
                 .writeTimeout(60,TimeUnit.SECONDS)//设置写入超时时间
                 .retryOnConnectionFailure(true)//设置出现错误进行重新连接
                 .addInterceptor(new BaseUrlInterceptor())
+                .addInterceptor(new CacheInterceptor())
+                .cache(cache)
                 .cookieJar(mCookieJar)
                 .build();
         HttpConfig.with(okHttpClient)

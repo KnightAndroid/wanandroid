@@ -185,4 +185,27 @@ public class CacheUtils {
         return mmkv.decodeInt(MMkvConstants.BGTHEMECOLOR,ColorUtils.convertToColorInt("f9f9f9"));
     }
 
+
+    /**
+     *
+     * 设置是否护眼
+     *
+     */
+    public void setIsEyeCare(boolean isEyeCare) {
+        mmkv.encode(MMkvConstants.EYECARE,isEyeCare);
+    }
+
+
+    /**
+     *
+     * 返回是否护眼模式
+     * @return
+     */
+    public boolean getIsEyeCare(){
+        return mmkv.decodeBool(MMkvConstants.EYECARE,false);
+    }
+
+
+
+
 }

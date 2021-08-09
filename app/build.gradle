@@ -18,6 +18,7 @@ android {
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
+
             }
         }
 
@@ -58,12 +59,20 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
     }
 
-
-
-
     //是否开启DataBinding
     dataBinding {
         enabled = true
+    }
+
+    applicationVariants.all { variant ->
+        // Apk 输出文件名配置
+        variant.outputs.all { output ->
+            outputFileName = rootProject.getName() + '_v' + variant.versionName + '_' + variant.buildType.name
+            if (variant.buildType.name == buildTypes.release.getName()) {
+                outputFileName += '_' + new Date().format('MMdd')
+            }
+            outputFileName += '.apk'
+        }
     }
 
 }

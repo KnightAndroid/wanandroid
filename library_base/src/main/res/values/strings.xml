@@ -35,5 +35,6 @@
     <string name="base_downloading_wait">下载更新中,请稍候...</string>
     <string name="base_save">保存</string>
     <string name="base_confim">确定</string>
+    <string name="base_unavailable_text">网络连接不可用,请检查网络设置</string>
 
 </resources>

@@ -12,6 +12,7 @@ android {
         versionName rootProject.ext.appVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
     }
 
     buildTypes {
@@ -40,6 +41,7 @@ dependencies {
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$junitextVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCoreVersion"
+    implementation project (':library_componentbase')
     api "com.alibaba:arouter-api:$arouterVersion"
     //annotationProcessor "com.alibaba:arouter-compiler:$arouterVersion"
     //在module里使用api 主app依赖了这个module,则可以直接使用这些库,不用重新导入
@@ -61,7 +63,7 @@ dependencies {
     //头部切换导航栏
     api "com.github.hackware1993:MagicIndicator:$magicIndicatorVersion"
 
-    api project (':library_componentbase')
+
     api project (':library_util')
     api project (':library_aop')
     api project (':library_network')

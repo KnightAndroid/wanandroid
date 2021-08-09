@@ -7,7 +7,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 
 import com.knight.wanandroid.library_base.view.ScaleTransitionPagerTitleView;
-import com.knight.wanandroid.library_common.ApplicationProvider;
+import com.knight.wanandroid.library_common.provider.ApplicationProvider;
 import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.ScreenUtils;
 

@@ -7,7 +7,7 @@ import android.text.TextUtils;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.knight.wanandroid.library_base.AppConfig;
-import com.knight.wanandroid.library_common.ApplicationProvider;
+import com.knight.wanandroid.library_common.provider.ApplicationProvider;
 import com.knight.wanandroid.library_util.StringUtils;
 import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;
 import com.knight.wanandroid.module_home.R;

@@ -24,7 +24,7 @@ import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
 import com.knight.wanandroid.library_base.util.ARouterUtils;
-import com.knight.wanandroid.library_common.ApplicationProvider;
+import com.knight.wanandroid.library_common.provider.ApplicationProvider;
 import com.knight.wanandroid.library_util.BlurBuilder;
 import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.ColorUtils;
@@ -150,12 +150,13 @@ public class HomeRecommendFragment extends BaseFragment<HomeFragmentRecommendBin
 
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                //请求顶部文章
-                mPresenter.requestTopArticle();
-                //请求轮播图
-                mPresenter.requestBannerData();
-                //请求公众号数据
-                mPresenter.requestOfficialAccountData();
+//                //请求顶部文章
+//                mPresenter.requestTopArticle();
+//                //请求轮播图
+//                mPresenter.requestBannerData();
+//                //请求公众号数据
+//                mPresenter.requestOfficialAccountData();
+                lazyLoadData();
             }
 
             @Override

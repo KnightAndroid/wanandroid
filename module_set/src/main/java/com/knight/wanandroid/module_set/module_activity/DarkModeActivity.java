@@ -12,7 +12,6 @@ import com.google.gson.reflect.TypeToken;
 import com.knight.wanandroid.library_base.baseactivity.BaseDBActivity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_util.CacheUtils;
-import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.GsonUtils;
 import com.knight.wanandroid.library_util.JsonUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
@@ -21,7 +20,6 @@ import com.knight.wanandroid.module_set.databinding.SetDarkmodeActivityBinding;
 import com.knight.wanandroid.module_set.module_adapter.SelectDarkModeAdapter;
 import com.knight.wanandroid.module_set.module_entity.DarkSelectEntity;
 
-import org.greenrobot.eventbus.EventBus;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Type;
@@ -140,7 +138,6 @@ public class DarkModeActivity extends BaseDBActivity<SetDarkmodeActivityBinding>
             } else {
                 CacheUtils.getInstance().setNormalDark(false);
             }
-            
         } else {
             CacheUtils.getInstance().setNormalDark(isDark);
             if (CacheUtils.getInstance().getNormalDark()) {
@@ -150,9 +147,6 @@ public class DarkModeActivity extends BaseDBActivity<SetDarkmodeActivityBinding>
             }
         }
         recreate();
-        EventBus.getDefault().post(new EventBusUtils.changeColor());
-
-
 
     }
 
