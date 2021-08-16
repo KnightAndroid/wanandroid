@@ -28,12 +28,16 @@
 - 公众号搜索
 - 消息管理
 - 分类标签
+- 深色模式切换
+- 护眼模式切换
+- 主题色切换
+- 多语言切换
 
 
 
 
 # 截图展示
-
+## 普通模式
 | ![1.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_home.jpg) | ![2.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_square.jpg) | ![3.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_project.jpg) |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | ![4.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_navigate.jpg) | ![5.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_cardblur.jpg) | ![6.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_othershare.jpg) |
@@ -41,12 +45,23 @@
 | ![10.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_everydaypush.jpg) | ![11.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_historyrecord.jpg) | ![12.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_updateapp.jpg) |
 | ![11.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_knowledgeLabel.jpg) | ![12.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_message_remind.jpg) | ![13.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_messagecenter.jpg) |
 
+## 深色模式
+| ![dark_01.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/home_dark_01.jpg) | ![dark_02.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/square_dark_02.jpg) | ![dark_03.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/navigate_dark_03.jpg) |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| ![dark_04.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/mine_dark_04.jpg) |
+
+## 护眼模式
+| ![eyecare_01.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/eyecare_01.jpg) | ![eyecare_02.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/eyecare_02.jpg) |
+
+## 多语言
+| ![english_01.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/english_01.jpg) | ![english_02.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/english_02.jpg) | ![english_03.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/english_03.jpg) |
+
 # 主要GIF展示
 | ![1.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_01.gif) | ![2.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_02.gif) | ![3.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_03.gif) |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ![4.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_04.gif) |![5.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_05.gif) |
-
-
+| ![4.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_04.gif) |![5.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_05.gif) | ![6.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_06.gif) |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| ![7.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_07.gif) |![8.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_08.gif) |
 
 
 # 主要开源框架

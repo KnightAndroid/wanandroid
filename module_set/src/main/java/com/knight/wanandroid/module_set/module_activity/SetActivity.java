@@ -44,11 +44,17 @@ public class SetActivity extends BaseActivity<SetActivityBinding, SetPresenter, 
         setThemeTextColor();
         if (!isDarkMode) {
             updateBgColor(bgColor);
-            isShowEyeCare(true);
+            //是否护眼 护眼模式就不显示深色模式
+            showEyeCare(true);
+            if (isEyeCare) {
+                showDarkMode(false);
+            } else {
+                showDarkMode(true);
+            }
         } else {
             mDatabind.setRlTheme.setVisibility(View.GONE);
             mDatabind.setRlStatustheme.setVisibility(View.GONE);
-            isShowEyeCare(false);
+            showEyeCare(false);
         }
 
     }
@@ -216,8 +222,7 @@ public class SetActivity extends BaseActivity<SetActivityBinding, SetPresenter, 
                 RippleAnimation.create(mDatabind.setCbEyecare).setDuration(250).start();
                 EventBus.getDefault().post(new EventBusUtils.ChangeEyeCare(isChecked));
                 openOrCloseEye(isChecked);
-                isShowEyeCare(isChecked);
-
+                showDarkMode(!isChecked);
             }
         });
     }
@@ -259,11 +264,20 @@ public class SetActivity extends BaseActivity<SetActivityBinding, SetPresenter, 
      *
      * 设置是否显示护眼模式状态
      * 深色模式 不显示护眼模式 普通模式显示护眼模式
-     * @param isShow
+     * @param show
      */
-    private void isShowEyeCare(boolean isShow) {
-        mDatabind.setRlDarkmode.setVisibility(isShow ? View.GONE : View.VISIBLE);
-        mDatabind.setRlEyecare.setVisibility(isShow ? View.VISIBLE : View.GONE);
+    private void showEyeCare(boolean show) {
+        mDatabind.setRlEyecare.setVisibility(show ? View.VISIBLE : View.GONE);
+    }
+
+    /**
+     *
+     * 设置是否显示深色模式
+     * @param show
+     */
+    private void showDarkMode(boolean show) {
+        mDatabind.setRlDarkmode.setVisibility(show ? View.VISIBLE : View.GONE);
+
     }
 
     /**

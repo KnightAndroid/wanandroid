@@ -10,29 +10,30 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/base_dimen_16"
+        android:layout_marginTop="@dimen/base_dimen_10"
         android:layout_marginRight="@dimen/base_dimen_16"
         android:text="大小厂都问源码，到底有多难大小厂都问源码，到底有多难"
         android:textColor="@color/base_color_title"
         android:textSize="@dimen/base_dimen_16"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="@dimen/base_dimen_10"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-        <TextView
-            android:id="@+id/home_topticky_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/home_top_sticky"
-            android:textColor="@color/home_top_article"
-            app:layout_constraintLeft_toLeftOf="@id/home_tv_article_title"
-            app:layout_constraintTop_toBottomOf="@id/home_tv_article_title"/>
+    <TextView
+        android:id="@+id/home_topticky_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/home_top_sticky"
+        android:textColor="@color/home_top_article"
+        app:layout_constraintLeft_toLeftOf="@id/home_tv_article_title"
+        app:layout_constraintTop_toBottomOf="@id/home_tv_article_title" />
+
     <TextView
         android:id="@+id/tv_article_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-       android:layout_marginLeft="@dimen/base_dimen_6"
+        android:layout_marginLeft="@dimen/base_dimen_6"
         android:text="sdsdsd"
         android:textColor="@color/home_color999999"
         android:textSize="@dimen/base_dimen_14"
@@ -40,13 +41,13 @@
         app:layout_constraintTop_toBottomOf="@id/home_tv_article_title" />
 
 
-<!--    <TextView-->
-<!--        android:id="@+id/tv_article_bottomline"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="1dp"-->
-<!--        android:background="@color/base_color_dddddd"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/home_tv_article_title"-->
-<!--        android:layout_marginTop="@dimen/base_dimen_6"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        app:layout_constraintRight_toRightOf="parent" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_article_bottomline"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="1dp"-->
+    <!--        android:background="@color/base_color_dddddd"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/home_tv_article_title"-->
+    <!--        android:layout_marginTop="@dimen/base_dimen_6"-->
+    <!--        app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--        app:layout_constraintRight_toRightOf="parent" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>
