@@ -24,7 +24,7 @@
     <string name="home_inputlabel_tip">请输入自定义标签</string>
     <string name="home_same_label_tip">已有相同标签</string>
     <string name="home_input_content_search">请输入内容再搜索</string>
-    <string name="app_top_sticky">置顶</string>
+    <string name="home_top_sticky">置顶</string>
 
 
 </resources>

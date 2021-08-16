@@ -24,7 +24,7 @@
             android:id="@+id/home_topticky_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/app_top_sticky"
+            android:text="@string/home_top_sticky"
             android:textColor="@color/home_top_article"
             app:layout_constraintLeft_toLeftOf="@id/home_tv_article_title"
             app:layout_constraintTop_toBottomOf="@id/home_tv_article_title"/>
