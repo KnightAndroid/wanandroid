@@ -94,5 +94,11 @@
     "desc" : "AgentWeb is a powerful library based on Android WebView.（AgentWeb 是一个基于的 Android WebView ，极度容易使用以及功能强大的库）",
     "abroadlink" : "https://github.com/Justson/AgentWeb",
     "internallink": "https://hub.fastgit.org/Justson/AgentWeb"
+  },
+  {
+    "name" : "LeakCanary",
+    "desc" : "A memory leak detection library for Android.",
+    "abroadlink" : "https://github.com/square/leakcanary",
+    "internallink": "https://hub.fastgit.org/square/leakcanary"
   }
 ]

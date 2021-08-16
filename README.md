@@ -83,6 +83,7 @@
 - [BaseRecyclerViewAdapterHelper](https://github.com/CymChad/BaseRecyclerViewAdapterHelper)
 - [SwipeRecyclerView](https://github.com/yanzhenjie/SwipeRecyclerView)
 - [AgentWeb](https://github.com/Justson/AgentWeb)
+- [LeakCanary](https://github.com/square/leakcanary)
 
 
 
