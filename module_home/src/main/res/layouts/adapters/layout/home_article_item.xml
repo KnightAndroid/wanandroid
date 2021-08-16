@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="wrap_content"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/base_dimen_16"
     android:layout_marginTop="@dimen/base_dimen_8"
-    android:layout_marginLeft="@dimen/base_dimen_8"
-    android:layout_marginRight="@dimen/base_dimen_8"
-    app:cardCornerRadius="@dimen/base_dimen_6"
+    android:layout_marginRight="@dimen/base_dimen_16"
+    android:layout_marginBottom="@dimen/base_dimen_6"
     android:foreground="?android:attr/selectableItemBackground"
-    >
+    app:cardCornerRadius="@dimen/base_dimen_6">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -20,114 +19,116 @@
             android:id="@+id/home_item_articleauthor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="@dimen/base_dimen_8"
             android:layout_marginLeft="@dimen/base_dimen_8"
+            android:layout_marginTop="@dimen/base_dimen_8"
             android:paddingRight="@dimen/base_dimen_8"
             android:text="232323"
             android:textColor="@color/home_color999999"
-            android:textSize="@dimen/base_dimen_12"/>
+            android:textSize="@dimen/base_dimen_12"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintLeft_toRightOf="@id/home_item_articleauthor"
-            app:layout_constraintTop_toTopOf="@id/home_item_articleauthor"
             app:layout_constraintBottom_toBottomOf="@id/home_item_articleauthor"
-            >
+            app:layout_constraintLeft_toRightOf="@id/home_item_articleauthor"
+            app:layout_constraintTop_toTopOf="@id/home_item_articleauthor">
+
             <TextView
                 android:id="@+id/home_item_articlenew"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="新"
-                android:textSize="@dimen/base_dimen_12"
-                android:textColor="@android:color/holo_red_light"
                 android:layout_marginRight="@dimen/base_dimen_8"
-                android:background="@drawable/base_article_new"/>
+                android:background="@drawable/base_article_new"
+                android:text="新"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="@dimen/base_dimen_12" />
 
             <TextView
                 android:id="@+id/home_item_articlechaptername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/base_dimen_12"
-                android:text="广泛他"
-                android:textColor="@color/base_color_theme"
                 android:layout_marginRight="@dimen/base_dimen_8"
                 android:background="@drawable/base_articlechapter_type"
-                android:paddingTop="@dimen/base_dimen_2"
-                android:paddingBottom="@dimen/base_dimen_2"
                 android:paddingLeft="@dimen/base_dimen_4"
-                android:paddingRight="@dimen/base_dimen_4"/>
+                android:paddingTop="@dimen/base_dimen_2"
+                android:paddingRight="@dimen/base_dimen_4"
+                android:paddingBottom="@dimen/base_dimen_2"
+                android:text="广泛他"
+                android:textColor="@color/base_color_theme"
+                android:textSize="@dimen/base_dimen_12" />
 
             <TextView
                 android:id="@+id/home_tv_articlesuperchaptername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="sdsds"
-                android:textSize="@dimen/base_dimen_12"
-                android:textColor="@color/home_color999999"/>
+                android:textColor="@color/home_color999999"
+                android:textSize="@dimen/base_dimen_12" />
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/home_item_articledata"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/home_item_articleauthor"
-            app:layout_constraintBottom_toBottomOf="@id/home_item_articleauthor"
-            android:layout_marginRight="@dimen/base_dimen_8"
-            android:textSize="@dimen/base_dimen_12"
-            android:textColor="@color/home_color999999"
-            android:text="一天前"/>
-
-        <TextView
-            android:id="@+id/home_tv_articletitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="这是标题标题这是标题标题这是标题标题这是标题标题这是标题标题"
-            android:layout_marginRight="@dimen/base_dimen_8"
-            android:layout_marginLeft="@dimen/base_dimen_8"
-            android:layout_marginTop="@dimen/base_dimen_12"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/home_item_articleauthor"
-            android:textSize="@dimen/base_dimen_16"
-            android:textStyle="bold"
-            android:textColor="@color/base_color_title"/>
-
-
 
         <ImageView
             android:id="@+id/home_icon_collect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/home_tv_articletitle"
             android:layout_marginRight="@dimen/base_dimen_8"
-            android:layout_marginTop="@dimen/base_dimen_12"
             android:background="@drawable/base_icon_nocollect"
-            />
-
+            app:layout_constraintBottom_toBottomOf="@id/home_item_articleauthor"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/home_item_articleauthor" />
 
         <TextView
-            android:id="@+id/home_tv_articledesc"
+            android:id="@+id/home_tv_articletitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/base_dimen_8"
+            android:layout_marginTop="@dimen/base_dimen_10"
+            android:layout_marginRight="@dimen/base_dimen_8"
+            android:text="这是标题标题这是标题标题这是标题标题这是标题标题这是标题标题"
+            android:textColor="@color/base_color_title"
+            android:textSize="@dimen/base_dimen_16"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/home_item_articleauthor" />
+
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
+            android:orientation="vertical"
             app:layout_constraintLeft_toLeftOf="@id/home_tv_articletitle"
-            app:layout_constraintTop_toTopOf="@id/home_icon_collect"
-            app:layout_constraintBottom_toBottomOf="@id/home_icon_collect"
-            android:textSize="@dimen/base_dimen_12"
-            android:textColor="@color/home_color999999"
-            android:text="这是项目描述这是项目描述这是项目描述"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:maxEms="14"
-            />
+            app:layout_constraintTop_toBottomOf="@id/home_tv_articletitle">
 
 
+            <TextView
+                android:id="@+id/home_tv_articledesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/base_dimen_10"
+                android:ellipsize="end"
+                android:maxEms="20"
+                android:singleLine="true"
+                android:text="这是项目描述这是项目描述这是项目描述"
+                android:textColor="@color/home_color999999"
+                android:textSize="@dimen/base_dimen_12" />
+
+
+            <TextView
+                android:id="@+id/home_item_articledata"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/base_dimen_10"
+                android:layout_marginRight="@dimen/base_dimen_8"
+                android:text="一天前"
+                android:textColor="@color/home_color999999"
+                android:textSize="@dimen/base_dimen_12" />
+
+        </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

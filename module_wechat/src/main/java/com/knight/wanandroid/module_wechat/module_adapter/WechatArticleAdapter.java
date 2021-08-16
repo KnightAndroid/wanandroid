@@ -1,10 +1,12 @@
 package com.knight.wanandroid.module_wechat.module_adapter;
 
+import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.text.TextUtils;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.module_wechat.R;
 import com.knight.wanandroid.module_wechat.module_entity.WechatArticleEntity;
 
@@ -38,6 +40,9 @@ public class WechatArticleAdapter extends BaseQuickAdapter<WechatArticleEntity, 
         //一级分类
         if (!TextUtils.isEmpty(wechatArticleEntity.getSuperChapterName()) || !TextUtils.isEmpty(wechatArticleEntity.getChapterName())) {
             baseViewHolder.setVisible(R.id.base_tv_articlesuperchaptername,true);
+            GradientDrawable gradientDrawable = new GradientDrawable();
+            gradientDrawable.setShape(GradientDrawable.RECTANGLE);
+            gradientDrawable.setStroke(2, CacheUtils.getInstance().getThemeColor());
             if (!TextUtils.isEmpty(wechatArticleEntity.getSuperChapterName())) {
                 if (!TextUtils.isEmpty(wechatArticleEntity.getChapterName())) {
                     baseViewHolder.setText(R.id.base_tv_articlesuperchaptername,wechatArticleEntity.getSuperChapterName() + "/" +wechatArticleEntity.getChapterName());
@@ -50,6 +55,11 @@ public class WechatArticleAdapter extends BaseQuickAdapter<WechatArticleEntity, 
                 } else {
                     baseViewHolder.setText(R.id.base_tv_articlesuperchaptername,"");
                 }
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                baseViewHolder.getView(R.id.base_tv_articlesuperchaptername).setBackground(gradientDrawable);
+            } else {
+                baseViewHolder.getView(R.id.base_tv_articlesuperchaptername).setBackgroundDrawable(gradientDrawable);
             }
         } else {
             baseViewHolder.setGone(R.id.base_tv_articlesuperchaptername,true);

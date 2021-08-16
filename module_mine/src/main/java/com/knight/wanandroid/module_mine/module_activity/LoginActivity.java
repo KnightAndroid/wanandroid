@@ -74,7 +74,7 @@ public class LoginActivity extends BaseActivity<MineActivityLoginBinding, LoginP
         mDatabind.setClick(new ProcyClick());
         mSoftInputScrollUtils = SoftInputScrollUtils.attach(this).moveBy(mDatabind.mineLoginRoot);
         mSoftInputScrollUtils.moveWith(mDatabind.mineTvLogin,mDatabind.mineLoginUsername,mDatabind.mineLoginPassword);
-        mDatabind.mineLoginToolbar.baseTvTitle.setText("登录");
+        mDatabind.mineLoginToolbar.baseTvTitle.setText(getString(R.string.mine_login));
         mDatabind.mineLoginToolbar.baseIvBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

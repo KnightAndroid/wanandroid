@@ -34,18 +34,6 @@ public class SquareQuestionAdapter extends BaseQuickAdapter<SquareQuestionEntity
 
     @Override
     protected void convert(@NotNull BaseViewHolder baseViewHolder, SquareQuestionEntity squareQuestionEntity) {
-
-
-        GradientDrawable gradientDrawable = new GradientDrawable();
-        gradientDrawable.setShape(GradientDrawable.RECTANGLE);
-        gradientDrawable.setStroke(2, CacheUtils.getInstance().getThemeColor());
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            baseViewHolder.getView(R.id.base_item_articlechaptername).setBackground(gradientDrawable);
-        } else {
-            baseViewHolder.getView(R.id.base_item_articlechaptername).setBackgroundDrawable(gradientDrawable);
-        }
-
-
         //作者
         if (!TextUtils.isEmpty(squareQuestionEntity.getAuthor())) {
             baseViewHolder.setText(R.id.base_item_articleauthor,StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),squareQuestionEntity.getAuthor(),AppConfig.SEARCH_KEYWORD));
@@ -53,31 +41,18 @@ public class SquareQuestionAdapter extends BaseQuickAdapter<SquareQuestionEntity
             baseViewHolder.setText(R.id.base_item_articleauthor,StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),squareQuestionEntity.getShareUser(),AppConfig.SEARCH_KEYWORD));
         }
 
-        //标识
-        if (squareQuestionEntity.getTags() != null && squareQuestionEntity.getTags().size() > 0) {
-            baseViewHolder.setVisible(R.id.base_item_articlechaptername,true);
-            baseViewHolder.setText(R.id.base_item_articlechaptername,squareQuestionEntity.getTags().get(0).getName());
-            baseViewHolder.setTextColor(R.id.base_item_articlechaptername,CacheUtils.getInstance().getThemeColor());
-        } else {
-            baseViewHolder.setGone(R.id.base_item_articlechaptername,true);
-        }
-
-
         //一级分类
-        if (!TextUtils.isEmpty(squareQuestionEntity.getSuperChapterName()) || !TextUtils.isEmpty(squareQuestionEntity.getChapterName())) {
+        if (squareQuestionEntity.getTags() != null && squareQuestionEntity.getTags().size() > 0) {
             baseViewHolder.setVisible(R.id.base_tv_articlesuperchaptername,true);
-            if (!TextUtils.isEmpty(squareQuestionEntity.getSuperChapterName())) {
-                if (!TextUtils.isEmpty(squareQuestionEntity.getChapterName())) {
-                    baseViewHolder.setText(R.id.base_tv_articlesuperchaptername,squareQuestionEntity.getSuperChapterName() + "/" +squareQuestionEntity.getChapterName());
-                } else {
-                    baseViewHolder.setText(R.id.base_tv_articlesuperchaptername,squareQuestionEntity.getSuperChapterName());
-                }
+            GradientDrawable gradientDrawable = new GradientDrawable();
+            gradientDrawable.setShape(GradientDrawable.RECTANGLE);
+            gradientDrawable.setStroke(2, CacheUtils.getInstance().getThemeColor());
+            baseViewHolder.setText(R.id.base_tv_articlesuperchaptername,squareQuestionEntity.getTags().get(0).getName());
+            baseViewHolder.setTextColor(R.id.base_tv_articlesuperchaptername,CacheUtils.getInstance().getThemeColor());
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                baseViewHolder.getView(R.id.base_tv_articlesuperchaptername).setBackground(gradientDrawable);
             } else {
-                if (!TextUtils.isEmpty(squareQuestionEntity.getChapterName())) {
-                    baseViewHolder.setText(R.id.base_tv_articlesuperchaptername,squareQuestionEntity.getChapterName());
-                } else {
-                    baseViewHolder.setText(R.id.base_tv_articlesuperchaptername,"");
-                }
+                baseViewHolder.getView(R.id.base_tv_articlesuperchaptername).setBackgroundDrawable(gradientDrawable);
             }
         } else {
             baseViewHolder.setGone(R.id.base_tv_articlesuperchaptername,true);

@@ -14,6 +14,7 @@ import com.knight.wanandroid.library_util.CacheFileUtils;
 import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.ColorUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
+import com.knight.wanandroid.library_util.LanguageUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_util.dialog.DialogUtils;
 import com.knight.wanandroid.library_widget.RippleAnimation;
@@ -43,6 +44,11 @@ public class SetActivity extends BaseActivity<SetActivityBinding, SetPresenter, 
         setThemeTextColor();
         if (!isDarkMode) {
             updateBgColor(bgColor);
+            isShowEyeCare(true);
+        } else {
+            mDatabind.setRlTheme.setVisibility(View.GONE);
+            mDatabind.setRlStatustheme.setVisibility(View.GONE);
+            isShowEyeCare(false);
         }
 
     }
@@ -65,11 +71,9 @@ public class SetActivity extends BaseActivity<SetActivityBinding, SetPresenter, 
         mDatabind.setCbEyecare.setButtonTintList(ColorUtils.createColorStateList(CacheUtils.getInstance().getThemeColor(), ColorUtils.convertToColorInt("a6a6a6")));
         initDarkMode();
         initListener();
-        if (CacheUtils.getInstance().getNormalDark()) {
-            mDatabind.setRlTheme.setVisibility(View.GONE);
-            mDatabind.setRlStatustheme.setVisibility(View.GONE);
-        }
-        isEyeCare(isEyeCare);
+        showultilingualMode();
+
+
     }
 
     @Override
@@ -114,7 +118,7 @@ public class SetActivity extends BaseActivity<SetActivityBinding, SetPresenter, 
                             gradientThemeDrawable.setShape(GradientDrawable.OVAL);
                             gradientThemeDrawable.setColor(CacheUtils.getInstance().getThemeColor());
                             mDatabind.setShowThemecolor.setBackground(gradientThemeDrawable);
-                            EventBus.getDefault().post(new EventBusUtils.ChangeColor());
+                            EventBus.getDefault().post(new EventBusUtils.RecreateMain());
 
                         }
 
@@ -164,6 +168,12 @@ public class SetActivity extends BaseActivity<SetActivityBinding, SetPresenter, 
             });
         }
 
+
+        public void goSelectLanguage() {
+            ARouter.getInstance().build(RoutePathActivity.Set.Set_Language)
+                    .navigation();
+        }
+
     }
 
     /**
@@ -206,7 +216,7 @@ public class SetActivity extends BaseActivity<SetActivityBinding, SetPresenter, 
                 RippleAnimation.create(mDatabind.setCbEyecare).setDuration(250).start();
                 EventBus.getDefault().post(new EventBusUtils.ChangeEyeCare(isChecked));
                 openOrCloseEye(isChecked);
-                isEyeCare(isChecked);
+                isShowEyeCare(isChecked);
 
             }
         });
@@ -247,13 +257,38 @@ public class SetActivity extends BaseActivity<SetActivityBinding, SetPresenter, 
 
     /**
      *
-     * 设置是否护眼模式状态
-     * @param isEyeCare
+     * 设置是否显示护眼模式状态
+     * 深色模式 不显示护眼模式 普通模式显示护眼模式
+     * @param isShow
      */
-    private void isEyeCare(boolean isEyeCare) {
-        mDatabind.setRlDarkmode.setVisibility(isEyeCare ? View.GONE : View.VISIBLE);
-        mDatabind.setRlEyecare.setVisibility(isEyeCare ? View.VISIBLE : View.GONE);
+    private void isShowEyeCare(boolean isShow) {
+        mDatabind.setRlDarkmode.setVisibility(isShow ? View.GONE : View.VISIBLE);
+        mDatabind.setRlEyecare.setVisibility(isShow ? View.VISIBLE : View.GONE);
     }
+
+    /**
+     *
+     * 显示当前语言模式
+     *
+     */
+    private void showultilingualMode() {
+        //显示语言当前模式
+        switch (CacheUtils.getInstance().getLanguageMode()) {
+            case "Auto":
+                if (LanguageUtils.isChinese()) {
+                    mDatabind.setTvMultilingualMode.setText("跟随系统");
+                } else {
+                    mDatabind.setTvMultilingualMode.setText("Auto");
+                }
+                break;
+            default:
+                mDatabind.setTvMultilingualMode.setText(CacheUtils.getInstance().getLanguageMode());
+                break;
+        }
+    }
+
+
+
 
 
 }

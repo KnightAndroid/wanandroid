@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="base_app">wanandroid</string>
+    <string name="base_permission_hint">Authorization prompt</string>
+    <string name="base_permission_message">Permission is required to use this feature</string>
+    <string name="base_permission_granted">Grant</string>
+    <string name="base_permission_denied">Cancel</string>
+    <string name="base_permission_alert">Authorization reminder</string>
+    <string name="base_permission_fail_one">Authorization failed, please grant permission correctly</string>
+    <string name="base_permission_fail_two">Failed to obtain permission. Please grant permission manually</string>
+    <string name="base_permission_fail_three">Failed to obtain permission, please grant %s manually</string>
+    <string name="base_permission_fail_four">Background positioning permission is not granted. Please select "always allow"</string>
+    <string name="base_permission_goto">Go to authorization</string>
+    <string name="base_permission_calendar">Calendar permissions</string>
+    <string name="base_permission_camera">Camera permissions</string>
+    <string name="base_permisssion_contacts">Address book permissions</string>
+    <string name="base_permission_location">Location permissions</string>
+    <string name="base_permission_location_background">Background positioning permission</string>
+    <string name="base_permission_microphone">Microphone permissions</string>
+    <string name="base_permission_phone">Telephone authority</string>
+    <string name="base_permission_call_log">Call record permission</string>
+    <string name="base_permission_sensors">Body sensor permissions</string>
+    <string name="base_permission_activity_recognition">Fitness exercise authority</string>
+    <string name="base_permission_sms">SMS permission</string>
+    <string name="base_permission_storage">Storage permissions</string>
+    <string name="base_permission_install">Install app permissions</string>
+    <string name="base_permission_notification">Notification bar permissions</string>
+    <string name="base_permission_window">Suspended window permission</string>
+    <string name="base_permission_setting">System setting permissions</string>
+    <string name="base_no_data">There is no data, please click Retry</string>
+    <string name="base_error_data">An error occurred. Please click Retry</string>
+    <string name="base_downloading_wait">Downloading updates, please wait</string>
+    <string name="base_save">Save</string>
+    <string name="base_confim">Determine</string>
+    <string name="base_unavailable_text">Confirm that the network connection is not available, please check the network settings</string>
+    <string name="base_success_copylink">Success copy Link</string>
+</resources>

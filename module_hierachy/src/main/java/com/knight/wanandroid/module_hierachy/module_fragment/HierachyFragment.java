@@ -160,12 +160,6 @@ public class HierachyFragment extends BaseFragment<HierachyFragmentMainBinding, 
     }
 
     public void createFragment() {
-//        FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
-//        mHierachyRightFragment = HierachyRightFragment.newInstance(false);
-//        mHierachyRightFragment.setListener(this);
-//        fragmentTransaction.add(R.id.hierachy_right_sidebar,mHierachyRightFragment);
-//        fragmentTransaction.commitNowAllowingStateLoss();
-
         FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
         mHierachyRightFragment = (HierachyRightFragment) getChildFragmentManager().findFragmentByTag("hierachyfragment");
         if (mHierachyRightFragment == null) {

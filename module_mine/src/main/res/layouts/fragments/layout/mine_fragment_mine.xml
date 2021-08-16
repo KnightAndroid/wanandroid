@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -9,11 +8,6 @@
             name="click"
             type="com.knight.wanandroid.module_mine.module_fragment.MineFragment.ProcyClick" />
 
-<!--        <variable-->
-<!--            name="viewmodel"-->
-<!--            type="com.knight.wanandroid.library_base.entity.UserInfoEntity" />-->
-
-
     </data>
 
 
@@ -21,8 +15,8 @@
         android:id="@+id/mine_reboundlayout_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:damping="3"
-        >
+        app:damping="3">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -32,32 +26,29 @@
                 android:id="@+id/mine_iv_message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/mine_icon_message"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="@dimen/base_dimen_30"
                 android:layout_marginRight="@dimen/base_dimen_26"
+                android:background="@drawable/mine_icon_message"
                 android:onClick="@{()->click.goMessage()}"
-                />
-
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <RelativeLayout
                 android:id="@+id/mine_rl_user_head"
                 android:layout_width="65dp"
                 android:layout_height="65dp"
+                android:layout_marginTop="60dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="60dp">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
                     android:id="@+id/mine_iv_head"
                     android:layout_width="65dp"
                     android:layout_height="65dp"
-                    android:background="@drawable/mine_iv_default_head"
                     android:layout_centerVertical="true"
-                    >
+                    android:background="@drawable/mine_iv_default_head">
 
                 </ImageView>
 
@@ -65,9 +56,9 @@
                     android:id="@+id/mine_tv_userabbr"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/base_dimen_16"
-                    android:textColor="@android:color/white"
                     android:layout_centerInParent="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/base_dimen_16"
                     android:textStyle="bold">
 
 
@@ -76,49 +67,47 @@
             </RelativeLayout>
 
 
-
             <TextView
                 android:id="@+id/mine_tv_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/mine_rl_user_head"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_marginTop="@dimen/base_dimen_10"
+                android:onClick="@{()->click.gotoLogin()}"
+                android:text="@string/mine_please_login"
                 android:textSize="@dimen/base_dimen_16"
-                android:text="请登录"
                 android:textStyle="bold"
-                android:onClick="@{()->click.gotoLogin()}"/>
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mine_rl_user_head" />
 
 
             <LinearLayout
                 android:id="@+id/mine_ll_rank"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@id/mine_tv_username"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
                 android:layout_marginTop="@dimen/base_dimen_10"
                 android:gravity="center"
-                android:onClick="@{()->click.goCoinRank()}">
+                android:onClick="@{()->click.goCoinRank()}"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mine_tv_username">
 
 
                 <TextView
                     android:id="@+id/mine_tv_level"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/base_dimen_14"
-                    android:text="等级 -"/>
+                    android:text="@string/mine_nodata_gradle"
+                    android:textSize="@dimen/base_dimen_14" />
 
                 <TextView
                     android:id="@+id/mine_tv_rank"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/base_dimen_14"
                     android:layout_marginLeft="@dimen/base_dimen_10"
-                    android:text="排名第 -"
-                    />
+                    android:text="@string/mine_nodata_rank"
+                    android:textSize="@dimen/base_dimen_14" />
 
             </LinearLayout>
 
@@ -127,13 +116,13 @@
                 android:id="@+id/mine_cv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base_dimen_20"
+                android:layout_marginTop="@dimen/base_dimen_20"
+                android:layout_marginRight="@dimen/base_dimen_20"
                 app:cardCornerRadius="@dimen/base_dimen_6"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginTop="@dimen/base_dimen_20"
-                app:layout_constraintTop_toBottomOf="@id/mine_ll_rank"
-                android:layout_marginLeft="@dimen/base_dimen_20"
-                android:layout_marginRight="@dimen/base_dimen_20">
+                app:layout_constraintTop_toBottomOf="@id/mine_ll_rank">
 
 
                 <LinearLayout
@@ -149,27 +138,33 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/base_dimen_20"
                         android:layout_marginBottom="@dimen/base_dimen_20"
-                        android:onClick="@{()->click.goUserCoin()}"
-                        >
+                        android:onClick="@{()->click.goUserCoin()}">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/mine_me_points"
-                            android:textColor="@color/base_bg_me_text"
-                            android:textSize="@dimen/base_dimen_18"
-                            />
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/base_dimen_18" />
 
                         <TextView
                             android:id="@+id/mine_tv_points"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:text="-"
-                            android:textColor="@color/base_bg_me_text"
-                            android:textSize="@dimen/base_dimen_18"
-                            android:drawableRight="@drawable/mine_iv_arrow"/>
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/base_dimen_2"
+                            android:layout_toLeftOf="@+id/mine_iv_point_arrow"
+                            android:text=""
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/base_dimen_18" />
 
+                        <ImageView
+                            android:id="@+id/mine_iv_point_arrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/mine_iv_arrow" />
 
                     </RelativeLayout>
 
@@ -179,21 +174,20 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/base_dimen_20"
                         android:layout_marginBottom="@dimen/base_dimen_20"
-                        android:onClick="@{()->click.goMyCollectArticles()}"
-                        >
+                        android:onClick="@{()->click.goMyCollectArticles()}">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/mine_me_collect"
-                            android:textColor="@color/base_bg_me_text"
-                            android:textSize="@dimen/base_dimen_18"
-                            />
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/base_dimen_18" />
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
-                            android:background="@drawable/mine_iv_arrow"/>
+                            android:background="@drawable/mine_iv_arrow" />
 
                     </RelativeLayout>
 
@@ -203,21 +197,20 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/base_dimen_20"
                         android:layout_marginBottom="@dimen/base_dimen_20"
-                        android:onClick="@{()->click.goMyShareArticles()}"
-                        >
+                        android:onClick="@{()->click.goMyShareArticles()}">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/mine_me_shareArticles"
-                            android:textColor="@color/base_bg_me_text"
-                            android:textSize="@dimen/base_dimen_18"
-                            />
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/base_dimen_18" />
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
-                            android:background="@drawable/mine_iv_arrow"/>
+                            android:background="@drawable/mine_iv_arrow" />
 
                     </RelativeLayout>
 
@@ -227,21 +220,20 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/base_dimen_20"
                         android:layout_marginBottom="@dimen/base_dimen_20"
-                        android:onClick="@{()->click.goHistoryRecords()}"
-                        >
+                        android:onClick="@{()->click.goHistoryRecords()}">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/mine_historyrecord"
-                            android:textColor="@color/base_bg_me_text"
-                            android:textSize="@dimen/base_dimen_18"
-                            />
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/base_dimen_18" />
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
-                            android:background="@drawable/mine_iv_arrow"/>
+                            android:background="@drawable/mine_iv_arrow" />
 
                     </RelativeLayout>
 
@@ -258,16 +250,14 @@
                             android:layout_height="wrap_content"
                             android:text="@string/mine_me_dealt"
                             android:textColor="@android:color/white"
-                            android:textSize="@dimen/base_dimen_18"
-                            />
+                            android:textSize="@dimen/base_dimen_18" />
 
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
-                            android:background="@drawable/mine_iv_arrow"/>
-
+                            android:background="@drawable/mine_iv_arrow" />
 
 
                     </RelativeLayout>
@@ -279,45 +269,34 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/base_dimen_20"
                         android:layout_marginBottom="@dimen/base_dimen_20"
-                        android:onClick="@{()->click.goSet()}"
-                        >
+                        android:onClick="@{()->click.goSet()}">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/mine_me_system_setting"
-                            android:textColor="@color/base_bg_me_text"
-                            android:textSize="@dimen/base_dimen_18"
-                            />
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/base_dimen_18" />
 
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
-                            android:background="@drawable/mine_iv_arrow"/>
+                            android:background="@drawable/mine_iv_arrow" />
 
                     </RelativeLayout>
-
-
-
-
 
 
                 </LinearLayout>
 
 
-
-
             </androidx.cardview.widget.CardView>
-
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.knight.wanandroid.library_widget.ReboundLayout>
-
 
 
 </layout>

@@ -1,8 +1,5 @@
 <resources>
-<!--    <string name="app_name">EasyHttp</string>-->
-
-    <string name="library_network_http_loading">加载中&#8230;</string>
-
+    <string name="library_network_http_loading">加载中</string>
     <string name="library_network_http_unknown_error">请求出错，未知错误</string>
     <string name="library_network_http_account_error">账号异常，请重新登录</string>
     <string name="library_network_http_data_explain_error">数据解析异常，请稍后</string>

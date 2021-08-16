@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="wechat_app_name">module_wechat</string>
+    <string name="wechat_public">Official account</string>
+    <string name="wechat_search_hint">Please enter keyword search</string>
+</resources>

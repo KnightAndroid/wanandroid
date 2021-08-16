@@ -50,12 +50,13 @@ public class EventBusUtils {
 
     /**
      *
-     * 改变主题色
+     * 主页面重建
      */
-    public static class ChangeColor{
+    public static class RecreateMain{
 
 
     }
+
 
     /**
      *

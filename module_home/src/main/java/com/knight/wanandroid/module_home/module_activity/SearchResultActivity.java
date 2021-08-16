@@ -13,6 +13,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
+import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
 import com.knight.wanandroid.library_base.AppConfig;
 import com.knight.wanandroid.library_base.baseactivity.BaseActivity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
@@ -83,7 +84,7 @@ public class SearchResultActivity extends BaseActivity<HomeSearchresultActivityB
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     keyword = mDatabind.searchresultEt.getText().toString().trim();
                     if (TextUtils.isEmpty(keyword)) {
-                        ToastUtils.getInstance().showToast("请输入内容再搜索");
+                        ToastUtils.getInstance().showToast(getString(R.string.home_input_content_search));
                     } else {
                         searchNewKeywords();
                     }
@@ -170,7 +171,7 @@ public class SearchResultActivity extends BaseActivity<HomeSearchresultActivityB
 
     public class ProcyClick {
         public void searchByKeyword(){
-            if (mDatabind.searchresultTvCancel.getText().toString().equals("取消")){
+            if (mDatabind.searchresultTvCancel.getText().toString().equals(getString(R.string.home_cancel))){
                 finish();
             } else {
                 searchNewKeywords();
@@ -207,6 +208,7 @@ public class SearchResultActivity extends BaseActivity<HomeSearchresultActivityB
 
         mSearchResultAdapter.addChildClickViewIds(R.id.base_icon_collect,R.id.base_article_collect);
         mSearchResultAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+            @LoginCheck
             @Override
             public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
                 if(view.getId() == R.id.base_icon_collect || view.getId() == R.id.base_article_collect) {

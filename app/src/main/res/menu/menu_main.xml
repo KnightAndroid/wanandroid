@@ -6,35 +6,31 @@
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/main_bottom_main_selector"
-        android:title="首页"/>
+        android:title="@string/app_home" />
 
     <!--广场-->
     <item
         android:id="@+id/squareFragment"
         android:icon="@drawable/main_bottom_square_selector"
-        android:title="广场"
-        />
+        android:title="@string/app_square" />
 
     <!--项目-->
     <item
         android:id="@+id/projectFragment"
         android:icon="@drawable/main_bottom_project_selector"
-        android:title="项目"
-        />
-
+        android:title="@string/app_project" />
 
 
     <!--导航-->
     <item
         android:id="@+id/navigateFragment"
         android:icon="@drawable/main_bottom_navigate_selector"
-        android:title="导航"/>
+        android:title="@string/app_navigate" />
 
     <!--我的-->
     <item
         android:id="@+id/mineFragment"
         android:icon="@drawable/main_bottom_mine_selector"
-        android:title="我的"
-        />
+        android:title="@string/app_mine" />
 
 </menu>

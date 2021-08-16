@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hierachy_app_name">module_hierachy</string>
+    <string name="hierachy_tab_hierachy">Navigation</string>
+    <string name="hierachy_tab_systemtree">System Tree</string>
+</resources>

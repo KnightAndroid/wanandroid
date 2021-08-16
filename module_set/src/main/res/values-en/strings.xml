@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="set_app_name">Set</string>
+    <string name="set_basic">Basic settings</string>
+    <string name="set_showtoparticle">Whether to display the top article on the home page</string>
+    <string name="set_showtoparticle_tips">After opening, the top article on the home page will not be displayed</string>
+    <string name="set_dark_mode">Dark Mode</string>
+    <string name="set_dark_close">Closed</string>
+    <string name="set_dark_open">Turned on</string>
+    <string name="set_common">General settings</string>
+    <string name="set_clear_cache">Clear cache</string>
+    <string name="set_other">other</string>
+    <string name="set_project_repository">Warehouse of the project</string>
+    <string name="set_official_website">Official website</string>
+    <string name="set_about_wanandroid">About wanandroid</string>
+    <string name="set_quit_account">Sign out</string>
+    <string name="set_confirm_logout">Exit current account</string>
+    <string name="set_follow_system">Auto</string>
+    <string name="set_followsystem_tip">When on, it will follow the system to turn dark mode on or off</string>
+    <string name="set_manual_select">Manual selection</string>
+    <string name="set_restart_app">Do you want to change the mode</string>
+    <string name="set_theme_color">Theme color</string>
+    <string name="set_customize_color">Custom theme colors</string>
+    <string name="set_status_theme">Status bar shading</string>
+    <string name="set_status_theme_tip">The color of the status bar changes with the theme color</string>
+    <string name="set_bg_color">Page background color</string>
+    <string name="set_textsize_color">Font color</string>
+    <string name="set_recover_themecolor">Default theme color</string>
+    <string name="set_recover_textcolor">Default font color</string>
+    <string name="set_recover_bgcolor">Default page background color</string>
+    <string name="set_eyecare">Eye protection mode</string>
+    <string name="set_clearcache_tip">Are you sure you want to delete all caches?</string>
+    <string name="set_clearchae_successfully">Cache cleared successfully</string>
+    <string name="set_more_language">Multilingual</string>
+</resources>

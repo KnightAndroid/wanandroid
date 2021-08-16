@@ -97,7 +97,7 @@ public class SearchActivity extends BaseActivity<HomeSearchActivityBinding, Sear
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     keyword = mDatabind.homeSearchEt.getText().toString().trim();
                     if (TextUtils.isEmpty(keyword)) {
-                        ToastUtils.getInstance().showToast("请输入内容再搜索");
+                        ToastUtils.getInstance().showToast(getString(R.string.home_input_content_search));
                     } else {
                         AppConfig.SEARCH_KEYWORD = keyword;
                         ARouterUtils.startActivity(RoutePathActivity.Home.searchResult,"keyword",keyword);
@@ -157,7 +157,7 @@ public class SearchActivity extends BaseActivity<HomeSearchActivityBinding, Sear
 
     public class ProcyClick {
         public void searchByKeyword() {
-            if (mDatabind.homeTvsearchCancel.getText().toString().equals("取消")) {
+            if (mDatabind.homeTvsearchCancel.getText().toString().equals(getString(R.string.home_cancel))) {
                     finish();
             } else {
                 keyword = mDatabind.homeSearchEt.getText().toString().trim();

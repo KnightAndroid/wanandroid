@@ -70,7 +70,7 @@ public class RegisterActivity extends BaseActivity<MineActivityRegisterBinding, 
         mDatabind.setClick(new ProcyClick());
         mSoftInputScrollUtils = SoftInputScrollUtils.attach(this).moveBy(mDatabind.mineRegisterRoot);
         mSoftInputScrollUtils.moveWith(mDatabind.mineTvRegister,mDatabind.mineRegisterUsername,mDatabind.mineRegisterPassword,mDatabind.mineRegisterConfirmpassword);
-        mDatabind.mineRegisterToolbar.baseTvTitle.setText("注册");
+        mDatabind.mineRegisterToolbar.baseTvTitle.setText(getString(R.string.mine_register));
         mDatabind.mineRegisterToolbar.baseIvBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

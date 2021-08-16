@@ -54,7 +54,7 @@ public class MyShareArticleActivity extends BaseActivity<MineActivityMyshareBind
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        mDatabind.includeMineshareToolbar.baseTvTitle.setText("我的分享");
+        mDatabind.includeMineshareToolbar.baseTvTitle.setText(getString(R.string.mine_me_shareArticles));
         mDatabind.includeMineshareToolbar.baseIvBack.setOnClickListener(v -> finish());
         showLoading(mDatabind.includeMineSharerefreshalayout.baseFreshlayout);
         mMyShareArticleAdapter = new MyShareArticleAdapter(new ArrayList<>());

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mine_app_name">module_mine</string>
+    <string name="mine_me_points">Points</string>
+    <string name="mine_me_collect">Collection</string>
+    <string name="mine_me_dealt">to-do list</string>
+    <string name="mine_me_system_setting">Set up</string>
+    <string name="mine_quit_account">Exit account</string>
+    <string name="mine_rule">rule</string>
+    <string name="mine_apploginname">wanAndroid</string>
+    <string name="mine_account_name">Account number</string>
+    <string name="mine_login_username">Please enter the account used on the wanandroid website</string>
+    <string name="mine_login_password">Password</string>
+    <string name="mine_hint_password">Please input a password</string>
+    <string name="mine_login">Sign in</string>
+    <string name="mine_register">Register</string>
+    <string name="mine_emptyusername_hint">Account number cannot be empty</string>
+    <string name="mine_emptypassword_hint">Password cannot be empty</string>
+    <string name="mine_register_namehint">Please enter the registered account</string>
+    <string name="mine_register_confirm">Confirm password</string>
+    <string name="mine_register_againconfirm">Please fill in the confirmation password again</string>
+    <string name="mine_confirmpassowrd_notempty">Confirm password cannot be empty</string>
+    <string name="mine_passworduneaual">The confirmation password cannot be blank. The password and confirmation password are inconsistent. Please re-enter</string>
+    <string name="mine_coin_detail">Integral details</string>
+    <string name="mine_coin_rank">CoinRank</string>
+    <string name="mine_me_shareArticles">Share</string>
+    <string name="mine_other_shareArticles">Other share</string>
+    <string name="mine_sharearticles">Share articles</string>
+    <string name="mine_confirm_deletearticle">Do you want to delete this article</string>
+    <string name="mine_confirm_cancelarticle">Do you want to cancel the collection of this article</string>
+    <string name="mine_about_wanandroid">About</string>
+    <string name="mine_update_record">Update Log</string>
+    <string name="mine_check_update">Update log</string>
+    <string name="mine_service_protocol"><u>Software license and service agreement</u></string>
+    <string name="mine_privacy_protocol"><u>Privacy policy</u></string>
+    <string name="mine_search_newversion">New version found</string>
+    <string name="mine_historyrecord">Reading history</string>
+    <string name="mine_cancel_all_historyrecord">Do you want to delete all reading history</string>
+    <string name="mine_cleanall">Empty</string>
+    <string name="mine_app_noupdate">No version update</string>
+    <string name="mine_integral">Integral&#160;</string>
+    <string name="mine_gradle">Gradle&#160;</string>
+    <string name="mine_rank">Rank&#160;</string>
+    <string name="mine_please_login">Please Login</string>
+    <string name="mine_nodata_gradle">Gradle -</string>
+    <string name="mine_nodata_rank">Rank -</string>
+</resources>

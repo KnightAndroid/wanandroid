@@ -3,6 +3,7 @@ package com.knight.wanandroid.library_base.baseactivity;
 import android.content.Context;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.net.ConnectivityManager;
@@ -30,6 +31,7 @@ import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.ColorUtils;
 import com.knight.wanandroid.library_util.CreateUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
+import com.knight.wanandroid.library_util.LanguageUtils;
 import com.knight.wanandroid.library_util.StatusBarUtils;
 import com.knight.wanandroid.library_widget.loadcircleview.ProgressHUD;
 import com.knight.wanandroid.library_widget.swipeback.SwipeBackHelper;
@@ -101,7 +103,6 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
         isDarkMode = CacheUtils.getInstance().getNormalDark();
         isEyeCare = CacheUtils.getInstance().getIsEyeCare();
         initThemeColor();
-        initBgColor();
         EventBus.getDefault().register(this);
         initTipView();
         initEye();
@@ -146,6 +147,8 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
     }
 
 
+
+
     /**
      *
      * 获取主题颜色
@@ -155,15 +158,6 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
         themeColor = CacheUtils.getInstance().getThemeColor();
     }
 
-
-    /**
-     *
-     * 获取背景颜色
-     */
-    protected void initBgColor() {
-        bgColor = CacheUtils.getInstance().getBgThemeColor();
-
-    }
 
     /**
      *
@@ -312,6 +306,12 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
         }
     }
 
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LanguageUtils.attachBaseContext(base));
+    }
+
+
 
     protected int getActivityTheme(){
         return R.style.base_AppTheme;
@@ -343,6 +343,19 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
             mSwipeBackHelper.onTouchEvent(event);
         }
         return super.onTouchEvent(event);
+    }
+
+    @Override
+
+    public void applyOverrideConfiguration(Configuration overrideConfiguration) {
+        // 兼容androidX在部分手机切换语言失败问题
+        if (overrideConfiguration != null) {
+            int uiMode = overrideConfiguration.uiMode;
+            overrideConfiguration.setTo(getBaseContext().getResources().getConfiguration());
+            overrideConfiguration.uiMode = uiMode;
+        }
+        super.applyOverrideConfiguration(overrideConfiguration);
+
     }
 
 

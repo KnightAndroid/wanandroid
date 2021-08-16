@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="library_network_http_loading">Loading</string>
+    <string name="library_network_http_unknown_error">Request error, unknown error</string>
+    <string name="library_network_http_account_error">The account is abnormal. Please log in again</string>
+    <string name="library_network_http_data_explain_error">Data parsing exception, please wait</string>
+    <string name="library_network_http_server_out_time">The server request timed out. Please try again later</string>
+    <string name="library_network_http_network_error">The request failed. Please check the network settings</string>
+    <string name="library_network_http_response_error">The server responded abnormally. Please try again later</string>
+    <string name="library_network_http_server_error">The server connection is abnormal. Please try again later</string>
+    <string name="library_network_http_request_cancel">The request was interrupted. Please try again</string>
+</resources>

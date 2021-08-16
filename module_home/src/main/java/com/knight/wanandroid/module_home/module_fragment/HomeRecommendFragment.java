@@ -31,6 +31,7 @@ import com.knight.wanandroid.library_util.ColorUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.GsonUtils;
 import com.knight.wanandroid.library_util.JsonUtils;
+import com.knight.wanandroid.library_util.LanguageUtils;
 import com.knight.wanandroid.library_util.SystemUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;
@@ -150,12 +151,6 @@ public class HomeRecommendFragment extends BaseFragment<HomeFragmentRecommendBin
 
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-//                //请求顶部文章
-//                mPresenter.requestTopArticle();
-//                //请求轮播图
-//                mPresenter.requestBannerData();
-//                //请求公众号数据
-//                mPresenter.requestOfficialAccountData();
                 lazyLoadData();
             }
 
@@ -308,7 +303,12 @@ public class HomeRecommendFragment extends BaseFragment<HomeFragmentRecommendBin
     public void setUnreadMessage(int number) {
         if (number > 0) {
             home_rl_message.setVisibility(View.VISIBLE);
-            String strMsg = "您有<font color=\"#EE7931\"> " + number + "</font> 条未读消息</font>";
+            String strMsg = "";
+            if (LanguageUtils.isChinese()) {
+                strMsg = "您有<font color=\"#EE7931\"> " + number + "</font> 条未读消息</font>";
+            } else {
+                strMsg = "You have <font color=\"#EE7931\"> " + number + "</font> Unread messages</font>";
+            }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 home_tv_unread_message.setText(Html.fromHtml(strMsg, Html.FROM_HTML_MODE_LEGACY));
             } else {
@@ -439,10 +439,10 @@ public class HomeRecommendFragment extends BaseFragment<HomeFragmentRecommendBin
                             .navigation();
                 } else if (view.getId() == R.id.home_iv_abroadcopy) {
                     SystemUtils.copyContent(getActivity(), mOpenSourceAdapter.getData().get(position).getAbroadlink());
-                    ToastUtils.getInstance().showToast("已成功复制链接");
+                    ToastUtils.getInstance().showToast(getString(R.string.base_success_copylink));
                 } else {
                     SystemUtils.copyContent(getActivity(), mOpenSourceAdapter.getData().get(position).getInternallink());
-                    ToastUtils.getInstance().showToast("已成功复制链接");
+                    ToastUtils.getInstance().showToast(getString(R.string.base_success_copylink));
                 }
             }
         });

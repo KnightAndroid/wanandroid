@@ -23,6 +23,7 @@
     <string name="mine_coin_detail">积分明细</string>
     <string name="mine_coin_rank">积分排行榜</string>
     <string name="mine_me_shareArticles">我的分享</string>
+    <string name="mine_other_shareArticles">他的分享</string>
     <string name="mine_sharearticles">分享文章</string>
     <string name="mine_confirm_deletearticle">是否要删除此文章</string>
     <string name="mine_confirm_cancelarticle">是否取消收藏此文章</string>
@@ -36,5 +37,10 @@
     <string name="mine_cancel_all_historyrecord">是否要删除所有阅读历史记录</string>
     <string name="mine_cleanall">清空</string>
     <string name="mine_app_noupdate">暂无版本更新</string>
-
+    <string name="mine_integral">积分&#160;</string>
+    <string name="mine_gradle">等级&#160;</string>
+    <string name="mine_rank">排名&#160;</string>
+    <string name="mine_please_login">请登录</string>
+    <string name="mine_nodata_gradle">等级 -</string>
+    <string name="mine_nodata_rank">排名第 -</string>
 </resources>

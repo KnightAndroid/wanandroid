@@ -10,7 +10,17 @@ import com.knight.wanandroid.library_base.entity.BaseEntity;
  */
 public class DarkSelectEntity extends BaseEntity {
     private String name;
+    private String englishName;
     private boolean select;
+
+    public String getEnglishName() {
+        return englishName == null ? "" : englishName;
+    }
+
+    public void setEnglishName(String englishName) {
+        this.englishName = englishName;
+    }
+
     private boolean isDark;
     private boolean showLine;
 

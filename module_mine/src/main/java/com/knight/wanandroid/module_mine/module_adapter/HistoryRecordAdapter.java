@@ -1,11 +1,13 @@
 package com.knight.wanandroid.module_mine.module_adapter;
 
+import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.text.Html;
 import android.text.TextUtils;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.DateUtils;
 import com.knight.wanandroid.module_mine.R;
 import com.wanandroid.knight.library_database.entity.HistoryReadRecordsEntity;
@@ -38,6 +40,15 @@ public class HistoryRecordAdapter extends BaseQuickAdapter<HistoryReadRecordsEnt
         if (!TextUtils.isEmpty(historyReadRecordsEntity.getChapterName())) {
             baseViewHolder.setVisible(R.id.base_tv_articlesuperchaptername, true);
             baseViewHolder.setText(R.id.base_tv_articlesuperchaptername, historyReadRecordsEntity.getChapterName());
+            GradientDrawable gradientDrawable = new GradientDrawable();
+            gradientDrawable.setShape(GradientDrawable.RECTANGLE);
+            gradientDrawable.setStroke(2, CacheUtils.getInstance().getThemeColor());
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                baseViewHolder.getView(R.id.base_tv_articlesuperchaptername).setBackground(gradientDrawable);
+            } else {
+                baseViewHolder.getView(R.id.base_tv_articlesuperchaptername).setBackgroundDrawable(gradientDrawable);
+            }
+
         } else {
             baseViewHolder.setGone(R.id.base_tv_articlesuperchaptername, true);
         }

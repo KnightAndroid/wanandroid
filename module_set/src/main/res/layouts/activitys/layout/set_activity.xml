@@ -31,7 +31,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/base_dimen_26"
-                android:layout_marginTop="@dimen/base_dimen_10"
                 android:text="@string/set_basic"
                 android:textColor="@color/base_color_theme"
                 android:textSize="@dimen/base_dimen_16" />
@@ -89,9 +88,11 @@
 
                 <TextView
                     android:id="@+id/set_status_theme_tip"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/set_status_theme"
+                    android:layout_marginRight="@dimen/base_dimen_2"
+                    android:layout_toLeftOf="@+id/set_cb_status_theme"
                     android:text="@string/set_status_theme_tip" />
 
                 <CheckBox
@@ -184,8 +185,35 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/base_dimen_26"
                 android:layout_marginTop="@dimen/base_dimen_2"
-                android:onClick="@{()->click.clearCache()}"
-                >
+                android:onClick="@{()->click.goSelectLanguage()}">
+
+                <TextView
+                    android:id="@+id/set_tv_Multilingual"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tag="oneLevelText"
+                    android:text="@string/set_more_language"
+                    android:textColor="@color/base_color_title"
+                    android:textSize="@dimen/base_dimen_18" />
+
+
+                <TextView
+                    android:id="@+id/set_tv_multilingual_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/base_dimen_20"
+                    android:drawableRight="@drawable/base_iv_userinfo_arrow" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base_dimen_26"
+                android:layout_marginTop="@dimen/base_dimen_20"
+                android:onClick="@{()->click.clearCache()}">
 
                 <TextView
                     android:id="@+id/set_tv_clearcache"

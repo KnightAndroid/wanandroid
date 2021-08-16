@@ -49,13 +49,15 @@
 
                 <TextView
                     android:id="@+id/set_tv_followsystem_tip"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/set_tv_follow_system"
                     android:layout_marginTop="@dimen/base_dimen_2"
                     android:text="@string/set_followsystem_tip"
                     android:textColor="@color/base_color_999999"
-                    android:textSize="@dimen/base_dimen_14" />
+                    android:textSize="@dimen/base_dimen_14"
+                    android:layout_toLeftOf="@+id/set_cb_select_system"
+                    android:layout_marginRight="@dimen/base_dimen_2"/>
 
 
                 <CheckBox

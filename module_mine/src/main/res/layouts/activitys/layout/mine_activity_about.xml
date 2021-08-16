@@ -79,7 +79,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/mine_update_record"
-                        android:textColor="@color/base_bg_me_text"
+                        android:textColor="@android:color/white"
                         android:textSize="@dimen/base_dimen_18"
                         />
 
@@ -104,7 +104,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/mine_check_update"
-                        android:textColor="@color/base_bg_me_text"
+                        android:textColor="@android:color/white"
                         android:textSize="@dimen/base_dimen_18"
                         />
 

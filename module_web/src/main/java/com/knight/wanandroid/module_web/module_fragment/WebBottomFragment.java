@@ -63,7 +63,7 @@ public class WebBottomFragment extends BaseDialogFragment<WebDialogFragmentBindi
 
     @Override
     public void collectArticleSuccess() {
-        ToastUtils.getInstance().showToast("收藏成功");
+        ToastUtils.getInstance().showToast(getString(R.string.web_success_collect));
         EventBus.getDefault().post(new EventBusUtils.CollectSuccess());
         dismiss();
     }

@@ -53,8 +53,8 @@ public class HierachyNavigateMainFragment extends BaseDBFragment<HierachyNavigat
     @Override
     protected void lazyLoadData(){
         List<String> mTitleList = new ArrayList<>();
-        mTitleList.add("导航");
-        mTitleList.add("体系");
+        mTitleList.add(getString(R.string.hierachy_tab_hierachy));
+        mTitleList.add(getString(R.string.hierachy_tab_systemtree));
         mFragments.clear();
         mFragments.add(new NavigateFragment());
         mFragments.add(new HierachyFragment());

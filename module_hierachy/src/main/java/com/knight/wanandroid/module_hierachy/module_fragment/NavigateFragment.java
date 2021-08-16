@@ -38,9 +38,16 @@ public class NavigateFragment extends BaseFragment<HierachyFragmentMainBinding, 
     private HierachyLeftBarAdapter mNavigateLeftBarAdapter;
     private LinearLayoutManager mLinearLayoutManager;
     private List<NavigateListEntity> mNavigateListEntities;
-    //右边选择
+    /**
+     *
+     * 右边选择
+     */
     private HierachyRightFragment mNavigateRightFragment;
-    private int targetPosition;//点击左边某一个具体的item的位置
+    /**
+     * 点击左边某一个具体的item的位置
+     *
+     */
+    private int targetPosition;
     private boolean isMoved;
 
     @Override
@@ -126,7 +133,8 @@ public class NavigateFragment extends BaseFragment<HierachyFragmentMainBinding, 
             }
             count += position;
             mNavigateRightFragment.setData(count);
-            ItemHeaderDecoration.setCurrentTag(String.valueOf(targetPosition));//凡是点击左边，将左边点击的位置作为当前的tag
+            //凡是点击左边，将左边点击的位置作为当前的tag
+            ItemHeaderDecoration.setCurrentTag(String.valueOf(targetPosition));
         } else {
             if (isMoved) {
                 isMoved = false;
@@ -134,14 +142,19 @@ public class NavigateFragment extends BaseFragment<HierachyFragmentMainBinding, 
                 mNavigateLeftBarAdapter.setCheckedPosition(position);
             }
 
-            ItemHeaderDecoration.setCurrentTag(String.valueOf(position));//如果是滑动右边联动左边，则按照右边传过来的位置作为tag
+            //如果是滑动右边联动左边，则按照右边传过来的位置作为tag
+            ItemHeaderDecoration.setCurrentTag(String.valueOf(position));
 
         }
         moveToCenter(position);
 
     }
 
-    //将当前选中的item居中
+    /**
+     *
+     * 将当前选中的item居中
+     * @param position 位置
+     */
     private void moveToCenter(int position) {
         //将点击的position转换为当前屏幕上可见的item的位置以便于计算距离顶部的高度，从而进行移动居中
         View childAt = mDatabind.hierachyLeftSidebar.getChildAt(position - mLinearLayoutManager.findFirstVisibleItemPosition());
@@ -158,16 +171,10 @@ public class NavigateFragment extends BaseFragment<HierachyFragmentMainBinding, 
     }
 
     public void createFragment() {
-//        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-//        mNavigateRightFragment = HierachyRightFragment.newInstance(true);
-//        mNavigateRightFragment.setListener(this);
-//        fragmentTransaction.add(R.id.hierachy_right_sidebar,mNavigateRightFragment);
-//        fragmentTransaction.commitAllowingStateLoss();
-
         FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
         mNavigateRightFragment = (HierachyRightFragment) getChildFragmentManager().findFragmentByTag("navigatefragment");
         if (mNavigateRightFragment == null) {
-            mNavigateRightFragment = HierachyRightFragment.newInstance(false);
+            mNavigateRightFragment = HierachyRightFragment.newInstance(true);
             mNavigateRightFragment.setListener(this);
             fragmentTransaction.replace(R.id.hierachy_right_sidebar,mNavigateRightFragment,"navigatefragment");
             fragmentTransaction.commitNowAllowingStateLoss();

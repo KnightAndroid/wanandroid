@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.knight.wanandroid.databinding.ActivityMainBinding;
 import com.knight.wanandroid.library_base.baseactivity.BaseDBActivity;
+import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.ColorUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
@@ -27,6 +29,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+
+@Route(path = RoutePathActivity.Main.MainPager)
 public class MainActivity extends BaseDBActivity<ActivityMainBinding> {
 
     ArrayList<Fragment> fragments = new ArrayList<Fragment>();
@@ -102,7 +106,7 @@ public class MainActivity extends BaseDBActivity<ActivityMainBinding> {
 
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void changeThemeColor(EventBusUtils.ChangeColor changeColor) {
+    public void setRecreateMain(EventBusUtils.RecreateMain recreateMain) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         if (mHomeFragment != null) {
             fragmentTransaction.remove(mHomeFragment);

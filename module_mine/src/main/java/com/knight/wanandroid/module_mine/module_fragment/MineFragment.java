@@ -45,7 +45,6 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
     }
 
 
-
     @Override
     protected void setThemeColor(boolean isDarkMode) {
         mDatabind.mineTvUsername.setTextColor(themeColor);
@@ -67,9 +66,7 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
     }
 
     /**
-     *
      * 懒加载
-     *
      */
     @Override
     protected void lazyLoadData() {
@@ -106,32 +103,31 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
         gradientDrawable.setShape(GradientDrawable.OVAL);
         gradientDrawable.setColor(ColorUtils.getRandColorCode());
         mDatabind.mineIvHead.setBackground(gradientDrawable);
-        mDatabind.mineTvUserabbr.setText(userInfoCoinEntity.getUsername().substring(0,1));
+        mDatabind.mineTvUserabbr.setText(userInfoCoinEntity.getUsername().substring(0, 1));
         mDatabind.mineTvUsername.setText(userInfoCoinEntity.getUsername());
         //显示等级 排名 积分
-        mDatabind.mineTvLevel.setText("等级 "+userInfoCoinEntity.getLevel());
-        mDatabind.mineTvRank.setText("排名第 "+userInfoCoinEntity.getRank());
-        mDatabind.mineTvPoints.setText(userInfoCoinEntity.getCoinCount()+"");
+        mDatabind.mineTvLevel.setText(getString(R.string.mine_gradle) + userInfoCoinEntity.getLevel());
+        mDatabind.mineTvRank.setText(getString(R.string.mine_rank) + userInfoCoinEntity.getRank());
+        mDatabind.mineTvPoints.setText(userInfoCoinEntity.getCoinCount() + "");
 
 
     }
 
 
-
-    public class ProcyClick{
-        public void gotoLogin(){
+    public class ProcyClick {
+        public void gotoLogin() {
             if (ModuleConfig.getInstance().user == null) {
                 startActivity(new Intent(getActivity(), LoginActivity.class));
             }
         }
 
         @LoginCheck
-        public void goUserCoin(){
+        public void goUserCoin() {
             ARouter.getInstance().build(RoutePathActivity.Mine.UserCoin_pager)
-                    .withString("userCoin",mDatabind.mineTvPoints.getText().toString()).navigation();
+                    .withString("userCoin", mDatabind.mineTvPoints.getText().toString()).navigation();
         }
 
-        public void goCoinRank(){
+        public void goCoinRank() {
             ARouter.getInstance().build(RoutePathActivity.Mine.UserCoinRank_Pager).navigation();
         }
 
@@ -140,15 +136,13 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
             startActivity(new Intent(getActivity(), MyShareArticleActivity.class));
         }
 
-        public void goHistoryRecords(){
+        public void goHistoryRecords() {
             startActivity(new Intent(getActivity(), HistoryRecordActivity.class));
         }
 
 
-
-
         @LoginCheck
-        public void goMyCollectArticles(){
+        public void goMyCollectArticles() {
             startActivity(new Intent(getActivity(), MyCollectArticleActivity.class));
         }
 
@@ -170,50 +164,32 @@ public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePres
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onLoginInSuccess(EventBusUtils.LoginInSuccess loginInSuccess){
+    public void onLoginInSuccess(EventBusUtils.LoginInSuccess loginInSuccess) {
         mPresenter.requestUserInfoCoin();
-//        mDatabind.mineRlLogout.setVisibility(View.VISIBLE);
         mDatabind.mineIvMessage.setVisibility(View.VISIBLE);
     }
 
 
     /**
      * 退出登录成功
+     *
      * @param logoutSuccess
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onLogoutSuccess(EventBusUtils.LogoutSuccess logoutSuccess){
+    public void onLogoutSuccess(EventBusUtils.LogoutSuccess logoutSuccess) {
         mDatabind.mineTvUserabbr.setText("");
-        mDatabind.mineTvUsername.setText("请登录");
-        mDatabind.mineTvLevel.setText("等级 -");
-        mDatabind.mineTvRank.setText("排名第 -");
-        mDatabind.mineTvPoints.setText("-");
+        mDatabind.mineTvUsername.setText(getString(R.string.mine_please_login));
+        mDatabind.mineTvLevel.setText(getString(R.string.mine_nodata_gradle));
+        mDatabind.mineTvRank.setText(getString(R.string.mine_nodata_rank));
+        mDatabind.mineTvPoints.setText("");
         mDatabind.mineIvMessage.setVisibility(View.GONE);
         mDatabind.mineIvHead.setBackground(null);
-        GlideEngineUtils.getInstance().loadCircleIntLocalPhoto(getActivity(),R.drawable.mine_iv_default_head,mDatabind.mineIvHead);
+        GlideEngineUtils.getInstance().loadCircleIntLocalPhoto(getActivity(), R.drawable.mine_iv_default_head, mDatabind.mineIvHead);
     }
 
 
-//    /**
-//     *
-//     * 改主题色
-//     * @param changeThemeColor
-//     */
-//    @Subscribe(threadMode = ThreadMode.MAIN)
-//    public void changeThemeColor(EventBusUtils.changeThemeColor changeThemeColor){
-//        mDatabind.mineTvUsername.setTextColor(changeThemeColor.getColor());
-//        mDatabind.mineTvLevel.setTextColor(changeThemeColor.getColor());
-//        mDatabind.mineTvRank.setTextColor(changeThemeColor.getColor());
-//        mDatabind.mineCv.setCardBackgroundColor(changeThemeColor.getColor());
-//    }
-//
-//    @Subscribe(threadMode = ThreadMode.MAIN)
-//    public void changeBgColor(EventBusUtils.changeBgColor changeBgColor) {
-//        mDatabind.mineReboundlayoutRoot.setBackgroundColor(changeBgColor.getColor());
-//    }
-
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }

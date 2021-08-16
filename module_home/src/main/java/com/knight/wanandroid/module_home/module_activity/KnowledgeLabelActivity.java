@@ -45,12 +45,21 @@ import androidx.annotation.Nullable;
 public class KnowledgeLabelActivity extends BaseDBActivity<HomeLabelActivityBinding> {
 
 
-    //随意增删标签列表
+    /**
+     *
+     * 随意增删列表
+     */
     private List<String> mDataList;
-    //固定标签列表
+    /**
+     *
+     * 固定标签列表
+     */
     private List<String> fixDataList = new ArrayList<>();
 
-    //当前选择的id
+    /**
+     *
+     * 当前选择的id
+     */
     private String currentId;
 
     private boolean isEdit;
@@ -130,8 +139,6 @@ public class KnowledgeLabelActivity extends BaseDBActivity<HomeLabelActivityBind
         }.getType());
         if (moreKnowLedgeList == null || moreKnowLedgeList.size() == 0) {
             moreKnowLedgeList = new ArrayList<>();
-            //String[] tagsMoreKnowledge = getResources().getStringArray(R.array.home_more_knowledge_name);
-            //moreKnowLedgeList.addAll(addTags("moreknowledge",Arrays.asList(tagsMoreKnowledge),TagInfo.TYPE_TAG_USER));
         }
         mMoreKnowLedgeAdapter = new MoreKnowLedgeAdapter(moreKnowLedgeList);
         mDatabind.homeMoreknowledgeRv.setAdapter(mMoreKnowLedgeAdapter);

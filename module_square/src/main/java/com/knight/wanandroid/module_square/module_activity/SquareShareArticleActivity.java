@@ -66,7 +66,7 @@ public class SquareShareArticleActivity extends BaseActivity<SquareActivityShare
     @Override
     public void initView(Bundle savedInstanceState) {
         mDatabind.setClick(new ProcyClick());
-        mDatabind.squareSharearticleToolbar.baseTvTitle.setText("分享");
+        mDatabind.squareSharearticleToolbar.baseTvTitle.setText(R.string.square_sharearticle);
         mDatabind.squareSharearticleToolbar.baseIvBack.setOnClickListener(v -> finish());
 
     }
@@ -88,7 +88,7 @@ public class SquareShareArticleActivity extends BaseActivity<SquareActivityShare
 
     @Override
     public void successShareArticle() {
-        ToastUtils.getInstance().showToast("分享成功");
+        ToastUtils.getInstance().showToast(getString(R.string.square_share_success));
         EventBus.getDefault().post(new EventBusUtils.ShareArticleSuccess());
         finish();
     }
@@ -112,13 +112,13 @@ public class SquareShareArticleActivity extends BaseActivity<SquareActivityShare
         title = mDatabind.squareSharearticleEt.getText().toString().trim();
         link = mDatabind.squareSharearticleLink.getText().toString().trim();
         if (TextUtils.isEmpty(title)) {
-            ToastUtils.getInstance().showToast("文章标题不能为空");
+            ToastUtils.getInstance().showToast(getString(R.string.square_title_noempty));
             validFlag = false;
         } else if (TextUtils.isEmpty(link)) {
-            ToastUtils.getInstance().showToast("文章链接不能为空");
+            ToastUtils.getInstance().showToast(getString(R.string.square_link_noempty));
             validFlag = false;
         } else if (!link.startsWith("http://") && !link.startsWith("https://")) {
-            ToastUtils.getInstance().showToast("文章链接必须是http或者是https开头");
+            ToastUtils.getInstance().showToast(getString(R.string.square_linkstart_rule));
             validFlag = false;
         }
 

@@ -18,12 +18,10 @@ public class MMkvConstants {
     public static final String NORMALDARK = "normalDark";
     //主题颜色
     public static final String THEMECOLOR = "themecolor";
-    //背景颜色
-    public static final String BGTHEMECOLOR = "bgthemecolor";
-    //字体颜色
-    public static final String TEXTCOLOR = "textcolor";
     //导航栏是否伴随主题色变化
     public static final String STATUSWITHTHEME = "statuswiththeme";
     //护眼模式
     public static final String EYECARE = "eyecare";
+    //语言选择
+    public static final String LANGUAGE = "language";
 }

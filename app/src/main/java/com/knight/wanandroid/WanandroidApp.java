@@ -35,5 +35,11 @@ public class WanandroidApp extends BaseApp {
 
     }
 
+//    @Override
+//    protected void attachBaseContext(Context base) {
+//        super.attachBaseContext(LanguageUtils.attachBaseContext(base));
+//    }
+
+
 
 }

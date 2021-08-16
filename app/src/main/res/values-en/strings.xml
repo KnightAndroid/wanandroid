@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">wanandroid</string>
+    <string name="app_exit_tip">Press again to exitwanandroid App</string>
+    <string name="app_privacy_title">User agreement and privacy policy</string>
+    <string name="app_privacy_content">Dear users, welcome to wanandroid，
+        Dear users, welcome to. We know the importance of personal information to you. We will protect your personal information and privacy in accordance with laws and regulations。\n
+        1、In order for you to use Wan Android safely, we will want you to collect device information；\n
+        2、Without your consent, we will not obtain pier number sharing or provide your information from a third party；\n
+        3、You can access, correct and delete your personal information. We will also provide cancellation and complaint methods；\n
+        4、If you agree, please click the button below to receive our service。</string>
+
+    <string name="app_privacy_tip">You can read the full user agreement and privacy policy for details</string>
+    <string name="app_agree_privacy">agree</string>
+    <string name="app_disagree_privacy">Do not agree to quit</string>
+    <string name="app_home">Home</string>
+    <string name="app_square">Square</string>
+    <string name="app_project">Project</string>
+    <string name="app_navigate">Navigate</string>
+    <string name="app_mine">Mine</string>
+    <string name="app_top_sticky">Topping</string>
+</resources>

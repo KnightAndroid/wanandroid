@@ -70,7 +70,7 @@ public class WechatArticlesActivity extends BaseDBActivity<WechatOfficialAccount
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     String searchKeywords = mDatabind.wecahtSearchEt.getText().toString().trim();
                     if (TextUtils.isEmpty(searchKeywords)) {
-                        ToastUtils.getInstance().showToast("请输入内容再搜索");
+                        ToastUtils.getInstance().showToast(getString(R.string.wechat_search_hint));
                     } else {
                         serachWeChatArticles(searchKeywords);
                     }

@@ -1,5 +1,6 @@
 package com.knight.wanandroid.module_home.module_adapter;
 
+import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.text.Html;
 import android.text.TextUtils;
@@ -8,6 +9,7 @@ import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.knight.wanandroid.library_base.AppConfig;
 import com.knight.wanandroid.library_common.provider.ApplicationProvider;
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.StringUtils;
 import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;
 import com.knight.wanandroid.module_home.R;
@@ -28,11 +30,6 @@ public class SearchResultAdapter extends BaseMultiItemQuickAdapter<HomeArticleEn
         addItemType(AppConfig.ARTICLE_TEXT_TYPE,R.layout.base_text_item);
         addItemType(AppConfig.ARTICLE_PICTURE_TYPE,R.layout.base_article_item);
     }
-
-   // public SearchResultAdapter(@Nullable List<HomeArticleEntity> data) {
-     //   super(R.layout.home_searchresult_item, data);
-    //}
-
     @Override
     protected void convert(@NotNull BaseViewHolder baseViewHolder, HomeArticleEntity homeArticleEntity) {
         switch (baseViewHolder.getItemViewType()){
@@ -46,6 +43,9 @@ public class SearchResultAdapter extends BaseMultiItemQuickAdapter<HomeArticleEn
                 //一级分类
                 if (!TextUtils.isEmpty(homeArticleEntity.getSuperChapterName()) || !TextUtils.isEmpty(homeArticleEntity.getChapterName())) {
                     baseViewHolder.setVisible(R.id.base_tv_articlesuperchaptername,true);
+                    GradientDrawable gradientDrawable = new GradientDrawable();
+                    gradientDrawable.setShape(GradientDrawable.RECTANGLE);
+                    gradientDrawable.setStroke(2, CacheUtils.getInstance().getThemeColor());
                     if (!TextUtils.isEmpty(homeArticleEntity.getSuperChapterName())) {
                         if (!TextUtils.isEmpty(homeArticleEntity.getChapterName())) {
                             baseViewHolder.setText(R.id.base_tv_articlesuperchaptername,homeArticleEntity.getSuperChapterName() + "/" +homeArticleEntity.getChapterName());
@@ -59,6 +59,13 @@ public class SearchResultAdapter extends BaseMultiItemQuickAdapter<HomeArticleEn
                             baseViewHolder.setText(R.id.base_tv_articlesuperchaptername,"");
                         }
                     }
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                        baseViewHolder.getView(R.id.base_tv_articlesuperchaptername).setBackground(gradientDrawable);
+                    } else {
+                        baseViewHolder.getView(R.id.base_tv_articlesuperchaptername).setBackgroundDrawable(gradientDrawable);
+                    }
+
                 } else {
                     baseViewHolder.setGone(R.id.base_tv_articlesuperchaptername,true);
                 }

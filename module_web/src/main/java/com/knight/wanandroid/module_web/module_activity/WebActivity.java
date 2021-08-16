@@ -260,7 +260,7 @@ public class WebActivity extends BaseActivity<WebActivityMainBinding, WebPresent
     @Override
     public void collectArticleSuccess() {
         isCollect = true;
-        ToastUtils.getInstance().showToast("收藏成功");
+        ToastUtils.getInstance().showToast(getString(R.string.web_success_collect));
         EventBus.getDefault().post(new EventBusUtils.CollectSuccess());
     }
 

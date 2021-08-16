@@ -1,5 +1,6 @@
 package com.knight.wanandroid.module_hierachy.module_adapter;
 
+import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.text.Html;
 import android.text.TextUtils;
@@ -8,6 +9,7 @@ import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.knight.wanandroid.library_base.AppConfig;
 import com.knight.wanandroid.library_common.provider.ApplicationProvider;
+import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.StringUtils;
 import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;
 import com.knight.wanandroid.module_hierachy.R;
@@ -42,6 +44,9 @@ public class HierachyTabAdapter extends BaseMultiItemQuickAdapter<HierachyTabArt
                 }
                 //一级分类
                 if (!TextUtils.isEmpty(hierachyTabArticleEntity.getSuperChapterName()) || !TextUtils.isEmpty(hierachyTabArticleEntity.getChapterName())) {
+                    GradientDrawable gradientDrawable = new GradientDrawable();
+                    gradientDrawable.setShape(GradientDrawable.RECTANGLE);
+                    gradientDrawable.setStroke(2, CacheUtils.getInstance().getThemeColor());
                     baseViewHolder.setVisible(R.id.base_tv_articlesuperchaptername,true);
                     if (!TextUtils.isEmpty(hierachyTabArticleEntity.getSuperChapterName())) {
                         if (!TextUtils.isEmpty(hierachyTabArticleEntity.getChapterName())) {
@@ -55,6 +60,11 @@ public class HierachyTabAdapter extends BaseMultiItemQuickAdapter<HierachyTabArt
                         } else {
                             baseViewHolder.setText(R.id.base_tv_articlesuperchaptername,"");
                         }
+                    }
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                        baseViewHolder.getView(R.id.base_tv_articlesuperchaptername).setBackground(gradientDrawable);
+                    } else {
+                        baseViewHolder.getView(R.id.base_tv_articlesuperchaptername).setBackgroundDrawable(gradientDrawable);
                     }
                 } else {
                     baseViewHolder.setGone(R.id.base_tv_articlesuperchaptername,true);

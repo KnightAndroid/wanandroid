@@ -3,6 +3,7 @@ package com.knight.wanandroid.library_base.baseactivity;
 import android.content.Context;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.net.ConnectivityManager;
@@ -27,6 +28,7 @@ import com.knight.wanandroid.library_network.listener.OnHttpListener;
 import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.ColorUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
+import com.knight.wanandroid.library_util.LanguageUtils;
 import com.knight.wanandroid.library_util.StatusBarUtils;
 import com.knight.wanandroid.library_widget.loadcircleview.ProgressHUD;
 import com.knight.wanandroid.library_widget.swipeback.SwipeBackHelper;
@@ -103,7 +105,6 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
         initTipView();
         initEye();
         initThemeColor();
-        initBgColor();
         setThemeColor(isDarkMode);
         initView(savedInstanceState);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -203,12 +204,6 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
         themeColor = CacheUtils.getInstance().getThemeColor();
     }
 
-    /**
-     * 获取背景颜色
-     */
-    protected void initBgColor() {
-        bgColor = CacheUtils.getInstance().getBgThemeColor();
-    }
 
 
     /**
@@ -289,6 +284,13 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
     }
 
     @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LanguageUtils.attachBaseContext(base));
+    }
+
+
+
+    @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         if (mSwipeBackHelper != null && mSwipeBackHelper.dispatchTouchEvent(event)) {
             return true;
@@ -311,6 +313,23 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
         if (tipView != null && tipView.getParent() != null) {
             mWindowManager.removeView(tipView);
         }
+    }
+
+    @Override
+
+    public void applyOverrideConfiguration(Configuration overrideConfiguration) {
+        // 兼容androidX在部分手机切换语言失败问题
+        if (overrideConfiguration != null) {
+            int uiMode = overrideConfiguration.uiMode;
+
+            overrideConfiguration.setTo(getBaseContext().getResources().getConfiguration());
+
+            overrideConfiguration.uiMode = uiMode;
+
+        }
+
+        super.applyOverrideConfiguration(overrideConfiguration);
+
     }
 
 }

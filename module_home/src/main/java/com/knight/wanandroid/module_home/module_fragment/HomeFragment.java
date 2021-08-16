@@ -185,7 +185,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         }
 
         public void goLogin(){
-            if (mDatabind.homeIncludeToolbar.homeTvLoginname.getText().toString().equals("登录")) {
+            if (mDatabind.homeIncludeToolbar.homeTvLoginname.getText().toString().equals(getString(R.string.home_tv_login))) {
                 ARouterUtils.startActivity(RoutePathActivity.Mine.Login_Pager);
             }
 
@@ -266,7 +266,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         if (ModuleConfig.getInstance().user != null) {
             mDatabind.homeIncludeToolbar.homeTvLoginname.setText(ModuleConfig.getInstance().user.getUsername());
         } else {
-            mDatabind.homeIncludeToolbar.homeTvLoginname.setText("登录");
+            mDatabind.homeIncludeToolbar.homeTvLoginname.setText(getString(R.string.home_tv_login));
         }
     }
 
@@ -292,7 +292,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onLogoutSuccess(EventBusUtils.LogoutSuccess logoutSuccess){
         //刷新页面
-        mDatabind.homeIncludeToolbar.homeTvLoginname.setText("登录");
+        mDatabind.homeIncludeToolbar.homeTvLoginname.setText(getString(R.string.home_tv_login));
     }
 
 
@@ -338,14 +338,14 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePres
         if (statusWithTheme) {
             gradientDrawable.setColor(Color.WHITE);
             mDatabind.homeIncludeToolbar.homeTvLoginname.setTextColor(Color.WHITE);
-            mDatabind.homeIncludeToolbar.homeIvEveryday.setColorFilter(Color.WHITE);
-            mDatabind.homeIncludeToolbar.homeIvAdd.setColorFilter(Color.WHITE);
+            mDatabind.homeIncludeToolbar.homeIvAdd.setBackgroundResource(R.drawable.home_icon_add_white);
+            mDatabind.homeIncludeToolbar.homeIvEveryday.setBackgroundResource(R.drawable.home_icon_everyday_white);
             mDatabind.homeIncludeToolbar.toolbar.setBackgroundColor(CacheUtils.getInstance().getThemeColor());
         } else {
             gradientDrawable.setColor(Color.parseColor("#1f767680"));
             mDatabind.homeIncludeToolbar.homeTvLoginname.setTextColor(Color.parseColor("#333333"));
-            mDatabind.homeIncludeToolbar.homeIvEveryday.setColorFilter(R.color.base_color_homeimage);
-            mDatabind.homeIncludeToolbar.homeIvAdd.setColorFilter(R.color.base_color_homeimage);
+            mDatabind.homeIncludeToolbar.homeIvEveryday.setBackgroundResource(R.drawable.home_icon_everyday);
+            mDatabind.homeIncludeToolbar.homeIvAdd.setBackgroundResource(R.drawable.home_icon_add);
             mDatabind.homeIncludeToolbar.toolbar.setBackgroundColor(Color.WHITE);
         }
 

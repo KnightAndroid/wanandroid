@@ -20,7 +20,6 @@ import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_base.util.ARouterUtils;
 import com.knight.wanandroid.library_util.ColorUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
-import com.knight.wanandroid.library_util.LogUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.library_widget.slidinglayout.SlidingUpPanelLayout;
@@ -104,7 +103,7 @@ public class OtherShareArticleActivity extends BaseActivity<MineActivityOthersha
         });
 
         showLoading(mDatabind.mineSlidupPanellayout);
-        mDatabind.inculeOthermessageToolbar.baseTvTitle.setText("他的分享");
+        mDatabind.inculeOthermessageToolbar.baseTvTitle.setText(getString(R.string.mine_other_shareArticles));
         initListener();
 
 
@@ -164,9 +163,9 @@ public class OtherShareArticleActivity extends BaseActivity<MineActivityOthersha
         //用户名
         mDatabind.mineTvUsername.setText(result.getCoinInfo().getNickname());
         //积分
-        mDatabind.mineOtherCoincount.setText("积分 "+result.getCoinInfo().getCoinCount());
-        mDatabind.mineOtherTvLevel.setText("等级 "+result.getCoinInfo().getLevel());
-        mDatabind.mineOtherTvRank.setText("排名 "+result.getCoinInfo().getRank());
+        mDatabind.mineOtherCoincount.setText(getString(R.string.mine_integral)+result.getCoinInfo().getCoinCount());
+        mDatabind.mineOtherTvLevel.setText(getString(R.string.mine_gradle)+result.getCoinInfo().getLevel());
+        mDatabind.mineOtherTvRank.setText(getString(R.string.mine_rank)+result.getCoinInfo().getRank());
         mDatabind.includeOtherSharearticle.baseFreshlayout.finishRefresh();
         mDatabind.includeOtherSharearticle.baseFreshlayout.finishLoadMore();
         if (result.getShareArticles().getDatas().size() > 0) {

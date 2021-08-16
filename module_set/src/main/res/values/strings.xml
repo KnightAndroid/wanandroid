@@ -30,4 +30,5 @@
     <string name="set_eyecare">护眼模式</string>
     <string name="set_clearcache_tip">确定要删除所有缓存?</string>
     <string name="set_clearchae_successfully">清除缓存成功</string>
+    <string name="set_more_language">多语言</string>
 </resources>

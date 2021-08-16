@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 
 import com.knight.wanandroid.library_util.CacheUtils;
+import com.knight.wanandroid.library_util.R;
 
 import androidx.appcompat.app.AlertDialog;
 
@@ -38,7 +39,7 @@ public class DialogUtils {
     public static AlertDialog.Builder getConfirmMessageDialog(Context context, String message, DialogInterface.OnClickListener onClickListener){
         AlertDialog.Builder builder = getDialog(context);
         builder.setMessage(message);
-        builder.setPositiveButton("确定", onClickListener);
+        builder.setPositiveButton(context.getString(R.string.util_confim), onClickListener);
         return builder;
     }
 
@@ -54,8 +55,8 @@ public class DialogUtils {
     public static AlertDialog.Builder getConfirmDialog(Context context,String message,DialogInterface.OnClickListener onClickListener){
         AlertDialog.Builder builder = getDialog(context);
         builder.setMessage(message);
-        builder.setPositiveButton("确定",onClickListener);
-        builder.setNegativeButton("取消",null);
+        builder.setPositiveButton(context.getString(R.string.util_confim),onClickListener);
+        builder.setNegativeButton(context.getString(R.string.util_cancel),null);
         return builder;
     }
 
@@ -73,8 +74,8 @@ public class DialogUtils {
     public static void getConfirmDialog(Context context,String message,DialogInterface.OnClickListener okClickListener,DialogInterface.OnClickListener cancelClickListener){
         AlertDialog.Builder builder = getDialog(context);
         builder.setMessage(message);
-        builder.setPositiveButton("确定",okClickListener);
-        builder.setNegativeButton("取消",cancelClickListener);
+        builder.setPositiveButton(context.getString(R.string.util_confim),okClickListener);
+        builder.setNegativeButton(context.getString(R.string.util_cancel),cancelClickListener);
         AlertDialog dialog = builder.create();
         dialog.show();
         dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(CacheUtils.getInstance().getThemeColor());

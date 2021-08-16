@@ -66,13 +66,6 @@ public class WebTransitionActivity extends BaseDBActivity<WebTransitionActivityB
     @Autowired(name = "chapterName")
     String chapterName = "";
 
-//    //文章id
-//    @Autowired(name = "articleId")
-//    int articleId = 0;
-
-//    //是否收藏文章
-//    @Autowired(name = "isCollect")
-//    boolean isCollect;
 
     private WebView mWebView;
 

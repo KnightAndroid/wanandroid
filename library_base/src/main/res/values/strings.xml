@@ -36,5 +36,7 @@
     <string name="base_save">保存</string>
     <string name="base_confim">确定</string>
     <string name="base_unavailable_text">网络连接不可用,请检查网络设置</string>
+    <string name="base_success_copylink">已成功复制链接</string>
+
 
 </resources>

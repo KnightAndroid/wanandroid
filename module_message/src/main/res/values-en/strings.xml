@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="message_app_name">module_message</string>
+    <string name="message_center">Message Center</string>
+    <string name="message_readed">Read Message</string>
+    <string name="message_unread">Unread Message</string>
+</resources>

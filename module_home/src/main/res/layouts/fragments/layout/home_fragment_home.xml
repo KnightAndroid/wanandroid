@@ -15,8 +15,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
 
         <include
@@ -31,15 +30,15 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/base_dimen_46"
             android:layout_below="@id/home_include_toolbar"
-            android:background="@color/base_bg_normal_default"
-            >
+            android:background="@color/base_bg_normal_default">
 
             <net.lucode.hackware.magicindicator.MagicIndicator
                 android:id="@+id/magic_indicator"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:minHeight="50dp"
+                android:layout_marginRight="@dimen/base_dimen_6"
                 android:layout_toLeftOf="@+id/home_iv_labelmore"
+                android:minHeight="50dp"
 
                 />
 
@@ -50,22 +49,17 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:background="@drawable/home_icon_flagmore"
                 android:layout_marginRight="@dimen/base_dimen_8"
-                android:onClick="@{()->click.goknowledgeLabel()}"
-                />
+                android:background="@drawable/home_icon_flagmore"
+                android:onClick="@{()->click.goknowledgeLabel()}" />
 
         </RelativeLayout>
-
-
-
 
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 </layout>

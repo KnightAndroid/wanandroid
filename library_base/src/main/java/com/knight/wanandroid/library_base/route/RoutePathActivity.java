@@ -11,12 +11,21 @@ public class RoutePathActivity {
 
     /**
      *
+     * Main
+     */
+    public static class Main{
+        private static final String Main = "/module_main_activity";
+        public static final String MainPager = Main + "/module_main";
+    }
+
+    /**
+     *
      * Home模块Activity路由
      *
      * */
     public static class Home {
         private static final String Home = "/module_home_activity";
-
+        public static final String Main = Home + "/module_main_activity";
         public static final String search = Home + "/module_search_activity";
         public static final String searchResult = Home + "/module_search_result";
         public static final String HomeTopArticle = Home + "/module_article_tabs";
@@ -108,6 +117,7 @@ public class RoutePathActivity {
        private static final String Set = "/module_set_activity";
        public static final String Set_pager = Set + "/set_pager";
        public static final String Set_DarkMode = Set + "/set_darkmode_pager";
+       public static final String Set_Language = Set + "/set_language_pager";
     }
 
 
