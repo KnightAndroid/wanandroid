@@ -59,4 +59,10 @@ public class WelcomeActivity extends BaseDBActivity<ActivityWelcomeBinding> {
         return R.style.AppSplash;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+    }
+
 }

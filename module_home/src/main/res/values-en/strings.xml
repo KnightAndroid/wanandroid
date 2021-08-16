@@ -25,4 +25,5 @@
     <string name="home_inputlabel_tip">Please enter a custom label</string>
     <string name="home_same_label_tip">The same label already exists</string>
     <string name="home_input_content_search">Please enter the content and search again</string>
+    <string name="app_top_sticky">Topping</string>
 </resources>

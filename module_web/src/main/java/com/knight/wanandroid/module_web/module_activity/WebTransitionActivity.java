@@ -200,7 +200,7 @@ public class WebTransitionActivity extends BaseDBActivity<WebTransitionActivityB
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         mAgentWeb.getWebLifeCycle().onPause();
 

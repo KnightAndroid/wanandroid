@@ -60,7 +60,6 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
     private SwipeBackHelper mSwipeBackHelper;
 
     protected int themeColor;
-    protected int bgColor;
     protected boolean isDarkMode;
 
     //没网络监听提示的view
@@ -184,8 +183,6 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
     }
 
 
-
-
     private void createViewDataBinding() {
         mDatabind = DataBindingUtil.setContentView(this, layoutId());
         mDatabind.setLifecycleOwner(this);
@@ -306,6 +303,17 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
         return super.onTouchEvent(event);
     }
 
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (mNetWorkChangeReceiver != null) {
+            unregisterReceiver(mNetWorkChangeReceiver);
+            mNetWorkChangeReceiver = null;
+        }
+        super.onPause();
+    }
+
     @Override
     public void onDestroy(){
         super.onDestroy();
@@ -321,13 +329,9 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
         // 兼容androidX在部分手机切换语言失败问题
         if (overrideConfiguration != null) {
             int uiMode = overrideConfiguration.uiMode;
-
             overrideConfiguration.setTo(getBaseContext().getResources().getConfiguration());
-
             overrideConfiguration.uiMode = uiMode;
-
         }
-
         super.applyOverrideConfiguration(overrideConfiguration);
 
     }

@@ -77,4 +77,6 @@ ext{
     lifecycleVersion = '2.2.0'
     //版本更新
     buglyVersion = "3.3.9"
+    //leakCanary内存泄漏检查框架
+    leakCanaryVersion = "2.7"
 }
