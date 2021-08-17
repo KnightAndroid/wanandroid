@@ -35,9 +35,6 @@ public abstract class BaseFragment<DB extends ViewDataBinding, T extends BasePre
     //是否第一次加载
     private boolean isFirst = true;
     protected DB mDatabind;
-
-    //protected WeakReference<View> mRootView;
-
     public T mPresenter;
     public M mModel;
     public LoadService mLoadService;

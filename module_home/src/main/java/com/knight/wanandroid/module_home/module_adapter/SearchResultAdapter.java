@@ -59,6 +59,7 @@ public class SearchResultAdapter extends BaseMultiItemQuickAdapter<HomeArticleEn
                             baseViewHolder.setText(R.id.base_tv_articlesuperchaptername,"");
                         }
                     }
+                    baseViewHolder.setTextColor(R.id.base_tv_articlesuperchaptername,CacheUtils.getInstance().getThemeColor());
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                         baseViewHolder.getView(R.id.base_tv_articlesuperchaptername).setBackground(gradientDrawable);

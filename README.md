@@ -32,6 +32,7 @@
 - 护眼模式切换
 - 主题色切换
 - 多语言切换
+- 内存泄漏检测
 
 
 
@@ -67,7 +68,7 @@
 | ![1.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_01.gif) | ![2.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_02.gif) | ![3.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_03.gif) |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | ![4.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_04.gif) |![5.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_05.gif) | ![6.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_06.gif) |
-| ![7.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_07.gif) |![8.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_08.gif) |
+| ![7.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_07.gif) |![8.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_08.gif) |![9.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_09.gif) |
 
 
 # 主要开源框架
@@ -94,6 +95,14 @@
 
 
 # 更新日志
+## 1.1.0(4)
+-  wanandroid 第四版发布
+-  新增深色模式\主题模式\护眼模式\多语言模式切换
+-  交互优化
+-  增加网络缓存，实时监听网络
+-  引入LeakCanary内存泄漏检测框架
+-  修复一些问题
+
 ## 1.0.2(3)
 -  wanandroid 第三版发布
 -  新增分类标签管理
@@ -129,6 +138,9 @@
 |---|
 
 -  链接下载 [APP下载链接](https://www.pgyer.com/Sdbi)
+
+# Thanks
+感谢鸿洋大大开放的[API](https://github.com/hongyangAndroid/wanandroid)
 
 ## License
 

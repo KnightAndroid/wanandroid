@@ -15,7 +15,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/base_dimen_12"
         android:paddingBottom="@dimen/base_dimen_12"
         android:paddingRight="@dimen/base_dimen_8"
         android:paddingLeft="@dimen/base_dimen_8">
@@ -24,6 +23,7 @@
             android:id="@+id/base_item_tv_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/base_dimen_12"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             android:textColor="@color/base_color_999999"
@@ -36,7 +36,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/base_dimen_12"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/base_tv_superchapter"
+            app:layout_constraintTop_toTopOf="@id/base_tv_superchapter"
             app:layout_constraintRight_toRightOf="parent"
             android:textColor="@color/base_color_999999"
             android:text="一天前"/>
@@ -99,8 +100,8 @@
             android:id="@+id/base_article_collect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/base_tv_superchapter"
-            app:layout_constraintTop_toTopOf="@id/base_tv_superchapter"
+            app:layout_constraintTop_toTopOf="@id/base_item_tv_author"
+            app:layout_constraintBottom_toBottomOf="@id/base_item_tv_author"
             app:layout_constraintRight_toRightOf="parent"
             android:background="@drawable/base_icon_nocollect"
             />

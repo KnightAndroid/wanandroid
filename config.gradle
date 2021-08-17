@@ -9,7 +9,7 @@ ext{
     //目标版本
     target_sdk_version = 30
     //构建版本
-    build_tools_version = "29.0.3"
+    build_tools_version = "30.0.3"
     //App版本号
     appVersionCode = 3
     //App版本名字

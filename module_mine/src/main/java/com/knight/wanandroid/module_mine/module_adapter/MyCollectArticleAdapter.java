@@ -44,6 +44,7 @@ public class MyCollectArticleAdapter extends BaseMultiItemQuickAdapter<MyCollect
                 if (!TextUtils.isEmpty(myCollectArticleEntity.getChapterName())) {
                     baseViewHolder.setVisible(R.id.base_tv_articlesuperchaptername, true);
                     baseViewHolder.setText(R.id.base_tv_articlesuperchaptername, myCollectArticleEntity.getChapterName());
+                    baseViewHolder.setTextColor(R.id.base_tv_articlesuperchaptername,CacheUtils.getInstance().getThemeColor());
                     GradientDrawable gradientDrawable = new GradientDrawable();
                     gradientDrawable.setShape(GradientDrawable.RECTANGLE);
                     gradientDrawable.setStroke(2, CacheUtils.getInstance().getThemeColor());

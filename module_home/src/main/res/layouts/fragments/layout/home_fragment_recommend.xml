@@ -2,18 +2,17 @@
 <layout>
 
     <data>
+
         <variable
             name="click"
             type="com.knight.wanandroid.module_home.module_fragment.HomeRecommendFragment.ProxyClick" />
     </data>
 
 
-    <FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-         >
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:id="@+id/fl_test"
@@ -24,8 +23,7 @@
             <com.scwang.smart.refresh.layout.SmartRefreshLayout
                 android:id="@+id/home_refreshLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
+                android:layout_height="match_parent">
 
 
                 <com.scwang.smart.refresh.header.TwoLevelHeader
@@ -40,14 +38,12 @@
                         android:alpha="0"
                         android:orientation="vertical">
 
-                        <!--                    <include-->
-                        <!--                        android:id="@+id/home_include_recyceview"-->
-                        <!--                        layout="@layout/base_layout_recycleview" />-->
 
                         <com.yanzhenjie.recyclerview.SwipeRecyclerView
                             android:id="@+id/second_openframe_rv"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/base_dimen_54" />
                     </LinearLayout>
 
 
@@ -61,6 +57,7 @@
                     android:id="@+id/home_recommend_article_body"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
+
                 <com.scwang.smart.refresh.footer.ClassicsFooter
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -70,20 +67,16 @@
         </RelativeLayout>
 
 
-
-
-
-
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/home_icon_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_gravity="bottom|end"
             android:layout_marginRight="@dimen/base_dimen_20"
             android:layout_marginBottom="@dimen/base_dimen_70"
             android:onClick="@{()->click.scrollUp()}"
             android:src="@drawable/base_icon_up"
-            android:layout_gravity="bottom|end"
 
             />
 

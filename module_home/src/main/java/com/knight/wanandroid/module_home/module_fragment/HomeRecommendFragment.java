@@ -143,6 +143,7 @@ public class HomeRecommendFragment extends BaseFragment<HomeFragmentRecommendBin
         initArticleLinstener();
         initTwoLevel();
         loadLoading(mDatabind.flTest);
+
         mDatabind.homeRefreshLayout.setOnMultiListener(new SimpleMultiListener() {
             @Override
             public void onHeaderMoving(RefreshHeader header, boolean isDragging, float percent, int offset, int headerHeight, int maxDragHeight) {

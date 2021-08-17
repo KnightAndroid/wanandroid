@@ -79,6 +79,7 @@ public abstract class BaseDialogFragment<DB extends ViewDataBinding,T extends Ba
         Dialog dialog = super.onCreateDialog(savedInstanceState);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
         dialog.getWindow().setWindowAnimations(R.style.base_dialog_anim);
         getGravity();
         return dialog;
@@ -96,6 +97,7 @@ public abstract class BaseDialogFragment<DB extends ViewDataBinding,T extends Ba
             params.width = ViewGroup.LayoutParams.MATCH_PARENT;
             params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
             params.gravity = getGravity();
+
             dialog.getWindow().setAttributes(params);
         }
     }

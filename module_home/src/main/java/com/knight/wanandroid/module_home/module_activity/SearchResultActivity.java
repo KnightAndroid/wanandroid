@@ -129,18 +129,23 @@ public class SearchResultActivity extends BaseActivity<HomeSearchresultActivityB
         showSuccess();
         mDatabind.includeSearchresult.baseFreshlayout.finishLoadMore();
         mDatabind.includeSearchresult.baseFreshlayout.finishRefresh();
-        if (result.getDatas().size() > 0) {
-            if (page == 0) {
-                mSearchResultAdapter.setNewInstance(result.getDatas());
-            } else {
-                mSearchResultAdapter.addData(result.getDatas());
-            }
-            page ++ ;
-        } else {
-            if(page == 0) {
+        if (page == 0) {
+            mSearchResultAdapter.setNewInstance(result.getDatas());
+            if (result.getDatas().size() == 0) {
                 showEmptyData();
             }
-            mDatabind.includeSearchresult.baseFreshlayout.setEnableLoadMore(false);
+            if (result.getDatas().size() < 10) {
+                mDatabind.includeSearchresult.baseFreshlayout.setEnableLoadMore(false);
+            } else {
+                page++;
+            }
+        } else {
+            mSearchResultAdapter.addData(result.getDatas());
+            if (result.getDatas().size() < 10) {
+                mDatabind.includeSearchresult.baseFreshlayout.setEnableLoadMore(false);
+            } else {
+                page++;
+            }
         }
 
     }
