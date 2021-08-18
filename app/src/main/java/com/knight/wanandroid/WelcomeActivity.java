@@ -59,6 +59,11 @@ public class WelcomeActivity extends BaseDBActivity<ActivityWelcomeBinding> {
         return R.style.AppSplash;
     }
 
+
+    @Override
+    public boolean setShowNetWorkTip() {
+        return false;
+    }
     @Override
     public void onDestroy() {
         super.onDestroy();

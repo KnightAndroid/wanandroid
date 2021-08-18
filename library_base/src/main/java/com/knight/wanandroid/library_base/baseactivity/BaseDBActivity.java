@@ -49,6 +49,11 @@ import androidx.databinding.ViewDataBinding;
  */
 public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppCompatActivity implements OnHttpListener {
 
+    /**
+     * 返回布局文件
+     *
+     * @return
+     */
     public abstract int layoutId();
 
     public DB mDatabind;
@@ -62,14 +67,18 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
     protected int themeColor;
     protected boolean isDarkMode;
 
-    //没网络监听提示的view
+    /**
+     * 没网络监听提示的view
+     */
     protected View tipView;
     protected WindowManager mWindowManager;
     protected WindowManager.LayoutParams mLayoutParams;
     protected NetWorkChangeReceiver mNetWorkChangeReceiver;
 
 
-    //护眼模式遮罩
+    /**
+     * 护眼模式遮罩
+     */
     private FrameLayout meyeFrameLayout;
     protected boolean isEyeCare;
 
@@ -77,16 +86,29 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
     public abstract void initView(Bundle savedInstanceState);
 
 
-
     /**
      * 主题色设置
      */
     protected abstract void setThemeColor(boolean isDarkMode);
 
+
+    /**
+     * 是否显示网络异常提示
+     */
+    protected boolean setShowNetWorkTip() {
+        return true;
+    }
+
+    /**
+     * 初始化数据
+     */
     protected void initData() {
 
     }
 
+    /**
+     * 重新读取数据
+     */
     protected void reLoadData() {
     }
 
@@ -119,26 +141,37 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
         mNetWorkChangeReceiver = new NetWorkChangeReceiver();
-        registerReceiver(mNetWorkChangeReceiver,intentFilter);
+        registerReceiver(mNetWorkChangeReceiver, intentFilter);
     }
 
+    /**
+     * 接受网络变化方法
+     *
+     * @param netWorkState
+     */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onNetWorkState(EventBusUtils.NetWorkState netWorkState) {
-        if (netWorkState.isConnected()) {
-            reLoadData();
-            if (tipView != null && tipView.getParent() != null) {
-                mWindowManager.removeView(tipView);
-            }
-        } else {
-            if (tipView.getParent() == null) {
-                mWindowManager.addView(tipView,mLayoutParams);
+        if (setShowNetWorkTip()) {
+            if (netWorkState.isConnected()) {
+                reLoadData();
+                if (tipView != null && tipView.getParent() != null) {
+                    mWindowManager.removeView(tipView);
+                }
+            } else {
+                if (tipView.getParent() == null) {
+                    mWindowManager.addView(tipView, mLayoutParams);
+                }
             }
         }
 
+
     }
 
+    /**
+     * 初始化网络异常提示View
+     */
     private void initTipView() {
-        tipView = getLayoutInflater().inflate(R.layout.base_layout_network_tip,null);
+        tipView = getLayoutInflater().inflate(R.layout.base_layout_network_tip, null);
         mWindowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         mLayoutParams = new WindowManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -150,6 +183,10 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
         mLayoutParams.y = 0;
     }
 
+
+    /**
+     * 初始化护眼模式View
+     */
     private void initEye() {
         meyeFrameLayout = new FrameLayout(this);
         openOrCloseEye(isEyeCare);
@@ -164,9 +201,7 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
     }
 
 
-
     /**
-     *
      * 打开护眼模式
      */
     protected void openOrCloseEye(boolean status) {
@@ -188,7 +223,11 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
         mDatabind.setLifecycleOwner(this);
     }
 
-
+    /**
+     * 设置页面主题
+     *
+     * @return
+     */
     protected int getActivityTheme() {
         return R.style.base_AppTheme;
     }
@@ -200,7 +239,6 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
     protected void initThemeColor() {
         themeColor = CacheUtils.getInstance().getThemeColor();
     }
-
 
 
     /**
@@ -286,7 +324,6 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
     }
 
 
-
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         if (mSwipeBackHelper != null && mSwipeBackHelper.dispatchTouchEvent(event)) {
@@ -315,7 +352,7 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
     }
 
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
         if (tipView != null && tipView.getParent() != null) {
@@ -324,7 +361,6 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
     }
 
     @Override
-
     public void applyOverrideConfiguration(Configuration overrideConfiguration) {
         // 兼容androidX在部分手机切换语言失败问题
         if (overrideConfiguration != null) {
