@@ -11,9 +11,9 @@ ext{
     //构建版本
     build_tools_version = "30.0.3"
     //App版本号
-    appVersionCode = 3
+    appVersionCode = 4
     //App版本名字
-    appVersionName = "1.0.2"
+    appVersionName = "1.1.0"
     //appcompat 版本
     appcompatVersion = '1.2.0'
     //junit 版本
