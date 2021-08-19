@@ -20,6 +20,7 @@ import com.knight.wanandroid.module_mine.module_fragment.MineFragment;
 import com.knight.wanandroid.module_project.module_fragment.ProjectFragment;
 import com.knight.wanandroid.module_square.module_fragment.SquareFragment;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -48,6 +49,7 @@ public class MainActivity extends BaseDBActivity<ActivityMainBinding> {
 
     @Override
     public void initView(Bundle savedInstanceState) {
+        EventBus.getDefault().register(this);
         initFragment();
 
     }
@@ -143,6 +145,7 @@ public class MainActivity extends BaseDBActivity<ActivityMainBinding> {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        EventBus.getDefault().unregister(this);
         mHomeFragment = null;
         mSquareFragment = null;
         mProjectFragment = null;

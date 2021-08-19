@@ -4,10 +4,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.knight.wanandroid.library_util.EventBusUtils;
+import com.knight.wanandroid.library_base.listener.NetworkStatusListener;
 import com.knight.wanandroid.library_common.utils.NetWorkUtils;
-
-import org.greenrobot.eventbus.EventBus;
 
 /**
  * @author created by knight
@@ -18,14 +16,24 @@ import org.greenrobot.eventbus.EventBus;
 public class NetWorkChangeReceiver extends BroadcastReceiver {
 
 
+    private NetworkStatusListener mNetworkStatusListener;
+
+    public void setNetworkStatusListener (NetworkStatusListener mNetworkStatusListener) {
+        this.mNetworkStatusListener = mNetworkStatusListener;
+    }
 
     @Override
     public void onReceive(Context context, Intent intent) {
         boolean isConnected = NetWorkUtils.isNetWorkConnected(context);
         if (isConnected) {
-            EventBus.getDefault().post(new EventBusUtils.NetWorkState(true));
+            if (mNetworkStatusListener != null) {
+                mNetworkStatusListener.onConnect();
+            }
         } else {
-            EventBus.getDefault().post(new EventBusUtils.NetWorkState(false));
+            if (mNetworkStatusListener != null) {
+                mNetworkStatusListener.disConnect();
+            }
         }
     }
+
 }
