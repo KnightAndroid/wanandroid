@@ -11,7 +11,7 @@ import java.util.List;
  * @Date 2021/4/30 14:23
  * @descript:
  */
-public class NavigateListEntity extends BaseEntity {
+public final class NavigateListEntity extends BaseEntity {
     private int cid;
     private String name;
     private List<NavigateChildrenEntity> articles;

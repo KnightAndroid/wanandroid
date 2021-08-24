@@ -15,7 +15,7 @@ import com.knight.wanandroid.module_mine.module_request.RankCoinApi;
  * @Date 2021/4/23 17:11
  * @descript:排行榜请求model
  */
-public class CoinRankModel implements CoinRankContract.CoinRankModel {
+public final class CoinRankModel implements CoinRankContract.CoinRankModel {
     @Override
     public void requestRankCoin(BaseActivity activity, int page, MvpListener mvpListener) {
         GoHttp.get(activity)

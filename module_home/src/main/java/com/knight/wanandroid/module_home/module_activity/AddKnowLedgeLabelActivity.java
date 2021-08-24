@@ -24,7 +24,7 @@ import com.knight.wanandroid.module_home.databinding.HomeAddlabelActivityBinding
  * @descript:
  */
 @Route(path = RoutePathActivity.Home.AddKnowledgeLabel)
-public class AddKnowLedgeLabelActivity extends BaseDBActivity<HomeAddlabelActivityBinding> {
+public final class AddKnowLedgeLabelActivity extends BaseDBActivity<HomeAddlabelActivityBinding> {
 
     public static final int QUESTCODE = 0x003;
     public static final String LABEL_DATA = "label_data";

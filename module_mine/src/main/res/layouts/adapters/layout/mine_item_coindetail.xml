@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.knight.wanandroid.module_mine.module_adapter.UserDetailCoinAdapter"
     android:layout_width="match_parent"
     android:layout_height="80dp">
 
@@ -19,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/base_color_title"
-            android:textSize="@dimen/base_dimen_16" />
+            android:textSize="@dimen/base_dimen_text_size_16" />
 
         <TextView
             android:id="@+id/mine_tv_timereason"
@@ -28,7 +30,7 @@
             android:layout_below="@id/mine_tv_detailpointtitle"
             android:layout_marginTop="@dimen/base_dimen_5"
             android:textColor="@color/base_color_999999"
-            android:textSize="@dimen/base_dimen_14" />
+            android:textSize="@dimen/base_dimen_text_size_14" />
 
     </RelativeLayout>
 
@@ -39,7 +41,7 @@
         android:layout_marginRight="@dimen/base_dimen_20"
         android:text="+42"
         android:textColor="@color/base_color_theme"
-        android:textSize="@dimen/base_dimen_16"
+        android:textSize="@dimen/base_dimen_text_size_16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

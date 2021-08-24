@@ -6,7 +6,7 @@ import com.knight.wanandroid.module_square.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class SquareActivity extends AppCompatActivity {
+public final class SquareActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

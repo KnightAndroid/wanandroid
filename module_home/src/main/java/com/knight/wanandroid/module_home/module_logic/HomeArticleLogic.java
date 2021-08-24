@@ -12,7 +12,7 @@ import com.knight.wanandroid.module_home.module_adapter.TopArticleAdapter;
  * @Date 2021/4/9 17:53
  * @descript:顶部逻辑处理
  */
-public class HomeArticleLogic {
+public final class HomeArticleLogic {
 
 
     private static HomeArticleLogic instance = null;

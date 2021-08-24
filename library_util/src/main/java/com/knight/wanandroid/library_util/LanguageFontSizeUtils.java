@@ -17,13 +17,13 @@ import androidx.annotation.RequiresApi;
  * @Date 2021/8/10 18:50
  * @descript:
  */
-public class LanguageUtils {
+public final class LanguageFontSizeUtils {
 
 
-    public static Context attachBaseContext(Context context) {
+    public static Context attachBaseContext(Context context,float fontSize) {
         // 8.0需要使用createConfigurationContext处理
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            return updateResources(context);
+            return updateResources(context,fontSize);
         } else {
             return context;
         }
@@ -51,10 +51,11 @@ public class LanguageUtils {
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static Context updateResources(Context context) {
+    public static Context updateResources(Context context,float fontSize) {
         Resources resources = context.getResources();
         Locale locale = getSetLanguageLocale();
         Configuration configuration = resources.getConfiguration();
+        configuration.fontScale = fontSize;
         configuration.setLocale(locale);
         configuration.setLocales(new LocaleList(locale));
         return context.createConfigurationContext(configuration);
@@ -116,6 +117,21 @@ public class LanguageUtils {
             return true;
         } else {
             return false;
+        }
+    }
+
+    /**
+     * 保持字体大小不随系统设置变化（用在界面加载之前）
+     * 要重写Activity的getResources()
+     */
+    public static Resources getResources(Context context, Resources resources, float fontScale) {
+        Configuration config = resources.getConfiguration();
+        if(config.fontScale != fontScale) {
+            config.fontScale = fontScale;
+          //  resources.getDisplayMetrics().scaledDensity = resources.getDisplayMetrics().scaledDensity* fontScale;
+            return context.createConfigurationContext(config).getResources();
+        } else {
+            return resources;
         }
     }
 

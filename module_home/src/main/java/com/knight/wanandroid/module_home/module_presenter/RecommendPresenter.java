@@ -17,7 +17,7 @@ import java.util.List;
  * @Date 2021/7/21 15:31
  * @descript:
  */
-public class RecommendPresenter extends RecommendContract.RecommendDataPresenter {
+public final class RecommendPresenter extends RecommendContract.RecommendDataPresenter {
     @Override
     public void requestBannerData() {
         final RecommendContract.RecommendView mView = getView();

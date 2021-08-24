@@ -2,6 +2,8 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.knight.wanandroid.module_home.module_adapter.OpenSourceAdapter"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:layout_marginTop="@dimen/base_dimen_8"
@@ -28,7 +30,7 @@
             android:paddingRight="@dimen/base_dimen_8"
             android:text="232323"
             android:textColor="@color/base_color_theme"
-            android:textSize="@dimen/base_dimen_16"/>
+            android:textSize="@dimen/base_dimen_text_size_16"/>
 
 
         <TextView
@@ -40,7 +42,7 @@
             android:text="@string/home_opensource_abroadlink"
             android:textColor="@color/base_color_title"
             android:layout_marginTop="@dimen/base_dimen_8"
-            android:textSize="@dimen/base_dimen_16"
+            android:textSize="@dimen/base_dimen_text_size_16"
             />
 
         <TextView
@@ -56,7 +58,7 @@
             android:singleLine="true"
             android:ellipsize="end"
             android:maxEms="8"
-            android:textSize="@dimen/base_dimen_16"
+            android:textSize="@dimen/base_dimen_text_size_16"
             />
 
         <ImageView
@@ -77,7 +79,7 @@
             android:text="@string/home_opensource_internallink"
             android:textColor="@color/base_color_title"
             android:layout_marginTop="@dimen/base_dimen_8"
-            android:textSize="@dimen/base_dimen_16"
+            android:textSize="@dimen/base_dimen_text_size_16"
             />
 
         <TextView
@@ -93,7 +95,7 @@
             android:singleLine="true"
             android:ellipsize="end"
             android:maxEms="8"
-            android:textSize="@dimen/base_dimen_16"
+            android:textSize="@dimen/base_dimen_text_size_16"
             />
         <ImageView
             android:id="@+id/home_iv_internalcopy"
@@ -109,7 +111,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/home_opensource_internallink"
-            android:textSize="@dimen/base_dimen_16"
+            android:textSize="@dimen/base_dimen_text_size_16"
             android:layout_marginTop="@dimen/base_dimen_4"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

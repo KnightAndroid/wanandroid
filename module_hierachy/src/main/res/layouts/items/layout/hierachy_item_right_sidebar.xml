@@ -1,8 +1,10 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.knight.wanandroid.module_hierachy.module_adapter.HierachyLeftBarAdapter"
     android:id="@+id/hiearchy_linear_layout"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="@dimen/base_dimen_50"
     android:background="@color/base_bg_normal_default"
     android:orientation="horizontal">
 
@@ -21,6 +23,6 @@
         android:gravity="center_vertical"
         android:text="基础知识"
         android:textColor="@color/base_color_title"
-        android:textSize="14sp"/>
+        android:textSize="@dimen/base_dimen_text_size_14"/>
 
 </LinearLayout>

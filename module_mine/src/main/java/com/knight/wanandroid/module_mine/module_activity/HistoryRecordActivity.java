@@ -39,7 +39,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  */
 
 @Route(path = RoutePathActivity.Mine.HistoryRecord_Pager)
-public class HistoryRecordActivity extends BaseDBActivity<MineActivityHistoryrecordBinding> implements OnLoadMoreListener, OnRefreshListener {
+public final class HistoryRecordActivity extends BaseDBActivity<MineActivityHistoryrecordBinding> implements OnLoadMoreListener, OnRefreshListener {
     private int endStation = 10;
     private int startPosition = 0;
     private HistoryRecordAdapter mHistoryRecordAdapter;

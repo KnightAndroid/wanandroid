@@ -35,7 +35,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  * @descript:
  */
 @Route(path = RoutePathActivity.Mine.MyCollectArticle_Pager)
-public class MyCollectArticleActivity extends BaseActivity<MineActivityCollectarticlesBinding, MyCollectArticlePresenter, MyCollectArticleModel> implements MyCollectArticleContract.MyCollectArticleView, OnRefreshListener, OnLoadMoreListener {
+public final class MyCollectArticleActivity extends BaseActivity<MineActivityCollectarticlesBinding, MyCollectArticlePresenter, MyCollectArticleModel> implements MyCollectArticleContract.MyCollectArticleView, OnRefreshListener, OnLoadMoreListener {
     private int page = 0;
     private MyCollectArticleAdapter mMyCollectArticleAdapter;
     @Override

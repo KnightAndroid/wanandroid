@@ -28,7 +28,7 @@ import kotlin.jvm.functions.Function1;
  * @Date 2021/4/12 19:03
  * @descript:一些view的初始化
  */
-public class CustomViewUtils {
+public final class CustomViewUtils {
 
     /**
      *
@@ -38,7 +38,6 @@ public class CustomViewUtils {
      * @param mDataList
      */
     public static void bindViewPager2(MagicIndicator magicIndicator, ViewPager2 viewPager2, List<String> mDataList, Function1 action) {
-       // magicIndicator.setBackgroundColor(Color.WHITE);
         CommonNavigator commonNavigator = new CommonNavigator(ApplicationProvider.getInstance().getApplication());
         commonNavigator.setLeftPadding(ScreenUtils.dp2px(16));
         commonNavigator.setScrollPivotX(0.35f);
@@ -52,6 +51,7 @@ public class CustomViewUtils {
             public IPagerTitleView getTitleView(Context context, final int index) {
                 SimplePagerTitleView simplePagerTitleView = new SimplePagerTitleView(context);
                 simplePagerTitleView.setText(mDataList.get(index));
+                simplePagerTitleView.setTextScaleX(CacheUtils.getInstance().getSystemFontSize());
                 simplePagerTitleView.setNormalColor(Color.parseColor("#999999"));
                 simplePagerTitleView.setSelectedColor(Color.parseColor("#ffffff"));
                 simplePagerTitleView.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +68,6 @@ public class CustomViewUtils {
             @Override
             public IPagerIndicator getIndicator(Context context) {
                 WrapPagerIndicator indicator = new WrapPagerIndicator(context);
-               // indicator.setHorizontalPadding(10);
                 indicator.setRoundRadius(ScreenUtils.dp2px(6));
                 indicator.setFillColor(CacheUtils.getInstance().getThemeColor());
                 return indicator;

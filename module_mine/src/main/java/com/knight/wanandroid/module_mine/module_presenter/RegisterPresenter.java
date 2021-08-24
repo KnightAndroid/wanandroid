@@ -11,7 +11,7 @@ import com.knight.wanandroid.module_mine.module_contract.RegisterContract;
  * @Date 2021/4/22 16:23
  * @descript:
  */
-public class RegisterPresenter extends RegisterContract.RegisterDataPresenter {
+public final class RegisterPresenter extends RegisterContract.RegisterDataPresenter {
 
 
 

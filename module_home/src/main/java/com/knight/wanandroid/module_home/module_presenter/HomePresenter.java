@@ -12,7 +12,7 @@ import com.knight.wanandroid.module_home.module_entity.EveryDayPushArticlesEntit
  * @Date 2021/4/1 11:20
  * @descript:首页逻辑处理层
  */
-public class HomePresenter extends HomeContract.HomeDataPresenter {
+public final class HomePresenter extends HomeContract.HomeDataPresenter {
     @Override
     public void requestAppUpdateMessage() {
         final HomeContract.HomeView mView = getView();

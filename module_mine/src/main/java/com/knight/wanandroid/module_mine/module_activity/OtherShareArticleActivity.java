@@ -50,7 +50,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  * @descript:
  */
 @Route(path = RoutePathActivity.Mine.OtherShareArticle_Pager)
-public class OtherShareArticleActivity extends BaseActivity<MineActivityOthershareBinding, OtherShareArticlePresenter, OtherShareArticleModel> implements
+public final class OtherShareArticleActivity extends BaseActivity<MineActivityOthershareBinding, OtherShareArticlePresenter, OtherShareArticleModel> implements
         OtherArticleContract.OtherShareArticleView, OnRefreshListener, OnLoadMoreListener {
 
 

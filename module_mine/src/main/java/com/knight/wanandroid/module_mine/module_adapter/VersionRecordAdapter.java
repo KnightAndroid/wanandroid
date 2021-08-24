@@ -17,7 +17,7 @@ import java.util.List;
  * @Date 2021/6/1 15:09
  * @descript:
  */
-public class VersionRecordAdapter extends BaseQuickAdapter<AppUpdateRecordEntity, BaseViewHolder> {
+public final class VersionRecordAdapter extends BaseQuickAdapter<AppUpdateRecordEntity, BaseViewHolder> {
 
     public VersionRecordAdapter(@Nullable List<AppUpdateRecordEntity> data){
         super(R.layout.mine_item_versionrecord,data);

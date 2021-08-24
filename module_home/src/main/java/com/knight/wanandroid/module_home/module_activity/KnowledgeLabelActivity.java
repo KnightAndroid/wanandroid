@@ -42,7 +42,7 @@ import androidx.annotation.Nullable;
  */
 
 @Route(path = RoutePathActivity.Home.KnowLedgeLabel)
-public class KnowledgeLabelActivity extends BaseDBActivity<HomeLabelActivityBinding> {
+public final class KnowledgeLabelActivity extends BaseDBActivity<HomeLabelActivityBinding> {
 
 
     /**

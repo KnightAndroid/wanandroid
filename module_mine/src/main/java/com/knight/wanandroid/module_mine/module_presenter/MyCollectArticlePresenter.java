@@ -12,7 +12,7 @@ import com.knight.wanandroid.module_mine.module_entity.MyCollectArticleListEntit
  * @Date 2021/5/11 17:30
  * @descript:
  */
-public class MyCollectArticlePresenter extends MyCollectArticleContract.MyCollectDataPresenter {
+public final class MyCollectArticlePresenter extends MyCollectArticleContract.MyCollectDataPresenter {
     @Override
     public void requestCollectArticles(int page) {
         final MyCollectArticleContract.MyCollectArticleView mView = getView();

@@ -10,7 +10,7 @@ import java.util.List;
  * @Date 2021/4/25 19:46
  * @descript:广场列表
  */
-public class SquareArticleEntity extends BaseEntity {
+public final class SquareArticleEntity extends BaseEntity {
 
 
     /**

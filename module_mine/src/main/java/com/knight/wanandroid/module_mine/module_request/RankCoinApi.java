@@ -8,7 +8,7 @@ import com.knight.wanandroid.library_network.config.IRequestApi;
  * @Date 2021/4/23 17:13
  * @descript:
  */
-public class RankCoinApi implements IRequestApi {
+public final class RankCoinApi implements IRequestApi {
 
     private int page;
 

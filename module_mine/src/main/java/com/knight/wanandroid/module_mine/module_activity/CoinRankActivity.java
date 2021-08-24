@@ -34,7 +34,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  * @descript:
  */
 @Route(path = RoutePathActivity.Mine.UserCoinRank_Pager)
-public class CoinRankActivity extends BaseActivity<MineActivityCoinrankBinding, CoinRankPresenter, CoinRankModel> implements CoinRankContract.CoinRankView, OnRefreshListener, OnLoadMoreListener {
+public final class CoinRankActivity extends BaseActivity<MineActivityCoinrankBinding, CoinRankPresenter, CoinRankModel> implements CoinRankContract.CoinRankView, OnRefreshListener, OnLoadMoreListener {
 
 
     private UserRankCoinAdapter mUserRankCoinAdapter;

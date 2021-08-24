@@ -15,7 +15,7 @@ import java.util.List;
  * @Date 2021/4/29 15:37
  * @descript:体系
  */
-public class HierachyPresenter extends HierachyContract.HierachyDataPresenter {
+public final class HierachyPresenter extends HierachyContract.HierachyDataPresenter {
 
 
     /**

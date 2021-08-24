@@ -17,7 +17,7 @@ import java.util.List;
  * @Date 2021/5/6 15:48
  * @descript:
  */
-public class SearchModel implements SearchContract.SearchModel {
+public final class SearchModel implements SearchContract.SearchModel {
     @Override
     public void requestSearchHotkey(BaseActivity activity, MvpListener mvpListener) {
         GoHttp.get(activity)

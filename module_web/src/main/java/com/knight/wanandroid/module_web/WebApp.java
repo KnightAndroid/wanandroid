@@ -10,7 +10,7 @@ import com.knight.wanandroid.library_base.BaseApp;
  * @Date 2021/5/10 18:06
  * @descript:
  */
-public class WebApp extends BaseApp {
+public final class WebApp extends BaseApp {
     @Override
     public void initModuleApp(Application application) {
 

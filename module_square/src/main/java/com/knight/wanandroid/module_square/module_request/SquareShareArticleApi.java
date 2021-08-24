@@ -9,7 +9,7 @@ import com.knight.wanandroid.library_network.config.IRequestApi;
  * @Date 2021/5/7 16:07
  * @descript:
  */
-public class SquareShareArticleApi implements IRequestApi {
+public final class SquareShareArticleApi implements IRequestApi {
 
     @HttpRename("title")
     private String title;

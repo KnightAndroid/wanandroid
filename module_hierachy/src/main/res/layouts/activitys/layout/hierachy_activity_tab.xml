@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.knight.wanandroid.module_hierachy.module_activity.HierachyTabActivity">
+
     <data>
 
 
-
     </data>
+
     <LinearLayout
         android:id="@+id/hierachy_ll_tab"
         android:layout_width="match_parent"
@@ -15,28 +17,23 @@
 
         <include
             android:id="@+id/include_tabarticel_toolbar"
-            layout="@layout/base_include_toolbar"/>
+            layout="@layout/base_include_toolbar" />
 
 
-
-            <net.lucode.hackware.magicindicator.MagicIndicator
-                android:id="@+id/hierachy_indicator"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/base_dimen_40"
-                android:theme="@style/base_AppTheme.AppBarOverlay"
-                app:layout_scrollFlags="scroll|enterAlways"
-                app:popupTheme="@style/base_AppTheme.PopupOverlay"
-                android:background="@color/base_bg_normal_default"/>
-
-
-
-
+        <net.lucode.hackware.magicindicator.MagicIndicator
+            android:id="@+id/hierachy_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/base_dimen_40"
+            android:background="@color/base_bg_normal_default"
+            android:theme="@style/base_AppTheme.AppBarOverlay"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/base_AppTheme.PopupOverlay" />
 
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/hierachy_view_pager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
 
     </LinearLayout>

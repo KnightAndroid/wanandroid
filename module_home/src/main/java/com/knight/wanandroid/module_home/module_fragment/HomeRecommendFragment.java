@@ -31,7 +31,7 @@ import com.knight.wanandroid.library_util.ColorUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.GsonUtils;
 import com.knight.wanandroid.library_util.JsonUtils;
-import com.knight.wanandroid.library_util.LanguageUtils;
+import com.knight.wanandroid.library_util.LanguageFontSizeUtils;
 import com.knight.wanandroid.library_util.SystemUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;
@@ -86,7 +86,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
  */
 
 @Route(path = RoutePathFragment.Home.Home_Recommend_Pager)
-public class HomeRecommendFragment extends BaseFragment<HomeFragmentRecommendBinding, RecommendPresenter, RecommendModel> implements RecommendContract.RecommendView, OnRefreshListener, OnLoadMoreListener {
+public final class HomeRecommendFragment extends BaseFragment<HomeFragmentRecommendBinding, RecommendPresenter, RecommendModel> implements RecommendContract.RecommendView, OnRefreshListener, OnLoadMoreListener {
 
     private View topArticleFootView;
     private TopArticleAdapter mTopArticleAdapter;
@@ -305,7 +305,7 @@ public class HomeRecommendFragment extends BaseFragment<HomeFragmentRecommendBin
         if (number > 0) {
             home_rl_message.setVisibility(View.VISIBLE);
             String strMsg = "";
-            if (LanguageUtils.isChinese()) {
+            if (LanguageFontSizeUtils.isChinese()) {
                 strMsg = "您有<font color=\"#EE7931\"> " + number + "</font> 条未读消息</font>";
             } else {
                 strMsg = "You have <font color=\"#EE7931\"> " + number + "</font> Unread messages</font>";

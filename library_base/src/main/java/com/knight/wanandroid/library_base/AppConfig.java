@@ -6,7 +6,7 @@ package com.knight.wanandroid.library_base;
  * @Date 2020/12/28 18:52
  * @descript:配置组件
  */
-public class AppConfig {
+public final class AppConfig {
 
     private static final String HomeApp = "com.knight.wanandroid.module_home.HomeApp";
     private static final String SquareApp = "com.knight.wanandroid.module_square.SquareApp";

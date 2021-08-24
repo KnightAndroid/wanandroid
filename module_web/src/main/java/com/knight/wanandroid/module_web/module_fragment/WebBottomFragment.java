@@ -25,7 +25,7 @@ import org.greenrobot.eventbus.EventBus;
  * @Date 2021/5/11 10:53
  * @descript: webview底部弹出框
  */
-public class WebBottomFragment extends BaseDialogFragment<WebDialogFragmentBinding, WebDialogPresenter, WebDialogModel> implements WebDialogContract.WebDialogView {
+public final class WebBottomFragment extends BaseDialogFragment<WebDialogFragmentBinding, WebDialogPresenter, WebDialogModel> implements WebDialogContract.WebDialogView {
 
     private String articleurl;
     private String articleTitle;

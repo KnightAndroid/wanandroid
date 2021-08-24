@@ -32,4 +32,7 @@
     <string name="set_clearcache_tip">Are you sure you want to delete all caches?</string>
     <string name="set_clearchae_successfully">Cache cleared successfully</string>
     <string name="set_more_language">Multilingual</string>
+    <string name="set_changetextsize_tip">Drag the slider below to set the font size</string>
+    <string name="set_changetextsize">Font Size</string>
+    <string name="set_logout">Quit...</string>
 </resources>

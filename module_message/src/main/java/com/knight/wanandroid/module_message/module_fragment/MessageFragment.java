@@ -39,7 +39,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  */
 
 @Route(path = RoutePathFragment.Message.Readed_Message)
-public class MessageFragment extends BaseFragment<MessageReadedFragmentBinding, MessagePresenter, MessageModel> implements MessageContract.MessageView, OnRefreshListener, OnLoadMoreListener {
+public final class MessageFragment extends BaseFragment<MessageReadedFragmentBinding, MessagePresenter, MessageModel> implements MessageContract.MessageView, OnRefreshListener, OnLoadMoreListener {
 
 
     private int page = 1;

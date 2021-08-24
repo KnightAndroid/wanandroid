@@ -17,7 +17,7 @@ import java.util.List;
  * @Date 2021/4/26 20:07
  * @descript:
  */
-public class ProjectModel implements ProjectContract.ProjectModel {
+public final class ProjectModel implements ProjectContract.ProjectModel {
     @Override
     public void requestProjectTypes(BaseFragment fragment, MvpListener mvpListener) {
         GoHttp.get(fragment)

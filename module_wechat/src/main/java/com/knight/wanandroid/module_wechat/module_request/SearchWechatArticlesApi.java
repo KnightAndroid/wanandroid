@@ -8,7 +8,7 @@ import com.knight.wanandroid.library_network.config.IRequestApi;
  * @Date 2021/6/10 14:58
  * @descript:
  */
-public class SearchWechatArticlesApi implements IRequestApi {
+public final class SearchWechatArticlesApi implements IRequestApi {
 
     private int cid;
     private int page;

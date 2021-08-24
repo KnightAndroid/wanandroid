@@ -20,7 +20,7 @@ import java.util.List;
  * @Date 2021/4/23 17:00
  * @descript:积分排行榜
  */
-public class UserRankCoinAdapter extends BaseQuickAdapter<CoinRankEntity, BaseViewHolder> {
+public final class UserRankCoinAdapter extends BaseQuickAdapter<CoinRankEntity, BaseViewHolder> {
 
 
 

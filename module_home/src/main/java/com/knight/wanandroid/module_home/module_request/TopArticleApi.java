@@ -8,7 +8,7 @@ import com.knight.wanandroid.library_network.config.IRequestApi;
  * @Date 2021/4/9 10:08
  * @descript:顶部文章数据
  */
-public class TopArticleApi implements IRequestApi {
+public final class TopArticleApi implements IRequestApi {
     @Override
     public String getApi() {
         return "article/top/json";

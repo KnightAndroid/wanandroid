@@ -22,7 +22,7 @@ import androidx.annotation.Nullable;
  * @Date 2021/6/30 16:59
  * @descript:
  */
-public class MessageAdapter extends BaseQuickAdapter<MessageEntity, BaseViewHolder> {
+public final class MessageAdapter extends BaseQuickAdapter<MessageEntity, BaseViewHolder> {
 
     public MessageAdapter(@Nullable List<MessageEntity> data){
         super(R.layout.message_readed_item,data);

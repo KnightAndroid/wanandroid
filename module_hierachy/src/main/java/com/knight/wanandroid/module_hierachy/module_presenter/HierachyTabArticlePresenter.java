@@ -12,7 +12,7 @@ import com.knight.wanandroid.module_hierachy.module_entity.HierachyTabArticleLis
  * @Date 2021/5/12 17:31
  * @descript:
  */
-public class HierachyTabArticlePresenter extends HierachyTabContract.HierachyTabDataPresenter {
+public final class HierachyTabArticlePresenter extends HierachyTabContract.HierachyTabDataPresenter {
     @Override
     public void requestHierachyTabArticles(int page,int cid) {
         final HierachyTabContract.HierachyTabView mView = getView();

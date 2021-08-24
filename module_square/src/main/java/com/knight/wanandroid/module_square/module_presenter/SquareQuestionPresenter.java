@@ -11,7 +11,7 @@ import com.knight.wanandroid.module_square.module_entity.SquareQuestionListEntit
  * @Date 2021/5/17 15:02
  * @descript:
  */
-public class SquareQuestionPresenter extends SquareQuestionContract.SquareQuestionDataPresenter {
+public final class SquareQuestionPresenter extends SquareQuestionContract.SquareQuestionDataPresenter {
     @Override
     public void requestSquareQuestion(int page) {
         final SquareQuestionContract.SquareQuestionView mView = getView();

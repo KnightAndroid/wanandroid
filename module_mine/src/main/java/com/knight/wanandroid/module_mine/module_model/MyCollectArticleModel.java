@@ -16,7 +16,7 @@ import com.knight.wanandroid.module_mine.module_request.MyCollectArticleApi;
  * @Date 2021/5/11 17:22
  * @descript:
  */
-public class MyCollectArticleModel implements MyCollectArticleContract.MyCollectArticleModel {
+public final class MyCollectArticleModel implements MyCollectArticleContract.MyCollectArticleModel {
     @Override
     public void requestCollectArticles(BaseActivity activity, int page, MvpListener mvpListener) {
         GoHttp.get(activity)

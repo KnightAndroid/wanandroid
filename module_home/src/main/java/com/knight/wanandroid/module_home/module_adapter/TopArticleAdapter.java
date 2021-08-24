@@ -19,7 +19,7 @@ import java.util.List;
  * @Date 2021/4/9 10:29
  * @descript:置顶文章
  */
-public class TopArticleAdapter extends BaseQuickAdapter<TopArticleEntity, BaseViewHolder> {
+public final class TopArticleAdapter extends BaseQuickAdapter<TopArticleEntity, BaseViewHolder> {
     private boolean mIsShowOnlyCount;
     private int mCount = 3;//设置最多展示几条数据
     public void setAnimation() {

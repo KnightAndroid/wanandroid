@@ -10,7 +10,7 @@ import com.knight.wanandroid.library_base.BaseApp;
  * @Date 2021/5/6 19:16
  * @descript:
  */
-public class HierachyApp extends BaseApp {
+public final class HierachyApp extends BaseApp {
     @Override
     public void initModuleApp(Application application) {
 

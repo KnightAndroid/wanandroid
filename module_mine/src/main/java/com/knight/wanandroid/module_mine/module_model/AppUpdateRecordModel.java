@@ -15,7 +15,7 @@ import com.knight.wanandroid.module_mine.module_request.AppUpdateRecordApi;
  * @Date 2021/6/15 16:19
  * @descript:
  */
-public class AppUpdateRecordModel implements AppUpdateRecordContract.AppUpdateRecordModel {
+public final class AppUpdateRecordModel implements AppUpdateRecordContract.AppUpdateRecordModel {
     @Override
     public void requestAppRecordVersion(BaseActivity activity, MvpListener mvpListener) {
         GoHttp.get(activity)

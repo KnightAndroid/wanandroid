@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.knight.wanandroid.module_home.module_adapter.MoreKnowLedgeAdapter"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginRight="@dimen/base_dimen_8">
@@ -11,29 +12,24 @@
         android:id="@+id/home_rl_knowledge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
-
+        android:layout_marginLeft="@dimen/base_dimen_5"
+        android:layout_marginTop="@dimen/base_dimen_10"
+        android:layout_marginRight="@dimen/base_dimen_8"
+        android:layout_marginBottom="@dimen/base_dimen_10">
 
 
         <TextView
             android:id="@+id/home_tv_knowledge"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:textColor="@color/base_color_theme"
-            android:textSize="@dimen/base_dimen_16"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:gravity="center"
-            android:text="sdsdsdsdsd"
+            android:layout_height="@dimen/base_dimen_40"
             android:background="@drawable/home_hotkeyframe_shape"
-
-
-
-            >
-        </TextView>
+            android:gravity="center"
+            android:paddingLeft="@dimen/base_dimen_10"
+            android:paddingRight="@dimen/base_dimen_10"
+            android:text="sdsdsdsdsd"
+            android:textColor="@color/base_color_theme"
+            android:textSize="@dimen/base_dimen_text_size_16"
+            />
 
 
     </RelativeLayout>
@@ -42,10 +38,9 @@
         android:id="@+id/home_iv_moreknowledge_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/widget_label_delete"
         android:layout_alignRight="@id/home_rl_knowledge"
         android:layout_marginRight="-8dp"
-
+        android:background="@drawable/widget_label_delete"
         />
 
 

@@ -15,7 +15,7 @@ import com.knight.wanandroid.module_square.module_request.SquareQuestionApi;
  * @Date 2021/5/17 14:53
  * @descript:
  */
-public class SquareQuestionModel implements SquareQuestionContract.SquareQuestionModel {
+public final class SquareQuestionModel implements SquareQuestionContract.SquareQuestionModel {
 
     @Override
     public void requestQuestions(BaseFragment fragment, int page, MvpListener mvpListener) {

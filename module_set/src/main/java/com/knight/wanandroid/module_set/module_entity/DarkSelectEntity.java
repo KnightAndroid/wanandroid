@@ -8,7 +8,7 @@ import com.knight.wanandroid.library_base.entity.BaseEntity;
  * @Date 2021/7/19 11:30
  * @descript:
  */
-public class DarkSelectEntity extends BaseEntity {
+public final class DarkSelectEntity extends BaseEntity {
     private String name;
     private String englishName;
     private boolean select;

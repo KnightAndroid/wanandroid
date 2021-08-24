@@ -21,7 +21,7 @@ import java.util.List;
  * @Date 2021/7/5 17:10
  * @descript:
  */
-public class MoreKnowLedgeAdapter extends BaseQuickAdapter<TagInfo, BaseViewHolder> {
+public final class MoreKnowLedgeAdapter extends BaseQuickAdapter<TagInfo, BaseViewHolder> {
 
 
     private boolean isEdit;

@@ -34,7 +34,7 @@ import org.greenrobot.eventbus.EventBus;
  */
 
 @Route(path = RoutePathActivity.Mine.Login_Pager)
-public class LoginActivity extends BaseActivity<MineActivityLoginBinding, LoginPresenter, LoginModel> implements LoginContract.LoginView {
+public final class LoginActivity extends BaseActivity<MineActivityLoginBinding, LoginPresenter, LoginModel> implements LoginContract.LoginView {
 
     private SoftInputScrollUtils mSoftInputScrollUtils;
 

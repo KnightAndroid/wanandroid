@@ -11,7 +11,7 @@ import java.util.List;
  * @Date 2021/4/23 10:45
  * @descript:个人积分明细列表
  */
-public class UserDetailCoinListEntity extends BaseEntity {
+public final class UserDetailCoinListEntity extends BaseEntity {
 
 
     private int curPage;

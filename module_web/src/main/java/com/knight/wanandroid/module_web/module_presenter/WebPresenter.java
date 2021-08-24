@@ -11,7 +11,7 @@ import com.knight.wanandroid.module_web.module_contract.WebContract;
  * @Date 2021/5/20 16:08
  * @descript:
  */
-public class WebPresenter extends WebContract.WebDataPresenter {
+public final class WebPresenter extends WebContract.WebDataPresenter {
     @Override
     public void requestCollectArticle(int collectArticleId) {
         final WebContract.WebView mView = getView();

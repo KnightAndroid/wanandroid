@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.knight.wanandroid.module_wechat.module_activity.WechatArticlesActivity">
+
     <data>
 
 
-
     </data>
+
     <LinearLayout
         android:id="@+id/wechat_ll_article"
         android:layout_width="match_parent"
@@ -14,37 +16,34 @@
         android:orientation="vertical">
 
 
-
         <include
             android:id="@+id/include_wechat_toolbar"
-            layout="@layout/base_include_toolbar"/>
+            layout="@layout/base_include_toolbar" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:layout_marginRight="@dimen/base_dimen_16">
 
-                <com.knight.wanandroid.library_widget.ClearEditText
-                    android:id="@+id/wecaht_search_et"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/base_dimen_16"
-                    android:layout_marginLeft="@dimen/base_dimen_16"
-                    android:drawableLeft="@drawable/base_icon_search_edittext"
-                    android:background="@drawable/base_bg_filtrate_shape"
-                    android:gravity="center_vertical"
-                    android:hint="@string/wechat_search_hint"
-                    android:imeOptions="actionSearch"
-                    android:singleLine="true"
-                    android:textColor="@color/base_color_title"
-                    android:textColorHint="@color/base_color_999999"
-                    android:textSize="@dimen/base_dimen_12"
-                    android:textCursorDrawable="@drawable/base_textcursorcolor"
-                    android:paddingLeft="@dimen/base_dimen_10"
-                    android:paddingRight="@dimen/base_dimen_10"
-                    />
-
+            <com.knight.wanandroid.library_widget.ClearEditText
+                android:id="@+id/wecaht_search_et"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/base_dimen_16"
+                android:layout_marginLeft="@dimen/base_dimen_16"
+                android:background="@drawable/base_bg_filtrate_shape"
+                android:drawableLeft="@drawable/base_icon_search_edittext"
+                android:gravity="center_vertical"
+                android:hint="@string/wechat_search_hint"
+                android:imeOptions="actionSearch"
+                android:paddingLeft="@dimen/base_dimen_10"
+                android:paddingRight="@dimen/base_dimen_10"
+                android:singleLine="true"
+                android:textColor="@color/base_color_title"
+                android:textColorHint="@color/base_color_999999"
+                android:textCursorDrawable="@drawable/base_textcursorcolor"
+                android:textSize="@dimen/base_dimen_text_size_12" />
 
 
         </RelativeLayout>
@@ -53,18 +52,16 @@
             android:id="@+id/wechat_indicator"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/base_dimen_44"
+            android:layout_marginStart="@dimen/base_dimen_16"
             android:theme="@style/base_AppTheme.AppBarOverlay"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/base_AppTheme.PopupOverlay"
-            android:layout_marginLeft="@dimen/base_dimen_16"
-            />
-
+            app:popupTheme="@style/base_AppTheme.PopupOverlay" />
 
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/wechat_view_pager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
 
     </LinearLayout>

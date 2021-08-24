@@ -26,7 +26,7 @@ import java.util.List;
  * @Date 2021/7/21 15:27
  * @descript:
  */
-public class RecommendModel implements RecommendContract.RecommendModel {
+public final class RecommendModel implements RecommendContract.RecommendModel {
 
     /**
      *

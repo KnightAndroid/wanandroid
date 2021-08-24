@@ -9,7 +9,7 @@ import com.knight.wanandroid.library_network.config.IRequestApi;
  * @Date 2021/4/19 18:20
  * @descript:登录接口
  */
-public class LoginApi implements IRequestApi {
+public final class LoginApi implements IRequestApi {
 
 
     @HttpRename("username")

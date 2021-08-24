@@ -20,7 +20,7 @@ import androidx.fragment.app.FragmentTransaction;
  * @descript:
  */
 @Route(path = RoutePathActivity.Hierachy.HierachyDetail)
-public class HierachyDetailActivity extends BaseDBActivity<HierachyDetailActivityBinding> {
+public final class HierachyDetailActivity extends BaseDBActivity<HierachyDetailActivityBinding> {
 
 
 

@@ -37,7 +37,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  * @descript:
  */
 @Route(path = RoutePathActivity.Mine.MyShareArticle_Pager)
-public class MyShareArticleActivity extends BaseActivity<MineActivityMyshareBinding, MyShareArticlePresenter, MyShareArticleModel> implements MyShareArticleContract.MyShareArticleView, OnLoadMoreListener, OnRefreshListener {
+public final class MyShareArticleActivity extends BaseActivity<MineActivityMyshareBinding, MyShareArticlePresenter, MyShareArticleModel> implements MyShareArticleContract.MyShareArticleView, OnLoadMoreListener, OnRefreshListener {
 
     private int page = 1;
     private MyShareArticleAdapter mMyShareArticleAdapter;

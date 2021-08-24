@@ -28,7 +28,7 @@ import androidx.annotation.RequiresApi;
  * @descript:
  */
 @Route(path = RoutePathActivity.Mine.About_Pager)
-public class AboutActivity extends BaseActivity<MineActivityAboutBinding, AboutPresenter, AboutModel> implements AboutContract.AboutView {
+public final class AboutActivity extends BaseActivity<MineActivityAboutBinding, AboutPresenter, AboutModel> implements AboutContract.AboutView {
 
 
     private AppUpdateEntity mAppUpdateEntity;

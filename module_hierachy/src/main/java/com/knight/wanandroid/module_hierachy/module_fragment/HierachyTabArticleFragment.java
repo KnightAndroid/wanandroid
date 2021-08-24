@@ -34,7 +34,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  * @descript:体系切换列表界面
  */
 @Route(path = RoutePathFragment.Hierachy.Hierachy_TabArticle_Pager)
-public class HierachyTabArticleFragment extends BaseFragment<HierachyFragmentTabarticleBinding, HierachyTabArticlePresenter, HierachyTabArticleModel> implements HierachyTabContract.HierachyTabView, OnLoadMoreListener, OnRefreshListener {
+public final class HierachyTabArticleFragment extends BaseFragment<HierachyFragmentTabarticleBinding, HierachyTabArticlePresenter, HierachyTabArticleModel> implements HierachyTabContract.HierachyTabView, OnLoadMoreListener, OnRefreshListener {
 
     private int cid;
     private int page = 0;

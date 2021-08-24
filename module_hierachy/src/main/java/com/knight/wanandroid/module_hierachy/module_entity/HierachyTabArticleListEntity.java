@@ -11,7 +11,7 @@ import java.util.List;
  * @Date 2021/5/12 17:09
  * @descript:
  */
-public class HierachyTabArticleListEntity extends BaseEntity {
+public final class HierachyTabArticleListEntity extends BaseEntity {
 
     /**
      * curPage : 1

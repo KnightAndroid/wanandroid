@@ -15,7 +15,7 @@ import com.knight.wanandroid.module_mine.module_request.AppMineCheckUpdateApi;
  * @Date 2021/6/11 17:47
  * @descript:
  */
-public class AboutModel implements AboutContract.AboutModel {
+public final class AboutModel implements AboutContract.AboutModel {
     @Override
     public void requestAppVersion(BaseActivity activity, MvpListener mvpListener) {
         GoHttp.get(activity)

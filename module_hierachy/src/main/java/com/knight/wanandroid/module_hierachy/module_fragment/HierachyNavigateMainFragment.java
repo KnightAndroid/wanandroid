@@ -23,7 +23,7 @@ import androidx.fragment.app.Fragment;
  * @descript:导航 体系
  */
 @Route(path = RoutePathFragment.Hierachy.HierachyNavigate)
-public class HierachyNavigateMainFragment extends BaseDBFragment<HierachyNavigateMainFragmentBinding> {
+public final class HierachyNavigateMainFragment extends BaseDBFragment<HierachyNavigateMainFragmentBinding> {
 
 
     //存放体系和导航两个Fragment

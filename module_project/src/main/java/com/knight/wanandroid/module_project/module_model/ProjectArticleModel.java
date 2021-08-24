@@ -19,7 +19,7 @@ import com.knight.wanandroid.module_project.module_request.ProjectNewArticleApi;
  * @Date 2021/4/27 17:49
  * @descript:
  */
-public class ProjectArticleModel implements ProjectArticleContract.ProjectArticleModel {
+public final class ProjectArticleModel implements ProjectArticleContract.ProjectArticleModel {
 
     /**
      *

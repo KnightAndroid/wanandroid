@@ -28,7 +28,7 @@ import com.knight.wanandroid.library_base.receiver.NetWorkChangeReceiver;
 import com.knight.wanandroid.library_network.listener.OnHttpListener;
 import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.ColorUtils;
-import com.knight.wanandroid.library_util.LanguageUtils;
+import com.knight.wanandroid.library_util.LanguageFontSizeUtils;
 import com.knight.wanandroid.library_util.StatusBarUtils;
 import com.knight.wanandroid.library_widget.loadcircleview.ProgressHUD;
 import com.knight.wanandroid.library_widget.swipeback.SwipeBackHelper;
@@ -78,6 +78,13 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
     private FrameLayout meyeFrameLayout;
     protected boolean isEyeCare;
 
+    /**
+     *
+     * 字体缩放大小
+     *
+     */
+    private float fontScale = 1.0f;
+
 
     public abstract void initView(Bundle savedInstanceState);
 
@@ -118,6 +125,7 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
         StatusBarUtils.transparentStatusBar(this);
         isDarkMode = CacheUtils.getInstance().getNormalDark();
         isEyeCare = CacheUtils.getInstance().getIsEyeCare();
+
         initTipView();
         initEye();
         initThemeColor();
@@ -293,7 +301,8 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
 
     @Override
     protected void attachBaseContext(Context base) {
-        super.attachBaseContext(LanguageUtils.attachBaseContext(base));
+        fontScale = CacheUtils.getInstance().getSystemFontSize();
+        super.attachBaseContext(LanguageFontSizeUtils.attachBaseContext(base,fontScale));
     }
 
 
@@ -364,7 +373,11 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
 
     }
 
-
+//    @Override
+//    public Resources getResources() {
+//        Resources resources = super.getResources();
+//        return LanguageFontSizeUtils.getResources(this, resources, fontScale);
+//    }
 
     @Override
     public void applyOverrideConfiguration(Configuration overrideConfiguration) {

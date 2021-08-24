@@ -12,7 +12,7 @@ import com.knight.wanandroid.module_wechat.module_entity.WechatArticleListEntity
  * @Date 2021/5/14 15:06
  * @descript:
  */
-public class WechatPresenter extends WechatArticleContract.WechatArticleDataPresenter {
+public final class WechatPresenter extends WechatArticleContract.WechatArticleDataPresenter {
     @Override
     public void requestWechatArticle(int page, int cid) {
         final WechatArticleContract.WechatArticleView mView = getView();

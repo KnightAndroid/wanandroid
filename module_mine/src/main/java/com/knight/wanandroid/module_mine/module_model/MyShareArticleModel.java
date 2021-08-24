@@ -16,7 +16,7 @@ import com.knight.wanandroid.module_mine.module_request.MyShareArticleApi;
  * @Date 2021/5/8 16:47
  * @descript:
  */
-public class MyShareArticleModel implements MyShareArticleContract.MyShareArticleModel {
+public final class MyShareArticleModel implements MyShareArticleContract.MyShareArticleModel {
 
     @Override
     public void requestMyShareArticle(BaseActivity activity, int page,MvpListener mvpListener) {

@@ -11,7 +11,7 @@ import com.knight.wanandroid.module_message.module_entity.MessageListEntity;
  * @Date 2021/6/30 15:11
  * @descript:
  */
-public class MessagePresenter extends MessageContract.MessageDataPresenter {
+public final class MessagePresenter extends MessageContract.MessageDataPresenter {
     @Override
     public void requestMessageReaded(int page) {
         final MessageContract.MessageView mView = getView();

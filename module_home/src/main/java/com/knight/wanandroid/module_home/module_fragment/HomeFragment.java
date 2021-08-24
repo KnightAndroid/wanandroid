@@ -71,7 +71,7 @@ import static android.app.Activity.RESULT_OK;
 
 
 @Route(path = RoutePathFragment.Home.Home_Pager)
-public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePresenter, HomeModel> implements HomeContract.HomeView {
+public final class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomePresenter, HomeModel> implements HomeContract.HomeView {
 
     List<Fragment> mFragments = new ArrayList<>();
 

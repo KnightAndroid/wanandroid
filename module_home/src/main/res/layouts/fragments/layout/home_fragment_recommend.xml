@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.knight.wanandroid.module_home.module_fragment.HomeRecommendFragment">
 
     <data>
 
@@ -9,8 +13,7 @@
     </data>
 
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -77,7 +80,6 @@
             android:layout_marginBottom="@dimen/base_dimen_70"
             android:onClick="@{()->click.scrollUp()}"
             android:src="@drawable/base_icon_up"
-
             />
 
 

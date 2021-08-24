@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.knight.wanandroid.library_util.CacheUtils;
-import com.knight.wanandroid.library_util.LanguageUtils;
+import com.knight.wanandroid.library_util.LanguageFontSizeUtils;
 import com.knight.wanandroid.module_set.R;
 import com.knight.wanandroid.module_set.module_entity.LanguageSelectEntity;
 
@@ -20,7 +20,7 @@ import java.util.List;
  * @Date 2021/8/10 16:24
  * @descript:
  */
-public class SelectLanguageAdapter extends BaseQuickAdapter<LanguageSelectEntity, BaseViewHolder> {
+public final class SelectLanguageAdapter extends BaseQuickAdapter<LanguageSelectEntity, BaseViewHolder> {
 
     public SelectLanguageAdapter(@Nullable List<LanguageSelectEntity> data) {
         super(R.layout.set_select_language_item);
@@ -29,7 +29,7 @@ public class SelectLanguageAdapter extends BaseQuickAdapter<LanguageSelectEntity
 
     @Override
     protected void convert(@NotNull BaseViewHolder baseViewHolder, LanguageSelectEntity languageSelectEntity) {
-        if (LanguageUtils.isChinese()) {
+        if (LanguageFontSizeUtils.isChinese()) {
             baseViewHolder.setText(R.id.set_tv_language_name,languageSelectEntity.getLanguageName());
         } else {
             baseViewHolder.setText(R.id.set_tv_language_name,languageSelectEntity.getEnglishName());

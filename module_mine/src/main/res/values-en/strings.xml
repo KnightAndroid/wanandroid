@@ -44,4 +44,6 @@
     <string name="mine_please_login">Please Login</string>
     <string name="mine_nodata_gradle">Gradle -</string>
     <string name="mine_nodata_rank">Rank -</string>
+    <string name="mine_login_request">Login...</string>
+    <string name="mine_regist_request">Regist...</string>
 </resources>

@@ -11,7 +11,7 @@ import java.util.List;
  * @Date 2021/4/29 15:26
  * @descript:体系列表下数据模型
  */
-public class HierachyChildrenEntity extends BaseEntity {
+public final class HierachyChildrenEntity extends BaseEntity {
 
     /**
      * children : []

@@ -23,7 +23,7 @@ import java.util.List;
  * @Date 2021/6/8 13:59
  * @descript:阅读历史适配器
  */
-public class HistoryRecordAdapter extends BaseQuickAdapter<HistoryReadRecordsEntity, BaseViewHolder> {
+public final class HistoryRecordAdapter extends BaseQuickAdapter<HistoryReadRecordsEntity, BaseViewHolder> {
     public HistoryRecordAdapter(@Nullable List<HistoryReadRecordsEntity> data) {
         super(R.layout.base_text_item, data);
     }

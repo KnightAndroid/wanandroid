@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:bind="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".module_activity.SearchResultActivity">
 
     <data>
 
@@ -51,7 +52,7 @@
                     android:textColor="@color/base_color_title"
                     android:textColorHint="@color/base_second_title"
                     android:textCursorDrawable="@drawable/base_textcursorcolor"
-                    android:textSize="@dimen/base_dimen_12" />
+                    android:textSize="@dimen/base_dimen_text_size_12" />
 
                 <TextView
                     android:id="@+id/searchresult_tv_cancel"
@@ -64,7 +65,7 @@
                     android:onClick="@{()->click.searchByKeyword()}"
                     android:text="@string/home_cancel"
                     android:textColor="@color/base_color_title"
-                    android:textSize="@dimen/base_dimen_16" />
+                    android:textSize="@dimen/base_dimen_text_size_16" />
 
 
             </RelativeLayout>

@@ -10,7 +10,7 @@ import com.knight.wanandroid.library_base.BaseApp;
  * @Date 2021/4/1 19:42
  * @descript:
  */
-public class SquareApp extends BaseApp {
+public final class SquareApp extends BaseApp {
 
     @Override
     public void onCreate(){

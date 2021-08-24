@@ -8,7 +8,7 @@ import com.knight.wanandroid.library_base.entity.BaseEntity;
  * @Date 2021/8/10 15:20
  * @descript:
  */
-public class LanguageSelectEntity extends BaseEntity {
+public final class LanguageSelectEntity extends BaseEntity {
 
     private String languageName;
     private String englishName;

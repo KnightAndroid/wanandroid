@@ -28,7 +28,7 @@
                 android:id="@+id/home_tv_loginname"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/base_dimen_16"
+                android:textSize="@dimen/base_dimen_text_size_16"
                 android:text="@string/home_tv_login"
                 android:layout_centerVertical="true"
                 android:textColor="@color/base_color_title"
@@ -81,7 +81,7 @@
                     android:singleLine="true"
                     android:textColor="@color/home_color333333"
                     android:textColorHint="@color/home_color999999"
-                    android:textSize="@dimen/base_dimen_12"
+                    android:textSize="@dimen/base_dimen_text_size_12"
                     android:textCursorDrawable="@drawable/base_textcursorcolor"
 
                     />

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".module_activity.KnowledgeLabelActivity">
 
     <data>
 
@@ -39,7 +41,7 @@
                 android:layout_marginLeft="@dimen/base_dimen_16"
                 android:text="@string/home_knowledge_label"
                 android:textColor="@color/base_color_title"
-                android:textSize="@dimen/base_dimen_16" />
+                android:textSize="@dimen/base_dimen_text_size_16" />
 
 
             <TextView
@@ -50,7 +52,7 @@
                 android:layout_toRightOf="@+id/home_tv_mylabel"
                 android:text="@string/home_hold_down_drag"
                 android:textColor="@color/home_color999999"
-                android:textSize="@dimen/base_dimen_12" />
+                android:textSize="@dimen/base_dimen_text_size_12" />
 
             <TextView
                 android:id="@+id/home_label_edit"
@@ -61,7 +63,7 @@
                 android:onClick="@{()->click.editLabel()}"
                 android:text="@string/home_edit"
                 android:textColor="@color/base_color_theme"
-                android:textSize="@dimen/base_dimen_16" />
+                android:textSize="@dimen/base_dimen_text_size_16" />
 
         </RelativeLayout>
 
@@ -100,7 +102,7 @@
                 android:layout_marginLeft="@dimen/base_dimen_16"
                 android:text="@string/home_more_knowledge"
                 android:textColor="@color/base_color_title"
-                android:textSize="@dimen/base_dimen_16" />
+                android:textSize="@dimen/base_dimen_text_size_16" />
 
 
             <TextView
@@ -111,7 +113,7 @@
                 android:layout_toRightOf="@+id/home_tv_morelabel"
                 android:text="@string/home_click_myknowledge"
                 android:textColor="@color/home_color999999"
-                android:textSize="@dimen/base_dimen_12" />
+                android:textSize="@dimen/base_dimen_text_size_12" />
         </RelativeLayout>
 
         <com.yanzhenjie.recyclerview.SwipeRecyclerView

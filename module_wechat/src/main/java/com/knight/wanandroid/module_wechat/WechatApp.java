@@ -10,7 +10,7 @@ import com.knight.wanandroid.library_base.BaseApp;
  * @Date 2021/5/14 16:44
  * @descript:
  */
-public class WechatApp extends BaseApp {
+public final class WechatApp extends BaseApp {
     @Override
     public void initModuleApp(Application application) {
 

@@ -8,7 +8,7 @@ import com.knight.wanandroid.library_network.config.IRequestApi;
  * @Date 2021/4/29 15:39
  * @descript:
  */
-public class HierachyApi implements IRequestApi {
+public final class HierachyApi implements IRequestApi {
 
     @Override
     public String getApi() {

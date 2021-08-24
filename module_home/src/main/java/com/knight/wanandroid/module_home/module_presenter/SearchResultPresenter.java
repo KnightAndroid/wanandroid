@@ -12,7 +12,7 @@ import com.knight.wanandroid.module_home.module_entity.HomeArticleListEntity;
  * @Date 2021/5/6 18:42
  * @descript:
  */
-public class SearchResultPresenter extends SearchResultContract.SearchResultDataPresenter {
+public final class SearchResultPresenter extends SearchResultContract.SearchResultDataPresenter {
     @Override
     public void requestSearchResult(int page, String keyWords) {
         final SearchResultContract.SearchResultView mView = getView();

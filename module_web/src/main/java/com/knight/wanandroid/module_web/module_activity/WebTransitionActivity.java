@@ -41,7 +41,7 @@ import androidx.core.view.ViewCompat;
  */
 
 @Route(path = RoutePathActivity.Web.Web_Transition)
-public class WebTransitionActivity extends BaseDBActivity<WebTransitionActivityBinding> {
+public final class WebTransitionActivity extends BaseDBActivity<WebTransitionActivityBinding> {
 
 
 

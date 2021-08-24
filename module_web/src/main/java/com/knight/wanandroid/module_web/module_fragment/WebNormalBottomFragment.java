@@ -17,7 +17,7 @@ import com.knight.wanandroid.module_web.databinding.WebNormalBottomFragmentBindi
  * @Date 2021/6/16 9:33
  * @descript:
  */
-public class WebNormalBottomFragment extends BaseDBDialogFragment<WebNormalBottomFragmentBinding> {
+public final class WebNormalBottomFragment extends BaseDBDialogFragment<WebNormalBottomFragmentBinding> {
 
     private String url;
     private WebView mWebView;

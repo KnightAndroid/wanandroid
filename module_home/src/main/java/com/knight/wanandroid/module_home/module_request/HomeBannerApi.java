@@ -8,7 +8,7 @@ import com.knight.wanandroid.library_network.config.IRequestApi;
  * @Date 2021/4/7 16:21
  * @descript:首页顶部banner图
  */
-public class HomeBannerApi implements IRequestApi {
+public final class HomeBannerApi implements IRequestApi {
     @Override
     public String getApi() {
         return "banner/json";

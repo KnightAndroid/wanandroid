@@ -22,7 +22,7 @@ import java.util.List;
  * @Date 2021/4/12 20:11
  * @descript:
  */
-public class HomeArticleAdapter extends BaseQuickAdapter<HomeArticleEntity, BaseViewHolder> {
+public final class HomeArticleAdapter extends BaseQuickAdapter<HomeArticleEntity, BaseViewHolder> {
 
 
     public HomeArticleAdapter(@Nullable List<HomeArticleEntity> data) {

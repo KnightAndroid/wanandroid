@@ -36,7 +36,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  */
 
 @Route(path = RoutePathActivity.Mine.UserCoin_pager)
-public class MyPointDetailActivity extends BaseActivity<MineActivityDetailpointBinding, UserDetailCoinPresenter, UserDetailCoinModel> implements UserDetailCoinContract.DetailCoinView, OnRefreshListener, OnLoadMoreListener {
+public final class MyPointDetailActivity extends BaseActivity<MineActivityDetailpointBinding, UserDetailCoinPresenter, UserDetailCoinModel> implements UserDetailCoinContract.DetailCoinView, OnRefreshListener, OnLoadMoreListener {
 
 
     @Autowired(name = "userCoin")

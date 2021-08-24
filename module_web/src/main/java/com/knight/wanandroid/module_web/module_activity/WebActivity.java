@@ -45,7 +45,7 @@ import org.greenrobot.eventbus.EventBus;
  * @descript:
  */
 @Route(path = RoutePathActivity.Web.Web_Pager)
-public class WebActivity extends BaseActivity<WebActivityMainBinding, WebPresenter, WebModel> implements WebContract.WebView,LoveAnimatorRelativeLayout.onCollectListener {
+public final class WebActivity extends BaseActivity<WebActivityMainBinding, WebPresenter, WebModel> implements WebContract.WebView,LoveAnimatorRelativeLayout.onCollectListener {
 
     //文章url
     @Autowired(name = "webUrl")

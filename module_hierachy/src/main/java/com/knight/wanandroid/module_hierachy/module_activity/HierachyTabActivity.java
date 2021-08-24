@@ -25,7 +25,7 @@ import androidx.fragment.app.Fragment;
  * @descript:
  */
 @Route(path = RoutePathActivity.Hierachy.HierachyTab)
-public class HierachyTabActivity extends BaseDBActivity<HierachyActivityTabBinding> {
+public final class HierachyTabActivity extends BaseDBActivity<HierachyActivityTabBinding> {
 
 
     @Autowired(name = "childrenNames")

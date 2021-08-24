@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.knight.wanandroid.module_project.module_fragment.ProjectFragment">
+
     <data>
 
 
-
     </data>
+
     <LinearLayout
         android:id="@+id/project_ll_article"
         android:layout_width="match_parent"
@@ -27,17 +29,16 @@
                 android:layout_height="@dimen/base_dimen_40"
                 android:theme="@style/base_AppTheme.AppBarOverlay"
                 app:layout_scrollFlags="scroll|enterAlways"
-                app:popupTheme="@style/base_AppTheme.PopupOverlay"/>
+                app:popupTheme="@style/base_AppTheme.PopupOverlay" />
 
 
         </com.knight.wanandroid.library_widget.CompatToobar>
 
 
-
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/project_view_pager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
 
     </LinearLayout>

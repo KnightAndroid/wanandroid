@@ -17,7 +17,7 @@ import java.util.List;
  * @Date 2021/4/23 11:26
  * @descript:积分明细适配器
  */
-public class UserDetailCoinAdapter extends BaseQuickAdapter<UserDetailCoinEntity, BaseViewHolder> {
+public final class UserDetailCoinAdapter extends BaseQuickAdapter<UserDetailCoinEntity, BaseViewHolder> {
 
 
     public UserDetailCoinAdapter(@Nullable List<UserDetailCoinEntity> data) {

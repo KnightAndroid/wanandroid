@@ -12,7 +12,7 @@ import com.knight.wanandroid.module_project.module_entity.ProjectArticleListEnti
  * @Date 2021/4/27 18:02
  * @descript:项目列表
  */
-public class ProjectArticlePresenter extends ProjectArticleContract.ProjectArticleDataPresenter {
+public final class ProjectArticlePresenter extends ProjectArticleContract.ProjectArticleDataPresenter {
     @Override
     public void requestProjectArticle(int page, int cid,boolean isNewProject) {
         final ProjectArticleContract.ProjectArticleView mView = getView();

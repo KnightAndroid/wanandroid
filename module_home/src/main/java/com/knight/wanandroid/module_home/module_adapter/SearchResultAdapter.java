@@ -23,7 +23,7 @@ import org.jetbrains.annotations.NotNull;
  * @Date 2021/5/6 19:20
  * @descript:
  */
-public class SearchResultAdapter extends BaseMultiItemQuickAdapter<HomeArticleEntity, BaseViewHolder> {
+public final class SearchResultAdapter extends BaseMultiItemQuickAdapter<HomeArticleEntity, BaseViewHolder> {
 
     public SearchResultAdapter(){
         super(null);

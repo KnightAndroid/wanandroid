@@ -11,7 +11,7 @@ import java.util.List;
  * @Date 2021/4/25 19:44
  * @descript:广场列表
  */
-public class SquareArticleListEntity extends BaseEntity {
+public final class SquareArticleListEntity extends BaseEntity {
 
     private int curPage;
     private int offset;

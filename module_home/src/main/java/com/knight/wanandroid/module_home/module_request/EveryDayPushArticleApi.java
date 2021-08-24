@@ -9,7 +9,7 @@ import com.knight.wanandroid.library_network.config.IRequestApi;
  * @Date 2021/6/16 15:17
  * @descript:
  */
-public class EveryDayPushArticleApi implements IRequestApi {
+public final class EveryDayPushArticleApi implements IRequestApi {
 
     @HttpHeader
     private String requestUrl = "customServer";

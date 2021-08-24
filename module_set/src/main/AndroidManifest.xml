@@ -6,6 +6,7 @@
         <activity android:name=".module_activity.SetActivity" />
         <activity android:name=".module_activity.DarkModeActivity"/>
         <activity android:name=".module_activity.SelectLanguageActivity"/>
+        <activity android:name=".module_activity.ChangeTextSizeActivity"/>
     </application>
 
 </manifest>

@@ -8,7 +8,7 @@ import com.knight.wanandroid.library_base.entity.BaseEntity;
  * @Date 2021/6/30 14:50
  * @descript:
  */
-public class MessageEntity extends BaseEntity {
+public final class MessageEntity extends BaseEntity {
 
 
     /**

@@ -11,7 +11,7 @@ import java.util.List;
  * @Date 2021/6/30 14:51
  * @descript:
  */
-public class MessageListEntity extends BaseEntity {
+public final class MessageListEntity extends BaseEntity {
 
      private int curPage;
      private List<MessageEntity> datas;

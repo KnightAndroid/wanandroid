@@ -25,7 +25,7 @@ import java.util.List;
  * @Date 2021/4/29 16:58
  * @descript:右边具体内容适配器
  */
-public class HierachyClassifyDetailAdapter extends RvAdapter<HierachyRightBeanEntity>{
+public final class HierachyClassifyDetailAdapter extends RvAdapter<HierachyRightBeanEntity>{
 
     public HierachyClassifyDetailAdapter(Context context, List<HierachyRightBeanEntity> list, RvListener listener){
         super(context,list,listener);

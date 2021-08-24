@@ -17,7 +17,7 @@ import com.knight.wanandroid.module_hierachy.module_request.HierachyTabArticelAp
  * @Date 2021/5/12 17:24
  * @descript:
  */
-public class HierachyTabArticleModel implements HierachyTabContract.HierachyTabModel {
+public final class HierachyTabArticleModel implements HierachyTabContract.HierachyTabModel {
 
     @Override
     public void requestHierachyTabArticles(BaseFragment fragment, int page, int cid, MvpListener mvpListener) {

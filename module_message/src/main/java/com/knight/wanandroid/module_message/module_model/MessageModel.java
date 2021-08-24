@@ -16,7 +16,7 @@ import com.knight.wanandroid.module_message.module_request.MessageUnreadApi;
  * @Date 2021/6/30 15:03
  * @descript:
  */
-public class MessageModel implements MessageContract.MessageModel {
+public final class MessageModel implements MessageContract.MessageModel {
 
 
     @Override

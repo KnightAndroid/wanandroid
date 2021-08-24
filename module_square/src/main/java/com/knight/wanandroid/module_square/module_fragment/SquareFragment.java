@@ -70,7 +70,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  * @descript:广场页面
  */
 @Route(path = RoutePathFragment.Square.Square_Pager)
-public class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, SquarePresenter, SquareModel> implements SquareContact.SquareView, OnLoadMoreListener, OnRefreshListener {
+public final class SquareFragment extends BaseFragment<SquareFragmentSquareBinding, SquarePresenter, SquareModel> implements SquareContact.SquareView, OnLoadMoreListener, OnRefreshListener {
 
     private HotKeyAdapter mHotKeyAdapter;
     private SquareArticleAdapter mSquareArticleAdapter;

@@ -10,7 +10,7 @@ import com.knight.wanandroid.library_base.BaseApp;
  * @Date 2021/4/25 10:30
  * @descript:我的moduleApp
  */
-public class MineApp extends BaseApp {
+public final class MineApp extends BaseApp {
 
 
     @Override

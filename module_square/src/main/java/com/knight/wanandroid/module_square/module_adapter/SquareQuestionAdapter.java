@@ -26,7 +26,7 @@ import androidx.annotation.Nullable;
  * @Date 2021/5/17 14:08
  * @descript:问答
  */
-public class SquareQuestionAdapter extends BaseQuickAdapter<SquareQuestionEntity, BaseViewHolder> {
+public final class SquareQuestionAdapter extends BaseQuickAdapter<SquareQuestionEntity, BaseViewHolder> {
 
     public SquareQuestionAdapter(@Nullable List<SquareQuestionEntity> data){
         super(R.layout.base_text_item,data);

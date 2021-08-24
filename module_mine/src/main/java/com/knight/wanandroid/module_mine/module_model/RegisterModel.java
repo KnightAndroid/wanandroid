@@ -6,6 +6,7 @@ import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_network.GoHttp;
 import com.knight.wanandroid.library_network.listener.HttpCallback;
 import com.knight.wanandroid.library_network.model.HttpData;
+import com.knight.wanandroid.module_mine.R;
 import com.knight.wanandroid.module_mine.module_contract.RegisterContract;
 import com.knight.wanandroid.module_mine.module_request.RegisterApi;
 
@@ -17,13 +18,13 @@ import okhttp3.Call;
  * @Date 2021/4/22 16:50
  * @descript:
  */
-public class RegisterModel implements RegisterContract.RegisterModel {
+public final class RegisterModel implements RegisterContract.RegisterModel {
 
 
 
     @Override
     public void requestRegister(BaseActivity activity, String username,String password,String repassword,MvpListener mvpListener) {
-        activity.showLoadingHud("注册中...");
+        activity.showLoadingHud(activity.getString(R.string.mine_regist_request));
         GoHttp.post(activity)
                 .api(new RegisterApi().setUserName(username).setPassword(password).setRepassword(password))
                 .request(new HttpCallback<HttpData<UserInfoEntity>>(activity){

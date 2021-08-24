@@ -8,7 +8,7 @@ import com.knight.wanandroid.library_base.entity.BaseEntity;
  * @Date 2021/4/23 16:27
  * @descript:
  */
-public class CoinRankEntity extends BaseEntity {
+public final class CoinRankEntity extends BaseEntity {
 
 
     /**

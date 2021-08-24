@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/base_dimen_16"
@@ -24,7 +25,7 @@
             android:paddingRight="@dimen/base_dimen_8"
             android:text="232323"
             android:textColor="@color/base_color_999999"
-            android:textSize="@dimen/base_dimen_12"
+            android:textSize="@dimen/base_dimen_text_size_12"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,7 +42,7 @@
             android:paddingBottom="@dimen/base_dimen_2"
             android:text="广泛他"
             android:textColor="@color/base_color_theme"
-            android:textSize="@dimen/base_dimen_12"
+            android:textSize="@dimen/base_dimen_text_size_12"
             app:layout_constraintBottom_toBottomOf="@id/base_item_articleauthor"
             app:layout_constraintLeft_toRightOf="@id/base_item_articleauthor"
             app:layout_constraintTop_toTopOf="@id/base_item_articleauthor"/>
@@ -55,7 +56,7 @@
             android:layout_marginRight="@dimen/base_dimen_8"
             android:text="这是标题标题这是标题标题这是标题标题这是标题标题这是标题标题"
             android:textColor="@color/base_color_title"
-            android:textSize="@dimen/base_dimen_16"
+            android:textSize="@dimen/base_dimen_text_size_16"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -69,7 +70,7 @@
             android:layout_marginTop="@dimen/base_dimen_10"
             android:text="一天前"
             android:textColor="@color/base_color_999999"
-            android:textSize="@dimen/base_dimen_12"
+            android:textSize="@dimen/base_dimen_text_size_12"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/base_tv_articletitle" />
 

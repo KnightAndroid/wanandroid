@@ -14,7 +14,7 @@ import java.util.List;
  * @Date 2021/4/12 19:33
  * @descript:
  */
-public class HomeArticleEntity extends BaseEntity implements MultiItemEntity {
+public final class HomeArticleEntity extends BaseEntity implements MultiItemEntity {
 
     /**
      * apkLink :

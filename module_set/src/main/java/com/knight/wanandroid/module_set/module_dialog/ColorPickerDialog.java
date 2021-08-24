@@ -33,7 +33,7 @@ import java.util.Locale;
  * @Date 2021/7/27 15:08
  * @descript:
  */
-public class ColorPickerDialog extends Dialog implements ColorPickerView.OnColorChangedListener, View.OnClickListener {
+public final class ColorPickerDialog extends Dialog implements ColorPickerView.OnColorChangedListener, View.OnClickListener {
     private OnColorPickedListener mListener;
     private ColorPickerView set_color_picker_view;
     private EditText et_color;

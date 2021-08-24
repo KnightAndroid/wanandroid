@@ -17,7 +17,7 @@ import com.knight.wanandroid.module_home.module_request.SearchKeywordsApi;
  * @Date 2021/5/6 18:13
  * @descript:
  */
-public class SearchResultModel implements SearchResultContract.SearchResultModel {
+public final class SearchResultModel implements SearchResultContract.SearchResultModel {
     @Override
     public void requestSerchArticle(BaseActivity activity, int page, String keyWords, MvpListener mvpListener) {
         GoHttp.post(activity)

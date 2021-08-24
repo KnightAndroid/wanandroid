@@ -33,13 +33,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  * @descript:体系fragment
  */
 @Route(path = RoutePathFragment.Hierachy.Hierachy_Pager)
-public class HierachyFragment extends BaseFragment<HierachyFragmentMainBinding, HierachyPresenter, HierachyModel> implements HierachyContract.HierachyView, CheckListener {
+public final class HierachyFragment extends BaseFragment<HierachyFragmentMainBinding, HierachyPresenter, HierachyModel> implements HierachyContract.HierachyView, CheckListener {
 
     private HierachyLeftBarAdapter mHierachyLeftBarAdapter;
     private LinearLayoutManager mLinearLayoutManager;
     private List<HierachyListEntity> mHierachyListEntities;
     private HierachyRightFragment mHierachyRightFragment;
-    private int targetPosition;//点击左边某一个具体的item的位置
+    /**
+     * 点击左边某一个具体的item的位置
+     */
+    private int targetPosition;
     private boolean isMoved;
 
     @Override

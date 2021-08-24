@@ -12,7 +12,7 @@ import com.knight.wanandroid.module_mine.module_entity.OtherShareArticleListEnti
  * @Date 2021/5/20 19:00
  * @descript:
  */
-public class OtherShareArticlePresenter extends OtherArticleContract.OtherShareArticleDataPresenter {
+public final class OtherShareArticlePresenter extends OtherArticleContract.OtherShareArticleDataPresenter {
     @Override
     public void requestOtherShareArticle(int uid, int page) {
         final OtherArticleContract.OtherShareArticleView mView = getView();

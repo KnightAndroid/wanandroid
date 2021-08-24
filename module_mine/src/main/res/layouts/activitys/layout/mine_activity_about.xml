@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.knight.wanandroid.module_mine.module_activity.AboutActivity">
+
     <data>
 
 
@@ -18,44 +20,44 @@
 
         <include
             android:id="@+id/mine_include_about"
-            layout="@layout/base_include_toolbar"/>
+            layout="@layout/base_include_toolbar" />
 
 
         <TextView
             android:id="@+id/mine_tv_app_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/base_dimen_24"
+            android:layout_marginTop="@dimen/base_dimen_20"
             android:text="@string/base_app"
-            app:layout_constraintTop_toBottomOf="@id/mine_include_about"
+            android:textColor="@color/base_color_theme"
+            android:textSize="@dimen/base_dimen_text_size_24"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:textColor="@color/base_color_theme"
-            android:layout_marginTop="@dimen/base_dimen_20"/>
+            app:layout_constraintTop_toBottomOf="@id/mine_include_about" />
 
         <TextView
             android:id="@+id/mine_tv_app_version"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/base_dimen_16"
+            android:text="1.0.0(2323)"
             android:textColor="@color/base_color_999999"
-            app:layout_constraintTop_toBottomOf="@id/mine_tv_app_name"
-            app:layout_constraintRight_toRightOf="parent"
+            android:textSize="@dimen/base_dimen_text_size_16"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:text="1.0.0(2323)"/>
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mine_tv_app_name" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/mine_cv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/base_dimen_20"
+            android:layout_marginTop="@dimen/base_dimen_20"
+            android:layout_marginRight="@dimen/base_dimen_20"
+            app:cardBackgroundColor="@color/base_bg_card"
             app:cardCornerRadius="@dimen/base_dimen_6"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginTop="@dimen/base_dimen_20"
-            app:layout_constraintTop_toBottomOf="@id/mine_tv_app_version"
-            app:cardBackgroundColor="@color/base_bg_card"
-            android:layout_marginLeft="@dimen/base_dimen_20"
-            android:layout_marginRight="@dimen/base_dimen_20">
+            app:layout_constraintTop_toBottomOf="@id/mine_tv_app_version">
 
 
             <LinearLayout
@@ -80,14 +82,13 @@
                         android:layout_height="wrap_content"
                         android:text="@string/mine_update_record"
                         android:textColor="@android:color/white"
-                        android:textSize="@dimen/base_dimen_18"
-                        />
+                        android:textSize="@dimen/base_dimen_text_size_18" />
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:background="@drawable/mine_iv_arrow"/>
+                        android:background="@drawable/mine_iv_arrow" />
 
                 </RelativeLayout>
 
@@ -97,29 +98,26 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/base_dimen_20"
                     android:layout_marginBottom="@dimen/base_dimen_20"
-                    android:onClick="@{()->click.getCheckUpdate()}"
-                    >
+                    android:onClick="@{()->click.getCheckUpdate()}">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/mine_check_update"
                         android:textColor="@android:color/white"
-                        android:textSize="@dimen/base_dimen_18"
-                        />
-
+                        android:textSize="@dimen/base_dimen_text_size_18" />
 
 
                     <TextView
                         android:id="@+id/mine_tv_newversion"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/base_dimen_14"
-                        android:textColor="@android:color/white"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
+                        android:drawableRight="@drawable/mine_iv_arrow"
                         android:gravity="center"
-                        android:drawableRight="@drawable/mine_iv_arrow"/>
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/base_dimen_text_size_14" />
 
 
                 </RelativeLayout>
@@ -130,12 +128,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="@dimen/base_dimen_20"
+            android:gravity="center"
             android:orientation="vertical"
-            android:gravity="center">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -148,19 +146,18 @@
                     android:id="@+id/mine_tv_service_protocol"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/mine_service_protocol"
-                    android:onClick="@{()->click.goUserAgree()}"/>
+                    android:onClick="@{()->click.goUserAgree()}"
+                    android:text="@string/mine_service_protocol" />
 
 
                 <TextView
                     android:id="@+id/mine_tv_privacy_protocol"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/mine_tv_service_protocol"
                     android:layout_marginLeft="@dimen/base_dimen_10"
-                    android:text="@string/mine_privacy_protocol"
-                    android:onClick="@{()->click.gouserprivacy()}"  />
-
+                    android:layout_toRightOf="@id/mine_tv_service_protocol"
+                    android:onClick="@{()->click.gouserprivacy()}"
+                    android:text="@string/mine_privacy_protocol" />
 
 
             </RelativeLayout>
@@ -168,11 +165,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Copyright©2020-2021 wanandroid All Rights Reserved"/>
+                android:text="Copyright©2020-2021 wanandroid All Rights Reserved" />
 
 
         </LinearLayout>
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -27,4 +27,16 @@
     <dimen name="base_dimen_80">80dp</dimen>
     <dimen name="base_dimen_100">100dp</dimen>
     <dimen name="base_dimen_150">150dp</dimen>
+
+    <!-- 字体大小设置 -->
+    <dimen name="base_dimen_text_size_12">12sp</dimen>
+    <dimen name="base_dimen_text_size_14">14sp</dimen>
+    <dimen name="base_dimen_text_size_15">15sp</dimen>
+    <dimen name="base_dimen_text_size_16">16sp</dimen>
+    <dimen name="base_dimen_text_size_18">18sp</dimen>
+    <dimen name="base_dimen_text_size_20">20sp</dimen>
+    <dimen name="base_dimen_text_size_24">24sp</dimen>
+    <dimen name="base_dimen_text_size_26">26sp</dimen>
+
+    <dimen name="base_standard_text_size">16px</dimen>
 </resources>

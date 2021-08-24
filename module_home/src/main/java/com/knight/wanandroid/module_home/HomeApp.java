@@ -10,7 +10,7 @@ import com.knight.wanandroid.library_base.BaseApp;
  * @Date 2021/3/29 16:46
  * @descript: home module下的application
  */
-public class HomeApp extends BaseApp {
+public final class HomeApp extends BaseApp {
 
 
 

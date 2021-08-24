@@ -49,7 +49,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  */
 
 @Route(path = RoutePathActivity.Home.search)
-public class SearchActivity extends BaseActivity<HomeSearchActivityBinding, SearchPresenter, SearchModel> implements SearchContract.SearchView {
+public final class SearchActivity extends BaseActivity<HomeSearchActivityBinding, SearchPresenter, SearchModel> implements SearchContract.SearchView {
 
     //热词适配器
     private HomeHotKeyAdapter mHomeHotKeyAdapter;

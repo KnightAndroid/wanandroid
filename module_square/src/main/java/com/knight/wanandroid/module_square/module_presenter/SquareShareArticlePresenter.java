@@ -10,7 +10,7 @@ import com.knight.wanandroid.module_square.module_contract.SquareShareArticleCon
  * @Date 2021/5/7 16:21
  * @descript:
  */
-public class SquareShareArticlePresenter extends SquareShareArticleContact.SquareSharedataPresenter {
+public final class SquareShareArticlePresenter extends SquareShareArticleContact.SquareSharedataPresenter {
     @Override
     public void requestShareArticle(String title,String link) {
         final SquareShareArticleContact.SquareShareArticleView mView = getView();

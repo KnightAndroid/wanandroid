@@ -24,7 +24,7 @@ import java.util.List;
  * @Date 2021/5/6 17:06
  * @descript:
  */
-public class HomeHotKeyAdapter extends BaseQuickAdapter<SearchHotKeyEntity, BaseViewHolder> {
+public final class HomeHotKeyAdapter extends BaseQuickAdapter<SearchHotKeyEntity, BaseViewHolder> {
 
 
 

@@ -44,7 +44,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  * @descript:
  */
 @Route(path = RoutePathFragment.Project.Project_Child_Pager)
-public class ProjectViewpagerFragment extends BaseFragment<ProjectViewpagerFragmentBinding, ProjectArticlePresenter, ProjectArticleModel> implements ProjectArticleContract.ProjectArticleView, OnRefreshListener, OnLoadMoreListener {
+public final class ProjectViewpagerFragment extends BaseFragment<ProjectViewpagerFragmentBinding, ProjectArticlePresenter, ProjectArticleModel> implements ProjectArticleContract.ProjectArticleView, OnRefreshListener, OnLoadMoreListener {
 
     private int page = 1;
     private int cid;

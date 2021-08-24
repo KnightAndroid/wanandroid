@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.knight.wanandroid.module_set.module_activity.SetActivity">
 
     <data>
 
@@ -9,9 +13,7 @@
     </data>
 
 
-    <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/set_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -33,7 +35,7 @@
                 android:layout_marginLeft="@dimen/base_dimen_26"
                 android:text="@string/set_basic"
                 android:textColor="@color/base_color_theme"
-                android:textSize="@dimen/base_dimen_16" />
+                android:textSize="@dimen/base_dimen_text_size_16" />
 
             <RelativeLayout
                 android:id="@+id/set_rl_darkmode"
@@ -49,7 +51,7 @@
                     android:tag="oneLevelText"
                     android:text="@string/set_dark_mode"
                     android:textColor="@color/base_color_title"
-                    android:textSize="@dimen/base_dimen_18" />
+                    android:textSize="@dimen/base_dimen_text_size_18" />
 
 
                 <TextView
@@ -63,7 +65,7 @@
                     android:gravity="center"
                     android:text="@string/set_dark_close"
                     android:textColor="@color/base_second_title"
-                    android:textSize="@dimen/base_dimen_16" />
+                    android:textSize="@dimen/base_dimen_text_size_16" />
 
 
             </RelativeLayout>
@@ -83,7 +85,7 @@
                     android:tag="oneLevelText"
                     android:text="@string/set_status_theme"
                     android:textColor="@color/base_color_title"
-                    android:textSize="@dimen/base_dimen_18" />
+                    android:textSize="@dimen/base_dimen_text_size_18" />
 
 
                 <TextView
@@ -122,7 +124,7 @@
                     android:tag="oneLevelText"
                     android:text="@string/set_theme_color"
                     android:textColor="@color/base_color_title"
-                    android:textSize="@dimen/base_dimen_18" />
+                    android:textSize="@dimen/base_dimen_text_size_18" />
 
 
                 <TextView
@@ -157,7 +159,7 @@
                     android:tag="oneLevelText"
                     android:text="@string/set_eyecare"
                     android:textColor="@color/base_color_title"
-                    android:textSize="@dimen/base_dimen_18" />
+                    android:textSize="@dimen/base_dimen_text_size_18" />
 
                 <CheckBox
                     android:id="@+id/set_cb_eyecare"
@@ -178,7 +180,7 @@
                 android:layout_marginTop="@dimen/base_dimen_30"
                 android:text="@string/set_common"
                 android:textColor="@color/base_color_theme"
-                android:textSize="@dimen/base_dimen_16" />
+                android:textSize="@dimen/base_dimen_text_size_16" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -191,10 +193,9 @@
                     android:id="@+id/set_tv_Multilingual"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tag="oneLevelText"
                     android:text="@string/set_more_language"
                     android:textColor="@color/base_color_title"
-                    android:textSize="@dimen/base_dimen_18" />
+                    android:textSize="@dimen/base_dimen_text_size_18" />
 
 
                 <TextView
@@ -205,6 +206,31 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/base_dimen_20"
                     android:drawableRight="@drawable/base_iv_userinfo_arrow" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base_dimen_26"
+                android:layout_marginTop="@dimen/base_dimen_20"
+                android:onClick="@{()->click.goChangeTextSize()}">
+
+
+                <TextView
+                    android:id="@+id/set_tv_changetextsize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/set_changetextsize"
+                    android:textColor="@color/base_color_title"
+                    android:textSize="@dimen/base_dimen_text_size_18" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/base_dimen_20"
+                    android:background="@drawable/base_iv_userinfo_arrow" />
             </RelativeLayout>
 
 
@@ -222,7 +248,7 @@
                     android:tag="oneLevelText"
                     android:text="@string/set_clear_cache"
                     android:textColor="@color/base_color_title"
-                    android:textSize="@dimen/base_dimen_18" />
+                    android:textSize="@dimen/base_dimen_text_size_18" />
 
 
                 <TextView
@@ -251,7 +277,7 @@
                 android:layout_marginTop="@dimen/base_dimen_30"
                 android:text="@string/set_other"
                 android:textColor="@color/base_color_theme"
-                android:textSize="@dimen/base_dimen_16" />
+                android:textSize="@dimen/base_dimen_text_size_16" />
 
             <!--本项目仓库-->
             <RelativeLayout
@@ -268,7 +294,7 @@
                     android:tag="oneLevelText"
                     android:text="@string/set_project_repository"
                     android:textColor="@color/base_color_title"
-                    android:textSize="@dimen/base_dimen_18" />
+                    android:textSize="@dimen/base_dimen_text_size_18" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -293,7 +319,7 @@
                     android:tag="oneLevelText"
                     android:text="@string/set_official_website"
                     android:textColor="@color/base_color_title"
-                    android:textSize="@dimen/base_dimen_18" />
+                    android:textSize="@dimen/base_dimen_text_size_18" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -320,7 +346,7 @@
                     android:tag="oneLevelText"
                     android:text="@string/set_about_wanandroid"
                     android:textColor="@color/base_color_title"
-                    android:textSize="@dimen/base_dimen_18" />
+                    android:textSize="@dimen/base_dimen_text_size_18" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -347,7 +373,7 @@
                     android:tag="oneLevelText"
                     android:text="@string/set_quit_account"
                     android:textColor="@color/base_color_title"
-                    android:textSize="@dimen/base_dimen_18" />
+                    android:textSize="@dimen/base_dimen_text_size_18" />
 
 
                 <TextView

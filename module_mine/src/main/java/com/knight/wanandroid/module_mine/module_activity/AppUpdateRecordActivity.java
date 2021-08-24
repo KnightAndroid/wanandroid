@@ -29,7 +29,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  * @descript:
  */
 @Route(path = RoutePathActivity.Mine.AppUpdate_Pager)
-public class AppUpdateRecordActivity extends BaseActivity<MineActivityUpdaterecordBinding, AppUpdateRecordPresenter, AppUpdateRecordModel> implements AppUpdateRecordContract.AppUpdateRecordView,OnRefreshListener {
+public final class AppUpdateRecordActivity extends BaseActivity<MineActivityUpdaterecordBinding, AppUpdateRecordPresenter, AppUpdateRecordModel> implements AppUpdateRecordContract.AppUpdateRecordView,OnRefreshListener {
 
     private VersionRecordAdapter mVersionRecordAdapter;
     @Override

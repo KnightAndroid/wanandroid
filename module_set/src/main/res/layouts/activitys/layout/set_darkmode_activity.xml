@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:bind="http://schemas.android.com/tools">
-
+    xmlns:bind="http://schemas.android.com/tools"
+    bind:context="com.knight.wanandroid.module_set.module_activity.DarkModeActivity">
 
 
     <data>
@@ -15,8 +15,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <include
             android:id="@+id/include_darkmode_toolbar"
@@ -25,9 +24,9 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/base_dimen_70"
+            android:background="@color/base_bg_normal_default"
             android:paddingLeft="@dimen/base_dimen_16"
-            android:paddingRight="@dimen/base_dimen_16"
-            android:background="@color/base_bg_normal_default">
+            android:paddingRight="@dimen/base_dimen_16">
 
 
             <RelativeLayout
@@ -44,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/set_follow_system"
                     android:textColor="@color/base_color_title"
-                    android:textSize="@dimen/base_dimen_16"></TextView>
+                    android:textSize="@dimen/base_dimen_text_size_16"></TextView>
 
 
                 <TextView
@@ -53,11 +52,11 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/set_tv_follow_system"
                     android:layout_marginTop="@dimen/base_dimen_2"
+                    android:layout_marginRight="@dimen/base_dimen_2"
+                    android:layout_toLeftOf="@+id/set_cb_select_system"
                     android:text="@string/set_followsystem_tip"
                     android:textColor="@color/base_color_999999"
-                    android:textSize="@dimen/base_dimen_14"
-                    android:layout_toLeftOf="@+id/set_cb_select_system"
-                    android:layout_marginRight="@dimen/base_dimen_2"/>
+                    android:textSize="@dimen/base_dimen_text_size_14" />
 
 
                 <CheckBox
@@ -67,7 +66,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:button="@drawable/set_selectdark_selector"
-                    bind:checkChange="@{click.onCheckedChangeAllowSystem}"/>
+                    bind:checkChange="@{click.onCheckedChangeAllowSystem}" />
 
 
             </RelativeLayout>
@@ -76,16 +75,15 @@
         </RelativeLayout>
 
 
-
         <TextView
             android:id="@+id/set_tv_manual_system"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/base_dimen_14"
+            android:layout_marginLeft="@dimen/base_dimen_24"
+            android:layout_marginTop="@dimen/base_dimen_10"
             android:text="@string/set_manual_select"
             android:textColor="@color/base_color_999999"
-            android:layout_marginLeft="@dimen/base_dimen_24"
-            android:layout_marginTop="@dimen/base_dimen_10"/>
+            android:textSize="@dimen/base_dimen_text_size_14" />
 
 
         <RelativeLayout
@@ -93,11 +91,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/base_dimen_5"
-            android:paddingRight="@dimen/base_dimen_24"
-            android:paddingLeft="@dimen/base_dimen_24"
             android:background="@color/base_bg_normal_default"
-            >
-
+            android:paddingLeft="@dimen/base_dimen_24"
+            android:paddingRight="@dimen/base_dimen_24">
 
 
             <com.yanzhenjie.recyclerview.SwipeRecyclerView

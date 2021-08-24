@@ -43,4 +43,6 @@
     <string name="mine_please_login">请登录</string>
     <string name="mine_nodata_gradle">等级 -</string>
     <string name="mine_nodata_rank">排名第 -</string>
+    <string name="mine_login_request">登录请求中...</string>
+    <string name="mine_regist_request">注册中...</string>
 </resources>

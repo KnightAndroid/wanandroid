@@ -8,7 +8,7 @@ import com.knight.wanandroid.library_network.config.IRequestApi;
  * @Date 2021/5/17 14:56
  * @descript:
  */
-public class SquareQuestionApi implements IRequestApi {
+public final class SquareQuestionApi implements IRequestApi {
     private int page;
     public int getPage() {
         return page;

@@ -28,7 +28,7 @@ import com.knight.wanandroid.module_mine.module_presenter.RegisterPresenter;
  * @descript:注册页面
  */
 @Route(path = RoutePathActivity.Mine.Register_Pager)
-public class RegisterActivity extends BaseActivity<MineActivityRegisterBinding, RegisterPresenter, RegisterModel> implements RegisterContract.RegisterView {
+public final class RegisterActivity extends BaseActivity<MineActivityRegisterBinding, RegisterPresenter, RegisterModel> implements RegisterContract.RegisterView {
     private SoftInputScrollUtils mSoftInputScrollUtils;
 
 

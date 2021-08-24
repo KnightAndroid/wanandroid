@@ -10,7 +10,7 @@ import java.util.List;
  * @Date 2021/4/30 14:25
  * @descript:
  */
-public class NavigateChildrenEntity extends BaseEntity {
+public final class NavigateChildrenEntity extends BaseEntity {
 
     /**
      * apkLink :

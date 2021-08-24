@@ -10,7 +10,7 @@ import java.util.List;
  * @Date 2021/5/17 14:22
  * @descript:
  */
-public class SquareQuestionEntity extends BaseEntity {
+public final class SquareQuestionEntity extends BaseEntity {
 
 
     /**

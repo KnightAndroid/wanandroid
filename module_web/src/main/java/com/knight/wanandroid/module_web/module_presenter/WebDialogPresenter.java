@@ -11,7 +11,7 @@ import com.knight.wanandroid.module_web.module_contract.WebDialogContract;
  * @Date 2021/5/20 11:27
  * @descript:
  */
-public class WebDialogPresenter extends WebDialogContract.WebDialogDataPresenter {
+public final class WebDialogPresenter extends WebDialogContract.WebDialogDataPresenter {
     @Override
     public void requestCollectArticle(int collectArticleId) {
         final WebDialogContract.WebDialogView mView = getView();

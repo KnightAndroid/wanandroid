@@ -40,13 +40,12 @@ import androidx.recyclerview.widget.RecyclerView;
  * @descript:右边选择
  */
 @Route(path = RoutePathFragment.Hierachy.Hierachy_Right)
-public class HierachyRightFragment extends BaseFragment<HierachyRightFragmentBinding, HierachyPresenter, HierachyModel> implements HierachyContract.HierachyView, CheckListener {
+public final class HierachyRightFragment extends BaseFragment<HierachyRightFragmentBinding, HierachyPresenter, HierachyModel> implements HierachyContract.HierachyView, CheckListener {
     private HierachyClassifyDetailAdapter mHierachyClassifyDetailAdapter;
     private ArrayList<HierachyRightBeanEntity> mDatas = new ArrayList<>();
     private ItemHeaderDecoration mDecoration;
     private boolean move = false;
     private int mIndex = 0;
-  //  private GridLayoutManager mManager;
     private CheckListener checkListener;
     private boolean isNavigate;
     private FlexboxLayoutManager mManager;

@@ -17,7 +17,7 @@ import okhttp3.Call;
  * @Date 2021/4/14 19:12
  * @descript:
  */
-public class MineModel implements MineContract.MineModel {
+public final class MineModel implements MineContract.MineModel {
 
 
     @Override

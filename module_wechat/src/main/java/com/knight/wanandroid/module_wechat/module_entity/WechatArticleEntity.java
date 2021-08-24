@@ -10,7 +10,7 @@ import java.util.List;
  * @Date 2021/5/14 14:22
  * @descript:
  */
-public class WechatArticleEntity extends BaseEntity {
+public final class WechatArticleEntity extends BaseEntity {
 
 
     /**

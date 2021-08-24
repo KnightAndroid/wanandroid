@@ -8,7 +8,7 @@ import com.knight.wanandroid.library_network.config.IRequestApi;
  * @Date 2021/6/30 15:05
  * @descript:
  */
-public class MessageReadedApi implements IRequestApi {
+public final class MessageReadedApi implements IRequestApi {
 
     private int page;
 

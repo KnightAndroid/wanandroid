@@ -23,7 +23,7 @@ import org.jetbrains.annotations.NotNull;
  * @Date 2021/5/12 16:59
  * @descript:
  */
-public class HierachyTabAdapter extends BaseMultiItemQuickAdapter<HierachyTabArticleEntity, BaseViewHolder> {
+public final class HierachyTabAdapter extends BaseMultiItemQuickAdapter<HierachyTabArticleEntity, BaseViewHolder> {
 
     public HierachyTabAdapter(){
         super(null);

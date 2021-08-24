@@ -8,7 +8,7 @@ import com.knight.wanandroid.library_network.config.IRequestApi;
  * @Date 2021/7/1 11:25
  * @descript:未读消息api
  */
-public class MessageUnreadApi implements IRequestApi {
+public final class MessageUnreadApi implements IRequestApi {
 
     private int page;
 

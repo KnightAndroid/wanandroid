@@ -18,7 +18,7 @@ import java.util.List;
  * @Date 2021/5/24 11:18
  * @descript:
  */
-public class TopArticleAroundAdapter extends BaseQuickAdapter<TopArticleEntity, BaseViewHolder> {
+public final class TopArticleAroundAdapter extends BaseQuickAdapter<TopArticleEntity, BaseViewHolder> {
 
 
     private int selectItem;

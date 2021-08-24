@@ -32,7 +32,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  * @descript:导航页面
  */
 @Route(path = RoutePathFragment.Hierachy.Navigate_pager)
-public class NavigateFragment extends BaseFragment<HierachyFragmentMainBinding, NavigatePresenter, NavigateModel> implements NavigateContract.NavigateView, CheckListener {
+public final class NavigateFragment extends BaseFragment<HierachyFragmentMainBinding, NavigatePresenter, NavigateModel> implements NavigateContract.NavigateView, CheckListener {
 
 
     private HierachyLeftBarAdapter mNavigateLeftBarAdapter;

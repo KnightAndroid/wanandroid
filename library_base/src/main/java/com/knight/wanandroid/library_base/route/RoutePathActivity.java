@@ -118,6 +118,7 @@ public class RoutePathActivity {
        public static final String Set_pager = Set + "/set_pager";
        public static final String Set_DarkMode = Set + "/set_darkmode_pager";
        public static final String Set_Language = Set + "/set_language_pager";
+       public static final String Set_ChangeTextSize = Set + "/set_changetextsize_pager";
     }
 
 

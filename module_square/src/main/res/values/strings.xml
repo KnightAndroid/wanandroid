@@ -20,6 +20,7 @@
     <string name="square_title_noempty">文章标题不能为空</string>
     <string name="square_link_noempty">文章链接不能为空</string>
     <string name="square_linkstart_rule">文章链接必须是http或者是https开头</string>
+    <string name="square_sharearticle_loading">分享文章中,请稍后...</string>
 
 
 </resources>

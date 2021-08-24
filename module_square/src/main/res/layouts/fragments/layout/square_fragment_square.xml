@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.knight.wanandroid.module_square.module_fragment.SquareFragment">
 
     <data>
 
@@ -52,7 +53,7 @@
                         android:layout_marginLeft="@dimen/base_dimen_16"
                         android:text="@string/square_click_share"
                         android:textColor="@color/base_color_title"
-                        android:textSize="@dimen/base_dimen_16"
+                        android:textSize="@dimen/base_dimen_text_size_16"
                         app:layout_constraintRight_toLeftOf="@+id/square_tv_goshare"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -66,7 +67,7 @@
                         android:onClick="@{()->click.goShareArticle()}"
                         android:text="@string/square_share_article"
                         android:textColor="@color/square_white"
-                        android:textSize="@dimen/base_dimen_16"
+                        android:textSize="@dimen/base_dimen_text_size_16"
                         app:layout_constraintBottom_toBottomOf="@id/square_tv_tipshare"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="@id/square_tv_tipshare"
@@ -82,7 +83,7 @@
                         android:layout_marginTop="@dimen/base_dimen_6"
                         android:text="@string/square_share_addcoins"
                         android:textColor="@color/base_color_title"
-                        android:textSize="@dimen/base_dimen_16"
+                        android:textSize="@dimen/base_dimen_text_size_16"
                         app:layout_constraintLeft_toLeftOf="@id/square_tv_tipshare"
                         app:layout_constraintTop_toBottomOf="@id/square_tv_tipshare" />
 
@@ -129,7 +130,7 @@
                             android:layout_marginTop="@dimen/base_dimen_10"
                             android:text="@string/square_every_one_search"
                             android:textColor="@color/base_color_title"
-                            android:textSize="@dimen/base_dimen_18" />
+                            android:textSize="@dimen/base_dimen_text_size_18" />
 
                         <com.yanzhenjie.recyclerview.SwipeRecyclerView
                             android:id="@+id/square_searchhot_rv"
@@ -146,7 +147,7 @@
                             android:layout_marginLeft="@dimen/base_dimen_16"
                             android:text="@string/square_new_sharearticle"
                             android:textColor="@color/base_color_title"
-                            android:textSize="@dimen/base_dimen_18" />
+                            android:textSize="@dimen/base_dimen_text_size_18" />
 
 
                         <com.yanzhenjie.recyclerview.SwipeRecyclerView

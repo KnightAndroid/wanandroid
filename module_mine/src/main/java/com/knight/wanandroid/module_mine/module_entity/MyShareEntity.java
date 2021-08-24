@@ -9,7 +9,7 @@ import com.knight.wanandroid.library_base.entity.UserInfoEntity;
  * @Date 2021/5/8 13:58
  * @descript:
  */
-public class MyShareEntity extends BaseEntity {
+public final class MyShareEntity extends BaseEntity {
 
 
     private UserInfoEntity coinInfo;

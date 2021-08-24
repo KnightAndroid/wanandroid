@@ -11,7 +11,7 @@ import java.util.List;
  * @Date 2021/5/14 14:21
  * @descript:
  */
-public class WechatArticleListEntity extends BaseEntity {
+public final class WechatArticleListEntity extends BaseEntity {
 
     private int curPage;
     private int offset;

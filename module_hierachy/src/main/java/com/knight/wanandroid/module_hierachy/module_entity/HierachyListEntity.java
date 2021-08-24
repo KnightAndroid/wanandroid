@@ -11,7 +11,7 @@ import java.util.List;
  * @Date 2021/4/29 15:24
  * @descript:体系数据模型
  */
-public class HierachyListEntity extends BaseEntity  {
+public final class HierachyListEntity extends BaseEntity  {
 
     private String name;
 

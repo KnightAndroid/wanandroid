@@ -31,4 +31,8 @@
     <string name="set_clearcache_tip">确定要删除所有缓存?</string>
     <string name="set_clearchae_successfully">清除缓存成功</string>
     <string name="set_more_language">多语言</string>
+    <string name="set_changetextsize_tip">拖动下面的滑块，可设置字体大小</string>
+    <string name="set_changetextsize">字体大小</string>
+    <string name="set_logout">退出登录中...</string>
+
 </resources>

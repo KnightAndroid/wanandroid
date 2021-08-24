@@ -11,7 +11,7 @@ import com.knight.wanandroid.module_mine.module_contract.LoginContract;
  * @Date 2021/4/19 18:27
  * @descript:
  */
-public class LoginPresenter extends LoginContract.LoginDataPresenter {
+public final class LoginPresenter extends LoginContract.LoginDataPresenter {
     @Override
     public void requestUserInfo(String username, String password) {
         final LoginContract.LoginView mView = getView();

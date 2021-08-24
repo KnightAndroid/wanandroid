@@ -5,6 +5,7 @@ import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_network.GoHttp;
 import com.knight.wanandroid.library_network.listener.HttpCallback;
 import com.knight.wanandroid.library_network.model.HttpData;
+import com.knight.wanandroid.module_square.R;
 import com.knight.wanandroid.module_square.module_contract.SquareShareArticleContact;
 import com.knight.wanandroid.module_square.module_request.SquareShareArticleApi;
 
@@ -16,11 +17,11 @@ import okhttp3.Call;
  * @Date 2021/5/7 16:05
  * @descript:
  */
-public class SquareShareArticleModel implements SquareShareArticleContact.SquareShareArticleModel {
+public final class SquareShareArticleModel implements SquareShareArticleContact.SquareShareArticleModel {
     @Override
     public void requestShareArticle(BaseActivity activity, String title,String link,MvpListener mvpListener) {
 
-        activity.showLoadingHud("分享文章中,请稍后...");
+        activity.showLoadingHud(activity.getString(R.string.square_sharearticle_loading));
         GoHttp.post(activity)
                 .api(new SquareShareArticleApi().setTitle(title).setLink(link))
                 .request(new HttpCallback<HttpData>(activity){

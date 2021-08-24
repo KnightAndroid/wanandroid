@@ -15,7 +15,7 @@ import com.knight.wanandroid.module_mine.module_request.UserDetailCoinApi;
  * @Date 2021/4/23 11:04
  * @descript:
  */
-public class UserDetailCoinModel implements UserDetailCoinContract.DetailCoinModel {
+public final class UserDetailCoinModel implements UserDetailCoinContract.DetailCoinModel {
     @Override
     public void requestUserDetailCoin(BaseActivity activity, int page, MvpListener mvpListener) {
         GoHttp.get(activity)

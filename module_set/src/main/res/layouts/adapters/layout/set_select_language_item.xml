@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/base_dimen_54">
+    android:layout_height="@dimen/base_dimen_54"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.knight.wanandroid.module_set.module_adapter.SelectLanguageAdapter">
 
 
     <TextView
@@ -11,7 +13,7 @@
         android:layout_centerVertical="true"
         android:text="跟随系统"
         android:textColor="@color/base_color_title"
-        android:textSize="@dimen/base_dimen_16"
+        android:textSize="@dimen/base_dimen_text_size_16"
         android:layout_marginLeft="@dimen/base_dimen_24"/>
 
     <ImageView

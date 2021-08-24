@@ -11,7 +11,7 @@ import java.util.List;
  * @Date 2021/4/27 17:35
  * @descript:
  */
-public class ProjectArticleListEntity extends BaseEntity {
+public final class ProjectArticleListEntity extends BaseEntity {
 
     private int curPage;
     private int offset;

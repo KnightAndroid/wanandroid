@@ -9,7 +9,7 @@ import com.knight.wanandroid.library_network.config.IRequestApi;
  * @Date 2021/5/6 17:55
  * @descript:
  */
-public class SearchKeywordsApi implements IRequestApi {
+public final class SearchKeywordsApi implements IRequestApi {
 
     private int page;
     @HttpRename("k")

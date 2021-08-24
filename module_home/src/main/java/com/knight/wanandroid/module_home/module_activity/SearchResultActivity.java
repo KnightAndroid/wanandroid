@@ -43,7 +43,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  * @descript:结果搜索界面
  */
 @Route(path = RoutePathActivity.Home.searchResult)
-public class SearchResultActivity extends BaseActivity<HomeSearchresultActivityBinding, SearchResultPresenter, SearchResultModel> implements SearchResultContract.SearchResultView,
+public final class SearchResultActivity extends BaseActivity<HomeSearchresultActivityBinding, SearchResultPresenter, SearchResultModel> implements SearchResultContract.SearchResultView,
         OnRefreshListener, OnLoadMoreListener {
     private SearchResultAdapter mSearchResultAdapter;
 

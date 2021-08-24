@@ -11,7 +11,7 @@ import com.knight.wanandroid.module_mine.module_contract.AboutContract;
  * @Date 2021/6/11 17:50
  * @descript:
  */
-public class AboutPresenter extends AboutContract.AboutDataPresenter {
+public final class AboutPresenter extends AboutContract.AboutDataPresenter {
     @Override
     public void requestAppVersion() {
         final AboutContract.AboutView mView = getView();

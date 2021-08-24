@@ -14,7 +14,7 @@ import com.knight.wanandroid.module_web.module_contract.WebContract;
  * @Date 2021/5/20 16:05
  * @descript:
  */
-public class WebModel implements WebContract.WebModel {
+public final class WebModel implements WebContract.WebModel {
     @Override
     public void requestCollectArticle(BaseActivity activity, int collectArticleId, MvpListener mvpListener) {
         GoHttp.post(activity)

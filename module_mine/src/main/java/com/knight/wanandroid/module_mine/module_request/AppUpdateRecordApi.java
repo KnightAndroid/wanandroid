@@ -9,7 +9,7 @@ import com.knight.wanandroid.library_network.config.IRequestApi;
  * @Date 2021/6/15 16:22
  * @descript:
  */
-public class AppUpdateRecordApi implements IRequestApi {
+public final class AppUpdateRecordApi implements IRequestApi {
     @HttpHeader
     private String requestUrl = "customServer";
 

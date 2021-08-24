@@ -31,7 +31,7 @@ import com.knight.wanandroid.library_network.listener.OnHttpListener;
 import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.ColorUtils;
 import com.knight.wanandroid.library_util.CreateUtils;
-import com.knight.wanandroid.library_util.LanguageUtils;
+import com.knight.wanandroid.library_util.LanguageFontSizeUtils;
 import com.knight.wanandroid.library_util.StatusBarUtils;
 import com.knight.wanandroid.library_widget.loadcircleview.ProgressHUD;
 import com.knight.wanandroid.library_widget.swipeback.SwipeBackHelper;
@@ -66,7 +66,10 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
     protected boolean isDarkMode;
     protected boolean isEyeCare;
 
-    //没网络监听提示的view
+    /**
+     *
+     * 断网时弹出的View
+     */
     private View tipView;
     private WindowManager mWindowManager;
     private WindowManager.LayoutParams mLayoutParams;
@@ -74,6 +77,15 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
 
     //护眼模式遮罩
     private FrameLayout meyeFrameLayout;
+
+    /**
+     *
+     * 字体缩放大小
+     *
+     */
+    private float fontScale = 1.0f;
+
+
 
 
     /**
@@ -101,6 +113,7 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
         StatusBarUtils.transparentStatusBar(this);
         isDarkMode = CacheUtils.getInstance().getNormalDark();
         isEyeCare = CacheUtils.getInstance().getIsEyeCare();
+
         initThemeColor();
         //此处try catch 因为如果自己和父类没有任何订阅方法会异常
         try {
@@ -112,6 +125,7 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
         initTipView();
         initEye();
         setThemeColor(isDarkMode);
+
         initView(savedInstanceState);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             mSwipeBackHelper = new SwipeBackHelper(this);
@@ -299,7 +313,8 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
 
     @Override
     protected void attachBaseContext(Context base) {
-        super.attachBaseContext(LanguageUtils.attachBaseContext(base));
+        fontScale = CacheUtils.getInstance().getSystemFontSize();
+        super.attachBaseContext(LanguageFontSizeUtils.attachBaseContext(base,fontScale));
     }
 
 
@@ -358,6 +373,12 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
             mWindowManager.addView(tipView, mLayoutParams);
         }
     }
+
+//    @Override
+//    public Resources getResources() {
+//        Resources resources = super.getResources();
+//        return LanguageFontSizeUtils.getResources(this, resources, fontScale);
+//    }
 
     @Override
     public void applyOverrideConfiguration(Configuration overrideConfiguration) {

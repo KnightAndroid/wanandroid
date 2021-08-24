@@ -24,7 +24,7 @@ import java.util.List;
  * @descript:项目页面
  */
 @Route(path = RoutePathFragment.Project.Project_Pager)
-public class ProjectFragment extends BaseFragment<ProjectFragmentBinding, ProjectPresenter, ProjectModel> implements ProjectContract.ProjectView {
+public final class ProjectFragment extends BaseFragment<ProjectFragmentBinding, ProjectPresenter, ProjectModel> implements ProjectContract.ProjectView {
 
     List<ProjectViewpagerFragment> mFragments = new ArrayList<>();
 

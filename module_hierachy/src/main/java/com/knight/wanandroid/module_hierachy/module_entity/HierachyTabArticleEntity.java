@@ -14,7 +14,7 @@ import java.util.List;
  * @Date 2021/5/12 17:11
  * @descript:
  */
-public class HierachyTabArticleEntity extends BaseEntity implements MultiItemEntity {
+public final class HierachyTabArticleEntity extends BaseEntity implements MultiItemEntity {
 
     /**
      * apkLink :

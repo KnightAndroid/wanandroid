@@ -58,6 +58,7 @@ public class InitCustomViewUtils {
                 }
 
                 scaleTransitionPagerTitleView.setTextSize(18f);
+                scaleTransitionPagerTitleView.setTextScaleX(CacheUtils.getInstance().getSystemFontSize());
                 if (CacheUtils.getInstance().getNormalDark()) {
                     scaleTransitionPagerTitleView.setNormalColor(Color.parseColor("#D3D3D3"));
                     scaleTransitionPagerTitleView.setSelectedColor(Color.parseColor("#D3D3D3"));

@@ -24,7 +24,7 @@ import java.util.List;
  * @Date 2021/4/25 15:01
  * @descript:热词适配器
  */
-public class HotKeyAdapter extends BaseQuickAdapter<SearchHotKeyEntity, BaseViewHolder> {
+public final class HotKeyAdapter extends BaseQuickAdapter<SearchHotKeyEntity, BaseViewHolder> {
 
 
 

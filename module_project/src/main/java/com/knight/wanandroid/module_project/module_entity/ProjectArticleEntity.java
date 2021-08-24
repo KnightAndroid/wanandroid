@@ -10,7 +10,7 @@ import java.util.List;
  * @Date 2021/4/27 17:32
  * @descript:
  */
-public class ProjectArticleEntity extends BaseEntity {
+public final class ProjectArticleEntity extends BaseEntity {
 
 
     /**

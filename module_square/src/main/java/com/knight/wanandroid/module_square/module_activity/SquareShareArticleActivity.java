@@ -29,7 +29,7 @@ import org.greenrobot.eventbus.EventBus;
  */
 
 @Route(path = RoutePathActivity.Square.ShareArticle)
-public class SquareShareArticleActivity extends BaseActivity<SquareActivitySharearticleBinding, SquareShareArticlePresenter, SquareShareArticleModel> implements SquareShareArticleContact.SquareShareArticleView {
+public final class SquareShareArticleActivity extends BaseActivity<SquareActivitySharearticleBinding, SquareShareArticlePresenter, SquareShareArticleModel> implements SquareShareArticleContact.SquareShareArticleView {
 
     String title = "";
     String link = "";

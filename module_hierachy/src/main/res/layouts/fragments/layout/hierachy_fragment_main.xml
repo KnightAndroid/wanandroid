@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.knight.wanandroid.module_hierachy.module_fragment.NavigateFragment">
 
 
     <data>
 
     </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/base_bg_normal_default">
+        android:background="@color/base_bg_normal_default"
+        android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/hierachy_ll_main"
@@ -23,24 +25,20 @@
                 android:id="@+id/hierachy_Left_sidebar"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                >
-
+                android:layout_weight="1">
 
 
             </androidx.recyclerview.widget.RecyclerView>
 
             <FrameLayout
                 android:id="@+id/hierachy_right_sidebar"
-                android:background="@color/base_bg_normal_default"
-                android:layout_marginLeft="@dimen/dp_10"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="3">
-            </FrameLayout>
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_weight="3"
+                android:background="@color/base_bg_normal_default"/>
 
         </LinearLayout>
-
 
 
     </LinearLayout>

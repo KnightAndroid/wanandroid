@@ -8,7 +8,7 @@ import com.knight.wanandroid.library_base.entity.BaseEntity;
  * @Date 2021/4/7 16:26
  * @descript:首页banner数据模型
  */
-public class BannerEntity extends BaseEntity {
+public final class BannerEntity extends BaseEntity {
 
     /**
      * desc : 享学~

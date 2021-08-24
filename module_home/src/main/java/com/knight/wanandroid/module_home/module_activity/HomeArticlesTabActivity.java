@@ -36,7 +36,7 @@ import androidx.viewpager2.widget.ViewPager2;
  * @descript:
  */
 @Route(path = RoutePathActivity.Home.HomeTopArticle)
-public class HomeArticlesTabActivity extends BaseDBActivity<HomeArticlesTabActivityBinding> {
+public final class HomeArticlesTabActivity extends BaseDBActivity<HomeArticlesTabActivityBinding> {
 
 
     private List<Fragment> mHomeTopTabsFragments = new ArrayList<>();

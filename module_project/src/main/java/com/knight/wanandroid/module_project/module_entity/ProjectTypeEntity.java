@@ -13,7 +13,7 @@ import java.util.List;
  * @Date 2021/4/26 20:01
  * @descript:
  */
-public class ProjectTypeEntity extends BaseEntity {
+public final class ProjectTypeEntity extends BaseEntity {
 
 
     /**

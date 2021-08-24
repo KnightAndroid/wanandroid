@@ -37,7 +37,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  * @descript:深色模式选择界面
  */
 @Route(path = RoutePathActivity.Set.Set_DarkMode)
-public class DarkModeActivity extends BaseDBActivity<SetDarkmodeActivityBinding> {
+public final class DarkModeActivity extends BaseDBActivity<SetDarkmodeActivityBinding> {
 
     private boolean isDark = false;
     private boolean isFollowSystem = false;

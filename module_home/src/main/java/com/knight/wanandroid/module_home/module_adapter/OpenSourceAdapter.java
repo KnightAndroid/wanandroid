@@ -20,7 +20,7 @@ import java.util.List;
  * @Date 2021/5/31 15:26
  * @descript:
  */
-public class OpenSourceAdapter extends BaseQuickAdapter<OpenSourceEntity, BaseViewHolder> {
+public final class OpenSourceAdapter extends BaseQuickAdapter<OpenSourceEntity, BaseViewHolder> {
 
 
     public OpenSourceAdapter(List<OpenSourceEntity> openSourceEntities){

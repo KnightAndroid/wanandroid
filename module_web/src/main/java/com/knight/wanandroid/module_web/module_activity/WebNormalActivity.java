@@ -34,7 +34,7 @@ import com.knight.wanandroid.module_web.module_view.WebLayout;
  */
 
 @Route(path = RoutePathActivity.Web.Web_Normal)
-public class WebNormalActivity extends BaseDBActivity<WebNormalActivityBinding> {
+public final class WebNormalActivity extends BaseDBActivity<WebNormalActivityBinding> {
 
     @Autowired(name = "webUrl")
     String webUrl = "";
@@ -65,7 +65,8 @@ public class WebNormalActivity extends BaseDBActivity<WebNormalActivityBinding> 
                 .setMainFrameErrorView(R.layout.agentweb_error_page, -1)
                 .setSecurityType(AgentWeb.SecurityType.STRICT_CHECK)
                 .setWebLayout(new WebLayout(this))
-                .setOpenOtherPageWays(DefaultWebClient.OpenOtherPageWays.ASK)//打开其他应用时，弹窗咨询用户是否前往其他应用
+                //打开其他应用时，弹窗咨询用户是否前往其他应用
+                .setOpenOtherPageWays(DefaultWebClient.OpenOtherPageWays.ASK)
                 .interceptUnkownUrl() //拦截找不到相关页面的Scheme
                 .createAgentWeb()
                 .ready()

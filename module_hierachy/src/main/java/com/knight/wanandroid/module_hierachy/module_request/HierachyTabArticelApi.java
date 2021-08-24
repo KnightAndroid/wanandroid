@@ -8,7 +8,7 @@ import com.knight.wanandroid.library_network.config.IRequestApi;
  * @Date 2021/5/12 17:25
  * @descript:
  */
-public class HierachyTabArticelApi implements IRequestApi {
+public final class HierachyTabArticelApi implements IRequestApi {
 
 
     private int page;

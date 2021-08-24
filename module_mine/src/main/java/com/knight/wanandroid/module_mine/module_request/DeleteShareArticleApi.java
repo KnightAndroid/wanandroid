@@ -8,7 +8,7 @@ import com.knight.wanandroid.library_network.config.IRequestApi;
  * @Date 2021/5/25 16:39
  * @descript:
  */
-public class DeleteShareArticleApi implements IRequestApi {
+public final class DeleteShareArticleApi implements IRequestApi {
     private int articleId;
 
 

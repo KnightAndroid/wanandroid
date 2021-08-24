@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_marginTop="@dimen/base_dimen_8"
+    android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/base_dimen_16"
+    android:layout_marginTop="@dimen/base_dimen_8"
     android:layout_marginRight="@dimen/base_dimen_16"
     android:layout_marginBottom="@dimen/base_dimen_6"
     app:cardCornerRadius="@dimen/base_dimen_6"
-    >
+    tools:context="com.knight.wanandroid.module_mine.module_adapter.MyShareArticleAdapter">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -20,95 +20,92 @@
             android:id="@+id/mine_item_articleauthor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="@dimen/base_dimen_8"
             android:layout_marginLeft="@dimen/base_dimen_8"
+            android:layout_marginTop="@dimen/base_dimen_8"
             android:paddingRight="@dimen/base_dimen_8"
             android:text="232323"
             android:textColor="@color/base_color_999999"
-            android:textSize="@dimen/base_dimen_12"/>
+            android:textSize="@dimen/base_dimen_text_size_12"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/mine_item_articlenew"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="新"
-            android:textSize="@dimen/base_dimen_12"
-            android:textColor="@android:color/holo_red_light"
+            android:layout_marginLeft="@dimen/base_dimen_2"
             android:background="@drawable/base_article_new"
-            app:layout_constraintLeft_toRightOf="@+id/mine_item_articleauthor"
-            app:layout_constraintTop_toTopOf="@+id/mine_item_articleauthor"
+            android:text="新"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="@dimen/base_dimen_text_size_12"
             app:layout_constraintBottom_toBottomOf="@+id/mine_item_articleauthor"
-            android:layout_marginLeft="@dimen/base_dimen_2"/>
+            app:layout_constraintLeft_toRightOf="@+id/mine_item_articleauthor"
+            app:layout_constraintTop_toTopOf="@+id/mine_item_articleauthor" />
 
 
         <TextView
             android:id="@+id/mine_item_articledata"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/mine_item_articleauthor"
-            app:layout_constraintBottom_toBottomOf="@id/mine_item_articleauthor"
             android:layout_marginRight="@dimen/base_dimen_8"
-            android:textSize="@dimen/base_dimen_12"
+            android:text="一天前"
             android:textColor="@color/base_color_999999"
-            android:text="一天前"/>
+            android:textSize="@dimen/base_dimen_text_size_12"
+            app:layout_constraintBottom_toBottomOf="@id/mine_item_articleauthor"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/mine_item_articleauthor" />
 
         <TextView
             android:id="@+id/mine_tv_articletitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="这是标题标题这是标题标题这是标题标题这是标题标题这是标题标题"
-            android:layout_marginRight="@dimen/base_dimen_8"
             android:layout_marginLeft="@dimen/base_dimen_8"
             android:layout_marginTop="@dimen/base_dimen_12"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/mine_item_articleauthor"
-            android:textSize="@dimen/base_dimen_16"
+            android:layout_marginRight="@dimen/base_dimen_8"
+            android:text="这是标题标题这是标题标题这是标题标题这是标题标题这是标题标题"
+            android:textColor="@color/base_color_title"
+            android:textSize="@dimen/base_dimen_text_size_16"
             android:textStyle="bold"
-            android:textColor="@color/base_color_title"/>
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mine_item_articleauthor" />
 
 
         <TextView
             android:id="@+id/mine_item_articlechaptername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/mine_tv_articletitle"
-            app:layout_constraintLeft_toLeftOf="@id/mine_item_articleauthor"
-            android:textSize="@dimen/base_dimen_12"
             android:layout_marginTop="@dimen/base_dimen_12"
+            android:background="@drawable/base_articlechapter_type"
+            android:paddingLeft="@dimen/base_dimen_4"
+            android:paddingTop="@dimen/base_dimen_2"
+            android:paddingRight="@dimen/base_dimen_4"
+            android:paddingBottom="@dimen/base_dimen_2"
             android:text="广泛他"
             android:textColor="@color/base_color_theme"
-            android:background="@drawable/base_articlechapter_type"
-            android:paddingTop="@dimen/base_dimen_2"
-            android:paddingBottom="@dimen/base_dimen_2"
-            android:paddingLeft="@dimen/base_dimen_4"
-            android:paddingRight="@dimen/base_dimen_4"/>
+            android:textSize="@dimen/base_dimen_text_size_12"
+            app:layout_constraintLeft_toLeftOf="@id/mine_item_articleauthor"
+            app:layout_constraintTop_toBottomOf="@id/mine_tv_articletitle" />
 
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginRight="@dimen/base_dimen_8"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
 
             <ImageView
                 android:id="@+id/mine_iv_delete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/mine_icon_delete"
-                android:layout_marginRight="@dimen/base_dimen_8"/>
-
-
+                android:layout_marginRight="@dimen/base_dimen_8"
+                android:background="@drawable/mine_icon_delete" />
 
 
         </LinearLayout>
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

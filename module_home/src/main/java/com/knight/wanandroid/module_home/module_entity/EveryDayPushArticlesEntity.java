@@ -12,7 +12,7 @@ import java.util.List;
  * @Date 2021/6/24 14:04
  * @descript:
  */
-public class EveryDayPushArticlesEntity extends BaseEntity {
+public final class EveryDayPushArticlesEntity extends BaseEntity {
 
 
     private int total;

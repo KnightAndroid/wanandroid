@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.knight.wanandroid.module_web.module_fragment.WebNormalBottomFragment">
 
     <data>
         <variable
@@ -27,7 +29,7 @@
                 android:text="@string/web_copy_url"
                 android:background="?attr/selectableItemBackground"
                 android:textColor="@color/base_color_title"
-                android:textSize="@dimen/base_dimen_16"
+                android:textSize="@dimen/base_dimen_text_size_16"
                 android:onClick="@{()->click.copyUrl()}"
                 />
 
@@ -45,7 +47,7 @@
                 android:text="@string/web_refresh_url"
                 android:background="?attr/selectableItemBackground"
                 android:textColor="@color/base_color_title"
-                android:textSize="@dimen/base_dimen_16"
+                android:textSize="@dimen/base_dimen_text_size_16"
                 android:onClick="@{()->click.refresh()}"/>
 
 
@@ -61,7 +63,7 @@
                 android:background="?attr/selectableItemBackground"
                 android:text="@string/web_open_browser"
                 android:textColor="@color/base_color_title"
-                android:textSize="@dimen/base_dimen_16"
+                android:textSize="@dimen/base_dimen_text_size_16"
                 android:onClick="@{()->click.openBrowser()}"/>
 
 

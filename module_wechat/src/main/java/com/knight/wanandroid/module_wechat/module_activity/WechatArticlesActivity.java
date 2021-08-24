@@ -36,7 +36,7 @@ import kotlin.jvm.functions.Function1;
  * @descript:
  */
 @Route(path = RoutePathActivity.Wechat.Wechat_Pager)
-public class WechatArticlesActivity extends BaseDBActivity<WechatOfficialAccountBinding> {
+public final class WechatArticlesActivity extends BaseDBActivity<WechatOfficialAccountBinding> {
 
     @Autowired(name = "data")
     ArrayList<OfficialAccountEntity> data;

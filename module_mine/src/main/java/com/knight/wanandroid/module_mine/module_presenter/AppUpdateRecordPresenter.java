@@ -11,7 +11,7 @@ import com.knight.wanandroid.module_mine.module_entity.AppUpdateRecordListEntity
  * @Date 2021/6/15 16:26
  * @descript:
  */
-public class AppUpdateRecordPresenter extends AppUpdateRecordContract.AppUpdateRecordDataPresenter {
+public final class AppUpdateRecordPresenter extends AppUpdateRecordContract.AppUpdateRecordDataPresenter {
     @Override
     public void requestAppVersion() {
         final AppUpdateRecordContract.AppUpdateRecordView mView = getView();

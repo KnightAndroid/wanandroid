@@ -12,7 +12,7 @@ import com.knight.wanandroid.module_home.module_entity.HomeArticleListEntity;
  * @Date 2021/4/12 19:26
  * @descript:文章逻辑业务层
  */
-public class HomeArticlePresenter extends HomeArticleContract.HomeArticleDataPresenter {
+public final class HomeArticlePresenter extends HomeArticleContract.HomeArticleDataPresenter {
 
 
 

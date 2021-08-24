@@ -40,7 +40,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  * @Date 2021/4/12 19:14
  * @descript:
  */
-public class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBinding, HomeArticlePresenter, HomeArticleModel> implements HomeArticleContract.HomeArticleView, OnLoadMoreListener, OnRefreshListener {
+public final class HomeArticlesFragment extends BaseFragment<HomeFragmentArticleBinding, HomeArticlePresenter, HomeArticleModel> implements HomeArticleContract.HomeArticleView, OnLoadMoreListener, OnRefreshListener {
 
     private HomeArticleAdapter mHomeArticleAdapter;
     //页码从0开始

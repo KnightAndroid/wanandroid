@@ -195,4 +195,24 @@ public class CacheUtils {
     }
 
 
+    /**
+     *
+     * 字体缩放系数
+     * @param fontSizeScale
+     */
+    public void setSystemFontSize(float fontSizeScale) {
+        mmkv.encode(MMkvConstants.FONTSIZESCALE,fontSizeScale);
+    }
+
+
+    /**
+     *
+     * 返回字体缩放系数
+     * @return
+     */
+    public float getSystemFontSize() {
+        return mmkv.decodeFloat(MMkvConstants.FONTSIZESCALE,1.0f);
+    }
+
+
 }

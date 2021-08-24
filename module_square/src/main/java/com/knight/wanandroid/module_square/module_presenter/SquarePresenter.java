@@ -16,7 +16,7 @@ import java.util.List;
  * @Date 2021/4/1 16:30
  * @descript:
  */
-public class SquarePresenter extends SquareContact.SquareDataPresenter{
+public final class SquarePresenter extends SquareContact.SquareDataPresenter{
 
 
     @Override

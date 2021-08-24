@@ -13,7 +13,7 @@ import java.util.List;
  * @Date 2021/4/26 20:06
  * @descript:项目逻辑层
  */
-public class ProjectPresenter extends ProjectContract.ProjectDataPresenter {
+public final class ProjectPresenter extends ProjectContract.ProjectDataPresenter {
     @Override
     public void requestProjectTypes() {
         final ProjectContract.ProjectView mView = getView();

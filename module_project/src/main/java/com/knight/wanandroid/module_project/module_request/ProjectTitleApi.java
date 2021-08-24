@@ -8,7 +8,7 @@ import com.knight.wanandroid.library_network.config.IRequestApi;
  * @Date 2021/4/27 15:17
  * @descript:
  */
-public class ProjectTitleApi implements IRequestApi {
+public final class ProjectTitleApi implements IRequestApi {
 
 
     @Override

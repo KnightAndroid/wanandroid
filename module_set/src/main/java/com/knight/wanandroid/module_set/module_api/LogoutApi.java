@@ -8,7 +8,7 @@ import com.knight.wanandroid.library_network.config.IRequestApi;
  * @Date 2021/4/22 10:34
  * @descript:
  */
-public class LogoutApi implements IRequestApi {
+public final class LogoutApi implements IRequestApi {
 
 
     @Override

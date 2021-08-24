@@ -22,7 +22,7 @@ import org.jetbrains.annotations.NotNull;
  * @Date 2021/5/11 17:41
  * @descript:
  */
-public class MyCollectArticleAdapter extends BaseMultiItemQuickAdapter<MyCollectArticleEntity, BaseViewHolder> {
+public final class MyCollectArticleAdapter extends BaseMultiItemQuickAdapter<MyCollectArticleEntity, BaseViewHolder> {
 
     public MyCollectArticleAdapter() {
         super(null);

@@ -17,7 +17,7 @@ import java.util.List;
  * @Date 2021/4/30 14:39
  * @descript:导航model
  */
-public class NavigateModel implements NavigateContract.NavigateModel {
+public final class NavigateModel implements NavigateContract.NavigateModel {
     @Override
     public void requestNavigateData(BaseFragment fragment, MvpListener mvpListener) {
         GoHttp.get(fragment)

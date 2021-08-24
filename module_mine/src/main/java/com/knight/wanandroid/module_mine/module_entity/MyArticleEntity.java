@@ -11,7 +11,7 @@ import java.util.List;
  * @Date 2021/5/8 14:43
  * @descript:分享的文章实体
  */
-public class MyArticleEntity extends BaseEntity {
+public final class MyArticleEntity extends BaseEntity {
     /**
      * apkLink :
      * audit : 1

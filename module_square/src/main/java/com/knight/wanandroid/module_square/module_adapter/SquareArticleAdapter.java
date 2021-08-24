@@ -23,7 +23,7 @@ import androidx.annotation.Nullable;
  * @Date 2021/4/25 19:43
  * @descript:
  */
-public class SquareArticleAdapter extends BaseQuickAdapter<SquareArticleEntity, BaseViewHolder> {
+public final class SquareArticleAdapter extends BaseQuickAdapter<SquareArticleEntity, BaseViewHolder> {
 
 
     public SquareArticleAdapter(@Nullable List<SquareArticleEntity> data){

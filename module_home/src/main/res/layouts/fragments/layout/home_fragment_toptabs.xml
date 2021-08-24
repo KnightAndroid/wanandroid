@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.knight.wanandroid.module_home.module_fragment.HomeTopTabsFragment">
 
 
     <data>
@@ -45,7 +47,7 @@
                         android:paddingRight="10dp"
                         android:text="这是一段描述"
                         android:textColor="@color/base_color_title"
-                        android:textSize="@dimen/base_dimen_16" />
+                        android:textSize="@dimen/base_dimen_text_size_16" />
 
                     <TextView
                         android:id="@+id/home_toparticle_superchaptername"
@@ -56,7 +58,7 @@
                         android:background="@drawable/base_articlechapter_type"
                         android:text="官方"
                         android:textColor="@color/base_color_theme"
-                        android:textSize="@dimen/base_dimen_15"
+                        android:textSize="@dimen/base_dimen_text_size_15"
                         android:paddingTop="@dimen/base_dimen_2"
                         android:paddingBottom="@dimen/base_dimen_2"
                         android:paddingLeft="@dimen/base_dimen_4"
@@ -83,7 +85,7 @@
                             android:layout_centerVertical="true"
                             android:text="2021-22-22"
                             android:textColor="@color/base_color_title"
-                            android:textSize="@dimen/base_dimen_15" />
+                            android:textSize="@dimen/base_dimen_text_size_15" />
 
                         <ImageView
                             android:id="@+id/home_iv_toparticle_collect"
@@ -112,7 +114,6 @@
                 app:cardCornerRadius="5dp"
                 app:cardElevation="6dp"
                 app:cardMaxElevation="6dp"
-
                 >
 
 
@@ -134,7 +135,7 @@
                     android:drawablePadding="@dimen/base_dimen_2"
                     android:text="官方"
                     android:textColor="@color/base_color_title"
-                    android:textSize="@dimen/base_dimen_15"
+                    android:textSize="@dimen/base_dimen_text_size_15"
                     android:paddingTop="@dimen/base_dimen_2"
                     android:paddingBottom="@dimen/base_dimen_2"
                     android:paddingLeft="@dimen/base_dimen_4"
@@ -150,7 +151,7 @@
                     android:layout_marginRight="@dimen/base_dimen_16"
                     android:text=""
                     android:textColor="@color/home_white"
-                    android:textSize="@dimen/base_dimen_16"
+                    android:textSize="@dimen/base_dimen_text_size_16"
                     android:textStyle="bold" />
 
 

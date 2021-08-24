@@ -13,7 +13,7 @@ import java.util.List;
  * @Date 2021/5/6 15:52
  * @descript:搜索p层
  */
-public class SearchPresenter extends SearchContract.SearchDataPresenter {
+public final class SearchPresenter extends SearchContract.SearchDataPresenter {
     @Override
     public void requestSearchHotkey() {
         final SearchContract.SearchView mView = getView();

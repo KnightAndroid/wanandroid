@@ -8,7 +8,7 @@ import com.knight.wanandroid.library_base.entity.BaseEntity;
  * @Date 2021/4/23 10:43
  * @descript:个人积分明细
  */
-public class UserDetailCoinEntity extends BaseEntity {
+public final class UserDetailCoinEntity extends BaseEntity {
 
 
     /**

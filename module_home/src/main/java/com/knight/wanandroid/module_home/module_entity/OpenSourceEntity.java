@@ -8,7 +8,7 @@ import com.knight.wanandroid.library_base.entity.BaseEntity;
  * @Date 2021/5/31 14:49
  * @descript:
  */
-public class OpenSourceEntity extends BaseEntity {
+public final class OpenSourceEntity extends BaseEntity {
 
 
     private String name;

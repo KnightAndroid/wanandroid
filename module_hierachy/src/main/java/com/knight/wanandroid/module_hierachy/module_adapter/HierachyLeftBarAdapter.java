@@ -18,7 +18,7 @@ import java.util.List;
  * @Date 2021/4/29 16:13
  * @descript:
  */
-public class HierachyLeftBarAdapter extends RvAdapter<String> {
+public final class HierachyLeftBarAdapter extends RvAdapter<String> {
     private int checkedPosition;
 
     public void setCheckedPosition(int checkedPosition) {

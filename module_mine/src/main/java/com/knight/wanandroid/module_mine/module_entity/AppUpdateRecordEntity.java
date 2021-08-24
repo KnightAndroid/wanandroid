@@ -8,7 +8,7 @@ import com.knight.wanandroid.library_base.entity.BaseEntity;
  * @Date 2021/6/15 16:13
  * @descript:
  */
-public class AppUpdateRecordEntity extends BaseEntity {
+public final class AppUpdateRecordEntity extends BaseEntity {
     private String title;
     private String desc;
     private String versionName;

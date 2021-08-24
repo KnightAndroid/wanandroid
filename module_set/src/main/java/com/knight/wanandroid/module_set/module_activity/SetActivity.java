@@ -14,7 +14,7 @@ import com.knight.wanandroid.library_util.CacheFileUtils;
 import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.ColorUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
-import com.knight.wanandroid.library_util.LanguageUtils;
+import com.knight.wanandroid.library_util.LanguageFontSizeUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_util.dialog.DialogUtils;
 import com.knight.wanandroid.library_widget.RippleAnimation;
@@ -30,7 +30,7 @@ import org.greenrobot.eventbus.EventBus;
 
 
 @Route(path = RoutePathActivity.Set.Set_pager)
-public class SetActivity extends BaseActivity<SetActivityBinding, SetPresenter, SetModel> implements SetContract.SetView {
+public final class SetActivity extends BaseActivity<SetActivityBinding, SetPresenter, SetModel> implements SetContract.SetView {
     //状态栏是否着色
     private boolean statusIsWithTheme;
     @Override
@@ -174,9 +174,21 @@ public class SetActivity extends BaseActivity<SetActivityBinding, SetPresenter, 
             });
         }
 
-
+        /**
+         *
+         * 去选择语言设置界面
+         */
         public void goSelectLanguage() {
             ARouter.getInstance().build(RoutePathActivity.Set.Set_Language)
+                    .navigation();
+        }
+
+        /**
+         *
+         * 去改变字体大小界面
+         */
+        public void goChangeTextSize() {
+            ARouter.getInstance().build(RoutePathActivity.Set.Set_ChangeTextSize)
                     .navigation();
         }
 
@@ -289,7 +301,7 @@ public class SetActivity extends BaseActivity<SetActivityBinding, SetPresenter, 
         //显示语言当前模式
         switch (CacheUtils.getInstance().getLanguageMode()) {
             case "Auto":
-                if (LanguageUtils.isChinese()) {
+                if (LanguageFontSizeUtils.isChinese()) {
                     mDatabind.setTvMultilingualMode.setText("跟随系统");
                 } else {
                     mDatabind.setTvMultilingualMode.setText("Auto");

@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @Date 2021/4/29 16:45
  * @descript:体系 导航 右边数据
  */
-public class HierachyRightBeanEntity implements Parcelable {
+public final class HierachyRightBeanEntity implements Parcelable {
     private String name;
     private String titleName;
     private String tag;

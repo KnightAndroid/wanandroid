@@ -94,7 +94,8 @@ public class ModuleConfig {
                 .addCallback(new ErrorCallBack())
                 .addCallback(new LoadCallBack())
                 .addCallback(new EmptyCallBack())
-                .setDefaultCallback(LoadCallBack.class) //默认状态页
+                //默认状态页
+                .setDefaultCallback(LoadCallBack.class)
                 .commit();
 
         //网络请求初始化
@@ -155,10 +156,14 @@ public class ModuleConfig {
         Cache cache = new Cache(cacheFile, 1024 * 1024 * 50);
         IRequestServer server = new ReleaseServer();
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .readTimeout(60, TimeUnit.SECONDS)//设置读取超时时间
-                .connectTimeout(60,TimeUnit.SECONDS)//设置请求超时时间
-                .writeTimeout(60,TimeUnit.SECONDS)//设置写入超时时间
-                .retryOnConnectionFailure(true)//设置出现错误进行重新连接
+                //设置读取超时时间
+                .readTimeout(60, TimeUnit.SECONDS)
+                //设置请求超时时间
+                .connectTimeout(60,TimeUnit.SECONDS)
+                //设置写入超时时间
+                .writeTimeout(60,TimeUnit.SECONDS)
+                //设置出现错误进行重新连接
+                .retryOnConnectionFailure(true)
                 .addInterceptor(new BaseUrlInterceptor())
                 .addInterceptor(new CacheInterceptor())
                 .cache(cache)

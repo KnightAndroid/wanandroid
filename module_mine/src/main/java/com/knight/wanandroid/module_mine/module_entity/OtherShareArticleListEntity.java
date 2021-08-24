@@ -8,7 +8,7 @@ import com.knight.wanandroid.library_base.entity.BaseEntity;
  * @Date 2021/5/20 19:35
  * @descript:
  */
-public class OtherShareArticleListEntity extends BaseEntity {
+public final class OtherShareArticleListEntity extends BaseEntity {
 
    private UserMessageEntity coinInfo;
    private MyArticleListEntity shareArticles;

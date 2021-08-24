@@ -12,7 +12,7 @@ import com.knight.wanandroid.module_mine.module_entity.MyShareEntity;
  * @Date 2021/5/8 15:05
  * @descript:
  */
-public class MyShareArticlePresenter extends MyShareArticleContract.MyShareArticleDataPresenter {
+public final class MyShareArticlePresenter extends MyShareArticleContract.MyShareArticleDataPresenter {
 
 
     @Override

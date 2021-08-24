@@ -38,7 +38,7 @@ import org.greenrobot.eventbus.ThreadMode;
  * @descript:我的页面
  */
 @Route(path = RoutePathFragment.Mine.Mine_Pager)
-public class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePresenter, MineModel> implements MineContract.MineView {
+public final class MineFragment extends BaseFragment<MineFragmentMineBinding, MinePresenter, MineModel> implements MineContract.MineView {
     @Override
     protected int layoutId() {
         return R.layout.mine_fragment_mine;

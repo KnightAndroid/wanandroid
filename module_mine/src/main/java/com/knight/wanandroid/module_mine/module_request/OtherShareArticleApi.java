@@ -8,7 +8,7 @@ import com.knight.wanandroid.library_network.config.IRequestApi;
  * @Date 2021/5/20 18:56
  * @descript:
  */
-public class OtherShareArticleApi implements IRequestApi {
+public final class OtherShareArticleApi implements IRequestApi {
 
 
     private int uid;

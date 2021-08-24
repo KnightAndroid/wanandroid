@@ -11,7 +11,7 @@ import java.util.List;
  * @Date 2021/4/23 16:30
  * @descript:
  */
-public class CoinRankListEntity extends BaseEntity {
+public final class CoinRankListEntity extends BaseEntity {
     private int curPage;
     private int offset;
     private boolean over;

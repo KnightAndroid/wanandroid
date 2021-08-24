@@ -5,6 +5,7 @@ import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_network.GoHttp;
 import com.knight.wanandroid.library_network.listener.HttpCallback;
 import com.knight.wanandroid.library_network.model.HttpData;
+import com.knight.wanandroid.module_set.R;
 import com.knight.wanandroid.module_set.module_api.LogoutApi;
 import com.knight.wanandroid.module_set.module_contract.SetContract;
 
@@ -16,12 +17,12 @@ import okhttp3.Call;
  * @Date 2021/7/19 16:38
  * @descript:
  */
-public class SetModel implements SetContract.SetModel {
+public final class SetModel implements SetContract.SetModel {
 
 
     @Override
     public void requestLogout(BaseActivity baseActivity, MvpListener mvpListener) {
-        baseActivity.showLoadingHud("退出登录中...");
+        baseActivity.showLoadingHud(baseActivity.getString(R.string.set_logout));
         GoHttp.get(baseActivity)
                 .api(new LogoutApi())
                 .request(new HttpCallback<HttpData>(baseActivity){

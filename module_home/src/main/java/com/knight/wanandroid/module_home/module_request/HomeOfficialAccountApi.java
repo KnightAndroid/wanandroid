@@ -8,7 +8,7 @@ import com.knight.wanandroid.library_network.config.IRequestApi;
  * @Date 2021/4/12 15:03
  * @descript:获取公众号列表地址
  */
-public class HomeOfficialAccountApi implements IRequestApi {
+public final class HomeOfficialAccountApi implements IRequestApi {
 
     @Override
     public String getApi() {

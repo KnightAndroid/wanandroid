@@ -31,7 +31,7 @@ import androidx.core.util.Pair;
  * @Date 2021/5/21 16:01
  * @descript:
  */
-public class HomeTopTabsFragment extends BaseDBFragment<HomeFragmentToptabsBinding> implements DragLayout.GotoDetailListener {
+public final class HomeTopTabsFragment extends BaseDBFragment<HomeFragmentToptabsBinding> implements DragLayout.GotoDetailListener {
 
     private TopArticleEntity mTopArticleEntity;
     private int cardBgColor;

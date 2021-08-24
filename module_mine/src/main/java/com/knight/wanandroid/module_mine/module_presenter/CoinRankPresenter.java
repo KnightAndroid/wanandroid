@@ -11,7 +11,7 @@ import com.knight.wanandroid.module_mine.module_entity.CoinRankListEntity;
  * @Date 2021/4/23 17:19
  * @descript:积分排行榜presenter
  */
-public class CoinRankPresenter extends CoinRankContract.CoinRankDataPresenter {
+public final class CoinRankPresenter extends CoinRankContract.CoinRankDataPresenter {
     @Override
     public void requestRankCoin(int page) {
         final CoinRankContract.CoinRankView mView = getView();

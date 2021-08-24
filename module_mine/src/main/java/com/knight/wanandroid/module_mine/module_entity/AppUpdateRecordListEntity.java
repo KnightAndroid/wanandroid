@@ -11,7 +11,7 @@ import java.util.List;
  * @Date 2021/6/15 16:11
  * @descript:
  */
-public class AppUpdateRecordListEntity extends BaseEntity {
+public final class AppUpdateRecordListEntity extends BaseEntity {
     private int curPage;
     private List<AppUpdateRecordEntity> datas;
 

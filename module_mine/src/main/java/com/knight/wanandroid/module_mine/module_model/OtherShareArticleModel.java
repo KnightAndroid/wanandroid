@@ -17,7 +17,7 @@ import com.knight.wanandroid.module_mine.module_request.OtherShareArticleApi;
  * @Date 2021/5/20 18:55
  * @descript:
  */
-public class OtherShareArticleModel implements OtherArticleContract.OtherShareArticleModel {
+public final class OtherShareArticleModel implements OtherArticleContract.OtherShareArticleModel {
     @Override
     public void requestOtherShareArticle(BaseActivity activity, int uid, int page, MvpListener mvpListener) {
         GoHttp.get(activity)

@@ -17,7 +17,7 @@ import com.knight.wanandroid.module_home.module_request.SearchArticleApi;
  * @Date 2021/4/12 19:54
  * @descript:
  */
-public class HomeArticleModel implements HomeArticleContract.HomeArticleModel{
+public final class HomeArticleModel implements HomeArticleContract.HomeArticleModel{
 
 
     /**

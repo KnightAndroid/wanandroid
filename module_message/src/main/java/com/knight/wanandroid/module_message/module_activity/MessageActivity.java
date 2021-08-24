@@ -17,7 +17,7 @@ import java.util.List;
 import androidx.fragment.app.Fragment;
 
 @Route(path = RoutePathActivity.Message.Message_pager)
-public class MessageActivity extends BaseDBActivity<MessageActivityBinding> {
+public final class MessageActivity extends BaseDBActivity<MessageActivityBinding> {
 
 
     private List<Fragment> messageFragment = new ArrayList<>();

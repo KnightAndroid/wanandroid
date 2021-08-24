@@ -18,7 +18,7 @@ import com.knight.wanandroid.module_wechat.module_request.WechatArticleApi;
  * @Date 2021/5/14 14:50
  * @descript:
  */
-public class WechatArticleModel implements WechatArticleContract.WechatArticleModel {
+public final class WechatArticleModel implements WechatArticleContract.WechatArticleModel {
     @Override
     public void requestWechatArticle(BaseFragment fragment, int page, int cid, MvpListener mvpListener) {
         GoHttp.get(fragment)

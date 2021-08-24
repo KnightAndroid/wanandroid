@@ -33,7 +33,7 @@ import androidx.viewpager2.widget.ViewPager2;
  * @Date 2021/4/27 15:43
  * @descript:
  */
-public class ProjectInitViewUtils {
+public final class ProjectInitViewUtils {
 
     /**
      * @param fragment
@@ -83,6 +83,7 @@ public class ProjectInitViewUtils {
                 }
 
                 scaleTransitionPagerTitleView.setTextSize(18f);
+                scaleTransitionPagerTitleView.setTextScaleX(CacheUtils.getInstance().getSystemFontSize());
                 if (CacheUtils.getInstance().getNormalDark()) {
                     scaleTransitionPagerTitleView.setNormalColor(Color.parseColor("#D3D3D3"));
                     scaleTransitionPagerTitleView.setSelectedColor(Color.parseColor("#D3D3D3"));

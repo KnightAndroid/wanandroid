@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.knight.wanandroid.module_mine.module_fragment.MineFragment">
 
     <data>
 
@@ -58,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:textColor="@android:color/white"
-                    android:textSize="@dimen/base_dimen_16"
+                    android:textSize="@dimen/base_dimen_text_size_16"
                     android:textStyle="bold">
 
 
@@ -74,7 +76,7 @@
                 android:layout_marginTop="@dimen/base_dimen_10"
                 android:onClick="@{()->click.gotoLogin()}"
                 android:text="@string/mine_please_login"
-                android:textSize="@dimen/base_dimen_16"
+                android:textSize="@dimen/base_dimen_text_size_16"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -99,7 +101,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/mine_nodata_gradle"
-                    android:textSize="@dimen/base_dimen_14" />
+                    android:textSize="@dimen/base_dimen_text_size_14" />
 
                 <TextView
                     android:id="@+id/mine_tv_rank"
@@ -145,7 +147,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/mine_me_points"
                             android:textColor="@android:color/white"
-                            android:textSize="@dimen/base_dimen_18" />
+                            android:textSize="@dimen/base_dimen_text_size_18" />
 
                         <TextView
                             android:id="@+id/mine_tv_points"
@@ -156,7 +158,7 @@
                             android:layout_toLeftOf="@+id/mine_iv_point_arrow"
                             android:text=""
                             android:textColor="@android:color/white"
-                            android:textSize="@dimen/base_dimen_18" />
+                            android:textSize="@dimen/base_dimen_text_size_18" />
 
                         <ImageView
                             android:id="@+id/mine_iv_point_arrow"
@@ -181,7 +183,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/mine_me_collect"
                             android:textColor="@android:color/white"
-                            android:textSize="@dimen/base_dimen_18" />
+                            android:textSize="@dimen/base_dimen_text_size_18" />
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -204,7 +206,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/mine_me_shareArticles"
                             android:textColor="@android:color/white"
-                            android:textSize="@dimen/base_dimen_18" />
+                            android:textSize="@dimen/base_dimen_text_size_18" />
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -227,7 +229,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/mine_historyrecord"
                             android:textColor="@android:color/white"
-                            android:textSize="@dimen/base_dimen_18" />
+                            android:textSize="@dimen/base_dimen_text_size_18" />
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -250,13 +252,13 @@
                             android:layout_height="wrap_content"
                             android:text="@string/mine_me_dealt"
                             android:textColor="@android:color/white"
-                            android:textSize="@dimen/base_dimen_18" />
+                            android:textSize="@dimen/base_dimen_text_size_18" />
 
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
                             android:background="@drawable/mine_iv_arrow" />
 
 
@@ -276,13 +278,13 @@
                             android:layout_height="wrap_content"
                             android:text="@string/mine_me_system_setting"
                             android:textColor="@android:color/white"
-                            android:textSize="@dimen/base_dimen_18" />
+                            android:textSize="@dimen/base_dimen_text_size_18" />
 
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
                             android:background="@drawable/mine_iv_arrow" />
 
                     </RelativeLayout>

@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.knight.wanandroid.library_util.CacheUtils;
-import com.knight.wanandroid.library_util.LanguageUtils;
+import com.knight.wanandroid.library_util.LanguageFontSizeUtils;
 import com.knight.wanandroid.module_set.R;
 import com.knight.wanandroid.module_set.module_entity.DarkSelectEntity;
 
@@ -20,7 +20,7 @@ import java.util.List;
  * @Date 2021/7/19 11:38
  * @descript:
  */
-public class SelectDarkModeAdapter extends BaseQuickAdapter<DarkSelectEntity, BaseViewHolder> {
+public final class SelectDarkModeAdapter extends BaseQuickAdapter<DarkSelectEntity, BaseViewHolder> {
 
 
 
@@ -30,7 +30,7 @@ public class SelectDarkModeAdapter extends BaseQuickAdapter<DarkSelectEntity, Ba
 
     @Override
     protected void convert(@NotNull BaseViewHolder baseViewHolder, DarkSelectEntity darkSelectEntity) {
-        if (LanguageUtils.isChinese()) {
+        if (LanguageFontSizeUtils.isChinese()) {
             baseViewHolder.setText(R.id.set_tv_dark_name,darkSelectEntity.getName());
         } else {
             baseViewHolder.setText(R.id.set_tv_dark_name,darkSelectEntity.getEnglishName());

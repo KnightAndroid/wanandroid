@@ -12,7 +12,7 @@ import com.knight.wanandroid.library_base.entity.BaseEntity;
  * @Date 2021/5/11 17:12
  * @descript:
  */
-public class MyCollectArticleEntity extends BaseEntity implements MultiItemEntity {
+public final class MyCollectArticleEntity extends BaseEntity implements MultiItemEntity {
 
 
     /**

@@ -26,7 +26,7 @@ import androidx.annotation.Nullable;
  * @Date 2021/5/20 19:18
  * @descript:
  */
-public class OtherShareArticleAdapter extends BaseQuickAdapter<MyArticleEntity, BaseViewHolder> {
+public final class OtherShareArticleAdapter extends BaseQuickAdapter<MyArticleEntity, BaseViewHolder> {
 
     public OtherShareArticleAdapter(@Nullable List<MyArticleEntity> data) {
         super(R.layout.base_text_item, data);

@@ -10,7 +10,6 @@ import com.knight.wanandroid.module_home.module_contract.HomeContract;
 import com.knight.wanandroid.module_home.module_entity.EveryDayPushArticlesEntity;
 import com.knight.wanandroid.module_home.module_request.AppCheckUpdateApi;
 import com.knight.wanandroid.module_home.module_request.EveryDayPushArticleApi;
-import com.knight.wanandroid.module_home.module_request.UnreadMessageApi;
 
 /**
  * @author created by knight
@@ -18,7 +17,7 @@ import com.knight.wanandroid.module_home.module_request.UnreadMessageApi;
  * @Date 2021/4/1 11:25
  * @descript:
  */
-public class HomeModel implements HomeContract.HomeModel {
+public final class HomeModel implements HomeContract.HomeModel {
 
     @Override
     public void requestAppUpdateMessage(BaseFragment fragment, MvpListener mvpListener) {

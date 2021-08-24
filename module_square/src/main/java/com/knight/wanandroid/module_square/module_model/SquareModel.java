@@ -23,7 +23,7 @@ import java.util.List;
  * @Date 2021/4/1 16:23
  * @descript:
  */
-public class SquareModel implements SquareContact.SquareModel {
+public final class SquareModel implements SquareContact.SquareModel {
 
 
     /**

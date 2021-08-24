@@ -10,7 +10,7 @@ import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.GsonUtils;
 import com.knight.wanandroid.library_util.JsonUtils;
-import com.knight.wanandroid.library_util.LanguageUtils;
+import com.knight.wanandroid.library_util.LanguageFontSizeUtils;
 import com.knight.wanandroid.library_util.SystemUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.module_set.R;
@@ -31,7 +31,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  * @descript:多语言选择界面
  */
 @Route(path = RoutePathActivity.Set.Set_Language)
-public class SelectLanguageActivity extends BaseDBActivity<SetLanguageActivityBinding> {
+public final class SelectLanguageActivity extends BaseDBActivity<SetLanguageActivityBinding> {
 
     private List<LanguageSelectEntity> mLanguageSelectEntities;
     private String currentLanguage;
@@ -105,7 +105,7 @@ public class SelectLanguageActivity extends BaseDBActivity<SetLanguageActivityBi
      */
     private void saveLanguage() {
         CacheUtils.getInstance().setLanguageType(currentSelectLanguage);
-        LanguageUtils.setAppLanguage(this);
+        LanguageFontSizeUtils.setAppLanguage(this);
         SystemUtils.restartApp(this);
     }
 

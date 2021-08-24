@@ -27,13 +27,17 @@ import androidx.recyclerview.widget.RecyclerView;
  * @Date 2021/4/29 17:27
  * @descript:
  */
-public class ItemHeaderDecoration extends RecyclerView.ItemDecoration {
+public final class ItemHeaderDecoration extends RecyclerView.ItemDecoration {
 
     private int mTitleHeight;
     private List<HierachyRightBeanEntity> mDatas;
     private LayoutInflater mInflater;
     private CheckListener mCheckListener;
-    public static String currentTag = "0";//标记当前左侧选中的position，因为有可能选中的item，右侧不能置顶，所以强制替换掉当前的tag
+    /**
+     * 标记当前左侧选中的position，因为有可能选中的item，右侧不能置顶，所以强制替换掉当前的tag
+     *
+     */
+    public static String currentTag = "0";
 
     public void setCheckListener(CheckListener checkListener) {
         mCheckListener = checkListener;
@@ -66,7 +70,8 @@ public class ItemHeaderDecoration extends RecyclerView.ItemDecoration {
         int pos = ((FlexboxLayoutManager) (parent.getLayoutManager())).findFirstVisibleItemPosition();
         String tag = mDatas.get(pos).getTag();
         View child = parent.findViewHolderForLayoutPosition(pos).itemView;
-        boolean isTranslate = false;//canvas是否平移的标志
+        //canvas是否平移的标志
+        boolean isTranslate = false;
         if (!TextUtils.equals(mDatas.get(pos).getTag(), mDatas.get(pos + 1).getTag())) {
             tag = mDatas.get(pos).getTag();
             int i = child.getHeight() + child.getTop();
@@ -110,11 +115,12 @@ public class ItemHeaderDecoration extends RecyclerView.ItemDecoration {
         hierachy_right_view.setBackgroundColor(CacheUtils.getInstance().getThemeColor());
 
         //绘制title开始
-        int toDrawWidthSpec;//用于测量的widthMeasureSpec
-        int toDrawHeightSpec;//用于测量的heightMeasureSpec
+        int toDrawWidthSpec;
+        int toDrawHeightSpec;
         RecyclerView.LayoutParams lp = (RecyclerView.LayoutParams) topTitleView.getLayoutParams();
         if (lp == null) {
-            lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);//这里是根据复杂布局layout的width height，new一个Lp
+            //这里是根据复杂布局layout的width height，new一个Lp
+            lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             topTitleView.setLayoutParams(lp);
         }
         topTitleView.setLayoutParams(lp);
@@ -139,7 +145,8 @@ public class ItemHeaderDecoration extends RecyclerView.ItemDecoration {
         //依次调用 measure,layout,draw方法，将复杂头部显示在屏幕上
         topTitleView.measure(toDrawWidthSpec, toDrawHeightSpec);
         topTitleView.layout(parent.getPaddingLeft(), parent.getPaddingTop(), parent.getPaddingLeft() + topTitleView.getMeasuredWidth(), parent.getPaddingTop() + topTitleView.getMeasuredHeight());
-        topTitleView.draw(canvas);//Canvas默认在视图顶部，无需平移，直接绘制
+        //Canvas默认在视图顶部，无需平移，直接绘制
+        topTitleView.draw(canvas);
         //绘制title结束
 
     }

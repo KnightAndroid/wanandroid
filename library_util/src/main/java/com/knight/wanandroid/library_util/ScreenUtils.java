@@ -51,6 +51,18 @@ public class ScreenUtils {
 
     /**
      *
+     * sp转px
+     * @param sp
+     * @return
+     */
+    public static float sp2px(float sp){
+        final float scale = Resources.getSystem().getDisplayMetrics().scaledDensity;
+        return sp * scale;
+    }
+
+
+    /**
+     *
      * dp转px
      * @param dpValue
      * @return
@@ -59,6 +71,17 @@ public class ScreenUtils {
         final float scale = Resources.getSystem().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
 
+    }
+
+    /**
+     * px转sp
+     *
+     * @param pxVal
+     * @return
+     */
+    public static float px2sp(float pxVal)
+    {
+        return (pxVal / Resources.getSystem().getDisplayMetrics().scaledDensity);
     }
 
     /**

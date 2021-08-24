@@ -36,7 +36,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  * @Date 2021/5/14 14:04
  * @descript:
  */
-public class WechatArticleFragment extends BaseFragment<WechatOfficialaccountViewpagerBinding, WechatPresenter, WechatArticleModel> implements WechatArticleContract.WechatArticleView, OnRefreshListener, OnLoadMoreListener {
+public final class WechatArticleFragment extends BaseFragment<WechatOfficialaccountViewpagerBinding, WechatPresenter, WechatArticleModel> implements WechatArticleContract.WechatArticleView, OnRefreshListener, OnLoadMoreListener {
 
 
 

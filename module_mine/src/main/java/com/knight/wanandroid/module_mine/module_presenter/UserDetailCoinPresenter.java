@@ -11,7 +11,7 @@ import com.knight.wanandroid.module_mine.module_entity.UserDetailCoinListEntity;
  * @Date 2021/4/23 11:15
  * @descript:
  */
-public class UserDetailCoinPresenter extends UserDetailCoinContract.DetailCoinDataPresenter {
+public final class UserDetailCoinPresenter extends UserDetailCoinContract.DetailCoinDataPresenter {
 
     
     @Override

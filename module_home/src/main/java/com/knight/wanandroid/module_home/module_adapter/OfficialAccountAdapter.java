@@ -18,7 +18,7 @@ import java.util.List;
  * @Date 2021/4/12 15:14
  * @descript:公众号适配器
  */
-public class OfficialAccountAdapter extends BaseQuickAdapter<OfficialAccountEntity, BaseViewHolder> {
+public final class OfficialAccountAdapter extends BaseQuickAdapter<OfficialAccountEntity, BaseViewHolder> {
 
     public OfficialAccountAdapter(List<OfficialAccountEntity> officialAccountModels){
         super(R.layout.home_official_accounts_item,officialAccountModels);

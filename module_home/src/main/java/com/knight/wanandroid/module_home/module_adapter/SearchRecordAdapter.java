@@ -16,7 +16,7 @@ import java.util.List;
  * @Date 2021/5/10 15:02
  * @descript:
  */
-public class SearchRecordAdapter extends BaseQuickAdapter<SearchHistroyKeywordEntity, BaseViewHolder> {
+public final class SearchRecordAdapter extends BaseQuickAdapter<SearchHistroyKeywordEntity, BaseViewHolder> {
 
     public SearchRecordAdapter(@Nullable List<SearchHistroyKeywordEntity> data){
         super(R.layout.home_searchkeyword_item,data);

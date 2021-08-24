@@ -14,7 +14,7 @@ import com.knight.wanandroid.module_web.module_contract.WebDialogContract;
  * @Date 2021/5/20 11:31
  * @descript:
  */
-public class WebDialogModel implements WebDialogContract.WebDialogModel {
+public final class WebDialogModel implements WebDialogContract.WebDialogModel {
     @Override
     public void requestCollectArticle(BaseDialogFragment fragment, int collectArticleId, MvpListener mvpListener) {
         GoHttp.post(fragment)

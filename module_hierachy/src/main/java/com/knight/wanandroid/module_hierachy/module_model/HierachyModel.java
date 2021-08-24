@@ -20,7 +20,7 @@ import java.util.List;
  * @Date 2021/4/29 15:41
  * @descript:
  */
-public class HierachyModel implements HierachyContract.HierachyModel {
+public final class HierachyModel implements HierachyContract.HierachyModel {
     @Override
     public void requestHierachyData(BaseFragment fragment, MvpListener mvpListener) {
         GoHttp.get(fragment)

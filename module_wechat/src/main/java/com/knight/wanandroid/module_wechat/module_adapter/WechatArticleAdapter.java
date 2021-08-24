@@ -22,7 +22,7 @@ import androidx.annotation.Nullable;
  * @Date 2021/5/14 16:19
  * @descript:
  */
-public class WechatArticleAdapter extends BaseQuickAdapter<WechatArticleEntity, BaseViewHolder> {
+public final class WechatArticleAdapter extends BaseQuickAdapter<WechatArticleEntity, BaseViewHolder> {
 
     public WechatArticleAdapter(@Nullable List<WechatArticleEntity> data){
         super(R.layout.base_text_item,data);
