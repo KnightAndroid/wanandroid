@@ -135,7 +135,7 @@ public final class MessageFragment extends BaseFragment<MessageReadedFragmentBin
             mMessageAdapter.addData(messageListEntity.getDatas());
         }
 
-        if (messageListEntity.getSize() < 10) {
+        if (messageListEntity.getSize() == 0) {
             mDatabind.includeMessage.baseFreshlayout.setEnableLoadMore(false);
         } else {
             page ++;

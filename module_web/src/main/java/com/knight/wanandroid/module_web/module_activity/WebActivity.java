@@ -33,6 +33,7 @@ import com.knight.wanandroid.module_web.module_contract.WebContract;
 import com.knight.wanandroid.module_web.module_fragment.WebBottomFragment;
 import com.knight.wanandroid.module_web.module_model.WebModel;
 import com.knight.wanandroid.module_web.module_presenter.WebPresenter;
+import com.knight.wanandroid.module_web.module_utils.ViewBindUtils;
 import com.knight.wanandroid.module_web.module_view.WebLayout;
 import com.wanandroid.knight.library_database.entity.HistoryReadRecordsEntity;
 
@@ -115,8 +116,8 @@ public final class WebActivity extends BaseActivity<WebActivityMainBinding, WebP
 
         mWebView = mAgentWeb.getWebCreator().getWebView();
 
-
         initWebView(mWebView);
+        ViewBindUtils.previewWebViewPhoto(mWebView);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             mDatabind.includeWebToolbar.baseTvTitle.setText(Html.fromHtml(title,Html.FROM_HTML_MODE_LEGACY));
         } else {

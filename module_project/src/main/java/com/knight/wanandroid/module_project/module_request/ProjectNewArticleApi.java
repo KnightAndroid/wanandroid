@@ -1,5 +1,6 @@
 package com.knight.wanandroid.module_project.module_request;
 
+import com.knight.wanandroid.library_base.constants.BaseConstants;
 import com.knight.wanandroid.library_network.config.IRequestApi;
 
 /**
@@ -19,6 +20,6 @@ public final class ProjectNewArticleApi implements IRequestApi {
     }
     @Override
     public String getApi() {
-        return "article/listproject/"+page+"/json";
+        return "article/listproject/"+page+"/json?page_size="+ BaseConstants.PAGR_SIZE;
     }
 }

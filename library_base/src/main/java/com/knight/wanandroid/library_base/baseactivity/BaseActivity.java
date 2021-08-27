@@ -49,7 +49,8 @@ import androidx.databinding.ViewDataBinding;
  * @Date 2020/12/28 19:54
  * @descript:Activity基类
  */
-public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePresenter,M extends BaseModel> extends AppCompatActivity implements OnHttpListener, NetworkStatusListener{
+public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePresenter,M extends BaseModel> extends AppCompatActivity implements OnHttpListener,
+        NetworkStatusListener {
 
     public abstract int layoutId();
 
@@ -137,6 +138,7 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
         //使得p层绑定M层和V层，持有M和V的引用
         mPresenter.attachModelView(mModel,this);
         initData();
+
 
 
     }
@@ -314,6 +316,7 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
     @Override
     protected void attachBaseContext(Context base) {
         fontScale = CacheUtils.getInstance().getSystemFontSize();
+
         super.attachBaseContext(LanguageFontSizeUtils.attachBaseContext(base,fontScale));
     }
 
@@ -391,5 +394,6 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
         super.applyOverrideConfiguration(overrideConfiguration);
 
     }
+
 
 }

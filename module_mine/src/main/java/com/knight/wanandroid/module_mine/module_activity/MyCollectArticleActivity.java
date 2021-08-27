@@ -97,7 +97,7 @@ public final class MyCollectArticleActivity extends BaseActivity<MineActivityCol
         if (myCollectArticleListEntity.getDatas().size() > 0) {
             if (page == 0) {
                 mMyCollectArticleAdapter.setNewInstance(myCollectArticleListEntity.getDatas());
-                if (myCollectArticleListEntity.getDatas().size() <= 10) {
+                if (myCollectArticleListEntity.getDatas().size() == 0) {
                     mDatabind.includeMineCollectfreshalayout.baseFreshlayout.setEnableLoadMore(false);
                 }
             } else {

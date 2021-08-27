@@ -4,7 +4,8 @@
     tools:context="com.knight.wanandroid.module_hierachy.module_adapter.HierachyLeftBarAdapter"
     android:id="@+id/hiearchy_linear_layout"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/base_dimen_50"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/base_dimen_50"
     android:background="@color/base_bg_normal_default"
     android:orientation="horizontal">
 

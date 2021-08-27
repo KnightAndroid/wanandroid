@@ -114,7 +114,7 @@ public final class HierachyTabArticleFragment extends BaseFragment<HierachyFragm
                 mHierachyTabAdapter.addData(data.getDatas());
             }
             
-            if (data.getDatas().size() < 10) {
+            if (data.getDatas().size() == 0) {
                 mDatabind.includeTabarticle.baseFreshlayout.setEnableLoadMore(false);
             } else {
                 page ++;

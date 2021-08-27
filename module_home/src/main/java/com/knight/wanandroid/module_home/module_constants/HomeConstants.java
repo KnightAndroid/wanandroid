@@ -9,7 +9,10 @@ package com.knight.wanandroid.module_home.module_constants;
 public final class HomeConstants {
 
 
-    //首页选了什么
+    /**
+     *
+     * 首页选了什么类型
+     */
     public static String ARTICLE_TYPE = "全部";
     
 }

@@ -28,6 +28,7 @@ import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.ScreenUtils;
 import com.knight.wanandroid.module_web.R;
 import com.knight.wanandroid.module_web.databinding.WebTransitionActivityBinding;
+import com.knight.wanandroid.module_web.module_utils.ViewBindUtils;
 import com.knight.wanandroid.module_web.module_view.WebLayout;
 
 import androidx.core.content.ContextCompat;
@@ -185,6 +186,9 @@ public final class WebTransitionActivity extends BaseDBActivity<WebTransitionAct
                 .go(webUrl);
 
         mWebView = mAgentWeb.getWebCreator().getWebView();
+
+        ViewBindUtils.previewWebViewPhoto(mWebView);
+
         WebSettings settings = mWebView.getSettings();
         mWebView.setOverScrollMode(WebView.OVER_SCROLL_NEVER);
         settings.setDomStorageEnabled(true);

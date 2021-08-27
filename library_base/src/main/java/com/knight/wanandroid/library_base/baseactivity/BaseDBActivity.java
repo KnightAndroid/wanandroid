@@ -43,7 +43,8 @@ import androidx.databinding.ViewDataBinding;
  * @Date 2021/4/2 17:25
  * @descript:非业务界面
  */
-public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppCompatActivity implements OnHttpListener, NetworkStatusListener {
+public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppCompatActivity implements OnHttpListener,
+        NetworkStatusListener {
 
     /**
      * 返回布局文件
@@ -134,6 +135,7 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             mSwipeBackHelper = new SwipeBackHelper(this);
         }
+
 
 
     }
@@ -289,6 +291,12 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
         }
     }
 
+
+    /**
+     *
+     * {@link OnHttpListener}
+     * @param result
+     */
     @Override
     public void onSucceed(Object result) {
 
@@ -390,5 +398,7 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
         super.applyOverrideConfiguration(overrideConfiguration);
 
     }
+
+
 
 }

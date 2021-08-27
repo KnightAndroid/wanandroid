@@ -29,7 +29,6 @@ import java.io.File;
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
@@ -140,13 +139,17 @@ public class SystemUtils {
     /**
      * 返回当前程序版本号
      */
-    @RequiresApi(api = Build.VERSION_CODES.P)
+
     public static long getAppVersionCode(Context context) {
         long versioncode = 0;
         try {
             PackageManager pm = context.getPackageManager();
             PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);
-            versioncode = pi.getLongVersionCode();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                versioncode = pi.getLongVersionCode();
+            } else {
+                versioncode = pi.versionCode;
+            }
         } catch (Exception e) {
             Log.e("VersionInfo", "Exception", e);
         }
@@ -254,7 +257,6 @@ public class SystemUtils {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             context.startActivity(intent);
         }
-
 
     }
 

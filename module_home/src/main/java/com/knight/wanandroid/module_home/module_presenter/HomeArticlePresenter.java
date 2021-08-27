@@ -31,7 +31,7 @@ public final class HomeArticlePresenter extends HomeArticleContract.HomeArticleD
             return;
         }
 
-        mModel.requestSerchArticle((BaseFragment)mView, page, keyWords, new MvpListener<HomeArticleListEntity>() {
+        mModel.requestSerchArticle((BaseFragment)mView, page, keyWords,new MvpListener<HomeArticleListEntity>() {
             @Override
             public void onSuccess(HomeArticleListEntity data) {
                 mView.setSearchArticle(data);

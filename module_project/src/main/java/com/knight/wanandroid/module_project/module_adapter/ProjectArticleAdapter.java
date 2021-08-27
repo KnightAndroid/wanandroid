@@ -33,7 +33,6 @@ public final class ProjectArticleAdapter extends BaseQuickAdapter<ProjectArticle
 
     @Override
     protected void convert(@NotNull BaseViewHolder baseViewHolder, ProjectArticleEntity projectArticleEntity) {
-        //项目图片
         GlideEngineUtils.getInstance().loadStringPhoto(ApplicationProvider.getInstance().getApplication(),projectArticleEntity.getEnvelopePic(),baseViewHolder.getView(R.id.base_item_imageview));
         //作者
         if (!TextUtils.isEmpty(projectArticleEntity.getAuthor())) {

@@ -14,7 +14,7 @@ import com.knight.wanandroid.module_home.module_entity.HomeArticleListEntity;
  */
 public final class SearchResultPresenter extends SearchResultContract.SearchResultDataPresenter {
     @Override
-    public void requestSearchResult(int page, String keyWords) {
+    public void requestSearchResult(int page,String keyWords) {
         final SearchResultContract.SearchResultView mView = getView();
         if (mView == null) {
             return;

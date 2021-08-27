@@ -111,11 +111,6 @@ public class ModuleConfig {
         //bugly异常上报
         CrashReport.initCrashReport(application, "669abbf2c8", false);
         SystemUtils.darkNormal();
-
-
-
-
-
     }
     /**
      *

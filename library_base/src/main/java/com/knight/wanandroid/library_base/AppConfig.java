@@ -17,13 +17,27 @@ public final class AppConfig {
     private static final String WechatApp = "com.knight.wanandroid.module_wechat.WechatApp";
     private static final String MessageApp = "com.knight.wanandroid.module_message.MessageApp";
     private static final String SetApp = "com.knight.wanandroid.module_set.SetApp";
-    //文章只有文字
+
+    /**
+     *
+     * 类型：文字文章
+     */
     public static final int ARTICLE_TEXT_TYPE = 0;
-    //文章有文字和图片
+    /**
+     *
+     * 类型：图文文章
+     */
     public static final int ARTICLE_PICTURE_TYPE = 1;
-    //搜索字段
+    /**
+     *
+     * 字段搜索名称
+     */
     public static String SEARCH_KEYWORD = "";
-    //共享元素 图像
+
+    /**
+     *
+     * 共享元素图像
+     */
     public static final String IMAGE_TRANSITION_NAME = "transitionImage";
     public static final String TEXT_AUTHOR_NAME = "authorName";
     public static final String TEXT_CHAPTERNAME_NAME = "chapterName";

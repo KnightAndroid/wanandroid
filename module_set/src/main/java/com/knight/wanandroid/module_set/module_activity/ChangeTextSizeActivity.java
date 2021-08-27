@@ -15,6 +15,8 @@ import com.knight.wanandroid.library_widget.ChangeSizeView;
 import com.knight.wanandroid.module_set.R;
 import com.knight.wanandroid.module_set.databinding.SetChangetextsizeActivityBinding;
 
+import me.jessyan.autosize.AutoSize;
+
 /**
  * @author created by knight
  * @organize wanandroid
@@ -49,6 +51,9 @@ public final class ChangeTextSizeActivity extends BaseDBActivity<SetChangetextsi
             @Override
             public void onClick(View v) {
                 CacheUtils.getInstance().setSystemFontSize(fontSizeScale);
+                if (fontSizeScale == 1.0f && !AutoSize.checkInit()) {
+                    AutoSize.checkAndInit(ChangeTextSizeActivity.this.getApplication());
+                }
                 SystemUtils.restartApp(ChangeTextSizeActivity.this);
             }
         });
@@ -97,8 +102,7 @@ public final class ChangeTextSizeActivity extends BaseDBActivity<SetChangetextsi
 
 
     /**
-     * 设置 app 字体不随系统字体设置改变
-     * 暂时先用这个方法
+     * 用这个方法 为了初始化选中字体缩放因子 保证基准是以1 调整字体大小 不然基准是以缩放因子
      */
     @Override
     public Resources getResources() {

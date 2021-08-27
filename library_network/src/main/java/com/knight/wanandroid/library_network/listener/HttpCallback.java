@@ -16,6 +16,12 @@ public class HttpCallback<T> implements OnHttpListener<T> {
         mListener = listener;
     }
 
+
+    /**
+     *
+     * {@link OnHttpListener}
+     * @param call
+     */
     @Override
     public void onStart(Call call) {
         if (mListener != null) {

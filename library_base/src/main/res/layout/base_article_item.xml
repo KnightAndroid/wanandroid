@@ -64,7 +64,7 @@
             android:textSize="@dimen/base_dimen_text_size_16"
             android:textStyle="bold"
             android:textColor="@color/base_color_title"
-            android:text="Android上强盗协程网络请求请求收到"
+            android:text="Android上协程网络请求请求收到"
             android:layout_marginLeft="@dimen/base_dimen_10"
             android:lines="2"
             android:ellipsize="end"/>

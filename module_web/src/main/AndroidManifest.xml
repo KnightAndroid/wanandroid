@@ -6,7 +6,7 @@
         <activity android:name=".module_activity.WebActivity"/>
         <activity android:name=".module_activity.WebNormalActivity"/>
         <activity android:name=".module_activity.WebTransitionActivity"/>
-
+        <activity android:name=".module_activity.WebPreviewPhotoActivity"/>
     </application>
 
 </manifest>

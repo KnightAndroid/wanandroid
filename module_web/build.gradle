@@ -82,4 +82,5 @@ dependencies {
     implementation project (':library_base')
     annotationProcessor "com.alibaba:arouter-compiler:$arouterVersion"
     implementation "com.github.Justson.AgentWeb:agentweb-core:$AgentVersion"
+    implementation "io.github.panpf.sketch:sketch:$sketchPhotoVersion"
 }

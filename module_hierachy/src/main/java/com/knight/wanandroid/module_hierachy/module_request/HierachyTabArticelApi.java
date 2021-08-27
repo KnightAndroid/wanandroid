@@ -1,5 +1,6 @@
 package com.knight.wanandroid.module_hierachy.module_request;
 
+import com.knight.wanandroid.library_base.constants.BaseConstants;
 import com.knight.wanandroid.library_network.config.IRequestApi;
 
 /**
@@ -26,6 +27,6 @@ public final class HierachyTabArticelApi implements IRequestApi {
     }
     @Override
     public String getApi() {
-        return "article/list/"+page+"/json?="+cid;
+        return "article/list/"+page+"/json?="+cid+"&page_size="+ BaseConstants.PAGR_SIZE;
     }
 }

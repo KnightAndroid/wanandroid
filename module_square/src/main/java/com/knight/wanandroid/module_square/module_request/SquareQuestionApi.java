@@ -1,5 +1,6 @@
 package com.knight.wanandroid.module_square.module_request;
 
+import com.knight.wanandroid.library_base.constants.BaseConstants;
 import com.knight.wanandroid.library_network.config.IRequestApi;
 
 /**
@@ -22,6 +23,6 @@ public final class SquareQuestionApi implements IRequestApi {
     }
     @Override
     public String getApi() {
-        return "wenda/list/"+page+"/json";
+        return "wenda/list/"+page+"/json?page_size="+ BaseConstants.PAGR_SIZE;
     }
 }

@@ -47,8 +47,10 @@ public final class SearchResultActivity extends BaseActivity<HomeSearchresultAct
         OnRefreshListener, OnLoadMoreListener {
     private SearchResultAdapter mSearchResultAdapter;
 
+    /**
+     * 页码
+     */
     private int page = 0;
-
 
     @Autowired(name = "keyword")
     String keyword = "";
@@ -134,18 +136,13 @@ public final class SearchResultActivity extends BaseActivity<HomeSearchresultAct
             if (result.getDatas().size() == 0) {
                 showEmptyData();
             }
-            if (result.getDatas().size() < 10) {
-                mDatabind.includeSearchresult.baseFreshlayout.setEnableLoadMore(false);
-            } else {
-                page++;
-            }
         } else {
             mSearchResultAdapter.addData(result.getDatas());
-            if (result.getDatas().size() < 10) {
-                mDatabind.includeSearchresult.baseFreshlayout.setEnableLoadMore(false);
-            } else {
-                page++;
-            }
+        }
+        if (result.getDatas().size() == 0) {
+            mDatabind.includeSearchresult.baseFreshlayout.setEnableLoadMore(false);
+        } else {
+            page++;
         }
 
     }

@@ -137,7 +137,7 @@ public final class HomeRecommendFragment extends BaseFragment<HomeFragmentRecomm
                 isShowOnlythree = !isShowOnlythree;
             }
         });
-        mDatabind.homeIconFab.setBackgroundTintList(ColorUtils.createColorStateList(CacheUtils.getInstance().getThemeColor(),CacheUtils.getInstance().getThemeColor()));
+        mDatabind.homeIconFab.setBackgroundTintList(ColorUtils.createColorStateList(CacheUtils.getInstance().getThemeColor(), CacheUtils.getInstance().getThemeColor()));
         initTopAdapterClick();
         initOfficialAccountClick();
         initArticleLinstener();
@@ -147,7 +147,7 @@ public final class HomeRecommendFragment extends BaseFragment<HomeFragmentRecomm
         mDatabind.homeRefreshLayout.setOnMultiListener(new SimpleMultiListener() {
             @Override
             public void onHeaderMoving(RefreshHeader header, boolean isDragging, float percent, int offset, int headerHeight, int maxDragHeight) {
-                //     mDatabind.homeIncludeToolbar.toolbar.setAlpha(1 - Math.min(percent, 1));
+
             }
 
             @Override
@@ -283,20 +283,21 @@ public final class HomeRecommendFragment extends BaseFragment<HomeFragmentRecomm
     @Override
     public void setAllHomeArticle(HomeArticleListEntity result) {
         showSuccess();
+        //后台返回自动加1
         currentPage = result.getCurPage();
         mDatabind.homeRefreshLayout.finishLoadMore();
         mDatabind.homeRefreshLayout.finishRefresh();
         if (currentPage > 1) {
-            if (result.getDatas().size() > 0) {
-                mHomeArticleAdapter.addData(result.getDatas());
-            } else {
-                mDatabind.homeRefreshLayout.setEnableLoadMore(false);
-            }
+            mHomeArticleAdapter.addData(result.getDatas());
         } else {
             mHomeArticleAdapter.setNewInstance(result.getDatas());
             if (mDatabind.homeRecommendArticleBody.getHeaderCount() == 0) {
                 mDatabind.homeRecommendArticleBody.addHeaderView(recommendHeadView);
             }
+        }
+
+        if (result.getDatas().size() == 0) {
+            mDatabind.homeRefreshLayout.setEnableLoadMore(false);
         }
     }
 

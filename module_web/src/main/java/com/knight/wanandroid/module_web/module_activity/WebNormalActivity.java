@@ -24,6 +24,7 @@ import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.module_web.R;
 import com.knight.wanandroid.module_web.databinding.WebNormalActivityBinding;
 import com.knight.wanandroid.module_web.module_fragment.WebNormalBottomFragment;
+import com.knight.wanandroid.module_web.module_utils.ViewBindUtils;
 import com.knight.wanandroid.module_web.module_view.WebLayout;
 
 /**
@@ -74,6 +75,7 @@ public final class WebNormalActivity extends BaseDBActivity<WebNormalActivityBin
 
         mWebView = mAgentWeb.getWebCreator().getWebView();
         initWebView(mWebView);
+        ViewBindUtils.previewWebViewPhoto(mWebView);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             mDatabind.includeWebNormaltoolbar.baseTvTitle.setText(Html.fromHtml(webTitle,Html.FROM_HTML_MODE_LEGACY));
         } else {

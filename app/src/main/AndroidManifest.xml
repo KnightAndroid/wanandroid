@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.knight.wanandroid">
 
 
@@ -66,8 +67,12 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-<!--        <receiver android:name=".library_base.receiver.NetWorkChangeReceiver"/>-->
-        
+        <!-- 会使屏幕适配框架失效 -->
+        <provider
+            android:name="me.jessyan.autosize.InitProvider"
+            android:authorities="${applicationId}.InitProvider"
+            tools:node="remove"
+             />
     </application>
 
 </manifest>

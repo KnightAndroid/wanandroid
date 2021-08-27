@@ -124,10 +124,15 @@ public final class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, Ho
 
     @Override
     public void setAppUpdateMessage(AppUpdateEntity appUpdateEntity) {
-        //先判断本地版本和远端版本是否一致
-        if (!appUpdateEntity.getVersionName().equals(SystemUtils.getAppVersionName(getActivity()))) {
-            new UpdateAppDialogFragment(appUpdateEntity).show(getParentFragmentManager(), "dialog_update");
+        //如果本地安装包大于远端 证明本地安装的是测试包
+        if (SystemUtils.getAppVersionCode(getActivity()) < appUpdateEntity.getVersionCode()) {
+            //先判断本地版本和远端版本是否一致
+            if (!appUpdateEntity.getVersionName().equals(SystemUtils.getAppVersionName(getActivity()))) {
+                new UpdateAppDialogFragment(appUpdateEntity).show(getParentFragmentManager(), "dialog_update");
+            }
         }
+
+
     }
 
     @Override

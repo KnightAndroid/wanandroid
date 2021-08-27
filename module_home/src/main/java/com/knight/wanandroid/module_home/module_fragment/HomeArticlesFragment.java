@@ -169,18 +169,17 @@ public final class HomeArticlesFragment extends BaseFragment<HomeFragmentArticle
      */
     private void loadArticleData(HomeArticleListEntity result) {
         showSuccess();
+        //这里获取currentPage会自动加1
         currentPage = result.getCurPage();
         mDatabind.homeArticleFreshlayout.finishLoadMore();
         mDatabind.homeArticleFreshlayout.finishRefresh();
-        // dismissLoadingHud();
         if (currentPage > 1) {
-            if (result.getDatas().size() > 0) {
-                mHomeArticleAdapter.addData(result.getDatas());
-            } else {
-                mDatabind.homeArticleFreshlayout.setEnableLoadMore(false);
-            }
+            mHomeArticleAdapter.addData(result.getDatas());
         } else {
             mHomeArticleAdapter.setNewInstance(result.getDatas());
+        }
+        if (result.getDatas().size() == 0) {
+            mDatabind.homeArticleFreshlayout.setEnableLoadMore(false);
         }
     }
 

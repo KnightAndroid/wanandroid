@@ -1,5 +1,6 @@
 package com.knight.wanandroid.module_mine.module_request;
 
+import com.knight.wanandroid.library_base.constants.BaseConstants;
 import com.knight.wanandroid.library_network.config.IRequestApi;
 
 /**
@@ -24,6 +25,6 @@ public final class UserDetailCoinApi implements IRequestApi {
     }
     @Override
     public String getApi() {
-        return "lg/coin/list/"+page+"/json";
+        return "lg/coin/list/"+page+"/json?page_size="+ BaseConstants.PAGR_SIZE;
     }
 }

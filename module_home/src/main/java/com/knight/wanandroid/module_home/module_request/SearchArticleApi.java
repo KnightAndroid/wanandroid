@@ -1,5 +1,6 @@
 package com.knight.wanandroid.module_home.module_request;
 
+import com.knight.wanandroid.library_base.constants.BaseConstants;
 import com.knight.wanandroid.library_network.annotation.HttpRename;
 import com.knight.wanandroid.library_network.config.IRequestApi;
 
@@ -12,6 +13,7 @@ import com.knight.wanandroid.library_network.config.IRequestApi;
 public final class SearchArticleApi implements IRequestApi {
 
     private int page;
+
 
     @HttpRename("k")
     private String keyWord;
@@ -27,7 +29,7 @@ public final class SearchArticleApi implements IRequestApi {
 
     @Override
     public String getApi() {
-        return "article/query/"+page+"/json";
+        return "article/query/"+page+"/json?page_size="+ BaseConstants.PAGR_SIZE;
     }
 
     /**

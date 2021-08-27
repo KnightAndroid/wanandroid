@@ -113,7 +113,7 @@ public final class ProjectViewpagerFragment extends BaseFragment<ProjectViewpage
             } else {
                 mProjectArticleAdapter.addData(projectArticle.getDatas());
             }
-            if (projectArticle.getDatas().size() < 10) {
+            if (projectArticle.getDatas().size() == 0) {
                 mDatabind.projectListSmartfreshlayout.setEnableLoadMore(false);
             } else {
                 page++;
