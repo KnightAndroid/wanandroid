@@ -5,7 +5,7 @@ import android.graphics.drawable.GradientDrawable;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.knight.wanandroid.library_base.entity.OfficialAccountEntity;
-import com.knight.wanandroid.library_util.ColorUtils;
+import com.knight.wanandroid.library_common.utils.ColorUtils;
 import com.knight.wanandroid.module_home.R;
 
 import org.jetbrains.annotations.NotNull;

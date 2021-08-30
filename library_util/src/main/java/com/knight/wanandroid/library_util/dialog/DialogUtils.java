@@ -3,7 +3,7 @@ package com.knight.wanandroid.library_util.dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
-import com.knight.wanandroid.library_util.CacheUtils;
+import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_util.R;
 
 import androidx.appcompat.app.AlertDialog;

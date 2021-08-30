@@ -1,6 +1,7 @@
 package com.knight.wanandroid.library_network.body;
 
 import com.knight.wanandroid.library_network.NetWorkUtils;
+import com.knight.wanandroid.library_network.data.ContentType;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -23,8 +24,6 @@ import okio.Source;
  */
 public final class UpdateBody extends RequestBody {
 
-    public static final MediaType MEDIA_TYPE = MediaType.parse("application/octet-stream");
-
     /** 上传源 */
     private final Source mSource;
 
@@ -38,11 +37,11 @@ public final class UpdateBody extends RequestBody {
     private final long mLength;
 
     public UpdateBody(File file) throws FileNotFoundException {
-        this(Okio.source(file), guessMimeType(file.getName()), file.getName(), file.length());
+        this(Okio.source(file), NetWorkUtils.guessMimeType(file.getName()), file.getName(), file.length());
     }
 
     public UpdateBody(InputStream inputStream, String name) throws IOException {
-        this(Okio.source(inputStream), MEDIA_TYPE, name, inputStream.available());
+        this(Okio.source(inputStream), ContentType.STREAM, name, inputStream.available());
     }
 
     public UpdateBody(Source source, MediaType type, String name, long length) {
@@ -75,21 +74,5 @@ public final class UpdateBody extends RequestBody {
         return mName;
     }
 
-    /**
-     * 根据文件名获取 MIME 类型
-     */
-    public static MediaType guessMimeType(String fileName) {
-        FileNameMap fileNameMap = URLConnection.getFileNameMap();
-        // 解决文件名中含有#号异常的问题
-        fileName = fileName.replace("#", "");
-        String contentType = fileNameMap.getContentTypeFor(fileName);
-        if (contentType == null) {
-            return MEDIA_TYPE;
-        }
-        MediaType type = MediaType.parse(contentType);
-        if (type == null) {
-            type = MEDIA_TYPE;
-        }
-        return type;
-    }
+
 }

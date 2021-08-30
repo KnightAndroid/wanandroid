@@ -7,7 +7,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.google.gson.reflect.TypeToken;
 import com.knight.wanandroid.library_base.baseactivity.BaseDBActivity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
-import com.knight.wanandroid.library_util.CacheUtils;
+import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_util.GsonUtils;
 import com.knight.wanandroid.library_util.JsonUtils;
 import com.knight.wanandroid.library_util.LanguageFontSizeUtils;

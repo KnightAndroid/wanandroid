@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="library_network_http_loading">Loading</string>
+    <string name="library_network_http_token_error">Login failure,please login</string>
     <string name="library_network_http_unknown_error">Request error, unknown error</string>
     <string name="library_network_http_account_error">The account is abnormal. Please log in again</string>
     <string name="library_network_http_data_explain_error">Data parsing exception, please wait</string>

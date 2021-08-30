@@ -25,6 +25,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.knight.wanandroid.library_common.utils.CacheUtils;
+
 import java.io.File;
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;

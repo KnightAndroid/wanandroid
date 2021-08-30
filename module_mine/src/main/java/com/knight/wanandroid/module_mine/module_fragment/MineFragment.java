@@ -12,7 +12,7 @@ import com.knight.wanandroid.library_base.basefragment.BaseFragment;
 import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
-import com.knight.wanandroid.library_util.ColorUtils;
+import com.knight.wanandroid.library_common.utils.ColorUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;

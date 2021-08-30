@@ -19,8 +19,7 @@ import android.view.WindowManager;
 import android.view.WindowMetrics;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import com.knight.wanandroid.library_util.ColorUtils;
+import com.knight.wanandroid.library_common.utils.ColorUtils;
 import com.knight.wanandroid.library_widget.ColorPickerView;
 import com.knight.wanandroid.module_set.R;
 import com.knight.wanandroid.module_set.module_annoation.ColorStyle;

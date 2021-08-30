@@ -5,11 +5,11 @@ import com.knight.wanandroid.library_network.HttpConfig;
 import com.knight.wanandroid.library_network.NetWorkUtils;
 import com.knight.wanandroid.library_network.data.CallProxy;
 import com.knight.wanandroid.library_network.lifecycle.HttpLifecycleControl;
+import com.knight.wanandroid.library_network.request.BaseRequest;
 
 import java.io.IOException;
 import java.net.SocketTimeoutException;
 
-import androidx.lifecycle.LifecycleOwner;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -22,28 +22,36 @@ import okhttp3.Response;
  */
 public abstract class BaseCallback implements Callback {
 
+
+    /** 请求配置 */
+    private final BaseRequest<?> mBaseRequest;
+
     /** 请求任务对象 */
     private CallProxy mCall;
 
     /** 当前重试次数 */
     private int mRetryCount;
 
-    /** 生命周期管理 */
-    private LifecycleOwner mLifecycleOwner;
+    BaseCallback(BaseRequest<?> request) {
+        mBaseRequest = request;
+        HttpLifecycleControl.bind(mBaseRequest.getLifecycleOwner());
+    }
 
-    BaseCallback(LifecycleOwner lifecycleOwner, CallProxy call) {
+    public BaseCallback setCall(CallProxy call) {
         mCall = call;
-        mLifecycleOwner = lifecycleOwner;
-        HttpLifecycleControl.bind(lifecycleOwner);
+        return this;
+    }
+
+    public void start() {
+        mCall.enqueue(this);
+        onStart(mCall);
     }
 
     CallProxy getCall() {
         return mCall;
     }
 
-    LifecycleOwner getLifecycleOwner() {
-        return mLifecycleOwner;
-    }
+
 
     @Override
     public void onResponse(Call call, Response response) {
@@ -66,22 +74,30 @@ public abstract class BaseCallback implements Callback {
             // 设置延迟 N 秒后重试该请求
             NetWorkUtils.postDelayed(() -> {
                 // 前提是宿主还没有被销毁
-                if (HttpLifecycleControl.isLifecycleActive(mLifecycleOwner)) {
-                    mRetryCount++;
-                    Call newCall = call.clone();
-                    mCall.setCall(newCall);
-                    newCall.enqueue(BaseCallback.this);
-                    EasyLog.print("请求超时，正在延迟重试，重试次数：" + mRetryCount + "/" + HttpConfig.getInstance().getRetryCount());
-                } else {
+                if (!HttpLifecycleControl.isLifecycleActive(mBaseRequest.getLifecycleOwner())) {
                     EasyLog.print("宿主已被销毁，无法对请求进行重试");
+                    return;
                 }
+                mRetryCount++;
+                Call newCall = call.clone();
+                mCall.setCall(newCall);
+                newCall.enqueue(BaseCallback.this);
+                EasyLog.print("请求超时，正在延迟重试，重试次数：" + mRetryCount + "/" + HttpConfig.getInstance().getRetryCount());
             }, HttpConfig.getInstance().getRetryTime());
             return;
         }
         onFailure(e);
     }
-
+    /**
+     * 请求开始
+     */
+    protected abstract void onStart(Call call);
+    /**
+     * 请求成功
+     */
     protected abstract void onResponse(Response response) throws Exception;
-
+    /**
+     * 请求失败
+     */
     protected abstract void onFailure(Exception e);
 }

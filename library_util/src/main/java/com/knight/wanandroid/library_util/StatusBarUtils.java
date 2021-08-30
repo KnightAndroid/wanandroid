@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.WindowInsetsController;
 import android.view.WindowManager;
 
+import com.knight.wanandroid.library_common.utils.CacheUtils;
+
 /**
  * @author created by knight
  * @organize wanandroid

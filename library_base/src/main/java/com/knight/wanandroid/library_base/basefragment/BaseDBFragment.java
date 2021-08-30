@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.knight.wanandroid.library_util.CacheUtils;
+import com.knight.wanandroid.library_common.utils.CacheUtils;
 
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;

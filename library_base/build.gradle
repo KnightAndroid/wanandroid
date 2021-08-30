@@ -41,7 +41,7 @@ dependencies {
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$junitextVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCoreVersion"
-    implementation project (':library_componentbase')
+    api project (':library_componentbase')
     debugApi "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
     api "com.alibaba:arouter-api:$arouterVersion"
     //annotationProcessor "com.alibaba:arouter-compiler:$arouterVersion"

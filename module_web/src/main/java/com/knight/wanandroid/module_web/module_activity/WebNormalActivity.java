@@ -20,7 +20,7 @@ import com.just.agentweb.WebChromeClient;
 import com.just.agentweb.WebViewClient;
 import com.knight.wanandroid.library_base.baseactivity.BaseDBActivity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
-import com.knight.wanandroid.library_util.CacheUtils;
+import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.module_web.R;
 import com.knight.wanandroid.module_web.databinding.WebNormalActivityBinding;
 import com.knight.wanandroid.module_web.module_fragment.WebNormalBottomFragment;

@@ -9,7 +9,7 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.knight.wanandroid.library_base.entity.SearchHotKeyEntity;
-import com.knight.wanandroid.library_util.CacheUtils;
+import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_util.ScreenUtils;
 import com.knight.wanandroid.module_home.R;
 

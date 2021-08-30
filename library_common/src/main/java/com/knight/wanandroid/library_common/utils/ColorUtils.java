@@ -1,4 +1,4 @@
-package com.knight.wanandroid.library_util;
+package com.knight.wanandroid.library_common.utils;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -82,9 +82,15 @@ public class ColorUtils {
        String red = Integer.toHexString(Color.red(color));
        String green = Integer.toHexString(Color.green(color));
        String blue = Integer.toHexString(Color.blue(color));
-       if (red.length() == 1) red = "0" +red;
-       if (green.length() == 1) green = "0" +green;
-       if (blue.length() == 1) blue = "0" +blue;
+       if (red.length() == 1) {
+           red = "0" +red;
+       }
+       if (green.length() == 1) {
+           green = "0" +green;
+       }
+       if (blue.length() == 1) {
+           blue = "0" +blue;
+       }
        return red + green +blue;
     }
 
@@ -121,7 +127,7 @@ public class ColorUtils {
                     return 0;
             }
         } else {
-            ToastUtils.getInstance().showToast(argb+"不是合法的颜色值");
+         //   ToastUtils.getInstance().showToast(argb+"不是合法的颜色值");
             return 0;
         }
 

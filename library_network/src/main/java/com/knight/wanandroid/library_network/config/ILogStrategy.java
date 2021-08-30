@@ -36,6 +36,11 @@ public interface ILogStrategy {
     void print(String key, String value);
 
     /**
+     * 打印堆栈
+     */
+    void print(StackTraceElement[] stackTrace);
+
+    /**
      * 将字符串格式化成 JSON 格式
      */
     static String formatJson(String json) {
@@ -60,11 +65,30 @@ public interface ILogStrategy {
                         .append(getSpaceOrTab(tabNum))
                         .append(c);
             } else if (c == ',') {
-                builder.append(c).append("\n")
-                        .append(getSpaceOrTab(tabNum));
+                // 是否格式化处理
+                boolean formatFlag = true;
+                // 获取冒号最后所在位置
+                int colonIndex = json.lastIndexOf(":", i);
+                // 再获取引号最后所在位置
+                int quoteIndex = json.lastIndexOf(":\"", i);
+                if (colonIndex != -1) {
+                    if (quoteIndex == colonIndex) {
+                        // {"code":"12.0101.0122651.00,300.200000,210428,,,,,,10002,,01"}
+                        if (json.charAt(i - 1) != '"') {
+                            formatFlag = false;
+                        }
+                    }
+                }
+
+                if (formatFlag) {
+                    builder.append(c).append("\n").append(getSpaceOrTab(tabNum));
+                } else {
+                    builder.append(c);
+                }
+
             } else if (c == ':') {
                 if (i > 0 && json.charAt(i - 1) == '"') {
-                    builder.append(c).append(" ");
+                    builder.append(" ").append(c).append(" ");
                 } else {
                     builder.append(c);
                 }
@@ -89,6 +113,7 @@ public interface ILogStrategy {
             }
             last = c;
         }
+
         return builder.toString();
     }
 

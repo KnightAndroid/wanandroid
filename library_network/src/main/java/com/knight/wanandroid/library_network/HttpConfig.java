@@ -93,6 +93,9 @@ public final class HttpConfig {
 
     public HttpConfig setClient(OkHttpClient client) {
         mClient = client;
+        if (mClient == null) {
+            throw new IllegalArgumentException("The OkHttp client object cannot be empty");
+        }
         return this;
     }
 
@@ -118,10 +121,23 @@ public final class HttpConfig {
         }
         return this;
     }
+    public HttpConfig removeHeader(String key) {
+        if (key != null) {
+            mHeaders.remove(key);
+        }
+        return this;
+    }
 
     public HttpConfig addParam(String key, String value) {
         if (key != null && value != null) {
             mParams.put(key, value);
+        }
+        return this;
+    }
+
+    public HttpConfig removeParam(String key) {
+        if (key != null) {
+            mParams.remove(key);
         }
         return this;
     }
@@ -207,19 +223,22 @@ public final class HttpConfig {
         if (mClient == null) {
             throw new IllegalArgumentException("The OkHttp client object cannot be empty");
         }
+
         if (mServer == null) {
             throw new IllegalArgumentException("The host configuration cannot be empty");
-        } else {
-            try {
-                // 校验主机和路径的 url 是否合法
-                new URL(mServer.getHost() + mServer.getPath());
-            } catch (MalformedURLException e) {
-                throw new IllegalArgumentException("The configured host path url address is not correct");
-            }
         }
+
         if (mHandler == null) {
             throw new IllegalArgumentException("The object being processed by the request cannot be empty");
         }
+
+        try {
+            // 校验主机和路径的 url 是否合法
+            new URL(mServer.getHost() + mServer.getPath());
+        } catch (MalformedURLException e) {
+            throw new IllegalArgumentException("The configured host path url address is not correct");
+        }
+
         if (mLogStrategy == null) {
             mLogStrategy = new LogStrategy();
         }

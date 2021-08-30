@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.knight.wanandroid.library_util.ColorUtils;
+import com.knight.wanandroid.library_common.utils.ColorUtils;
 import com.knight.wanandroid.library_util.ScreenUtils;
 import com.yanzhenjie.recyclerview.SwipeRecyclerView;
 

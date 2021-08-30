@@ -1,5 +1,7 @@
 package com.knight.wanandroid.library_network.body;
 
+import com.knight.wanandroid.library_network.data.ContentType;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -25,8 +27,12 @@ public final class JsonBody extends RequestBody {
     /** 字节数组 */
     private final byte[] mBytes;
 
-    public JsonBody(Map map) {
+    public JsonBody(Map<?, ?> map) {
         this(new JSONObject(map));
+    }
+
+    public JsonBody(List<?> list) {
+        this(new JSONArray(list));
     }
 
     public JsonBody(JSONObject jsonObject) {
@@ -34,18 +40,19 @@ public final class JsonBody extends RequestBody {
         mBytes = mJson.getBytes();
     }
 
-    public JsonBody(List list) {
-        this(new JSONArray(list));
-    }
-
     public JsonBody(JSONArray jsonArray) {
         mJson = jsonArray.toString();
         mBytes = mJson.getBytes();
     }
 
+    public JsonBody(String json) {
+        mJson = json;
+        mBytes = mJson.getBytes();
+    }
+
     @Override
     public MediaType contentType() {
-        return MediaType.get("application/json; charset=utf-8");
+        return ContentType.JSON;
     }
 
     @Override
@@ -59,9 +66,17 @@ public final class JsonBody extends RequestBody {
         sink.write(mBytes, 0, mBytes.length);
     }
 
+    /**
+     * 获取 Json 字符串
+     */
+    public String getJson() {
+        return mJson;
+    }
+
     @NonNull
     @Override
     public String toString() {
         return mJson;
     }
+    
 }

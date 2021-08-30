@@ -1,10 +1,12 @@
-package com.knight.wanandroid.library_util;
+package com.knight.wanandroid.library_common.utils;
 
 import com.google.gson.Gson;
-import com.knight.wanandroid.library_util.constant.MMkvConstants;
+import com.knight.wanandroid.library_common.constant.MMkvConstants;
 import com.tencent.mmkv.MMKV;
 
 import java.lang.reflect.Type;
+
+
 
 /**
  * @author created by knight
@@ -12,7 +14,7 @@ import java.lang.reflect.Type;
  * @Date 2021/4/16 14:39
  * @descript:缓存工具mmkv
  */
-public class CacheUtils {
+public final class CacheUtils {
 
     private static MMKV mmkv;
 
@@ -214,5 +216,26 @@ public class CacheUtils {
         return mmkv.decodeFloat(MMkvConstants.FONTSIZESCALE,1.0f);
     }
 
+
+    /**
+     *
+     * 保存网络缓存
+     * @param cacheKey
+     * @param cacheValue
+     */
+    public boolean saveCacheValue(String cacheKey,String cacheValue) {
+        return mmkv.putString(cacheKey,cacheValue).commit();
+    }
+
+
+    /**
+     *
+     * 取出缓存值
+     * @param cacheKey
+     * @return
+     */
+    public String getCacheValue(String cacheKey) {
+        return mmkv.getString(cacheKey,null);
+    }
 
 }

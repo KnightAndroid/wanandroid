@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import com.knight.wanandroid.library_network.annotation.HttpIgnore;
 import com.knight.wanandroid.library_network.annotation.HttpRename;
 import com.knight.wanandroid.library_network.body.UpdateBody;
+import com.knight.wanandroid.library_network.data.ContentType;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,9 +19,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.net.FileNameMap;
+import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.security.DigestInputStream;
 import java.security.MessageDigest;
@@ -30,6 +34,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
@@ -70,6 +75,7 @@ public class NetWorkUtils {
             EasyLog.print(e);
         }
     }
+
 
     /**
      * 创建文件夹
@@ -134,7 +140,7 @@ public class NetWorkUtils {
     /**
      * 判断是否包含存在流参数
      */
-    public static boolean isMultipart(Field[] fields) {
+    public static boolean isMultipart(List<Field> fields) {
         for (Field field : fields) {
             // 允许访问私有字段
             field.setAccessible(true);
@@ -162,7 +168,8 @@ public class NetWorkUtils {
             }
 
             do {
-                if (File.class.equals(clazz) || InputStream.class.equals(clazz) || RequestBody.class.equals(clazz)) {
+                if (File.class.equals(clazz) || InputStream.class.equals(clazz)
+                        || RequestBody.class.equals(clazz) || MultipartBody.Part.class.equals(clazz)) {
                     return true;
                 }
                 // 获取对象的父类类型
@@ -175,17 +182,17 @@ public class NetWorkUtils {
     /**
      * 判断一下这个集合装载的类型是不是 File
      */
-    public static boolean isFileList(List list) {
-        if (list != null && !list.isEmpty()) {
-            for (Object object : list) {
-                if (!(object instanceof File)) {
-                    return false;
-                }
-            }
-            return true;
-        } else {
+    public static boolean isFileList(List<?> list) {
+        if (list == null || list.isEmpty()) {
             return false;
         }
+
+        for (Object object : list) {
+            if (!(object instanceof File)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -195,13 +202,11 @@ public class NetWorkUtils {
         if (object == null) {
             return true;
         }
-        if (object instanceof List && ((List) object).isEmpty()) {
+
+        if (object instanceof List && ((List<?>) object).isEmpty()) {
             return true;
-        } else if (object instanceof Map && ((Map) object).isEmpty()) {
-            return true;
-        } else {
-            return false;
         }
+        return object instanceof Map && ((Map<?, ?>) object).isEmpty();
     }
 
     /**
@@ -209,17 +214,22 @@ public class NetWorkUtils {
      */
     public static JSONArray listToJsonArray(List<?> list) {
         JSONArray jsonArray = new JSONArray();
-        if (list != null && !list.isEmpty()) {
-            for (Object item : list) {
-                if (item instanceof List) {
-                    jsonArray.put(listToJsonArray(((List) item)));
-                } else if (item instanceof Map) {
-                    jsonArray.put(mapToJsonObject(((Map) item)));
-                } else if (isBeanType(item)) {
-                    jsonArray.put(mapToJsonObject(beanToHashMap(item)));
-                } else {
-                    jsonArray.put(item);
-                }
+        if (list == null || list.isEmpty()) {
+            return jsonArray;
+        }
+
+        for (Object value : list) {
+            if (isEmpty(value)) {
+                continue;
+            }
+            if (value instanceof List) {
+                jsonArray.put(listToJsonArray(((List<?>) value)));
+            } else if (value instanceof Map) {
+                jsonArray.put(mapToJsonObject(((Map<?, ?>) value)));
+            } else if (isBeanType(value)) {
+                jsonArray.put(mapToJsonObject(beanToHashMap(value)));
+            } else {
+                jsonArray.put(value);
             }
         }
         return jsonArray;
@@ -230,23 +240,28 @@ public class NetWorkUtils {
      */
     public static JSONObject mapToJsonObject(Map<?, ?> map) {
         JSONObject jsonObject = new JSONObject();
-        if (map != null && !map.isEmpty()) {
-            Set<?> keySet = map.keySet();
-            for (Object key : keySet) {
-                Object value = map.get(key);
-                try {
-                    if (value instanceof List) {
-                        jsonObject.put(String.valueOf(key), listToJsonArray(((List) value)));
-                    } else if (value instanceof Map) {
-                        jsonObject.put(String.valueOf(key), mapToJsonObject(((Map) value)));
-                    } else if (isBeanType(value)) {
-                        jsonObject.put(String.valueOf(key), mapToJsonObject(beanToHashMap(value)));
-                    } else {
-                        jsonObject.put(String.valueOf(key), value);
-                    }
-                } catch (JSONException e) {
-                    EasyLog.print(e);
+        if (map == null || map.isEmpty()) {
+            return jsonObject;
+        }
+
+        Set<?> keySet = map.keySet();
+        for (Object key : keySet) {
+            Object value = map.get(key);
+            if (isEmpty(value)) {
+                continue;
+            }
+            try {
+                if (value instanceof List) {
+                    jsonObject.put(String.valueOf(key), listToJsonArray(((List<?>) value)));
+                } else if (value instanceof Map) {
+                    jsonObject.put(String.valueOf(key), mapToJsonObject(((Map<?, ?>) value)));
+                } else if (isBeanType(value)) {
+                    jsonObject.put(String.valueOf(key), mapToJsonObject(beanToHashMap(value)));
+                } else {
+                    jsonObject.put(String.valueOf(key), value);
                 }
+            } catch (JSONException e) {
+                EasyLog.print(e);
             }
         }
         return jsonObject;
@@ -256,9 +271,12 @@ public class NetWorkUtils {
      * Bean 类转 HashMap
      */
     public static HashMap<String, Object> beanToHashMap(Object object) {
-        HashMap<String, Object> data = null;
+        if (object == null) {
+            return null;
+        }
 
         Field[] fields = object.getClass().getDeclaredFields();
+        HashMap<String, Object> data = new HashMap<>(fields.length);
         for (Field field : fields) {
             // 允许访问私有字段
             field.setAccessible(true);
@@ -287,14 +305,10 @@ public class NetWorkUtils {
                     }
                 }
 
-                if (data == null) {
-                    data = new HashMap<>(fields.length);
-                }
-
                 if (value instanceof List) {
-                    data.put(key, listToJsonArray(((List) value)));
+                    data.put(key, listToJsonArray(((List<?>) value)));
                 } else if (value instanceof Map) {
-                    data.put(key, mapToJsonObject(((Map) value)));
+                    data.put(key, mapToJsonObject(((Map<?, ?>) value)));
                 } else if (isBeanType(value)) {
                     data.put(key, beanToHashMap(value));
                 } else {
@@ -310,19 +324,38 @@ public class NetWorkUtils {
     }
 
     /**
+     * 根据文件名获取 MIME 类型
+     */
+    public static MediaType guessMimeType(String fileName) {
+        FileNameMap fileNameMap = URLConnection.getFileNameMap();
+        // 解决文件名中含有#号异常的问题
+        fileName = fileName.replace("#", "");
+        String contentType = fileNameMap.getContentTypeFor(fileName);
+        if (contentType == null) {
+            return ContentType.STREAM;
+        }
+        MediaType type = MediaType.parse(contentType);
+        if (type == null) {
+            type = ContentType.STREAM;
+        }
+        return type;
+    }
+
+    /**
      * 获取对象反射类型
      */
     public static Type getReflectType(Object object) {
-        Type type;
+        if (object == null) {
+            return Void.class;
+        }
         Type[] types = object.getClass().getGenericInterfaces();
         if (types.length > 0) {
             // 如果这个监听对象是直接实现了接口
-            type = ((ParameterizedType) types[0]).getActualTypeArguments()[0];
-        } else {
-            // 如果这个监听对象是通过类继承
-            type = ((ParameterizedType) object.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+            return ((ParameterizedType) types[0]).getActualTypeArguments()[0];
         }
-        return type;
+
+        // 如果这个监听对象是通过类继承
+        return ((ParameterizedType) object.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
     /**
@@ -342,24 +375,25 @@ public class NetWorkUtils {
         if (TextUtils.isEmpty(text)) {
             return "";
         }
-        return URLEncoder.encode(text);
+        try {
+            return URLEncoder.encode(text, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return text;
+        }
     }
 
     /**
      * 根据 File 对象创建一个流媒体
      */
     public static MultipartBody.Part createPart(String key, File file) {
-        if (file.exists() && file.isFile()) {
-            try {
-                // 文件名必须不能带中文，所以这里要编码
-                return MultipartBody.Part.createFormData(key, NetWorkUtils.encodeString(file.getName()), new UpdateBody(file));
-            } catch (FileNotFoundException e) {
-                EasyLog.print(e);
-            }
-        } else {
+        try {
+            // 文件名必须不能带中文，所以这里要编码
+            return MultipartBody.Part.createFormData(key, encodeString(file.getName()), new UpdateBody(file));
+        } catch (FileNotFoundException e) {
             EasyLog.print("文件不存在，将被忽略上传：" + key + " = " + file.getPath());
+            return null;
         }
-        return null;
     }
 
     /**
@@ -370,7 +404,7 @@ public class NetWorkUtils {
             return MultipartBody.Part.createFormData(key, null, new UpdateBody(inputStream, key));
         } catch (IOException e) {
             EasyLog.print(e);
+            return null;
         }
-        return null;
     }
 }

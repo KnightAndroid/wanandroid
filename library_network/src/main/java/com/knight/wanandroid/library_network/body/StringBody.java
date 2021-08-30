@@ -1,5 +1,7 @@
 package com.knight.wanandroid.library_network.body;
 
+import com.knight.wanandroid.library_network.data.ContentType;
+
 import java.io.IOException;
 
 import androidx.annotation.NonNull;
@@ -32,7 +34,7 @@ public final class StringBody extends RequestBody {
 
     @Override
     public MediaType contentType() {
-        return MediaType.get("text/plain; charset=utf-8");
+        return ContentType.TEXT;
     }
 
     @Override

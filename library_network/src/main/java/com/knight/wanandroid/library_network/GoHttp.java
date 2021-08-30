@@ -4,9 +4,11 @@ import com.knight.wanandroid.library_network.request.DeleteRequest;
 import com.knight.wanandroid.library_network.request.DownloadRequest;
 import com.knight.wanandroid.library_network.request.GetRequest;
 import com.knight.wanandroid.library_network.request.HeadRequest;
+import com.knight.wanandroid.library_network.request.OptionsRequest;
 import com.knight.wanandroid.library_network.request.PatchRequest;
 import com.knight.wanandroid.library_network.request.PostRequest;
 import com.knight.wanandroid.library_network.request.PutRequest;
+import com.knight.wanandroid.library_network.request.TraceRequest;
 
 import androidx.lifecycle.LifecycleOwner;
 import okhttp3.Call;
@@ -18,7 +20,7 @@ import okhttp3.OkHttpClient;
  * @Date 2020/12/25 18:21
  * @descript:
  */
-public class GoHttp {
+public final class GoHttp {
 
 
 
@@ -88,12 +90,36 @@ public class GoHttp {
      * @param lifecycleOwner      请传入 AppCompatActivity 或者 AndroidX.Fragment 子类
      *                            如需传入其他对象请参考以下两个类
      *                            {@link com.knight.wanandroid.library_network.lifecycle.ActivityLifecycle}
-     *                            {@link com.knight.wanandroid.library_network.lifecycle.ApplicationLifecycle}
+     *                            {@link com.knight.wanandroid.library_network.lifecycle.ActivityLifecycle}
      */
     public static PatchRequest patch(LifecycleOwner lifecycleOwner) {
         return new PatchRequest(lifecycleOwner);
     }
 
+    /**
+     * Options 请求
+     *
+     * @param lifecycleOwner      请传入 AppCompatActivity 或者 AndroidX.Fragment 子类
+     *                            如需传入其他对象请参考以下两个类
+     *                            {@link com.knight.wanandroid.library_network.lifecycle.ActivityLifecycle}
+     *                            {@link com.knight.wanandroid.library_network.lifecycle.ActivityLifecycle}
+     */
+    public static OptionsRequest options(LifecycleOwner lifecycleOwner) {
+        return new OptionsRequest(lifecycleOwner);
+    }
+
+
+    /**
+     * Trace 请求
+     *
+     * @param lifecycleOwner      请传入 AppCompatActivity 或者 AndroidX.Fragment 子类
+     *                            如需传入其他对象请参考以下两个类
+     *                            {@link com.knight.wanandroid.library_network.lifecycle.ActivityLifecycle}
+     *                            {@link com.knight.wanandroid.library_network.lifecycle.ActivityLifecycle}
+     */
+    public static TraceRequest trace(LifecycleOwner lifecycleOwner) {
+        return new TraceRequest(lifecycleOwner);
+    }
     /**
      * 下载请求
      *

@@ -21,7 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.knight.wanandroid.library_util.CacheUtils;
+import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_util.ScreenUtils;
 import com.knight.wanandroid.library_widget.R;
 import com.knight.wanandroid.library_widget.flowlayout.listener.OnTagClickListener;

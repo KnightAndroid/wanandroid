@@ -8,7 +8,7 @@ import androidx.lifecycle.LifecycleOwner;
  * @author created by knight
  * @organize wanandroid
  * @Date 2020/12/25 18:11
- * @descript:
+ * @descript:Get请求
  */
 public final class GetRequest extends UrlRequest<GetRequest> {
 

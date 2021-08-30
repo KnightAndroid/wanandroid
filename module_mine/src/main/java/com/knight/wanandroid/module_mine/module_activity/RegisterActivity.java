@@ -10,7 +10,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.knight.wanandroid.library_base.baseactivity.BaseActivity;
 import com.knight.wanandroid.library_base.entity.UserInfoEntity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
-import com.knight.wanandroid.library_util.CacheUtils;
+import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_util.ScreenUtils;
 import com.knight.wanandroid.library_util.SoftInputScrollUtils;
 import com.knight.wanandroid.library_util.SystemUtils;

@@ -5,7 +5,7 @@ import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
 
-import com.knight.wanandroid.library_util.CacheUtils;
+import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.module_hierachy.R;
 import com.knight.wanandroid.module_hierachy.module_holder.RvHolder;
 import com.knight.wanandroid.module_hierachy.module_listener.RvListener;

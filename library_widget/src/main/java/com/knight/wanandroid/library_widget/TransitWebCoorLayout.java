@@ -5,8 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.util.AttributeSet;
 
-import com.knight.wanandroid.library_util.CacheUtils;
-import com.knight.wanandroid.library_util.ColorUtils;
+import com.knight.wanandroid.library_common.utils.CacheUtils;
+import com.knight.wanandroid.library_common.utils.ColorUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

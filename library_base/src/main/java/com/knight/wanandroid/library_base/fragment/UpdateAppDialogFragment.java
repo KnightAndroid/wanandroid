@@ -13,7 +13,7 @@ import com.knight.wanandroid.library_base.R;
 import com.knight.wanandroid.library_base.basefragment.BaseDBDialogFragment;
 import com.knight.wanandroid.library_base.databinding.BaseUpdateappDialogBinding;
 import com.knight.wanandroid.library_base.entity.AppUpdateEntity;
-import com.knight.wanandroid.library_util.CacheUtils;
+import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_util.ScreenUtils;
 
 import androidx.annotation.NonNull;

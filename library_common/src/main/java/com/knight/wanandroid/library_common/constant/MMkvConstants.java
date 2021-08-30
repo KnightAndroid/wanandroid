@@ -1,4 +1,4 @@
-package com.knight.wanandroid.library_util.constant;
+package com.knight.wanandroid.library_common.constant;
 
 /**
  * @author created by knight

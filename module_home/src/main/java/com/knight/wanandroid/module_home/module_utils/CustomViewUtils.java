@@ -5,7 +5,7 @@ import android.graphics.Color;
 import android.view.View;
 
 import com.knight.wanandroid.library_common.provider.ApplicationProvider;
-import com.knight.wanandroid.library_util.CacheUtils;
+import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_util.ScreenUtils;
 import com.knight.wanandroid.module_home.module_constants.HomeConstants;
 

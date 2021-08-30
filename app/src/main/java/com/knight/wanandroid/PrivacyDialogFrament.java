@@ -15,8 +15,8 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.knight.wanandroid.databinding.DialogPrivacyAgreementBinding;
 import com.knight.wanandroid.library_base.basefragment.BaseDBDialogFragment;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
+import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_util.ActivityManagerUtils;
-import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.TextClickUtils;
 import com.knight.wanandroid.library_util.ViewSetUtils;
 

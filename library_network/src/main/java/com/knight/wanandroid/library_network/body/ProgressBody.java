@@ -14,6 +14,7 @@ import okio.Buffer;
 import okio.BufferedSink;
 import okio.ForwardingSink;
 import okio.Okio;
+import okio.Sink;
 
 /**
  * @author created by knight
@@ -53,30 +54,38 @@ public final class ProgressBody extends RequestBody {
     @Override
     public void writeTo(BufferedSink sink) throws IOException {
         mTotalByte = contentLength();
-        mRequestBody.writeTo(sink = Okio.buffer(new ForwardingSink(sink) {
-
-            @Override
-            public void write(Buffer source, long byteCount) throws IOException {
-                super.write(source, byteCount);
-                mUpdateByte += byteCount;
-                NetWorkUtils.post(() -> {
-                    int progress = NetWorkUtils.getProgressProgress(mTotalByte, mUpdateByte);
-                    if (mListener != null && HttpLifecycleControl.isLifecycleActive(mLifecycleOwner)) {
-                        // 只有上传进度发生改变的时候才回调此方法，避免引起不必要的 View 重绘
-                        if (progress != mUpdateProgress) {
-                            mUpdateProgress = progress;
-                            mListener.onProgress(progress);
-                        }
-                        mListener.onByte(mTotalByte, mUpdateByte);
-                    }
-
-                    EasyLog.print("正在进行上传" +
-                            "，总字节：" + mTotalByte +
-                            "，已上传：" + mUpdateByte +
-                            "，进度：" + progress + "%");
-                });
-            }
-        }));
+        sink = Okio.buffer(new WrapperSink(sink));
+        mRequestBody.writeTo(sink);
         sink.flush();
+    }
+
+
+    private class WrapperSink extends ForwardingSink {
+        public WrapperSink(Sink delegate) {
+            super(delegate);
+        }
+
+        @Override
+        public void write(Buffer source, long byteCount) throws IOException {
+            super.write(source, byteCount);
+            mUpdateByte += byteCount;
+            NetWorkUtils.post(() -> {
+               if (mListener != null && HttpLifecycleControl.isLifecycleActive(mLifecycleOwner)) {
+                   mListener.onByte(mTotalByte, mUpdateByte);
+               }
+                int progress = NetWorkUtils.getProgressProgress(mTotalByte, mUpdateByte);
+                // 只有上传进度发生改变的时候才回调此方法，避免引起不必要的 View 重绘
+                if (progress != mUpdateProgress) {
+                    mUpdateProgress = progress;
+                }
+                if (mListener != null && HttpLifecycleControl.isLifecycleActive(mLifecycleOwner)) {
+                    mListener.onProgress(progress);
+                }
+                EasyLog.print("正在进行上传" +
+                        "，总字节：" + mTotalByte +
+                        "，已上传：" + mUpdateByte +
+                        "，进度：" + progress + "%");
+            });
+        }
     }
 }

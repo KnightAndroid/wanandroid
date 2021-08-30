@@ -19,7 +19,10 @@ import com.knight.wanandroid.library_base.interceptor.PermissionInterceptor;
 import com.knight.wanandroid.library_base.loadsir.EmptyCallBack;
 import com.knight.wanandroid.library_base.loadsir.ErrorCallBack;
 import com.knight.wanandroid.library_base.loadsir.LoadCallBack;
+import com.knight.wanandroid.library_common.constant.MMkvConstants;
+import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_network.HttpConfig;
+import com.knight.wanandroid.library_network.config.IRequestApi;
 import com.knight.wanandroid.library_network.config.IRequestInterceptor;
 import com.knight.wanandroid.library_network.config.IRequestServer;
 import com.knight.wanandroid.library_network.data.HttpHeaders;
@@ -29,10 +32,8 @@ import com.knight.wanandroid.library_network.interceptor.CacheInterceptor;
 import com.knight.wanandroid.library_network.model.RequestHandler;
 import com.knight.wanandroid.library_network.server.ReleaseServer;
 import com.knight.wanandroid.library_permiss.XXPermissions;
-import com.knight.wanandroid.library_util.CacheUtils;
 import com.knight.wanandroid.library_util.SystemUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
-import com.knight.wanandroid.library_util.constant.MMkvConstants;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.mmkv.MMKV;
 import com.wanandroid.knight.library_database.mananger.DataBaseManager;
@@ -168,10 +169,11 @@ public class ModuleConfig {
                 .setLogEnabled(BuildConfig.DEBUG)
                 .setServer(server)
                 .setHandler(new RequestHandler(application))
+                // 设置请求参数拦截器
                 .setInterceptor(new IRequestInterceptor() {
                     @Override
-                    public void intercept(String url, String tag, HttpParams params, HttpHeaders headers) {
-
+                    public void interceptArguments(IRequestApi api, HttpParams params, HttpHeaders headers) {
+                        headers.put("timestamp", String.valueOf(System.currentTimeMillis()));
                     }
                 })
                 .setRetryCount(1)

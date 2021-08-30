@@ -7,7 +7,7 @@ import android.widget.ProgressBar;
 
 import com.kingja.loadsir.callback.Callback;
 import com.knight.wanandroid.library_base.R;
-import com.knight.wanandroid.library_util.CacheUtils;
+import com.knight.wanandroid.library_common.utils.CacheUtils;
 
 /**
  * @author created by knight

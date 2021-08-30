@@ -50,4 +50,14 @@ public final class EasyLog {
             HttpConfig.getInstance().getLogStrategy().print(key, value);
         }
     }
+
+    /**
+     * 打印堆栈
+     */
+    public static void print(StackTraceElement[] stackTrace) {
+        if (!HttpConfig.getInstance().isLogEnabled()) {
+            return;
+        }
+        HttpConfig.getInstance().getLogStrategy().print(stackTrace);
+    }
 }

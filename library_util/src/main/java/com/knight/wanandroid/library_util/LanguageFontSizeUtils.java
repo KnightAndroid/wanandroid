@@ -7,6 +7,8 @@ import android.os.Build;
 import android.os.LocaleList;
 import android.util.DisplayMetrics;
 
+import com.knight.wanandroid.library_common.utils.CacheUtils;
+
 import java.util.Locale;
 
 import androidx.annotation.RequiresApi;

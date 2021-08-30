@@ -4,7 +4,7 @@ import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
-import com.knight.wanandroid.library_util.CacheUtils;
+import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_util.LanguageFontSizeUtils;
 import com.knight.wanandroid.module_set.R;
 import com.knight.wanandroid.module_set.module_entity.LanguageSelectEntity;

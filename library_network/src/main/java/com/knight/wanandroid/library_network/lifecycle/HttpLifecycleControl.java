@@ -31,9 +31,13 @@ public final class HttpLifecycleControl implements LifecycleEventObserver {
 
     @Override
     public void onStateChanged(@NonNull LifecycleOwner source, @NonNull Lifecycle.Event event) {
-        if (event == Lifecycle.Event.ON_DESTROY) {
-            source.getLifecycle().removeObserver(this);
-            GoHttp.cancel(source);
+        if (event != Lifecycle.Event.ON_DESTROY) {
+            return;
         }
+        // 移除监听
+        source.getLifecycle().removeObserver(this);
+        // 取消请求
+        GoHttp.cancel(source);
     }
+
 }
