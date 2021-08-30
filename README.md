@@ -29,6 +29,7 @@
 - 护眼模式切换
 - 主题色切换
 - 多语言切换
+- 字体大小
 - 内存泄漏检测
 
 
@@ -66,7 +67,7 @@
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | ![4.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_04.gif) |![5.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_05.gif) | ![6.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_06.gif) |
 | ![7.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_07.gif) |![8.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_08.gif) |![9.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_09.gif) |
-
+| ![10.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_10.gif) |
 
 # 主要开源框架
 
@@ -92,6 +93,14 @@
 
 
 # 更新日志
+
+## 1.1.1(5)
+-  wanandroid 第五版发布
+-  字体大小自定义选择
+-  网页文章长按图片可进行图片预览
+-  分页接口支持可以自定每页数据量
+-  修复一些问题
+-  发布时间:2021/08/30
 
 ## 1.1.0(4)
 -  wanandroid 第四版发布

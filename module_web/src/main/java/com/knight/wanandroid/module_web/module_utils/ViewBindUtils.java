@@ -29,9 +29,12 @@ public class ViewBindUtils {
                 WebView.HitTestResult hitTestResult = mWebView.getHitTestResult();
                 WebViewHitResult webViewHitResult = new WebViewHitResult(hitTestResult);
                 switch (webViewHitResult.getType()) {
-                    case IMAGE_TYPE://处理长安图片的菜单项
-                    case IMAGE_ANCHOR_TYPE://图片类型
-                    case SRC_IMAGE_ANCHOR_TYPE://带有链接的图片类型
+                    //处理长按图片的菜单项
+                    case IMAGE_TYPE:
+                    //图片类型
+                    case IMAGE_ANCHOR_TYPE:
+                    //带有链接的图片类型
+                    case SRC_IMAGE_ANCHOR_TYPE:
                         ARouter.getInstance().build(RoutePathActivity.Web.Web_PreviewPhoto)
                                 .withString("photoUri",webViewHitResult.getResult())
                                 .withTransition(R.anim.web_fade_out_anim,R.anim.web_fade_in_anim)
