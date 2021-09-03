@@ -30,7 +30,8 @@
             android:layout_below="@id/mine_tv_detailpointtitle"
             android:layout_marginTop="@dimen/base_dimen_5"
             android:textColor="@color/base_color_999999"
-            android:textSize="@dimen/base_dimen_text_size_14" />
+            android:textSize="@dimen/base_dimen_text_size_14"
+            tools:text="sdsdsd"/>
 
     </RelativeLayout>
 

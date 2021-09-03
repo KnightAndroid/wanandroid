@@ -18,13 +18,14 @@ import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
 import com.knight.wanandroid.library_base.util.ARouterUtils;
+import com.knight.wanandroid.library_common.constant.MMkvConstants;
+import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_permiss.OnPermissionCallback;
 import com.knight.wanandroid.library_permiss.Permission;
 import com.knight.wanandroid.library_permiss.XXPermissions;
 import com.knight.wanandroid.library_scan.activity.ScanCodeActivity;
 import com.knight.wanandroid.library_scan.annoation.ScanStyle;
 import com.knight.wanandroid.library_scan.decode.ScanCodeConfig;
-import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_util.DateUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.GsonUtils;
@@ -33,7 +34,6 @@ import com.knight.wanandroid.library_util.ScreenUtils;
 import com.knight.wanandroid.library_util.SystemUtils;
 import com.knight.wanandroid.library_util.ToastUtils;
 import com.knight.wanandroid.library_util.ViewSetUtils;
-import com.knight.wanandroid.library_common.constant.MMkvConstants;
 import com.knight.wanandroid.module_home.R;
 import com.knight.wanandroid.module_home.databinding.HomeFragmentHomeBinding;
 import com.knight.wanandroid.module_home.module_activity.KnowledgeLabelActivity;
@@ -87,9 +87,6 @@ public final class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, Ho
     @Override
     protected void setThemeColor(boolean isDarkMode) {
         if (!isDarkMode) {
-            if (CacheUtils.getInstance().getStatusBarIsWithTheme()) {
-                mDatabind.homeIncludeToolbar.toolbar.setBackgroundColor(CacheUtils.getInstance().getThemeColor());
-            }
             isWithStatusTheme(CacheUtils.getInstance().getStatusBarIsWithTheme());
         }
     }

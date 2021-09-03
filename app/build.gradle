@@ -96,6 +96,8 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     // 基类封装
     implementation project(':library_base')
+    // 欢迎模块
+    implementation project(':module_welcome')
     // Home模块
     implementation project(":module_home")
     // 广场模块

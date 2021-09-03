@@ -133,7 +133,9 @@ public final class HomeRecommendFragment extends BaseFragment<HomeFragmentRecomm
         topArticleFootView.findViewById(R.id.home_ll_seemorearticles).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                HomeArticleLogic.getInstance().setArrowAnimate(mTopArticleAdapter, topArticleFootView.findViewById(R.id.home_iv_toparticlearrow), isShowOnlythree);
+                HomeArticleLogic.getInstance().setArrowAnimate(mTopArticleAdapter,
+                        topArticleFootView.findViewById(R.id.home_iv_toparticlearrow),
+                        isShowOnlythree);
                 isShowOnlythree = !isShowOnlythree;
             }
         });

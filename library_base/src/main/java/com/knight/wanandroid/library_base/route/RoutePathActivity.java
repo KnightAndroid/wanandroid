@@ -35,6 +35,17 @@ public class RoutePathActivity {
 
 
     /**
+     * 欢迎模块Activity路由
+     *
+     */
+    public static class Welcome {
+        private static final String WELCOME = "/module_welcome";
+        public static final String WELCOME_MAIN = WELCOME + "/welcome_main_activity";
+
+    }
+
+
+    /**
      *
      * 广场模块Activity路由
      */

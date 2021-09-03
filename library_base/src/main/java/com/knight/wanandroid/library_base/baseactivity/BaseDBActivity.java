@@ -9,6 +9,7 @@ import android.graphics.PixelFormat;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,17 +20,19 @@ import android.widget.FrameLayout;
 import com.kingja.loadsir.callback.Callback;
 import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
+import com.knight.wanandroid.library_base.AppConfig;
 import com.knight.wanandroid.library_base.R;
 import com.knight.wanandroid.library_base.listener.NetworkStatusListener;
 import com.knight.wanandroid.library_base.loadsir.EmptyCallBack;
 import com.knight.wanandroid.library_base.loadsir.ErrorCallBack;
 import com.knight.wanandroid.library_base.loadsir.LoadCallBack;
 import com.knight.wanandroid.library_base.receiver.NetWorkChangeReceiver;
-import com.knight.wanandroid.library_network.listener.OnHttpListener;
 import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_common.utils.ColorUtils;
+import com.knight.wanandroid.library_network.listener.OnHttpListener;
 import com.knight.wanandroid.library_util.LanguageFontSizeUtils;
 import com.knight.wanandroid.library_util.StatusBarUtils;
+import com.knight.wanandroid.library_widget.GrayFrameLayout;
 import com.knight.wanandroid.library_widget.loadcircleview.ProgressHUD;
 import com.knight.wanandroid.library_widget.swipeback.SwipeBackHelper;
 
@@ -138,6 +141,26 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
 
 
 
+    }
+
+    @Override
+    public View onCreateView(String name, Context context, AttributeSet attrs) {
+        if(AppConfig.gray && "FrameLayout".equals(name)){
+            int count = attrs.getAttributeCount();
+            for (int i = 0; i < count; i++) {
+                String attributeName = attrs.getAttributeName(i);
+                String attributeValue = attrs.getAttributeValue(i);
+                if (attributeName.equals("id")) {
+                    int id = Integer.parseInt(attributeValue.substring(1));
+                    String idVal = getResources().getResourceName(id);
+                    if ("android:id/content".equals(idVal)) {
+                        GrayFrameLayout grayFrameLayout = new GrayFrameLayout(context, attrs);
+                        return grayFrameLayout;
+                    }
+                }
+            }
+        }
+        return super.onCreateView(name, context, attrs);
     }
 
     @Override

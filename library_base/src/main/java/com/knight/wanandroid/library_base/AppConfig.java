@@ -17,7 +17,7 @@ public final class AppConfig {
     private static final String WechatApp = "com.knight.wanandroid.module_wechat.WechatApp";
     private static final String MessageApp = "com.knight.wanandroid.module_message.MessageApp";
     private static final String SetApp = "com.knight.wanandroid.module_set.SetApp";
-
+    private static final String WelcomeApp = "com.knight.wanandroid.module_welcome.WelcomeApp";
     /**
      *
      * 类型：文字文章
@@ -42,6 +42,18 @@ public final class AppConfig {
     public static final String TEXT_AUTHOR_NAME = "authorName";
     public static final String TEXT_CHAPTERNAME_NAME = "chapterName";
 
+    /**
+     *
+     * 主题色
+     */
+    public static String appThemeColor = "#55aff4";
+
+    /**
+     *
+     * 是否变灰
+     */
+    public static boolean gray = false;
+
 
     public static String[] moduleApps = {
             HomeApp,
@@ -52,7 +64,8 @@ public final class AppConfig {
             WebApp,
             WechatApp,
             MessageApp,
-            SetApp
+            SetApp,
+            WelcomeApp
     };
 
 }
