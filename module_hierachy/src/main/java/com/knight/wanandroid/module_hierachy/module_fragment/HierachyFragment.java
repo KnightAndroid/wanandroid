@@ -6,7 +6,7 @@ import android.view.View;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.knight.wanandroid.library_base.basefragment.BaseFragment;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
-import com.knight.wanandroid.library_util.ToastUtils;
+import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.module_hierachy.R;
 import com.knight.wanandroid.module_hierachy.databinding.HierachyFragmentMainBinding;
 import com.knight.wanandroid.module_hierachy.module_adapter.HierachyLeftBarAdapter;
@@ -117,7 +117,7 @@ public final class HierachyFragment extends BaseFragment<HierachyFragmentMainBin
 
     @Override
     public void showError(String errorMsg) {
-        ToastUtils.getInstance().showToast(errorMsg);
+        ToastUtils.show(errorMsg);
 
     }
 

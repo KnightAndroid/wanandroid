@@ -12,7 +12,7 @@ import com.knight.wanandroid.library_base.entity.AppUpdateEntity;
 import com.knight.wanandroid.library_base.fragment.UpdateAppDialogFragment;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_util.SystemUtils;
-import com.knight.wanandroid.library_util.ToastUtils;
+import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.module_mine.R;
 import com.knight.wanandroid.module_mine.databinding.MineActivityAboutBinding;
 import com.knight.wanandroid.module_mine.module_contract.AboutContract;
@@ -72,7 +72,7 @@ public final class AboutActivity extends BaseActivity<MineActivityAboutBinding, 
 
     @Override
     public void showError(String errorMsg) {
-        ToastUtils.getInstance().showToast(errorMsg);
+        ToastUtils.show(errorMsg);
     }
 
     @Override
@@ -109,10 +109,10 @@ public final class AboutActivity extends BaseActivity<MineActivityAboutBinding, 
                 if (!SystemUtils.getAppVersionName(AboutActivity.this).equals(mAppUpdateEntity.getVersionName())) {
                     new UpdateAppDialogFragment(mAppUpdateEntity).show(getSupportFragmentManager(), "dialog_update");
                 } else {
-                    ToastUtils.getInstance().showToast(getString(R.string.mine_app_noupdate));
+                    ToastUtils.show(R.string.mine_app_noupdate);
                 }
             } else {
-                ToastUtils.getInstance().showToast(getString(R.string.mine_app_noupdate));
+                ToastUtils.show(R.string.mine_app_noupdate);
             }
 
 

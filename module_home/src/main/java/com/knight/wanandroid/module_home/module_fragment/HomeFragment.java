@@ -32,7 +32,7 @@ import com.knight.wanandroid.library_util.GsonUtils;
 import com.knight.wanandroid.library_util.JsonUtils;
 import com.knight.wanandroid.library_util.ScreenUtils;
 import com.knight.wanandroid.library_util.SystemUtils;
-import com.knight.wanandroid.library_util.ToastUtils;
+import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.library_util.ViewSetUtils;
 import com.knight.wanandroid.module_home.R;
 import com.knight.wanandroid.module_home.databinding.HomeFragmentHomeBinding;
@@ -175,7 +175,7 @@ public final class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, Ho
 
     @Override
     public void showError(String errorMsg) {
-        ToastUtils.getInstance().showToast(errorMsg);
+        ToastUtils.show(errorMsg);
         showloadFailure();
     }
 

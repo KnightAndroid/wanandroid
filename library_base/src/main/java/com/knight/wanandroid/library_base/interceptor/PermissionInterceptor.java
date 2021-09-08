@@ -10,7 +10,7 @@ import com.knight.wanandroid.library_permiss.IPermissionInterceptor;
 import com.knight.wanandroid.library_permiss.OnPermissionCallback;
 import com.knight.wanandroid.library_permiss.Permission;
 import com.knight.wanandroid.library_permiss.XXPermissions;
-import com.knight.wanandroid.library_util.ToastUtils;
+import com.knight.wanandroid.library_util.toast.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,11 +43,11 @@ public final class PermissionInterceptor implements IPermissionInterceptor {
         }
 
         if (permissions.size() == 1 && Permission.ACCESS_BACKGROUND_LOCATION.equals(permissions.get(0))) {
-            ToastUtils.getInstance().showToast(activity.getString(R.string.base_permission_fail_four));
+            ToastUtils.show(R.string.base_permission_fail_four);
             return;
         }
 
-        ToastUtils.getInstance().showToast(activity.getString(R.string.base_permission_fail_one));
+        ToastUtils.show(R.string.base_permission_fail_one);
     }
 
 

@@ -31,7 +31,7 @@ import com.knight.wanandroid.library_base.util.DataBaseUtils;
 import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_common.utils.ColorUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
-import com.knight.wanandroid.library_util.ToastUtils;
+import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.library_widget.lottie.RightLottieAnimation;
 import com.knight.wanandroid.library_widget.lottie.RightLottieListener;
@@ -326,7 +326,7 @@ public final class SquareFragment extends BaseFragment<SquareFragmentSquareBindi
 
     @Override
     public void showError(String errorMsg) {
-        ToastUtils.getInstance().showToast(errorMsg);
+        ToastUtils.show(errorMsg);
         showloadFailure();
 
     }

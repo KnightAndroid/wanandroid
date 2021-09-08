@@ -11,7 +11,7 @@ import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.knight.wanandroid.library_base.basefragment.BaseFragment;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
 import com.knight.wanandroid.library_base.util.ARouterUtils;
-import com.knight.wanandroid.library_util.ToastUtils;
+import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.module_hierachy.R;
 import com.knight.wanandroid.module_hierachy.databinding.HierachyFragmentTabarticleBinding;
@@ -99,7 +99,7 @@ public final class HierachyTabArticleFragment extends BaseFragment<HierachyFragm
 
     @Override
     public void showError(String errorMsg) {
-        ToastUtils.getInstance().showToast(errorMsg);
+        ToastUtils.show(errorMsg);
     }
 
     @Override

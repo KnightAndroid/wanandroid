@@ -14,7 +14,7 @@ import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_util.ScreenUtils;
 import com.knight.wanandroid.library_util.SoftInputScrollUtils;
 import com.knight.wanandroid.library_util.SystemUtils;
-import com.knight.wanandroid.library_util.ToastUtils;
+import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.module_mine.R;
 import com.knight.wanandroid.module_mine.databinding.MineActivityRegisterBinding;
 import com.knight.wanandroid.module_mine.module_contract.RegisterContract;
@@ -93,7 +93,7 @@ public final class RegisterActivity extends BaseActivity<MineActivityRegisterBin
 
     @Override
     public void showError(String errorMsg) {
-        ToastUtils.getInstance().showToast(errorMsg);
+        ToastUtils.show(errorMsg);
     }
 
     @Override

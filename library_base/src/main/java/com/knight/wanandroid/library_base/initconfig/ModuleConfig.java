@@ -14,6 +14,7 @@ import com.knight.wanandroid.library_aop.loginintercept.LoginManager;
 import com.knight.wanandroid.library_base.AppConfig;
 import com.knight.wanandroid.library_base.BaseApp;
 import com.knight.wanandroid.library_base.BuildConfig;
+import com.knight.wanandroid.library_base.R;
 import com.knight.wanandroid.library_base.entity.UserInfoEntity;
 import com.knight.wanandroid.library_base.interceptor.PermissionInterceptor;
 import com.knight.wanandroid.library_base.loadsir.EmptyCallBack;
@@ -33,7 +34,8 @@ import com.knight.wanandroid.library_network.model.RequestHandler;
 import com.knight.wanandroid.library_network.server.ReleaseServer;
 import com.knight.wanandroid.library_permiss.XXPermissions;
 import com.knight.wanandroid.library_util.SystemUtils;
-import com.knight.wanandroid.library_util.ToastUtils;
+import com.knight.wanandroid.library_util.toast.ToastInterceptor;
+import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.mmkv.MMKV;
 import com.wanandroid.knight.library_database.mananger.DataBaseManager;
@@ -87,7 +89,8 @@ public class ModuleConfig {
         //初始化路由
         ARouter.init(application);
         //初始化Toast
-        ToastUtils.getInstance().initApplicaion(application);
+        ToastUtils.setInterceptor(new ToastInterceptor());
+        ToastUtils.init(application);
         //初始化权限拦截器
         XXPermissions.setPermissionInterceptor(new PermissionInterceptor());
         //状态页
@@ -192,7 +195,7 @@ public class ModuleConfig {
             public void login(Context applicationContext, boolean loginDefine) {
                 //没跳过登录
                 if(!loginDefine){
-                    ToastUtils.getInstance().showToast("请先登录");
+                    ToastUtils.show(R.string.base_login_first);
                 }
             }
 

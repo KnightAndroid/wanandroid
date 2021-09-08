@@ -18,7 +18,7 @@ import com.knight.wanandroid.library_base.baseactivity.BaseDBActivity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
-import com.knight.wanandroid.library_util.ToastUtils;
+import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.library_widget.flowlayout.TagInfo;
 import com.knight.wanandroid.library_widget.flowlayout.listener.OnTagClickListener;
 import com.knight.wanandroid.module_home.R;
@@ -174,7 +174,7 @@ public final class KnowledgeLabelActivity extends BaseDBActivity<HomeLabelActivi
                 mMoreKnowLedgeAdapter.setIsEdit(true);
             } else {
                 if (mDatabind.homeKnowledgetTag.getTagInfos().size() > 10) {
-                    ToastUtils.getInstance().showToast(getString(R.string.home_moreenough_tips, 10));
+                    ToastUtils.show(getString(R.string.home_moreenough_tips, 10));
                 } else {
                     isEdit = false;
                     mDatabind.homeLabelEdit.setText(R.string.home_edit);
@@ -204,7 +204,7 @@ public final class KnowledgeLabelActivity extends BaseDBActivity<HomeLabelActivi
                 Intent intent = new Intent(KnowledgeLabelActivity.this, AddKnowLedgeLabelActivity.class);
                 startActivityForResult(intent, AddKnowLedgeLabelActivity.QUESTCODE);
             } else {
-                ToastUtils.getInstance().showToast(getString(R.string.home_moreenough_tips, 10));
+                ToastUtils.show(getString(R.string.home_moreenough_tips, 10));
             }
 
         }
@@ -231,7 +231,7 @@ public final class KnowledgeLabelActivity extends BaseDBActivity<HomeLabelActivi
                 if (isEdit) {
                     for (int i = 0; i < mDatabind.homeKnowledgetTag.getTagInfos().size(); i++) {
                         if (mMoreKnowLedgeAdapter.getData().get(position).tagName.equals(mDatabind.homeKnowledgetTag.getTagInfos().get(i).tagName)) {
-                            ToastUtils.getInstance().showToast(getString(R.string.home_same_label_tip));
+                            ToastUtils.show(getString(R.string.home_same_label_tip));
                             return;
                         }
 
@@ -273,7 +273,7 @@ public final class KnowledgeLabelActivity extends BaseDBActivity<HomeLabelActivi
                     if (!TextUtils.isEmpty(result)) {
                         for (int i = 0; i < mMoreKnowLedgeAdapter.getData().size(); i++) {
                             if (result.equals(mMoreKnowLedgeAdapter.getData().get(i).tagName)) {
-                                ToastUtils.getInstance().showToast(getString(R.string.home_same_label_tip));
+                                ToastUtils.show(R.string.home_same_label_tip);
                                 return;
                             }
                         }

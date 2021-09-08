@@ -20,7 +20,7 @@ import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_base.util.ARouterUtils;
 import com.knight.wanandroid.library_base.util.DataBaseUtils;
 import com.knight.wanandroid.library_util.SystemUtils;
-import com.knight.wanandroid.library_util.ToastUtils;
+import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.module_home.R;
 import com.knight.wanandroid.module_home.databinding.HomeSearchresultActivityBinding;
@@ -86,7 +86,7 @@ public final class SearchResultActivity extends BaseActivity<HomeSearchresultAct
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     keyword = mDatabind.searchresultEt.getText().toString().trim();
                     if (TextUtils.isEmpty(keyword)) {
-                        ToastUtils.getInstance().showToast(getString(R.string.home_input_content_search));
+                        ToastUtils.show(R.string.home_input_content_search);
                     } else {
                         searchNewKeywords();
                     }
@@ -123,7 +123,7 @@ public final class SearchResultActivity extends BaseActivity<HomeSearchresultAct
     @Override
     public void showError(String errorMsg) {
         showFailure();
-        ToastUtils.getInstance().showToast(errorMsg);
+        ToastUtils.show(errorMsg);
     }
 
     @Override

@@ -5,7 +5,7 @@ import android.os.Bundle;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.knight.wanandroid.library_base.basefragment.BaseFragment;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
-import com.knight.wanandroid.library_util.ToastUtils;
+import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.module_project.R;
 import com.knight.wanandroid.module_project.databinding.ProjectFragmentBinding;
 import com.knight.wanandroid.module_project.module_contract.ProjectContract;
@@ -87,7 +87,7 @@ public final class ProjectFragment extends BaseFragment<ProjectFragmentBinding, 
 
     @Override
     public void showError(String errorMsg) {
-        ToastUtils.getInstance().showToast(errorMsg);
+        ToastUtils.show(errorMsg);
 
     }
 }

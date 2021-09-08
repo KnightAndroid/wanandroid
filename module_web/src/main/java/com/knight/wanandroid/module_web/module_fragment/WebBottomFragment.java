@@ -10,7 +10,7 @@ import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
 import com.knight.wanandroid.library_base.basefragment.BaseDialogFragment;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.SystemUtils;
-import com.knight.wanandroid.library_util.ToastUtils;
+import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.module_web.R;
 import com.knight.wanandroid.module_web.databinding.WebDialogFragmentBinding;
 import com.knight.wanandroid.module_web.module_contract.WebDialogContract;
@@ -63,7 +63,7 @@ public final class WebBottomFragment extends BaseDialogFragment<WebDialogFragmen
 
     @Override
     public void collectArticleSuccess() {
-        ToastUtils.getInstance().showToast(getString(R.string.web_success_collect));
+        ToastUtils.show(R.string.web_success_collect);
         EventBus.getDefault().post(new EventBusUtils.CollectSuccess());
         dismiss();
     }
@@ -80,7 +80,7 @@ public final class WebBottomFragment extends BaseDialogFragment<WebDialogFragmen
 
     @Override
     public void showError(String errorMsg) {
-        ToastUtils.getInstance().showToast(errorMsg);
+        ToastUtils.show(errorMsg);
     }
 
 
@@ -97,7 +97,7 @@ public final class WebBottomFragment extends BaseDialogFragment<WebDialogFragmen
 
         public void copyUrlContent(){
             SystemUtils.copyContent(getActivity(),articleurl);
-            ToastUtils.getInstance().showToast(getString(R.string.web_success_copyurl));
+            ToastUtils.show(R.string.web_success_copyurl);
             dismiss();
         }
 

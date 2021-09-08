@@ -17,7 +17,7 @@ import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_base.util.InitCustomViewUtils;
 import com.knight.wanandroid.library_util.ScreenUtils;
 import com.knight.wanandroid.library_util.SystemUtils;
-import com.knight.wanandroid.library_util.ToastUtils;
+import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.library_util.ViewSetUtils;
 import com.knight.wanandroid.module_wechat.R;
 import com.knight.wanandroid.module_wechat.databinding.WechatOfficialAccountBinding;
@@ -70,7 +70,7 @@ public final class WechatArticlesActivity extends BaseDBActivity<WechatOfficialA
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     String searchKeywords = mDatabind.wecahtSearchEt.getText().toString().trim();
                     if (TextUtils.isEmpty(searchKeywords)) {
-                        ToastUtils.getInstance().showToast(getString(R.string.wechat_search_hint));
+                        ToastUtils.show(R.string.wechat_search_hint);
                     } else {
                         serachWeChatArticles(searchKeywords);
                     }

@@ -33,7 +33,7 @@ import com.knight.wanandroid.library_util.GsonUtils;
 import com.knight.wanandroid.library_util.JsonUtils;
 import com.knight.wanandroid.library_util.LanguageFontSizeUtils;
 import com.knight.wanandroid.library_util.SystemUtils;
-import com.knight.wanandroid.library_util.ToastUtils;
+import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.module_home.R;
@@ -239,7 +239,7 @@ public final class HomeRecommendFragment extends BaseFragment<HomeFragmentRecomm
 
     @Override
     public void showError(String errorMsg) {
-        ToastUtils.getInstance().showToast(errorMsg);
+        ToastUtils.show(errorMsg);
         showloadFailure();
     }
 
@@ -443,10 +443,10 @@ public final class HomeRecommendFragment extends BaseFragment<HomeFragmentRecomm
                             .navigation();
                 } else if (view.getId() == R.id.home_iv_abroadcopy) {
                     SystemUtils.copyContent(getActivity(), mOpenSourceAdapter.getData().get(position).getAbroadlink());
-                    ToastUtils.getInstance().showToast(getString(R.string.base_success_copylink));
+                    ToastUtils.show(R.string.base_success_copylink);
                 } else {
                     SystemUtils.copyContent(getActivity(), mOpenSourceAdapter.getData().get(position).getInternallink());
-                    ToastUtils.getInstance().showToast(getString(R.string.base_success_copylink));
+                    ToastUtils.show(R.string.base_success_copylink);
                 }
             }
         });

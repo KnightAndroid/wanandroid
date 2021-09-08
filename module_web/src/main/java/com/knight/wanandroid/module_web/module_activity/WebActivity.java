@@ -25,7 +25,7 @@ import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_base.util.DataBaseUtils;
 import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
-import com.knight.wanandroid.library_util.ToastUtils;
+import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.library_widget.LoveAnimatorRelativeLayout;
 import com.knight.wanandroid.module_web.R;
 import com.knight.wanandroid.module_web.databinding.WebActivityMainBinding;
@@ -117,7 +117,7 @@ public final class WebActivity extends BaseActivity<WebActivityMainBinding, WebP
                 .go(webUrl);
 
         mWebView = mAgentWeb.getWebCreator().getWebView();
-
+        mWebView.getSettings().setDomStorageEnabled(true);
         initWebView(mWebView);
         ViewBindUtils.previewWebViewPhoto(mWebView);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -143,8 +143,13 @@ public final class WebActivity extends BaseActivity<WebActivityMainBinding, WebP
         }
 
         @Override
-        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+        public void onPageStarted(WebView webView, String url, Bitmap favicon) {
 
+        }
+
+        @Override
+        public void onPageFinished(WebView webView, String url) {
+            super.onPageFinished(webView,url);
         }
     };
 
@@ -238,7 +243,7 @@ public final class WebActivity extends BaseActivity<WebActivityMainBinding, WebP
 
     @Override
     public void showError(String errorMsg) {
-        ToastUtils.getInstance().showToast(errorMsg);
+        ToastUtils.show(errorMsg);
     }
 
 
@@ -263,9 +268,8 @@ public final class WebActivity extends BaseActivity<WebActivityMainBinding, WebP
     @Override
     public void collectArticleSuccess() {
         isCollect = true;
-        ToastUtils.getInstance().showToast(getString(R.string.web_success_collect));
+        ToastUtils.show(getString(R.string.web_success_collect));
         EventBus.getDefault().post(new EventBusUtils.CollectSuccess());
     }
-
 
 }

@@ -7,7 +7,7 @@ import android.webkit.WebView;
 
 import com.knight.wanandroid.library_base.basefragment.BaseDBDialogFragment;
 import com.knight.wanandroid.library_util.SystemUtils;
-import com.knight.wanandroid.library_util.ToastUtils;
+import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.module_web.R;
 import com.knight.wanandroid.module_web.databinding.WebNormalBottomFragmentBinding;
 
@@ -53,7 +53,7 @@ public final class WebNormalBottomFragment extends BaseDBDialogFragment<WebNorma
         //复制网址
         public void copyUrl(){
             SystemUtils.copyContent(getActivity(),url);
-            ToastUtils.getInstance().showToast(getString(R.string.web_success_copyurl));
+            ToastUtils.show(R.string.web_success_copyurl);
             dismiss();
         }
 

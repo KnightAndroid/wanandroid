@@ -12,7 +12,7 @@ import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.ScreenUtils;
 import com.knight.wanandroid.library_util.SystemUtils;
-import com.knight.wanandroid.library_util.ToastUtils;
+import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.module_square.R;
 import com.knight.wanandroid.module_square.databinding.SquareActivitySharearticleBinding;
 import com.knight.wanandroid.module_square.module_contract.SquareShareArticleContact;
@@ -83,12 +83,12 @@ public final class SquareShareArticleActivity extends BaseActivity<SquareActivit
 
     @Override
     public void showError(String errorMsg) {
-        ToastUtils.getInstance().showToast(errorMsg);
+        ToastUtils.show(errorMsg);
     }
 
     @Override
     public void successShareArticle() {
-        ToastUtils.getInstance().showToast(getString(R.string.square_share_success));
+        ToastUtils.show(R.string.square_share_success);
         EventBus.getDefault().post(new EventBusUtils.ShareArticleSuccess());
         finish();
     }
@@ -112,13 +112,13 @@ public final class SquareShareArticleActivity extends BaseActivity<SquareActivit
         title = mDatabind.squareSharearticleEt.getText().toString().trim();
         link = mDatabind.squareSharearticleLink.getText().toString().trim();
         if (TextUtils.isEmpty(title)) {
-            ToastUtils.getInstance().showToast(getString(R.string.square_title_noempty));
+            ToastUtils.show(R.string.square_title_noempty);
             validFlag = false;
         } else if (TextUtils.isEmpty(link)) {
-            ToastUtils.getInstance().showToast(getString(R.string.square_link_noempty));
+            ToastUtils.show(R.string.square_link_noempty);
             validFlag = false;
         } else if (!link.startsWith("http://") && !link.startsWith("https://")) {
-            ToastUtils.getInstance().showToast(getString(R.string.square_linkstart_rule));
+            ToastUtils.show(R.string.square_linkstart_rule);
             validFlag = false;
         }
 

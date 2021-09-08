@@ -15,7 +15,7 @@ import com.knight.wanandroid.library_common.utils.ColorUtils;
 import com.knight.wanandroid.library_util.CacheFileUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.LanguageFontSizeUtils;
-import com.knight.wanandroid.library_util.ToastUtils;
+import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.library_util.dialog.DialogUtils;
 import com.knight.wanandroid.library_widget.RippleAnimation;
 import com.knight.wanandroid.module_set.R;
@@ -94,7 +94,7 @@ public final class SetActivity extends BaseActivity<SetActivityBinding, SetPrese
 
     @Override
     public void showError(String errorMsg) {
-        ToastUtils.getInstance().showToast(errorMsg);
+        ToastUtils.show(errorMsg);
     }
 
     @Override
@@ -167,7 +167,7 @@ public final class SetActivity extends BaseActivity<SetActivityBinding, SetPrese
         public void clearCache() {
             DialogUtils.getConfirmDialog(SetActivity.this, getResources().getString(R.string.set_clearcache_tip), (dialog, which) -> {
                 CacheFileUtils.cleadAllCache(SetActivity.this);
-                ToastUtils.getInstance().showToast(getString(R.string.set_clearchae_successfully));
+                ToastUtils.show(R.string.set_clearchae_successfully);
                 mDatabind.setCachememory.setText(CacheFileUtils.getToalCacheSize(SetActivity.this));
             }, (dialog, which) -> {
 

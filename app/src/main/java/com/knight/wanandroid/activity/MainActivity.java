@@ -13,7 +13,7 @@ import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_common.utils.ColorUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
-import com.knight.wanandroid.library_util.ToastUtils;
+import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.library_util.ViewSetUtils;
 import com.knight.wanandroid.module_hierachy.module_fragment.HierachyNavigateMainFragment;
 import com.knight.wanandroid.module_home.module_fragment.HomeFragment;
@@ -99,7 +99,7 @@ public class MainActivity extends BaseDBActivity<ActivityMainBinding> {
                 System.exit(0);
             } else {
                 mExitAppTime = System.currentTimeMillis();
-                ToastUtils.getInstance().showToast(getString(R.string.app_exit_tip));
+                ToastUtils.show(R.string.app_exit_tip);
             }
             return true;
         }

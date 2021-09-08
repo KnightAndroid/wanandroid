@@ -127,7 +127,6 @@ public class ColorUtils {
                     return 0;
             }
         } else {
-         //   ToastUtils.getInstance().showToast(argb+"不是合法的颜色值");
             return 0;
         }
 
