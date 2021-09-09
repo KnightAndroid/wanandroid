@@ -11,7 +11,7 @@ import com.knight.wanandroid.library_base.AppConfig;
 import com.knight.wanandroid.library_common.provider.ApplicationProvider;
 import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_util.StringUtils;
-import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;
+import com.knight.wanandroid.library_util.imageengine.ImageLoader;
 import com.knight.wanandroid.module_home.R;
 import com.knight.wanandroid.module_home.module_entity.HomeArticleEntity;
 
@@ -92,7 +92,7 @@ public final class SearchResultAdapter extends BaseMultiItemQuickAdapter<HomeArt
                 break;
             case AppConfig.ARTICLE_PICTURE_TYPE:
                 //项目图片
-                GlideEngineUtils.getInstance().loadStringPhoto(ApplicationProvider.getInstance().getApplication(),homeArticleEntity.getEnvelopePic(),baseViewHolder.getView(R.id.base_item_imageview));
+                ImageLoader.loadStringPhoto(ApplicationProvider.getInstance().getApplication(),homeArticleEntity.getEnvelopePic(),baseViewHolder.getView(R.id.base_item_imageview));
                 //作者
                 if (!TextUtils.isEmpty(homeArticleEntity.getAuthor())) {
                     baseViewHolder.setText(R.id.base_item_tv_author,StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),homeArticleEntity.getAuthor(),AppConfig.SEARCH_KEYWORD));

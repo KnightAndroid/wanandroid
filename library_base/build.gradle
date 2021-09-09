@@ -42,12 +42,14 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$junitextVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCoreVersion"
     api project (':library_componentbase')
+    //内存泄漏框架 https://github.com/square/leakcanary
     debugApi "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
+    //阿里巴巴路由框架 https://github.com/alibaba/ARouter
     api "com.alibaba:arouter-api:$arouterVersion"
     //在module里使用api 主app依赖了这个module,则可以直接使用这些库,不用重新导入
     api "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
     api "androidx.appcompat:appcompat:$appcompatVersion"
-    //暂时先使用 有个问题就是闪屏会抖动
+    //屏幕适配 https://github.com/JessYanCoding/AndroidAutoSize 暂时先使用 有个问题就是闪屏会抖动
     api "me.jessyan:autosize:$autoSizeViersion"
     //全局加载视图框架 https://github.com/KingJA/LoadSir
     api "com.kingja.loadsir:loadsir:$loadsirVersion"
@@ -59,11 +61,8 @@ dependencies {
     api "com.scwang.smart:refresh-footer-classics:$smartRefreshVersion"
     //二级刷新头
     api "com.scwang.smart:refresh-header-two-level:$smartRefreshVersion"
-
-    //头部切换导航栏
+    //头部切换导航栏 https://github.com/hackware1993/MagicIndicator
     api "com.github.hackware1993:MagicIndicator:$magicIndicatorVersion"
-
-
     api project (':library_util')
     api project (':library_aop')
     api project (':library_network')
@@ -73,6 +72,7 @@ dependencies {
     //分包
     api "com.android.support:multidex:$multidexVersion"
     api 'com.google.android.material:material:1.3.0-alpha01'
+    //google flexbox布局
     api "com.google.android:flexbox:$flexLayoutVersion"
     //版本更新
     api "com.tencent.bugly:crashreport:$buglyVersion"

@@ -30,5 +30,6 @@ android {
 
 dependencies {
     implementation "androidx.room:room-runtime:$roomVersion"
+    //数据库
     annotationProcessor "androidx.room:room-compiler:$roomVersion"
 }

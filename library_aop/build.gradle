@@ -39,8 +39,10 @@ android {
 
 dependencies {
     implementation "androidx.appcompat:appcompat:$appcompatVersion"
-    implementation 'com.alibaba:arouter-api:1.5.1'
-    annotationProcessor 'com.alibaba:arouter-compiler:1.5.1'
-    api "org.aspectj:aspectjrt:1.9.7"
+    //Arouter 路由插件 https://github.com/alibaba/ARouter
+    implementation "com.alibaba:arouter-api:$arouterVersion"
+    annotationProcessor "com.alibaba:arouter-compiler:$arouterVersion"
+    //https://www.eclipse.org/aspectj/
+    api "org.aspectj:aspectjrt:$aspectjVersion"
     implementation project(':library_util')
 }

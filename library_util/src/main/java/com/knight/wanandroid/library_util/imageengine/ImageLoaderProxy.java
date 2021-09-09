@@ -16,7 +16,7 @@ import androidx.annotation.RawRes;
  * @Date 2021/4/9 15:03
  * @descript:图片加载方式
  */
-public interface ImageEngine {
+public interface ImageLoaderProxy {
 
 
     /**

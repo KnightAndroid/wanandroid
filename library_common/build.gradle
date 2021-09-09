@@ -31,7 +31,9 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     api "androidx.appcompat:appcompat:$appcompatVersion"
+    //轻量数据存储 https://github.com/Tencent/MMKV
     api "com.tencent:mmkv-static:$mmkvVersion"
+    //google gson解析 https://github.com/google/gson
     implementation "com.google.code.gson:gson:$gsonVersion"
 
 }

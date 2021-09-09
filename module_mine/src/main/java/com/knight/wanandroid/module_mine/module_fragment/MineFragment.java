@@ -14,8 +14,8 @@ import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
 import com.knight.wanandroid.library_common.utils.ColorUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
+import com.knight.wanandroid.library_util.imageengine.ImageLoader;
 import com.knight.wanandroid.library_util.toast.ToastUtils;
-import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;
 import com.knight.wanandroid.module_mine.R;
 import com.knight.wanandroid.module_mine.databinding.MineFragmentMineBinding;
 import com.knight.wanandroid.module_mine.module_activity.HistoryRecordActivity;
@@ -184,7 +184,7 @@ public final class MineFragment extends BaseFragment<MineFragmentMineBinding, Mi
         mDatabind.mineTvPoints.setText("");
         mDatabind.mineIvMessage.setVisibility(View.GONE);
         mDatabind.mineIvHead.setBackground(null);
-        GlideEngineUtils.getInstance().loadCircleIntLocalPhoto(getActivity(), R.drawable.mine_iv_default_head, mDatabind.mineIvHead);
+        ImageLoader.loadCircleIntLocalPhoto(getActivity(), R.drawable.mine_iv_default_head, mDatabind.mineIvHead);
     }
 
 

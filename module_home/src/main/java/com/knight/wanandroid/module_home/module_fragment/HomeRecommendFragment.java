@@ -25,16 +25,16 @@ import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
 import com.knight.wanandroid.library_base.util.ARouterUtils;
 import com.knight.wanandroid.library_common.provider.ApplicationProvider;
-import com.knight.wanandroid.library_util.BlurBuilder;
 import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_common.utils.ColorUtils;
+import com.knight.wanandroid.library_util.BlurBuilder;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.GsonUtils;
 import com.knight.wanandroid.library_util.JsonUtils;
 import com.knight.wanandroid.library_util.LanguageFontSizeUtils;
 import com.knight.wanandroid.library_util.SystemUtils;
+import com.knight.wanandroid.library_util.imageengine.ImageLoader;
 import com.knight.wanandroid.library_util.toast.ToastUtils;
-import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.module_home.R;
 import com.knight.wanandroid.module_home.databinding.HomeFragmentRecommendBinding;
@@ -262,7 +262,7 @@ public final class HomeRecommendFragment extends BaseFragment<HomeFragmentRecomm
         home_banner.setAdapter(new BannerImageAdapter<BannerEntity>(result) {
             @Override
             public void onBindView(BannerImageHolder holder, BannerEntity data, int position, int size) {
-                GlideEngineUtils.getInstance().loadStringPhoto(ApplicationProvider.getInstance().getApplication(), data.getImagePath(), holder.imageView);
+                ImageLoader.loadStringPhoto(ApplicationProvider.getInstance().getApplication(), data.getImagePath(), holder.imageView);
                 holder.imageView.setOnClickListener(v -> ARouterUtils.startWeb(
                         data.getUrl(), data.getTitle(), data.getId(),
                         false, data.getImagePath(), data.getDesc(), "banner", ""));

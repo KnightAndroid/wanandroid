@@ -4,7 +4,6 @@ import android.app.Application;
 import android.content.Context;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
@@ -55,9 +54,6 @@ import okhttp3.OkHttpClient;
  */
 public class ModuleConfig {
 
-
-
-    private ClearableCookieJar mCookieJar;
     public UserInfoEntity user = null;
 
     private ModuleConfig(){
@@ -149,7 +145,6 @@ public class ModuleConfig {
      * @param application
      */
     private void initOkhttp(Application application) {
-        mCookieJar = new PersistentCookieJar(new SetCookieCache(),new SharedPrefsCookiePersistor(application));
         //缓存目录
         File cacheFile = new File(application.getCacheDir(), "knight_wanandroid");
         Cache cache = new Cache(cacheFile, 1024 * 1024 * 50);
@@ -166,7 +161,7 @@ public class ModuleConfig {
                 .addInterceptor(new BaseUrlInterceptor())
                 .addInterceptor(new CacheInterceptor())
                 .cache(cache)
-                .cookieJar(mCookieJar)
+                .cookieJar(new PersistentCookieJar(new SetCookieCache(),new SharedPrefsCookiePersistor(application)))
                 .build();
         HttpConfig.with(okHttpClient)
                 .setLogEnabled(BuildConfig.DEBUG)

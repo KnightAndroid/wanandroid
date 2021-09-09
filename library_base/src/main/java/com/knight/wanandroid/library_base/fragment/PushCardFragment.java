@@ -7,7 +7,7 @@ import com.knight.wanandroid.library_base.R;
 import com.knight.wanandroid.library_base.basefragment.BaseDBFragment;
 import com.knight.wanandroid.library_base.databinding.BasePushcardFragmentBinding;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
-import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;
+import com.knight.wanandroid.library_util.imageengine.ImageLoader;
 
 /**
  * @author created by knight
@@ -59,7 +59,7 @@ public class PushCardFragment extends BaseDBFragment<BasePushcardFragmentBinding
         author = getArguments().getString("author");
         articleLink = getArguments().getString("articleLink");
         //设置图像
-        GlideEngineUtils.getInstance().loadStringPhoto(getActivity(), picLink, mDatabind.ivEverydayPushpicture);
+        ImageLoader.loadStringPhoto(getActivity(), picLink, mDatabind.ivEverydayPushpicture);
         //设置作者
         mDatabind.tvArticleAuthor.setText(author);
         //标题

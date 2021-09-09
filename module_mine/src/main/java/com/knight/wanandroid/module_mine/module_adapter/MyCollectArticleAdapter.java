@@ -10,7 +10,7 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.knight.wanandroid.library_base.AppConfig;
 import com.knight.wanandroid.library_common.provider.ApplicationProvider;
 import com.knight.wanandroid.library_common.utils.CacheUtils;
-import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;
+import com.knight.wanandroid.library_util.imageengine.ImageLoader;
 import com.knight.wanandroid.module_mine.R;
 import com.knight.wanandroid.module_mine.module_entity.MyCollectArticleEntity;
 
@@ -76,7 +76,7 @@ public final class MyCollectArticleAdapter extends BaseMultiItemQuickAdapter<MyC
                 break;
             case AppConfig.ARTICLE_PICTURE_TYPE:
                 //项目图片
-                GlideEngineUtils.getInstance().loadStringPhoto(ApplicationProvider.getInstance().getApplication(), myCollectArticleEntity.getEnvelopePic(), baseViewHolder.getView(R.id.base_item_imageview));
+                ImageLoader.loadStringPhoto(ApplicationProvider.getInstance().getApplication(), myCollectArticleEntity.getEnvelopePic(), baseViewHolder.getView(R.id.base_item_imageview));
                 //作者
                 if (!TextUtils.isEmpty(myCollectArticleEntity.getAuthor())) {
                     baseViewHolder.setText(R.id.base_item_tv_author, myCollectArticleEntity.getAuthor());

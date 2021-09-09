@@ -7,7 +7,7 @@ import android.text.TextUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.knight.wanandroid.library_common.provider.ApplicationProvider;
-import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;
+import com.knight.wanandroid.library_util.imageengine.ImageLoader;
 import com.knight.wanandroid.module_project.R;
 import com.knight.wanandroid.module_project.module_entity.ProjectArticleEntity;
 
@@ -33,7 +33,7 @@ public final class ProjectArticleAdapter extends BaseQuickAdapter<ProjectArticle
 
     @Override
     protected void convert(@NotNull BaseViewHolder baseViewHolder, ProjectArticleEntity projectArticleEntity) {
-        GlideEngineUtils.getInstance().loadStringPhoto(ApplicationProvider.getInstance().getApplication(),projectArticleEntity.getEnvelopePic(),baseViewHolder.getView(R.id.base_item_imageview));
+        ImageLoader.loadStringPhoto(ApplicationProvider.getInstance().getApplication(),projectArticleEntity.getEnvelopePic(),baseViewHolder.getView(R.id.base_item_imageview));
         //作者
         if (!TextUtils.isEmpty(projectArticleEntity.getAuthor())) {
             baseViewHolder.setText(R.id.base_item_tv_author,projectArticleEntity.getAuthor());

@@ -11,7 +11,7 @@ import com.knight.wanandroid.library_base.AppConfig;
 import com.knight.wanandroid.library_common.provider.ApplicationProvider;
 import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_util.StringUtils;
-import com.knight.wanandroid.library_util.imageengine.GlideEngineUtils;
+import com.knight.wanandroid.library_util.imageengine.ImageLoader;
 import com.knight.wanandroid.module_hierachy.R;
 import com.knight.wanandroid.module_hierachy.module_entity.HierachyTabArticleEntity;
 
@@ -92,7 +92,7 @@ public final class HierachyTabAdapter extends BaseMultiItemQuickAdapter<Hierachy
                 break;
             case AppConfig.ARTICLE_PICTURE_TYPE:
                 //项目图片
-                GlideEngineUtils.getInstance().loadStringPhoto(ApplicationProvider.getInstance().getApplication(),hierachyTabArticleEntity.getEnvelopePic(),baseViewHolder.getView(R.id.base_item_imageview));
+                ImageLoader.loadStringPhoto(ApplicationProvider.getInstance().getApplication(),hierachyTabArticleEntity.getEnvelopePic(),baseViewHolder.getView(R.id.base_item_imageview));
                 //作者
                 if (!TextUtils.isEmpty(hierachyTabArticleEntity.getAuthor())) {
                     baseViewHolder.setText(R.id.base_item_tv_author,StringUtils.getStyle(ApplicationProvider.getInstance().getApplication(),hierachyTabArticleEntity.getAuthor(),AppConfig.SEARCH_KEYWORD));

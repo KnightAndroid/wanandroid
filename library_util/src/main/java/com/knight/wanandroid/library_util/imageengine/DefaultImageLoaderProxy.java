@@ -17,23 +17,10 @@ import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOption
  * @Date 2021/4/9 14:58
  * @descript:图像加载实现
  */
-public class GlideEngineUtils implements ImageEngine  {
+public class DefaultImageLoaderProxy implements ImageLoaderProxy {
 
-    private static GlideEngineUtils instance = null;
-    private GlideEngineUtils () {
 
-    }
 
-    public static GlideEngineUtils getInstance() {
-        if (null == instance) {
-            synchronized (GlideEngineUtils.class) {
-                if (null == instance) {
-                    instance = new GlideEngineUtils();
-                }
-            }
-        }
-        return instance;
-    }
 
     /**
      *

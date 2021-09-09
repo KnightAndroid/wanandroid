@@ -32,11 +32,11 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    //Okhttp
+    //Okhttp https://github.com/square/okhttp
     api "com.squareup.okhttp3:okhttp:$okHttpVersion"
     //gson
     api "com.squareup.retrofit2:converter-gson:2.6.2"
-    //Cookie
+    //Cookie https://github.com/franmontiel/PersistentCookieJar
     api "com.github.franmontiel:PersistentCookieJar:$CookieVersion"
     implementation "androidx.appcompat:appcompat:1.2.0"
     implementation "androidx.annotation:annotation:$annoationVersion"

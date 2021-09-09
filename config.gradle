@@ -16,15 +16,21 @@ ext{
     appVersionName = "1.1.1"
     //appcompat 版本
     appcompatVersion = "1.2.0"
+    //material 版本
+    materialVersion = "1.1.0"
     //junit 版本
     junitVersion = "4.12"
     //junit
     junitextVersion = "1.1.2"
     //espresso-core
     espressoCoreVersion = "3.3.0"
+    //fragment
+    fragmentVersion = "1.2.4"
     //阿里Aroute
     arouterVersion = "1.5.1"
     arouterCompilerVersion = "1.2.2"
+    //aspectJ
+    aspectjVersion = "1.9.7"
     //constraintlayout
     constraintLayoutVersion = "2.0.4"
     //okhttpVersion
