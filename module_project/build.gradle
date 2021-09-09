@@ -3,79 +3,20 @@ if(isRunAlone.toBoolean()){
 } else {
     apply plugin: 'com.android.library'
 }
-android {
-    compileSdkVersion rootProject.ext.compile_sdk_version
-    buildToolsVersion rootProject.ext.build_tools_version
+apply from:"../basic.gradle"
 
+android {
     defaultConfig {
         if (isRunAlone.toBoolean()) {
             applicationId "com.knight.wanandroid.module_project"
         }
-
-        minSdkVersion rootProject.ext.min_sdk_version
-        targetSdkVersion rootProject.ext.target_sdk_version
-        versionCode rootProject.ext.appVersionCode
-        versionName rootProject.ext.appVersionName
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME: project.getName()]
-            }
-        }
-    }
-
-    //是否开启DataBinding
-    dataBinding {
-        enabled = true
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled true //开启混淆
-            consumerProguardFiles 'proguard-rules.pro'
-        }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    sourceSets {
-        main {
-            if(isRunAlone.toBoolean()){
-                manifest.srcFile 'src/main/manifest/AndroidManifest.xml'
-            } else {
-                manifest.srcFile 'src/main/AndroidManifest.xml'
-            }
-
-
-            res.srcDirs =
-                    [
-                            'src/main/res/layouts/activitys',
-                            'src/main/res/layouts/fragments',
-                            'src/main/res/layouts/adapters',
-                            'src/main/res/layouts/items',
-                            'src/main/res/layouts/dialogs',
-                            'src/main/res/layouts',
-                            'src/main/res'
-
-                    ]
-            assets.srcDirs = ['src/main/assets', 'src/main/assets/']
-
-
-            jniLibs.srcDirs = ['libs']
-        }
-
-
-
-
+        buildConfigField "String", "isAloneApp","\"${isRunAlone.toString()}\""
     }
     //限定资源前缀命名
     resourcePrefix "project_"
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation project (':library_base')
     implementation project (':library_componentbase')
     annotationProcessor "com.alibaba:arouter-compiler:$arouterVersion"
