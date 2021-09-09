@@ -19,6 +19,14 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+
+#welcome
+-keep class com.knight.wanandroid.module_welcome.model.**{*;}
+-keep class com.knight.wanandroid.module_welcome.request.**{*;}
+-keep class com.knight.wanandroid.module_welcome.presenter.**{*;}
+
+
 # Aroute
 -keep public class com.alibaba.android.arouter.routes.**{*;}
 -keep public class com.alibaba.android.arouter.facade.**{*;}

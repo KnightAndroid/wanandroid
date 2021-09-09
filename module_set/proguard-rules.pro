@@ -19,7 +19,7 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
-#wechat
+#set
 -keep class com.knight.wanandroid.module_set.module_model.**{*;}
 -keep class com.knight.wanandroid.module_set.module_request.**{*;}
 -keep class com.knight.wanandroid.module_set.module_presenter.**{*;}
