@@ -41,7 +41,6 @@ public abstract class BaseFragment<DB extends ViewDataBinding, T extends BasePre
     private ProgressHUD mProgressHUD;
 
     protected int themeColor;
-    protected int bgColor;
     protected boolean isDarkMode;
 
 

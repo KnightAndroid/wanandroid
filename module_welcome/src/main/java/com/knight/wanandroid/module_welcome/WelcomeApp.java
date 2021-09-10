@@ -1,10 +1,8 @@
 package com.knight.wanandroid.module_welcome;
 
 import android.app.Application;
-
 import com.knight.wanandroid.library_base.BaseApp;
 import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
-import com.knight.wanandroid.library_util.LogUtils;
 
 /**
  * @author created by knight
@@ -17,7 +15,6 @@ public final class WelcomeApp extends BaseApp {
     public void onCreate(){
         super.onCreate();
         if ("true".equals(BuildConfig.isAloneApp)) {
-            LogUtils.d("123456");
             ModuleConfig.getInstance().initBefore(this);
             ModuleConfig.getInstance().initModuleAfter(this);
         }

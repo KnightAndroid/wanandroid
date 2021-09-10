@@ -26,7 +26,6 @@ public abstract class BaseDBFragment<DB extends ViewDataBinding> extends Fragmen
     private boolean isFirst = true;
 
     protected int themeColor;
-    protected int bgColor;
     protected boolean isDarkMode;
     /**
      *

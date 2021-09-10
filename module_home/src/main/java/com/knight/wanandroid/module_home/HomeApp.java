@@ -3,6 +3,7 @@ package com.knight.wanandroid.module_home;
 import android.app.Application;
 
 import com.knight.wanandroid.library_base.BaseApp;
+import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
 
 /**
  * @author created by knight
@@ -17,6 +18,10 @@ public final class HomeApp extends BaseApp {
     @Override
     public void onCreate(){
         super.onCreate();
+        if ("true".equals(BuildConfig.isAloneApp)) {
+            ModuleConfig.getInstance().initBefore(this);
+            ModuleConfig.getInstance().initModuleAfter(this);
+        }
         initModuleApp(this);
         initModuleData(this);
     }

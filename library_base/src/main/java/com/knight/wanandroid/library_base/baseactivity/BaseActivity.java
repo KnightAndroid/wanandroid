@@ -1,19 +1,14 @@
 package com.knight.wanandroid.library_base.baseactivity;
 
 import android.content.Context;
-import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
-import android.graphics.PixelFormat;
-import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 
@@ -22,13 +17,12 @@ import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
 import com.knight.wanandroid.library_base.AppConfig;
 import com.knight.wanandroid.library_base.R;
-import com.knight.wanandroid.library_base.listener.NetworkStatusListener;
 import com.knight.wanandroid.library_base.loadsir.EmptyCallBack;
 import com.knight.wanandroid.library_base.loadsir.ErrorCallBack;
 import com.knight.wanandroid.library_base.loadsir.LoadCallBack;
 import com.knight.wanandroid.library_base.model.BaseModel;
 import com.knight.wanandroid.library_base.presenter.BasePresenter;
-import com.knight.wanandroid.library_base.receiver.NetWorkChangeReceiver;
+import com.knight.wanandroid.library_base.proxy.ProxyActivity;
 import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_common.utils.ColorUtils;
 import com.knight.wanandroid.library_network.listener.OnHttpListener;
@@ -52,8 +46,7 @@ import androidx.databinding.ViewDataBinding;
  * @Date 2020/12/28 19:54
  * @descript:Activity基类
  */
-public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePresenter,M extends BaseModel> extends AppCompatActivity implements OnHttpListener,
-        NetworkStatusListener {
+public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePresenter,M extends BaseModel> extends AppCompatActivity implements OnHttpListener {
 
     public abstract int layoutId();
 
@@ -65,19 +58,10 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
     private ProgressHUD mProgressHUD;
 
     private SwipeBackHelper mSwipeBackHelper;
+    private ProxyActivity mProxyActivity;
     protected int themeColor;
-    protected int bgColor;
     protected boolean isDarkMode;
     protected boolean isEyeCare;
-
-    /**
-     *
-     * 断网时弹出的View
-     */
-    private View tipView;
-    private WindowManager mWindowManager;
-    private WindowManager.LayoutParams mLayoutParams;
-    private NetWorkChangeReceiver mNetWorkChangeReceiver;
 
     //护眼模式遮罩
     private FrameLayout meyeFrameLayout;
@@ -125,8 +109,6 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
         } catch (EventBusException ignored){
             // Subscriber class Activity and its super classes have no public methods with the @Subscribe annotation
         }
-
-        initTipView();
         initEye();
         setThemeColor(isDarkMode);
 
@@ -134,6 +116,8 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             mSwipeBackHelper = new SwipeBackHelper(this);
         }
+        mProxyActivity = createProxyActivity();
+        mProxyActivity.bindPresenter();
         //内部获取第二个类型参数的真实类型，反射new出对象
         mPresenter = CreateUtils.get(this,1);
         //内部获取第三个类型参数的真实类型，反射new出对手
@@ -146,15 +130,7 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
 
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
-        mNetWorkChangeReceiver = new NetWorkChangeReceiver();
-        mNetWorkChangeReceiver.setNetworkStatusListener(this);
-        registerReceiver(mNetWorkChangeReceiver,intentFilter);
-    }
+
 
     @Override
     public View onCreateView(String name, Context context, AttributeSet attrs) {
@@ -185,24 +161,6 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
      */
     protected void initThemeColor() {
         themeColor = CacheUtils.getInstance().getThemeColor();
-    }
-
-
-    /**
-     *
-     * 初始化网络链接提示view
-     */
-    private void initTipView() {
-        tipView = getLayoutInflater().inflate(R.layout.base_layout_network_tip,null);
-        mWindowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
-        mLayoutParams = new WindowManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                WindowManager.LayoutParams.TYPE_APPLICATION,
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                PixelFormat.TRANSLUCENT);
-        mLayoutParams.gravity = Gravity.TOP;
-        mLayoutParams.x = 0;
-        mLayoutParams.y = 0;
     }
 
 
@@ -293,15 +251,6 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
     }
 
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        if (mNetWorkChangeReceiver != null) {
-            unregisterReceiver(mNetWorkChangeReceiver);
-            mNetWorkChangeReceiver = null;
-        }
-    }
-
 
     @Override
     public void onDestroy(){
@@ -309,9 +258,7 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
         }
-        if (tipView != null && tipView.getParent() != null) {
-            mWindowManager.removeView(tipView);
-        }
+        mProxyActivity.unbindPresenter();
         super.onDestroy();
 
     }
@@ -363,6 +310,14 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
 
     }
 
+    @SuppressWarnings("unchecked")
+    private ProxyActivity createProxyActivity() {
+         if (mProxyActivity == null) {
+             return new ProxyActivity(this);
+         }
+         return mProxyActivity;
+    }
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         if (mSwipeBackHelper != null && mSwipeBackHelper.dispatchTouchEvent(event)) {
@@ -379,35 +334,6 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
         return super.onTouchEvent(event);
     }
 
-
-    /**
-     * 已经连接
-     */
-    @Override
-    public void onConnect() {
-        reLoadData();
-        if (tipView != null && tipView.getParent() != null) {
-            mWindowManager.removeView(tipView);
-        }
-
-    }
-
-    /**
-     * 断开连接
-     */
-    @Override
-    public void disConnect() {
-        if (tipView.getParent() == null) {
-            mWindowManager.addView(tipView, mLayoutParams);
-        }
-    }
-
-//    @Override
-//    public Resources getResources() {
-//        Resources resources = super.getResources();
-//        return LanguageFontSizeUtils.getResources(this, resources, fontScale);
-//    }
-
     @Override
     public void applyOverrideConfiguration(Configuration overrideConfiguration) {
         // 兼容androidX在部分手机切换语言失败问题
@@ -419,6 +345,4 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
         super.applyOverrideConfiguration(overrideConfiguration);
 
     }
-
-
 }

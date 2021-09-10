@@ -43,7 +43,6 @@ public final class SetActivity extends BaseActivity<SetActivityBinding, SetPrese
         updateTextColor(themeColor);
         setThemeTextColor();
         if (!isDarkMode) {
-            updateBgColor(bgColor);
             //是否护眼 护眼模式就不显示深色模式
             showEyeCare(true);
             if (isEyeCare) {
@@ -259,16 +258,6 @@ public final class SetActivity extends BaseActivity<SetActivityBinding, SetPrese
         mDatabind.setTvCommon.setTextColor(color);
         mDatabind.setTvOther.setTextColor(color);
 
-
-    }
-
-    /**
-     * 更改背景颜色
-     *
-     * @param color
-     */
-    private void updateBgColor(int color) {
-        mDatabind.setRoot.setBackgroundColor(color);
 
     }
 

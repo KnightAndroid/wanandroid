@@ -1,19 +1,14 @@
 package com.knight.wanandroid.library_base.baseactivity;
 
 import android.content.Context;
-import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
-import android.graphics.PixelFormat;
-import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 
@@ -22,11 +17,10 @@ import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
 import com.knight.wanandroid.library_base.AppConfig;
 import com.knight.wanandroid.library_base.R;
-import com.knight.wanandroid.library_base.listener.NetworkStatusListener;
 import com.knight.wanandroid.library_base.loadsir.EmptyCallBack;
 import com.knight.wanandroid.library_base.loadsir.ErrorCallBack;
 import com.knight.wanandroid.library_base.loadsir.LoadCallBack;
-import com.knight.wanandroid.library_base.receiver.NetWorkChangeReceiver;
+import com.knight.wanandroid.library_base.proxy.ProxyActivity;
 import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_common.utils.ColorUtils;
 import com.knight.wanandroid.library_network.listener.OnHttpListener;
@@ -46,8 +40,7 @@ import androidx.databinding.ViewDataBinding;
  * @Date 2021/4/2 17:25
  * @descript:非业务界面
  */
-public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppCompatActivity implements OnHttpListener,
-        NetworkStatusListener {
+public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppCompatActivity implements OnHttpListener {
 
     /**
      * 返回布局文件
@@ -58,7 +51,7 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
 
     public DB mDatabind;
     private ProgressHUD mProgressHUD;
-
+    private ProxyActivity mProxyActivity;
 
     public LoadService mLoadService;
 
@@ -66,14 +59,6 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
 
     protected int themeColor;
     protected boolean isDarkMode;
-
-    /**
-     * 没网络监听提示的view
-     */
-    private View tipView;
-    private WindowManager mWindowManager;
-    private WindowManager.LayoutParams mLayoutParams;
-    private NetWorkChangeReceiver mNetWorkChangeReceiver;
 
 
     /**
@@ -98,14 +83,6 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
      */
     protected abstract void setThemeColor(boolean isDarkMode);
 
-
-    /**
-     * 是否显示网络异常提示
-     */
-    protected boolean setShowNetWorkTip() {
-        return true;
-    }
-
     /**
      * 初始化数据
      */
@@ -129,8 +106,6 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
         StatusBarUtils.transparentStatusBar(this);
         isDarkMode = CacheUtils.getInstance().getNormalDark();
         isEyeCare = CacheUtils.getInstance().getIsEyeCare();
-
-        initTipView();
         initEye();
         initThemeColor();
         setThemeColor(isDarkMode);
@@ -139,8 +114,18 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
             mSwipeBackHelper = new SwipeBackHelper(this);
         }
 
+        mProxyActivity = createProxyActivity();
+        mProxyActivity.bindPresenter();
 
 
+    }
+
+    @SuppressWarnings("unchecked")
+    private ProxyActivity createProxyActivity() {
+        if (mProxyActivity == null) {
+            return new ProxyActivity(this);
+        }
+        return mProxyActivity;
     }
 
     @Override
@@ -162,34 +147,6 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
         }
         return super.onCreateView(name, context, attrs);
     }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
-        mNetWorkChangeReceiver = new NetWorkChangeReceiver();
-        mNetWorkChangeReceiver.setNetworkStatusListener(this);
-        registerReceiver(mNetWorkChangeReceiver, intentFilter);
-    }
-
-    /**
-     * 初始化网络异常提示View
-     */
-    private void initTipView() {
-        tipView = getLayoutInflater().inflate(R.layout.base_layout_network_tip, null);
-        mWindowManager = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
-        mLayoutParams = new WindowManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                WindowManager.LayoutParams.TYPE_APPLICATION,
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                PixelFormat.TRANSLUCENT);
-        mLayoutParams.gravity = Gravity.TOP;
-        mLayoutParams.x = 0;
-        mLayoutParams.y = 0;
-    }
-
-
     /**
      * 初始化护眼模式View
      */
@@ -355,60 +312,10 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
 
 
     @Override
-    public void onPause() {
-        if (mNetWorkChangeReceiver != null) {
-            unregisterReceiver(mNetWorkChangeReceiver);
-            mNetWorkChangeReceiver = null;
-        }
-        super.onPause();
-    }
-
-
-
-    @Override
     public void onDestroy() {
-        if (tipView != null && tipView.getParent() != null) {
-            mWindowManager.removeView(tipView);
-            tipView = null;
-        }
-
+        mProxyActivity.unbindPresenter();
         super.onDestroy();
-
-
     }
-
-    /**
-     * 已经连接
-     */
-    @Override
-    public void onConnect() {
-        if (setShowNetWorkTip()) {
-            reLoadData();
-            if (tipView != null && tipView.getParent() != null) {
-                mWindowManager.removeView(tipView);
-            }
-        }
-    }
-
-    /**
-     *
-     * 断开连接
-     */
-    @Override
-    public void disConnect() {
-        if (setShowNetWorkTip()) {
-            if (tipView.getParent() == null) {
-                mWindowManager.addView(tipView, mLayoutParams);
-            }
-        }
-
-    }
-
-//    @Override
-//    public Resources getResources() {
-//        Resources resources = super.getResources();
-//        return LanguageFontSizeUtils.getResources(this, resources, fontScale);
-//    }
 
     @Override
     public void applyOverrideConfiguration(Configuration overrideConfiguration) {
@@ -421,7 +328,5 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
         super.applyOverrideConfiguration(overrideConfiguration);
 
     }
-
-
-
+    
 }

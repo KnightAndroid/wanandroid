@@ -30,8 +30,6 @@ public abstract class BaseDBDialogFragment<DB extends ViewDataBinding> extends D
 
 
     /**
-     *
-     *
      * 布局视图id
      * @return
      */
