@@ -3,14 +3,11 @@ package com.knight.wanandroid.library_base.baseactivity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
 
 import com.kingja.loadsir.callback.Callback;
 import com.kingja.loadsir.core.LoadService;
@@ -22,7 +19,6 @@ import com.knight.wanandroid.library_base.loadsir.ErrorCallBack;
 import com.knight.wanandroid.library_base.loadsir.LoadCallBack;
 import com.knight.wanandroid.library_base.proxy.ProxyActivity;
 import com.knight.wanandroid.library_common.utils.CacheUtils;
-import com.knight.wanandroid.library_common.utils.ColorUtils;
 import com.knight.wanandroid.library_network.listener.OnHttpListener;
 import com.knight.wanandroid.library_util.LanguageFontSizeUtils;
 import com.knight.wanandroid.library_util.StatusBarUtils;
@@ -59,12 +55,11 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
 
     protected int themeColor;
     protected boolean isDarkMode;
-
-
     /**
-     * 护眼模式遮罩
+     *
+     * 当前模式是否遮罩
+     *
      */
-    private FrameLayout meyeFrameLayout;
     protected boolean isEyeCare;
 
     /**
@@ -106,7 +101,6 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
         StatusBarUtils.transparentStatusBar(this);
         isDarkMode = CacheUtils.getInstance().getNormalDark();
         isEyeCare = CacheUtils.getInstance().getIsEyeCare();
-        initEye();
         initThemeColor();
         setThemeColor(isDarkMode);
         initView(savedInstanceState);
@@ -116,7 +110,7 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
 
         mProxyActivity = createProxyActivity();
         mProxyActivity.bindPresenter();
-
+        mProxyActivity.initEye(isEyeCare);
 
     }
 
@@ -147,37 +141,14 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
         }
         return super.onCreateView(name, context, attrs);
     }
-    /**
-     * 初始化护眼模式View
-     */
-    private void initEye() {
-        meyeFrameLayout = new FrameLayout(this);
-        openOrCloseEye(isEyeCare);
 
-        WindowManager.LayoutParams params = new WindowManager.LayoutParams();
-        params.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
-                | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-                | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE;
-        params.width = WindowManager.LayoutParams.MATCH_PARENT;
-        params.height = WindowManager.LayoutParams.MATCH_PARENT;
-        getWindow().addContentView(meyeFrameLayout, params);
-    }
 
 
     /**
      * 打开护眼模式
      */
     protected void openOrCloseEye(boolean status) {
-        if (status) {
-            if (meyeFrameLayout != null) {
-                meyeFrameLayout.setBackgroundColor(ColorUtils.getFilterColor(70));
-            }
-        } else {
-            if (meyeFrameLayout != null) {
-                meyeFrameLayout.setBackgroundColor(Color.TRANSPARENT);
-            }
-        }
-
+        mProxyActivity.openOrCloseEye(status);
     }
 
 

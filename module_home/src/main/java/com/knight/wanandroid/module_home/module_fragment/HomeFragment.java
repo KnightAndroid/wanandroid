@@ -12,7 +12,6 @@ import com.google.gson.reflect.TypeToken;
 import com.knight.wanandroid.library_base.basefragment.BaseFragment;
 import com.knight.wanandroid.library_base.entity.AppUpdateEntity;
 import com.knight.wanandroid.library_base.entity.UserInfoEntity;
-import com.knight.wanandroid.library_base.fragment.EveryDayPushArticleFragment;
 import com.knight.wanandroid.library_base.fragment.UpdateAppDialogFragment;
 import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
@@ -147,14 +146,14 @@ public final class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, Ho
                            pushDateEntity.setTime(everyDayPushArticlesEntity.getTime());
                            PushArticlesDateRepository.getInstance().updatePushArticlesDate(pushDateEntity);
                            //并且展示
-                           new EveryDayPushArticleFragment(mEveryDayPushEntities).show(getParentFragmentManager(), "dialog_everydaypush");
+                           new HomePushArticleFragment(mEveryDayPushEntities).show(getParentFragmentManager(), "dialog_everydaypush");
                        }
 
                     } else {
                         PushDateEntity pushDateEntity = new PushDateEntity();
                         pushDateEntity.setTime(everyDayPushArticlesEntity.getTime());
                         PushArticlesDateRepository.getInstance().insertPushArticlesDate(pushDateEntity);
-                        new EveryDayPushArticleFragment(mEveryDayPushEntities).show(getParentFragmentManager(), "dialog_everydaypush");
+                        new HomePushArticleFragment(mEveryDayPushEntities).show(getParentFragmentManager(), "dialog_everydaypush");
                     }
                 }
             });
@@ -222,7 +221,7 @@ public final class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, Ho
 
         public void showEveryDayPush(){
             if (mEveryDayPushEntities != null) {
-                new EveryDayPushArticleFragment(mEveryDayPushEntities).show(getParentFragmentManager(), "dialog_everydaypush");
+                new HomePushArticleFragment(mEveryDayPushEntities).show(getParentFragmentManager(), "dialog_everydaypush");
             }
             
         }

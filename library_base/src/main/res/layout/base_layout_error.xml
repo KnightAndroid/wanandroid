@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawablePadding="@dimen/base_dimen_20"
-        android:drawableTop="@drawable/iv_error_data"
+        android:drawableTop="@drawable/base_iv_error_data"
         android:textSize="@dimen/base_dimen_20"
         android:text="@string/base_error_data"
         android:gravity="center"

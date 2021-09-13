@@ -8,6 +8,8 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:4.0.0"
         classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.10'
+        //Android资源混淆工具 https://github.com/shwenzhang/AndResGuard
+        classpath 'com.tencent.mm:AndResGuard-gradle-plugin:1.2.20'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }

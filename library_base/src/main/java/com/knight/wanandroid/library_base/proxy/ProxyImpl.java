@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.net.ConnectivityManager;
 import android.os.Build;
@@ -12,10 +13,12 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 
 import com.knight.wanandroid.library_base.R;
 import com.knight.wanandroid.library_base.listener.NetworkStatusListener;
 import com.knight.wanandroid.library_base.receiver.NetWorkChangeReceiver;
+import com.knight.wanandroid.library_common.utils.ColorUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +34,9 @@ public class ProxyImpl implements IProxy, NetworkStatusListener,
 
     private Activity mActivity;
     private NetWorkChangeReceiver mNetWorkChangeReceiver;
+    //护眼模式遮罩
+    private FrameLayout meyeFrameLayout;
+
 
     public ProxyImpl(Activity mActivity) {
         this.mActivity = mActivity;
@@ -71,17 +77,67 @@ public class ProxyImpl implements IProxy, NetworkStatusListener,
         mLayoutParams.y = 0;
     }
 
+    /**
+     *
+     * 遮罩初始化
+     * @param isEyeCare
+     */
+    public void initEye(boolean isEyeCare) {
+        meyeFrameLayout = new FrameLayout(mActivity);
+        openOrCloseEye(isEyeCare);
+        WindowManager.LayoutParams params = new WindowManager.LayoutParams();
+        params.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+                | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE;
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        params.height = WindowManager.LayoutParams.MATCH_PARENT;
+        mActivity.getWindow().addContentView(meyeFrameLayout, params);
+    }
+
+
+    /**
+     * 是否显示网络异常提示
+     */
+    protected boolean setShowNetWorkTip() {
+        return true;
+    }
+
     @Override
-    public void unbindPresenter() {
-        if (mActivity == null) {
-            return;
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            mActivity.unregisterActivityLifecycleCallbacks(this);
-        } else {
-            mActivity.getApplication().unregisterActivityLifecycleCallbacks(this);
+    public void onConnect() {
+        if (setShowNetWorkTip()) {
+            if (tipView != null && tipView.getParent() != null) {
+                mWindowManager.removeView(tipView);
+            }
         }
     }
+
+    @Override
+    public void disConnect() {
+        if (setShowNetWorkTip()) {
+            if (tipView.getParent() == null) {
+                mWindowManager.addView(tipView, mLayoutParams);
+            }
+        }
+    }
+
+    /**
+     *
+     * 打开护眼模式
+     */
+    public void openOrCloseEye(boolean status) {
+        if (status) {
+            if (meyeFrameLayout != null) {
+                meyeFrameLayout.setBackgroundColor(ColorUtils.getFilterColor(70));
+            }
+        } else {
+            if (meyeFrameLayout != null) {
+                meyeFrameLayout.setBackgroundColor(Color.TRANSPARENT);
+            }
+        }
+
+    }
+
+
 
     @Override
     public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
@@ -120,6 +176,19 @@ public class ProxyImpl implements IProxy, NetworkStatusListener,
 
     }
 
+
+    @Override
+    public void unbindPresenter() {
+        if (mActivity == null) {
+            return;
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            mActivity.unregisterActivityLifecycleCallbacks(this);
+        } else {
+            mActivity.getApplication().unregisterActivityLifecycleCallbacks(this);
+        }
+    }
+
     @Override
     public void onActivityDestroyed(@NonNull Activity activity) {
         if (tipView != null && tipView.getParent() != null) {
@@ -128,28 +197,5 @@ public class ProxyImpl implements IProxy, NetworkStatusListener,
         }
     }
 
-    /**
-     * 是否显示网络异常提示
-     */
-    protected boolean setShowNetWorkTip() {
-        return true;
-    }
 
-    @Override
-    public void onConnect() {
-        if (setShowNetWorkTip()) {
-            if (tipView != null && tipView.getParent() != null) {
-                mWindowManager.removeView(tipView);
-            }
-        }
-    }
-
-    @Override
-    public void disConnect() {
-        if (setShowNetWorkTip()) {
-            if (tipView.getParent() == null) {
-                mWindowManager.addView(tipView, mLayoutParams);
-            }
-        }
-    }
 }

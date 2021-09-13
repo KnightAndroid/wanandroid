@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-aspectjx'
-
+apply from: 'res_guard.gradle'//压缩apk
 android {
     compileSdkVersion rootProject.ext.compile_sdk_version
     buildToolsVersion rootProject.ext.build_tools_version

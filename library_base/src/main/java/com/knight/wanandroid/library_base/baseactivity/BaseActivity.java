@@ -3,14 +3,11 @@ package com.knight.wanandroid.library_base.baseactivity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
 
 import com.kingja.loadsir.callback.Callback;
 import com.kingja.loadsir.core.LoadService;
@@ -24,7 +21,6 @@ import com.knight.wanandroid.library_base.model.BaseModel;
 import com.knight.wanandroid.library_base.presenter.BasePresenter;
 import com.knight.wanandroid.library_base.proxy.ProxyActivity;
 import com.knight.wanandroid.library_common.utils.CacheUtils;
-import com.knight.wanandroid.library_common.utils.ColorUtils;
 import com.knight.wanandroid.library_network.listener.OnHttpListener;
 import com.knight.wanandroid.library_util.CreateUtils;
 import com.knight.wanandroid.library_util.LanguageFontSizeUtils;
@@ -63,18 +59,12 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
     protected boolean isDarkMode;
     protected boolean isEyeCare;
 
-    //护眼模式遮罩
-    private FrameLayout meyeFrameLayout;
-
     /**
      *
      * 字体缩放大小
      *
      */
     private float fontScale = 1.0f;
-
-
-
 
     /**
      * 主题色设置
@@ -109,15 +99,14 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
         } catch (EventBusException ignored){
             // Subscriber class Activity and its super classes have no public methods with the @Subscribe annotation
         }
-        initEye();
         setThemeColor(isDarkMode);
-
         initView(savedInstanceState);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             mSwipeBackHelper = new SwipeBackHelper(this);
         }
         mProxyActivity = createProxyActivity();
         mProxyActivity.bindPresenter();
+        mProxyActivity.initEye(isEyeCare);
         //内部获取第二个类型参数的真实类型，反射new出对象
         mPresenter = CreateUtils.get(this,1);
         //内部获取第三个类型参数的真实类型，反射new出对手
@@ -125,8 +114,6 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
         //使得p层绑定M层和V层，持有M和V的引用
         mPresenter.attachModelView(mModel,this);
         initData();
-
-
 
     }
 
@@ -152,10 +139,7 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
         return super.onCreateView(name, context, attrs);
     }
 
-
-
     /**
-     *
      * 获取主题颜色
      *
      */
@@ -163,35 +147,12 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
         themeColor = CacheUtils.getInstance().getThemeColor();
     }
 
-
-    private void initEye() {
-        meyeFrameLayout = new FrameLayout(this);
-        openOrCloseEye(isEyeCare);
-        WindowManager.LayoutParams params = new WindowManager.LayoutParams();
-        params.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
-                | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-                | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE;
-        params.width = WindowManager.LayoutParams.MATCH_PARENT;
-        params.height = WindowManager.LayoutParams.MATCH_PARENT;
-        getWindow().addContentView(meyeFrameLayout, params);
-    }
-
-
     /**
      *
      * 打开护眼模式
      */
     protected void openOrCloseEye(boolean status) {
-        if (status) {
-            if (meyeFrameLayout != null) {
-                meyeFrameLayout.setBackgroundColor(ColorUtils.getFilterColor(70));
-            }
-        } else {
-            if (meyeFrameLayout != null) {
-                meyeFrameLayout.setBackgroundColor(Color.TRANSPARENT);
-            }
-        }
-
+        mProxyActivity.openOrCloseEye(status);
     }
 
 
