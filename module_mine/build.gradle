@@ -12,9 +12,17 @@ android {
             applicationId "com.knight.wanandroid.module_mine"
         }
         buildConfigField "String", "isAloneApp","\"${isRunAlone.toString()}\""
+        flavorDimensions "versionCode"
     }
     //限定资源前缀命名
     resourcePrefix "mine_"
+    //配置渠道
+    publishNonDefault true
+    productFlavors{
+        develop {}
+        qa {}
+        pro {}
+    }
 }
 
 dependencies {

@@ -11,10 +11,19 @@ android {
         if(isRunAlone.toBoolean()){
             applicationId "com.knight.wanandroid.module_set"
         }
+
         buildConfigField "String", "isAloneApp","\"${isRunAlone.toString()}\""
+        flavorDimensions "versionCode"
     }
     //限定资源前缀命名
     resourcePrefix "set_"
+    //配置渠道
+    publishNonDefault true
+    productFlavors{
+        develop {}
+        qa {}
+        pro {}
+    }
 }
 
 dependencies {

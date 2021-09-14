@@ -11,10 +11,18 @@ android {
         if(isRunAlone.toBoolean()){
             applicationId "com.knight.wanandroid.module_hierachy"
         }
+        flavorDimensions "versionCode"
         buildConfigField "String", "isAloneApp","\"${isRunAlone.toString()}\""
     }
     //限定资源前缀命名
     resourcePrefix "hierachy_"
+    //配置渠道
+    publishNonDefault true
+    productFlavors{
+        develop {}
+        qa {}
+        pro {}
+    }
 }
 
 dependencies {

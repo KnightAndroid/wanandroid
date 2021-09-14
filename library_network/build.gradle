@@ -12,7 +12,6 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-
     }
     //限定资源前缀命名
     resourcePrefix "library_network_"
@@ -28,6 +27,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
     }
+
 }
 
 dependencies {

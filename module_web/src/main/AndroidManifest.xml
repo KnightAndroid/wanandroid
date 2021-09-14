@@ -3,7 +3,9 @@
     package="com.knight.wanandroid.module_web">
 
     <application>
-        <activity android:name=".module_activity.WebActivity"/>
+        <activity android:name=".module_activity.WebActivity"
+        android:hardwareAccelerated="true"
+        android:configChanges="orientation|screenSize"/>
         <activity android:name=".module_activity.WebNormalActivity"/>
         <activity android:name=".module_activity.WebTransitionActivity"/>
         <activity android:name=".module_activity.WebPreviewPhotoActivity"/>
