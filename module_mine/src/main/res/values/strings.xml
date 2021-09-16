@@ -45,4 +45,11 @@
     <string name="mine_nodata_rank">排名第 -</string>
     <string name="mine_login_request">登录请求中...</string>
     <string name="mine_regist_request">注册中...</string>
+    <string name="mine_touch_sensor">触摸传感器以验证指纹</string>
+    <string name="mine_touch_verify_failure">验证失败,请重试</string>
+    <string name="mine_touch_verify_error">请使用账号密码登录</string>
+    <string name="mine_touch_verify_finger">验证指纹</string>
+    <string name="mine_touchverify_succeeded">验证成功</string>
+    <string name="mine_use_password_login">使用账号密码登录</string>
+    <string name="mine_not_open_touchverify">暂不开启</string>
 </resources>

@@ -238,4 +238,77 @@ public final class CacheUtils {
         return mmkv.getString(cacheKey,null);
     }
 
+    /**
+     * 返回生物识别iv向量
+     */
+    public String getCliperIv() {
+        return mmkv.decodeString(MMkvConstants.CLIPER_IV, "");
+    }
+
+
+    /**
+     * 保存生物识别iv向量
+     *
+     * @param cliperIv
+     */
+    public void setCliperIv(String cliperIv) {
+        mmkv.encode(MMkvConstants.CLIPER_IV, cliperIv);
+    }
+
+    /**
+     * 返回Base64后的登录账号信息
+     */
+    public String getEncryptLoginMessage() {
+        return mmkv.decodeString(MMkvConstants.ENCRYPT_LOGIN_MESSAGE, "");
+    }
+
+
+    /**
+     * 保存Base64后的登录账号信息
+     *
+     * @param encryptloginMessage
+     */
+    public void setEncryptLoginMessage(String encryptloginMessage) {
+        mmkv.encode(MMkvConstants.ENCRYPT_LOGIN_MESSAGE, encryptloginMessage);
+    }
+
+
+    /**
+     *
+     * 保存明文账号密码信息
+     * @return
+     */
+    public void setLoginMessage(String loginMessage) {
+        mmkv.encode(MMkvConstants.LOGIN_MESSAGE,loginMessage);
+    }
+
+
+    /**
+     * 得到明文账号密码信息
+     * @return
+     */
+    public String getLoginMessage() {
+        return mmkv.decodeString(MMkvConstants.LOGIN_MESSAGE,"");
+    }
+
+
+
+    /**
+     * 设置是否快捷登录
+     */
+    public void setQuickLogin(boolean isQuickLogin) {
+        mmkv.encode(MMkvConstants.OPENQUICKLOGIN, isQuickLogin);
+    }
+
+
+
+    /**
+     * 返回是否开启快捷登录
+     * @return
+     */
+    public boolean getQuickLogin() {
+        return mmkv.decodeBool(MMkvConstants.OPENQUICKLOGIN, false);
+    }
+
+
 }

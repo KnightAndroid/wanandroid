@@ -57,4 +57,28 @@ public final class MMkvConstants {
      */
     public static final String FONTSIZESCALE = "fontSizeScale";
 
+
+    /**
+     *
+     * 是否开启快捷登录-->指纹识别
+     */
+    public static final String OPENQUICKLOGIN = "openQuicLogin";
+    /**
+     *
+     * 生物识别iv向量key
+     */
+    public static final String CLIPER_IV = "cliper_iv";
+
+    /**
+     * Base64后的登录账号密码信息
+     *
+     */
+    public static final String ENCRYPT_LOGIN_MESSAGE = "encryptLoginMessage";
+
+    /**
+     * 明文的账号密码信息
+     *
+     */
+    public static final String LOGIN_MESSAGE = "loginMessage";
+
 }

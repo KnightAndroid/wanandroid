@@ -104,16 +104,7 @@ android {
 
 }
 
-//
-////这里自定义关键字来获取指定渠道来编译
-//configurations {
-//    developDebugApi
-//    qaDebugApi
-//    proDebugApi
-//    developReleaseApi
-//    qaReleaseApi
-//    proReleaseApi
-//}
+
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
@@ -146,84 +137,5 @@ dependencies {
     implementation 'com.github.ittianyu:BottomNavigationViewEx:2.0.4'
     //Google material库
     implementation 'com.google.android.material:material:1.3.0-alpha01'
-
-
-//    developDebugApi project(path: ':library_base', configuration: 'developDebug')
-//    developDebugApi project(path: ':module_welcome', configuration: 'developDebug')
-//    developDebugApi project(path: ':module_home', configuration: 'developDebug')
-//    developDebugApi project(path: ':module_square', configuration: 'developDebug')
-//    developDebugApi project(path: ':module_project', configuration: 'developDebug')
-//    developDebugApi project(path: ':module_hierachy', configuration: 'developDebug')
-//    developDebugApi project(path: ':module_mine', configuration: 'developDebug')
-//    developDebugApi project(path: ':module_web', configuration: 'developDebug')
-//    developDebugApi project(path: ':module_wechat', configuration: 'developDebug')
-//    developDebugApi project(path: ':module_message', configuration: 'developDebug')
-//    developDebugApi project(path: ':module_set', configuration: 'developDebug')
-//
-//
-//    qaDebugApi project(path: ':library_base', configuration: 'qaDebug')
-//    qaDebugApi project(path: ':module_welcome', configuration: 'qaDebug')
-//    qaDebugApi project(path: ':module_home', configuration: 'qaDebug')
-//    qaDebugApi project(path: ':module_square', configuration: 'qaDebug')
-//    qaDebugApi project(path: ':module_project', configuration: 'qaDebug')
-//    qaDebugApi project(path: ':module_hierachy', configuration: 'qaDebug')
-//    qaDebugApi project(path: ':module_mine', configuration: 'qaDebug')
-//    qaDebugApi project(path: ':module_web', configuration: 'qaDebug')
-//    qaDebugApi project(path: ':module_wechat', configuration: 'qaDebug')
-//    qaDebugApi project(path: ':module_message', configuration: 'qaDebug')
-//    qaDebugApi project(path: ':module_set', configuration: 'qaDebug')
-//
-//
-//    proDebugApi project(path: ':library_base', configuration: 'proDebug')
-//    proDebugApi project(path: ':module_welcome', configuration: 'proDebug')
-//    proDebugApi project(path: ':module_home', configuration: 'proDebug')
-//    proDebugApi project(path: ':module_square', configuration: 'proDebug')
-//    proDebugApi project(path: ':module_project', configuration: 'proDebug')
-//    proDebugApi project(path: ':module_hierachy', configuration: 'proDebug')
-//    proDebugApi project(path: ':module_mine', configuration: 'proDebug')
-//    proDebugApi project(path: ':module_web', configuration: 'proDebug')
-//    proDebugApi project(path: ':module_wechat', configuration: 'proDebug')
-//    proDebugApi project(path: ':module_message', configuration: 'proDebug')
-//    proDebugApi project(path: ':module_set', configuration: 'proDebug')
-//
-//
-//    developReleaseApi project(path: ':library_base', configuration: 'developRelease')
-//    developReleaseApi project(path: ':module_welcome', configuration: 'developRelease')
-//    developReleaseApi project(path: ':module_home', configuration: 'developRelease')
-//    developReleaseApi project(path: ':module_square', configuration: 'developRelease')
-//    developReleaseApi project(path: ':module_project', configuration: 'developRelease')
-//    developReleaseApi project(path: ':module_hierachy', configuration: 'developRelease')
-//    developReleaseApi project(path: ':module_mine', configuration: 'developRelease')
-//    developReleaseApi project(path: ':module_web', configuration: 'developRelease')
-//    developReleaseApi project(path: ':module_wechat', configuration: 'developRelease')
-//    developReleaseApi project(path: ':module_message', configuration: 'developRelease')
-//    developReleaseApi project(path: ':module_set', configuration: 'developRelease')
-//
-//    qaReleaseApi project(path: ':library_base', configuration: 'qaRelease')
-//    qaReleaseApi project(path: ':module_welcome', configuration: 'qaRelease')
-//    qaReleaseApi project(path: ':module_home', configuration: 'qaRelease')
-//    qaReleaseApi project(path: ':module_square', configuration: 'qaRelease')
-//    qaReleaseApi project(path: ':module_project', configuration: 'qaRelease')
-//    qaReleaseApi project(path: ':module_hierachy', configuration: 'qaRelease')
-//    qaReleaseApi project(path: ':module_mine', configuration: 'qaRelease')
-//    qaReleaseApi project(path: ':module_web', configuration: 'qaRelease')
-//    qaReleaseApi project(path: ':module_wechat', configuration: 'qaRelease')
-//    qaReleaseApi project(path: ':module_message', configuration: 'qaRelease')
-//    qaReleaseApi project(path: ':module_set', configuration: 'qaRelease')
-//
-//
-//    proReleaseApi project(path: ':library_base', configuration: 'proRelease')
-//    proReleaseApi project(path: ':module_welcome', configuration: 'proRelease')
-//    proReleaseApi project(path: ':module_home', configuration: 'proRelease')
-//    proReleaseApi project(path: ':module_square', configuration: 'proRelease')
-//    proReleaseApi project(path: ':module_project', configuration: 'proRelease')
-//    proReleaseApi project(path: ':module_hierachy', configuration: 'proRelease')
-//    proReleaseApi project(path: ':module_mine', configuration: 'proRelease')
-//    proReleaseApi project(path: ':module_web', configuration: 'proRelease')
-//    proReleaseApi project(path: ':module_wechat', configuration: 'proRelease')
-//    proReleaseApi project(path: ':module_message', configuration: 'proRelease')
-//    proReleaseApi project(path: ':module_set', configuration: 'proRelease')
-
-
 
 }

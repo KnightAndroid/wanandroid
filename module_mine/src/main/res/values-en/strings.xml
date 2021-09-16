@@ -46,4 +46,11 @@
     <string name="mine_nodata_rank">Rank -</string>
     <string name="mine_login_request">Login...</string>
     <string name="mine_regist_request">Regist...</string>
+    <string name="mine_touch_sensor">Touch the sensor to verify the fingerprint</string>
+    <string name="mine_touch_verify_failure">Verification failed, please try again</string>
+    <string name="mine_touch_verify_error">Please log in with your account and password</string>
+    <string name="mine_touch_verify_finger">Verify fingerprint</string>
+    <string name="mine_touchverify_succeeded">Verify Success</string>
+    <string name="mine_use_password_login">Login with account and password</string>
+    <string name="mine_not_open_touchverify">Not open temporarily</string>
 </resources>

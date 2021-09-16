@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="click"
+            type="com.knight.wanandroid.module_mine.fragment.BiometricPromptDialog.ProxyClick"/>
+
+    </data>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/base_round"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/mine_fingerprint_ic" />
+
+            <TextView
+                android:id="@+id/fingure_tv_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/mine_touch_sensor"
+                android:textColor="@color/base_color_title"
+                android:textSize="@dimen/base_dimen_text_size_14"
+                android:typeface="normal" />
+
+
+            <TextView
+                android:id="@+id/fingure_tv_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/base_permission_denied"
+                android:textColor="#419BF9"
+                android:textSize="@dimen/base_dimen_text_size_14"
+                android:onClick="@{()->click.cancel()}"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

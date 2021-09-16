@@ -32,7 +32,7 @@
             android:name="design_height_in_dp"
             android:value="100000" />
 
-        <activity android:name=".module_activity.MineMainActivity"
+        <activity android:name=".activity.MineMainActivity"
             android:theme="@style/mine_Theme.Wanandroid">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

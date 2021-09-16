@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.knight.wanandroid.module_mine.module_fragment.MineFragment">
+    tools:context="com.knight.wanandroid.module_mine.fragment.MineFragment">
 
     <data>
 
         <variable
             name="click"
-            type="com.knight.wanandroid.module_mine.module_fragment.MineFragment.ProcyClick" />
+            type="com.knight.wanandroid.module_mine.fragment.MineFragment.ProcyClick" />
 
     </data>
 

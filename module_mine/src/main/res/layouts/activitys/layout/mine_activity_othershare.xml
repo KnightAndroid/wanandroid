@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:sothree="http://schemas.android.com/apk/res-auto"
-    tools:context="com.knight.wanandroid.module_mine.module_activity.OtherShareArticleActivity">
+    tools:context="com.knight.wanandroid.module_mine.activity.OtherShareArticleActivity">
 
     <data>
 
         <variable
             name="click"
-            type="com.knight.wanandroid.module_mine.module_activity.OtherShareArticleActivity.ProxyClick" />
+            type="com.knight.wanandroid.module_mine.activity.OtherShareArticleActivity.ProxyClick" />
 
     </data>
 

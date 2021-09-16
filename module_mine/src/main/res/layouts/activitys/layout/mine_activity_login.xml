@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.knight.wanandroid.module_mine.module_activity.LoginActivity">
+    tools:context="com.knight.wanandroid.module_mine.activity.LoginActivity">
 
     <data>
 
         <variable
             name="click"
-            type="com.knight.wanandroid.module_mine.module_activity.LoginActivity.ProcyClick" />
+            type="com.knight.wanandroid.module_mine.activity.LoginActivity.ProcyClick" />
 
 
     </data>

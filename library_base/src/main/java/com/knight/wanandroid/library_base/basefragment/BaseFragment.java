@@ -153,7 +153,7 @@ public abstract class BaseFragment<DB extends ViewDataBinding, T extends BasePre
      *
      * @param loadMessage
      */
-    protected void showLoadingHud(String loadMessage) {
+    public void showLoadingHud(String loadMessage) {
         if (mProgressHUD == null) {
             mProgressHUD = new ProgressHUD(getActivity(), loadMessage);
         }
@@ -163,7 +163,7 @@ public abstract class BaseFragment<DB extends ViewDataBinding, T extends BasePre
     /**
      * 隐藏请求框
      */
-    protected void dismissLoadingHud() {
+    public void dismissLoadingHud() {
         if (mProgressHUD != null) {
             mProgressHUD.dismiss();
         }
