@@ -91,7 +91,17 @@
 - [AgentWeb](https://github.com/Justson/AgentWeb)
 - [LeakCanary](https://github.com/square/leakcanary)
 
+## 本项目开发环境
+- 基于Android Studio 4.1.1
+- Android Gradle Plugin 6.1.1
+- Android Gradle插件4.0.0
 
+打包方式如下图：
+![wanandroid_release_apk.png](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_release_apk.png)
+
+打包成功后会在`app\build\outputs\apk\pro\release`目录下有`wanandroid_vxxx_release_xxx.apk`形式的release安装包,如下
+
+![wanandroid_app_path.png](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_app_path.png)
 
 
 ## 更新日志
