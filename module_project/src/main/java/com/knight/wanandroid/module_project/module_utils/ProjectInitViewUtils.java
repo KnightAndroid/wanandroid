@@ -104,7 +104,7 @@ public final class ProjectInitViewUtils {
             @Override
             public IPagerIndicator getIndicator(Context context) {
                 LinePagerIndicator indicator = new LinePagerIndicator(context);
-                indicator.setMode(LinePagerIndicator.MODE_EXACTLY);
+                indicator.setMode(LinePagerIndicator.MODE_WRAP_CONTENT);
                 indicator.setLineHeight(ScreenUtils.dp2px(context, 3.0f));
                 indicator.setLineWidth(ScreenUtils.dp2px(context, 30.0f));
                 indicator.setRoundRadius(ScreenUtils.dp2px(context, 6.0f));
