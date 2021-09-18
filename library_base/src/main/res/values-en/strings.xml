@@ -27,9 +27,11 @@
     <string name="base_permission_notification">Notification bar permissions</string>
     <string name="base_permission_window">Suspended window permission</string>
     <string name="base_permission_setting">System setting permissions</string>
+    <string name="base_found_new_version">Found New Version</string>
+    <string name="base_update_now">Update</string>
     <string name="base_no_data">There is no data, please click Retry</string>
     <string name="base_error_data">An error occurred. Please click Retry</string>
-    <string name="base_downloading_wait">Downloading updates, please wait</string>
+    <string name="base_downloading_wait">Downloading updates...</string>
     <string name="base_save">Save</string>
     <string name="base_confim">Determine</string>
     <string name="base_unavailable_text">Confirm that the network connection is not available, please check the network settings</string>

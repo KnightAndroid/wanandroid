@@ -30,6 +30,8 @@
     <string name="base_permission_window">悬浮窗权限</string>
     <string name="base_permission_setting">系统设置权限</string>
 
+    <string name="base_found_new_version">发现新版本</string>
+    <string name="base_update_now">立即更新</string>
     <string name="base_no_data">暂无数据,请点击重试</string>
     <string name="base_error_data">出错了,请点击重试</string>
     <string name="base_downloading_wait">下载更新中,请稍候...</string>
