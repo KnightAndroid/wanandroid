@@ -123,7 +123,6 @@ public final class MineFragment extends BaseFragment<MineFragmentMineBinding, Mi
         mDatabind.mineTvRank.setText(getString(R.string.mine_rank) + userInfoCoinEntity.getRank());
         mDatabind.mineTvPoints.setText(userInfoCoinEntity.getCoinCount() + "");
 
-
     }
 
     @Override
