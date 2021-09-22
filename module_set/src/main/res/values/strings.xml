@@ -33,6 +33,8 @@
     <string name="set_more_language">多语言</string>
     <string name="set_changetextsize_tip">拖动下面的滑块，可设置字体大小</string>
     <string name="set_changetextsize">字体大小</string>
+    <string name="set_gesture_password">设置手势密码</string>
+    <string name="set_show_gesture_password">手势密码</string>
     <string name="set_logout">退出登录中...</string>
 
 </resources>

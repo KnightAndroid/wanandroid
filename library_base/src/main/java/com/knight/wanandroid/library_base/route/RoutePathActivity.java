@@ -82,6 +82,7 @@ public class RoutePathActivity {
         public static final String About_Pager = Mine + "/mine_about";
         public static final String AppUpdate_Pager = Mine + "/mine_app_updaterecord";
         public static final String HistoryRecord_Pager = Mine + "/mine_historyrecord";
+        public static final String QuickLogin_Pager = Mine + "/mine_quicklogin";
     }
 
 
@@ -131,6 +132,7 @@ public class RoutePathActivity {
        public static final String Set_DarkMode = Set + "/set_darkmode_pager";
        public static final String Set_Language = Set + "/set_language_pager";
        public static final String Set_ChangeTextSize = Set + "/set_changetextsize_pager";
+       public static final String Set_GestureLock = Set + "/set_gesturelock_pager";
     }
 
 

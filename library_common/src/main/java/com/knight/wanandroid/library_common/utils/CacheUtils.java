@@ -294,20 +294,56 @@ public final class CacheUtils {
 
 
     /**
-     * 设置是否快捷登录
+     * 设置是否指纹登录
      */
-    public void setQuickLogin(boolean isQuickLogin) {
-        mmkv.encode(MMkvConstants.OPENQUICKLOGIN, isQuickLogin);
+    public void setFingerLogin(boolean isQuickLogin) {
+        mmkv.encode(MMkvConstants.FINGERLOGIN, isQuickLogin);
     }
 
 
 
     /**
-     * 返回是否开启快捷登录
+     * 返回是否开启指纹登录
      * @return
      */
-    public boolean getQuickLogin() {
-        return mmkv.decodeBool(MMkvConstants.OPENQUICKLOGIN, false);
+    public boolean getFingerLogin() {
+        return mmkv.decodeBool(MMkvConstants.FINGERLOGIN, false);
+    }
+
+    /**
+     * 存放手势密码
+     *
+     */
+    public void setGesturePassword(String gesturePassword) {
+        mmkv.encode(MMkvConstants.GESTUREPASSEORD,gesturePassword);
+    }
+
+    /**
+     *
+     * 返回手势密码 是否已经创建手势密码
+     * @return
+     */
+    public String getGesturePassword() {
+        return mmkv.decodeString(MMkvConstants.GESTUREPASSEORD);
+    }
+
+
+    /**
+     *
+     *  返回是否开启手势密码登录
+      * @return
+     */
+    public boolean getGestureLogin() {
+        return mmkv.decodeBool(MMkvConstants.GESTURELOGIN,false);
+    }
+
+    /**
+     *
+     * 设置手势密码登录
+     * @param gestureLogin
+     */
+    public void setGestureLogin(boolean gestureLogin) {
+        mmkv.encode(MMkvConstants.GESTURELOGIN, gestureLogin);
     }
 
 

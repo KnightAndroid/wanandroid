@@ -5,4 +5,7 @@
     <color name="widget_theme_color">#55aff4</color>
     <color name="widget_gray_color">#DEDEDE</color>
     <color name="widget_night_color">#111111</color>
+    <color name="widget_gesturelock_dot_color">#AACCCCCC</color>
+    <color name="widget_gesturelock_dot_pressed_color">#FFBBBBBB</color>
+    <color name="widget_gesturelock_line_color">#55CCCCCC</color>
 </resources>

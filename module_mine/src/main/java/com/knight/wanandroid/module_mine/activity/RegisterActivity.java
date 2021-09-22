@@ -1,8 +1,6 @@
 package com.knight.wanandroid.module_mine.activity;
 
 import android.graphics.drawable.GradientDrawable;
-import android.hardware.biometrics.BiometricPrompt;
-import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -28,9 +26,9 @@ import com.knight.wanandroid.module_mine.entity.LoginEntity;
 import com.knight.wanandroid.module_mine.model.RegisterModel;
 import com.knight.wanandroid.module_mine.presenter.RegisterPresenter;
 
+import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-
-import androidx.annotation.RequiresApi;
+import javax.crypto.IllegalBlockSizeException;
 
 /**
  * @author created by kinght
@@ -110,6 +108,7 @@ public final class RegisterActivity extends BaseActivity<MineActivityRegisterBin
     @Override
     public void setUserInfo(UserInfoEntity userInfo) {
         String loginMessage = GsonUtils.toJson(new LoginEntity(mDatabind.mineRegisterUsername.getText().toString().trim(),mDatabind.mineRegisterPassword.getText().toString().trim()));
+        CacheUtils.getInstance().setLoginMessage(loginMessage);
         openBlomtric(loginMessage);
     }
 
@@ -168,44 +167,26 @@ public final class RegisterActivity extends BaseActivity<MineActivityRegisterBin
                             finish();
                         }
 
-                        @RequiresApi(api = Build.VERSION_CODES.M)
                         @Override
-                        public void onSucceeded(FingerprintManager.AuthenticationResult result) {
+                        public void onSucceeded(Cipher cipher) {
+                            byte[] bytes;
                             try {
-                                /**
-                                 * 加密后的密码和iv可保存在服务器,登录时通过接口根据账号获取
-                                 */
-                                Cipher cipher = result.getCryptoObject().getCipher();
-                                byte[] bytes = cipher.doFinal(loginMessage.getBytes());
-                                CacheUtils.getInstance().setEncryptLoginMessage(Base64.encodeToString(bytes, Base64.URL_SAFE));
-                                byte[] iv = cipher.getIV();
-                                CacheUtils.getInstance().setCliperIv(Base64.encodeToString(iv, Base64.URL_SAFE));
-                                //保存开启了快捷登录
-                                CacheUtils.getInstance().setQuickLogin(true);
-                                finish();
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                        @RequiresApi(api = Build.VERSION_CODES.P)
-                        @Override
-                        public void onSucceeded(BiometricPrompt.AuthenticationResult result) {
-                            try {
-                                Cipher cipher = result.getCryptoObject().getCipher();
-                                byte[] bytes = cipher.doFinal(loginMessage.getBytes());
+                                bytes = cipher.doFinal(loginMessage.getBytes());
                                 //保存加密过后的字符串
                                 CacheUtils.getInstance().setEncryptLoginMessage(Base64.encodeToString(bytes, Base64.URL_SAFE));
                                 byte[] iv = cipher.getIV();
                                 CacheUtils.getInstance().setCliperIv(Base64.encodeToString(iv, Base64.URL_SAFE));
                                 //保存开启了快捷登录
-                                CacheUtils.getInstance().setQuickLogin(true);
+                                CacheUtils.getInstance().setFingerLogin(true);
                                 finish();
-                            } catch (Exception e) {
+                            } catch (BadPaddingException e) {
+                                e.printStackTrace();
+                            } catch (IllegalBlockSizeException e) {
                                 e.printStackTrace();
                             }
-                        }
 
+                        }
+                        
                         @Override
                         public void onFailed() {
                             finish();

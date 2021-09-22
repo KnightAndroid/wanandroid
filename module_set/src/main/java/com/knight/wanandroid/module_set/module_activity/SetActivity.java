@@ -66,8 +66,10 @@ public final class SetActivity extends BaseActivity<SetActivityBinding, SetPrese
         mDatabind.includeSetToobar.baseTvTitle.setText(getString(R.string.set_app_name));
         if (ModuleConfig.getInstance().user != null) {
             mDatabind.setRlLogout.setVisibility(View.VISIBLE);
+            mDatabind.setRlGesturePassword.setVisibility(View.VISIBLE);
         } else {
             mDatabind.setRlLogout.setVisibility(View.GONE);
+            mDatabind.setRlGesturePassword.setVisibility(View.GONE);
         }
         statusIsWithTheme = CacheUtils.getInstance().getStatusBarIsWithTheme();
         mDatabind.setCbStatusTheme.setChecked(statusIsWithTheme);
@@ -99,6 +101,7 @@ public final class SetActivity extends BaseActivity<SetActivityBinding, SetPrese
     @Override
     public void logoutSuccess() {
         mDatabind.setRlLogout.setVisibility(View.GONE);
+        mDatabind.setRlGesturePassword.setVisibility(View.GONE);
         //退出登录成功
         CacheUtils.getInstance().loginOut();
         ModuleConfig.getInstance().user = null;
@@ -188,6 +191,16 @@ public final class SetActivity extends BaseActivity<SetActivityBinding, SetPrese
          */
         public void goChangeTextSize() {
             ARouter.getInstance().build(RoutePathActivity.Set.Set_ChangeTextSize)
+                    .navigation();
+        }
+
+        /**
+         *
+         * 去设置手势密码
+         */
+        public void goSetGuesturePawword() {
+            ARouter.getInstance()
+                    .build(RoutePathActivity.Set.Set_GestureLock)
                     .navigation();
         }
 

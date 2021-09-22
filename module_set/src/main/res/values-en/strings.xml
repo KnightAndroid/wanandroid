@@ -34,5 +34,7 @@
     <string name="set_more_language">Multilingual</string>
     <string name="set_changetextsize_tip">Drag the slider below to set the font size</string>
     <string name="set_changetextsize">Font Size</string>
+    <string name="set_gesture_password">Set Gesture Password</string>
+    <string name="set_show_gesture_password">Gesture Password</string>
     <string name="set_logout">Quit...</string>
 </resources>

@@ -16,6 +16,7 @@
         <activity android:name=".activity.AboutActivity"/>
         <activity android:name=".activity.AppUpdateRecordActivity"/>
         <activity android:name=".activity.HistoryRecordActivity"/>
+        <activity android:name=".activity.QuickLoginActivity"/>
     </application>
 
 </manifest>

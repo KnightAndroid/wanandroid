@@ -1,10 +1,10 @@
 package com.knight.wanandroid.module_mine.biometric;
 
-import android.hardware.biometrics.BiometricPrompt;
-import android.hardware.fingerprint.FingerprintManager;
 import android.os.CancellationSignal;
 
 import com.knight.wanandroid.library_util.BlometricUtils;
+
+import javax.crypto.Cipher;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
@@ -20,16 +20,37 @@ public class BiometricPromptManager {
     private FragmentActivity mActivity;
 
     public interface OnBiometricIdentifyCallback {
+        /**
+         *
+         * 使用密码
+         */
         void onUsePassword();
 
-        void onSucceeded(FingerprintManager.AuthenticationResult result);
+        /**
+         *
+         * 成功
+         * @param cipher
+         */
+        void onSucceeded(Cipher cipher);
 
-        void onSucceeded(BiometricPrompt.AuthenticationResult result);
-
+        /**
+         * 
+         * 失败
+         */
         void onFailed();
 
+        /**
+         *
+         * 错误
+         * @param code
+         * @param reason
+         */
         void onError(int code, String reason);
 
+        /**
+         *
+         * 取消
+         */
         void onCancel();
 
     }

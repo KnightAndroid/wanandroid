@@ -62,7 +62,7 @@ public final class MMkvConstants {
      *
      * 是否开启快捷登录-->指纹识别
      */
-    public static final String OPENQUICKLOGIN = "openQuicLogin";
+    public static final String FINGERLOGIN = "openFingerLogin";
     /**
      *
      * 生物识别iv向量key
@@ -80,5 +80,17 @@ public final class MMkvConstants {
      *
      */
     public static final String LOGIN_MESSAGE = "loginMessage";
+
+    /**
+     *
+     * 手势密码
+     */
+    public static final String GESTUREPASSEORD = "gesturePassword";
+
+    /**
+     *
+     * 是否开启手势密码登录
+     */
+    public static final String GESTURELOGIN = "gestureLogin";
 
 }

@@ -2,12 +2,8 @@ package com.knight.wanandroid.module_mine.fragment;
 
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
-import android.hardware.biometrics.BiometricPrompt;
-import android.hardware.fingerprint.FingerprintManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -31,6 +27,7 @@ import com.knight.wanandroid.module_mine.activity.HistoryRecordActivity;
 import com.knight.wanandroid.module_mine.activity.LoginActivity;
 import com.knight.wanandroid.module_mine.activity.MyCollectArticleActivity;
 import com.knight.wanandroid.module_mine.activity.MyShareArticleActivity;
+import com.knight.wanandroid.module_mine.activity.QuickLoginActivity;
 import com.knight.wanandroid.module_mine.biometric.BiometricPromptManager;
 import com.knight.wanandroid.module_mine.contract.MineContract;
 import com.knight.wanandroid.module_mine.databinding.MineFragmentMineBinding;
@@ -43,9 +40,9 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-
-import androidx.annotation.RequiresApi;
+import javax.crypto.IllegalBlockSizeException;
 
 /**
  * @author created by knight
@@ -143,12 +140,13 @@ public final class MineFragment extends BaseFragment<MineFragmentMineBinding, Mi
     public class ProcyClick {
         public void gotoLogin() {
             if (ModuleConfig.getInstance().user == null) {
-                if (CacheUtils.getInstance().getQuickLogin()) {
+                if (CacheUtils.getInstance().getGestureLogin()) {
+                    startActivity(new Intent(getActivity(), QuickLoginActivity.class));
+                } else if (CacheUtils.getInstance().getFingerLogin()){
                     loginBlomtric();
                 } else {
                     startActivity(new Intent(getActivity(), LoginActivity.class));
                 }
-
             }
         }
 
@@ -237,46 +235,27 @@ public final class MineFragment extends BaseFragment<MineFragmentMineBinding, Mi
                             startActivity(new Intent(getActivity(), LoginActivity.class));
                         }
 
-                        @RequiresApi(api = Build.VERSION_CODES.M)
                         @Override
-                        public void onSucceeded(FingerprintManager.AuthenticationResult result) {
+                        public void onSucceeded(Cipher cipher) {
+                            String text = CacheUtils.getInstance().getEncryptLoginMessage();
+                            byte[] input = Base64.decode(text, Base64.URL_SAFE);
+                            byte[] bytes;
                             try {
-                                Cipher cipher = result.getCryptoObject().getCipher();
-                                String text = CacheUtils.getInstance().getEncryptLoginMessage();
-                                byte[] input = Base64.decode(text, Base64.URL_SAFE);
-                                byte[] bytes = cipher.doFinal(input);
-                                LoginEntity loginEntity = GsonUtils.get(new String(bytes), LoginEntity.class);
-                                byte[] iv = cipher.getIV();
-                                /**
-                                 * 然后这里用原密码(当然是加密过的)调登录接口
-                                 */
-                                mPresenter.requestUserInfo(loginEntity.getLoginName(),loginEntity.getLoginPassword());
-
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                        @RequiresApi(api = Build.VERSION_CODES.P)
-                        @Override
-                        public void onSucceeded(BiometricPrompt.AuthenticationResult result) {
-                            try {
-                                Cipher cipher = result.getCryptoObject().getCipher();
-                                String text = CacheUtils.getInstance().getEncryptLoginMessage();
-                                Log.i("test", "获取保存的加密密码: " + text);
-                                byte[] input = Base64.decode(text, Base64.URL_SAFE);
-                                byte[] bytes = cipher.doFinal(input);
+                                bytes = cipher.doFinal(input);
                                 /**
                                  * 然后这里用原密码(当然是加密过的)调登录接口
                                  */
                                 LoginEntity loginEntity = GsonUtils.get(new String(bytes), LoginEntity.class);
                                 byte[] iv = cipher.getIV();
                                 mPresenter.requestUserInfo(loginEntity.getLoginName(),loginEntity.getLoginPassword());
-                            } catch (Exception e) {
+                            } catch (BadPaddingException e) {
+                                e.printStackTrace();
+                            } catch (IllegalBlockSizeException e) {
                                 e.printStackTrace();
                             }
-                        }
 
+                        }
+                        
                         @Override
                         public void onFailed() {
                             startActivity(new Intent(getActivity(), LoginActivity.class));

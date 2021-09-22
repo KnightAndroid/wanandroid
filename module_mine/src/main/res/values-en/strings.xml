@@ -53,4 +53,6 @@
     <string name="mine_touchverify_succeeded">Verify Success</string>
     <string name="mine_use_password_login">Login with account and password</string>
     <string name="mine_not_open_touchverify">Not open temporarily</string>
+    <string name="mine_quicklogin_more">more</string>
+    <string name="mine_quick_login">Quick Login</string>
 </resources>

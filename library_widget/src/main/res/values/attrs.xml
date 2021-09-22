@@ -6,7 +6,7 @@
     </declare-styleable>
 
     <declare-styleable name="ViewDrag">
-        <attr name="damping" format="integer"/>
+        <attr name="damping" format="integer" />
     </declare-styleable>
 
     <declare-styleable name="SlidingUpPanelLayout">
@@ -17,8 +17,8 @@
         <attr name="umanoFlingVelocity" format="integer" />
         <attr name="umanoDragView" format="reference" />
         <attr name="umanoScrollableView" format="reference" />
-        <attr name="umanoOverlay" format="boolean"/>
-        <attr name="umanoClipPanel" format="boolean"/>
+        <attr name="umanoOverlay" format="boolean" />
+        <attr name="umanoClipPanel" format="boolean" />
         <attr name="umanoAnchorPoint" format="float" />
         <attr name="umanoInitialState" format="enum">
             <enum name="expanded" value="0" />
@@ -48,5 +48,32 @@
         <attr name="defaultTextColor" format="color" />
         <attr name="fixViewEditingBackground" format="reference" />
         <attr name="fixViewTextColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="GestureLockView">
+        <!--点的行数-->
+        <attr name="row" format="integer" />
+        <!--点的列数-->
+        <attr name="col" format="integer" />
+        <!--点的颜色-->
+        <attr name="dot_color" format="color|reference" />
+        <!--点的半径-->
+        <attr name="dot_radius" format="dimension|reference" />
+        <!--点被按着的时候的颜色-->
+        <attr name="dot_color_pressed" format="color|reference" />
+
+        <!--点与点之间线条轨迹的颜色-->
+        <attr name="line_color" format="color|reference" />
+        <!--直线轨迹线宽-->
+        <attr name="line_width" format="dimension|reference" />
+        <!--点被点击的时候显示的区域大小-->
+        <attr name="dot_pressed_radius" format="dimension|reference" />
+        <!--是否启用安全模式(不带轨迹)-->
+        <attr name="security_mode" format="boolean" />
+        <!--震动开关-->
+        <attr name="vibrate" format="boolean" />
+        <!--轨迹/密码最小长度-->
+        <attr name="min_length" format="integer" />
+
     </declare-styleable>
 </resources>

@@ -111,7 +111,7 @@ public  class BiometricPromptApiP implements IBiometricPromptImpl {
         @Override
         public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
             super.onAuthenticationSucceeded(result);
-            mManagerIdentifyCallback.onSucceeded(result);
+            mManagerIdentifyCallback.onSucceeded(result.getCryptoObject().getCipher());
             mCancellationSignal.cancel();
         }
 

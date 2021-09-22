@@ -15,7 +15,7 @@ import com.knight.wanandroid.module_mine.entity.OtherShareArticleListEntity;
  */
 public interface OtherArticleContract {
 
-     interface OtherShareArticleView extends BaseView{
+     interface OtherShareArticleView extends BaseView {
          //获取他人分享文章
          void setOtherShareArticle(OtherShareArticleListEntity otherShareArticleListEntity);
          //收藏站内文章

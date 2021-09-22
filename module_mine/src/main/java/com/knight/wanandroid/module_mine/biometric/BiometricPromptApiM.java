@@ -5,7 +5,6 @@ import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 import android.os.CancellationSignal;
 import android.util.Base64;
-import android.util.Log;
 
 import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.module_mine.fragment.BiometricPromptDialog;
@@ -23,7 +22,6 @@ import androidx.fragment.app.FragmentActivity;
  */
 @RequiresApi(api = Build.VERSION_CODES.M)
 public class BiometricPromptApiM implements IBiometricPromptImpl {
-    private static final String TAG = "BiometricPromptApi23";
     private FragmentActivity mActivity;
     private BiometricPromptDialog mDialog;
     private FingerprintManager mFingerprintManager;
@@ -127,7 +125,6 @@ public class BiometricPromptApiM implements IBiometricPromptImpl {
         @Override
         public void onAuthenticationHelp(int helpCode, CharSequence helpString) {
             super.onAuthenticationHelp(helpCode, helpString);
-            Log.d(TAG, "onAuthenticationHelp() called with: helpCode = [" + helpCode + "], helpString = [" + helpString + "]");
         }
 
         @RequiresApi(api = Build.VERSION_CODES.M)
@@ -135,7 +132,7 @@ public class BiometricPromptApiM implements IBiometricPromptImpl {
         public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
             super.onAuthenticationSucceeded(result);
             mDialog.setState(BiometricPromptDialog.STATE_SUCCEED);
-            mManagerIdentifyCallback.onSucceeded(result);
+            mManagerIdentifyCallback.onSucceeded(result.getCryptoObject().getCipher());
 
         }
     }

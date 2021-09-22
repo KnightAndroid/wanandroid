@@ -2,8 +2,6 @@ package com.knight.wanandroid.module_mine.activity;
 
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
-import android.hardware.biometrics.BiometricPrompt;
-import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -33,9 +31,9 @@ import com.knight.wanandroid.module_mine.presenter.LoginPresenter;
 
 import org.greenrobot.eventbus.EventBus;
 
+import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-
-import androidx.annotation.RequiresApi;
+import javax.crypto.IllegalBlockSizeException;
 
 /**
  * @author created by knight
@@ -114,7 +112,7 @@ public final class LoginActivity extends BaseActivity<MineActivityLoginBinding, 
     @Override
     public void setUserInfo(UserInfoEntity userInfo) {
         String loginMessage = GsonUtils.toJson(new LoginEntity(mDatabind.mineLoginUsername.getText().toString().trim(),mDatabind.mineLoginPassword.getText().toString().trim()));
-        if (!CacheUtils.getInstance().getQuickLogin()) {
+        if (!CacheUtils.getInstance().getFingerLogin()) {
             //没开通就要开通快捷登录
             openBlomtric(loginMessage,userInfo);
         } else {
@@ -186,62 +184,42 @@ public final class LoginActivity extends BaseActivity<MineActivityLoginBinding, 
                         public void onUsePassword() {
                             //保存用户信息
                             CacheUtils.getInstance().saveDataInfo(MMkvConstants.USER, userInfo);
+                            CacheUtils.getInstance().setLoginMessage(loginMessage);
                             //登录成功发送事件
                             EventBus.getDefault().post(new EventBusUtils.LoginInSuccess());
                             finish();
                         }
 
-                        @RequiresApi(api = Build.VERSION_CODES.M)
                         @Override
-                        public void onSucceeded(FingerprintManager.AuthenticationResult result) {
+                        public void onSucceeded(Cipher cipher) {
+                            byte[] bytes;
                             try {
-                                /**
-                                 * 加密后的密码和iv可保存在服务器,登录时通过接口根据账号获取
-                                 */
-                                Cipher cipher = result.getCryptoObject().getCipher();
-                                byte[] bytes = cipher.doFinal(loginMessage.getBytes());
+                                bytes = cipher.doFinal(loginMessage.getBytes());
                                 CacheUtils.getInstance().setEncryptLoginMessage(Base64.encodeToString(bytes, Base64.URL_SAFE));
                                 byte[] iv = cipher.getIV();
                                 CacheUtils.getInstance().setCliperIv(Base64.encodeToString(iv, Base64.URL_SAFE));
                                 //保存用户信息
                                 CacheUtils.getInstance().saveDataInfo(MMkvConstants.USER,userInfo);
+                                CacheUtils.getInstance().setLoginMessage(loginMessage);
                                 //保存开启了快捷登录
-                                CacheUtils.getInstance().setQuickLogin(true);
+                                CacheUtils.getInstance().setFingerLogin(true);
                                 //登录成功发送事件
                                 EventBus.getDefault().post(new EventBusUtils.LoginInSuccess());
                                 finish();
-                            } catch (Exception e) {
+                            } catch (BadPaddingException e) {
+                                e.printStackTrace();
+                            } catch (IllegalBlockSizeException e) {
                                 e.printStackTrace();
                             }
-                        }
 
-                        @RequiresApi(api = Build.VERSION_CODES.P)
-                        @Override
-                        public void onSucceeded(BiometricPrompt.AuthenticationResult result) {
-                            try {
-                                Cipher cipher = result.getCryptoObject().getCipher();
-                                byte[] bytes = cipher.doFinal(loginMessage.getBytes());
-                                //保存加密过后的字符串
-                                CacheUtils.getInstance().setEncryptLoginMessage(Base64.encodeToString(bytes, Base64.URL_SAFE));
-                                byte[] iv = cipher.getIV();
-                                CacheUtils.getInstance().setCliperIv(Base64.encodeToString(iv, Base64.URL_SAFE));
-                                //保存用户信息
-                                CacheUtils.getInstance().saveDataInfo(MMkvConstants.USER,userInfo);
-                                //保存开启了快捷登录
-                                CacheUtils.getInstance().setQuickLogin(true);
-                                //登录成功发送事件
-                                EventBus.getDefault().post(new EventBusUtils.LoginInSuccess());
-                                finish();
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
                         }
-
+                        
                         @Override
                         public void onFailed() {
                             //保存用户信息
                             CacheUtils.getInstance().saveDataInfo(MMkvConstants.USER, userInfo);
                             //登录成功发送事件
+                            CacheUtils.getInstance().setLoginMessage(loginMessage);
                             EventBus.getDefault().post(new EventBusUtils.LoginInSuccess());
                             finish();
                         }
@@ -251,6 +229,7 @@ public final class LoginActivity extends BaseActivity<MineActivityLoginBinding, 
                             ToastUtils.show(code+","+reason);
                             //保存用户信息
                             CacheUtils.getInstance().saveDataInfo(MMkvConstants.USER, userInfo);
+                            CacheUtils.getInstance().setLoginMessage(loginMessage);
                             //登录成功发送事件
                             EventBus.getDefault().post(new EventBusUtils.LoginInSuccess());
                             finish();
@@ -264,6 +243,7 @@ public final class LoginActivity extends BaseActivity<MineActivityLoginBinding, 
         } else {
             //保存用户信息
             CacheUtils.getInstance().saveDataInfo(MMkvConstants.USER, userInfo);
+            CacheUtils.getInstance().setLoginMessage(loginMessage);
             //登录成功发送事件
             EventBus.getDefault().post(new EventBusUtils.LoginInSuccess());
             finish();

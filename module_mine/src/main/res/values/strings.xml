@@ -52,4 +52,6 @@
     <string name="mine_touchverify_succeeded">验证成功</string>
     <string name="mine_use_password_login">使用账号密码登录</string>
     <string name="mine_not_open_touchverify">暂不开启</string>
+    <string name="mine_quicklogin_more">更多</string>
+    <string name="mine_quick_login">快捷登录</string>
 </resources>
