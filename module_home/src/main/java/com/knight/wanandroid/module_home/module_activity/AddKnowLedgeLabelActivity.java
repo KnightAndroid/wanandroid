@@ -40,7 +40,7 @@ public final class AddKnowLedgeLabelActivity extends BaseDBActivity<HomeAddlabel
         mDatabind.includeAddLabel.baseIvBack.setOnClickListener(v -> {
             finish();
         });
-        mDatabind.homeBottomView.setBackgroundColor(CacheUtils.getInstance().getThemeColor());
+        mDatabind.homeBottomView.setBackgroundColor(CacheUtils.getThemeColor());
         mDatabind.includeAddLabel.baseTvRight.setVisibility(View.VISIBLE);
         mDatabind.includeAddLabel.baseTvRight.setText(getString(R.string.base_save));
         mDatabind.includeAddLabel.baseTvRight.setOnClickListener(v -> {

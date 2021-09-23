@@ -154,7 +154,7 @@ public final class WebTransitionActivity extends BaseDBActivity<WebTransitionAct
 
         mDatabind.webArticleAuthor.setText(author);
         mDatabind.webChapterName.setText(chapterName);
-        if (CacheUtils.getInstance().getNormalDark()) {
+        if (CacheUtils.getNormalDark()) {
             mDatabind.webTransitionToolbar.baseTvTitle.setTextColor(Color.BLACK);
         } else {
             mDatabind.webTransitionToolbar.baseTvTitle.setTextColor(ContextCompat.getColor(this,R.color.web_white));
@@ -173,7 +173,7 @@ public final class WebTransitionActivity extends BaseDBActivity<WebTransitionAct
     private void initWebView(){
         mAgentWeb = AgentWeb.with(this)
                 .setAgentWebParent(mDatabind.webTransitionLl, new LinearLayout.LayoutParams(-1,-1))
-                .useDefaultIndicator(CacheUtils.getInstance().getThemeColor(),2)
+                .useDefaultIndicator(CacheUtils.getThemeColor(),2)
                 .setWebChromeClient(mWebChromeClient)
                 .setWebViewClient(mWebViewClient)
                 .setMainFrameErrorView(R.layout.agentweb_error_page, -1)

@@ -60,7 +60,7 @@ public final class WebNormalActivity extends BaseDBActivity<WebNormalActivityBin
 
         mAgentWeb = AgentWeb.with(this)
                 .setAgentWebParent(mDatabind.webNormalLl, new LinearLayout.LayoutParams(-1, -1))
-                .useDefaultIndicator(CacheUtils.getInstance().getThemeColor(),2)
+                .useDefaultIndicator(CacheUtils.getThemeColor(),2)
                 .setWebChromeClient(mWebChromeClient)
                 .setWebViewClient(mWebViewClient)
                 .setMainFrameErrorView(R.layout.agentweb_error_page, -1)

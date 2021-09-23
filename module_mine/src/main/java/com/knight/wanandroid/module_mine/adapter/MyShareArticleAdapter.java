@@ -53,13 +53,13 @@ public final class MyShareArticleAdapter extends BaseQuickAdapter<MyArticleEntit
 
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setShape(GradientDrawable.RECTANGLE);
-        gradientDrawable.setStroke(2, CacheUtils.getInstance().getThemeColor());
+        gradientDrawable.setStroke(2, CacheUtils.getThemeColor());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             baseViewHolder.getView(R.id.mine_item_articlechaptername).setBackground(gradientDrawable);
         } else {
             baseViewHolder.getView(R.id.mine_item_articlechaptername).setBackgroundDrawable(gradientDrawable);
         }
-        baseViewHolder.setTextColor(R.id.mine_item_articlechaptername,CacheUtils.getInstance().getThemeColor());
+        baseViewHolder.setTextColor(R.id.mine_item_articlechaptername,CacheUtils.getThemeColor());
 
         //是否是新文章
         if (myArticleEntity.isFresh()) {

@@ -61,7 +61,7 @@ public final class MineModel implements MineContract.MineModel {
      */
     @Override
     public void requestUserInfo(BaseFragment fragment, String username, String password, MvpListener mvpListener) {
-        fragment.showLoadingHud(fragment.getString(R.string.mine_login_request));
+        fragment.showLoadingHud(fragment.getString(R.string.base_login_request));
         GoHttp.post(fragment)
                 .api(new LoginApi().setUserName(username).setPassword(password))
                 .request(new HttpCallback<HttpData<UserInfoEntity>>(fragment){

@@ -135,7 +135,7 @@ public final class KnowledgeLabelActivity extends BaseDBActivity<HomeLabelActivi
         mDatabind.homeMoreknowledgeRv.setLayoutManager(mManager);
 
         //首先读取本地是否有保存
-        moreKnowLedgeList = CacheUtils.getInstance().getDataInfo("moreknowledgeLabel", new TypeToken<List<TagInfo>>() {
+        moreKnowLedgeList = CacheUtils.getDataInfo("moreknowledgeLabel", new TypeToken<List<TagInfo>>() {
         }.getType());
         if (moreKnowLedgeList == null || moreKnowLedgeList.size() == 0) {
             moreKnowLedgeList = new ArrayList<>();
@@ -185,9 +185,9 @@ public final class KnowledgeLabelActivity extends BaseDBActivity<HomeLabelActivi
                         mKnowledgeLabelList.add(mDatabind.homeKnowledgetTag.getTagInfos().get(i).tagName);
                     }
                     //保存我的标签
-                    CacheUtils.getInstance().saveDataInfo("knowledgeLabel", mKnowledgeLabelList);
+                    CacheUtils.saveDataInfo("knowledgeLabel", mKnowledgeLabelList);
                     //保存更多标签
-                    CacheUtils.getInstance().saveDataInfo("moreknowledgeLabel", mMoreKnowLedgeAdapter.getData());
+                    CacheUtils.saveDataInfo("moreknowledgeLabel", mMoreKnowLedgeAdapter.getData());
                     initTagDefault();
                     EventBus.getDefault().post(new EventBusUtils.ChangeLabel(mKnowledgeLabelList));
                 }

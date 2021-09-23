@@ -46,9 +46,9 @@ public final class SquareQuestionAdapter extends BaseQuickAdapter<SquareQuestion
             baseViewHolder.setVisible(R.id.base_tv_articlesuperchaptername,true);
             GradientDrawable gradientDrawable = new GradientDrawable();
             gradientDrawable.setShape(GradientDrawable.RECTANGLE);
-            gradientDrawable.setStroke(2, CacheUtils.getInstance().getThemeColor());
+            gradientDrawable.setStroke(2, CacheUtils.getThemeColor());
             baseViewHolder.setText(R.id.base_tv_articlesuperchaptername,squareQuestionEntity.getTags().get(0).getName());
-            baseViewHolder.setTextColor(R.id.base_tv_articlesuperchaptername,CacheUtils.getInstance().getThemeColor());
+            baseViewHolder.setTextColor(R.id.base_tv_articlesuperchaptername,CacheUtils.getThemeColor());
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 baseViewHolder.getView(R.id.base_tv_articlesuperchaptername).setBackground(gradientDrawable);
             } else {

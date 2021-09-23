@@ -1,5 +1,7 @@
 package com.knight.wanandroid.library_common.utils;
 
+import android.app.Application;
+
 import com.google.gson.Gson;
 import com.knight.wanandroid.library_common.constant.MMkvConstants;
 import com.tencent.mmkv.MMKV;
@@ -18,22 +20,24 @@ public final class CacheUtils {
 
     private static MMKV mmkv;
 
-    private CacheUtils() {
+    /**
+     *
+     * 应用启动初始化
+     * @param application
+     */
+    public static void init(Application application) {
+        MMKV.initialize(application);
         mmkv = MMKV.defaultMMKV();
     }
 
-    public static CacheUtils getInstance() {
-        return CacheHolder.INSTANC;
-    }
+    private CacheUtils() {
 
-    private static class CacheHolder {
-        private static final CacheUtils INSTANC = new CacheUtils();
     }
 
     /**
      * 保存对象信息
      */
-    public <T> void saveDataInfo(String tag, T data) {
+    public static <T> void saveDataInfo(String tag, T data) {
         if (data == null) {
             return;
         }
@@ -48,7 +52,7 @@ public final class CacheUtils {
      * @param <T>
      * @return
      */
-    public <T> T getDataInfo(String tag, Type typeOfT) {
+    public static <T> T getDataInfo(String tag, Type typeOfT) {
         String userStr = mmkv.decodeString(tag);
         return new Gson().fromJson(userStr, typeOfT);
     }
@@ -59,7 +63,7 @@ public final class CacheUtils {
      *
      * @param isAgree
      */
-    public void saveIsAgreeMent(boolean isAgree) {
+    public static void saveIsAgreeMent(boolean isAgree) {
         mmkv.encode(MMkvConstants.AGREEMENT, isAgree);
 
     }
@@ -69,7 +73,7 @@ public final class CacheUtils {
      *
      * @return
      */
-    public boolean getAgreeStatus() {
+    public static boolean getAgreeStatus() {
         return mmkv.decodeBool(MMkvConstants.AGREEMENT, false);
     }
 
@@ -77,7 +81,7 @@ public final class CacheUtils {
     /**
      * 清空用户信息
      */
-    public void loginOut() {
+    public static void loginOut() {
         mmkv.remove(MMkvConstants.USER);
     }
 
@@ -88,7 +92,7 @@ public final class CacheUtils {
      * @param isFollowSystem
      * @return
      */
-    public void setFollowSystem(boolean isFollowSystem) {
+    public static void setFollowSystem(boolean isFollowSystem) {
         mmkv.encode(MMkvConstants.ISFOLLOWSYSTEM, isFollowSystem);
     }
 
@@ -97,7 +101,7 @@ public final class CacheUtils {
      *
      * @return
      */
-    public boolean getFollowSystem() {
+    public static boolean getFollowSystem() {
         return mmkv.decodeBool(MMkvConstants.ISFOLLOWSYSTEM, false);
     }
 
@@ -105,7 +109,7 @@ public final class CacheUtils {
     /**
      * 设置普通模式还是深色模式
      */
-    public void setNormalDark(boolean normalDark) {
+    public static void setNormalDark(boolean normalDark) {
         mmkv.encode(MMkvConstants.NORMALDARK, normalDark);
     }
 
@@ -115,7 +119,7 @@ public final class CacheUtils {
      *
      * @return true 深色模式 false  不是深色模式
      */
-    public boolean getNormalDark() {
+    public static boolean getNormalDark() {
         return mmkv.decodeBool(MMkvConstants.NORMALDARK, false);
     }
 
@@ -125,7 +129,7 @@ public final class CacheUtils {
      *
      * @param withTheme
      */
-    public void statusBarIsWithTheme(boolean withTheme) {
+    public static void statusBarIsWithTheme(boolean withTheme) {
         mmkv.encode(MMkvConstants.STATUSWITHTHEME, withTheme);
 
     }
@@ -136,7 +140,7 @@ public final class CacheUtils {
      *
      * @return
      */
-    public boolean getStatusBarIsWithTheme() {
+    public static boolean getStatusBarIsWithTheme() {
         return mmkv.decodeBool(MMkvConstants.STATUSWITHTHEME, false);
     }
 
@@ -146,7 +150,7 @@ public final class CacheUtils {
      *
      * @param themecolor
      */
-    public void setThemeColor(int themecolor) {
+    public static void setThemeColor(int themecolor) {
         mmkv.encode(MMkvConstants.THEMECOLOR, themecolor);
     }
 
@@ -156,7 +160,7 @@ public final class CacheUtils {
      *
      * @return
      */
-    public int getThemeColor() {
+    public static int getThemeColor() {
         return mmkv.decodeInt(MMkvConstants.THEMECOLOR, ColorUtils.convertToColorInt("55aff4"));
     }
 
@@ -164,7 +168,7 @@ public final class CacheUtils {
     /**
      * 设置是否护眼
      */
-    public void setIsEyeCare(boolean isEyeCare) {
+    public static void setIsEyeCare(boolean isEyeCare) {
         mmkv.encode(MMkvConstants.EYECARE, isEyeCare);
     }
 
@@ -174,7 +178,7 @@ public final class CacheUtils {
      *
      * @return
      */
-    public boolean getIsEyeCare() {
+    public static boolean getIsEyeCare() {
         return mmkv.decodeBool(MMkvConstants.EYECARE, false);
     }
 
@@ -182,7 +186,7 @@ public final class CacheUtils {
     /**
      * 返回是什么语言模式 跟随系统 中文 英文
      */
-    public String getLanguageMode() {
+    public static String getLanguageMode() {
         return mmkv.decodeString(MMkvConstants.LANGUAGE, "简体中文");
     }
 
@@ -192,7 +196,7 @@ public final class CacheUtils {
      *
      * @param languageType
      */
-    public void setLanguageType(String languageType) {
+    public static void setLanguageType(String languageType) {
         mmkv.encode(MMkvConstants.LANGUAGE, languageType);
     }
 
@@ -202,7 +206,7 @@ public final class CacheUtils {
      * 字体缩放系数
      * @param fontSizeScale
      */
-    public void setSystemFontSize(float fontSizeScale) {
+    public static void setSystemFontSize(float fontSizeScale) {
         mmkv.encode(MMkvConstants.FONTSIZESCALE,fontSizeScale);
     }
 
@@ -212,7 +216,7 @@ public final class CacheUtils {
      * 返回字体缩放系数
      * @return
      */
-    public float getSystemFontSize() {
+    public static float getSystemFontSize() {
         return mmkv.decodeFloat(MMkvConstants.FONTSIZESCALE,1.0f);
     }
 
@@ -223,7 +227,7 @@ public final class CacheUtils {
      * @param cacheKey
      * @param cacheValue
      */
-    public boolean saveCacheValue(String cacheKey,String cacheValue) {
+    public static boolean saveCacheValue(String cacheKey,String cacheValue) {
         return mmkv.putString(cacheKey,cacheValue).commit();
     }
 
@@ -234,14 +238,14 @@ public final class CacheUtils {
      * @param cacheKey
      * @return
      */
-    public String getCacheValue(String cacheKey) {
+    public static String getCacheValue(String cacheKey) {
         return mmkv.getString(cacheKey,null);
     }
 
     /**
      * 返回生物识别iv向量
      */
-    public String getCliperIv() {
+    public static String getCliperIv() {
         return mmkv.decodeString(MMkvConstants.CLIPER_IV, "");
     }
 
@@ -251,14 +255,14 @@ public final class CacheUtils {
      *
      * @param cliperIv
      */
-    public void setCliperIv(String cliperIv) {
+    public static void setCliperIv(String cliperIv) {
         mmkv.encode(MMkvConstants.CLIPER_IV, cliperIv);
     }
 
     /**
      * 返回Base64后的登录账号信息
      */
-    public String getEncryptLoginMessage() {
+    public static String getEncryptLoginMessage() {
         return mmkv.decodeString(MMkvConstants.ENCRYPT_LOGIN_MESSAGE, "");
     }
 
@@ -268,7 +272,7 @@ public final class CacheUtils {
      *
      * @param encryptloginMessage
      */
-    public void setEncryptLoginMessage(String encryptloginMessage) {
+    public static void setEncryptLoginMessage(String encryptloginMessage) {
         mmkv.encode(MMkvConstants.ENCRYPT_LOGIN_MESSAGE, encryptloginMessage);
     }
 
@@ -278,7 +282,7 @@ public final class CacheUtils {
      * 保存明文账号密码信息
      * @return
      */
-    public void setLoginMessage(String loginMessage) {
+    public static void setLoginMessage(String loginMessage) {
         mmkv.encode(MMkvConstants.LOGIN_MESSAGE,loginMessage);
     }
 
@@ -287,7 +291,7 @@ public final class CacheUtils {
      * 得到明文账号密码信息
      * @return
      */
-    public String getLoginMessage() {
+    public static String getLoginMessage() {
         return mmkv.decodeString(MMkvConstants.LOGIN_MESSAGE,"");
     }
 
@@ -296,7 +300,7 @@ public final class CacheUtils {
     /**
      * 设置是否指纹登录
      */
-    public void setFingerLogin(boolean isQuickLogin) {
+    public static void setFingerLogin(boolean isQuickLogin) {
         mmkv.encode(MMkvConstants.FINGERLOGIN, isQuickLogin);
     }
 
@@ -306,7 +310,7 @@ public final class CacheUtils {
      * 返回是否开启指纹登录
      * @return
      */
-    public boolean getFingerLogin() {
+    public static boolean getFingerLogin() {
         return mmkv.decodeBool(MMkvConstants.FINGERLOGIN, false);
     }
 
@@ -314,7 +318,7 @@ public final class CacheUtils {
      * 存放手势密码
      *
      */
-    public void setGesturePassword(String gesturePassword) {
+    public static void setGesturePassword(String gesturePassword) {
         mmkv.encode(MMkvConstants.GESTUREPASSEORD,gesturePassword);
     }
 
@@ -323,7 +327,7 @@ public final class CacheUtils {
      * 返回手势密码 是否已经创建手势密码
      * @return
      */
-    public String getGesturePassword() {
+    public static String getGesturePassword() {
         return mmkv.decodeString(MMkvConstants.GESTUREPASSEORD);
     }
 
@@ -333,7 +337,7 @@ public final class CacheUtils {
      *  返回是否开启手势密码登录
       * @return
      */
-    public boolean getGestureLogin() {
+    public static boolean getGestureLogin() {
         return mmkv.decodeBool(MMkvConstants.GESTURELOGIN,false);
     }
 
@@ -342,7 +346,7 @@ public final class CacheUtils {
      * 设置手势密码登录
      * @param gestureLogin
      */
-    public void setGestureLogin(boolean gestureLogin) {
+    public static void setGestureLogin(boolean gestureLogin) {
         mmkv.encode(MMkvConstants.GESTURELOGIN, gestureLogin);
     }
 

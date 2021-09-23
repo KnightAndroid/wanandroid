@@ -45,7 +45,7 @@ public final class SearchResultAdapter extends BaseMultiItemQuickAdapter<HomeArt
                     baseViewHolder.setVisible(R.id.base_tv_articlesuperchaptername,true);
                     GradientDrawable gradientDrawable = new GradientDrawable();
                     gradientDrawable.setShape(GradientDrawable.RECTANGLE);
-                    gradientDrawable.setStroke(2, CacheUtils.getInstance().getThemeColor());
+                    gradientDrawable.setStroke(2, CacheUtils.getThemeColor());
                     if (!TextUtils.isEmpty(homeArticleEntity.getSuperChapterName())) {
                         if (!TextUtils.isEmpty(homeArticleEntity.getChapterName())) {
                             baseViewHolder.setText(R.id.base_tv_articlesuperchaptername,homeArticleEntity.getSuperChapterName() + "/" +homeArticleEntity.getChapterName());
@@ -59,7 +59,7 @@ public final class SearchResultAdapter extends BaseMultiItemQuickAdapter<HomeArt
                             baseViewHolder.setText(R.id.base_tv_articlesuperchaptername,"");
                         }
                     }
-                    baseViewHolder.setTextColor(R.id.base_tv_articlesuperchaptername,CacheUtils.getInstance().getThemeColor());
+                    baseViewHolder.setTextColor(R.id.base_tv_articlesuperchaptername,CacheUtils.getThemeColor());
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                         baseViewHolder.getView(R.id.base_tv_articlesuperchaptername).setBackground(gradientDrawable);

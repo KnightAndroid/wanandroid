@@ -40,6 +40,7 @@
     <string name="base_unavailable_text">网络连接不可用,请检查网络设置</string>
     <string name="base_success_copylink">已成功复制链接</string>
     <string name="base_login_first">请先登录</string>
+    <string name="base_login_request">登录中...</string>
 
 
 </resources>

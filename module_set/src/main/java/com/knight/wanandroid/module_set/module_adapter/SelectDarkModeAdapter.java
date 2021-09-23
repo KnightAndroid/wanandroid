@@ -38,7 +38,7 @@ public final class SelectDarkModeAdapter extends BaseQuickAdapter<DarkSelectEnti
 
         if (darkSelectEntity.isSelect()) {
             baseViewHolder.setVisible(R.id.set_iv_select_darkmodel,true);
-            ((ImageView)baseViewHolder.getView(R.id.set_iv_select_darkmodel)).setColorFilter(CacheUtils.getInstance().getThemeColor());
+            ((ImageView)baseViewHolder.getView(R.id.set_iv_select_darkmodel)).setColorFilter(CacheUtils.getThemeColor());
         } else {
             baseViewHolder.setVisible(R.id.set_iv_select_darkmodel,false);
         }

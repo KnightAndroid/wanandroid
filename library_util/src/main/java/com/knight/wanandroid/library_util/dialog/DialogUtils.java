@@ -78,7 +78,7 @@ public class DialogUtils {
         builder.setNegativeButton(context.getString(R.string.util_cancel),cancelClickListener);
         AlertDialog dialog = builder.create();
         dialog.show();
-        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(CacheUtils.getInstance().getThemeColor());
+        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(CacheUtils.getThemeColor());
     }
 
 

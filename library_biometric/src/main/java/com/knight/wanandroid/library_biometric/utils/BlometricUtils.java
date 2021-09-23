@@ -1,9 +1,8 @@
-package com.knight.wanandroid.library_util;
+package com.knight.wanandroid.library_biometric.utils;
 
 import android.app.Activity;
 import android.app.KeyguardManager;
 import android.content.Context;
-import android.hardware.biometrics.BiometricManager;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 
@@ -29,7 +28,7 @@ public class BlometricUtils {
      * Whether the device support biometric.
      * @return
      */
-    public static boolean isBiometricPromptEnable(Activity activity) {
+    public static boolean isBiometricPromptEnable(FragmentActivity activity) {
         return isAboveApiM()
                 && isHardwareDetected(activity)
                 && hasEnrolledFingerprints( activity)

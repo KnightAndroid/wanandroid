@@ -36,10 +36,10 @@ public final class UserRankCoinAdapter extends BaseQuickAdapter<CoinRankEntity, 
         baseViewHolder.setText(R.id.mine_tv_rankcoincount,coinRankEntity.getCoinCount()+"");
         if(ModuleConfig.getInstance().user != null){
             if(ModuleConfig.getInstance().user.getId() == coinRankEntity.getUserId()){
-                baseViewHolder.setTextColor(R.id.mine_tv_rank, CacheUtils.getInstance().getThemeColor());
-                baseViewHolder.setTextColor(R.id.mine_tv_rankusername,CacheUtils.getInstance().getThemeColor());
+                baseViewHolder.setTextColor(R.id.mine_tv_rank, CacheUtils.getThemeColor());
+                baseViewHolder.setTextColor(R.id.mine_tv_rankusername,CacheUtils.getThemeColor());
             } else {
-                if (CacheUtils.getInstance().getNormalDark()) {
+                if (CacheUtils.getNormalDark()) {
                     baseViewHolder.setTextColor(R.id.mine_tv_rank, Color.parseColor("#D3D3D3"));
                     baseViewHolder.setTextColor(R.id.mine_tv_rankusername,Color.parseColor("#D3D3D3"));
                 } else {
@@ -49,7 +49,7 @@ public final class UserRankCoinAdapter extends BaseQuickAdapter<CoinRankEntity, 
 
             }
         } else {
-            if (CacheUtils.getInstance().getNormalDark()) {
+            if (CacheUtils.getNormalDark()) {
                 baseViewHolder.setTextColor(R.id.mine_tv_rank, Color.parseColor("#D3D3D3"));
                 baseViewHolder.setTextColor(R.id.mine_tv_rankusername,Color.parseColor("#D3D3D3"));
             } else {
@@ -57,6 +57,6 @@ public final class UserRankCoinAdapter extends BaseQuickAdapter<CoinRankEntity, 
                 baseViewHolder.setTextColor(R.id.mine_tv_rankusername,Color.parseColor("#333333"));
             }
         }
-        baseViewHolder.setTextColor(R.id.mine_tv_rankcoincount,CacheUtils.getInstance().getThemeColor());
+        baseViewHolder.setTextColor(R.id.mine_tv_rankcoincount,CacheUtils.getThemeColor());
     }
 }

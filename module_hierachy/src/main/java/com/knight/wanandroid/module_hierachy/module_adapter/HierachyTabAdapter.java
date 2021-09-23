@@ -46,7 +46,7 @@ public final class HierachyTabAdapter extends BaseMultiItemQuickAdapter<Hierachy
                 if (!TextUtils.isEmpty(hierachyTabArticleEntity.getSuperChapterName()) || !TextUtils.isEmpty(hierachyTabArticleEntity.getChapterName())) {
                     GradientDrawable gradientDrawable = new GradientDrawable();
                     gradientDrawable.setShape(GradientDrawable.RECTANGLE);
-                    gradientDrawable.setStroke(2, CacheUtils.getInstance().getThemeColor());
+                    gradientDrawable.setStroke(2, CacheUtils.getThemeColor());
                     baseViewHolder.setVisible(R.id.base_tv_articlesuperchaptername,true);
                     if (!TextUtils.isEmpty(hierachyTabArticleEntity.getSuperChapterName())) {
                         if (!TextUtils.isEmpty(hierachyTabArticleEntity.getChapterName())) {

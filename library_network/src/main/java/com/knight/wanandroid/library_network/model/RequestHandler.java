@@ -173,7 +173,7 @@ public final class RequestHandler implements IRequestHandler {
     @Override
     public Object readCache(LifecycleOwner lifecycle, IRequestApi api, Type type) {
         String cacheKey = GsonFactory.getSingletonGson().toJson(api);
-        String cacheValue = CacheUtils.getInstance().getCacheValue(cacheKey);
+        String cacheValue = CacheUtils.getCacheValue(cacheKey);
         if (cacheValue == null || "".equals(cacheValue) || "{}".equals(cacheValue)) {
             return null;
         }
@@ -195,6 +195,6 @@ public final class RequestHandler implements IRequestHandler {
         EasyLog.json(cacheKey);
         EasyLog.print("---------- cacheValue ----------");
         EasyLog.json(cacheValue);
-        return CacheUtils.getInstance().saveCacheValue(cacheKey, cacheValue);
+        return CacheUtils.saveCacheValue(cacheKey, cacheValue);
     }
 }

@@ -52,13 +52,13 @@ public final class HomeArticleAdapter extends BaseQuickAdapter<HomeArticleEntity
             baseViewHolder.setText(R.id.home_item_articlechaptername,homeArticleEntity.getChapterName());
             GradientDrawable gradientDrawable = new GradientDrawable();
             gradientDrawable.setShape(GradientDrawable.RECTANGLE);
-            gradientDrawable.setStroke(2, CacheUtils.getInstance().getThemeColor());
+            gradientDrawable.setStroke(2, CacheUtils.getThemeColor());
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 baseViewHolder.getView(R.id.home_item_articlechaptername).setBackground(gradientDrawable);
             } else {
                 baseViewHolder.getView(R.id.home_item_articlechaptername).setBackgroundDrawable(gradientDrawable);
             }
-            baseViewHolder.setTextColor(R.id.home_item_articlechaptername,CacheUtils.getInstance().getThemeColor());
+            baseViewHolder.setTextColor(R.id.home_item_articlechaptername,CacheUtils.getThemeColor());
         } else {
             baseViewHolder.setGone(R.id.home_item_articlechaptername,true);
         }

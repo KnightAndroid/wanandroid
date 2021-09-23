@@ -28,7 +28,7 @@ public final class UserDetailCoinAdapter extends BaseQuickAdapter<UserDetailCoin
     protected void convert(@NotNull BaseViewHolder baseViewHolder, UserDetailCoinEntity userDetailCoinEntity) {
         baseViewHolder.setText(R.id.mine_tv_detailpointtitle,userDetailCoinEntity.getReason());
         baseViewHolder.setText(R.id.mine_tv_coincount,"+"+userDetailCoinEntity.getCoinCount());
-        baseViewHolder.setTextColor(R.id.mine_tv_coincount, CacheUtils.getInstance().getThemeColor());
+        baseViewHolder.setTextColor(R.id.mine_tv_coincount, CacheUtils.getThemeColor());
         baseViewHolder.setText(R.id.mine_tv_timereason,userDetailCoinEntity.getDesc());
     }
 }

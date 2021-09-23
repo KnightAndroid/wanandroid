@@ -4,7 +4,7 @@
     <data>
         <variable
             name="click"
-            type="com.knight.wanandroid.module_mine.fragment.BiometricPromptDialog.ProxyClick"/>
+            type="com.knight.wanandroid.library_biometric.dialog.BiometricPromptDialog.ProxyClick"/>
 
     </data>
     <RelativeLayout
@@ -16,7 +16,6 @@
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:background="@drawable/base_round"
             android:gravity="center_horizontal"
             android:padding="10dp"
             android:orientation="vertical">
@@ -25,7 +24,7 @@
                 android:layout_width="54dp"
                 android:layout_height="54dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/mine_fingerprint_ic" />
+                android:background="@drawable/biometric_fingerprint_ic" />
 
             <TextView
                 android:id="@+id/fingure_tv_status"
@@ -34,9 +33,9 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
-                android:text="@string/mine_touch_sensor"
-                android:textColor="@color/base_color_title"
-                android:textSize="@dimen/base_dimen_text_size_14"
+                android:text="@string/biometric_touch_sensor"
+                android:textColor="@color/biometric_touch_sensor_color"
+                android:textSize="@dimen/touch_sensor_dimen"
                 android:typeface="normal" />
 
 
@@ -48,10 +47,12 @@
                 android:paddingLeft="20dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:text="@string/base_permission_denied"
+                android:text="@string/biometric_cancel"
                 android:textColor="#419BF9"
-                android:textSize="@dimen/base_dimen_text_size_14"
-                android:onClick="@{()->click.cancel()}"/>
+                android:textSize="@dimen/touch_sensor_cancel_dimen"
+                android:onClick="@{()->click.cancel()}"
+                />
+<!--            android:onClick="@{()->click.cancel()}"-->
         </LinearLayout>
 
     </RelativeLayout>

@@ -112,7 +112,7 @@ public final class ItemHeaderDecoration extends RecyclerView.ItemDecoration {
         TextView tvTitle = (TextView) topTitleView.findViewById(R.id.hierachy_tv_title);
         View hierachy_right_view = (View) topTitleView.findViewById(R.id.hierachy_right_view);
         tvTitle.setText(mDatas.get(pos).getTitleName());
-        hierachy_right_view.setBackgroundColor(CacheUtils.getInstance().getThemeColor());
+        hierachy_right_view.setBackgroundColor(CacheUtils.getThemeColor());
 
         //绘制title开始
         int toDrawWidthSpec;

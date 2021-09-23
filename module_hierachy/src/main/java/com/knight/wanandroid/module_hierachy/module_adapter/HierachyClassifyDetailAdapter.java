@@ -74,7 +74,7 @@ public final class HierachyClassifyDetailAdapter extends RvAdapter<HierachyRight
             switch (itemViewType) {
                 case 0:
                     hierachy_tv_title.setText(hierachyRightBeanEntity.getName());
-                    hierachy_right_view.setBackgroundColor(CacheUtils.getInstance().getThemeColor());
+                    hierachy_right_view.setBackgroundColor(CacheUtils.getThemeColor());
                     break;
                 case 1:
                     ViewGroup.LayoutParams lp = hierachy_tv_content.getLayoutParams();
@@ -85,10 +85,10 @@ public final class HierachyClassifyDetailAdapter extends RvAdapter<HierachyRight
                         flexboxLp.setAlignSelf(AlignItems.FLEX_END);
                     }
                     hierachy_tv_content.setText(hierachyRightBeanEntity.getName());
-                    hierachy_tv_content.setTextColor(CacheUtils.getInstance().getThemeColor());
+                    hierachy_tv_content.setTextColor(CacheUtils.getThemeColor());
                     GradientDrawable gradientDrawable = new GradientDrawable();
                     gradientDrawable.setShape(GradientDrawable.RECTANGLE);
-                    gradientDrawable.setStroke(2,CacheUtils.getInstance().getThemeColor());
+                    gradientDrawable.setStroke(2,CacheUtils.getThemeColor());
                     gradientDrawable.setCornerRadius(ScreenUtils.dp2px(6f));
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                         hierachy_tv_content.setBackground(gradientDrawable);

@@ -14,10 +14,10 @@ import com.knight.wanandroid.library_base.entity.UserInfoEntity;
 import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
+import com.knight.wanandroid.library_biometric.control.BiometricControl;
 import com.knight.wanandroid.library_common.constant.MMkvConstants;
 import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_common.utils.ColorUtils;
-import com.knight.wanandroid.library_util.BlometricUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.GsonUtils;
 import com.knight.wanandroid.library_util.imageengine.ImageLoader;
@@ -28,10 +28,9 @@ import com.knight.wanandroid.module_mine.activity.LoginActivity;
 import com.knight.wanandroid.module_mine.activity.MyCollectArticleActivity;
 import com.knight.wanandroid.module_mine.activity.MyShareArticleActivity;
 import com.knight.wanandroid.module_mine.activity.QuickLoginActivity;
-import com.knight.wanandroid.module_mine.biometric.BiometricPromptManager;
 import com.knight.wanandroid.module_mine.contract.MineContract;
 import com.knight.wanandroid.module_mine.databinding.MineFragmentMineBinding;
-import com.knight.wanandroid.module_mine.entity.LoginEntity;
+import com.knight.wanandroid.library_base.entity.LoginEntity;
 import com.knight.wanandroid.module_mine.entity.UserInfoCoinEntity;
 import com.knight.wanandroid.module_mine.model.MineModel;
 import com.knight.wanandroid.module_mine.presenter.MinePresenter;
@@ -130,7 +129,7 @@ public final class MineFragment extends BaseFragment<MineFragmentMineBinding, Mi
         mPresenter.requestUserInfoCoin();
         mDatabind.mineIvMessage.setVisibility(View.VISIBLE);
         //保存用户信息
-        CacheUtils.getInstance().saveDataInfo(MMkvConstants.USER, userInfo);
+        CacheUtils.saveDataInfo(MMkvConstants.USER, userInfo);
         //登录成功发送事件
         EventBus.getDefault().post(new EventBusUtils.LoginInSuccess());
     }
@@ -139,9 +138,9 @@ public final class MineFragment extends BaseFragment<MineFragmentMineBinding, Mi
     public class ProcyClick {
         public void gotoLogin() {
             if (ModuleConfig.getInstance().user == null) {
-                if (CacheUtils.getInstance().getGestureLogin()) {
+                if (CacheUtils.getGestureLogin()) {
                     startActivity(new Intent(getActivity(), QuickLoginActivity.class));
-                } else if (CacheUtils.getInstance().getFingerLogin()){
+                } else if (CacheUtils.getFingerLogin()){
                     loginBlomtric();
                 } else {
                     startActivity(new Intent(getActivity(), LoginActivity.class));
@@ -218,63 +217,51 @@ public final class MineFragment extends BaseFragment<MineFragmentMineBinding, Mi
 
 
     /**
-     * 快捷账号登录
+     * 指纹登录
      */
     private void loginBlomtric() {
-        if (BlometricUtils.isBiometricPromptEnable(getActivity())) {
-            new BiometricPromptManager.Builder()
-                    .setActivity(getActivity())
-                    .setTitle(getString(R.string.mine_touch_verify_finger))
-                    .setDesc(getString(R.string.mine_touch_sensor))
-                    .setNegativeText(getString(R.string.mine_use_password_login))
-                    .build()
-                    .authenticate(true, new BiometricPromptManager.OnBiometricIdentifyCallback() {
-                        @Override
-                        public void onUsePassword() {
-                            startActivity(new Intent(getActivity(), LoginActivity.class));
-                        }
+        BiometricControl.loginBlomtric(getActivity(), new BiometricControl.BiometricStatusCallback() {
+            @Override
+            public void onUsePassword() {
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+            }
 
-                        @Override
-                        public void onSucceeded(Cipher cipher) {
-                            String text = CacheUtils.getInstance().getEncryptLoginMessage();
-                            byte[] input = Base64.decode(text, Base64.URL_SAFE);
-                            byte[] bytes;
-                            try {
-                                bytes = cipher.doFinal(input);
-                                /**
-                                 * 然后这里用原密码(当然是加密过的)调登录接口
-                                 */
-                                LoginEntity loginEntity = GsonUtils.get(new String(bytes), LoginEntity.class);
-                                byte[] iv = cipher.getIV();
-                                mPresenter.requestUserInfo(loginEntity.getLoginName(),loginEntity.getLoginPassword());
-                            } catch (BadPaddingException e) {
-                                e.printStackTrace();
-                            } catch (IllegalBlockSizeException e) {
-                                e.printStackTrace();
-                            }
+            @Override
+            public void onVerifySuccess(Cipher cipher) {
+                try {
+                    String text = CacheUtils.getEncryptLoginMessage();
+                    byte[] input = Base64.decode(text, Base64.URL_SAFE);
+                    byte[] bytes = cipher.doFinal(input);
+                    /**
+                     * 然后这里用原密码(当然是加密过的)调登录接口
+                     */
+                    LoginEntity loginEntity = GsonUtils.get(new String(bytes), LoginEntity.class);
+                    byte[] iv = cipher.getIV();
+                    mPresenter.requestUserInfo(loginEntity.getLoginName(),loginEntity.getLoginPassword());
+                } catch (BadPaddingException e) {
+                    e.printStackTrace();
+                } catch (IllegalBlockSizeException e) {
+                    e.printStackTrace();
+                }
+            }
 
-                        }
-                        
-                        @Override
-                        public void onFailed() {
-                            startActivity(new Intent(getActivity(), LoginActivity.class));
-                        }
+            @Override
+            public void onFailed() {
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+            }
 
-                        @Override
-                        public void onError(int code, String reason) {
-                            ToastUtils.show(code + "," + reason);
-                            startActivity(new Intent(getActivity(), LoginActivity.class));
-                        }
+            @Override
+            public void error(int code, String reason) {
+                ToastUtils.show(code + "," + reason);
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+            }
 
-                        @Override
-                        public void onCancel() {
-                            ToastUtils.show(R.string.base_permission_denied);
-                            startActivity(new Intent(getActivity(), LoginActivity.class));
-                        }
-                    });
-        } else {
-            startActivity(new Intent(getActivity(), LoginActivity.class));
-        }
+            @Override
+            public void onCancel() {
+                ToastUtils.show(R.string.base_permission_denied);
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+            }
+        });
     }
 
 

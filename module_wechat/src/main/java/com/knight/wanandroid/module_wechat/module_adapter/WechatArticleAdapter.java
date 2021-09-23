@@ -44,7 +44,7 @@ public final class WechatArticleAdapter extends BaseQuickAdapter<WechatArticleEn
             baseViewHolder.setVisible(R.id.base_tv_articlesuperchaptername,true);
             GradientDrawable gradientDrawable = new GradientDrawable();
             gradientDrawable.setShape(GradientDrawable.RECTANGLE);
-            gradientDrawable.setStroke(2, CacheUtils.getInstance().getThemeColor());
+            gradientDrawable.setStroke(2, CacheUtils.getThemeColor());
             if (!TextUtils.isEmpty(wechatArticleEntity.getSuperChapterName())) {
                 if (!TextUtils.isEmpty(wechatArticleEntity.getChapterName())) {
                     baseViewHolder.setText(R.id.base_tv_articlesuperchaptername,wechatArticleEntity.getSuperChapterName() + "/" +wechatArticleEntity.getChapterName());
@@ -58,7 +58,7 @@ public final class WechatArticleAdapter extends BaseQuickAdapter<WechatArticleEn
                     baseViewHolder.setText(R.id.base_tv_articlesuperchaptername,"");
                 }
             }
-            baseViewHolder.setTextColor(R.id.base_tv_articlesuperchaptername,CacheUtils.getInstance().getThemeColor());
+            baseViewHolder.setTextColor(R.id.base_tv_articlesuperchaptername,CacheUtils.getThemeColor());
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 baseViewHolder.getView(R.id.base_tv_articlesuperchaptername).setBackground(gradientDrawable);
             } else {

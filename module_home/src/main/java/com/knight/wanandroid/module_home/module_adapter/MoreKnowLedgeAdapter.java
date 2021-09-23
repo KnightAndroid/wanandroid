@@ -33,10 +33,10 @@ public final class MoreKnowLedgeAdapter extends BaseQuickAdapter<TagInfo, BaseVi
     @Override
     protected void convert(@NotNull BaseViewHolder baseViewHolder, TagInfo tagInfo) {
         baseViewHolder.setText(R.id.home_tv_knowledge, tagInfo.tagName);
-        baseViewHolder.setTextColor(R.id.home_tv_knowledge,CacheUtils.getInstance().getThemeColor());
+        baseViewHolder.setTextColor(R.id.home_tv_knowledge,CacheUtils.getThemeColor());
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setShape(GradientDrawable.RECTANGLE);
-        gradientDrawable.setStroke(2, CacheUtils.getInstance().getThemeColor());
+        gradientDrawable.setStroke(2, CacheUtils.getThemeColor());
         gradientDrawable.setCornerRadius(ScreenUtils.dp2px(6f));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             baseViewHolder.getView(R.id.home_tv_knowledge).setBackground(gradientDrawable);

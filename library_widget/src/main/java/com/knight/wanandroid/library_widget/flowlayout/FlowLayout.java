@@ -353,7 +353,7 @@ public class FlowLayout extends ViewGroup {
     private void setTextViewColor(TextView textView, Drawable backgroundRes, int color) {
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setShape(GradientDrawable.RECTANGLE);
-        gradientDrawable.setStroke(2, CacheUtils.getInstance().getThemeColor());
+        gradientDrawable.setStroke(2, CacheUtils.getThemeColor());
         gradientDrawable.setCornerRadius(ScreenUtils.dp2px(6f));
         //textView.setBackground(backgroundRes);
         textView.setBackground(gradientDrawable);

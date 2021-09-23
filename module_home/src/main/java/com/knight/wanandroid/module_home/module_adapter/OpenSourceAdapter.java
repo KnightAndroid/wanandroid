@@ -43,9 +43,9 @@ public final class OpenSourceAdapter extends BaseQuickAdapter<OpenSourceEntity, 
             ((TextView)baseViewHolder.getView(R.id.home_opensource_internallink_value)).setText(Html.fromHtml("<u>"+openSourceEntity.getInternallink()+"</u>"));
         }
 
-        baseViewHolder.setTextColor(R.id.home_opensource_title, CacheUtils.getInstance().getThemeColor());
-        baseViewHolder.setTextColor(R.id.home_opensource_abroadlink_value,CacheUtils.getInstance().getThemeColor());
-        baseViewHolder.setTextColor(R.id.home_opensource_internallink_value,CacheUtils.getInstance().getThemeColor());
+        baseViewHolder.setTextColor(R.id.home_opensource_title, CacheUtils.getThemeColor());
+        baseViewHolder.setTextColor(R.id.home_opensource_abroadlink_value,CacheUtils.getThemeColor());
+        baseViewHolder.setTextColor(R.id.home_opensource_internallink_value,CacheUtils.getThemeColor());
 
     }
 }

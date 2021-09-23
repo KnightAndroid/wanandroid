@@ -139,7 +139,7 @@ public final class HomeRecommendFragment extends BaseFragment<HomeFragmentRecomm
                 isShowOnlythree = !isShowOnlythree;
             }
         });
-        mDatabind.homeIconFab.setBackgroundTintList(ColorUtils.createColorStateList(CacheUtils.getInstance().getThemeColor(), CacheUtils.getInstance().getThemeColor()));
+        mDatabind.homeIconFab.setBackgroundTintList(ColorUtils.createColorStateList(CacheUtils.getThemeColor(), CacheUtils.getThemeColor()));
         initTopAdapterClick();
         initOfficialAccountClick();
         initArticleLinstener();

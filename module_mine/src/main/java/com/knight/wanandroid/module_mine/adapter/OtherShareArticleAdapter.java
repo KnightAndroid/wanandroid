@@ -44,7 +44,7 @@ public final class OtherShareArticleAdapter extends BaseQuickAdapter<MyArticleEn
             baseViewHolder.setVisible(R.id.base_tv_articlesuperchaptername,true);
             GradientDrawable gradientDrawable = new GradientDrawable();
             gradientDrawable.setShape(GradientDrawable.RECTANGLE);
-            gradientDrawable.setStroke(2, CacheUtils.getInstance().getThemeColor());
+            gradientDrawable.setStroke(2, CacheUtils.getThemeColor());
             if (!TextUtils.isEmpty(myArticleEntity.getSuperChapterName())) {
                 if (!TextUtils.isEmpty(myArticleEntity.getChapterName())) {
                     baseViewHolder.setText(R.id.base_tv_articlesuperchaptername,myArticleEntity.getSuperChapterName() + "/" +myArticleEntity.getChapterName());

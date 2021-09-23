@@ -33,7 +33,7 @@ public class WelcomeActivity extends BaseActivity<WelcomeActivityBinding, Welcom
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                if (CacheUtils.getInstance().getAgreeStatus()) {
+                if (CacheUtils.getAgreeStatus()) {
                     ARouter.getInstance().build(RoutePathActivity.Main.MainPager)
                             .navigation();
                     finish();
@@ -97,7 +97,7 @@ public class WelcomeActivity extends BaseActivity<WelcomeActivityBinding, Welcom
     public void setThemeColor(AppThemeEntity appThemeEntity) {
         AppConfig.appThemeColor = appThemeEntity.getThemeColor();
         if (appThemeEntity.isForceTheme()) {
-            CacheUtils.getInstance().setThemeColor(ColorUtils.convertToColorInt(AppConfig.appThemeColor));
+            CacheUtils.setThemeColor(ColorUtils.convertToColorInt(AppConfig.appThemeColor));
         }
         AppConfig.gray = appThemeEntity.isGray();
     }

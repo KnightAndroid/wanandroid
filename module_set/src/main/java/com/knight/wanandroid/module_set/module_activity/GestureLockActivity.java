@@ -31,7 +31,9 @@ public final class GestureLockActivity extends BaseDBActivity<SetGesturelockActi
 
         @Override
         public void setTwoGesturePassword(String twoPassword) {
-            CacheUtils.getInstance().setGesturePassword(Base64.encodeToString(twoPassword.getBytes(), Base64.URL_SAFE));
+            CacheUtils.setGesturePassword(Base64.encodeToString(twoPassword.getBytes(), Base64.URL_SAFE));
+            //设置手势登录
+            CacheUtils.setGestureLogin(true);
             finish();
         }
 
@@ -54,7 +56,8 @@ public final class GestureLockActivity extends BaseDBActivity<SetGesturelockActi
 
     @Override
     public void initView(Bundle savedInstanceState) {
-
+        mDatabind.customGestureLockView.setDotPressedColor(themeColor);
+        mDatabind.customGestureLockView.setLineColor(themeColor);
         mDatabind.customGestureLockView.setPasswordListener(mOnSetPasswordListener);
         mDatabind.includeGestureToolbar.baseIvBack.setOnClickListener(v -> finish());
         mDatabind.includeGestureToolbar.baseTvTitle.setText(R.string.set_show_gesture_password);

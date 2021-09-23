@@ -104,7 +104,7 @@ public final class WebActivity extends BaseActivity<WebActivityMainBinding, WebP
         mDatabind.webLikeRl.setOnCollectListener(this);
         mAgentWeb = AgentWeb.with(this)
                 .setAgentWebParent(mDatabind.webLl, new LinearLayout.LayoutParams(-1, -1))
-                .useDefaultIndicator(CacheUtils.getInstance().getThemeColor(),2)
+                .useDefaultIndicator(CacheUtils.getThemeColor(),2)
                 .setWebChromeClient(mWebChromeClient)
                 .setWebViewClient(mWebViewClient)
                 .setMainFrameErrorView(R.layout.agentweb_error_page, -1)

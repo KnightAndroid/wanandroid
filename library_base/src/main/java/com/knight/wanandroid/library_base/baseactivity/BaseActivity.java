@@ -89,8 +89,8 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         createViewDataBinding();
         StatusBarUtils.transparentStatusBar(this);
-        isDarkMode = CacheUtils.getInstance().getNormalDark();
-        isEyeCare = CacheUtils.getInstance().getIsEyeCare();
+        isDarkMode = CacheUtils.getNormalDark();
+        isEyeCare = CacheUtils.getIsEyeCare();
 
         initThemeColor();
         //此处try catch 因为如果自己和父类没有任何订阅方法会异常
@@ -144,7 +144,7 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
      *
      */
     protected void initThemeColor() {
-        themeColor = CacheUtils.getInstance().getThemeColor();
+        themeColor = CacheUtils.getThemeColor();
     }
 
     /**
@@ -248,7 +248,7 @@ public abstract class BaseActivity<DB extends ViewDataBinding,T extends BasePres
 
     @Override
     protected void attachBaseContext(Context base) {
-        fontScale = CacheUtils.getInstance().getSystemFontSize();
+        fontScale = CacheUtils.getSystemFontSize();
 
         super.attachBaseContext(LanguageFontSizeUtils.attachBaseContext(base,fontScale));
     }

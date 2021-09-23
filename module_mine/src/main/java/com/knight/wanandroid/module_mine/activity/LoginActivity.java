@@ -12,9 +12,9 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.knight.wanandroid.library_base.baseactivity.BaseActivity;
 import com.knight.wanandroid.library_base.entity.UserInfoEntity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
+import com.knight.wanandroid.library_biometric.control.BiometricControl;
 import com.knight.wanandroid.library_common.constant.MMkvConstants;
 import com.knight.wanandroid.library_common.utils.CacheUtils;
-import com.knight.wanandroid.library_util.BlometricUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.GsonUtils;
 import com.knight.wanandroid.library_util.ScreenUtils;
@@ -22,10 +22,9 @@ import com.knight.wanandroid.library_util.SoftInputScrollUtils;
 import com.knight.wanandroid.library_util.SystemUtils;
 import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.module_mine.R;
-import com.knight.wanandroid.module_mine.biometric.BiometricPromptManager;
 import com.knight.wanandroid.module_mine.contract.LoginContract;
 import com.knight.wanandroid.module_mine.databinding.MineActivityLoginBinding;
-import com.knight.wanandroid.module_mine.entity.LoginEntity;
+import com.knight.wanandroid.library_base.entity.LoginEntity;
 import com.knight.wanandroid.module_mine.model.LoginModel;
 import com.knight.wanandroid.module_mine.presenter.LoginPresenter;
 
@@ -57,7 +56,7 @@ public final class LoginActivity extends BaseActivity<MineActivityLoginBinding, 
     protected void setThemeColor(boolean isDarkMode) {
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setShape(GradientDrawable.RECTANGLE);
-        gradientDrawable.setColor(CacheUtils.getInstance().getThemeColor());
+        gradientDrawable.setColor(CacheUtils.getThemeColor());
         gradientDrawable.setCornerRadius(ScreenUtils.dp2px(45));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             mDatabind.mineTvLogin.setBackground(gradientDrawable);
@@ -112,19 +111,19 @@ public final class LoginActivity extends BaseActivity<MineActivityLoginBinding, 
     @Override
     public void setUserInfo(UserInfoEntity userInfo) {
         String loginMessage = GsonUtils.toJson(new LoginEntity(mDatabind.mineLoginUsername.getText().toString().trim(),mDatabind.mineLoginPassword.getText().toString().trim()));
-        if (!CacheUtils.getInstance().getFingerLogin()) {
+        if (!CacheUtils.getFingerLogin()) {
             //没开通就要开通快捷登录
             openBlomtric(loginMessage,userInfo);
         } else {
             //开通了 但是 对应存储的信息和输入账号信息不一致
-            String localLoginMessage = CacheUtils.getInstance().getLoginMessage();
-            CacheUtils.getInstance().setLoginMessage(loginMessage);
+            String localLoginMessage = CacheUtils.getLoginMessage();
+            CacheUtils.setLoginMessage(loginMessage);
             if (!localLoginMessage.equals(localLoginMessage)) {
                 //判断本地存在的信息是否和页面信息一致 不一致为当前账号开启快捷登录
                 openBlomtric(loginMessage,userInfo);
             } else {
                 //保存用户信息
-                CacheUtils.getInstance().saveDataInfo(MMkvConstants.USER, userInfo);
+                CacheUtils.saveDataInfo(MMkvConstants.USER, userInfo);
                 //登录成功发送事件
                 EventBus.getDefault().post(new EventBusUtils.LoginInSuccess());
                 finish();
@@ -167,86 +166,76 @@ public final class LoginActivity extends BaseActivity<MineActivityLoginBinding, 
 
 
     /**
-     *
      * 开通指纹登录
      * @param loginMessage
      */
-    private void openBlomtric(String loginMessage,UserInfoEntity userInfo) {
-        if (BlometricUtils.isBiometricPromptEnable(this)) {
-            new BiometricPromptManager.Builder()
-                    .setActivity(this)
-                    .setTitle(getString(R.string.mine_touch_verify_finger))
-                    .setDesc(getString(R.string.mine_touch_sensor))
-                    .setNegativeText(getString(R.string.mine_not_open_touchverify))
-                    .build()
-                    .authenticate(false, new BiometricPromptManager.OnBiometricIdentifyCallback() {
-                        @Override
-                        public void onUsePassword() {
-                            //保存用户信息
-                            CacheUtils.getInstance().saveDataInfo(MMkvConstants.USER, userInfo);
-                            CacheUtils.getInstance().setLoginMessage(loginMessage);
-                            //登录成功发送事件
-                            EventBus.getDefault().post(new EventBusUtils.LoginInSuccess());
-                            finish();
-                        }
+    private void openBlomtric(final String loginMessage,UserInfoEntity userInfo) {
+        BiometricControl.openBlomtric(this, new BiometricControl.BiometricStatusCallback() {
+            @Override
+            public void onUsePassword() {
+                //保存用户信息
+                CacheUtils.saveDataInfo(MMkvConstants.USER, userInfo);
+                CacheUtils.setLoginMessage(loginMessage);
+                //登录成功发送事件
+                EventBus.getDefault().post(new EventBusUtils.LoginInSuccess());
+                finish();
+            }
 
-                        @Override
-                        public void onSucceeded(Cipher cipher) {
-                            byte[] bytes;
-                            try {
-                                bytes = cipher.doFinal(loginMessage.getBytes());
-                                CacheUtils.getInstance().setEncryptLoginMessage(Base64.encodeToString(bytes, Base64.URL_SAFE));
-                                byte[] iv = cipher.getIV();
-                                CacheUtils.getInstance().setCliperIv(Base64.encodeToString(iv, Base64.URL_SAFE));
-                                //保存用户信息
-                                CacheUtils.getInstance().saveDataInfo(MMkvConstants.USER,userInfo);
-                                CacheUtils.getInstance().setLoginMessage(loginMessage);
-                                //保存开启了快捷登录
-                                CacheUtils.getInstance().setFingerLogin(true);
-                                //登录成功发送事件
-                                EventBus.getDefault().post(new EventBusUtils.LoginInSuccess());
-                                finish();
-                            } catch (BadPaddingException e) {
-                                e.printStackTrace();
-                            } catch (IllegalBlockSizeException e) {
-                                e.printStackTrace();
-                            }
+            @Override
+            public void onVerifySuccess(Cipher cipher) {
+                byte[] bytes;
+                try {
+                    bytes = cipher.doFinal(loginMessage.getBytes());
+                    CacheUtils.setEncryptLoginMessage(Base64.encodeToString(bytes, Base64.URL_SAFE));
 
-                        }
-                        
-                        @Override
-                        public void onFailed() {
-                            //保存用户信息
-                            CacheUtils.getInstance().saveDataInfo(MMkvConstants.USER, userInfo);
-                            //登录成功发送事件
-                            CacheUtils.getInstance().setLoginMessage(loginMessage);
-                            EventBus.getDefault().post(new EventBusUtils.LoginInSuccess());
-                            finish();
-                        }
+                    byte[] iv = cipher.getIV();
+                    CacheUtils.setCliperIv(Base64.encodeToString(iv, Base64.URL_SAFE));
+                    //保存用户信息
+                    CacheUtils.saveDataInfo(MMkvConstants.USER,userInfo);
+                    CacheUtils.setLoginMessage(loginMessage);
+                    //保存开启了快捷登录
+                    CacheUtils.setFingerLogin(true);
+                    //登录成功发送事件
+                    EventBus.getDefault().post(new EventBusUtils.LoginInSuccess());
+                    finish();
+                } catch (BadPaddingException e) {
+                    e.printStackTrace();
+                } catch (IllegalBlockSizeException e) {
+                    e.printStackTrace();
+                }
+            }
 
-                        @Override
-                        public void onError(int code, String reason) {
-                            ToastUtils.show(code+","+reason);
-                            //保存用户信息
-                            CacheUtils.getInstance().saveDataInfo(MMkvConstants.USER, userInfo);
-                            CacheUtils.getInstance().setLoginMessage(loginMessage);
-                            //登录成功发送事件
-                            EventBus.getDefault().post(new EventBusUtils.LoginInSuccess());
-                            finish();
-                        }
+            @Override
+            public void onFailed() {
+                //保存用户信息
+                CacheUtils.saveDataInfo(MMkvConstants.USER, userInfo);
+                //登录成功发送事件
+                CacheUtils.setLoginMessage(loginMessage);
+                EventBus.getDefault().post(new EventBusUtils.LoginInSuccess());
+                finish();
+            }
 
-                        @Override
-                        public void onCancel() {
-                            ToastUtils.show(R.string.base_permission_denied);
-                        }
-                    });
-        } else {
-            //保存用户信息
-            CacheUtils.getInstance().saveDataInfo(MMkvConstants.USER, userInfo);
-            CacheUtils.getInstance().setLoginMessage(loginMessage);
-            //登录成功发送事件
-            EventBus.getDefault().post(new EventBusUtils.LoginInSuccess());
-            finish();
-        }
+            @Override
+            public void error(int code, String reason) {
+                ToastUtils.show(code+","+reason);
+                //保存用户信息
+                CacheUtils.saveDataInfo(MMkvConstants.USER, userInfo);
+                CacheUtils.setLoginMessage(loginMessage);
+                //登录成功发送事件
+                EventBus.getDefault().post(new EventBusUtils.LoginInSuccess());
+                finish();
+            }
+
+            @Override
+            public void onCancel() {
+                ToastUtils.show(R.string.base_permission_denied);
+                //保存用户信息
+                CacheUtils.saveDataInfo(MMkvConstants.USER, userInfo);
+                CacheUtils.setLoginMessage(loginMessage);
+                //登录成功发送事件
+                EventBus.getDefault().post(new EventBusUtils.LoginInSuccess());
+                finish();
+            }
+        });
     }
 }

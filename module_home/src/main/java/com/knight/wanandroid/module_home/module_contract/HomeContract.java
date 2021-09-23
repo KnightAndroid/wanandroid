@@ -2,6 +2,7 @@ package com.knight.wanandroid.module_home.module_contract;
 
 import com.knight.wanandroid.library_base.basefragment.BaseFragment;
 import com.knight.wanandroid.library_base.entity.AppUpdateEntity;
+import com.knight.wanandroid.library_base.entity.UserInfoEntity;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.library_base.model.BaseModel;
 import com.knight.wanandroid.library_base.presenter.BasePresenter;
@@ -22,6 +23,8 @@ public interface HomeContract {
         void setAppUpdateMessage(AppUpdateEntity appUpdateEntity);
         //获取每日推荐
         void setEveryDayPushArticle(EveryDayPushArticlesEntity everyDayPushArticlesEntity);
+        //登录信息
+        void setUserInfo(UserInfoEntity userInfo);
 
 
     }
@@ -30,21 +33,17 @@ public interface HomeContract {
     interface HomeModel extends BaseModel{
         //请求版本更新信息
         void requestAppUpdateMessage(BaseFragment fragment,MvpListener mvpListener);
-
         //请求每日推荐信息
         void requestEveryDayPushArticle(BaseFragment fragment,MvpListener mvpListener);
-
+        //登录
+        void requestUserInfo(BaseFragment fragment, String username, String password, MvpListener mvpListener);
 
     }
 
     abstract class HomeDataPresenter extends BasePresenter<HomeModel,HomeView>{
-
         public abstract void requestAppUpdateMessage();
         public abstract void requestEveryDayPushArticle();
-
-
-
-
+        public abstract void requestUserInfo(String username, String password);
     }
 
 

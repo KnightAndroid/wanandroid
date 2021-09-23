@@ -30,7 +30,7 @@ public class StatusBarUtils {
                 WindowInsetsController ic = activity.getWindow().getInsetsController();
                 if(ic != null){
                     //让状态栏变亮 0,WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS 让状态栏字体变白
-                    if (CacheUtils.getInstance().getNormalDark()) {
+                    if (CacheUtils.getNormalDark()) {
                         ic.setSystemBarsAppearance(0,WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS);
                     } else {
                         ic.setSystemBarsAppearance(WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS);
@@ -43,7 +43,7 @@ public class StatusBarUtils {
                 activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
                 activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
                 activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-                if (CacheUtils.getInstance().getNormalDark()) {
+                if (CacheUtils.getNormalDark()) {
                     //白色字体
                     activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
 

@@ -71,11 +71,11 @@ public final class SetActivity extends BaseActivity<SetActivityBinding, SetPrese
             mDatabind.setRlLogout.setVisibility(View.GONE);
             mDatabind.setRlGesturePassword.setVisibility(View.GONE);
         }
-        statusIsWithTheme = CacheUtils.getInstance().getStatusBarIsWithTheme();
+        statusIsWithTheme = CacheUtils.getStatusBarIsWithTheme();
         mDatabind.setCbStatusTheme.setChecked(statusIsWithTheme);
-        mDatabind.setCbStatusTheme.setButtonTintList(ColorUtils.createColorStateList(CacheUtils.getInstance().getThemeColor(), ColorUtils.convertToColorInt("a6a6a6")));
-        mDatabind.setCbEyecare.setChecked(CacheUtils.getInstance().getIsEyeCare());
-        mDatabind.setCbEyecare.setButtonTintList(ColorUtils.createColorStateList(CacheUtils.getInstance().getThemeColor(), ColorUtils.convertToColorInt("a6a6a6")));
+        mDatabind.setCbStatusTheme.setButtonTintList(ColorUtils.createColorStateList(CacheUtils.getThemeColor(), ColorUtils.convertToColorInt("a6a6a6")));
+        mDatabind.setCbEyecare.setChecked(CacheUtils.getIsEyeCare());
+        mDatabind.setCbEyecare.setButtonTintList(ColorUtils.createColorStateList(CacheUtils.getThemeColor(), ColorUtils.convertToColorInt("a6a6a6")));
         initDarkMode();
         initListener();
         showultilingualMode();
@@ -103,7 +103,7 @@ public final class SetActivity extends BaseActivity<SetActivityBinding, SetPrese
         mDatabind.setRlLogout.setVisibility(View.GONE);
         mDatabind.setRlGesturePassword.setVisibility(View.GONE);
         //退出登录成功
-        CacheUtils.getInstance().loginOut();
+        CacheUtils.loginOut();
         ModuleConfig.getInstance().user = null;
         EventBus.getDefault().post(new EventBusUtils.LogoutSuccess());
     }
@@ -115,16 +115,16 @@ public final class SetActivity extends BaseActivity<SetActivityBinding, SetPrese
          * 主题颜色
          */
         public void showThemeDialog() {
-            new ColorPickerDialog.Builder(SetActivity.this, CacheUtils.getInstance().getThemeColor(), ColorStyle.THEMECOLOR, getString(R.string.set_recover_themecolor))
+            new ColorPickerDialog.Builder(SetActivity.this, CacheUtils.getThemeColor(), ColorStyle.THEMECOLOR, getString(R.string.set_recover_themecolor))
                     .setOnColorPickedListener(new ColorPickerDialog.OnColorPickedListener() {
                         @Override
                         public void onColorPicked(int color) {
                             themeColor = color;
-                            CacheUtils.getInstance().setThemeColor(themeColor);
+                            CacheUtils.setThemeColor(themeColor);
                             updateTextColor(color);
                             GradientDrawable gradientThemeDrawable = new GradientDrawable();
                             gradientThemeDrawable.setShape(GradientDrawable.OVAL);
-                            gradientThemeDrawable.setColor(CacheUtils.getInstance().getThemeColor());
+                            gradientThemeDrawable.setColor(CacheUtils.getThemeColor());
                             mDatabind.setShowThemecolor.setBackground(gradientThemeDrawable);
                             EventBus.getDefault().post(new EventBusUtils.RecreateMain());
 
@@ -210,10 +210,10 @@ public final class SetActivity extends BaseActivity<SetActivityBinding, SetPrese
      * 初始化颜色
      */
     private void initDarkMode() {
-        if (CacheUtils.getInstance().getFollowSystem()) {
+        if (CacheUtils.getFollowSystem()) {
             mDatabind.setDarkmodeStatus.setText(getString(R.string.set_follow_system));
         } else {
-            if (CacheUtils.getInstance().getNormalDark()) {
+            if (CacheUtils.getNormalDark()) {
                 mDatabind.setDarkmodeStatus.setText(getString(R.string.set_dark_open));
             } else {
                 mDatabind.setDarkmodeStatus.setText(getString(R.string.set_dark_close));
@@ -231,8 +231,8 @@ public final class SetActivity extends BaseActivity<SetActivityBinding, SetPrese
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 statusIsWithTheme = isChecked;
-                CacheUtils.getInstance().statusBarIsWithTheme(isChecked);
-                buttonView.setButtonTintList(ColorUtils.createColorStateList(CacheUtils.getInstance().getThemeColor(), ColorUtils.convertToColorInt("a6a6a6")));
+                CacheUtils.statusBarIsWithTheme(isChecked);
+                buttonView.setButtonTintList(ColorUtils.createColorStateList(CacheUtils.getThemeColor(), ColorUtils.convertToColorInt("a6a6a6")));
                 EventBus.getDefault().post(new EventBusUtils.changeStatusThemeColor(isChecked));
             }
         });
@@ -241,8 +241,8 @@ public final class SetActivity extends BaseActivity<SetActivityBinding, SetPrese
         mDatabind.setCbEyecare.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                CacheUtils.getInstance().setIsEyeCare(isChecked);
-                buttonView.setButtonTintList(ColorUtils.createColorStateList(CacheUtils.getInstance().getThemeColor(), ColorUtils.convertToColorInt("a6a6a6")));
+                CacheUtils.setIsEyeCare(isChecked);
+                buttonView.setButtonTintList(ColorUtils.createColorStateList(CacheUtils.getThemeColor(), ColorUtils.convertToColorInt("a6a6a6")));
                 RippleAnimation.create(mDatabind.setCbEyecare).setDuration(250).start();
                 EventBus.getDefault().post(new EventBusUtils.ChangeEyeCare(isChecked));
                 openOrCloseEye(isChecked);
@@ -256,7 +256,7 @@ public final class SetActivity extends BaseActivity<SetActivityBinding, SetPrese
         //设置主题颜色
         GradientDrawable gradientThemeDrawable = new GradientDrawable();
         gradientThemeDrawable.setShape(GradientDrawable.OVAL);
-        gradientThemeDrawable.setColor(CacheUtils.getInstance().getThemeColor());
+        gradientThemeDrawable.setColor(CacheUtils.getThemeColor());
         mDatabind.setShowThemecolor.setBackground(gradientThemeDrawable);
 
     }
@@ -301,7 +301,7 @@ public final class SetActivity extends BaseActivity<SetActivityBinding, SetPrese
      */
     private void showultilingualMode() {
         //显示语言当前模式
-        switch (CacheUtils.getInstance().getLanguageMode()) {
+        switch (CacheUtils.getLanguageMode()) {
             case "Auto":
                 if (LanguageFontSizeUtils.isChinese()) {
                     mDatabind.setTvMultilingualMode.setText("跟随系统");
@@ -310,7 +310,7 @@ public final class SetActivity extends BaseActivity<SetActivityBinding, SetPrese
                 }
                 break;
             default:
-                mDatabind.setTvMultilingualMode.setText(CacheUtils.getInstance().getLanguageMode());
+                mDatabind.setTvMultilingualMode.setText(CacheUtils.getLanguageMode());
                 break;
         }
     }

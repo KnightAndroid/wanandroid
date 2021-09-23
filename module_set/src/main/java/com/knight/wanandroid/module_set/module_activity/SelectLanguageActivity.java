@@ -65,7 +65,7 @@ public final class SelectLanguageActivity extends BaseDBActivity<SetLanguageActi
      * 初始化数据
      */
     private void getLanguageData() {
-        currentLanguage = CacheUtils.getInstance().getLanguageMode();
+        currentLanguage = CacheUtils.getLanguageMode();
         //初始化数据
         Type type = new TypeToken<List<LanguageSelectEntity>>() {}.getType();
         String jsonData = JsonUtils.getJson(this,"languageselect.json");
@@ -104,7 +104,7 @@ public final class SelectLanguageActivity extends BaseDBActivity<SetLanguageActi
      * 保存语言模式
      */
     private void saveLanguage() {
-        CacheUtils.getInstance().setLanguageType(currentSelectLanguage);
+        CacheUtils.setLanguageType(currentSelectLanguage);
         LanguageFontSizeUtils.setAppLanguage(this);
         SystemUtils.restartApp(this);
     }

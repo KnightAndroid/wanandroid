@@ -83,8 +83,8 @@ public final class ProjectInitViewUtils {
                 }
 
                 scaleTransitionPagerTitleView.setTextSize(18f);
-                scaleTransitionPagerTitleView.setTextScaleX(CacheUtils.getInstance().getSystemFontSize());
-                if (CacheUtils.getInstance().getNormalDark()) {
+                scaleTransitionPagerTitleView.setTextScaleX(CacheUtils.getSystemFontSize());
+                if (CacheUtils.getNormalDark()) {
                     scaleTransitionPagerTitleView.setNormalColor(Color.parseColor("#D3D3D3"));
                     scaleTransitionPagerTitleView.setSelectedColor(Color.parseColor("#D3D3D3"));
                 } else {
@@ -110,7 +110,7 @@ public final class ProjectInitViewUtils {
                 indicator.setRoundRadius(ScreenUtils.dp2px(context, 6.0f));
                 indicator.setStartInterpolator(new AccelerateInterpolator());
                 indicator.setEndInterpolator(new DecelerateInterpolator(2.0f));
-                indicator.setColors(CacheUtils.getInstance().getThemeColor());
+                indicator.setColors(CacheUtils.getThemeColor());
                 return indicator;
             }
         });

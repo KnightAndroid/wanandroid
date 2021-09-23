@@ -55,11 +55,11 @@ public final class HomeTopTabsFragment extends BaseDBFragment<HomeFragmentToptab
     protected void setThemeColor(boolean isDarkMode) {
         GradientDrawable gradientChapterNameDrawable = new GradientDrawable();
         gradientChapterNameDrawable.setShape(GradientDrawable.RECTANGLE);
-        gradientChapterNameDrawable.setStroke(ScreenUtils.dp2px(1), CacheUtils.getInstance().getThemeColor());
+        gradientChapterNameDrawable.setStroke(ScreenUtils.dp2px(1), CacheUtils.getThemeColor());
 
         GradientDrawable gradientAuthorDrawable = new GradientDrawable();
         gradientAuthorDrawable.setShape(GradientDrawable.RECTANGLE);
-        gradientAuthorDrawable.setStroke(ScreenUtils.dp2px(1), CacheUtils.getInstance().getThemeColor());
+        gradientAuthorDrawable.setStroke(ScreenUtils.dp2px(1), CacheUtils.getThemeColor());
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {

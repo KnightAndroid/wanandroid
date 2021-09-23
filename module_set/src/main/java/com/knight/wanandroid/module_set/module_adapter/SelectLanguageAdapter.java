@@ -37,7 +37,7 @@ public final class SelectLanguageAdapter extends BaseQuickAdapter<LanguageSelect
 
         if (languageSelectEntity.isSelect()) {
             baseViewHolder.setVisible(R.id.set_iv_select_language,true);
-            ((ImageView)baseViewHolder.getView(R.id.set_iv_select_language)).setColorFilter(CacheUtils.getInstance().getThemeColor());
+            ((ImageView)baseViewHolder.getView(R.id.set_iv_select_language)).setColorFilter(CacheUtils.getThemeColor());
         } else {
             baseViewHolder.setVisible(R.id.set_iv_select_language,false);
         }

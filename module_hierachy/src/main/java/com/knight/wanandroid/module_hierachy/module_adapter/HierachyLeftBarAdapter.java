@@ -58,16 +58,16 @@ public final class HierachyLeftBarAdapter extends RvAdapter<String> {
             tvName.setText(string);
             if (position == checkedPosition) {
                 hierachy_tv_selectview.setVisibility(View.VISIBLE);
-                hierachy_tv_selectview.setBackgroundColor(CacheUtils.getInstance().getThemeColor());
-                tvName.setTextColor(CacheUtils.getInstance().getThemeColor());
-                if (CacheUtils.getInstance().getNormalDark()) {
+                hierachy_tv_selectview.setBackgroundColor(CacheUtils.getThemeColor());
+                tvName.setTextColor(CacheUtils.getThemeColor());
+                if (CacheUtils.getNormalDark()) {
                     mView.setBackgroundColor(Color.parseColor("#303030"));
                 } else {
                     mView.setBackgroundColor(Color.parseColor("#f3f3f3"));
 
                 }
             } else {
-                if (CacheUtils.getInstance().getNormalDark()) {
+                if (CacheUtils.getNormalDark()) {
                     mView.setBackgroundColor(Color.parseColor("#303030"));
                 } else {
                     mView.setBackgroundColor(Color.parseColor("#FFFFFF"));

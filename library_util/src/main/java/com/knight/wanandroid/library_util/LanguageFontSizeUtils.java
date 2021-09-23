@@ -70,7 +70,7 @@ public final class LanguageFontSizeUtils {
      * @return
      */
     public static Locale getSetLanguageLocale() {
-        switch (CacheUtils.getInstance().getLanguageMode()) {
+        switch (CacheUtils.getLanguageMode()) {
             case "Auto":
                 return getSystemLocale();
             case "简体中文":

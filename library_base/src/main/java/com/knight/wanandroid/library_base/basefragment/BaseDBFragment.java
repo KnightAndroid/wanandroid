@@ -95,7 +95,7 @@ public abstract class BaseDBFragment<DB extends ViewDataBinding> extends Fragmen
         super.onViewCreated(view, savedInstanceState);
         initView(savedInstanceState);
         onVisible();
-        isDarkMode = CacheUtils.getInstance().getNormalDark();
+        isDarkMode = CacheUtils.getNormalDark();
         initThemeColor();
         setThemeColor(isDarkMode);
         initData();
@@ -128,7 +128,7 @@ public abstract class BaseDBFragment<DB extends ViewDataBinding> extends Fragmen
      *
      */
     protected void initThemeColor() {
-        themeColor = CacheUtils.getInstance().getThemeColor();
+        themeColor = CacheUtils.getThemeColor();
     }
 
 

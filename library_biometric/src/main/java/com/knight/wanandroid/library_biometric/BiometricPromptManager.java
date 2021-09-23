@@ -1,11 +1,8 @@
-package com.knight.wanandroid.module_mine.biometric;
+package com.knight.wanandroid.library_biometric;
 
 import android.os.CancellationSignal;
-
-import com.knight.wanandroid.library_util.BlometricUtils;
-
+import com.knight.wanandroid.library_biometric.utils.BlometricUtils;
 import javax.crypto.Cipher;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 

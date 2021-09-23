@@ -2,6 +2,7 @@ package com.knight.wanandroid.module_home.module_presenter;
 
 import com.knight.wanandroid.library_base.basefragment.BaseFragment;
 import com.knight.wanandroid.library_base.entity.AppUpdateEntity;
+import com.knight.wanandroid.library_base.entity.UserInfoEntity;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.module_home.module_contract.HomeContract;
 import com.knight.wanandroid.module_home.module_entity.EveryDayPushArticlesEntity;
@@ -13,6 +14,7 @@ import com.knight.wanandroid.module_home.module_entity.EveryDayPushArticlesEntit
  * @descript:首页逻辑处理层
  */
 public final class HomePresenter extends HomeContract.HomeDataPresenter {
+
     @Override
     public void requestAppUpdateMessage() {
         final HomeContract.HomeView mView = getView();
@@ -55,6 +57,25 @@ public final class HomePresenter extends HomeContract.HomeDataPresenter {
         });
     }
 
+    @Override
+    public void requestUserInfo(String username, String password) {
+        final HomeContract.HomeView mView = getView();
+        if (mView == null) {
+            return;
+        }
+        mModel.requestUserInfo((BaseFragment) mView,username,password,new MvpListener<UserInfoEntity>(){
+            @Override
+            public void onSuccess(UserInfoEntity userInfoEntity) {
+                mView.setUserInfo(userInfoEntity);
+
+            }
+
+            @Override
+            public void onError(String errorMsg) {
+                mView.showError(errorMsg);
+            }
+        });
+    }
 
 
 }

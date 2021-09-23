@@ -99,8 +99,8 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         createViewDataBinding();
         StatusBarUtils.transparentStatusBar(this);
-        isDarkMode = CacheUtils.getInstance().getNormalDark();
-        isEyeCare = CacheUtils.getInstance().getIsEyeCare();
+        isDarkMode = CacheUtils.getNormalDark();
+        isEyeCare = CacheUtils.getIsEyeCare();
         initThemeColor();
         setThemeColor(isDarkMode);
         initView(savedInstanceState);
@@ -171,7 +171,7 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
      * 获取颜色
      */
     protected void initThemeColor() {
-        themeColor = CacheUtils.getInstance().getThemeColor();
+        themeColor = CacheUtils.getThemeColor();
     }
 
 
@@ -260,7 +260,7 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
 
     @Override
     protected void attachBaseContext(Context base) {
-        fontScale = CacheUtils.getInstance().getSystemFontSize();
+        fontScale = CacheUtils.getSystemFontSize();
         super.attachBaseContext(LanguageFontSizeUtils.attachBaseContext(base,fontScale));
     }
 

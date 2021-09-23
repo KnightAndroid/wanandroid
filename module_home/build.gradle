@@ -34,5 +34,6 @@ dependencies {
     if (isRunAlone.toBoolean()) {
         implementation project(':module-web')
     }
+    implementation project (':library_biometric')
 
 }

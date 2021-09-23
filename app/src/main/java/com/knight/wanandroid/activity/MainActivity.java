@@ -68,8 +68,8 @@ public class MainActivity extends BaseDBActivity<ActivityMainBinding> {
         fragments.add(mHierachyNavigateMainFragment = new HierachyNavigateMainFragment());
         fragments.add(mMineFragment = new MineFragment());
         ViewSetUtils.setIsUserInputEnable(this, mDatabind.mainViewpager, fragments, false);
-        mDatabind.btnNav.setItemTextColor(ColorUtils.createColorStateList(CacheUtils.getInstance().getThemeColor(), ColorUtils.convertToColorInt("a6a6a6")));
-        mDatabind.btnNav.setItemIconTintList(ColorUtils.createColorStateList(CacheUtils.getInstance().getThemeColor(), ColorUtils.convertToColorInt("a6a6a6")));
+        mDatabind.btnNav.setItemTextColor(ColorUtils.createColorStateList(CacheUtils.getThemeColor(), ColorUtils.convertToColorInt("a6a6a6")));
+        mDatabind.btnNav.setItemIconTintList(ColorUtils.createColorStateList(CacheUtils.getThemeColor(), ColorUtils.convertToColorInt("a6a6a6")));
         mDatabind.btnNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

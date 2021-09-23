@@ -42,7 +42,7 @@ public final class SquareShareArticleActivity extends BaseActivity<SquareActivit
     protected void setThemeColor(boolean isDarkMode) {
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setShape(GradientDrawable.RECTANGLE);
-        gradientDrawable.setColor(CacheUtils.getInstance().getThemeColor());
+        gradientDrawable.setColor(CacheUtils.getThemeColor());
         gradientDrawable.setCornerRadius(ScreenUtils.dp2px(45));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             mDatabind.squareTvArticle.setBackground(gradientDrawable);

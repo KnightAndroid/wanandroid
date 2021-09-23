@@ -98,14 +98,14 @@ public final class SquareFragment extends BaseFragment<SquareFragmentSquareBindi
     protected void setThemeColor(boolean isDarkMode) {
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setShape(GradientDrawable.RECTANGLE);
-        gradientDrawable.setColor(CacheUtils.getInstance().getThemeColor());
+        gradientDrawable.setColor(CacheUtils.getThemeColor());
         gradientDrawable.setCornerRadius(4f);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             mDatabind.squareTvGoshare.setBackground(gradientDrawable);
         } else {
             mDatabind.squareTvGoshare.setBackgroundDrawable(gradientDrawable);
         }
-        mDatabind.squareFabUp.setBackgroundTintList(ColorUtils.createColorStateList(CacheUtils.getInstance().getThemeColor(),CacheUtils.getInstance().getThemeColor()));
+        mDatabind.squareFabUp.setBackgroundTintList(ColorUtils.createColorStateList(CacheUtils.getThemeColor(),CacheUtils.getThemeColor()));
 
 
     }

@@ -25,7 +25,7 @@ public final class VersionRecordAdapter extends BaseQuickAdapter<AppUpdateRecord
     @Override
     protected void convert(@NotNull BaseViewHolder baseViewHolder, AppUpdateRecordEntity appUpdateRecordEntity) {
         baseViewHolder.setText(R.id.mine_appupdate_title,appUpdateRecordEntity.getTitle());
-        baseViewHolder.setTextColor(R.id.mine_appupdate_title, CacheUtils.getInstance().getThemeColor());
+        baseViewHolder.setTextColor(R.id.mine_appupdate_title, CacheUtils.getThemeColor());
         baseViewHolder.setText(R.id.mine_appupdate_tv_time,appUpdateRecordEntity.getPublishTime());
         baseViewHolder.setText(R.id.mine_appupdate_desc,appUpdateRecordEntity.getDesc());
     }

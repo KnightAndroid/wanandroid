@@ -33,7 +33,7 @@ public class WebContainer extends LinearLayout {
 
     public WebContainer(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        darkTheme = CacheUtils.getInstance().getNormalDark();
+        darkTheme = CacheUtils.getNormalDark();
         if (darkTheme) {
            bgColor = ColorUtils.alphaColor(ContextCompat.getColor(getContext(),R.color.widget_night_color),0.6f);
         }

@@ -51,7 +51,7 @@ public final class CustomViewUtils {
             public IPagerTitleView getTitleView(Context context, final int index) {
                 SimplePagerTitleView simplePagerTitleView = new SimplePagerTitleView(context);
                 simplePagerTitleView.setText(mDataList.get(index));
-                simplePagerTitleView.setTextScaleX(CacheUtils.getInstance().getSystemFontSize());
+                simplePagerTitleView.setTextScaleX(CacheUtils.getSystemFontSize());
                 simplePagerTitleView.setNormalColor(Color.parseColor("#999999"));
                 simplePagerTitleView.setSelectedColor(Color.parseColor("#ffffff"));
                 simplePagerTitleView.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +69,7 @@ public final class CustomViewUtils {
             public IPagerIndicator getIndicator(Context context) {
                 WrapPagerIndicator indicator = new WrapPagerIndicator(context);
                 indicator.setRoundRadius(ScreenUtils.dp2px(6));
-                indicator.setFillColor(CacheUtils.getInstance().getThemeColor());
+                indicator.setFillColor(CacheUtils.getThemeColor());
                 return indicator;
             }
         });

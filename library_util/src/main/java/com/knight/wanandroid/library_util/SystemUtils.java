@@ -267,11 +267,11 @@ public class SystemUtils {
      * 判断是什么模式
      */
     public static void darkNormal() {
-        if (CacheUtils.getInstance().getFollowSystem()) {
+        if (CacheUtils.getFollowSystem()) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
 
         } else {
-            if (CacheUtils.getInstance().getNormalDark()) {
+            if (CacheUtils.getNormalDark()) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);

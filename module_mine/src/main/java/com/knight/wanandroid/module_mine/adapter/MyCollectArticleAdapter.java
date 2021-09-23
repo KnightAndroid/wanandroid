@@ -44,10 +44,10 @@ public final class MyCollectArticleAdapter extends BaseMultiItemQuickAdapter<MyC
                 if (!TextUtils.isEmpty(myCollectArticleEntity.getChapterName())) {
                     baseViewHolder.setVisible(R.id.base_tv_articlesuperchaptername, true);
                     baseViewHolder.setText(R.id.base_tv_articlesuperchaptername, myCollectArticleEntity.getChapterName());
-                    baseViewHolder.setTextColor(R.id.base_tv_articlesuperchaptername,CacheUtils.getInstance().getThemeColor());
+                    baseViewHolder.setTextColor(R.id.base_tv_articlesuperchaptername,CacheUtils.getThemeColor());
                     GradientDrawable gradientDrawable = new GradientDrawable();
                     gradientDrawable.setShape(GradientDrawable.RECTANGLE);
-                    gradientDrawable.setStroke(2, CacheUtils.getInstance().getThemeColor());
+                    gradientDrawable.setStroke(2, CacheUtils.getThemeColor());
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                         baseViewHolder.getView(R.id.base_tv_articlesuperchaptername).setBackground(gradientDrawable);
                     } else {

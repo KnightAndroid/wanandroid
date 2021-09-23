@@ -42,13 +42,13 @@ public final class MessageAdapter extends BaseQuickAdapter<MessageEntity, BaseVi
             baseViewHolder.setText(R.id.message_item_tag, messageEntity.getTag());
             GradientDrawable gradientDrawable = new GradientDrawable();
             gradientDrawable.setShape(GradientDrawable.RECTANGLE);
-            gradientDrawable.setStroke(1, CacheUtils.getInstance().getThemeColor());
+            gradientDrawable.setStroke(1, CacheUtils.getThemeColor());
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 baseViewHolder.getView(R.id.message_item_tag).setBackground(gradientDrawable);
             } else {
                 baseViewHolder.getView(R.id.message_item_tag).setBackgroundDrawable(gradientDrawable);
             }
-            baseViewHolder.setTextColor(R.id.message_item_tag,CacheUtils.getInstance().getThemeColor());
+            baseViewHolder.setTextColor(R.id.message_item_tag,CacheUtils.getThemeColor());
 
         } else {
             baseViewHolder.setGone(R.id.message_item_tag,true);

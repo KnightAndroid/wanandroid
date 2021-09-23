@@ -107,7 +107,7 @@ public abstract class BaseFragment<DB extends ViewDataBinding, T extends BasePre
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initView(savedInstanceState);
-        isDarkMode = CacheUtils.getInstance().getNormalDark();
+        isDarkMode = CacheUtils.getNormalDark();
         initThemeColor();
         setThemeColor(isDarkMode);
         //从内部获取第二个类型参数的真实类型，反射出new对象
@@ -201,7 +201,7 @@ public abstract class BaseFragment<DB extends ViewDataBinding, T extends BasePre
      * 获取主题颜色
      */
     protected void initThemeColor() {
-        themeColor = CacheUtils.getInstance().getThemeColor();
+        themeColor = CacheUtils.getThemeColor();
     }
 
 

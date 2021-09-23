@@ -1,4 +1,4 @@
-package com.knight.wanandroid.module_mine.biometric;
+package com.knight.wanandroid.library_biometric;
 
 import android.content.Context;
 import android.hardware.fingerprint.FingerprintManager;
@@ -6,8 +6,8 @@ import android.os.Build;
 import android.os.CancellationSignal;
 import android.util.Base64;
 
+import com.knight.wanandroid.library_biometric.dialog.BiometricPromptDialog;
 import com.knight.wanandroid.library_common.utils.CacheUtils;
-import com.knight.wanandroid.module_mine.fragment.BiometricPromptDialog;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -80,7 +80,7 @@ public class BiometricPromptApiM implements IBiometricPromptImpl {
                 /**
                  * 可通过服务器保存iv,然后在使用之前从服务器获取
                  */
-                String ivStr = CacheUtils.getInstance().getCliperIv();
+                String ivStr = CacheUtils.getCliperIv();
                 byte[] iv = Base64.decode(ivStr, Base64.URL_SAFE);
 
                 object = new FingerprintManager.CryptoObject(mKeyGenTool.getDecryptCipher(iv));

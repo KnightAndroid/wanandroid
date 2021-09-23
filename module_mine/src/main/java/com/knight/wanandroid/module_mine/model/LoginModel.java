@@ -23,7 +23,7 @@ public final class LoginModel implements LoginContract.LoginModel {
 
     @Override
     public void requestUserInfo(BaseActivity activity, String username, String password, MvpListener mvpListener) {
-        activity.showLoadingHud(activity.getString(R.string.mine_login_request));
+        activity.showLoadingHud(activity.getString(R.string.base_login_request));
         GoHttp.post(activity)
                 .api(new LoginApi().setUserName(username).setPassword(password))
                 .request(new HttpCallback<HttpData<UserInfoEntity>>(activity){

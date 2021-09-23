@@ -90,7 +90,7 @@ public class WelcomePrivacyAgreeFragment extends BaseDBDialogFragment<WelcomePri
     public class ProxyClick{
         //同意进入app
         public void goAgreeToMain(){
-            CacheUtils.getInstance().saveIsAgreeMent(true);
+            CacheUtils.saveIsAgreeMent(true);
             ARouter.getInstance().build(RoutePathActivity.Main.MainPager)
                     .navigation();
             dismiss();

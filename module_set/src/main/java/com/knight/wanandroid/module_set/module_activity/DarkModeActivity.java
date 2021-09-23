@@ -70,8 +70,8 @@ public final class DarkModeActivity extends BaseDBActivity<SetDarkmodeActivityBi
 
 
     private void getDarkModeData() {
-        mDatabind.setCbSelectSystem.setChecked(CacheUtils.getInstance().getFollowSystem());
-        if (CacheUtils.getInstance().getFollowSystem()) {
+        mDatabind.setCbSelectSystem.setChecked(CacheUtils.getFollowSystem());
+        if (CacheUtils.getFollowSystem()) {
             mDatabind.setRlManualSelect.setVisibility(View.GONE);
             mDatabind.setTvManualSystem.setVisibility(View.GONE);
         } else {
@@ -83,7 +83,7 @@ public final class DarkModeActivity extends BaseDBActivity<SetDarkmodeActivityBi
         String jsonData = JsonUtils.getJson(this,"darkselect.json");
         mDataList = GsonUtils.getList(jsonData,type);
         //如果是普通模式
-        if (CacheUtils.getInstance().getNormalDark()) {
+        if (CacheUtils.getNormalDark()) {
             mDataList.get(0).setSelect(false);
             mDataList.get(1).setSelect(true);
         } else {
@@ -129,18 +129,18 @@ public final class DarkModeActivity extends BaseDBActivity<SetDarkmodeActivityBi
 
     private void confim() {
         //保存是否跟随系统
-        CacheUtils.getInstance().setFollowSystem(isFollowSystem);
+        CacheUtils.setFollowSystem(isFollowSystem);
         if (isFollowSystem) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
             if (Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
                 //深色模式
-                CacheUtils.getInstance().setNormalDark(true);
+                CacheUtils.setNormalDark(true);
             } else {
-                CacheUtils.getInstance().setNormalDark(false);
+                CacheUtils.setNormalDark(false);
             }
         } else {
-            CacheUtils.getInstance().setNormalDark(isDark);
-            if (CacheUtils.getInstance().getNormalDark()) {
+            CacheUtils.setNormalDark(isDark);
+            if (CacheUtils.getNormalDark()) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);

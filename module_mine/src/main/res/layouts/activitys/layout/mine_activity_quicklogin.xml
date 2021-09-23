@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.knight.wanandroid.module_mine.activity.QuickLoginActivity">
+
+
+   <data>
+       <variable
+           name="click"
+           type="com.knight.wanandroid.module_mine.activity.QuickLoginActivity.ProxyClick" />
+   </data>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -52,7 +62,8 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:textColor="@color/base_color_title"
-            android:textSize="@dimen/base_dimen_16"/>
+            android:textSize="@dimen/base_dimen_16"
+            android:onClick="@{()->click.showBottomDialog()}"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

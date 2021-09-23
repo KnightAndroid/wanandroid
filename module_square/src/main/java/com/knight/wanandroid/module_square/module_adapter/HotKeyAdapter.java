@@ -35,10 +35,10 @@ public final class HotKeyAdapter extends BaseQuickAdapter<SearchHotKeyEntity, Ba
     @Override
     protected void convert(@NotNull BaseViewHolder baseViewHolder, SearchHotKeyEntity searchHotKeyEntity) {
         baseViewHolder.setText(R.id.square_tv_hotkey,searchHotKeyEntity.getName());
-        baseViewHolder.setTextColor(R.id.square_tv_hotkey, CacheUtils.getInstance().getThemeColor());
+        baseViewHolder.setTextColor(R.id.square_tv_hotkey, CacheUtils.getThemeColor());
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setShape(GradientDrawable.RECTANGLE);
-        gradientDrawable.setStroke(2,CacheUtils.getInstance().getThemeColor());
+        gradientDrawable.setStroke(2,CacheUtils.getThemeColor());
         gradientDrawable.setCornerRadius(ScreenUtils.dp2px(6f));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             baseViewHolder.getView(R.id.square_tv_hotkey).setBackground(gradientDrawable);

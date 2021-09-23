@@ -43,14 +43,14 @@ public final class ChangeTextSizeActivity extends BaseDBActivity<SetChangetextsi
     public void initView(Bundle savedInstanceState) {
         mDatabind.includeChangetextToolbar.baseTvRight.setVisibility(View.VISIBLE);
         mDatabind.includeChangetextToolbar.baseTvRight.setText(R.string.base_save);
-        fontSizeScale = CacheUtils.getInstance().getSystemFontSize();
+        fontSizeScale = CacheUtils.getSystemFontSize();
         position = (int)((fontSizeScale - 0.875) / 0.125);
         mDatabind.setCsvFontSize.setDefaultPosition(position);
         changeSize(position);
         mDatabind.includeChangetextToolbar.baseTvRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CacheUtils.getInstance().setSystemFontSize(fontSizeScale);
+                CacheUtils.setSystemFontSize(fontSizeScale);
                 if (fontSizeScale == 1.0f && !AutoSize.checkInit()) {
                     AutoSize.checkAndInit(ChangeTextSizeActivity.this.getApplication());
                 }

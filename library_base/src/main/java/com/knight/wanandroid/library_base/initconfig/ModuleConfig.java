@@ -36,7 +36,6 @@ import com.knight.wanandroid.library_util.SystemUtils;
 import com.knight.wanandroid.library_util.toast.ToastInterceptor;
 import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.tencent.bugly.crashreport.CrashReport;
-import com.tencent.mmkv.MMKV;
 import com.wanandroid.knight.library_database.mananger.DataBaseManager;
 
 import java.io.File;
@@ -101,7 +100,7 @@ public class ModuleConfig {
         //网络请求初始化
         initOkhttp(application);
         //mmkv初始化
-        MMKV.initialize(application);
+        CacheUtils.init(application);
         //登录拦截器
         initLoginFilter(application);
         //初始化数据库
@@ -196,7 +195,7 @@ public class ModuleConfig {
 
             @Override
             public boolean isLogin(Context applicationContext) {
-                UserInfoEntity userInfoEntity = CacheUtils.getInstance().getDataInfo(MMkvConstants.USER, UserInfoEntity.class);
+                UserInfoEntity userInfoEntity = CacheUtils.getDataInfo(MMkvConstants.USER, UserInfoEntity.class);
                 if (userInfoEntity != null) {
                     return true;
                 } else {
@@ -219,7 +218,7 @@ public class ModuleConfig {
      * @return
      */
     private UserInfoEntity initUser(){
-        UserInfoEntity userInfoEntity = CacheUtils.getInstance().getDataInfo(MMkvConstants.USER,UserInfoEntity.class);
+        UserInfoEntity userInfoEntity = CacheUtils.getDataInfo(MMkvConstants.USER,UserInfoEntity.class);
         return userInfoEntity;
     }
 

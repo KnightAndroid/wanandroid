@@ -1,4 +1,4 @@
-package com.knight.wanandroid.module_mine.biometric;
+package com.knight.wanandroid.library_biometric;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -72,7 +72,7 @@ public  class BiometricPromptApiP implements IBiometricPromptImpl {
                  * 可通过服务器保存iv,然后在使用之前从服务器获取
                  */
                 //保存用于做AES-CBC
-                String ivStr = CacheUtils.getInstance().getCliperIv();
+                String ivStr = CacheUtils.getCliperIv();
                 byte[] iv = Base64.decode(ivStr, Base64.URL_SAFE);
 
                 object = new BiometricPrompt.CryptoObject(mKeyGenTool.getDecryptCipher(iv));

@@ -40,7 +40,7 @@ public final class SquareArticleAdapter extends BaseQuickAdapter<SquareArticleEn
         }
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setShape(GradientDrawable.RECTANGLE);
-        gradientDrawable.setStroke(2,CacheUtils.getInstance().getThemeColor());
+        gradientDrawable.setStroke(2,CacheUtils.getThemeColor());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             baseViewHolder.getView(R.id.square_item_articlechaptername).setBackground(gradientDrawable);
         } else {
@@ -51,7 +51,7 @@ public final class SquareArticleAdapter extends BaseQuickAdapter<SquareArticleEn
         if (!TextUtils.isEmpty(squareArticleEntity.getChapterName())) {
             baseViewHolder.setVisible(R.id.square_item_articlechaptername,true);
             baseViewHolder.setText(R.id.square_item_articlechaptername,squareArticleEntity.getChapterName());
-            baseViewHolder.setTextColor(R.id.square_item_articlechaptername,CacheUtils.getInstance().getThemeColor());
+            baseViewHolder.setTextColor(R.id.square_item_articlechaptername,CacheUtils.getThemeColor());
         } else {
             baseViewHolder.setGone(R.id.square_item_articlechaptername,true);
         }

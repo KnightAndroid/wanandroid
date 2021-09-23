@@ -87,7 +87,7 @@ public final class ProjectViewpagerFragment extends BaseFragment<ProjectViewpage
         mProjectArticleAdapter = new ProjectArticleAdapter(new ArrayList<>());
         SetInitCustomView.initSwipeRecycleview(mDatabind.projectListRv,new LinearLayoutManager(getActivity()),mProjectArticleAdapter,true);
         initListener();
-        mDatabind.projectFloatBtn.setBackgroundTintList(ColorUtils.createColorStateList(CacheUtils.getInstance().getThemeColor(),CacheUtils.getInstance().getThemeColor()));
+        mDatabind.projectFloatBtn.setBackgroundTintList(ColorUtils.createColorStateList(CacheUtils.getThemeColor(),CacheUtils.getThemeColor()));
     }
 
     @Override

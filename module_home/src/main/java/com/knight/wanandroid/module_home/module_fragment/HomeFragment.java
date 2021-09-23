@@ -5,18 +5,21 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Base64;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.google.gson.reflect.TypeToken;
 import com.knight.wanandroid.library_base.basefragment.BaseFragment;
 import com.knight.wanandroid.library_base.entity.AppUpdateEntity;
+import com.knight.wanandroid.library_base.entity.LoginEntity;
 import com.knight.wanandroid.library_base.entity.UserInfoEntity;
 import com.knight.wanandroid.library_base.fragment.UpdateAppDialogFragment;
 import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
 import com.knight.wanandroid.library_base.util.ARouterUtils;
+import com.knight.wanandroid.library_biometric.control.BiometricControl;
 import com.knight.wanandroid.library_common.constant.MMkvConstants;
 import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_permiss.OnPermissionCallback;
@@ -31,8 +34,8 @@ import com.knight.wanandroid.library_util.GsonUtils;
 import com.knight.wanandroid.library_util.JsonUtils;
 import com.knight.wanandroid.library_util.ScreenUtils;
 import com.knight.wanandroid.library_util.SystemUtils;
-import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.library_util.ViewSetUtils;
+import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.module_home.R;
 import com.knight.wanandroid.module_home.databinding.HomeFragmentHomeBinding;
 import com.knight.wanandroid.module_home.module_activity.KnowledgeLabelActivity;
@@ -54,6 +57,10 @@ import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -86,7 +93,7 @@ public final class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, Ho
     @Override
     protected void setThemeColor(boolean isDarkMode) {
         if (!isDarkMode) {
-            isWithStatusTheme(CacheUtils.getInstance().getStatusBarIsWithTheme());
+            isWithStatusTheme(CacheUtils.getStatusBarIsWithTheme());
         }
     }
 
@@ -161,6 +168,15 @@ public final class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, Ho
         }
     }
 
+    @Override
+    public void setUserInfo(UserInfoEntity userInfo) {
+
+        CacheUtils.saveDataInfo(MMkvConstants.USER,userInfo);
+        EventBus.getDefault().post(new EventBusUtils.LoginInSuccess());
+//        ModuleConfig.getInstance().user = userInfo;
+//        mDatabind.homeIncludeToolbar.homeTvLoginname.setText(ModuleConfig.getInstance().user.getUsername());
+    }
+
 
     @Override
     public void showLoading() {
@@ -185,12 +201,16 @@ public final class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, Ho
             startActivity(new Intent(getActivity(), SearchActivity.class));
         }
 
-        public void goLogin(){
+        public void goLogin() {
             if (mDatabind.homeIncludeToolbar.homeTvLoginname.getText().toString().equals(getString(R.string.home_tv_login))) {
-                ARouterUtils.startActivity(RoutePathActivity.Mine.Login_Pager);
+                if (CacheUtils.getGestureLogin()) {
+                    ARouterUtils.startActivity(RoutePathActivity.Mine.QuickLogin_Pager);
+                } else if (CacheUtils.getFingerLogin()) {
+                    loginBlomtric();
+                } else {
+                    ARouterUtils.startActivity(RoutePathActivity.Mine.Login_Pager);
+                }
             }
-
-
         }
         
 
@@ -236,7 +256,7 @@ public final class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, Ho
     }
 
     private void initMagicIndicator() {
-        knowledgeLabelList = CacheUtils.getInstance().getDataInfo("knowledgeLabel",new TypeToken<List<String>>(){}.getType());
+        knowledgeLabelList = CacheUtils.getDataInfo("knowledgeLabel",new TypeToken<List<String>>(){}.getType());
         //初始化标签
         if (knowledgeLabelList == null || knowledgeLabelList.size() == 0) {
             Type type = new TypeToken<List<String>>() {}.getType();
@@ -280,7 +300,7 @@ public final class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, Ho
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onLoginInSuccess(EventBusUtils.LoginInSuccess loginInSuccess){
         //登录成功
-        ModuleConfig.getInstance().user = CacheUtils.getInstance().getDataInfo(MMkvConstants.USER,UserInfoEntity.class);
+        ModuleConfig.getInstance().user = CacheUtils.getDataInfo(MMkvConstants.USER,UserInfoEntity.class);
         mDatabind.homeIncludeToolbar.homeTvLoginname.setText(ModuleConfig.getInstance().user.getUsername());
 
     }
@@ -341,7 +361,7 @@ public final class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, Ho
             mDatabind.homeIncludeToolbar.homeTvLoginname.setTextColor(Color.WHITE);
             mDatabind.homeIncludeToolbar.homeIvAdd.setBackgroundResource(R.drawable.home_icon_add_white);
             mDatabind.homeIncludeToolbar.homeIvEveryday.setBackgroundResource(R.drawable.home_icon_everyday_white);
-            mDatabind.homeIncludeToolbar.toolbar.setBackgroundColor(CacheUtils.getInstance().getThemeColor());
+            mDatabind.homeIncludeToolbar.toolbar.setBackgroundColor(CacheUtils.getThemeColor());
         } else {
             gradientDrawable.setColor(Color.parseColor("#1f767680"));
             mDatabind.homeIncludeToolbar.homeTvLoginname.setTextColor(Color.parseColor("#333333"));
@@ -355,6 +375,55 @@ public final class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, Ho
         } else {
             mDatabind.homeIncludeToolbar.homeRlSearch.setBackgroundDrawable(gradientDrawable);
         }
+    }
+
+    /**
+     * 指纹登录
+     */
+    private void loginBlomtric() {
+        BiometricControl.loginBlomtric(getActivity(), new BiometricControl.BiometricStatusCallback() {
+            @Override
+            public void onUsePassword() {
+                ARouterUtils.startActivity(RoutePathActivity.Mine.Login_Pager);
+            }
+
+            @Override
+            public void onVerifySuccess(Cipher cipher) {
+                try {
+                    String text = CacheUtils.getEncryptLoginMessage();
+                    byte[] input = Base64.decode(text, Base64.URL_SAFE);
+                    byte[] bytes = cipher.doFinal(input);
+                    /**
+                     * 然后这里用原密码(当然是加密过的)调登录接口
+                     */
+                    LoginEntity loginEntity = GsonUtils.get(new String(bytes), LoginEntity.class);
+                    byte[] iv = cipher.getIV();
+                    //走登录接口
+                    mPresenter.requestUserInfo(loginEntity.getLoginName(),loginEntity.getLoginPassword());
+                } catch (BadPaddingException e) {
+                    e.printStackTrace();
+                } catch (IllegalBlockSizeException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailed() {
+                ARouterUtils.startActivity(RoutePathActivity.Mine.Login_Pager);
+            }
+
+            @Override
+            public void error(int code, String reason) {
+                ToastUtils.show(code + "," + reason);
+                ARouterUtils.startActivity(RoutePathActivity.Mine.Login_Pager);
+            }
+
+            @Override
+            public void onCancel() {
+                ToastUtils.show(R.string.base_permission_denied);
+                ARouterUtils.startActivity(RoutePathActivity.Mine.Login_Pager);;
+            }
+        });
     }
 
 

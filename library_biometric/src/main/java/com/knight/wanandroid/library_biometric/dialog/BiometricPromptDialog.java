@@ -1,15 +1,13 @@
-package com.knight.wanandroid.module_mine.fragment;
+package com.knight.wanandroid.library_biometric.dialog;
 
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Build;
 import android.view.Gravity;
 import android.view.View;
-
 import com.knight.wanandroid.library_base.basefragment.BaseDBDialogFragment;
-import com.knight.wanandroid.module_mine.R;
-import com.knight.wanandroid.module_mine.databinding.MineFingerLoginDialogBinding;
-
+import com.knight.wanandroid.library_biometric.R;
+import com.knight.wanandroid.library_biometric.databinding.BiometricLoginDialogBinding;
 import androidx.annotation.RequiresApi;
 
 /**
@@ -18,7 +16,7 @@ import androidx.annotation.RequiresApi;
  * @Date 2021/9/15 17:47
  * @descript:
  */
-public class BiometricPromptDialog extends BaseDBDialogFragment<MineFingerLoginDialogBinding> {
+public class BiometricPromptDialog extends BaseDBDialogFragment<BiometricLoginDialogBinding> {
 
     public static final int STATE_NORMAL = 1;
     public static final int STATE_FAILED = 2;
@@ -41,12 +39,12 @@ public class BiometricPromptDialog extends BaseDBDialogFragment<MineFingerLoginD
 
     @Override
     protected int layoutId() {
-        return R.layout.mine_finger_login_dialog;
+        return R.layout.biometric_login_dialog;
     }
 
     @Override
     protected void initView() {
-
+        mDatabind.setClick(new ProxyClick());
     }
 
     @Override
@@ -55,6 +53,7 @@ public class BiometricPromptDialog extends BaseDBDialogFragment<MineFingerLoginD
     }
 
     public class ProxyClick {
+        
         public void cancel() {
             if (mDialogActionCallback != null) {
                 mDialogActionCallback.onCancel();
@@ -76,22 +75,22 @@ public class BiometricPromptDialog extends BaseDBDialogFragment<MineFingerLoginD
         switch (state) {
             case STATE_NORMAL:
                 mDatabind.fingureTvStatus.setTextColor(Color.BLACK);
-                mDatabind.fingureTvStatus.setText(getString(R.string.mine_touch_sensor));
+                mDatabind.fingureTvStatus.setText(getString(R.string.biometric_touch_sensor));
                 mDatabind.fingureTvCancel.setVisibility(View.VISIBLE);
                 break;
             case STATE_FAILED:
                 mDatabind.fingureTvStatus.setTextColor(Color.RED);
-                mDatabind.fingureTvStatus.setText(getString(R.string.mine_touch_verify_failure));
+                mDatabind.fingureTvStatus.setText(getString(R.string.biometric_touch_verify_failure));
                 mDatabind.fingureTvCancel.setVisibility(View.VISIBLE);
                 break;
             case STATE_ERROR:
                 mDatabind.fingureTvStatus.setTextColor(Color.RED);
-                mDatabind.fingureTvStatus.setText(getString(R.string.mine_touch_verify_error));
+                mDatabind.fingureTvStatus.setText(getString(R.string.biometric_touch_verify_error));
                 mDatabind.fingureTvCancel.setVisibility(View.VISIBLE);
                 break;
             case STATE_SUCCEED:
                 mDatabind.fingureTvStatus.setTextColor(getActivity().getColor(R.color.base_color_theme));
-                mDatabind.fingureTvStatus.setText(getString(R.string.mine_touchverify_succeeded));
+                mDatabind.fingureTvStatus.setText(getString(R.string.biometric_touchverify_succeeded));
                 mDatabind.fingureTvCancel.setVisibility(View.VISIBLE);
                 mDatabind.fingureTvStatus.postDelayed(new Runnable() {
                     @Override

@@ -7,7 +7,7 @@
     <string name="mine_me_system_setting">Set up</string>
     <string name="mine_quit_account">Exit account</string>
     <string name="mine_rule">rule</string>
-    <string name="mine_apploginname">wanAndroid</string>
+    <string name="mine_apploginname">wanandroid</string>
     <string name="mine_account_name">Account number</string>
     <string name="mine_login_username">Please enter the account used on the wanandroid website</string>
     <string name="mine_login_password">Password</string>
@@ -44,15 +44,9 @@
     <string name="mine_please_login">Please Login</string>
     <string name="mine_nodata_gradle">Gradle -</string>
     <string name="mine_nodata_rank">Rank -</string>
-    <string name="mine_login_request">Login...</string>
     <string name="mine_regist_request">Regist...</string>
-    <string name="mine_touch_sensor">Touch the sensor to verify the fingerprint</string>
-    <string name="mine_touch_verify_failure">Verification failed, please try again</string>
-    <string name="mine_touch_verify_error">Please log in with your account and password</string>
-    <string name="mine_touch_verify_finger">Verify fingerprint</string>
-    <string name="mine_touchverify_succeeded">Verify Success</string>
-    <string name="mine_use_password_login">Login with account and password</string>
-    <string name="mine_not_open_touchverify">Not open temporarily</string>
-    <string name="mine_quicklogin_more">more</string>
+    <string name="mine_fingure_login">Fingure Login</string>
     <string name="mine_quick_login">Quick Login</string>
+    <string name="mine_cancel">Cancel</string>
+    <string name="mine_quicklogin_more">More</string>
 </resources>

@@ -52,11 +52,11 @@ public class UpdateAppDialogFragment extends BaseDBDialogFragment<BaseUpdateappD
         } else {
             mDatabind.baseAppupdateClose.setVisibility(View.VISIBLE);
         }
-        mDatabind.tvAppupdateTitlename.setTextColor(CacheUtils.getInstance().getThemeColor());
-        mDatabind.tvAppupdateVersion.setTextColor(CacheUtils.getInstance().getThemeColor());
+        mDatabind.tvAppupdateTitlename.setTextColor(CacheUtils.getThemeColor());
+        mDatabind.tvAppupdateVersion.setTextColor(CacheUtils.getThemeColor());
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setShape(GradientDrawable.RECTANGLE);
-        gradientDrawable.setColor(CacheUtils.getInstance().getThemeColor());
+        gradientDrawable.setColor(CacheUtils.getThemeColor());
         gradientDrawable.setCornerRadius(ScreenUtils.dp2px(45));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             mDatabind.tvConfimUpdate.setBackground(gradientDrawable);

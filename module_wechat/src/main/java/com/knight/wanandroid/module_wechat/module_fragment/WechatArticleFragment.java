@@ -74,7 +74,7 @@ public final class WechatArticleFragment extends BaseFragment<WechatOfficialacco
         mWechatArticleAdapter = new WechatArticleAdapter(new ArrayList<>());
         initListener();
         SetInitCustomView.initSwipeRecycleview(mDatabind.includeWechatArticles.baseBodyRv,new LinearLayoutManager(getActivity()),mWechatArticleAdapter,false);
-        mDatabind.wechatFloatBtn.setBackgroundTintList(ColorUtils.createColorStateList(CacheUtils.getInstance().getThemeColor(),CacheUtils.getInstance().getThemeColor()));
+        mDatabind.wechatFloatBtn.setBackgroundTintList(ColorUtils.createColorStateList(CacheUtils.getThemeColor(),CacheUtils.getThemeColor()));
     }
 
     @Override

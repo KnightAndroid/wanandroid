@@ -1,4 +1,4 @@
-package com.knight.wanandroid.module_mine.biometric;
+package com.knight.wanandroid.library_biometric;
 
 import android.os.CancellationSignal;
 
