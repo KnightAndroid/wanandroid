@@ -1,10 +1,14 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+// 引用config.gradle文件
 apply from:"config.gradle"
+//gradle脚本执行所需的依赖
 buildscript {
+    //远程maven库
     repositories {
         google()
         jcenter()
     }
+    //插件
     dependencies {
         classpath "com.android.tools.build:gradle:4.0.0"
         //aop工具 https://github.com/HujiangTechnology/gradle_plugin_android_aspectjx
@@ -16,6 +20,7 @@ buildscript {
     }
 }
 
+//项目本身需要的依赖
 allprojects {
     repositories {
         google()
