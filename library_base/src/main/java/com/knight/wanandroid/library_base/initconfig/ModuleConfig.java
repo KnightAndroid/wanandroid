@@ -68,12 +68,10 @@ public class ModuleConfig {
     }
 
 
-    /**
-     *
-     * 最新初始化
-     * @param application
-     */
-    public void initBefore(@Nullable Application application){
+
+
+
+    public void initSafeSdk(@Nullable Application application) {
         //初始化ARouter
         if(isDebug()){
             //如果是debug模式
@@ -86,8 +84,15 @@ public class ModuleConfig {
         //初始化Toast
         ToastUtils.setInterceptor(new ToastInterceptor());
         ToastUtils.init(application);
-        //初始化权限拦截器
-        XXPermissions.setPermissionInterceptor(new PermissionInterceptor());
+        //网络请求初始化
+        initOkhttp(application);
+
+        //登录拦截器
+        initLoginFilter(application);
+        //初始化数据库
+        DataBaseManager.getDataBase(application,"wanandroid_database");
+        //初始化用户信息
+        user = initUser();
         //状态页
         LoadSir.beginBuilder()
                 .addCallback(new ErrorCallBack())
@@ -96,21 +101,18 @@ public class ModuleConfig {
                 //默认状态页
                 .setDefaultCallback(LoadCallBack.class)
                 .commit();
-
-        //网络请求初始化
-        initOkhttp(application);
-        //mmkv初始化
-        CacheUtils.init(application);
-        //登录拦截器
-        initLoginFilter(application);
-        //初始化数据库
-        DataBaseManager.getDataBase(application,"wanandroid_database");
-        //初始化用户信息
-        user = initUser();
-        //bugly异常上报
-        CrashReport.initCrashReport(application, "669abbf2c8", false);
         SystemUtils.darkNormal();
     }
+
+
+    public void initDangerousSDK(@Nullable Application application) {
+        //初始化权限拦截器
+        XXPermissions.setPermissionInterceptor(new PermissionInterceptor());
+        //bugly异常上报
+        CrashReport.initCrashReport(application, "669abbf2c8", false);
+    }
+
+
     /**
      *
      * 后面初始化
@@ -121,6 +123,7 @@ public class ModuleConfig {
             try {
                 Class clazz = Class.forName(moduleApp);
                 BaseApp baseApp = (BaseApp) clazz.newInstance();
+                //反射调用其方法
                 baseApp.initModuleApp(application);
             } catch (ClassNotFoundException e){
                 e.printStackTrace();

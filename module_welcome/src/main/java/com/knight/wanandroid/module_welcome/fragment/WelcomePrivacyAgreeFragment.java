@@ -11,6 +11,7 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.knight.wanandroid.library_base.BaseApp;
 import com.knight.wanandroid.library_base.basefragment.BaseDBDialogFragment;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_common.utils.CacheUtils;
@@ -91,6 +92,8 @@ public class WelcomePrivacyAgreeFragment extends BaseDBDialogFragment<WelcomePri
         //同意进入app
         public void goAgreeToMain(){
             CacheUtils.saveIsAgreeMent(true);
+            //初始化危险sdk
+            BaseApp.getApp().agreeInitSdk();
             ARouter.getInstance().build(RoutePathActivity.Main.MainPager)
                     .navigation();
             dismiss();

@@ -1,6 +1,6 @@
 package com.knight.wanandroid.library_common.utils;
 
-import android.app.Application;
+import android.content.Context;
 
 import com.google.gson.Gson;
 import com.knight.wanandroid.library_common.constant.MMkvConstants;
@@ -23,10 +23,10 @@ public final class CacheUtils {
     /**
      *
      * 应用启动初始化
-     * @param application
+     * @param context
      */
-    public static void init(Application application) {
-        MMKV.initialize(application);
+    public static void init(Context context) {
+        MMKV.initialize(context);
         mmkv = MMKV.defaultMMKV();
     }
 

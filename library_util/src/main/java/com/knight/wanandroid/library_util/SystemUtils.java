@@ -1,10 +1,12 @@
 package com.knight.wanandroid.library_util;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -30,6 +32,7 @@ import com.knight.wanandroid.library_common.utils.CacheUtils;
 import java.io.File;
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;
+import java.util.List;
 
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
@@ -320,6 +323,92 @@ public class SystemUtils {
 
         }
     }
+
+
+    /**
+     * 判断是否在主进程中，一些SDK中的PushServer可能运行在其他进程中。
+     * 也就会造成Application初始化两次,而只有在主进程中才需要初始化。
+     * * @return
+     */
+    public static boolean isRunOnMainProcess(Context context) {
+        ActivityManager am = ((ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE));
+        List<ActivityManager.RunningAppProcessInfo> processInfos = am.getRunningAppProcesses();
+        String mainProcessName = context.getPackageName();
+        int myPid = android.os.Process.myPid();
+        for (ActivityManager.RunningAppProcessInfo info : processInfos) {
+            if (info.pid == myPid && mainProcessName.equals(info.processName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    /**
+     *
+     * 获取需要hook的activity
+     * @param context
+     */
+    public static String getCheckActivityName(Context context,String checkActivity) {
+        PackageManager  mPackageManager = context.getPackageManager();
+        String checkActivityName = "";
+        try {
+            ApplicationInfo appInfo = mPackageManager.getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
+            checkActivityName = appInfo.metaData.getString(checkActivity);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return checkActivityName;
+
+    }
+
+
+    /**
+     *
+     * 获取activity 名字
+     * @param name
+     * @return
+     */
+    public static String getActivityName(String name,String checkActivityName) {
+        if (CacheUtils.getAgreeStatus()) {
+            return name;
+        } else {
+            setRealFirstActivityName(name);
+            return checkActivityName;
+        }
+    }
+
+
+
+    /**
+     *
+     * 原有真正打开的
+     *
+     */
+    private static String realFirstActivityName = null;
+
+
+    /**
+     *
+     * 设置
+     * @param firstActivityName
+     */
+    public static void setRealFirstActivityName(String firstActivityName) {
+        realFirstActivityName = firstActivityName;
+    }
+
+
+    /**
+     *
+     * 返回真正打开的第一个界面
+     * @return
+     */
+    public static String getRealFirstActivityName() {
+        return realFirstActivityName;
+    }
+
+
+
 
 
 

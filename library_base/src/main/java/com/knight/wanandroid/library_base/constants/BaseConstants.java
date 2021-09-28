@@ -12,4 +12,9 @@ public final class BaseConstants {
      * 接口每页大小
      */
     public static final int PAGR_SIZE = 10;
+
+    /**
+     * 用户是否同意隐私协议
+     */
+    public static final String KEY_CHECK_ACTIVITY = "com.knight.wanandroid.module_welcome.activity";
 }

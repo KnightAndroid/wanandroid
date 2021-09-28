@@ -3,6 +3,7 @@ package com.knight.wanandroid.module_project;
 import android.app.Application;
 
 import com.knight.wanandroid.library_base.BaseApp;
+import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
 
 /**
  * @author created by knight
@@ -11,6 +12,28 @@ import com.knight.wanandroid.library_base.BaseApp;
  * @descript:
  */
 public final class ProjectApp extends BaseApp {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        initModuleApp(this);
+        initModuleData(this);
+    }
+
+    @Override
+    protected void initSafeSDK() {
+        if ("true".equals(BuildConfig.isAloneApp)) {
+            ModuleConfig.getInstance().initSafeSdk(this);
+
+        }
+    }
+
+    @Override
+    protected void initDangerousSDK() {
+        if ("true".equals(BuildConfig.isAloneApp)) {
+            ModuleConfig.getInstance().initDangerousSDK(this);
+        }
+    }
+
     @Override
     public void initModuleApp(Application application) {
 

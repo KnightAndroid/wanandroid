@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-aspectjx'
 apply from: 'res_guard.gradle'//压缩apk
+
+
 android {
     compileSdkVersion rootProject.ext.compile_sdk_version
     buildToolsVersion rootProject.ext.build_tools_version
@@ -130,6 +132,7 @@ dependencies {
     implementation project(":module_message")
     // 设置模块
     implementation project(":module_set")
+
     //Arouter 路由插件 https://github.com/alibaba/ARouter
     annotationProcessor "com.alibaba:arouter-compiler:$arouterVersion"
     //implementation "com.github.onestravel:OneBottomNavigationBar:$bottom_navigatVersion"
@@ -137,5 +140,4 @@ dependencies {
     implementation 'com.github.ittianyu:BottomNavigationViewEx:2.0.4'
     //Google material库
     implementation 'com.google.android.material:material:1.3.0-alpha01'
-
 }

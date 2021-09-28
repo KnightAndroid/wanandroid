@@ -13,8 +13,8 @@ import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_common.utils.ColorUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
-import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.library_util.ViewSetUtils;
+import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.module_hierachy.module_fragment.HierachyNavigateMainFragment;
 import com.knight.wanandroid.module_home.module_fragment.HomeFragment;
 import com.knight.wanandroid.module_mine.fragment.MineFragment;
@@ -53,13 +53,13 @@ public class MainActivity extends BaseDBActivity<ActivityMainBinding> {
         EventBus.getDefault().register(this);
         initFragment();
 
+
     }
 
     @Override
     protected void setThemeColor(boolean isDarkMode) {
 
     }
-
 
     private void initFragment() {
         fragments.add(mHomeFragment = new HomeFragment());
@@ -89,6 +89,8 @@ public class MainActivity extends BaseDBActivity<ActivityMainBinding> {
         });
 
     }
+
+
 
 
     @Override

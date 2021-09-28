@@ -14,6 +14,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.knight.wanandroid.module_welcome.activity"
+            android:value="com.knight.wanandroid.module_welcome.activity.WelcomeActivity" />
+
     </application>
 
 </manifest>

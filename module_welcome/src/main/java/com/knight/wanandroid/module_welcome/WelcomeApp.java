@@ -1,6 +1,7 @@
 package com.knight.wanandroid.module_welcome;
 
 import android.app.Application;
+
 import com.knight.wanandroid.library_base.BaseApp;
 import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
 
@@ -12,19 +13,39 @@ import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
  */
 public final class WelcomeApp extends BaseApp {
     @Override
-    public void onCreate(){
+    public void onCreate() {
         super.onCreate();
-        if ("true".equals(BuildConfig.isAloneApp)) {
-            ModuleConfig.getInstance().initBefore(this);
-            ModuleConfig.getInstance().initModuleAfter(this);
-        }
+        initModuleApp(this);
+        initModuleData(this);
     }
+
+    @Override
+    protected void initSafeSDK() {
+        if ("true".equals(BuildConfig.isAloneApp)) {
+            ModuleConfig.getInstance().initSafeSdk(this);
+        }
+
+    }
+
+    @Override
+    protected void initDangerousSDK() {
+        if ("true".equals(BuildConfig.isAloneApp)) {
+            ModuleConfig.getInstance().initDangerousSDK(this);
+        }
+
+    }
+
 
     @Override
     public void initModuleApp(Application application) {
 
     }
 
+    /**
+     * 初始化app数据
+     *
+     * @param application
+     */
     @Override
     public void initModuleData(Application application) {
 
