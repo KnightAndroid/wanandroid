@@ -3,6 +3,7 @@ package com.knight.wanandroid.module_welcome.activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.os.Bundle;
+
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.knight.wanandroid.library_base.AppConfig;
 import com.knight.wanandroid.library_base.baseactivity.BaseActivity;
@@ -28,7 +29,6 @@ public class WelcomeActivity extends BaseActivity<WelcomeActivityBinding, Welcom
     @Override
     public void initView(Bundle savedInstanceState) {
         setTheme(getActivityTheme());
-
         mDatabind.logoAnim.addOffsetAnimListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {

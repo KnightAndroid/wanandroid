@@ -25,7 +25,7 @@
     <string name="set_status_theme_tip">The color of the status bar changes with the theme color</string>
     <string name="set_bg_color">Page background color</string>
     <string name="set_textsize_color">Font color</string>
-    <string name="set_recover_themecolor">Default theme color</string>
+    <string name="set_recover_themecolor">Use Default theme color</string>
     <string name="set_recover_textcolor">Default font color</string>
     <string name="set_recover_bgcolor">Default page background color</string>
     <string name="set_eyecare">Eye protection mode</string>

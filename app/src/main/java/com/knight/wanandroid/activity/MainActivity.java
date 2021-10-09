@@ -143,6 +143,18 @@ public class MainActivity extends BaseDBActivity<ActivityMainBinding> {
     }
 
 
+//    @Override
+//    public void onConfigurationChanged(Configuration newConfig) {
+//        super.onConfigurationChanged(newConfig);
+//        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//            mDatabind.mainViewpager.setPadding(StatusBarUtils.getStatusBarHeight(this),0,0,0);
+//        } else {
+//            mDatabind.mainViewpager.setPadding(0,0,0,0);
+//        }
+//    }
+
+
+
 
 
     @Override

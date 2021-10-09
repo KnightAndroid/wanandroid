@@ -47,7 +47,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  * @author created by knight
  * @organize wanandroid
  * @Date 2021/5/20 17:29
- * @descript:
+ * @descript:他人分享
+ * 
  */
 @Route(path = RoutePathActivity.Mine.OtherShareArticle_Pager)
 public final class OtherShareArticleActivity extends BaseActivity<MineActivityOthershareBinding, OtherShareArticlePresenter, OtherShareArticleModel> implements

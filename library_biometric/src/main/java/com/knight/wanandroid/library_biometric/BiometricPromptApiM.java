@@ -59,7 +59,7 @@ public class BiometricPromptApiM implements IBiometricPromptImpl {
                 }
             }
         });
-        mDialog.show(mActivity.getSupportFragmentManager(), "BiometricPromptApiM");
+        mDialog.showAllowingStateLoss(mActivity.getSupportFragmentManager(), "BiometricPromptApiM");
 
         mCancellationSignal = cancel;
         if (mCancellationSignal == null) {

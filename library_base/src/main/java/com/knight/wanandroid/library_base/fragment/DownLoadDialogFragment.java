@@ -36,9 +36,24 @@ public class DownLoadDialogFragment extends BaseDBDialogFragment<BaseDownloadDia
     private File apkFile;
     private final int successDownLoadApk = 1;
 
-    public DownLoadDialogFragment(String downLoadLink){
-        this.downLoadLink = downLoadLink;
+
+    public DownLoadDialogFragment(){
+
     }
+
+
+
+
+
+    public static DownLoadDialogFragment newInstance(String downLoadLink){
+        DownLoadDialogFragment downLoadDialogFragment = new DownLoadDialogFragment();
+        Bundle args = new Bundle();
+        args.putString("downLoadLink",downLoadLink);
+        downLoadDialogFragment.setArguments(args);
+        return downLoadDialogFragment;
+    }
+
+
     @Override
     protected int layoutId() {
         return R.layout.base_download_dialog;
@@ -46,6 +61,7 @@ public class DownLoadDialogFragment extends BaseDBDialogFragment<BaseDownloadDia
 
     @Override
     protected void initView() {
+        downLoadLink = getArguments().getString("downLoadLink");
         ThreadPoolUtils.execute(new DownloadApkTask());
     }
 

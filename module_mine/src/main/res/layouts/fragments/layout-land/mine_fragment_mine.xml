@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.knight.wanandroid.module_mine.fragment.MineFragment">
+
+    <data>
+
+        <variable
+            name="click"
+            type="com.knight.wanandroid.module_mine.fragment.MineFragment.ProcyClick" />
+
+    </data>
+
+
+    <ScrollView
+        android:id="@+id/mine_reboundlayout_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/base_dimen_70"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+
+            <ImageView
+                android:id="@+id/mine_iv_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/base_dimen_30"
+                android:layout_marginRight="@dimen/base_dimen_26"
+                android:background="@drawable/mine_icon_message"
+                android:onClick="@{()->click.goMessage()}"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <RelativeLayout
+                android:id="@+id/mine_rl_user_head"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="60dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/mine_iv_head"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/mine_iv_default_head">
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/mine_tv_userabbr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/base_dimen_text_size_16"
+                    android:textStyle="bold">
+
+
+                </TextView>
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/mine_tv_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/base_dimen_10"
+                android:onClick="@{()->click.gotoLogin()}"
+                android:text="@string/mine_please_login"
+                android:textSize="@dimen/base_dimen_text_size_16"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mine_rl_user_head" />
+
+
+            <LinearLayout
+                android:id="@+id/mine_ll_rank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/base_dimen_10"
+                android:gravity="center"
+                android:onClick="@{()->click.goCoinRank()}"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mine_tv_username">
+
+
+                <TextView
+                    android:id="@+id/mine_tv_level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mine_nodata_gradle"
+                    android:textSize="@dimen/base_dimen_text_size_14" />
+
+                <TextView
+                    android:id="@+id/mine_tv_rank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/base_dimen_10"
+                    android:text="@string/mine_nodata_rank"
+                    android:textSize="@dimen/base_dimen_14" />
+
+            </LinearLayout>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/mine_cv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base_dimen_20"
+                android:layout_marginTop="@dimen/base_dimen_20"
+                android:layout_marginRight="@dimen/base_dimen_20"
+                app:cardCornerRadius="@dimen/base_dimen_6"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mine_ll_rank">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/base_dimen_16"
+                    android:paddingRight="@dimen/base_dimen_16">
+
+                    <!--我的积分-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/base_dimen_20"
+                        android:layout_marginBottom="@dimen/base_dimen_20"
+                        android:onClick="@{()->click.goUserCoin()}">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mine_me_points"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/base_dimen_text_size_18" />
+
+                        <TextView
+                            android:id="@+id/mine_tv_points"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/base_dimen_2"
+                            android:layout_toLeftOf="@+id/mine_iv_point_arrow"
+                            android:text=""
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/base_dimen_text_size_18" />
+
+                        <ImageView
+                            android:id="@+id/mine_iv_point_arrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/mine_iv_arrow" />
+
+                    </RelativeLayout>
+
+                    <!--我的收藏-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/base_dimen_20"
+                        android:layout_marginBottom="@dimen/base_dimen_20"
+                        android:onClick="@{()->click.goMyCollectArticles()}">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mine_me_collect"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/base_dimen_text_size_18" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/mine_iv_arrow" />
+
+                    </RelativeLayout>
+
+                    <!--我的分享-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/base_dimen_20"
+                        android:layout_marginBottom="@dimen/base_dimen_20"
+                        android:onClick="@{()->click.goMyShareArticles()}">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mine_me_shareArticles"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/base_dimen_text_size_18" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/mine_iv_arrow" />
+
+                    </RelativeLayout>
+
+                    <!--阅读历史-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/base_dimen_20"
+                        android:layout_marginBottom="@dimen/base_dimen_20"
+                        android:onClick="@{()->click.goHistoryRecords()}">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mine_historyrecord"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/base_dimen_text_size_18" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/mine_iv_arrow" />
+
+                    </RelativeLayout>
+
+                    <!--代办清单-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/base_dimen_20"
+                        android:layout_marginBottom="@dimen/base_dimen_20"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mine_me_dealt"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/base_dimen_text_size_18" />
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:background="@drawable/mine_iv_arrow" />
+
+
+                    </RelativeLayout>
+
+
+                    <!--系统设置-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/base_dimen_20"
+                        android:layout_marginBottom="@dimen/base_dimen_20"
+                        android:onClick="@{()->click.goSet()}">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mine_me_system_setting"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/base_dimen_text_size_18" />
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:background="@drawable/mine_iv_arrow" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+
+</layout>

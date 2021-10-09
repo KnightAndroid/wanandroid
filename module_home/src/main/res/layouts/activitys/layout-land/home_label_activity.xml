@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".module_activity.KnowledgeLabelActivity">
+
+    <data>
+
+        <variable
+            name="click"
+            type="com.knight.wanandroid.module_home.module_activity.KnowledgeLabelActivity.ProxyClick" />
+
+
+    </data>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <include
+            android:id="@+id/home_include_title"
+            layout="@layout/base_include_toolbar"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RelativeLayout
+            android:id="@+id/home_rl_label_head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/base_dimen_10"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/home_include_title">
+
+            <TextView
+                android:id="@+id/home_tv_mylabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base_dimen_16"
+                android:text="@string/home_knowledge_label"
+                android:textColor="@color/base_color_title"
+                android:textSize="@dimen/base_dimen_text_size_16" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/home_tv_mylabel"
+                android:layout_marginLeft="@dimen/base_dimen_16"
+                android:layout_toRightOf="@+id/home_tv_mylabel"
+                android:text="@string/home_hold_down_drag"
+                android:textColor="@color/home_color999999"
+                android:textSize="@dimen/base_dimen_text_size_12" />
+
+            <TextView
+                android:id="@+id/home_label_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/base_dimen_16"
+                android:onClick="@{()->click.editLabel()}"
+                android:text="@string/home_edit"
+                android:textColor="@color/base_color_theme"
+                android:textSize="@dimen/base_dimen_text_size_16" />
+
+        </RelativeLayout>
+
+        <com.knight.wanandroid.library_widget.flowlayout.FlowLayout
+            android:id="@+id/home_knowledget_tag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/base_dimen_16"
+            android:layout_marginTop="@dimen/base_dimen_10"
+            android:layout_marginRight="@dimen/base_dimen_16"
+            app:defaultTextColor="@color/base_color_theme"
+            app:fixViewTextColor="@color/base_color_theme"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/home_rl_label_head"
+            app:selectTextColor="@color/base_color_theme"
+            app:tagHeight="22"
+            app:flowLayoutTextSize="8"
+            app:childViewPadding="22">
+
+
+        </com.knight.wanandroid.library_widget.flowlayout.FlowLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/home_rl_moreknowledge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/base_dimen_20"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/home_knowledget_tag">
+
+
+            <TextView
+                android:id="@+id/home_tv_morelabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base_dimen_16"
+                android:text="@string/home_more_knowledge"
+                android:textColor="@color/base_color_title"
+                android:textSize="@dimen/base_dimen_text_size_16" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/home_tv_morelabel"
+                android:layout_marginLeft="@dimen/base_dimen_16"
+                android:layout_toRightOf="@+id/home_tv_morelabel"
+                android:text="@string/home_click_myknowledge"
+                android:textColor="@color/home_color999999"
+                android:textSize="@dimen/base_dimen_text_size_12" />
+        </RelativeLayout>
+
+        <com.yanzhenjie.recyclerview.SwipeRecyclerView
+            android:id="@+id/home_moreknowledge_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/base_dimen_10"
+            android:layout_marginTop="@dimen/base_dimen_10"
+            android:layout_marginRight="@dimen/base_dimen_10"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/home_rl_moreknowledge" />
+
+
+        <ImageView
+            android:id="@+id/home_iv_addlabel"
+            android:layout_width="@dimen/base_dimen_26"
+            android:layout_height="@dimen/base_dimen_26"
+            android:layout_marginLeft="@dimen/base_dimen_16"
+            android:layout_marginTop="@dimen/base_dimen_10"
+            android:src="@drawable/home_icon_add_label"
+            android:onClick="@{()->click.goAddKnowLedgeLabel()}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/home_moreknowledge_rv"
+            android:layout_marginBottom="@dimen/base_dimen_10"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

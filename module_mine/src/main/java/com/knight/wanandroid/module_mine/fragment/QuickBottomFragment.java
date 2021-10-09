@@ -18,6 +18,10 @@ public final class QuickBottomFragment extends BaseDBDialogFragment<MineQuicklog
 
 
 
+    public QuickBottomFragment() {
+
+    }
+
     public interface FingureLoginListener {
         void fingureQuick();
     }

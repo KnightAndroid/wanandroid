@@ -25,7 +25,7 @@ import androidx.annotation.RequiresApi;
  * @author created by knight
  * @organize wanandroid
  * @Date 2021/5/27 18:57
- * @descript:
+ * @descript:关于页面
  */
 @Route(path = RoutePathActivity.Mine.About_Pager)
 public final class AboutActivity extends BaseActivity<MineActivityAboutBinding, AboutPresenter, AboutModel> implements AboutContract.AboutView {
@@ -107,7 +107,7 @@ public final class AboutActivity extends BaseActivity<MineActivityAboutBinding, 
         public void getCheckUpdate(){
             if (mAppUpdateEntity != null && !TextUtils.isEmpty(mAppUpdateEntity.getVersionName())) {
                 if (!SystemUtils.getAppVersionName(AboutActivity.this).equals(mAppUpdateEntity.getVersionName())) {
-                    new UpdateAppDialogFragment(mAppUpdateEntity).show(getSupportFragmentManager(), "dialog_update");
+                    UpdateAppDialogFragment.newInstance(mAppUpdateEntity).showAllowingStateLoss(getSupportFragmentManager(), "dialog_update");
                 } else {
                     ToastUtils.show(R.string.mine_app_noupdate);
                 }

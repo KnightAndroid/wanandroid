@@ -1,5 +1,6 @@
 package com.knight.wanandroid.module_home.module_fragment;
 
+import android.os.Bundle;
 import android.view.Gravity;
 
 import com.knight.wanandroid.library_base.basefragment.BaseDBDialogFragment;
@@ -10,6 +11,7 @@ import com.knight.wanandroid.module_home.R;
 import com.knight.wanandroid.module_home.databinding.HomePusharticleFragmentBinding;
 import com.wanandroid.knight.library_database.entity.EveryDayPushEntity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,8 +40,12 @@ public class HomePushArticleFragment extends BaseDBDialogFragment<HomePusharticl
     private CardTransformer mTransformer;
 
 
-    public HomePushArticleFragment(List<EveryDayPushEntity> mEveryDayPushEntities){
-        this.mEveryDayPushEntities = mEveryDayPushEntities;
+    public static HomePushArticleFragment newInstance(List<EveryDayPushEntity> mEveryDayPushEntities){
+        HomePushArticleFragment homePushArticleFragment = new HomePushArticleFragment();
+        Bundle args = new Bundle();
+        args.putSerializable("articles",(Serializable) mEveryDayPushEntities);
+        homePushArticleFragment.setArguments(args);
+        return homePushArticleFragment;
     }
 
     @Override
@@ -49,6 +55,7 @@ public class HomePushArticleFragment extends BaseDBDialogFragment<HomePusharticl
 
     @Override
     protected void initView() {
+        mEveryDayPushEntities = (List<EveryDayPushEntity>)getArguments().getSerializable("articles");
         mDatabind.setClick(new ProxyClick());
         initViewPager();
     }

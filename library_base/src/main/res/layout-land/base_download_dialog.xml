@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <data>
+
+
+    </data>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/base_round"
+        android:layout_marginLeft="@dimen/base_dimen_40"
+        android:layout_marginRight="@dimen/base_dimen_40"
+        android:paddingBottom="@dimen/base_dimen_10">
+
+
+        <TextView
+            android:id="@+id/base_download_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="@dimen/base_dimen_10"
+            android:layout_marginLeft="@dimen/base_dimen_16"
+            android:text="@string/base_downloading_wait"
+            android:textColor="@color/base_color_title"
+            android:textSize="@dimen/base_dimen_16"/>
+
+
+        <TextView
+            android:id="@+id/base_tv_downlaod_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0%"
+            android:textSize="@dimen/base_dimen_14"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="@dimen/base_dimen_10"
+            android:layout_marginRight="@dimen/base_dimen_16"
+            android:textColor="@color/base_color_title"/>
+
+
+        <ProgressBar
+            android:id="@+id/base_download_progressbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            app:layout_constraintTop_toBottomOf="@id/base_download_title"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="@dimen/base_dimen_10"
+            android:layout_marginLeft="@dimen/base_dimen_16"
+            android:layout_marginRight="@dimen/base_dimen_16"
+            android:max="100"
+            android:progress="0"
+            android:progressDrawable="@drawable/base_download_progress"
+            />
+
+        <TextView
+            android:id="@+id/base_tv_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/base_download_progressbar"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="0B/10MB"
+            android:layout_marginRight="@dimen/base_dimen_16"
+            android:textSize="@dimen/base_dimen_14"
+            android:textColor="@color/base_color_title"
+            android:layout_marginTop="@dimen/base_dimen_10"
+            />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+</layout>

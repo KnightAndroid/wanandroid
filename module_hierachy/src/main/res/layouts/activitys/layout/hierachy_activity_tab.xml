@@ -22,7 +22,7 @@
 
         <net.lucode.hackware.magicindicator.MagicIndicator
             android:id="@+id/hierachy_indicator"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/base_dimen_40"
             android:background="@color/base_bg_normal_default"
             android:theme="@style/base_AppTheme.AppBarOverlay"

@@ -1,7 +1,6 @@
 package com.knight.wanandroid.library_base.baseactivity;
 
 import android.content.Context;
-import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -96,7 +95,7 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTheme(getActivityTheme());
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+      //  setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         createViewDataBinding();
         StatusBarUtils.transparentStatusBar(this);
         isDarkMode = CacheUtils.getNormalDark();
@@ -139,6 +138,12 @@ public abstract class BaseDBActivity<DB extends ViewDataBinding> extends AppComp
                 }
             }
         }
+//        else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+//            // View view = super.onCreateView(name, context, attrs);
+//            LandRootFrameLayout landRootFrameLayout = new LandRootFrameLayout(context, attrs);
+//            // view.setPadding(StatusBarUtils.getStatusBarHeight(context),0,0,0);
+//            return landRootFrameLayout;
+//        }
         return super.onCreateView(name, context, attrs);
     }
 

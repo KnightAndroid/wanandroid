@@ -6,7 +6,7 @@ import androidx.lifecycle.LifecycleOwner;
 
 /**
  * @author created by luguian
- * @organize 车童网
+ * @organize wanandroid
  * @Date 2021/8/30 17:01
  * @descript:
  */

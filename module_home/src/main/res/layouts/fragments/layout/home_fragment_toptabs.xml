@@ -120,7 +120,7 @@
                 <ImageView
                     android:id="@+id/home_toparticle_iv"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
+                    android:layout_height="280dp"
                     android:scaleType="fitXY" />
 
 

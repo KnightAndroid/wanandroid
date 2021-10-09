@@ -6,7 +6,7 @@
 
         <variable
             name="click"
-            type="com.knight.wanandroid.library_base.fragment.UpdateAppDialogFragment.ProxyClick"/>
+            type="com.knight.wanandroid.library_base.fragment.UpdateAppDialogFragment.ProxyClick" />
     </data>
 
     <RelativeLayout
@@ -18,18 +18,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/base_dimen_30"
-            android:layout_marginRight="@dimen/base_dimen_30"
-            >
-
-
+            android:layout_marginRight="@dimen/base_dimen_30">
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="190dp"
                 android:background="@drawable/base_updateapp_bottomround"
                 android:orientation="vertical"
-                android:layout_marginTop="190dp"
                 android:paddingBottom="@dimen/base_dimen_20">
 
 
@@ -63,9 +60,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/base_dimen_26"
                     android:text="2020-08-09"
-                    android:textSize="@dimen/base_dimen_14"
                     android:textColor="@color/base_second_title"
-                    />
+                    android:textSize="@dimen/base_dimen_14" />
 
 
                 <TextView
@@ -76,8 +72,8 @@
                     android:layout_marginTop="@dimen/base_dimen_15"
                     android:lineSpacingExtra="@dimen/base_dimen_10"
                     android:text="1.新增dfdf\n2.新增积分\n3.sdsdsdsd"
-                    android:textSize="@dimen/base_dimen_16"
-                    android:textColor="@color/base_second_title"/>
+                    android:textColor="@color/base_second_title"
+                    android:textSize="@dimen/base_dimen_16" />
 
                 <TextView
                     android:id="@+id/tv_confim_update"
@@ -88,13 +84,12 @@
                     android:layout_marginTop="@dimen/base_dimen_16"
                     android:layout_marginRight="@dimen/base_dimen_16"
                     android:gravity="center"
+                    android:onClick="@{()->click.downLoadApp()}"
                     android:paddingTop="@dimen/base_dimen_15"
                     android:paddingBottom="@dimen/base_dimen_15"
                     android:text="@string/base_update_now"
                     android:textColor="@android:color/white"
-                    android:textStyle="bold"
-                    android:onClick="@{()->click.downLoadApp()}"
-                    />
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <ImageView
@@ -112,7 +107,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/base_dimen_15"
             android:background="@drawable/base_icon_circleclose"
-            android:onClick="@{()->click.closeUpdateDialog()}"/>
+            android:onClick="@{()->click.closeUpdateDialog()}" />
     </RelativeLayout>
 </layout>
 

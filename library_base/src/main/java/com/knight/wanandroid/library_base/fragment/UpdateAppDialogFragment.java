@@ -16,6 +16,8 @@ import com.knight.wanandroid.library_base.entity.AppUpdateEntity;
 import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_util.ScreenUtils;
 
+import java.io.Serializable;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -32,10 +34,22 @@ public class UpdateAppDialogFragment extends BaseDBDialogFragment<BaseUpdateappD
     private AppUpdateEntity mAppUpdateEntity;
 
 
-    public UpdateAppDialogFragment(AppUpdateEntity mAppUpdateEntity){
-        this.mAppUpdateEntity = mAppUpdateEntity;
+    public UpdateAppDialogFragment(){
 
     }
+
+
+
+
+
+    public static UpdateAppDialogFragment newInstance(AppUpdateEntity mAppUpdateEntity){
+        UpdateAppDialogFragment homePushArticleFragment = new UpdateAppDialogFragment();
+        Bundle args = new Bundle();
+        args.putSerializable("updateEntity",(Serializable) mAppUpdateEntity);
+        homePushArticleFragment.setArguments(args);
+        return homePushArticleFragment;
+    }
+
     @Override
     protected int layoutId() {
         return R.layout.base_updateapp_dialog;
@@ -44,6 +58,7 @@ public class UpdateAppDialogFragment extends BaseDBDialogFragment<BaseUpdateappD
     @Override
     protected void initView() {
         mDatabind.setClick(new ProxyClick());
+        mAppUpdateEntity = (AppUpdateEntity)getArguments().getSerializable("updateEntity");
         mDatabind.tvAppupdateVersion.setText("v"+mAppUpdateEntity.getVersionName());
         mDatabind.tvAppupdateTime.setText(mAppUpdateEntity.getUpdateTime());
         mDatabind.tvAppupdateContent.setText(mAppUpdateEntity.getUpdateDesc());
@@ -94,7 +109,7 @@ public class UpdateAppDialogFragment extends BaseDBDialogFragment<BaseUpdateappD
     public class ProxyClick{
         public void downLoadApp(){
             dismiss();
-            new DownLoadDialogFragment(mAppUpdateEntity.getDownLoadLink()).show(getParentFragmentManager(), "dialog_downlaod");
+            DownLoadDialogFragment.newInstance(mAppUpdateEntity.getDownLoadLink()).showAllowingStateLoss(getParentFragmentManager(), "dialog_downlaod");
         }
 
         public void closeUpdateDialog(){

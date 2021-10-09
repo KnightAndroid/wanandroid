@@ -4,8 +4,9 @@
 
     <application>
         <activity android:name=".module_activity.WebActivity"
+            android:configChanges="keyboardHidden|keyboard|screenSize|locale|navigation|smallestScreenSize"
         android:hardwareAccelerated="true"
-        android:configChanges="orientation|screenSize"/>
+       />
         <activity android:name=".module_activity.WebNormalActivity"/>
         <activity android:name=".module_activity.WebTransitionActivity"/>
         <activity android:name=".module_activity.WebPreviewPhotoActivity"/>

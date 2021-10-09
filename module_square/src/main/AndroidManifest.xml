@@ -3,8 +3,10 @@
     package="com.knight.wanandroid.module_square">
 
     <application>
-        <activity android:name="com.knight.wanandroid.module_square.module_activity.SquareActivity"/>
-        <activity android:name=".module_activity.SquareShareArticleActivity"/>
+        <activity android:name="com.knight.wanandroid.module_square.module_activity.SquareActivity"
+            />
+        <activity android:name=".module_activity.SquareShareArticleActivity"
+            android:configChanges="keyboardHidden|keyboard|screenSize|locale|navigation|smallestScreenSize"/>
     </application>
 
 </manifest>

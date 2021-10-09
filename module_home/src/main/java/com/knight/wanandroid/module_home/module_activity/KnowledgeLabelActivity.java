@@ -50,6 +50,8 @@ public final class KnowledgeLabelActivity extends BaseDBActivity<HomeLabelActivi
      * 随意增删列表
      */
     private List<String> mDataList;
+
+    private List<String> mDefaultList = new ArrayList<>();
     /**
      *
      * 固定标签列表
@@ -84,7 +86,13 @@ public final class KnowledgeLabelActivity extends BaseDBActivity<HomeLabelActivi
         //固定标签
         fixDataList.add(mDataList.get(0));
         //把首个标签移除，其他就是可编辑标签
-        mDataList.remove(0);
+       // mDataList.remove(0);
+        for (int i = 0; i < mDataList.size();i++) {
+            if (i != 0) {
+                mDefaultList.add(mDataList.get(i));
+            }
+
+        }
         currentId = getIntent().getStringExtra("currentId");
         if (currentId == null) {
             currentId = "-1";
@@ -124,7 +132,7 @@ public final class KnowledgeLabelActivity extends BaseDBActivity<HomeLabelActivi
     @Override
     public void initData() {
         myTagInfos.addAll(addTags("fix", fixDataList, TagInfo.TYPE_TAG_SERVICE));
-        myTagInfos.addAll(addTags("default", mDataList, TagInfo.TYPE_TAG_USER));
+        myTagInfos.addAll(addTags("default", mDefaultList, TagInfo.TYPE_TAG_USER));
         mDatabind.homeKnowledgetTag.setTags(myTagInfos);
 
         mManager = new FlexboxLayoutManager(this);
@@ -290,5 +298,21 @@ public final class KnowledgeLabelActivity extends BaseDBActivity<HomeLabelActivi
             }
         }
     }
+
+ //   @Override
+//    protected void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        outState.putSerializable("list",(Serializable) mDataList);
+//    }
+//
+//    @Override
+//    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+//        Log.e(TAG, "MainActivity-onRestoreInstanceState");
+//        super.onRestoreInstanceState(savedInstanceState);
+//        mDataList = savedInstanceState.getString("extra_text");
+//        if (test != null) {
+//            edit.setText(test);
+//        }
+
 
 }

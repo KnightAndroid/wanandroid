@@ -26,7 +26,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  * @author created by knight
  * @organize wanandroid
  * @Date 2021/6/1 15:16
- * @descript:
+ * @descript:更新日志
  */
 @Route(path = RoutePathActivity.Mine.AppUpdate_Pager)
 public final class AppUpdateRecordActivity extends BaseActivity<MineActivityUpdaterecordBinding, AppUpdateRecordPresenter, AppUpdateRecordModel> implements AppUpdateRecordContract.AppUpdateRecordView,OnRefreshListener {

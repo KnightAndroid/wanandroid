@@ -24,7 +24,7 @@
     <string name="set_status_theme_tip">状态栏颜色伴随主题色变化</string>
     <string name="set_bg_color">页面背景颜色</string>
     <string name="set_textsize_color">字体颜色</string>
-    <string name="set_recover_themecolor">默认主题颜色</string>
+    <string name="set_recover_themecolor">使用默认主题色</string>
     <string name="set_recover_textcolor">默认字体颜色</string>
     <string name="set_recover_bgcolor">默认页面背景颜色</string>
     <string name="set_eyecare">护眼模式</string>

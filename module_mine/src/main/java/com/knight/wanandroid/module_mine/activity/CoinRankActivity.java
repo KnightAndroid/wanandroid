@@ -31,7 +31,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  * @author created by knight
  * @organize wanandroid
  * @Date 2021/4/23 17:25
- * @descript:
+ * @descript:积分排行榜
  */
 @Route(path = RoutePathActivity.Mine.UserCoinRank_Pager)
 public final class CoinRankActivity extends BaseActivity<MineActivityCoinrankBinding, CoinRankPresenter, CoinRankModel> implements CoinRankContract.CoinRankView, OnRefreshListener, OnLoadMoreListener {

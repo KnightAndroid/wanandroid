@@ -32,7 +32,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  * @author created by knight
  * @organize wanandroid
  * @Date 2021/5/11 16:57
- * @descript:
+ * @descript:我的收藏
  */
 @Route(path = RoutePathActivity.Mine.MyCollectArticle_Pager)
 public final class MyCollectArticleActivity extends BaseActivity<MineActivityCollectarticlesBinding, MyCollectArticlePresenter, MyCollectArticleModel> implements MyCollectArticleContract.MyCollectArticleView, OnRefreshListener, OnLoadMoreListener {

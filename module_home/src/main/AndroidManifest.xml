@@ -5,11 +5,20 @@
     <application>
         <activity android:name="com.knight.wanandroid.module_home.module_activity.HomeActivity">
         </activity>
-        <activity android:name=".module_activity.SearchActivity"/>
-        <activity android:name=".module_activity.SearchResultActivity" />
-        <activity android:name=".module_activity.HomeArticlesTabActivity"/>
-        <activity android:name=".module_activity.KnowledgeLabelActivity"/>
-        <activity android:name=".module_activity.AddKnowLedgeLabelActivity"/>
+        <activity android:name=".module_activity.SearchActivity"
+            android:configChanges="keyboardHidden|keyboard|screenSize|locale|navigation|smallestScreenSize"/>
+
+        <activity android:name=".module_activity.SearchResultActivity"
+            android:configChanges="keyboardHidden|keyboard|screenSize|locale|navigation|smallestScreenSize"/>
+
+        <activity android:name=".module_activity.HomeArticlesTabActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".module_activity.KnowledgeLabelActivity"
+            android:configChanges="keyboardHidden|keyboard|screenSize|locale|navigation|smallestScreenSize"/>
+
+        <activity android:name=".module_activity.AddKnowLedgeLabelActivity"
+            android:configChanges="keyboardHidden|keyboard|screenSize|locale|navigation|smallestScreenSize"/>
     </application>
 
 </manifest>

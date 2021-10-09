@@ -24,7 +24,9 @@ public class BiometricPromptDialog extends BaseDBDialogFragment<BiometricLoginDi
     public static final int STATE_SUCCEED = 4;
     private OnBiometricPromptDialogActionCallback mDialogActionCallback;
 
+    public BiometricPromptDialog() {
 
+    }
     public static BiometricPromptDialog newInstance() {
         BiometricPromptDialog dialog = new BiometricPromptDialog();
         return dialog;

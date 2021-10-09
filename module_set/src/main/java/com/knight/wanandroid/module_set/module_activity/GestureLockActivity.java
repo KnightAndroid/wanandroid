@@ -16,7 +16,7 @@ import com.knight.wanandroid.module_set.databinding.SetGesturelockActivityBindin
  * @author created by knight
  * @organize wanandroid
  * @Date 2021/9/22 14:49
- * @descript:
+ * @descript:设置手势密码
  */
 
 @Route(path = RoutePathActivity.Set.Set_GestureLock)

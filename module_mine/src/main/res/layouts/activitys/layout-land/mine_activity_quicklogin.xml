@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.knight.wanandroid.module_mine.activity.QuickLoginActivity">
+
+
+    <data>
+
+        <variable
+            name="click"
+            type="com.knight.wanandroid.module_mine.activity.QuickLoginActivity.ProxyClick" />
+    </data>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/base_dimen_30">
+
+
+            <include
+                android:id="@+id/include_quick_login_toolbar"
+                layout="@layout/base_include_toolbar"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/mine_tv_gesture_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base_dimen_20"
+                android:layout_marginTop="@dimen/base_dimen_4"
+                android:textColor="@color/base_color_title"
+                android:textSize="@dimen/base_dimen_18"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/include_quick_login_toolbar" />
+
+            <com.knight.wanandroid.library_widget.GestureLockView
+                android:id="@+id/mine_gesturelock"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginStart="@dimen/base_dimen_50"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="@dimen/base_dimen_50"
+                android:padding="0dp"
+                app:dot_color_pressed="#55aff4"
+                app:dot_pressed_radius="10dp"
+                app:dot_radius="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mine_tv_gesture_time"
+                app:line_width="12dp"
+                app:min_length="4"
+                app:row="3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/base_dimen_20"
+                android:onClick="@{()->click.showBottomDialog()}"
+                android:text="@string/mine_quicklogin_more"
+                android:textColor="@color/base_color_title"
+                android:textSize="@dimen/base_dimen_16"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mine_gesturelock" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

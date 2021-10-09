@@ -32,6 +32,12 @@ import androidx.annotation.Nullable;
  */
 public class WelcomePrivacyAgreeFragment extends BaseDBDialogFragment<WelcomePrivacyAgreeFragmentBinding> {
     SpannableStringBuilder spannable;
+
+
+    public WelcomePrivacyAgreeFragment() {
+
+    }
+
     @Override
     protected int layoutId() {
         return R.layout.welcome_privacy_agree_fragment;
@@ -96,6 +102,7 @@ public class WelcomePrivacyAgreeFragment extends BaseDBDialogFragment<WelcomePri
             BaseApp.getApp().agreeInitSdk();
             ARouter.getInstance().build(RoutePathActivity.Main.MainPager)
                     .navigation();
+            getActivity().finish();
             dismiss();
         }
 

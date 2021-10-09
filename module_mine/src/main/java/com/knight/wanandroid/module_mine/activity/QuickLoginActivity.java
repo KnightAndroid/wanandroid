@@ -31,7 +31,7 @@ import javax.crypto.IllegalBlockSizeException;
  * @author created by knight
  * @organize wanandroid
  * @Date 2021/9/22 17:16
- * @descript:快捷登录(包括指纹登录喝手势登录)
+ * @descript:快捷登录(包括指纹登录和手势登录)
  */
 @Route(path = RoutePathActivity.Mine.QuickLogin_Pager)
 public final class QuickLoginActivity extends BaseActivity<MineActivityQuickloginBinding, QuickPresenter, QuickLoginModel> implements QuickLoginContract.QuickLoginView,
@@ -111,7 +111,7 @@ public final class QuickLoginActivity extends BaseActivity<MineActivityQuicklogi
         public void showBottomDialog() {
             mQuickBottomFragment = new QuickBottomFragment();
             mQuickBottomFragment.setFingureLoginListener(QuickLoginActivity.this);
-            mQuickBottomFragment.show(getSupportFragmentManager(), "QuickBottomFragment");
+            mQuickBottomFragment.showAllowingStateLoss(getSupportFragmentManager(), "QuickBottomFragment");
         }
     }
 

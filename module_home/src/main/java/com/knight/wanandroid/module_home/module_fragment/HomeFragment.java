@@ -85,6 +85,7 @@ public final class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, Ho
     List<String> knowledgeLabelList;
 
 
+
     @Override
     public int layoutId(){
         return R.layout.home_fragment_home;
@@ -131,7 +132,8 @@ public final class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, Ho
         if (SystemUtils.getAppVersionCode(getActivity()) < appUpdateEntity.getVersionCode()) {
             //先判断本地版本和远端版本是否一致
             if (!appUpdateEntity.getVersionName().equals(SystemUtils.getAppVersionName(getActivity()))) {
-                new UpdateAppDialogFragment(appUpdateEntity).show(getParentFragmentManager(), "dialog_update");
+                UpdateAppDialogFragment.newInstance(appUpdateEntity).showAllowingStateLoss(getParentFragmentManager(), "dialog_update");
+
             }
         }
 
@@ -153,14 +155,16 @@ public final class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, Ho
                            pushDateEntity.setTime(everyDayPushArticlesEntity.getTime());
                            PushArticlesDateRepository.getInstance().updatePushArticlesDate(pushDateEntity);
                            //并且展示
-                           new HomePushArticleFragment(mEveryDayPushEntities).show(getParentFragmentManager(), "dialog_everydaypush");
+                           HomePushArticleFragment.newInstance(mEveryDayPushEntities).showAllowingStateLoss(getParentFragmentManager(), "dialog_everydaypush");
+
                        }
 
                     } else {
                         PushDateEntity pushDateEntity = new PushDateEntity();
                         pushDateEntity.setTime(everyDayPushArticlesEntity.getTime());
                         PushArticlesDateRepository.getInstance().insertPushArticlesDate(pushDateEntity);
-                        new HomePushArticleFragment(mEveryDayPushEntities).show(getParentFragmentManager(), "dialog_everydaypush");
+                        HomePushArticleFragment.newInstance(mEveryDayPushEntities).showAllowingStateLoss(getParentFragmentManager(), "dialog_everydaypush");
+
                     }
                 }
             });
@@ -241,7 +245,7 @@ public final class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, Ho
 
         public void showEveryDayPush(){
             if (mEveryDayPushEntities != null) {
-                new HomePushArticleFragment(mEveryDayPushEntities).show(getParentFragmentManager(), "dialog_everydaypush");
+                HomePushArticleFragment.newInstance(mEveryDayPushEntities).showAllowingStateLoss(getParentFragmentManager(), "dialog_everydaypush");
             }
             
         }
@@ -430,6 +434,8 @@ public final class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, Ho
     @Override
     public void onDestroy(){
         super.onDestroy();
+
+
         EventBus.getDefault().unregister(this);
     }
 

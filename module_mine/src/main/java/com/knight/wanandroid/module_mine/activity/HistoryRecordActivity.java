@@ -35,7 +35,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  * @author created by knight
  * @organize wanandroid
  * @Date 2021/6/8 11:30
- * @descript:
+ * @descript:阅读历史
  */
 
 @Route(path = RoutePathActivity.Mine.HistoryRecord_Pager)

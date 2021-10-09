@@ -12,16 +12,17 @@
 
     </data>
 
-
-    <com.knight.wanandroid.library_widget.ReboundLayout
+<!--    com.knight.wanandroid.library_widget.ReboundLayout-->
+    <ScrollView
         android:id="@+id/mine_reboundlayout_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:damping="3">
+       >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+           >
 
 
             <ImageView
@@ -147,7 +148,8 @@
                             android:layout_height="wrap_content"
                             android:text="@string/mine_me_points"
                             android:textColor="@android:color/white"
-                            android:textSize="@dimen/base_dimen_text_size_18" />
+                            android:textSize="@dimen/base_dimen_text_size_18"
+                            />
 
                         <TextView
                             android:id="@+id/mine_tv_points"
@@ -298,7 +300,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </com.knight.wanandroid.library_widget.ReboundLayout>
+    </ScrollView>
 
 
 </layout>

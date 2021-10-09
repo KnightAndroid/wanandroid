@@ -25,7 +25,7 @@ import org.greenrobot.eventbus.EventBus;
  * @author created by knight
  * @organize wanandroid
  * @Date 2021/5/7 16:02
- * @descript:
+ * @descript:文章分享
  */
 
 @Route(path = RoutePathActivity.Square.ShareArticle)

@@ -2,11 +2,10 @@ package com.knight.wanandroid.library_util;
 
 import android.content.Context;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 
 /**
  * @author created by luguian
- * @organize 车童网
+ * @organize wanandroid
  * @Date 2021/8/23 13:44
  * @descript:字体大小工具类
  */

@@ -3,7 +3,8 @@
     package="com.knight.wanandroid.module_wechat">
 
     <application>
-        <activity android:name=".module_activity.WechatArticlesActivity"/>
+        <activity android:name=".module_activity.WechatArticlesActivity"
+            android:configChanges="keyboardHidden|keyboard|screenSize|locale|navigation|smallestScreenSize"/>
     </application>
 
 </manifest>
