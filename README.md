@@ -32,6 +32,7 @@
 - 多语言切换
 - 字体大小
 - 指纹解锁
+- 横屏适配
 - 手势密码解锁
 - 内存泄漏检测
 
@@ -66,6 +67,11 @@
 ### 多语言
 | ![english_01.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/english_01.jpg) | ![english_02.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/english_02.jpg) | ![english_03.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/english_03.jpg) |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+
+### 横屏模式
+| ![landscape_home.png](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_landscape_home.png) | ![landscape_project.png](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_landscape_project.png) | ![landscape_set.png](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_landscape_set.png) |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| ![landscape_square.png](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_landscape_square.png) | ![landscape_wechat.png](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_landscape_wechat.png) |
 
 ## 主要GIF展示
 | ![1.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_01.gif) | ![2.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_02.gif) | ![3.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_03.gif) |
@@ -108,6 +114,12 @@
 
 
 ## 更新日志
+### 1.1.5(9)
+-  wanandroid 第九版发布
+-  适配横屏模式
+-  修复一些问题
+-  发布时间：2021/10/12
+
 ### 1.1.4(8)
 -  wanandroid 第八版发布
 -  集成手势图案识别，抽离指纹解锁
