@@ -10,8 +10,6 @@ import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersisto
 import com.kingja.loadsir.core.LoadSir;
 import com.knight.wanandroid.library_aop.loginintercept.ILoginFilter;
 import com.knight.wanandroid.library_aop.loginintercept.LoginManager;
-import com.knight.wanandroid.library_base.AppConfig;
-import com.knight.wanandroid.library_base.BaseApp;
 import com.knight.wanandroid.library_base.BuildConfig;
 import com.knight.wanandroid.library_base.R;
 import com.knight.wanandroid.library_base.entity.UserInfoEntity;
@@ -19,6 +17,7 @@ import com.knight.wanandroid.library_base.interceptor.PermissionInterceptor;
 import com.knight.wanandroid.library_base.loadsir.EmptyCallBack;
 import com.knight.wanandroid.library_base.loadsir.ErrorCallBack;
 import com.knight.wanandroid.library_base.loadsir.LoadCallBack;
+import com.knight.wanandroid.library_base.util.AppInitTools;
 import com.knight.wanandroid.library_common.constant.MMkvConstants;
 import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_network.HttpConfig;
@@ -119,21 +118,7 @@ public class ModuleConfig {
      * @param application
      */
     public void initModuleAfter(@Nullable Application application){
-        for(String moduleApp: AppConfig.moduleApps){
-            try {
-                Class clazz = Class.forName(moduleApp);
-                BaseApp baseApp = (BaseApp) clazz.newInstance();
-                //反射调用其方法
-                baseApp.initModuleApp(application);
-            } catch (ClassNotFoundException e){
-                e.printStackTrace();
-            } catch (IllegalAccessException e){
-                e.printStackTrace();
-            } catch (InstantiationException e){
-                e.printStackTrace();
-            }
-        }
-
+        AppInitTools.getInstance().initAllModuelApplication(application);
     }
 
     private boolean isDebug(){

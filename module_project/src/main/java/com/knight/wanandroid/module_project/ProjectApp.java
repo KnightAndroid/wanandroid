@@ -4,6 +4,9 @@ import android.app.Application;
 
 import com.knight.wanandroid.library_base.BaseApp;
 import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
+import com.knight.wanandroid.library_base.listener.AppInit;
+
+import androidx.annotation.NonNull;
 
 /**
  * @author created by knight
@@ -11,12 +14,10 @@ import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
  * @Date 2021/4/26 19:51
  * @descript:
  */
-public final class ProjectApp extends BaseApp {
+public final class ProjectApp extends BaseApp implements AppInit {
     @Override
     public void onCreate() {
         super.onCreate();
-        initModuleApp(this);
-        initModuleData(this);
     }
 
     @Override
@@ -42,5 +43,11 @@ public final class ProjectApp extends BaseApp {
     @Override
     public void initModuleData(Application application) {
 
+    }
+
+    @Override
+    public void applicationInit(@NonNull Application application) {
+        initModuleApp(this);
+        initModuleData(this);
     }
 }

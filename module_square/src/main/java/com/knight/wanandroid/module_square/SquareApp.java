@@ -3,6 +3,9 @@ package com.knight.wanandroid.module_square;
 import android.app.Application;
 import com.knight.wanandroid.library_base.BaseApp;
 import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
+import com.knight.wanandroid.library_base.listener.AppInit;
+
+import androidx.annotation.NonNull;
 
 /**
  * @author created by knight
@@ -10,13 +13,11 @@ import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
  * @Date 2021/4/1 19:42
  * @descript:
  */
-public final class SquareApp extends BaseApp {
+public final class SquareApp extends BaseApp implements AppInit {
 
     @Override
     public void onCreate(){
         super.onCreate();
-        initModuleApp(this);
-        initModuleData(this);
     }
 
     @Override
@@ -43,5 +44,11 @@ public final class SquareApp extends BaseApp {
     @Override
     public void initModuleData(Application application) {
 
+    }
+
+    @Override
+    public void applicationInit(@NonNull Application application) {
+        initModuleApp(this);
+        initModuleData(this);
     }
 }

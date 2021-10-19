@@ -8,16 +8,6 @@ package com.knight.wanandroid.library_base;
  */
 public final class AppConfig {
 
-    private static final String HomeApp = "com.knight.wanandroid.module_home.HomeApp";
-    private static final String SquareApp = "com.knight.wanandroid.module_square.SquareApp";
-    private static final String ProjectApp = "com.knight.wanandroid.module_project.ProjectApp";
-    private static final String NavigateApp = "com.knight.wanandroid.module_hierachy.HierachyApp";
-    private static final String MineApp = "com.knight.wanandroid.module_mine.MineApp";
-    private static final String WebApp = "com.knight.wanandroid.module_web.WebApp";
-    private static final String WechatApp = "com.knight.wanandroid.module_wechat.WechatApp";
-    private static final String MessageApp = "com.knight.wanandroid.module_message.MessageApp";
-    private static final String SetApp = "com.knight.wanandroid.module_set.SetApp";
-    private static final String WelcomeApp = "com.knight.wanandroid.module_welcome.WelcomeApp";
     /**
      *
      * 类型：文字文章
@@ -55,17 +45,6 @@ public final class AppConfig {
     public static boolean gray = false;
 
 
-    public static String[] moduleApps = {
-            HomeApp,
-            SquareApp,
-            ProjectApp,
-            NavigateApp,
-            MineApp,
-            WebApp,
-            WechatApp,
-            MessageApp,
-            SetApp,
-            WelcomeApp
-    };
+
 
 }

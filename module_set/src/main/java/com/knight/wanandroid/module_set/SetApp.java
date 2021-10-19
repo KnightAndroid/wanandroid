@@ -1,9 +1,12 @@
 package com.knight.wanandroid.module_set;
 
 import android.app.Application;
+
 import com.knight.wanandroid.library_base.BaseApp;
 import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
-import com.knight.wanandroid.library_util.LogUtils;
+import com.knight.wanandroid.library_base.listener.AppInit;
+
+import androidx.annotation.NonNull;
 
 /**
  * @author created by knight
@@ -11,19 +14,15 @@ import com.knight.wanandroid.library_util.LogUtils;
  * @Date 2021/7/16 10:15
  * @descript:
  */
-public final class SetApp extends BaseApp {
+public final class SetApp extends BaseApp implements AppInit {
 
     @Override
     public void onCreate() {
         super.onCreate();
-        LogUtils.d("1111进来进入SetApp");
-        initModuleApp(this);
-        initModuleData(this);
     }
 
     @Override
     protected void initSafeSDK() {
-        LogUtils.d("1111进来初始化安全sdkSetApp");
         if ("true".equals(BuildConfig.isAloneApp)) {
             ModuleConfig.getInstance().initSafeSdk(this);
         }
@@ -31,7 +30,6 @@ public final class SetApp extends BaseApp {
 
     @Override
     protected void initDangerousSDK() {
-        LogUtils.d("1111进来初始化危险sdkSetApp");
         if ("true".equals(BuildConfig.isAloneApp)) {
             ModuleConfig.getInstance().initDangerousSDK(this);
         }
@@ -46,5 +44,11 @@ public final class SetApp extends BaseApp {
     @Override
     public void initModuleData(Application application) {
 
+    }
+
+    @Override
+    public void applicationInit(@NonNull Application application) {
+        initModuleApp(this);
+        initModuleData(this);
     }
 }
