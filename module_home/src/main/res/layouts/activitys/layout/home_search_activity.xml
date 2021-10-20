@@ -63,8 +63,8 @@
                         android:paddingLeft="@dimen/base_dimen_10"
                         android:paddingRight="@dimen/base_dimen_10"
                         android:singleLine="true"
-                        android:textColor="@color/home_color333333"
-                        android:textColorHint="@color/home_color999999"
+                        android:textColor="@color/base_color_title"
+                        android:textColorHint="@color/base_second_title"
                         android:textCursorDrawable="@drawable/base_textcursorcolor"
                         android:textSize="@dimen/base_dimen_text_size_12"
 

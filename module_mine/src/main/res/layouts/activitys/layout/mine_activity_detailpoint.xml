@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.knight.wanandroid.module_mine.activity.MyPointDetailActivity">
@@ -12,24 +11,19 @@
     </data>
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+        <include
+            android:id="@+id/include_point_toolbar"
+            layout="@layout/base_include_toolbar" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <include
-                android:id="@+id/include_point_toolbar"
-                layout="@layout/base_include_toolbar"/>
-
-            <include
-                android:id="@+id/include_mine_detailpoint"
-                layout="@layout/base_layout_recycleview"/>
-        </LinearLayout>
-
-
-
+        <include
+            android:id="@+id/include_mine_detailpoint"
+            layout="@layout/base_layout_recycleview" />
+    </LinearLayout>
 
 
 </layout>

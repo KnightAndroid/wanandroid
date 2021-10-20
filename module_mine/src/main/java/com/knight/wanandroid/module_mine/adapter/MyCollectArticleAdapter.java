@@ -38,7 +38,7 @@ public final class MyCollectArticleAdapter extends BaseMultiItemQuickAdapter<MyC
                 if (!TextUtils.isEmpty(myCollectArticleEntity.getAuthor())) {
                     baseViewHolder.setText(R.id.base_item_articleauthor, myCollectArticleEntity.getAuthor());
                 } else {
-                    baseViewHolder.setText(R.id.base_item_articleauthor, "");
+                    baseViewHolder.setText(R.id.base_item_articleauthor, "不详");
                 }
                 //一级分类
                 if (!TextUtils.isEmpty(myCollectArticleEntity.getChapterName())) {
@@ -81,7 +81,7 @@ public final class MyCollectArticleAdapter extends BaseMultiItemQuickAdapter<MyC
                 if (!TextUtils.isEmpty(myCollectArticleEntity.getAuthor())) {
                     baseViewHolder.setText(R.id.base_item_tv_author, myCollectArticleEntity.getAuthor());
                 } else {
-                    baseViewHolder.setText(R.id.base_item_tv_author, "");
+                    baseViewHolder.setText(R.id.base_item_tv_author, "不详");
                 }
 
                 //时间赋值

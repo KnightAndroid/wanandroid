@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="base_color_title">#D3D3D3</color>
-    <color name="base_bg_activity">#303030</color>
+    <color name="base_bg_activity">#000000</color>
     <color name="base_bg_normal_default">#303030</color>
     <color name="base_second_title">#666666</color>
     <color name="base_bg_card">#666666</color>
     <color name="base_bg_me_text">#999999</color>
     <color name="base_navigate_title">#303030</color>
-
+    <color name="base_item_bottom_view">#000000</color>
 </resources>

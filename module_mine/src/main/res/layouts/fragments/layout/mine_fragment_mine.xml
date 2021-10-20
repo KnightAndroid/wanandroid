@@ -12,7 +12,7 @@
 
     </data>
 
-<!--    com.knight.wanandroid.library_widget.ReboundLayout-->
+
     <ScrollView
         android:id="@+id/mine_reboundlayout_root"
         android:layout_width="match_parent"

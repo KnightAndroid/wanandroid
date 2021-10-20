@@ -5,7 +5,9 @@ import android.graphics.Color;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
+import com.knight.wanandroid.library_common.provider.ApplicationProvider;
 import com.knight.wanandroid.library_common.utils.CacheUtils;
+import com.knight.wanandroid.library_util.imageengine.ImageLoader;
 import com.knight.wanandroid.module_mine.R;
 import com.knight.wanandroid.module_mine.entity.CoinRankEntity;
 
@@ -56,6 +58,19 @@ public final class UserRankCoinAdapter extends BaseQuickAdapter<CoinRankEntity, 
                 baseViewHolder.setTextColor(R.id.mine_tv_rank,Color.parseColor("#333333"));
                 baseViewHolder.setTextColor(R.id.mine_tv_rankusername,Color.parseColor("#333333"));
             }
+        }
+
+        if ("1".equals(coinRankEntity.getRank())) {
+            baseViewHolder.setVisible(R.id.mine_iv_rank,true);
+            ImageLoader.loadLocalPhoto(ApplicationProvider.getInstance().getApplication(),R.drawable.mine_first_points,baseViewHolder.getView(R.id.mine_iv_rank));
+        } else if ("2".equals(coinRankEntity.getRank())) {
+            baseViewHolder.setVisible(R.id.mine_iv_rank,true);
+            ImageLoader.loadLocalPhoto(ApplicationProvider.getInstance().getApplication(),R.drawable.mine_second_points,baseViewHolder.getView(R.id.mine_iv_rank));
+        } else if ("3".equals(coinRankEntity.getRank())) {
+            baseViewHolder.setVisible(R.id.mine_iv_rank,true);
+            ImageLoader.loadLocalPhoto(ApplicationProvider.getInstance().getApplication(),R.drawable.mine_third_points,baseViewHolder.getView(R.id.mine_iv_rank));
+        } else {
+            baseViewHolder.setVisible(R.id.mine_iv_rank,false);
         }
         baseViewHolder.setTextColor(R.id.mine_tv_rankcoincount,CacheUtils.getThemeColor());
     }

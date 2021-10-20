@@ -15,7 +15,8 @@
             android:id="@+id/home_rl_message"
             android:layout_width="match_parent"
             android:layout_height="@dimen/base_dimen_40"
-            android:visibility="gone">
+            android:visibility="gone"
+            android:background="@color/base_bg_normal_default">
 
             <ImageView
                 android:id="@+id/home_iv_message"
@@ -50,6 +51,7 @@
             android:id="@+id/home_top_article_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/base_bg_normal_default"
             />
 
         <com.youth.banner.Banner
@@ -65,10 +67,13 @@
             android:id="@+id/home_rv_official_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/base_dimen_10"
-
-
+            android:background="@color/base_bg_normal_default"
             />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_8"
+            android:background="@color/base_item_bottom_view"/>
 
     </LinearLayout>
 

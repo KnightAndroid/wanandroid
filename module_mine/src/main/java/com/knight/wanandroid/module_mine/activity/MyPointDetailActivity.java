@@ -3,7 +3,7 @@ package com.knight.wanandroid.module_mine.activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -11,11 +11,13 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.knight.wanandroid.library_base.baseactivity.BaseActivity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_util.toast.ToastUtils;
+import com.knight.wanandroid.library_widget.CountNumberView;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.module_mine.R;
-import com.knight.wanandroid.module_mine.databinding.MineActivityDetailpointBinding;
 import com.knight.wanandroid.module_mine.adapter.UserDetailCoinAdapter;
 import com.knight.wanandroid.module_mine.contract.UserDetailCoinContract;
+import com.knight.wanandroid.module_mine.databinding.MineActivityDetailpointBinding;
+import com.knight.wanandroid.module_mine.dialog.PointRuleDialog;
 import com.knight.wanandroid.module_mine.entity.UserDetailCoinListEntity;
 import com.knight.wanandroid.module_mine.model.UserDetailCoinModel;
 import com.knight.wanandroid.module_mine.presenter.UserDetailCoinPresenter;
@@ -45,7 +47,8 @@ public final class MyPointDetailActivity extends BaseActivity<MineActivityDetail
     private UserDetailCoinAdapter mUserDetailCoinAdapter;
     private int page = 1;
     private View userInfoCoinHeadView;
-    private TextView tv_head_detailpoint;
+    private LinearLayout mine_ll_point_rule;
+    private CountNumberView tv_head_detailpoint;
     @Override
     public int layoutId() {
         return R.layout.mine_activity_detailpoint;
@@ -64,9 +67,13 @@ public final class MyPointDetailActivity extends BaseActivity<MineActivityDetail
         mUserDetailCoinAdapter = new UserDetailCoinAdapter(new ArrayList<>());
         SetInitCustomView.initSwipeRecycleview(mDatabind.includeMineDetailpoint.baseBodyRv,new LinearLayoutManager(this),mUserDetailCoinAdapter,true);
         userInfoCoinHeadView = LayoutInflater.from(this).inflate(R.layout.mine_detailpoint_head,null);
-        tv_head_detailpoint = ((TextView)userInfoCoinHeadView.findViewById(R.id.tv_head_detailpoint));
+        tv_head_detailpoint = ((CountNumberView)userInfoCoinHeadView.findViewById(R.id.tv_head_detailpoint));
+        mine_ll_point_rule = (LinearLayout)userInfoCoinHeadView.findViewById(R.id.mine_ll_point_rule);
+        mine_ll_point_rule.setOnClickListener(v->{
+            PointRuleDialog.newInstance().showAllowingStateLoss(getSupportFragmentManager(),"ruleDialog");
+        });
         tv_head_detailpoint.setTextColor(themeColor);
-        tv_head_detailpoint.setText(userCoin);
+        tv_head_detailpoint.showNumberWithAnimation(Float.valueOf(userCoin),CountNumberView.INTREGEX);
         mDatabind.includeMineDetailpoint.baseFreshlayout.setOnRefreshListener(this);
         mDatabind.includeMineDetailpoint.baseFreshlayout.setOnLoadMoreListener(this);
         showLoading(mDatabind.includeMineDetailpoint.baseFreshlayout);

@@ -17,13 +17,11 @@
         android:id="@+id/mine_reboundlayout_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="@dimen/base_dimen_70"
-        >
+        android:paddingBottom="@dimen/base_dimen_70">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="match_parent">
 
 
             <ImageView

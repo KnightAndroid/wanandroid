@@ -1,114 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="@dimen/base_dimen_16"
-    android:layout_marginTop="@dimen/base_dimen_8"
-    android:layout_marginRight="@dimen/base_dimen_16"
-    android:layout_marginBottom="@dimen/base_dimen_6"
-    app:cardCornerRadius="@dimen/base_dimen_6"
+    android:background="@color/base_bg_normal_default"
+    android:foreground="?android:attr/selectableItemBackground"
     tools:context="com.knight.wanandroid.module_mine.adapter.MyShareArticleAdapter">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/mine_item_articleauthor"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/base_dimen_8">
+        android:layout_marginLeft="@dimen/base_dimen_16"
+        android:layout_marginTop="@dimen/base_dimen_16"
+        android:paddingRight="@dimen/base_dimen_8"
+        android:text="232323"
+        android:textColor="@color/base_color_999999"
+        android:textSize="@dimen/base_dimen_text_size_12"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/mine_item_articleauthor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/base_dimen_8"
-            android:layout_marginTop="@dimen/base_dimen_8"
-            android:paddingRight="@dimen/base_dimen_8"
-            android:text="232323"
-            android:textColor="@color/base_color_999999"
-            android:textSize="@dimen/base_dimen_text_size_12"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/mine_item_articlenew"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/base_dimen_2"
-            android:background="@drawable/base_article_new"
-            android:text="新"
-            android:textColor="@android:color/holo_red_light"
-            android:textSize="@dimen/base_dimen_text_size_12"
-            app:layout_constraintBottom_toBottomOf="@+id/mine_item_articleauthor"
-            app:layout_constraintLeft_toRightOf="@+id/mine_item_articleauthor"
-            app:layout_constraintTop_toTopOf="@+id/mine_item_articleauthor" />
+    <TextView
+        android:id="@+id/mine_item_articlenew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/base_dimen_2"
+        android:background="@drawable/base_article_new"
+        android:text="新"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="@dimen/base_dimen_text_size_12"
+        app:layout_constraintBottom_toBottomOf="@+id/mine_item_articleauthor"
+        app:layout_constraintLeft_toRightOf="@+id/mine_item_articleauthor"
+        app:layout_constraintTop_toTopOf="@+id/mine_item_articleauthor" />
 
 
-        <TextView
-            android:id="@+id/mine_item_articledata"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/base_dimen_8"
-            android:text="一天前"
-            android:textColor="@color/base_color_999999"
-            android:textSize="@dimen/base_dimen_text_size_12"
-            app:layout_constraintBottom_toBottomOf="@id/mine_item_articleauthor"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/mine_item_articleauthor" />
+    <TextView
+        android:id="@+id/mine_item_articledata"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/base_dimen_16"
+        android:text="一天前"
+        android:textColor="@color/base_color_999999"
+        android:textSize="@dimen/base_dimen_text_size_12"
+        app:layout_constraintBottom_toBottomOf="@id/mine_item_articleauthor"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/mine_item_articleauthor" />
 
-        <TextView
-            android:id="@+id/mine_tv_articletitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/base_dimen_8"
-            android:layout_marginTop="@dimen/base_dimen_12"
-            android:layout_marginRight="@dimen/base_dimen_8"
-            android:text="这是标题标题这是标题标题这是标题标题这是标题标题这是标题标题"
-            android:textColor="@color/base_color_title"
-            android:textSize="@dimen/base_dimen_text_size_16"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/mine_item_articleauthor" />
-
-
-        <TextView
-            android:id="@+id/mine_item_articlechaptername"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/base_dimen_12"
-            android:background="@drawable/base_articlechapter_type"
-            android:paddingLeft="@dimen/base_dimen_4"
-            android:paddingTop="@dimen/base_dimen_2"
-            android:paddingRight="@dimen/base_dimen_4"
-            android:paddingBottom="@dimen/base_dimen_2"
-            android:text="广泛他"
-            android:textColor="@color/base_color_theme"
-            android:textSize="@dimen/base_dimen_text_size_12"
-            app:layout_constraintLeft_toLeftOf="@id/mine_item_articleauthor"
-            app:layout_constraintTop_toBottomOf="@id/mine_tv_articletitle" />
+    <TextView
+        android:id="@+id/mine_tv_articletitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/base_dimen_16"
+        android:layout_marginTop="@dimen/base_dimen_10"
+        android:layout_marginRight="@dimen/base_dimen_16"
+        android:text="这是标题标题这是标题标题这是标题标题这是标题标题这是标题标题"
+        android:textColor="@color/base_color_title"
+        android:textSize="@dimen/base_dimen_text_size_16"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mine_item_articleauthor" />
 
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/base_dimen_8"
-            android:gravity="center"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent">
-
-            <ImageView
-                android:id="@+id/mine_iv_delete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/base_dimen_8"
-                android:background="@drawable/mine_icon_delete" />
-
-
-        </LinearLayout>
+    <TextView
+        android:id="@+id/mine_item_articlechaptername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/base_dimen_10"
+        android:background="@drawable/base_articlechapter_type"
+        android:paddingLeft="@dimen/base_dimen_4"
+        android:paddingTop="@dimen/base_dimen_2"
+        android:paddingRight="@dimen/base_dimen_4"
+        android:paddingBottom="@dimen/base_dimen_2"
+        android:text="广泛他"
+        android:textColor="@color/base_color_theme"
+        android:textSize="@dimen/base_dimen_text_size_12"
+        app:layout_constraintLeft_toLeftOf="@id/mine_item_articleauthor"
+        app:layout_constraintTop_toBottomOf="@id/mine_tv_articletitle" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/mine_iv_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/base_dimen_16"
+        android:background="@drawable/mine_icon_delete"
+        app:layout_constraintBottom_toBottomOf="@id/mine_item_articlechaptername"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/mine_item_articlechaptername" />
 
 
-</androidx.cardview.widget.CardView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_dimen_8"
+        android:layout_marginTop="@dimen/base_dimen_16"
+        android:background="@color/base_item_bottom_view"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mine_iv_delete" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+

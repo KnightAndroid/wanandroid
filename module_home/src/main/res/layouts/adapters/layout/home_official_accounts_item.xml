@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.knight.wanandroid.module_home.module_adapter.OfficialAccountAdapter"
     android:layout_width="94dp"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/base_dimen_10">
+    android:layout_marginTop="@dimen/base_dimen_10"
+    android:layout_marginBottom="@dimen/base_dimen_10"
+    tools:context="com.knight.wanandroid.module_home.module_adapter.OfficialAccountAdapter">
 
 
     <RelativeLayout
@@ -13,6 +13,7 @@
         android:layout_width="52dp"
         android:layout_height="52dp"
         android:layout_centerHorizontal="true">
+
         <ImageView
             android:id="@+id/home_iv_official_account"
             android:layout_width="52dp"
@@ -25,25 +26,23 @@
             android:id="@+id/tv_head_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/base_dimen_text_size_16"
-            android:textColor="@color/home_white"
             android:layout_centerInParent="true"
-            android:textStyle="bold"/>
+            android:textColor="@color/home_white"
+            android:textSize="@dimen/base_dimen_text_size_16"
+            android:textStyle="bold" />
 
     </RelativeLayout>
-
 
 
     <TextView
         android:id="@+id/home_tv_officialaccount_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/base_dimen_text_size_14"
-        android:textColor="@color/base_color_title"
         android:layout_below="@id/home_rl_head"
-        android:layout_marginTop="@dimen/base_dimen_5"
         android:layout_centerHorizontal="true"
-        />
+        android:layout_marginTop="@dimen/base_dimen_5"
+        android:textColor="@color/base_color_title"
+        android:textSize="@dimen/base_dimen_text_size_14" />
 
 
 </RelativeLayout>
