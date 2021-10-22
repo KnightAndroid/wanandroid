@@ -7,12 +7,14 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
+import com.chad.library.adapter.base.listener.OnItemLongClickListener;
 import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
 import com.knight.wanandroid.library_base.basefragment.BaseFragment;
 import com.knight.wanandroid.library_base.util.ARouterUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
+import com.knight.wanandroid.module_feedback.dialog.FeedBackDialog;
 import com.knight.wanandroid.module_home.R;
 import com.knight.wanandroid.module_home.databinding.HomeFragmentArticleBinding;
 import com.knight.wanandroid.module_home.module_adapter.HomeArticleAdapter;
@@ -91,6 +93,15 @@ public final class HomeArticlesFragment extends BaseFragment<HomeFragmentArticle
                     }
 
                 }
+            }
+        });
+
+        //反馈文章链接错误
+        mHomeArticleAdapter.setOnItemLongClickListener(new OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+                FeedBackDialog.newInstance(mHomeArticleAdapter.getData().get(position).getId()).showAllowingStateLoss(getParentFragmentManager(),"feedbackDialog");
+                return false;
             }
         });
 

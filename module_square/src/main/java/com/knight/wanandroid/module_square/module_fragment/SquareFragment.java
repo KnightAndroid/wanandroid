@@ -13,6 +13,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
+import com.chad.library.adapter.base.listener.OnItemLongClickListener;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
@@ -35,6 +36,7 @@ import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.library_widget.lottie.RightLottieAnimation;
 import com.knight.wanandroid.library_widget.lottie.RightLottieListener;
+import com.knight.wanandroid.module_feedback.dialog.FeedBackDialog;
 import com.knight.wanandroid.module_square.R;
 import com.knight.wanandroid.module_square.databinding.SquareFragmentSquareBinding;
 import com.knight.wanandroid.module_square.module_activity.SquareShareArticleActivity;
@@ -222,6 +224,14 @@ public final class SquareFragment extends BaseFragment<SquareFragmentSquareBindi
                         mPresenter.requestCollectArticle(mSquareArticleAdapter.getData().get(position).getId(),false,position);
                     }
                 }
+            }
+        });
+
+        mSquareArticleAdapter.setOnItemLongClickListener(new OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+                FeedBackDialog.newInstance(mSquareArticleAdapter.getData().get(position).getId()).showAllowingStateLoss(getParentFragmentManager(),"feedbackDialog");
+                return false;
             }
         });
 

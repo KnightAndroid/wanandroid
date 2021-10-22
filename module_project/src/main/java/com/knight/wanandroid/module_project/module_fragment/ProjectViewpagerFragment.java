@@ -8,6 +8,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
+import com.chad.library.adapter.base.listener.OnItemLongClickListener;
 import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
 import com.knight.wanandroid.library_base.basefragment.BaseFragment;
 import com.knight.wanandroid.library_base.route.RoutePathFragment;
@@ -17,6 +18,7 @@ import com.knight.wanandroid.library_common.utils.ColorUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
+import com.knight.wanandroid.module_feedback.dialog.FeedBackDialog;
 import com.knight.wanandroid.module_project.R;
 import com.knight.wanandroid.module_project.databinding.ProjectViewpagerFragmentBinding;
 import com.knight.wanandroid.module_project.module_adapter.ProjectArticleAdapter;
@@ -199,6 +201,14 @@ public final class ProjectViewpagerFragment extends BaseFragment<ProjectViewpage
                         mProjectArticleAdapter.getData().get(position).getDesc(),
                         mProjectArticleAdapter.getData().get(position).getChapterName(),
                         TextUtils.isEmpty(mProjectArticleAdapter.getData().get(position).getAuthor()) ? mProjectArticleAdapter.getData().get(position).getShareUser() : mProjectArticleAdapter.getData().get(position).getAuthor());
+            }
+        });
+
+        mProjectArticleAdapter.setOnItemLongClickListener(new OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+                FeedBackDialog.newInstance(mProjectArticleAdapter.getData().get(position).getId()).showAllowingStateLoss(getParentFragmentManager(),"feedbackDialog");
+                return false;
             }
         });
     }

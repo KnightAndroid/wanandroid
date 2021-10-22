@@ -7,6 +7,7 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
+import com.chad.library.adapter.base.listener.OnItemLongClickListener;
 import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
 import com.knight.wanandroid.library_base.basefragment.BaseFragment;
 import com.knight.wanandroid.library_base.util.ARouterUtils;
@@ -14,6 +15,7 @@ import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_common.utils.ColorUtils;
 import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
+import com.knight.wanandroid.module_feedback.dialog.FeedBackDialog;
 import com.knight.wanandroid.module_wechat.R;
 import com.knight.wanandroid.module_wechat.databinding.WechatOfficialaccountViewpagerBinding;
 import com.knight.wanandroid.module_wechat.module_adapter.WechatArticleAdapter;
@@ -179,6 +181,16 @@ public final class WechatArticleFragment extends BaseFragment<WechatOfficialacco
                         TextUtils.isEmpty(mWechatArticleAdapter.getData().get(position).getAuthor())? mWechatArticleAdapter.getData().get(position).getShareUser() : mWechatArticleAdapter.getData().get(position).getAuthor());
             }
         });
+
+        mWechatArticleAdapter.setOnItemLongClickListener(new OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+                FeedBackDialog.newInstance(mWechatArticleAdapter.getData().get(position).getId()).showAllowingStateLoss(getParentFragmentManager(),"feedbackDialog");
+                return false;
+            }
+        });
+
+
     }
 
     private void setData(WechatArticleListEntity result){

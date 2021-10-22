@@ -12,7 +12,9 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
+import com.chad.library.adapter.base.listener.OnItemChildLongClickListener;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
+import com.chad.library.adapter.base.listener.OnItemLongClickListener;
 import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
 import com.knight.wanandroid.library_base.AppConfig;
 import com.knight.wanandroid.library_base.baseactivity.BaseActivity;
@@ -22,6 +24,7 @@ import com.knight.wanandroid.library_base.util.DataBaseUtils;
 import com.knight.wanandroid.library_util.SystemUtils;
 import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
+import com.knight.wanandroid.module_feedback.dialog.FeedBackDialog;
 import com.knight.wanandroid.module_home.R;
 import com.knight.wanandroid.module_home.databinding.HomeSearchresultActivityBinding;
 import com.knight.wanandroid.module_home.module_adapter.SearchResultAdapter;
@@ -220,6 +223,15 @@ public final class SearchResultActivity extends BaseActivity<HomeSearchresultAct
                         mPresenter.requestCollectArticle(mSearchResultAdapter.getData().get(position).getId(),position);
                     }
                 }
+            }
+        });
+
+
+        mSearchResultAdapter.setOnItemLongClickListener(new OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+                FeedBackDialog.newInstance(mSearchResultAdapter.getData().get(position).getId()).showAllowingStateLoss(getSupportFragmentManager(),"feedbackDialog");
+                return false;
             }
         });
 

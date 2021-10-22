@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+
+        <variable
+            name="click"
+            type="com.knight.wanandroid.module_feedback.dialog.FeedBackDialog.ProcyClick" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/base_round"
+            android:layout_marginStart="@dimen/base_dimen_20"
+            android:layout_marginEnd="@dimen/base_dimen_20"
+            >
+
+            <TextView
+                android:id="@+id/tv_feedback_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/base_error_link"
+                android:textSize="@dimen/base_dimen_16"
+                android:layout_marginStart="@dimen/base_dimen_16"
+                android:layout_marginTop="@dimen/base_dimen_10"
+                android:textColor="@color/base_color_title"/>
+
+            <View
+                android:id="@+id/view_split_line"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base_dimen_1"
+                android:background="@color/base_color_dddddd"
+                android:layout_below="@id/tv_feedback_title"
+                android:layout_marginTop="@dimen/base_dimen_10"/>
+
+
+            <TextView
+                android:id="@+id/tv_feedback_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/view_split_line"
+                android:text="@string/base_feedback_link_error"
+                android:textColor="@color/base_color_title"
+                android:layout_marginTop="@dimen/base_dimen_20"
+                android:textSize="@dimen/base_dimen_16"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:id="@+id/tv_feedback_confim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/base_dimen_20"
+                android:layout_marginBottom="@dimen/base_dimen_20"
+                android:layout_marginRight="@dimen/base_dimen_16"
+                android:layout_below="@id/tv_feedback_content"
+                android:text="@string/base_confim"
+                android:textSize="@dimen/base_dimen_16"
+                android:onClick="@{()->click.feedbackArticle()}"
+                />
+
+            <TextView
+                android:id="@+id/tv_feedback_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/base_dimen_20"
+                android:layout_marginBottom="@dimen/base_dimen_20"
+                android:layout_below="@id/tv_feedback_content"
+                android:text="@string/base_cancel"
+                android:layout_toLeftOf="@id/tv_feedback_confim"
+                android:layout_marginRight="@dimen/base_dimen_20"
+                android:textSize="@dimen/base_dimen_16"
+                android:onClick="@{()->click.cancelFeedback()}"
+                />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</layout>

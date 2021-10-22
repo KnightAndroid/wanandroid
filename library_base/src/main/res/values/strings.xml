@@ -37,10 +37,15 @@
     <string name="base_downloading_wait">下载更新中,请稍候...</string>
     <string name="base_save">保存</string>
     <string name="base_confim">确定</string>
+    <string name="base_cancel">取消</string>
     <string name="base_unavailable_text">网络连接不可用,请检查网络设置</string>
     <string name="base_success_copylink">已成功复制链接</string>
     <string name="base_login_first">请先登录</string>
     <string name="base_login_request">登录中...</string>
+    <string name="base_feedback_link_error">确认反馈该文章链接错误or内容不匹配</string>
+    <string name="base_error_link">链接异常反馈</string>
+    <string name="base_feedback_success">反馈成功</string>
+
 
 
 </resources>

@@ -28,6 +28,7 @@ android {
 dependencies {
     implementation project(':library_base')
     implementation project(':library_scan')
+    implementation project(':module_feedback')
     annotationProcessor "com.alibaba:arouter-compiler:$arouterVersion"
     implementation "com.youth.banner:banner:$bannerVersion"
     implementation project (':library_componentbase')

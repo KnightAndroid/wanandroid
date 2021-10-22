@@ -1,3 +1,4 @@
+include ':module_feedback'
 include ':library_biometric'
 include ':module_welcome'
 include ':module_set'

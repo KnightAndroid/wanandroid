@@ -16,11 +16,15 @@ import com.knight.wanandroid.library_base.presenter.BasePresenter;
 import com.knight.wanandroid.library_network.listener.OnHttpListener;
 import com.knight.wanandroid.library_util.CreateUtils;
 
+import java.lang.reflect.Field;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 /**
  * @author created by knight
@@ -110,6 +114,36 @@ public abstract class BaseDialogFragment<DB extends ViewDataBinding,T extends Ba
     @Override
     public void onFail(Exception e) {
 
+    }
+
+    /**
+     *
+     * 重写弹出方法
+     * @param manager
+     * @param tag
+     */
+    public void showAllowingStateLoss(FragmentManager manager, String tag){
+        try {
+            Field dismissed = DialogFragment.class.getDeclaredField("mDismissed");
+            dismissed.setAccessible(true);
+            dismissed.set(this, false);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        try {
+            Field shown = DialogFragment.class.getDeclaredField("mShownByMe");
+            shown.setAccessible(true);
+            shown.set(this, true);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        FragmentTransaction ft = manager.beginTransaction();
+        ft.add(this, tag);
+        ft.commitAllowingStateLoss();
     }
 
     @Override

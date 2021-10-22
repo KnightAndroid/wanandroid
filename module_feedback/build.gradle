@@ -1,0 +1,29 @@
+if(isRunAlone.toBoolean()){
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+apply from:"../basic.gradle"
+
+android {
+    defaultConfig {
+        if(isRunAlone.toBoolean()){
+            applicationId "com.knight.wanandroid.module_feedback"
+        }
+        buildConfigField "String", "isAloneApp","\"${isRunAlone.toString()}\""
+        flavorDimensions "versionCode"
+    }
+    //限定资源前缀命名
+    resourcePrefix "feedback_"
+    //配置渠道
+    publishNonDefault true
+    productFlavors{
+        develop {}
+        qa {}
+        pro {}
+    }
+}
+
+dependencies {
+    implementation project (':library_base')
+}

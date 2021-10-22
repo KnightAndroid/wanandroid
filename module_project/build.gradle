@@ -27,5 +27,6 @@ android {
 dependencies {
     implementation project (':library_base')
     implementation project (':library_componentbase')
+    implementation project(':module_feedback')
     annotationProcessor "com.alibaba:arouter-compiler:$arouterVersion"
 }

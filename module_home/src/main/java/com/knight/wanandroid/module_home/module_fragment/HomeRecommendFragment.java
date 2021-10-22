@@ -36,6 +36,7 @@ import com.knight.wanandroid.library_util.SystemUtils;
 import com.knight.wanandroid.library_util.imageengine.ImageLoader;
 import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
+import com.knight.wanandroid.module_feedback.dialog.FeedBackDialog;
 import com.knight.wanandroid.module_home.R;
 import com.knight.wanandroid.module_home.databinding.HomeFragmentRecommendBinding;
 import com.knight.wanandroid.module_home.module_activity.HomeArticlesTabActivity;
@@ -407,6 +408,14 @@ public final class HomeRecommendFragment extends BaseFragment<HomeFragmentRecomm
                     }
 
                 }
+            }
+        });
+
+        mHomeArticleAdapter.setOnItemLongClickListener(new OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+                FeedBackDialog.newInstance(mHomeArticleAdapter.getData().get(position).getId()).showAllowingStateLoss(getParentFragmentManager(),"feedbackDialog");
+                return false;
             }
         });
 
