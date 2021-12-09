@@ -35,5 +35,7 @@ dependencies {
     api "com.yanzhenjie.recyclerview:x:$recycleviewVersion"
     implementation project(':library_util')
     implementation "com.google.android.material:material:$materialVersion"
+    //ShimmerLayout https://github.com/team-supercharge/ShimmerLayout
+    implementation "io.supercharge:shimmerlayout:$shimmerlayout"
     implementation project (':library_componentbase')
 }

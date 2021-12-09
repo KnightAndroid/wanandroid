@@ -32,6 +32,7 @@ import com.knight.wanandroid.library_common.utils.CacheUtils;
 import java.io.File;
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatDelegate;
@@ -270,16 +271,39 @@ public class SystemUtils {
      * 判断是什么模式
      */
     public static void darkNormal() {
-        if (CacheUtils.getFollowSystem()) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+        if (CacheUtils.getAutoNightMode()) {
+            int nightStartHour = Integer.valueOf(CacheUtils.getStartNightModeHour());
+            int nightStartMinute = Integer.valueOf(CacheUtils.getStartNightModeMinuter());
+            int dayStartHour = Integer.valueOf(CacheUtils.getStartDayModeHour());
+            int dayStartMinuter = Integer.valueOf(CacheUtils.getStartDayModeMinuter());
+            Calendar calendar = Calendar.getInstance();
+            int currentHour = calendar.get(Calendar.HOUR_OF_DAY);
+            int currentMinute = calendar.get(Calendar.MINUTE);
 
-        } else {
-            if (CacheUtils.getNormalDark()) {
+            int nightValue = nightStartHour * 60 + nightStartMinute;
+            int dayValue = dayStartHour * 60 +dayStartMinuter;
+            int currentValue = currentHour * 60 + currentMinute;
+            if (currentValue >= nightValue || currentValue <= dayValue) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                CacheUtils.setNightModeStatus(true);
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                CacheUtils.setNightModeStatus(false);
+            }
+        } else {
+            CacheUtils.setNightModeStatus(false);
+            if (CacheUtils.getFollowSystem()) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+            } else {
+                if (CacheUtils.getNormalDark()) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                }
             }
         }
+
+
     }
 
     /**

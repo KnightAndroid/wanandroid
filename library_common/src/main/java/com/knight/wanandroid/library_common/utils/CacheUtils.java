@@ -1,6 +1,7 @@
 package com.knight.wanandroid.library_common.utils;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.knight.wanandroid.library_common.constant.MMkvConstants;
@@ -349,6 +350,144 @@ public final class CacheUtils {
     public static void setGestureLogin(boolean gestureLogin) {
         mmkv.encode(MMkvConstants.GESTURELOGIN, gestureLogin);
     }
+
+
+    /**
+     *
+     * 获取夜间模式开启时间 时
+     * @return
+     */
+    public static String getStartNightModeHour() {
+        if (TextUtils.isEmpty(mmkv.decodeString(MMkvConstants.StARTNIGHTHOUR))) {
+          return "22";
+        } else {
+          return mmkv.decodeString(MMkvConstants.StARTNIGHTHOUR);
+        }
+    }
+
+
+    /**
+     *
+     * 设置夜间模式开启时间 时
+     * @return
+     */
+    public static void setStartNightModeHour(String hour) {
+         mmkv.encode(MMkvConstants.StARTNIGHTHOUR,hour);
+    }
+
+    /**
+     *
+     * 获取夜间模式开启时间 分
+     * @return
+     */
+    public static String getStartNightModeMinuter() {
+        if (TextUtils.isEmpty(mmkv.decodeString(MMkvConstants.StARTNIGHTMINUTER))) {
+          return "00";
+        } else {
+            return mmkv.decodeString(MMkvConstants.StARTNIGHTMINUTER);
+        }
+
+    }
+
+
+    /**
+     *
+     * 设置夜间模式开启时间 分
+     * @return
+     */
+    public static void setStartNightModeMinuter(String minuter) {
+        mmkv.encode(MMkvConstants.StARTNIGHTMINUTER,minuter);
+    }
+
+
+    /**
+     *
+     * 获取白天模式开启时间 时
+     * @return
+     */
+    public static String getStartDayModeHour() {
+        if (TextUtils.isEmpty(mmkv.decodeString(MMkvConstants.StARTDAYHOUR))) {
+            return "06";
+        } else {
+            return mmkv.decodeString(MMkvConstants.StARTDAYHOUR);
+        }
+    }
+
+
+    /**
+     *
+     * 设置白天模式开启时间 时
+     * @return
+     */
+    public static void setStartDayModeHour(String hour) {
+        mmkv.encode(MMkvConstants.StARTDAYHOUR,hour);
+    }
+
+    /**
+     *
+     * 获取白天模式开启时间 分
+     * @return
+     */
+    public static String getStartDayModeMinuter() {
+        if (TextUtils.isEmpty(mmkv.decodeString(MMkvConstants.StARTDAYMINUTER))) {
+            return  "00";
+        } else {
+            return mmkv.decodeString(MMkvConstants.StARTDAYMINUTER);
+        }
+    }
+
+
+    /**
+     *
+     * 设置白天模式开启时间 分
+     * @return
+     */
+    public static void setStartDayModeMinuter(String minuter) {
+        mmkv.encode(MMkvConstants.StARTDAYMINUTER,minuter);
+    }
+
+    /**
+     *
+     * 设置开启夜间模式
+     * @param nightMode
+     */
+    public static void setOpenAutoNightMode(boolean nightMode) {
+        mmkv.encode(MMkvConstants.AUTONIGHTMODE,nightMode);
+
+    }
+
+
+    /**
+     *
+     * 返回夜间模式开启状态
+     * @return
+     */
+    public static boolean getAutoNightMode() {
+        return mmkv.decodeBool(MMkvConstants.AUTONIGHTMODE,false);
+    }
+
+
+    /**
+     *
+     * 设置进入APP时是否夜间状态
+     *
+     */
+    public static void setNightModeStatus(boolean nightMode) {
+        mmkv.encode(MMkvConstants.INNIGHTMODE,nightMode);
+    }
+
+
+    /**
+     *
+     * 返回当前是否夜间模式
+     * @return
+     */
+    public static boolean getNightModeStatus() {
+        return mmkv.decodeBool(MMkvConstants.INNIGHTMODE);
+    }
+
+
+
 
 
 }

@@ -9,6 +9,7 @@
         <activity android:name=".module_activity.ChangeTextSizeActivity"/>
         <activity android:name=".module_activity.GestureLockActivity"
             android:configChanges="keyboardHidden|keyboard|screenSize|locale|navigation|smallestScreenSize"/>
+        <activity android:name=".module_activity.AutoNightTimeActivity"/>
     </application>
 
 </manifest>

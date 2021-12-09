@@ -63,4 +63,11 @@
         <attr name="bigSize" format="integer" />
         <attr name="defaultPosition" format="integer" />
     </declare-styleable>
+
+    <style name="dialog_time_style" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+        <!--设置header部分显示的颜色-->
+        <item name="colorPrimary">@color/widget_theme_color</item>
+        <item name="colorPrimaryDark">@color/widget_theme_color</item>
+        <item name="colorAccent">@color/widget_theme_color</item>
+    </style>
 </resources>

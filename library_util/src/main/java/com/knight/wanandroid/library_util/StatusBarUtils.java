@@ -33,7 +33,11 @@ public class StatusBarUtils {
                     if (CacheUtils.getNormalDark()) {
                         ic.setSystemBarsAppearance(0,WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS);
                     } else {
-                        ic.setSystemBarsAppearance(WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS);
+                        if (CacheUtils.getNightModeStatus()) {
+                            ic.setSystemBarsAppearance(0,WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS);
+                        } else {
+                            ic.setSystemBarsAppearance(WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS);
+                        }
                     }
                     activity.getWindow().setDecorFitsSystemWindows(false);
                     activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
@@ -46,10 +50,13 @@ public class StatusBarUtils {
                 if (CacheUtils.getNormalDark()) {
                     //白色字体
                     activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-
                 } else {
                     //黑色字体
-                    activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+                    if (CacheUtils.getNightModeStatus()) {
+                        activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+                    } else {
+                        activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+                    }
                 }
             }
         } else {

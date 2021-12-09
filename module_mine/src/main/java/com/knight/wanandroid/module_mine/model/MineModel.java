@@ -41,6 +41,7 @@ public final class MineModel implements MineContract.MineModel {
                     @Override
                     public void onFail(Exception e) {
                         mvpListener.onError(e.getMessage());
+
                     }
 
                     @Override

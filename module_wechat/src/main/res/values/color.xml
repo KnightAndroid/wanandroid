@@ -7,4 +7,5 @@
     <color name="wechat_teal_700">#FF018786</color>
     <color name="wechat_black">#FF000000</color>
     <color name="wechat_white">#FFFFFFFF</color>
+    <color name="wechat_skeleton_color">#D4DCDCDC</color>
 </resources>

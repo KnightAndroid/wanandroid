@@ -86,6 +86,7 @@ public final class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, Ho
 
 
 
+
     @Override
     public int layoutId(){
         return R.layout.home_fragment_home;
@@ -102,8 +103,10 @@ public final class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, Ho
     public void initView(Bundle savedInstanceState) {
         mDatabind.setClick(new ProcyClick());
         EventBus.getDefault().register(this);
+
         initUserData();
         initMagicIndicator();
+        
     }
 
     /**
@@ -357,28 +360,31 @@ public final class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, Ho
      * @param statusWithTheme
      */
     private void isWithStatusTheme(boolean statusWithTheme){
-        GradientDrawable gradientDrawable = new GradientDrawable();
-        gradientDrawable.setShape(GradientDrawable.RECTANGLE);
-        gradientDrawable.setCornerRadius(ScreenUtils.dp2px(45));
-        if (statusWithTheme) {
-            gradientDrawable.setColor(Color.WHITE);
-            mDatabind.homeIncludeToolbar.homeTvLoginname.setTextColor(Color.WHITE);
-            mDatabind.homeIncludeToolbar.homeIvAdd.setBackgroundResource(R.drawable.home_icon_add_white);
-            mDatabind.homeIncludeToolbar.homeIvEveryday.setBackgroundResource(R.drawable.home_icon_everyday_white);
-            mDatabind.homeIncludeToolbar.toolbar.setBackgroundColor(CacheUtils.getThemeColor());
-        } else {
-            gradientDrawable.setColor(Color.parseColor("#1f767680"));
-            mDatabind.homeIncludeToolbar.homeTvLoginname.setTextColor(Color.parseColor("#333333"));
-            mDatabind.homeIncludeToolbar.homeIvEveryday.setBackgroundResource(R.drawable.home_icon_everyday);
-            mDatabind.homeIncludeToolbar.homeIvAdd.setBackgroundResource(R.drawable.home_icon_add);
-            mDatabind.homeIncludeToolbar.toolbar.setBackgroundColor(Color.WHITE);
+        if (!CacheUtils.getNightModeStatus()) {
+            GradientDrawable gradientDrawable = new GradientDrawable();
+            gradientDrawable.setShape(GradientDrawable.RECTANGLE);
+            gradientDrawable.setCornerRadius(ScreenUtils.dp2px(45));
+            if (statusWithTheme) {
+                gradientDrawable.setColor(Color.WHITE);
+                mDatabind.homeIncludeToolbar.homeTvLoginname.setTextColor(Color.WHITE);
+                mDatabind.homeIncludeToolbar.homeIvAdd.setBackgroundResource(R.drawable.home_icon_add_white);
+                mDatabind.homeIncludeToolbar.homeIvEveryday.setBackgroundResource(R.drawable.home_icon_everyday_white);
+                mDatabind.homeIncludeToolbar.toolbar.setBackgroundColor(CacheUtils.getThemeColor());
+            } else {
+                gradientDrawable.setColor(Color.parseColor("#1f767680"));
+                mDatabind.homeIncludeToolbar.homeTvLoginname.setTextColor(Color.parseColor("#333333"));
+                mDatabind.homeIncludeToolbar.homeIvEveryday.setBackgroundResource(R.drawable.home_icon_everyday);
+                mDatabind.homeIncludeToolbar.homeIvAdd.setBackgroundResource(R.drawable.home_icon_add);
+                mDatabind.homeIncludeToolbar.toolbar.setBackgroundColor(Color.WHITE);
+            }
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                mDatabind.homeIncludeToolbar.homeRlSearch.setBackground(gradientDrawable);
+            } else {
+                mDatabind.homeIncludeToolbar.homeRlSearch.setBackgroundDrawable(gradientDrawable);
+            }
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            mDatabind.homeIncludeToolbar.homeRlSearch.setBackground(gradientDrawable);
-        } else {
-            mDatabind.homeIncludeToolbar.homeRlSearch.setBackgroundDrawable(gradientDrawable);
-        }
     }
 
     /**

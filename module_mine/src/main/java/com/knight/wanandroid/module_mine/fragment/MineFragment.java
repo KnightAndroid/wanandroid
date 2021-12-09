@@ -151,7 +151,7 @@ public final class MineFragment extends BaseFragment<MineFragmentMineBinding, Mi
         @LoginCheck
         public void goUserCoin() {
             ARouter.getInstance().build(RoutePathActivity.Mine.UserCoin_pager)
-                    .withString("userCoin", mDatabind.mineTvPoints.getText().toString()).navigation();
+                    .withString("userCoin", mDatabind.mineTvPoints.getText().toString().equals("") ? "0" : mDatabind.mineTvPoints.getText().toString()).navigation();
         }
 
         public void goCoinRank() {

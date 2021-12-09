@@ -93,4 +93,43 @@ public final class MMkvConstants {
      */
     public static final String GESTURELOGIN = "gestureLogin";
 
+    /**
+     *
+     * 晚间模式开启时间时
+     */
+    public static final String StARTNIGHTHOUR = "nighthour";
+
+    /**
+     *
+     * 晚间模式开启时间分
+     */
+    public static final String StARTNIGHTMINUTER = "nightminuter";
+
+
+
+    /**
+     *
+     * 白天模式开启时间时
+     */
+    public static final String StARTDAYHOUR = "dayhour";
+
+    /**
+     *
+     * 白天模式开启时间分
+     */
+    public static final String StARTDAYMINUTER = "dayminuter";
+
+    /**
+     *
+     * 是否开启自动切换夜间模式
+     */
+    public static final String AUTONIGHTMODE = "autoChangeNight";
+
+    /**
+     *
+     * 是否正在夜间模式
+     *
+     */
+    public static final String INNIGHTMODE = "inNightMode";
+
 }

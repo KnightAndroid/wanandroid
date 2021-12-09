@@ -112,6 +112,7 @@ public final class SquareShareArticleActivity extends BaseActivity<SquareActivit
         title = mDatabind.squareSharearticleEt.getText().toString().trim();
         link = mDatabind.squareSharearticleLink.getText().toString().trim();
         if (TextUtils.isEmpty(title)) {
+         //   Toast.makeText(this,R.string.square_title_noempty,Toast.LENGTH_SHORT).show();
             ToastUtils.show(R.string.square_title_noempty);
             validFlag = false;
         } else if (TextUtils.isEmpty(link)) {

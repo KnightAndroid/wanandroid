@@ -53,6 +53,7 @@ public final class ProjectViewpagerFragment extends BaseFragment<ProjectViewpage
     private boolean isNewProject;
     private ProjectArticleAdapter mProjectArticleAdapter;
 
+
     public static ProjectViewpagerFragment newInstance(int cid,boolean isNewProject){
         ProjectViewpagerFragment projectViewpagerFragment = new ProjectViewpagerFragment();
         Bundle args = new Bundle();
@@ -90,6 +91,7 @@ public final class ProjectViewpagerFragment extends BaseFragment<ProjectViewpage
         SetInitCustomView.initSwipeRecycleview(mDatabind.projectListRv,new LinearLayoutManager(getActivity()),mProjectArticleAdapter,true);
         initListener();
         mDatabind.projectFloatBtn.setBackgroundTintList(ColorUtils.createColorStateList(CacheUtils.getThemeColor(),CacheUtils.getThemeColor()));
+
     }
 
     @Override
@@ -155,7 +157,6 @@ public final class ProjectViewpagerFragment extends BaseFragment<ProjectViewpage
     @Override
     public void showError(String errorMsg) {
         ToastUtils.show(errorMsg);
-
     }
 
     @Override

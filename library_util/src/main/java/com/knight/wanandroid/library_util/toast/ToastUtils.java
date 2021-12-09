@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.pm.ApplicationInfo;
 import android.content.res.Resources;
 
+import com.knight.wanandroid.library_util.ActivityManagerUtils;
 import com.knight.wanandroid.library_util.toast.callback.ToastInterceptorInterface;
 import com.knight.wanandroid.library_util.toast.callback.ToastStrategyInterface;
 import com.knight.wanandroid.library_util.toast.callback.ToastStyleInterface;
@@ -98,8 +99,9 @@ public final class ToastUtils {
      */
     public static void show(int id) {
         try {
-            // 如果这是一个资源 id
-            show(sApplication.getResources().getText(id));
+            // TODO
+            // 如果这是一个资源 id 为了适配中英文提示 ActivityManagerUtils.getInstance().getTopActivity() 代替 sApplication
+            show(ActivityManagerUtils.getInstance().getTopActivity().getResources().getText(id));
         } catch (Resources.NotFoundException ignored) {
             // 如果这是一个 int 整数
             show(String.valueOf(id));

@@ -12,6 +12,7 @@ import com.knight.wanandroid.library_base.baseactivity.BaseDBActivity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_common.utils.ColorUtils;
+import com.knight.wanandroid.library_util.ActivityManagerUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.ViewSetUtils;
 import com.knight.wanandroid.library_util.toast.ToastUtils;
@@ -97,7 +98,7 @@ public class MainActivity extends BaseDBActivity<ActivityMainBinding> {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (System.currentTimeMillis() - mExitAppTime <= 2000) {
-                finish();
+                ActivityManagerUtils.getInstance().finishAllActivity();
                 System.exit(0);
             } else {
                 mExitAppTime = System.currentTimeMillis();

@@ -36,6 +36,8 @@ import com.knight.wanandroid.library_util.SystemUtils;
 import com.knight.wanandroid.library_util.imageengine.ImageLoader;
 import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
+import com.knight.wanandroid.library_widget.skeleton.Skeleton;
+import com.knight.wanandroid.library_widget.skeleton.SkeletonScreen;
 import com.knight.wanandroid.module_feedback.dialog.FeedBackDialog;
 import com.knight.wanandroid.module_home.R;
 import com.knight.wanandroid.module_home.databinding.HomeFragmentRecommendBinding;
@@ -106,6 +108,8 @@ public final class HomeRecommendFragment extends BaseFragment<HomeFragmentRecomm
     private SwipeRecyclerView home_rv_official_account;
     private RelativeLayout home_rl_message;
     private TextView home_tv_unread_message;
+    private SkeletonScreen mSkeletonScreen;
+
 
 
     @Override
@@ -123,6 +127,11 @@ public final class HomeRecommendFragment extends BaseFragment<HomeFragmentRecomm
     protected void initView(Bundle savedInstanceState) {
         mDatabind.setClick(new ProxyClick());
         EventBus.getDefault().register(this);
+        mSkeletonScreen = Skeleton.bind(mDatabind.flTest)
+                .load(R.layout.activity_home_skeleton)
+                .duration(1200)
+                .angle(0)
+                .show();
         bindHeadView();
         mTopArticleAdapter = new TopArticleAdapter(new ArrayList<>());
         SetInitCustomView.initSwipeRecycleview(home_top_article_rv, new LinearLayoutManager(getActivity()), mTopArticleAdapter, false);
@@ -145,8 +154,6 @@ public final class HomeRecommendFragment extends BaseFragment<HomeFragmentRecomm
         initOfficialAccountClick();
         initArticleLinstener();
         initTwoLevel();
-        loadLoading(mDatabind.flTest);
-
         mDatabind.homeRefreshLayout.setOnMultiListener(new SimpleMultiListener() {
             @Override
             public void onHeaderMoving(RefreshHeader header, boolean isDragging, float percent, int offset, int headerHeight, int maxDragHeight) {
@@ -285,7 +292,8 @@ public final class HomeRecommendFragment extends BaseFragment<HomeFragmentRecomm
 
     @Override
     public void setAllHomeArticle(HomeArticleListEntity result) {
-        showSuccess();
+        mSkeletonScreen.hide();
+     //   showSuccess();
         //后台返回自动加1
         currentPage = result.getCurPage();
         mDatabind.homeRefreshLayout.finishLoadMore();

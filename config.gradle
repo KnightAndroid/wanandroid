@@ -87,4 +87,6 @@ ext{
     leakCanaryVersion = "2.7"
     //预览大图控件
     sketchPhotoVersion = "2.7.1"
+    //骨架屏显示
+    shimmerlayout = "2.1.0"
 }

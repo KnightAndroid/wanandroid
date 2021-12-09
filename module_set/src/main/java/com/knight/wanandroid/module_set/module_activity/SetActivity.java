@@ -178,6 +178,15 @@ public final class SetActivity extends BaseActivity<SetActivityBinding, SetPrese
 
         /**
          *
+         * 去设置自动切换夜间时间界面
+         */
+        public void changeNightTime() {
+            ARouter.getInstance().build(RoutePathActivity.Set.Set_AutoNightMode)
+                    .navigation();
+        }
+
+        /**
+         *
          * 去选择语言设置界面
          */
         public void goSelectLanguage() {

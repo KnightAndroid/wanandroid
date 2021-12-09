@@ -35,9 +35,9 @@ public class HttpData<T> {
     }
 
     /**
-     * 是否 Token 失效
+     * 是否 Token/Cookie 失效
      */
     public boolean isTokenFailure() {
-        return errorCode == 1001;
+        return errorCode == -1001;
     }
 }

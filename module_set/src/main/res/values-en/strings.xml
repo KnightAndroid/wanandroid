@@ -37,4 +37,12 @@
     <string name="set_gesture_password">Set Gesture Password</string>
     <string name="set_show_gesture_password">Gesture Password</string>
     <string name="set_logout">Quit...</string>
+    <string name="set_auto_change_night_time">Automatically switch to night mode</string>
+    <string name="set_change_time">Set Change Time</string>
+    <string name="set_open_auto_night_time">Turn on automatic night mode switching</string>
+    <string name="set_restart_app_anable">Restart APP Enable</string>
+    <string name="set_open_night_time">Night mode start time</string>
+    <string name="set_open_day_time">Day mode start time</string>
+    <string name="set_night_mode">Set Auto Night Time</string>
+    <string name="set_nightauto_mode_success">Setting Success</string>
 </resources>

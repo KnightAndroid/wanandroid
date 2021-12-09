@@ -1,5 +1,6 @@
 package com.knight.wanandroid.module_wechat.module_fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -15,6 +16,8 @@ import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_common.utils.ColorUtils;
 import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
+import com.knight.wanandroid.library_widget.skeleton.Skeleton;
+import com.knight.wanandroid.library_widget.skeleton.SkeletonScreen;
 import com.knight.wanandroid.module_feedback.dialog.FeedBackDialog;
 import com.knight.wanandroid.module_wechat.R;
 import com.knight.wanandroid.module_wechat.databinding.WechatOfficialaccountViewpagerBinding;
@@ -47,6 +50,7 @@ public final class WechatArticleFragment extends BaseFragment<WechatOfficialacco
     private WechatArticleAdapter mWechatArticleAdapter;
     private String keyWords = "";
 
+    private SkeletonScreen mSkeletonScreen;
     public static WechatArticleFragment newInstance(int cid){
         WechatArticleFragment wechatArticleFragment = new WechatArticleFragment();
         Bundle args = new Bundle();
@@ -76,12 +80,18 @@ public final class WechatArticleFragment extends BaseFragment<WechatOfficialacco
         mWechatArticleAdapter = new WechatArticleAdapter(new ArrayList<>());
         initListener();
         SetInitCustomView.initSwipeRecycleview(mDatabind.includeWechatArticles.baseBodyRv,new LinearLayoutManager(getActivity()),mWechatArticleAdapter,false);
+        mSkeletonScreen = Skeleton.bind(mDatabind.includeWechatArticles.baseBodyRv)
+                .adapter(mWechatArticleAdapter)
+                .load(R.layout.layout_picture_item_skeleton)
+                .shimmer(true)
+                .color(R.color.wechat_skeleton_color)
+                .duration(1000)
+                .show();
         mDatabind.wechatFloatBtn.setBackgroundTintList(ColorUtils.createColorStateList(CacheUtils.getThemeColor(),CacheUtils.getThemeColor()));
     }
 
     @Override
     public void lazyLoadData(){
-        loadLoading(mDatabind.includeWechatArticles.baseFreshlayout);
         mPresenter.requestWechatArticle(page,cid);
     }
 
@@ -194,7 +204,8 @@ public final class WechatArticleFragment extends BaseFragment<WechatOfficialacco
     }
 
     private void setData(WechatArticleListEntity result){
-        showSuccess();
+      //  showSuccess();
+        mSkeletonScreen.delayHide(1500);
         mDatabind.includeWechatArticles.baseFreshlayout.finishRefresh();
         mDatabind.includeWechatArticles.baseFreshlayout.finishLoadMore();
         if (page == 1) {
