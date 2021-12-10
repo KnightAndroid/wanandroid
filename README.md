@@ -36,6 +36,7 @@
 - 横屏适配
 - 手势密码解锁
 - 内存泄漏检测
+- 自动夜间模式切换
 
 
 
@@ -80,7 +81,7 @@
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | ![4.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_04.gif) |![5.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_05.gif) | ![6.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_06.gif) |
 | ![7.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_07.gif) |![8.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_08.gif) |![9.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_09.gif) |
-| ![10.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_10.gif) |
+| ![10.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_10.gif) |![11.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_skeleton.gif)|
 
 ## 主要开源框架
 
@@ -116,6 +117,13 @@
 
 
 ## 更新日志
+### 1.1.7(11)
+-  wanandroid 第十一版发布
+-  新增骨架屏加载
+-  新增自动切换夜间模式切换
+-  修复一些问题
+-  发布时间：2021/12/11
+
 ### 1.1.6(10)
 -  wanandroid 第十版发布
 -  文章列表统一改成分割线模式
