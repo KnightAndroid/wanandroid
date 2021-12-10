@@ -1,6 +1,5 @@
 package com.knight.wanandroid.module_wechat.module_fragment;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -68,7 +67,7 @@ public final class WechatArticleFragment extends BaseFragment<WechatOfficialacco
 
     @Override
     protected void setThemeColor(boolean isDarkMode) {
-        
+
     }
 
     @Override
@@ -204,7 +203,6 @@ public final class WechatArticleFragment extends BaseFragment<WechatOfficialacco
     }
 
     private void setData(WechatArticleListEntity result){
-      //  showSuccess();
         mSkeletonScreen.delayHide(1500);
         mDatabind.includeWechatArticles.baseFreshlayout.finishRefresh();
         mDatabind.includeWechatArticles.baseFreshlayout.finishLoadMore();
