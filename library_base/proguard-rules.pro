@@ -33,3 +33,5 @@
 -keep class com.knight.wanandroid.library_base.baseactivity.**{*;}
 -keep class com.knight.wanandroid.library_base.basefragment.**{*;}
 -keep class com.knight.wanandroid.library_base.entity.**{*;}
+
+

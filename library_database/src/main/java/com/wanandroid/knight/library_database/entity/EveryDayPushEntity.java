@@ -1,5 +1,7 @@
 package com.wanandroid.knight.library_database.entity;
 
+import java.io.Serializable;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -12,7 +14,9 @@ import androidx.room.PrimaryKey;
  */
 
 @Entity(tableName = "everydaypush_table")
-public class EveryDayPushEntity {
+public class EveryDayPushEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
+
 
     @NonNull
     @PrimaryKey(autoGenerate = true)

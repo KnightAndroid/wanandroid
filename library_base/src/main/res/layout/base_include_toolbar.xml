@@ -7,7 +7,8 @@
 
     </data>
 
-    <com.knight.wanandroid.library_widget.CompatToobar android:layout_width="match_parent"
+    <com.knight.wanandroid.library_widget.CompatToobar
+        android:layout_width="match_parent"
         android:id="@+id/base_compattoobar"
         android:layout_height="wrap_content"
         app:contentInsetStart="0dp"
