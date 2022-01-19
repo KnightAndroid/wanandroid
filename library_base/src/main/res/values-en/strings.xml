@@ -16,6 +16,7 @@
     <string name="base_permisssion_contacts">Address book permissions</string>
     <string name="base_permission_location">Location permissions</string>
     <string name="base_permission_location_background">Background positioning permission</string>
+    <string name="base_permission_bluetooth">Nearby device permissions</string>"
     <string name="base_permission_microphone">Microphone permissions</string>
     <string name="base_permission_phone">Telephone authority</string>
     <string name="base_permission_call_log">Call record permission</string>
@@ -27,6 +28,7 @@
     <string name="base_permission_notification">Notification bar permissions</string>
     <string name="base_permission_window">Suspended window permission</string>
     <string name="base_permission_setting">System setting permissions</string>
+    <string name="base_permission_task">View usage permissions</string>
     <string name="base_found_new_version">Found New Version</string>
     <string name="base_update_now">Update</string>
     <string name="base_no_data">There is no data, please click Retry</string>

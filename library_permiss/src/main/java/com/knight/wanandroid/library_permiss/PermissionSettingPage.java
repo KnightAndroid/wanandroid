@@ -17,26 +17,27 @@ import java.util.List;
 public final class PermissionSettingPage {
     /**
      * 根据传入的权限自动选择最合适的权限设置页
+     *
+     * @param permissions                 请求失败的权限
      */
-
-    static Intent getSmartPermissionIntent(Context context, List<String> deniedPermissions) {
+    static Intent getSmartPermissionIntent(Context context, List<String> permissions) {
         // 如果失败的权限里面不包含特殊权限
-        if (deniedPermissions == null || deniedPermissions.isEmpty() || !PermissionUtils.containsSpecialPermission(deniedPermissions)) {
+        if (permissions == null || permissions.isEmpty() ||
+                !PermissionUtils.containsSpecialPermission(permissions)) {
             return getApplicationDetailsIntent(context);
         }
 
-
-        if (PermissionUtils.isAndroid11() && deniedPermissions.size() == 3 &&
-                (deniedPermissions.contains(Permission.MANAGE_EXTERNAL_STORAGE) &&
-                        deniedPermissions.contains(Permission.READ_EXTERNAL_STORAGE) &&
-                        deniedPermissions.contains(Permission.WRITE_EXTERNAL_STORAGE))) {
+        if (PermissionUtils.isAndroid11() && permissions.size() == 3 &&
+                (permissions.contains(Permission.MANAGE_EXTERNAL_STORAGE) &&
+                        permissions.contains(Permission.READ_EXTERNAL_STORAGE) &&
+                        permissions.contains(Permission.WRITE_EXTERNAL_STORAGE))) {
             return getStoragePermissionIntent(context);
         }
 
         // 如果当前只有一个权限被拒绝了
-        if (deniedPermissions.size() == 1) {
+        if (permissions.size() == 1) {
 
-            String permission = deniedPermissions.get(0);
+            String permission = permissions.get(0);
             if (Permission.MANAGE_EXTERNAL_STORAGE.equals(permission)) {
                 return getStoragePermissionIntent(context);
             }
@@ -49,14 +50,17 @@ public final class PermissionSettingPage {
                 return getWindowPermissionIntent(context);
             }
 
-            if (Permission.NOTIFICATION_SERVICE.equals(permission)) {
-                return getNotifyPermissionIntent(context);
-            }
-
             if (Permission.WRITE_SETTINGS.equals(permission)) {
                 return getSettingPermissionIntent(context);
             }
 
+            if (Permission.NOTIFICATION_SERVICE.equals(permission)) {
+                return getNotifyPermissionIntent(context);
+            }
+
+            if (Permission.PACKAGE_USAGE_STATS.equals(permission)) {
+                return getPackagePermissionIntent(context);
+            }
         }
 
         return getApplicationDetailsIntent(context);
@@ -93,12 +97,9 @@ public final class PermissionSettingPage {
         Intent intent = null;
         if (PermissionUtils.isAndroid6()) {
             intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
-            // 在 Android 11 上面不能加包名跳转，因为就算加了也没有效果
-            // 还有人反馈在 Android 11 的 TV 模拟器上会出现崩溃的情况
+            // 在 Android 11 加包名跳转也是没有效果的，官方文档链接：
             // https://developer.android.google.cn/reference/android/provider/Settings#ACTION_MANAGE_OVERLAY_PERMISSION
-            if (!PermissionUtils.isAndroid11()) {
-                intent.setData(getPackageNameUri(context));
-            }
+            intent.setData(getPackageNameUri(context));
         }
 
         if (intent == null || !areActivityIntent(context, intent)) {
@@ -146,6 +147,25 @@ public final class PermissionSettingPage {
         if (PermissionUtils.isAndroid11()) {
             intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
             intent.setData(getPackageNameUri(context));
+        }
+        if (intent == null || !areActivityIntent(context, intent)) {
+            intent = getApplicationDetailsIntent(context);
+        }
+        return intent;
+    }
+
+    /**
+     * 获取读取包权限设置界面意图
+     */
+    static Intent getPackagePermissionIntent(Context context) {
+        Intent intent = null;
+        if (PermissionUtils.isAndroid5()) {
+            intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+            if (PermissionUtils.isAndroid10()) {
+                // 经过测试，只有在 Android 10 及以上加包名才有效果
+                // 如果在 Android 10 以下加包名会导致无法跳转
+                intent.setData(getPackageNameUri(context));
+            }
         }
         if (intent == null || !areActivityIntent(context, intent)) {
             intent = getApplicationDetailsIntent(context);

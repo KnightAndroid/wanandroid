@@ -126,6 +126,7 @@ public final class WebActivity extends BaseActivity<WebActivityMainBinding, WebP
             mDatabind.includeWebToolbar.baseTvTitle.setText(Html.fromHtml(title));
         }
         mDatabind.includeWebToolbar.baseIvBack.setOnClickListener(v -> finish());
+
         mDatabind.includeWebToolbar.baseIvRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

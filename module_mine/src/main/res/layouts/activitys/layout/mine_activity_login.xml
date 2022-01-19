@@ -13,7 +13,6 @@
 
     </data>
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mine_login_root"
         android:layout_width="match_parent"

@@ -17,6 +17,7 @@
     <string name="base_permisssion_contacts">通讯录权限</string>
     <string name="base_permission_location">定位权限</string>
     <string name="base_permission_location_background">后台定位权限</string>
+    <string name="base_permission_bluetooth">附近的设备权限</string>"
     <string name="base_permission_microphone">麦克风权限</string>
     <string name="base_permission_phone">电话权限</string>
     <string name="base_permission_call_log">通话记录权限</string>
@@ -29,6 +30,7 @@
     <string name="base_permission_notification">通知栏权限</string>
     <string name="base_permission_window">悬浮窗权限</string>
     <string name="base_permission_setting">系统设置权限</string>
+    <string name="base_permission_task">查看使用情况权限</string>
 
     <string name="base_found_new_version">发现新版本</string>
     <string name="base_update_now">立即更新</string>

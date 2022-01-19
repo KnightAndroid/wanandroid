@@ -106,7 +106,7 @@ public class ModuleConfig {
 
     public void initDangerousSDK(@Nullable Application application) {
         //初始化权限拦截器
-        XXPermissions.setPermissionInterceptor(new PermissionInterceptor());
+        XXPermissions.setInterceptor(new PermissionInterceptor());
         //bugly异常上报
         CrashReport.initCrashReport(application, "669abbf2c8", false);
     }

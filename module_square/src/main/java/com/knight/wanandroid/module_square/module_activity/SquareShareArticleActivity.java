@@ -9,6 +9,9 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.knight.wanandroid.library_base.baseactivity.BaseActivity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_common.utils.CacheUtils;
+import com.knight.wanandroid.library_permiss.OnPermissionCallback;
+import com.knight.wanandroid.library_permiss.Permission;
+import com.knight.wanandroid.library_permiss.XXPermissions;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.ScreenUtils;
 import com.knight.wanandroid.library_util.SystemUtils;
@@ -20,6 +23,8 @@ import com.knight.wanandroid.module_square.module_model.SquareShareArticleModel;
 import com.knight.wanandroid.module_square.module_presenter.SquareShareArticlePresenter;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.util.List;
 
 /**
  * @author created by knight

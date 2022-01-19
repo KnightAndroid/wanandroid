@@ -18,6 +18,7 @@ public interface MineContract {
 
 
 
+
     interface MineView extends BaseView{
         void setUserInfoCoin(UserInfoCoinEntity userInfoCoinEntity);
         void setUserInfo(UserInfoEntity userInfo);

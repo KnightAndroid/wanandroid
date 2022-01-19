@@ -3,8 +3,11 @@
     <!--启动页背景-->
     <style name="welcomeAppSplash" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/welcome_splash_bg</item>
-        <item name="android:windowNoTitle">true</item>
+<!--        <item name="android:windowNoTitle">true</item>-->
+<!--        <item name="android:statusBarColor">@android:color/transparent</item>-->
         <item name="android:windowFullscreen">true</item>
+<!--        <item name="android:windowIsTranslucent">false</item>-->
+<!--        <item name="android:windowDisablePreview">true</item>-->
     </style>
 
 </resources>

@@ -3,6 +3,8 @@ package com.knight.wanandroid.module_welcome.activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.os.Bundle;
+import android.view.View;
+import android.view.WindowManager;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.knight.wanandroid.library_base.AppConfig;
@@ -65,12 +67,6 @@ public class WelcomeActivity extends BaseActivity<WelcomeActivityBinding, Welcom
     public void onFail(Exception e) {
 
     }
-
-    @Override
-    public int getActivityTheme() {
-        return R.style.welcomeAppSplash;
-    }
-
 
     @Override
     public void onDestroy() {

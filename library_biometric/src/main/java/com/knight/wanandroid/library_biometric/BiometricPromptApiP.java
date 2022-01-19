@@ -45,6 +45,7 @@ public  class BiometricPromptApiP implements IBiometricPromptImpl {
                         })
                 .build();
 
+
     }
 
     @RequiresApi(Build.VERSION_CODES.P)

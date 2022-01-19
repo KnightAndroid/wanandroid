@@ -26,24 +26,31 @@ import androidx.fragment.app.FragmentActivity;
 public final class PermissionInterceptor implements IPermissionInterceptor {
 
 
-
     @Override
-    public void grantedPermissions(FragmentActivity activity, OnPermissionCallback callback, List<String> permissions,boolean all){
-        //回调授权失败的方法
-        callback.onGranted(permissions,all);
+    public void grantedPermissions(FragmentActivity activity,  List<String> allPermissions, List<String> grantedPermissions,
+                                   boolean all, OnPermissionCallback callback) {
+        if (callback != null) {
+            callback.onGranted(grantedPermissions, all);
+        }
     }
 
     @Override
-    public void deniedPermissions(FragmentActivity activity, OnPermissionCallback callback, List<String> permissions, boolean never) {
-        // 回调授权失败的方法
-        callback.onDenied(permissions,never);
+    public void deniedPermissions(FragmentActivity activity,  List<String> allPermissions, List<String> deniedPermissions,
+                                  boolean never, OnPermissionCallback callback) {
+        if (callback != null) {
+            callback.onDenied(deniedPermissions, never);
+        }
+
         if (never) {
-            showPermissionDialog(activity,permissions);
+            showPermissionDialog(activity, deniedPermissions);
             return;
         }
 
-        if (permissions.size() == 1 && Permission.ACCESS_BACKGROUND_LOCATION.equals(permissions.get(0))) {
+        if (deniedPermissions.size() == 1 && Permission.ACCESS_BACKGROUND_LOCATION.equals(deniedPermissions.get(0))) {
             ToastUtils.show(R.string.base_permission_fail_four);
+            return;
+        }
+        if (callback == null) {
             return;
         }
 
@@ -127,6 +134,18 @@ public final class PermissionInterceptor implements IPermissionInterceptor {
 
                     if (!hints.contains(hint)) {
                         hints.add(hint);
+                    }
+                    break;
+                }
+
+                case Permission.BLUETOOTH_SCAN:
+                case Permission.BLUETOOTH_CONNECT:
+                case Permission.BLUETOOTH_ADVERTISE: {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                        String hint = context.getString(R.string.base_permission_bluetooth);
+                        if (!hints.contains(hint)) {
+                            hints.add(hint);
+                        }
                     }
                     break;
                 }
@@ -225,6 +244,14 @@ public final class PermissionInterceptor implements IPermissionInterceptor {
                 }
                 case Permission.WRITE_SETTINGS: {
                     String hint = context.getString(R.string.base_permission_setting);
+                    if (!hints.contains(hint)) {
+                        hints.add(hint);
+                    }
+                    break;
+                }
+
+                case Permission.PACKAGE_USAGE_STATS: {
+                    String hint = context.getString(R.string.base_permission_task);
                     if (!hints.contains(hint)) {
                         hints.add(hint);
                     }
