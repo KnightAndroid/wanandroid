@@ -12,6 +12,7 @@ import com.knight.wanandroid.library_base.baseactivity.BaseActivity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_common.utils.ColorUtils;
+import com.knight.wanandroid.library_util.LogUtils;
 import com.knight.wanandroid.module_welcome.R;
 import com.knight.wanandroid.module_welcome.contract.WelcomeContract;
 import com.knight.wanandroid.module_welcome.databinding.WelcomeActivityBinding;

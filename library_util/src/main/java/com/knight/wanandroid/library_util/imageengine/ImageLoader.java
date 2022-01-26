@@ -97,11 +97,11 @@ public class ImageLoader {
      * 通过Uri方式加载gif
      *
      * @param context
-     * @param gifUri
+     * @param resourceId
      * @param imageView
      */
-    public static void loadGif(@NonNull Context context, @NonNull Uri gifUri, @NonNull ImageView imageView) {
-        mImageLoaderProxy.loadGif(context, gifUri, imageView);
+    public static void loadGif(@NonNull Context context, @Nullable Integer resourceId, @NonNull ImageView imageView) {
+        mImageLoaderProxy.loadGif(context, resourceId, imageView);
     }
 
     /**

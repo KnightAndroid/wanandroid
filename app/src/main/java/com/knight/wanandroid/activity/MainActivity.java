@@ -12,10 +12,13 @@ import com.knight.wanandroid.library_base.baseactivity.BaseDBActivity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_common.utils.ColorUtils;
+import com.knight.wanandroid.library_network.NetWorkUtils;
 import com.knight.wanandroid.library_util.ActivityManagerUtils;
 import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.ViewSetUtils;
+import com.knight.wanandroid.library_util.imageengine.ImageLoader;
 import com.knight.wanandroid.library_util.toast.ToastUtils;
+import com.knight.wanandroid.library_widget.BombView;
 import com.knight.wanandroid.module_hierachy.module_fragment.HierachyNavigateMainFragment;
 import com.knight.wanandroid.module_home.module_fragment.HomeFragment;
 import com.knight.wanandroid.module_mine.fragment.MineFragment;
@@ -53,6 +56,23 @@ public class MainActivity extends BaseDBActivity<ActivityMainBinding> {
     public void initView(Bundle savedInstanceState) {
         EventBus.getDefault().register(this);
         initFragment();
+        NetWorkUtils.postDelayed(()->{
+            mDatabind.bomb.setBombStatusListener(new BombView.BombStatusListener() {
+                @Override
+                public void onAnimationStart() {
+
+                }
+
+                @Override
+                public void onAnimationEnd() {
+                  NetWorkUtils.post(()->{
+                      ImageLoader.loadGif(MainActivity.this,R.drawable.ic_newyear,mDatabind.ivGif);
+                  });
+
+                }
+            }).startBomb();
+        },1000);
+
 
 
     }
@@ -161,6 +181,7 @@ public class MainActivity extends BaseDBActivity<ActivityMainBinding> {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        mDatabind.bomb.release();
         EventBus.getDefault().unregister(this);
         mHomeFragment = null;
         mSquareFragment = null;

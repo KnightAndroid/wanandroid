@@ -51,7 +51,7 @@
 | ![10.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_everydaypush.jpg) | ![11.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_historyrecord.jpg) | ![12.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_updateapp.jpg) |
 | ![11.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_knowledgeLabel.jpg) | ![12.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_message_remind.jpg) | ![13.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_messagecenter.jpg) |
 | ![14.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/set_changesize.png) | ![wanandroid_biometric_finger.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_biometric_finger.jpg) |![wanandroid_gesturelock.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_gesturelock.jpg) |
-| ![15.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/home_feedback_article.png) |
+| ![15.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/home_feedback_article.png) |![wanandroid_shortcuts.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_shortcuts.jpg) |
 
 ### 深色模式
 | ![dark_01.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/home_dark_01.jpg) | ![dark_02.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/square_dark_02.jpg) | ![dark_03.jpg](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/navigate_dark_03.jpg) |
@@ -104,7 +104,7 @@
 - [LeakCanary](https://github.com/square/leakcanary)
 
 ## 本项目开发环境
-- 基于Android Studio 4.1.1
+- 基于Android Studio 4.1.1 || Android Studio Bumblebee
 - Android Gradle Plugin 6.1.1
 - Android Gradle插件4.0.0
 
@@ -117,6 +117,12 @@
 
 
 ## 更新日志
+### 1.1.9(13)
+-  wanandroid 第十三版发布
+-  增加shortcuts快捷图标
+-  新春特效
+-  修复一些问题
+
 ### 1.1.8(12)
 -  wanandroid 第十二版发布
 -  适配Android12

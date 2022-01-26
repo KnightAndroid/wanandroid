@@ -90,7 +90,7 @@ public class ScreenUtils {
      * @param activity
      * @return
      */
-    public static int getScreenWidth(Activity activity){
+    public static int getScreenWidth(Context activity){
         DisplayMetrics dMetrics = activity.getResources().getDisplayMetrics();
         return dMetrics.widthPixels;
     }
@@ -102,7 +102,7 @@ public class ScreenUtils {
      * @param activity
      * @return
      */
-    public static int getScreenHeight(Activity activity){
+    public static int getScreenHeight(Context activity){
         DisplayMetrics dMetrics = activity.getResources().getDisplayMetrics();
         return dMetrics.heightPixels;
     }

@@ -12,4 +12,13 @@
     <string name="welcome_privacy_tip">你可以阅读完整版《用户协议》和《隐私政策》来了解详细信息</string>
     <string name="welcome_agree_privacy">同意</string>
     <string name="welcome_disagree_privacy">不同意退出</string>
+    <string name="welcome_shortcuts_add_disabled_message">发布文章</string>
+    <string name="welcome_shortcuts_add_long_message">发布文章</string>
+    <string name="welcome_shortcuts_add_short_message">发布文章</string>
+    <string name="welcome_shortcuts_search_disabled_message">搜索</string>
+    <string name="welcome_shortcuts_search_long_message">搜索</string>
+    <string name="welcome_shortcuts_search_short_message">搜索</string>
+    <string name="welcome_shortcuts_share_disabled_message">我的分享</string>
+    <string name="welcome_shortcuts_share_long_message">我的分享</string>
+    <string name="welcome_shortcuts_share_short_message">我的分享</string>
 </resources>

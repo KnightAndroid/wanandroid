@@ -12,4 +12,13 @@
     <string name="welcome_privacy_tip">You can read the full user agreement and privacy policy for details</string>
     <string name="welcome_agree_privacy">agree</string>
     <string name="welcome_disagree_privacy">Do not agree to quit</string>
+    <string name="welcome_shortcuts_add_disabled_message">Publish articles</string>
+    <string name="welcome_shortcuts_add_long_message">Publish articles</string>
+    <string name="welcome_shortcuts_add_short_message">Publish articles</string>
+    <string name="welcome_shortcuts_search_disabled_message">Search</string>
+    <string name="welcome_shortcuts_search_long_message">Search</string>
+    <string name="welcome_shortcuts_search_short_message">Search</string>
+    <string name="welcome_shortcuts_share_disabled_message">My Share</string>
+    <string name="welcome_shortcuts_share_long_message">My Share</string>
+    <string name="welcome_shortcuts_share_short_message">My Share</string>
 </resources>

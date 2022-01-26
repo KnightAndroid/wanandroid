@@ -11,9 +11,9 @@ ext{
     //构建版本
     build_tools_version = "31.0.0"
     //App版本号
-    appVersionCode = 12
+    appVersionCode = 13
     //App版本名字
-    appVersionName = "1.1.8"
+    appVersionName = "1.1.9"
     //appcompat 版本
     appcompatVersion = "1.2.0"
     //material 版本

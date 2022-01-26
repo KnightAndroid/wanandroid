@@ -2,13 +2,24 @@ package com.knight.wanandroid.library_util.imageengine;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.view.View;
 import android.widget.ImageView;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.load.resource.gif.GifDrawable;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.vectordrawable.graphics.drawable.Animatable2Compat;
+
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 /**
@@ -82,14 +93,41 @@ public class DefaultImageLoaderProxy implements ImageLoaderProxy {
 
     /**
      *
-     * 加载gif
+     * 加载gif 暂时先这样处理
      * @param context
-     * @param gifUri
+     * @param resourceId
      * @param imageView
      */
     @Override
-    public void loadGif(@NonNull Context context, @NonNull Uri gifUri, @NonNull ImageView imageView) {
-        Glide.with(context).asGif().load(gifUri).transition(withCrossFade()).into(imageView);
+    public void loadGif(@NonNull Context context, @Nullable Integer resourceId, @NonNull ImageView imageView) {
+        Glide.with(context).asGif().load(resourceId).listener(new RequestListener<GifDrawable>() {
+            @Override
+            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<GifDrawable> target, boolean isFirstResource) {
+                return false;
+            }
+
+            @Override
+            public boolean onResourceReady(GifDrawable resource, Object model, Target<GifDrawable> target, DataSource dataSource, boolean isFirstResource) {
+                //设置循环次数
+                resource.setLoopCount(2);
+                resource.registerAnimationCallback(new Animatable2Compat.AnimationCallback() {
+                    @Override
+                    public void onAnimationStart(Drawable drawable) {
+                        super.onAnimationStart(drawable);
+                        //播放开始
+                        imageView.setVisibility(View.VISIBLE);
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Drawable drawable) {
+                        super.onAnimationEnd(drawable);
+                        //播放完成
+                        imageView.setVisibility(View.GONE);
+                    }
+                });
+                return false;
+            }
+        }).transition(withCrossFade()).diskCacheStrategy(DiskCacheStrategy.RESOURCE).into(imageView);
     }
 
     /**

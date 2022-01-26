@@ -16,7 +16,21 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/main_viewpager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            />
+
+        <com.knight.wanandroid.library_widget.BombView
+            android:id="@+id/bomb"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+        <ImageView
+            android:id="@+id/iv_gif"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            />
 
         <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
             android:id="@+id/btn_nav"

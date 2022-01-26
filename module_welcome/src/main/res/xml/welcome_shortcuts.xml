@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/welcome_shortcuts_add"
+        android:shortcutDisabledMessage="@string/welcome_shortcuts_add_disabled_message"
+        android:shortcutId="staticId_add"
+        android:shortcutLongLabel="@string/welcome_shortcuts_add_disabled_message"
+        android:shortcutShortLabel="@string/welcome_shortcuts_add_disabled_message">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.knight.wanandroid.module_square.module_activity.SquareShareArticleActivity"
+            android:targetPackage="com.knight.wanandroid" />
+        <categories android:name="android.shortcut.conversation" />
+
+
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/welcome_shortcuts_search"
+        android:shortcutDisabledMessage="@string/welcome_shortcuts_search_disabled_message"
+        android:shortcutId="staticId_search"
+        android:shortcutLongLabel="@string/welcome_shortcuts_search_disabled_message"
+        android:shortcutShortLabel="@string/welcome_shortcuts_search_disabled_message">
+
+
+        <!--返回的activity-->
+        <intent
+            android:action="com.knight.wanandroid.shortcuts.back"
+            android:targetClass="com.knight.wanandroid.activity.MainActivity"
+            android:targetPackage="com.knight.wanandroid" />
+        <!--跳转目标得Activity-->
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.knight.wanandroid.module_home.module_activity.SearchActivity"
+            android:targetPackage="com.knight.wanandroid" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/welcome_shortcuts_share"
+        android:shortcutDisabledMessage="@string/welcome_shortcuts_share_disabled_message"
+        android:shortcutId="staticId_scan"
+        android:shortcutLongLabel="@string/welcome_shortcuts_share_disabled_message"
+        android:shortcutShortLabel="@string/welcome_shortcuts_share_disabled_message">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.knight.wanandroid.module_mine.activity.MyShareArticleActivity"
+            android:targetPackage="com.knight.wanandroid" />
+        <categories android:name="android.shortcut.conversation" />
+
+    </shortcut>
+</shortcuts>

@@ -76,10 +76,10 @@ public interface ImageLoaderProxy {
      *
      * 通过Uri方式加载gif动图到ImageView
      * @param context
-     * @param gifUri
+     * @param resourceId
      * @param imageView
      */
-    void loadGif(@NonNull Context context,@NonNull Uri gifUri,@NonNull ImageView imageView);
+    void loadGif(@NonNull Context context,@Nullable Integer resourceId,@NonNull ImageView imageView);
 
 
     /**
