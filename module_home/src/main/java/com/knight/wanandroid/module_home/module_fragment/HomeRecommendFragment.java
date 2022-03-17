@@ -152,7 +152,7 @@ public final class HomeRecommendFragment extends BaseFragment<HomeFragmentRecomm
         mDatabind.homeIconFab.setBackgroundTintList(ColorUtils.createColorStateList(CacheUtils.getThemeColor(), CacheUtils.getThemeColor()));
         initTopAdapterClick();
         initOfficialAccountClick();
-        initArticleLinstener();
+        initArticleListener();
         initTwoLevel();
         mDatabind.homeRefreshLayout.setOnMultiListener(new SimpleMultiListener() {
             @Override
@@ -388,7 +388,7 @@ public final class HomeRecommendFragment extends BaseFragment<HomeFragmentRecomm
         });
     }
 
-    private void initArticleLinstener() {
+    private void initArticleListener() {
         mHomeArticleAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {

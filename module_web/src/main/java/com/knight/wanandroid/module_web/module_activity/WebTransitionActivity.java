@@ -57,6 +57,7 @@ public final class WebTransitionActivity extends BaseDBActivity<WebTransitionAct
     //文章标题
     @Autowired(name = "title")
     String title = "";
+
     private AgentWeb mAgentWeb;
 
     //作者

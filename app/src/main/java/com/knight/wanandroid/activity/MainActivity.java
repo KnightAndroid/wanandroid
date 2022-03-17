@@ -56,22 +56,22 @@ public class MainActivity extends BaseDBActivity<ActivityMainBinding> {
     public void initView(Bundle savedInstanceState) {
         EventBus.getDefault().register(this);
         initFragment();
-        NetWorkUtils.postDelayed(()->{
-            mDatabind.bomb.setBombStatusListener(new BombView.BombStatusListener() {
-                @Override
-                public void onAnimationStart() {
-
-                }
-
-                @Override
-                public void onAnimationEnd() {
-                  NetWorkUtils.post(()->{
-                      ImageLoader.loadGif(MainActivity.this,R.drawable.ic_newyear,mDatabind.ivGif);
-                  });
-
-                }
-            }).startBomb();
-        },1000);
+//        NetWorkUtils.postDelayed(()->{
+//            mDatabind.bomb.setBombStatusListener(new BombView.BombStatusListener() {
+//                @Override
+//                public void onAnimationStart() {
+//
+//                }
+//
+//                @Override
+//                public void onAnimationEnd() {
+//                  NetWorkUtils.post(()->{
+//                      ImageLoader.loadGif(MainActivity.this,R.drawable.ic_newyear,mDatabind.ivGif);
+//                  });
+//
+//                }
+//            }).startBomb();
+//        },1000);
 
 
 

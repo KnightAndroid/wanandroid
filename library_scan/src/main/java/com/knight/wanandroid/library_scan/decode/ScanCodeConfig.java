@@ -20,13 +20,6 @@ public class ScanCodeConfig {
     private Fragment mFragment;
     private ScanCodeEntity model;
 
-//    public ScanCodeConfig(ScanCodeEntity model){
-//        this.mActivity = model.mActivity;
-//        this.mFragment = model.mFragment;
-//        this.model = model;
-//    }
-
-
     public ScanCodeConfig(Builder builder){
         this.mActivity = builder.mActivity;
         this.mFragment = builder.mFragment;

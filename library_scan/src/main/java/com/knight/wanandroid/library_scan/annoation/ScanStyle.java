@@ -7,6 +7,7 @@ import androidx.annotation.IntDef;
 
 /**
  * @author apple
+ *
  */
 @Retention(RetentionPolicy.SOURCE)
 @IntDef({ScanStyle.NONE,ScanStyle.HALF_SCREEN, ScanStyle.FULL_SCREEN, ScanStyle.CUSTOMIZE})

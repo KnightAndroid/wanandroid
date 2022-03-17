@@ -53,6 +53,7 @@ dependencies {
     api "me.jessyan:autosize:$autoSizeViersion"
     //全局加载视图框架 https://github.com/KingJA/LoadSir
     api "com.kingja.loadsir:loadsir:$loadsirVersion"
+    //智能刷新库 https://github.com/scwang90/SmartRefreshLayout
     //核心必须依赖
     api "com.scwang.smart:refresh-layout-kernel:$smartRefreshVersion"
     //经典刷新头

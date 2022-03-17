@@ -89,6 +89,7 @@ public final class LoginActivity extends BaseActivity<MineActivityLoginBinding, 
                 finish();
             }
         });
+
         
     }
 
