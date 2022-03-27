@@ -3,16 +3,12 @@ package com.knight.wanandroid.module_welcome.activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.os.Bundle;
-import android.view.View;
-import android.view.WindowManager;
-
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.knight.wanandroid.library_base.AppConfig;
 import com.knight.wanandroid.library_base.baseactivity.BaseActivity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_common.utils.CacheUtils;
 import com.knight.wanandroid.library_common.utils.ColorUtils;
-import com.knight.wanandroid.library_util.LogUtils;
 import com.knight.wanandroid.module_welcome.R;
 import com.knight.wanandroid.module_welcome.contract.WelcomeContract;
 import com.knight.wanandroid.module_welcome.databinding.WelcomeActivityBinding;
@@ -93,9 +89,7 @@ public class WelcomeActivity extends BaseActivity<WelcomeActivityBinding, Welcom
     @Override
     public void setThemeColor(AppThemeEntity appThemeEntity) {
         AppConfig.appThemeColor = appThemeEntity.getThemeColor();
-        if (appThemeEntity.isForceTheme()) {
-            CacheUtils.setThemeColor(ColorUtils.convertToColorInt(AppConfig.appThemeColor));
-        }
+        CacheUtils.setThemeColor(ColorUtils.convertToColorInt(AppConfig.appThemeColor));
         AppConfig.gray = appThemeEntity.isGray();
     }
 }
