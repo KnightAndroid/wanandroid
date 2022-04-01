@@ -144,6 +144,28 @@ public final class ProjectViewpagerFragment extends BaseFragment<ProjectViewpage
         onRefresh(mDatabind.projectListSmartfreshlayout);
     }
 
+    /**
+     * 登录成功
+     * @param loginInSuccess
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onLoginInSuccess(EventBusUtils.LoginInSuccess loginInSuccess) {
+        //登录成功
+        page = 0;
+        mPresenter.requestProjectArticle(page,cid,isNewProject);
+    }
+
+    /**
+     * 退出登录成功
+     * @param logoutSuccess
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onLogoutSuccess(EventBusUtils.LogoutSuccess logoutSuccess){
+        page = 0;
+        mPresenter.requestProjectArticle(page,cid,isNewProject);
+    }
+
+
     @Override
     public void showLoading() {
 

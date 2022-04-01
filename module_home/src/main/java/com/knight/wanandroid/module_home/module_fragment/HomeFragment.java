@@ -177,11 +177,8 @@ public final class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, Ho
 
     @Override
     public void setUserInfo(UserInfoEntity userInfo) {
-
         CacheUtils.saveDataInfo(MMkvConstants.USER,userInfo);
         EventBus.getDefault().post(new EventBusUtils.LoginInSuccess());
-//        ModuleConfig.getInstance().user = userInfo;
-//        mDatabind.homeIncludeToolbar.homeTvLoginname.setText(ModuleConfig.getInstance().user.getUsername());
     }
 
 
@@ -431,7 +428,7 @@ public final class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, Ho
             @Override
             public void onCancel() {
                 ToastUtils.show(R.string.base_permission_denied);
-                ARouterUtils.startActivity(RoutePathActivity.Mine.Login_Pager);;
+                ARouterUtils.startActivity(RoutePathActivity.Mine.Login_Pager);
             }
         });
     }
@@ -440,8 +437,6 @@ public final class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, Ho
     @Override
     public void onDestroy(){
         super.onDestroy();
-
-
         EventBus.getDefault().unregister(this);
     }
 

@@ -516,7 +516,14 @@ public final class HomeRecommendFragment extends BaseFragment<HomeFragmentRecomm
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onLoginInSuccess(EventBusUtils.LoginInSuccess loginInSuccess) {
-        mPresenter.requestUnreadMessage();
+        //请求全部数据
+        currentPage = 0;
+        //未读数量请求
+        if (ModuleConfig.getInstance().user != null) {
+            mPresenter.requestUnreadMessage();
+        }
+        mPresenter.requestAllHomeArticle(currentPage);
+
     }
 
     /**
@@ -527,7 +534,10 @@ public final class HomeRecommendFragment extends BaseFragment<HomeFragmentRecomm
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onLogoutSuccess(EventBusUtils.LogoutSuccess logoutSuccess) {
         //刷新页面
+        currentPage = 0;
         home_rl_message.setVisibility(View.GONE);
+        mPresenter.requestAllHomeArticle(currentPage);
+
     }
 
 
