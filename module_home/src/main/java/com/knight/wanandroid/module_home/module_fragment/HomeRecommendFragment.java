@@ -46,6 +46,7 @@ import com.knight.wanandroid.module_home.module_adapter.HomeArticleAdapter;
 import com.knight.wanandroid.module_home.module_adapter.OfficialAccountAdapter;
 import com.knight.wanandroid.module_home.module_adapter.OpenSourceAdapter;
 import com.knight.wanandroid.module_home.module_adapter.TopArticleAdapter;
+import com.knight.wanandroid.module_home.module_constants.HomeConstants;
 import com.knight.wanandroid.module_home.module_contract.RecommendContract;
 import com.knight.wanandroid.module_home.module_entity.BannerEntity;
 import com.knight.wanandroid.module_home.module_entity.HomeArticleListEntity;
@@ -162,7 +163,7 @@ public final class HomeRecommendFragment extends BaseFragment<HomeFragmentRecomm
 
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                lazyLoadData();
+               // lazyLoadData();
             }
 
             @Override
@@ -192,6 +193,7 @@ public final class HomeRecommendFragment extends BaseFragment<HomeFragmentRecomm
 
         mDatabind.homeTwoLevelHeader.setEnablePullToCloseTwoLevel(false);
         mDatabind.homeRefreshLayout.setEnableLoadMore(true);
+        mDatabind.homeRefreshLayout.setOnRefreshListener(this);
         mDatabind.homeRefreshLayout.setOnLoadMoreListener(this);
     }
 
@@ -544,6 +546,14 @@ public final class HomeRecommendFragment extends BaseFragment<HomeFragmentRecomm
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void readAllMessage(EventBusUtils.ReadAllMessage readAllMessage) {
         home_rl_message.setVisibility(View.GONE);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void oncollectSuccess(EventBusUtils.CollectSuccess collectSuccess) {
+        //刷新重新请求列表数据
+        currentPage = 0;
+        mPresenter.requestAllHomeArticle(currentPage);
+
     }
 
 

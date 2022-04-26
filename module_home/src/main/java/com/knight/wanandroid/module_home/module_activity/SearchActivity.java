@@ -199,7 +199,7 @@ public final class SearchActivity extends BaseActivity<HomeSearchActivityBinding
 
     private void initClickListener() {
         //适配器点击监听事件
-        mSearchRecordAdapter.addChildClickViewIds(R.id.iv_searchkeyword_delete);
+        mSearchRecordAdapter.addChildClickViewIds( );
         mSearchRecordAdapter.setOnItemChildClickListener((adapter, view, position) -> {
             if (view.getId() == R.id.iv_searchkeyword_delete) {
                 HistroyKeywordsRepository.getInstance().deleteHistroyKeyword(mSearchRecordAdapter.getData().get(position).getId());

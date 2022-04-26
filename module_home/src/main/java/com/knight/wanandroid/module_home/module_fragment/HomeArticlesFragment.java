@@ -63,7 +63,6 @@ public final class HomeArticlesFragment extends BaseFragment<HomeFragmentArticle
         EventBus.getDefault().register(this);
         mHomeArticleAdapter = new HomeArticleAdapter(new ArrayList<>());
         SetInitCustomView.initSwipeRecycleview(mDatabind.homeArticleBody, new LinearLayoutManager(getActivity()), mHomeArticleAdapter, true);
-        mDatabind.homeArticleBody.setAdapter(mHomeArticleAdapter);
         mDatabind.homeArticleFreshlayout.setOnLoadMoreListener(this);
         mDatabind.homeArticleFreshlayout.setOnRefreshListener(this);
         mHomeArticleAdapter.setOnItemClickListener(new OnItemClickListener() {

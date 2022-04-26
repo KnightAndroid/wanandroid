@@ -121,47 +121,9 @@ public class RightLottieAnimation {
     }
 
     private ObjectAnimator buildOpeningAnimation() {
-
-//        ObjectAnimator rotationAnimator = initAnimator(ObjectAnimator.ofFloat(mGuillotineView, ROTATION, GUILLOTINE_CLOSED_ANGLE, GUILLOTINE_OPENED_ANGLE));
-//        rotationAnimator.setInterpolator(mInterpolator);
-//        rotationAnimator.setDuration(mDuration);
-//        rotationAnimator.addListener(new Animator.AnimatorListener() {
-//            @Override
-//            public void onAnimationStart(Animator animation) {
-//                mGuillotineView.setVisibility(View.VISIBLE);
-//                isOpening = true;
-//            }
-//
-//            @Override
-//            public void onAnimationEnd(Animator animation) {
-//                isOpening = false;
-//                if (mListener != null) {
-//                    mListener.onRightLottieOpened();
-//                }
-//            }
-//
-//            @Override
-//            public void onAnimationCancel(Animator animation) {
-//
-//            }
-//
-//            @Override
-//            public void onAnimationRepeat(Animator animation) {
-//
-//            }
-//        });
-//        return rotationAnimator;
-
-
-
-
-
         PropertyValuesHolder p = PropertyValuesHolder.ofFloat(ROTATION, GUILLOTINE_CLOSED_ANGLE, GUILLOTINE_OPENED_ANGLE);
-
         ObjectAnimator objectAnimator = ObjectAnimator.ofPropertyValuesHolder(mGuillotineView, p);
         objectAnimator.setDuration((long) (mDuration * RightLottieInterpolator.ROTATION_TIME));
-       // objectAnimator.setInterpolator(mInterpolator);
-       // objectAnimator.setInterpolator(new LinearInterpolator());
         objectAnimator.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
@@ -192,43 +154,8 @@ public class RightLottieAnimation {
     }
 
     private ObjectAnimator buildClosingAnimation() {
-//        ObjectAnimator rotationAnimator = initAnimator(ObjectAnimator.ofFloat(mGuillotineView, ROTATION, GUILLOTINE_OPENED_ANGLE, GUILLOTINE_CLOSED_ANGLE));
-//        rotationAnimator.setDuration((long) (mDuration * RightLottieInterpolator.ROTATION_TIME));
-//        rotationAnimator.addListener(new Animator.AnimatorListener() {
-//            @Override
-//            public void onAnimationStart(Animator animation) {
-//                isClosing = true;
-//                mGuillotineView.setVisibility(View.VISIBLE);
-//            }
-//
-//            @Override
-//            public void onAnimationEnd(Animator animation) {
-//                isClosing = false;
-//                mGuillotineView.setVisibility(View.GONE);
-//            //    startActionBarAnimation();
-//
-//                if (mListener != null) {
-//                    mListener.onRightLottieClosed();
-//                }
-//            }
-//
-//            @Override
-//            public void onAnimationCancel(Animator animation) {
-//
-//            }
-//
-//            @Override
-//            public void onAnimationRepeat(Animator animation) {
-//
-//            }
-//        });
-//        return rotationAnimator;
-
-
         PropertyValuesHolder p = PropertyValuesHolder.ofFloat(ROTATION, GUILLOTINE_OPENED_ANGLE, GUILLOTINE_CLOSED_ANGLE);
-
         ObjectAnimator objectAnimator = ObjectAnimator.ofPropertyValuesHolder(mGuillotineView, p);
-     //   objectAnimator.setInterpolator(mInterpolator);
         objectAnimator.setDuration((long) (mDuration * RightLottieInterpolator.ROTATION_TIME));
         objectAnimator.addListener(new Animator.AnimatorListener() {
             @Override
