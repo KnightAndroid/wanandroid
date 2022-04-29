@@ -61,7 +61,7 @@ public final class SquareArticleAdapter extends BaseQuickAdapter<SquareArticleEn
         if (!TextUtils.isEmpty(squareArticleEntity.getNiceDate())) {
             baseViewHolder.setText(R.id.square_item_articledata,squareArticleEntity.getNiceDate());
         } else {
-            baseViewHolder.setText(R.id.square_item_articledata,squareArticleEntity.getNiceDate());
+            baseViewHolder.setText(R.id.square_item_articledata,squareArticleEntity.getNiceShareDate());
         }
 
         //标题

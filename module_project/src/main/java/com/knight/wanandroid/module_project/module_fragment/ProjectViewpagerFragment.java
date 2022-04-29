@@ -151,7 +151,11 @@ public final class ProjectViewpagerFragment extends BaseFragment<ProjectViewpage
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onLoginInSuccess(EventBusUtils.LoginInSuccess loginInSuccess) {
         //登录成功
-        page = 0;
+        if (isNewProject) {
+            page = 0;
+        } else {
+            page = 1;
+        }
         mPresenter.requestProjectArticle(page,cid,isNewProject);
     }
 
@@ -161,7 +165,11 @@ public final class ProjectViewpagerFragment extends BaseFragment<ProjectViewpage
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onLogoutSuccess(EventBusUtils.LogoutSuccess logoutSuccess){
-        page = 0;
+        if (isNewProject) {
+            page = 0;
+        } else {
+            page = 1;
+        }
         mPresenter.requestProjectArticle(page,cid,isNewProject);
     }
 

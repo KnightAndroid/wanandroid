@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
 import com.knight.wanandroid.library_base.baseactivity.BaseActivity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
 import com.knight.wanandroid.library_common.utils.CacheUtils;
@@ -101,9 +102,7 @@ public final class SquareShareArticleActivity extends BaseActivity<SquareActivit
 
     public class ProcyClick{
         public void shareArticle(){
-            if (validateArticleMessage()) {
-                mPresenter.requestShareArticle(title,link);
-            }
+            submitArticle();
         }
     }
 
@@ -112,6 +111,7 @@ public final class SquareShareArticleActivity extends BaseActivity<SquareActivit
      * 校验文章信息和链接
      * @return
      */
+
     private boolean validateArticleMessage(){
         boolean validFlag = true;
         title = mDatabind.squareSharearticleEt.getText().toString().trim();
@@ -129,5 +129,12 @@ public final class SquareShareArticleActivity extends BaseActivity<SquareActivit
         }
 
         return validFlag;
+    }
+
+    @LoginCheck
+    private void submitArticle(){
+        if (validateArticleMessage()) {
+            mPresenter.requestShareArticle(title,link);
+        }
     }
 }

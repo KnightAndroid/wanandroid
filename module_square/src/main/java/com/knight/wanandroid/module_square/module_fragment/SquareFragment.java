@@ -160,7 +160,7 @@ public final class SquareFragment extends BaseFragment<SquareFragmentSquareBindi
                 mViewLoadService.showCallback(LoadCallBack.class);
             }
         });
-        mViewLoadService.showCallback(LoadCallBack.class);
+      //  mViewLoadService.showCallback(LoadCallBack.class);
         mRightLottieAnimation = new RightLottieAnimation.GuillotineBuilder(QuestionMenu,QuestionMenu.findViewById(R.id.square_question_lefticon),mDatabind.squareIvQuestion,mSquareQuestionAdapter)
                 .setStartDelay(RIPPLE_DURATION)
                 .setActionBarViewForAnimation(mDatabind.squareToolbar)
@@ -359,7 +359,7 @@ public final class SquareFragment extends BaseFragment<SquareFragmentSquareBindi
 
 
     public class ProcyClick{
-        @LoginCheck
+
         public void goShareArticle(){
             startActivity(new Intent(getActivity(), SquareShareArticleActivity.class));
         }
