@@ -28,6 +28,8 @@ public final class ProjectFragment extends BaseFragment<ProjectFragmentBinding, 
 
     List<ProjectViewpagerFragment> mFragments = new ArrayList<>();
 
+    List<String> mTitleList = new ArrayList<>();
+
     @Override
     protected int layoutId() {
         return R.layout.project_fragment;
@@ -64,15 +66,17 @@ public final class ProjectFragment extends BaseFragment<ProjectFragmentBinding, 
     public void setProjectTypes(List<ProjectTypeEntity> projectTypes) {
         showSuccess();
         mFragments.clear();
+        mTitleList.clear();
         ProjectTypeEntity projectTypeEntity = new ProjectTypeEntity();
         projectTypeEntity.setName("最新项目");
-        projectTypes.add(0,projectTypeEntity);
+        mTitleList.add(projectTypeEntity.getName());
         mFragments.add(ProjectViewpagerFragment.newInstance(0,true));
         for (int i = 0;i < projectTypes.size();i++) {
+            mTitleList.add(projectTypes.get(i).getName());
             mFragments.add(ProjectViewpagerFragment.newInstance(projectTypes.get(i).getId(),false));
         }
         ProjectInitViewUtils.setViewPager2InitFragment(this,mFragments,mDatabind.projectViewPager,false);
-        ProjectInitViewUtils.bindProjectViewPager2(mDatabind.projectIndicator, mDatabind.projectViewPager, projectTypes);
+        ProjectInitViewUtils.bindProjectViewPager2(mDatabind.projectIndicator, mDatabind.projectViewPager, mTitleList);
     }
 
     @Override

@@ -65,21 +65,21 @@ public final class ProjectInitViewUtils {
      *
      * @param magicIndicator
      * @param viewPager2
-     * @param mDataList
+     * @param mTitleList
      */
-    public static void bindProjectViewPager2(MagicIndicator magicIndicator, ViewPager2 viewPager2, List<ProjectTypeEntity> mDataList) {
+    public static void bindProjectViewPager2(MagicIndicator magicIndicator, ViewPager2 viewPager2, List<String> mTitleList) {
         CommonNavigator commonNavigator = new CommonNavigator(ApplicationProvider.getInstance().getApplication());
         commonNavigator.setAdapter(new CommonNavigatorAdapter() {
             @Override
             public int getCount() {
-                return mDataList == null ? 0 : mDataList.size();
+                return mTitleList == null ? 0 : mTitleList.size();
             }
 
             @Override
             public IPagerTitleView getTitleView(Context context, final int index) {
                 ScaleTransitionPagerTitleView scaleTransitionPagerTitleView = new ScaleTransitionPagerTitleView(context);
-                if (mDataList.size() != 0) {
-                    scaleTransitionPagerTitleView.setText(mDataList.get(index).getName());
+                if (mTitleList.size() != 0) {
+                    scaleTransitionPagerTitleView.setText(mTitleList.get(index));
                 }
 
                 scaleTransitionPagerTitleView.setTextSize(18f);
