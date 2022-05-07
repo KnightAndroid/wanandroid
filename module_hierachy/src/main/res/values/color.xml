@@ -7,4 +7,5 @@
     <color name="hierachy_teal_700">#FF018786</color>
     <color name="hierachy_black">#FF000000</color>
     <color name="hierachy_white">#FFFFFFFF</color>
+    <color name="hierachy_detail_bg_color">#ffffff</color>
 </resources>
