@@ -13,7 +13,7 @@
     </data>
 
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fr_recommend_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,7 +22,10 @@
         <RelativeLayout
             android:id="@+id/fl_test"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
 
 
             <com.scwang.smart.refresh.layout.SmartRefreshLayout
@@ -71,21 +74,100 @@
 
         </RelativeLayout>
 
-
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:layout_gravity="bottom|end"-->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/home_icon_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_gravity="bottom|end"
             android:layout_marginRight="@dimen/base_dimen_20"
             android:layout_marginBottom="@dimen/base_dimen_70"
-            android:onClick="@{()->click.scrollUp()}"
-            android:src="@drawable/base_icon_up"
+            android:onClick="@{()->click.showOrHide()}"
+            android:src="@drawable/home_icon_show_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/home_icon_course"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:layout_marginEnd="32dp"
+            android:padding="10dp"
+            android:src="@drawable/home_icon_course"
+            app:fabSize="normal"
+            app:layout_constraintCircle="@+id/home_icon_fab"
+            app:layout_constraintCircleRadius="80dp"
+            app:layout_constraintCircleAngle="270"
+            app:tint="#ffffff"
+            app:pressedTranslationZ="20dp"
+            app:rippleColor="#1f000000"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:onClick="@{()->click.goCourse()}"/>
 
-    </FrameLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/home_icon_utils"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:layout_marginEnd="32dp"
+            android:padding="10dp"
+            android:src="@drawable/home_icon_utils"
+            app:fabSize="normal"
+            app:layout_constraintCircle="@+id/home_icon_fab"
+            app:layout_constraintCircleRadius="80dp"
+            app:layout_constraintCircleAngle="315"
+            app:tint="#ffffff"
+            app:pressedTranslationZ="20dp"
+            app:rippleColor="#1f000000"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:onClick="@{()->click.goUtils()}"/>
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/home_icon_scroll_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:layout_marginEnd="32dp"
+            android:padding="10dp"
+            android:src="@drawable/base_icon_up"
+            app:fabSize="normal"
+            app:layout_constraintCircle="@+id/home_icon_fab"
+            app:layout_constraintCircleRadius="80dp"
+            app:layout_constraintCircleAngle="360"
+            app:tint="#ffffff"
+            android:visibility="gone"
+            app:pressedTranslationZ="20dp"
+            app:rippleColor="#1f000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:onClick="@{()->click.scrollUp()}"/>
+
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/home_gp_icon_course"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="home_icon_course"/>
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/home_gp_icon_utils"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="home_icon_utils"/>
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/home_gp_icon_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="home_icon_scroll_up"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </layout>

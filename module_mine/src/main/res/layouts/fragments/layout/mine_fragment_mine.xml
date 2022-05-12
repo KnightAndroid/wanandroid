@@ -187,7 +187,18 @@
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/base_dimen_text_size_18" />
 
+                         <TextView
+                             android:id="@+id/mine_tv_my_collect_number"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:textSize="@dimen/base_dimen_text_size_16"
+                             android:layout_toLeftOf="@+id/mine_iv_left_arrow"
+                             android:textColor="@android:color/white"
+                             android:layout_marginLeft="@dimen/base_dimen_2"
+                             android:text="-"/>
+
                         <ImageView
+                            android:id="@+id/mine_iv_left_arrow"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"

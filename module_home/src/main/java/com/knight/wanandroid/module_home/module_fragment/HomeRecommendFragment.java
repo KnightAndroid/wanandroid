@@ -1,5 +1,8 @@
 package com.knight.wanandroid.module_home.module_fragment;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -7,6 +10,7 @@ import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -16,6 +20,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.chad.library.adapter.base.listener.OnItemLongClickListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.reflect.TypeToken;
 import com.knight.wanandroid.library_aop.loginintercept.LoginCheck;
 import com.knight.wanandroid.library_base.basefragment.BaseFragment;
@@ -32,15 +37,18 @@ import com.knight.wanandroid.library_util.EventBusUtils;
 import com.knight.wanandroid.library_util.GsonUtils;
 import com.knight.wanandroid.library_util.JsonUtils;
 import com.knight.wanandroid.library_util.LanguageFontSizeUtils;
+import com.knight.wanandroid.library_util.ScreenUtils;
 import com.knight.wanandroid.library_util.SystemUtils;
 import com.knight.wanandroid.library_util.imageengine.ImageLoader;
 import com.knight.wanandroid.library_util.toast.ToastUtils;
 import com.knight.wanandroid.library_widget.SetInitCustomView;
 import com.knight.wanandroid.library_widget.skeleton.Skeleton;
 import com.knight.wanandroid.library_widget.skeleton.SkeletonScreen;
+import com.knight.wanandroid.library_widget.swipeback.DecelerateAnimator;
 import com.knight.wanandroid.module_feedback.dialog.FeedBackDialog;
 import com.knight.wanandroid.module_home.R;
 import com.knight.wanandroid.module_home.databinding.HomeFragmentRecommendBinding;
+import com.knight.wanandroid.module_home.generated.callback.OnClickListener;
 import com.knight.wanandroid.module_home.module_activity.HomeArticlesTabActivity;
 import com.knight.wanandroid.module_home.module_adapter.HomeArticleAdapter;
 import com.knight.wanandroid.module_home.module_adapter.OfficialAccountAdapter;
@@ -78,6 +86,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.Group;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -110,7 +120,14 @@ public final class HomeRecommendFragment extends BaseFragment<HomeFragmentRecomm
     private RelativeLayout home_rl_message;
     private TextView home_tv_unread_message;
     private SkeletonScreen mSkeletonScreen;
+    // 动画集合，用来控制动画的有序播放
+    private AnimatorSet animatorSet;
 
+    // 圆的半径
+    private int radius;
+
+    // FloatingActionButton宽度和高度，宽高一样
+    private int width = 0;
 
 
     @Override
@@ -151,6 +168,9 @@ public final class HomeRecommendFragment extends BaseFragment<HomeFragmentRecomm
             }
         });
         mDatabind.homeIconFab.setBackgroundTintList(ColorUtils.createColorStateList(CacheUtils.getThemeColor(), CacheUtils.getThemeColor()));
+        mDatabind.homeIconCourse.setBackgroundTintList(ColorUtils.createColorStateList(CacheUtils.getThemeColor(), CacheUtils.getThemeColor()));
+        mDatabind.homeIconUtils.setBackgroundTintList(ColorUtils.createColorStateList(CacheUtils.getThemeColor(), CacheUtils.getThemeColor()));
+        mDatabind.homeIconScrollUp.setBackgroundTintList(ColorUtils.createColorStateList(CacheUtils.getThemeColor(), CacheUtils.getThemeColor()));
         initTopAdapterClick();
         initOfficialAccountClick();
         initArticleListener();
@@ -177,7 +197,7 @@ public final class HomeRecommendFragment extends BaseFragment<HomeFragmentRecomm
                 } else if (oldState == RefreshState.TwoLevelFinish) {
 
                     openTwoLevel = false;
-                    mDatabind.homeIconFab.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.base_icon_up));
+                    mDatabind.homeIconFab.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.home_icon_show_icon));
                 }
 
             }
@@ -195,6 +215,8 @@ public final class HomeRecommendFragment extends BaseFragment<HomeFragmentRecomm
         mDatabind.homeRefreshLayout.setEnableLoadMore(true);
         mDatabind.homeRefreshLayout.setOnRefreshListener(this);
         mDatabind.homeRefreshLayout.setOnLoadMoreListener(this);
+        setViewVisible(false);
+        radius = ScreenUtils.dp2px(80);
     }
 
     private void bindHeadView() {
@@ -496,12 +518,31 @@ public final class HomeRecommendFragment extends BaseFragment<HomeFragmentRecomm
 
 
     public class ProxyClick {
-        public void scrollUp() {
+        //显示或隐藏收纳图标
+        public void showOrHide(){
             if (openTwoLevel) {
                 mDatabind.homeTwoLevelHeader.finishTwoLevel();
             } else {
-                scrollTop();
+                showAnimation();
             }
+
+        }
+
+
+        //跳到工具类页面
+        public void goUtils() {
+            ARouter.getInstance().build(RoutePathActivity.Util.Util_pager).navigation();
+
+        }
+
+        //跳到课程页面
+        public void goCourse() {
+            ToastUtils.show("跳到课程页面");
+        }
+
+        //滚动顶部
+        public void scrollUp(){
+            scrollTop();
         }
 
 
@@ -558,9 +599,103 @@ public final class HomeRecommendFragment extends BaseFragment<HomeFragmentRecomm
 
 
     @Override
+    public void onResume() {
+        super.onResume();
+        mDatabind.homeIconFab.post(new Runnable() {
+            @Override
+            public void run() {
+                width = mDatabind.homeIconFab.getMeasuredWidth();
+            }
+        });
+
+    }
+    @Override
     public void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+    }
+
+
+    private void setViewVisible(boolean isShow){
+        mDatabind.homeGpIconCourse.setVisibility(isShow ? View.VISIBLE : View.GONE);
+        mDatabind.homeGpIconUtils.setVisibility(isShow ? View.VISIBLE :View.GONE);
+        mDatabind.homeGpIconUp.setVisibility(isShow ? View.VISIBLE :View.GONE);
+
+    }
+
+    private ValueAnimator getValueAnimator(FloatingActionButton button, boolean reverse, Group group,int angle) {
+        ValueAnimator valueAnimator;
+        if (reverse) {
+            valueAnimator = ValueAnimator.ofFloat(1f,0f);
+        } else {
+            valueAnimator = ValueAnimator.ofFloat(0f,1f);
+        }
+
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float v = (Float) animation.getAnimatedValue();
+                ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)button.getLayoutParams();
+                params.circleRadius = (int)(radius * v);
+                params.circleAngle = 270f +angle * v;
+                params.width = (int)(width * v);
+                params.height = (int)(width * v);
+                button.setLayoutParams(params);
+
+            }
+        });
+
+        valueAnimator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                group.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                if (group == mDatabind.homeGpIconCourse && reverse) {
+                    setViewVisible(false);
+                }
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+
+        valueAnimator.setDuration(300);
+        valueAnimator.setInterpolator(new DecelerateInterpolator());
+        return valueAnimator;
+
+    }
+
+    private void showAnimation() {
+        if (animatorSet != null && animatorSet.isRunning()) {
+            return;
+        }
+        animatorSet = new AnimatorSet();
+        ValueAnimator utils;
+        ValueAnimator course;
+        ValueAnimator upScrollView;
+        if (mDatabind.homeGpIconCourse.getVisibility() != View.VISIBLE) {
+            course = getValueAnimator(mDatabind.homeIconCourse,false, mDatabind.homeGpIconCourse, 0);
+            utils = getValueAnimator(mDatabind.homeIconUtils,false,mDatabind.homeGpIconUtils,45);
+            upScrollView = getValueAnimator(mDatabind.homeIconScrollUp,false,mDatabind.homeGpIconUp,90);
+            animatorSet.playSequentially(course,utils,upScrollView);
+
+        } else {
+            course = getValueAnimator(mDatabind.homeIconCourse,true, mDatabind.homeGpIconCourse, 0);
+            utils = getValueAnimator(mDatabind.homeIconUtils,true,mDatabind.homeGpIconUtils,45);
+            upScrollView = getValueAnimator(mDatabind.homeIconScrollUp,true,mDatabind.homeGpIconUp,90);
+            animatorSet.playSequentially(upScrollView,utils,course);
+        }
+        animatorSet.start();
     }
 
 }

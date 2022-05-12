@@ -9,6 +9,7 @@ import com.knight.wanandroid.library_network.model.HttpData;
 import com.knight.wanandroid.module_mine.R;
 import com.knight.wanandroid.module_mine.contract.MineContract;
 import com.knight.wanandroid.module_mine.entity.UserInfoCoinEntity;
+import com.knight.wanandroid.module_mine.entity.UserInfoMessageEntity;
 import com.knight.wanandroid.module_mine.request.LoginApi;
 import com.knight.wanandroid.module_mine.request.PersonalCoinApi;
 
@@ -32,9 +33,9 @@ public final class MineModel implements MineContract.MineModel {
     public void requestUserInfoCoin(BaseFragment fragment, MvpListener mvpListener) {
         GoHttp.get(fragment)
                 .api(new PersonalCoinApi())
-                .request(new HttpCallback<HttpData<UserInfoCoinEntity>>(fragment) {
+                .request(new HttpCallback<HttpData<UserInfoMessageEntity>>(fragment) {
                     @Override
-                    public void onSucceed(HttpData<UserInfoCoinEntity> result) {
+                    public void onSucceed(HttpData<UserInfoMessageEntity> result) {
                         mvpListener.onSuccess(result.getData());
                     }
 

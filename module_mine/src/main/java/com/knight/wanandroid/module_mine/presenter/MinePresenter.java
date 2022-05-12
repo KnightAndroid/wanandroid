@@ -5,6 +5,7 @@ import com.knight.wanandroid.library_base.entity.UserInfoEntity;
 import com.knight.wanandroid.library_base.listener.MvpListener;
 import com.knight.wanandroid.module_mine.contract.MineContract;
 import com.knight.wanandroid.module_mine.entity.UserInfoCoinEntity;
+import com.knight.wanandroid.module_mine.entity.UserInfoMessageEntity;
 
 /**
  * @author created by knight
@@ -21,10 +22,10 @@ public final class MinePresenter extends MineContract.MineDataPresenter {
         if (mView ==null) {
             return;
         }
-        mModel.requestUserInfoCoin((BaseFragment) mView, new MvpListener<UserInfoCoinEntity>() {
+        mModel.requestUserInfoCoin((BaseFragment) mView, new MvpListener<UserInfoMessageEntity>() {
             @Override
-            public void onSuccess(UserInfoCoinEntity userInfoCoinEntity) {
-                    mView.setUserInfoCoin(userInfoCoinEntity);
+            public void onSuccess(UserInfoMessageEntity userInfoMessageEntity) {
+                    mView.setUserInfoCoin(userInfoMessageEntity);
             }
 
             @Override

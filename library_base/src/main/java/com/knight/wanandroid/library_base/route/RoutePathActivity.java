@@ -136,6 +136,15 @@ public class RoutePathActivity {
        public static final String Set_AutoNightMode = Set + "/set_nightmode_pager";
     }
 
+    /**
+     *
+     * 工具模块
+     */
+    public static class Util {
+        private static final String Util = "/module_utils_activity";
+        public static final String Util_pager = Util + "/util_pager";
+    }
+
 
 
 

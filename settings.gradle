@@ -22,3 +22,4 @@ include ':library_componentbase'
 include ':library_base'
 include ':app'
 rootProject.name = "wanandroid"
+include ':module_utils'

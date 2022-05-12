@@ -7,6 +7,7 @@ import com.knight.wanandroid.library_base.model.BaseModel;
 import com.knight.wanandroid.library_base.presenter.BasePresenter;
 import com.knight.wanandroid.library_base.view.BaseView;
 import com.knight.wanandroid.module_mine.entity.UserInfoCoinEntity;
+import com.knight.wanandroid.module_mine.entity.UserInfoMessageEntity;
 
 /**
  * @author created by knight
@@ -20,7 +21,7 @@ public interface MineContract {
 
 
     interface MineView extends BaseView{
-        void setUserInfoCoin(UserInfoCoinEntity userInfoCoinEntity);
+        void setUserInfoCoin(UserInfoMessageEntity userInfoMessageEntity);
         void setUserInfo(UserInfoEntity userInfo);
     }
 

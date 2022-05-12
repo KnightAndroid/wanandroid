@@ -11,6 +11,6 @@ import com.knight.wanandroid.library_network.config.IRequestApi;
 public final class PersonalCoinApi implements IRequestApi {
     @Override
     public String getApi() {
-        return "lg/coin/userinfo/json";
+        return "user/lg/userinfo/json";
     }
 }

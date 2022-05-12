@@ -32,6 +32,7 @@ import com.knight.wanandroid.module_mine.contract.MineContract;
 import com.knight.wanandroid.module_mine.databinding.MineFragmentMineBinding;
 import com.knight.wanandroid.library_base.entity.LoginEntity;
 import com.knight.wanandroid.module_mine.entity.UserInfoCoinEntity;
+import com.knight.wanandroid.module_mine.entity.UserInfoMessageEntity;
 import com.knight.wanandroid.module_mine.model.MineModel;
 import com.knight.wanandroid.module_mine.presenter.MinePresenter;
 
@@ -108,19 +109,20 @@ public final class MineFragment extends BaseFragment<MineFragmentMineBinding, Mi
     }
 
     @Override
-    public void setUserInfoCoin(UserInfoCoinEntity userInfoCoinEntity) {
+    public void setUserInfoCoin(UserInfoMessageEntity userInfoMessageEntity) {
         showSuccess();
         //设置头像
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setShape(GradientDrawable.OVAL);
         gradientDrawable.setColor(ColorUtils.getRandColorCode());
         mDatabind.mineIvHead.setBackground(gradientDrawable);
-        mDatabind.mineTvUserabbr.setText(userInfoCoinEntity.getUsername().substring(0, 1));
-        mDatabind.mineTvUsername.setText(userInfoCoinEntity.getUsername());
+        mDatabind.mineTvUserabbr.setText(userInfoMessageEntity.getCoinInfo().getUsername().substring(0, 1));
+        mDatabind.mineTvUsername.setText(userInfoMessageEntity.getCoinInfo().getUsername());
         //显示等级 排名 积分
-        mDatabind.mineTvLevel.setText(getString(R.string.mine_gradle) + userInfoCoinEntity.getLevel());
-        mDatabind.mineTvRank.setText(getString(R.string.mine_rank) + userInfoCoinEntity.getRank());
-        mDatabind.mineTvPoints.setText(userInfoCoinEntity.getCoinCount() + "");
+        mDatabind.mineTvLevel.setText(getString(R.string.mine_gradle) + userInfoMessageEntity.getCoinInfo().getLevel());
+        mDatabind.mineTvRank.setText(getString(R.string.mine_rank) + userInfoMessageEntity.getCoinInfo().getRank());
+        mDatabind.mineTvPoints.setText(userInfoMessageEntity.getCoinInfo().getCoinCount() + "");
+        mDatabind.mineTvMyCollectNumber.setText(userInfoMessageEntity.getCollectArticleInfo().getCount()+"");
 
     }
 
@@ -212,6 +214,7 @@ public final class MineFragment extends BaseFragment<MineFragmentMineBinding, Mi
         mDatabind.mineTvPoints.setText("");
         mDatabind.mineIvMessage.setVisibility(View.GONE);
         mDatabind.mineIvHead.setBackground(null);
+        mDatabind.mineTvMyCollectNumber.setText("-");
         ImageLoader.loadCircleIntLocalPhoto(getActivity(), R.drawable.mine_iv_default_head, mDatabind.mineIvHead);
     }
 
