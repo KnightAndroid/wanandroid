@@ -134,6 +134,8 @@ dependencies {
     implementation project(":module_set")
     // 工具类模块
     implementation project(":module_utils")
+    //课程模块
+    implementation project(":module_course")
 
     //Arouter 路由插件 https://github.com/alibaba/ARouter
     annotationProcessor "com.alibaba:arouter-compiler:$arouterVersion"

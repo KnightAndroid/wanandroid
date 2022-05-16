@@ -16,16 +16,16 @@ import com.knight.wanandroid.library_base.listener.AppInit;
 public final class UtilsApp extends BaseApp implements AppInit {
     @Override
     protected void initSafeSDK() {
-       // if ("true".equals(BuildConfig.isAloneApp)) {
-       //     ModuleConfig.getInstance().initSafeSdk(this);
-      //  }
+        if ("true".equals(BuildConfig.isAloneApp)) {
+            ModuleConfig.getInstance().initSafeSdk(this);
+        }
     }
 
     @Override
     protected void initDangerousSDK() {
-       // if ("true".equals(BuildConfig.isAloneApp)) {
-        //    ModuleConfig.getInstance().initDangerousSDK(this);
-      //  }
+        if ("true".equals(BuildConfig.isAloneApp)) {
+            ModuleConfig.getInstance().initDangerousSDK(this);
+        }
     }
 
     @Override

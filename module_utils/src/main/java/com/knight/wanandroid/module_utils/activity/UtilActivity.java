@@ -1,8 +1,4 @@
 package com.knight.wanandroid.module_utils.activity;
-
-
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 

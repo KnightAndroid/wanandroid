@@ -537,7 +537,8 @@ public final class HomeRecommendFragment extends BaseFragment<HomeFragmentRecomm
 
         //跳到课程页面
         public void goCourse() {
-            ToastUtils.show("跳到课程页面");
+            ARouter.getInstance().build(RoutePathActivity.Course.CourseList_pager).navigation();
+           // ToastUtils.show("跳到课程页面");
         }
 
         //滚动顶部

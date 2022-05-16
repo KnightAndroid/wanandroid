@@ -146,6 +146,17 @@ public class RoutePathActivity {
     }
 
 
+    /**
+     *
+     * 教程模块
+     */
+    public static class Course {
+        private static final String Course = "/module_course_activity";
+        public static final String CourseList_pager = Course + "/list_pager";
+        public static final String CourseDetailList_pager = Course + "/detail_list_pager";
+    }
+
+
 
 
 
