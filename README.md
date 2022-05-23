@@ -81,7 +81,7 @@
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | ![4.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_04.gif) |![5.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_05.gif) | ![6.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_06.gif) |
 | ![7.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_07.gif) |![8.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_08.gif) |![9.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_09.gif) |
-| ![10.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_10.gif) |![11.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_skeleton.gif)|
+| ![10.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_10.gif) |![11.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_skeleton.gif)|![12.gif](https://github.com/KnightAndroid/wanandroid_server/blob/main/wanandroid_gif/home_icon_animate.gif)|
 
 ## 主要开源框架
 
@@ -121,6 +121,12 @@
 ![wanandroid_normal_release.png](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_normal_release.png)
 
 ## 更新日志
+### 1.2.1(15)
+-  wanandroid 第十五版发布
+-  增加工具、课程页面
+-  修复一些问题
+-  发布时间：2022/05/24
+
 ### 1.2.0(14)
 -  wanandroid 第十四版发布
 -  修复一些问题
@@ -132,6 +138,7 @@
 -  新春特效
 -  修复一些问题
 -  发布时间：2022/01/26
+
 ### 1.1.8(12)
 -  wanandroid 第十二版发布
 -  适配Android12
