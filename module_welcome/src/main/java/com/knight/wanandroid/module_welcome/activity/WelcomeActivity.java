@@ -88,8 +88,12 @@ public class WelcomeActivity extends BaseActivity<WelcomeActivityBinding, Welcom
 
     @Override
     public void setThemeColor(AppThemeEntity appThemeEntity) {
-        AppConfig.appThemeColor = appThemeEntity.getThemeColor();
-        CacheUtils.setThemeColor(ColorUtils.convertToColorInt(AppConfig.appThemeColor));
+        if (appThemeEntity.isForceTheme()) {
+            AppConfig.appThemeColor = appThemeEntity.getThemeColor();
+            CacheUtils.setThemeColor(ColorUtils.convertToColorInt(AppConfig.appThemeColor));
+        } else {
+            AppConfig.appThemeColor = ColorUtils.convertToRGB(CacheUtils.getThemeColor());
+        }
         AppConfig.gray = appThemeEntity.isGray();
     }
 }
