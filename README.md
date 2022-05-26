@@ -1,7 +1,7 @@
 ## WanAndroid
 这是一个不断迭代，功能全面，简单易用的wanandroid APP
 
-**Kotlin MVVM版: **[https://github.com/KnightAndroid/wanandroidByKotlin](https://github.com/KnightAndroid/wanandroidByKotlin)
+**Kotlin MVVM版：**[https://github.com/KnightAndroid/wanandroidByKotlin](https://github.com/KnightAndroid/wanandroidByKotlin)
 
 ## 前言
 
