@@ -104,6 +104,14 @@ public final class AboutActivity extends BaseActivity<MineActivityAboutBinding, 
         }
 
 
+        public void goParenterDirectory() {
+            ARouter.getInstance().build(RoutePathActivity.Web.Web_Normal)
+                    .withString("webUrl","file:android_asset/access_partner_directory.html")
+                    .withString("webTitle",getString(R.string.mine_access_partner_directory))
+                    .navigation();
+        }
+
+
         public void getCheckUpdate(){
             if (mAppUpdateEntity != null && !TextUtils.isEmpty(mAppUpdateEntity.getVersionName())) {
                 if (!SystemUtils.getAppVersionName(AboutActivity.this).equals(mAppUpdateEntity.getVersionName())) {
