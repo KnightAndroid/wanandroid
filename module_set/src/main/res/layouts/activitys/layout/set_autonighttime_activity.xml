@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/set_tv_open_night_time"
                 android:layout_marginRight="@dimen/base_dimen_2"
-                android:layout_toLeftOf="@+id/set_cb_status_theme"
+
                 android:text="@string/set_restart_app_anable" />
 
             <CheckBox
@@ -88,7 +88,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/set_tv_start_night_time"
                 android:layout_marginRight="@dimen/base_dimen_2"
-                android:layout_toLeftOf="@+id/set_cb_status_theme"
                 android:text="22:00" />
 
         </RelativeLayout>
@@ -118,7 +117,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/set_tv_start_day_time"
                 android:layout_marginRight="@dimen/base_dimen_2"
-                android:layout_toLeftOf="@+id/set_cb_status_theme"
                 android:text="06:00" />
 
         </RelativeLayout>
