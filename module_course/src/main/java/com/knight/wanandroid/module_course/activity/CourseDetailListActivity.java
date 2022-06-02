@@ -123,6 +123,7 @@ public class CourseDetailListActivity extends BaseActivity<CourseDetailListActiv
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
         page = 0;
+        mDatabind.includeCourseDetailRv.baseFreshlayout.setEnableLoadMore(true);
         mPresenter.requestDetailCourseData(page,cid);
     }
 
