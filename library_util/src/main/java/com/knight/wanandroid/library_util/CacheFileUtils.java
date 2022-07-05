@@ -89,4 +89,31 @@ public class CacheFileUtils {
 
         return dir.delete();
     }
+
+
+    /**
+     *
+     * 获取目录
+     * @param context
+     * @param name
+     * @return
+     */
+    public static String getDirPath(Context context,String name) {
+        File file;
+        if (isSDCardAlive()) {
+            file = new File(context.getExternalCacheDir(),name);
+            file.mkdirs();
+            return file.getAbsolutePath();
+        } else {
+            file = new File(context.getCacheDir(),name);
+            file.mkdirs();
+            return file.getAbsolutePath();
+        }
+
+    }
+
+
+    private static Boolean isSDCardAlive() {
+        return Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED;
+    }
 }
