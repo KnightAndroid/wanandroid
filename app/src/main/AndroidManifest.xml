@@ -64,7 +64,7 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <!-- 会使屏幕适配框架失效 让ContentProvider失效-->
+        <!-- 会使屏幕适配框架失效 让ContentProvider失效 主要是为了适配字体大小 如果开启了屏幕适配 调整字体大小会失效-->
         <provider
             android:name="me.jessyan.autosize.InitProvider"
             android:authorities="${applicationId}.InitProvider"

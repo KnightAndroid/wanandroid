@@ -3,8 +3,11 @@ package com.knight.wanandroid.library_base.util.web;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.text.TextUtils;
 import android.webkit.MimeTypeMap;
+import android.webkit.ValueCallback;
+import android.webkit.WebBackForwardList;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
@@ -91,7 +94,23 @@ public class WebViewHelper {
             }
         });
 
-        this.mView.setWebChromeClient(new WebChromeClient());
+        this.mView.setWebChromeClient(new WebChromeClient(){
+            @Override
+            public void onReceivedTitle(WebView view, String title) {
+                super.onReceivedTitle(view, title);
+
+            }
+
+            @Override
+            public void onProgressChanged(WebView view,int newProgress){
+                super.onProgressChanged(view,newProgress);
+                onPageChangeListener.onProgressChanged(view, newProgress);
+                if (newProgress > 80 && injectVConsole && !injectState) {
+                    injectState = true;
+
+                }
+            }
+        });
     }
 
     public interface OnPageChangeListener{
@@ -106,6 +125,78 @@ public class WebViewHelper {
    public WebViewHelper setOnPageChangeListener(OnPageChangeListener onPageChangeListener) {
        this.onPageChangeListener = onPageChangeListener;
        return this;
+   }
+
+
+
+   private WebViewHelper evaluateJavaScript(String js, ValueCallback<String> resultCallback) {
+       mView.evaluateJavascript(js,resultCallback);
+       return this;
+   }
+
+
+   private WebViewHelper injectVConsole(boolean inject) {
+       injectVConsole = inject;
+       return this;
+   }
+
+
+   private boolean canGoBack() {
+       boolean canBack = mView.canGoBack();
+       if (canBack) {
+           mView.goBack();
+       }
+       WebBackForwardList backForwardList = mView.copyBackForwardList();
+       int currentIndex = backForwardList.getCurrentIndex();
+       if (currentIndex == 0) {
+           String currentUrl = backForwardList.getCurrentItem().getUrl();
+           String currentHost = Uri.parse(currentUrl).getHost();
+           //栈底不是链接则直接返回
+           if (TextUtils.isEmpty(currentHost)) {
+               return false;
+           }
+
+           //栈底链接不是原始链接则直接返回
+           if (!originalUrl.equals(currentUrl)) {
+               return false;
+           }
+
+       }
+       return canBack;
+   }
+
+   private boolean canGoForward() {
+       boolean canForward = mView.canGoForward();
+       if (canForward) {
+           mView.goForward();
+       }
+       return canForward;
+   }
+
+
+   private WebView loadUrl(String url) {
+       if (!TextUtils.isEmpty(url)) {
+            mView.loadUrl(url);
+            originalUrl = url;
+       }
+       return mView;
+   }
+
+
+   private void reload() {
+       mView.reload();
+   }
+
+   private void onResume() {
+       mView.onResume();
+   }
+
+   private void onPause() {
+       mView.onPause();
+   }
+
+   private void onDestroyView() {
+       onPageChangeListener = null;
    }
 
 
