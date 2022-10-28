@@ -15,7 +15,7 @@ import okhttp3.Call;
  * @author created by knight
  * @organize wanandroid
  * @Date 2021/7/19 16:38
- * @descript:
+ * @descript:设置模型
  */
 public final class SetModel implements SetContract.SetModel {
 

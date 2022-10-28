@@ -30,7 +30,7 @@
     <string name="mine_confirm_cancelarticle">Do you want to cancel the collection of this article</string>
     <string name="mine_about_wanandroid">About</string>
     <string name="mine_update_record">Update Log</string>
-    <string name="mine_check_update">Update log</string>
+    <string name="mine_check_update">Check Update</string>
     <string name="mine_service_protocol"><u>Software license and service agreement</u></string>
     <string name="mine_privacy_protocol"><u>Privacy policy</u></string>
     <string name="mine_search_newversion">New version found</string>

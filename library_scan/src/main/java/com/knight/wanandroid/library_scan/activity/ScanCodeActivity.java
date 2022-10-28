@@ -48,7 +48,7 @@ import androidx.lifecycle.LiveData;
  * @author created by knight
  * @organize wanandroid
  * @Date 2021/5/19 11:07
- * @descript:
+ * @descript:扫一扫
  */
 public class ScanCodeActivity extends BaseDBActivity<ScancodeActivityBinding> {
 

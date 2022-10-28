@@ -213,6 +213,16 @@ public final class SetActivity extends BaseActivity<SetActivityBinding, SetPrese
                     .navigation();
         }
 
+        /**
+         *
+         * 个人信息和设备信息
+         */
+        public void goPersonalMessageManager() {
+            ARouter.getInstance()
+                    .build(RoutePathActivity.Set.Set_PersonalDeviceMessage)
+                    .navigation();
+        }
+
     }
 
     /**

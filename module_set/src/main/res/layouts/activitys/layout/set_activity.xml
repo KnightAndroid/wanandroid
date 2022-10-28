@@ -418,7 +418,32 @@
                     android:background="@drawable/base_iv_userinfo_arrow" />
 
             </RelativeLayout>
+            <!-- 个人信息查阅与管理-->
+            <RelativeLayout
+                android:id="@+id/set_rl_person_message_manager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base_dimen_26"
+                android:layout_marginTop="@dimen/base_dimen_20"
+                android:onClick="@{()->click.goPersonalMessageManager()}">
 
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/set_personal_message_manager"
+                    android:textColor="@color/base_color_title"
+                    android:textSize="@dimen/base_dimen_text_size_18" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/base_dimen_20"
+                    android:background="@drawable/base_iv_userinfo_arrow" />
+
+            </RelativeLayout>
             <!--退出账户-->
             <RelativeLayout
                 android:id="@+id/set_rl_logout"

@@ -111,6 +111,7 @@ public final class MineFragment extends BaseFragment<MineFragmentMineBinding, Mi
     @Override
     public void setUserInfoCoin(UserInfoMessageEntity userInfoMessageEntity) {
         showSuccess();
+        CacheUtils.saveUserRank(userInfoMessageEntity.getCoinInfo().getRank());
         //设置头像
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setShape(GradientDrawable.OVAL);

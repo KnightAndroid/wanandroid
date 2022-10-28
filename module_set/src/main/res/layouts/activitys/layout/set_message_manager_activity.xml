@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.knight.wanandroid.module_set.module_activity.PersonalAndManagerActivity">
+
+    <data>
+        <variable
+            name="click"
+            type="com.knight.wanandroid.module_set.module_activity.PersonalAndManagerActivity.ProxyClick" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <include
+            android:id="@+id/include_set_message_manager_toobar"
+            layout="@layout/base_include_toolbar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+
+        <!--个人信息-->
+        <RelativeLayout
+            android:id="@+id/rl_personal_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/include_set_message_manager_toobar"
+            android:layout_marginTop="@dimen/base_dimen_10"
+            android:layout_marginLeft="@dimen/base_dimen_26"
+            android:onClick="@{()->click.goPersonalMessage()}">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/set_personal_message"
+                android:textColor="@color/base_color_title"
+                android:textSize="@dimen/base_dimen_text_size_18" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/base_dimen_20"
+                android:background="@drawable/base_iv_userinfo_arrow" />
+        </RelativeLayout>
+
+
+        <!--当前设备信息-->
+        <RelativeLayout
+            android:id="@+id/rl_device_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/rl_personal_message"
+            android:layout_marginTop="@dimen/base_dimen_20"
+            android:layout_marginLeft="@dimen/base_dimen_26">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/set_deceive_message"
+                android:textColor="@color/base_color_title"
+                android:textSize="@dimen/base_dimen_text_size_18" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/base_dimen_20"
+                android:background="@drawable/base_iv_userinfo_arrow" />
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

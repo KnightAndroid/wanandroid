@@ -13,6 +13,12 @@ public final class MMkvConstants {
      * 用户信息
      */
     public static final String USER = "user";
+
+    /**
+     *
+     * 排名
+     */
+    public static final String RANK = "rank";
     /**
      *是否同意用户协议
      *

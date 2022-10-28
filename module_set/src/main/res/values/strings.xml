@@ -44,4 +44,11 @@
     <string name="set_open_day_time">日间模式开始时间</string>
     <string name="set_night_mode">夜间模式设置</string>
     <string name="set_nightauto_mode_success">设置成功</string>
+    <string name="set_personal_message_manager">个人信息查阅与设备管理</string>
+    <string name="set_personal_message">个人信息</string>
+    <string name="set_deceive_message">设备信息</string>
+    <string name="set_user_name">用户名</string>
+    <string name="set_user_email">邮箱</string>
+    <string name="set_user_coincount">个人积分</string>
+    <string name="set_user_rank">排名</string>
 </resources>

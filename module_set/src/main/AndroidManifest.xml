@@ -10,6 +10,8 @@
         <activity android:name=".module_activity.GestureLockActivity"
             android:configChanges="keyboardHidden|keyboard|screenSize|locale|navigation|smallestScreenSize"/>
         <activity android:name=".module_activity.AutoNightTimeActivity"/>
+        <activity android:name=".module_activity.PersonalAndManagerActivity"/>
+        <activity android:name=".module_activity.PersonalMessageActivity"/>
     </application>
 
 </manifest>

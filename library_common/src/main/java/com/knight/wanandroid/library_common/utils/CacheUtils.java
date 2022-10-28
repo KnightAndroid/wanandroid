@@ -486,6 +486,24 @@ public final class CacheUtils {
         return mmkv.decodeBool(MMkvConstants.INNIGHTMODE);
     }
 
+    /**
+     *
+     * 设置排名
+     * @param rank
+     */
+    public static void saveUserRank(String rank) {
+        mmkv.encode(MMkvConstants.RANK,rank);
+
+    }
+
+    /**
+     * 返回排名
+     * @return
+     */
+    public static String getUserRank() {
+        return mmkv.decodeString(MMkvConstants.RANK,"0");
+    }
+
 
 
 
