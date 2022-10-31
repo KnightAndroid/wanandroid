@@ -6,11 +6,15 @@ import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
 import android.os.Build;
 
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Enumeration;
+
 /**
  * @author created by knight
  * @organize wanandroid
  * @Date 2021/8/6 11:20
- * @descript:
+ * @descript:网络相关
  */
 public class NetWorkUtils {
 
@@ -65,4 +69,21 @@ public class NetWorkUtils {
             return false;
         }
     }
+
+
+    /**
+     *
+     * 获取ip地址
+     * @param userIPV4
+     * @return
+     */
+//    public static String getIpAddress(final boolean userIPV4) {
+//        try {
+//            Enumeration<NetworkInterface> nis = NetworkInterface.getNetworkInterfaces();
+//
+//        } catch (SocketException e) {
+//            e.printStackTrace();
+//
+//        }
+//    }
 }

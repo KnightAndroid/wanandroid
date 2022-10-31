@@ -12,6 +12,7 @@
         <activity android:name=".module_activity.AutoNightTimeActivity"/>
         <activity android:name=".module_activity.PersonalAndManagerActivity"/>
         <activity android:name=".module_activity.PersonalMessageActivity"/>
+        <activity android:name=".module_activity.DeviceMessageActivity"/>
     </application>
 
 </manifest>

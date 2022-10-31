@@ -26,6 +26,9 @@ public class PersonalAndManagerActivity extends BaseDBActivity<SetMessageManager
     public void initView(Bundle savedInstanceState) {
         mDatabind.setClick(new ProxyClick());
         mDatabind.includeSetMessageManagerToobar.baseTvTitle.setText(getString(R.string.set_personal_message_manager));
+        mDatabind.includeSetMessageManagerToobar.baseIvBack.setOnClickListener(v -> {
+            finish();
+        });
     }
 
     @Override
@@ -44,6 +47,20 @@ public class PersonalAndManagerActivity extends BaseDBActivity<SetMessageManager
                     .build(RoutePathActivity.Set.Set_PersonalMessage)
                     .navigation();
         }
+
+        /**
+         *
+         * 去设备信息界面
+         */
+        public void goDeviceMessage() {
+            ARouter.getInstance()
+                    .build(RoutePathActivity.Set.Set_DeViceMessage)
+                    .navigation();
+        }
+
+
+
+
     }
 
 }

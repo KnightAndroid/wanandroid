@@ -47,8 +47,13 @@
     <string name="set_personal_message_manager">个人信息查阅与设备管理</string>
     <string name="set_personal_message">个人信息</string>
     <string name="set_deceive_message">设备信息</string>
+    <string name="set_os_system_version">设备系统版本</string>
+    <string name="set_android_sdk_version">安卓SDK版本号</string>
+    <string name="set_display_screen_size">屏幕分辨率</string>
     <string name="set_user_name">用户名</string>
     <string name="set_user_email">邮箱</string>
     <string name="set_user_coincount">个人积分</string>
     <string name="set_user_rank">排名</string>
+    <string name="set_area">地区</string>
+    <string name="set_time_zone">时区</string>
 </resources>

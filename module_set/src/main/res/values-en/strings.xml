@@ -48,8 +48,13 @@
     <string name="set_personal_message_manager">Personal Message And Manager</string>
     <string name="set_personal_message">Message</string>
     <string name="set_deceive_message">Deceive Message</string>
+    <string name="set_os_system_version">System Version</string>
+    <string name="set_android_sdk_version">Android Sdk Version</string>
+    <string name="set_display_screen_size">Screen Size</string>
     <string name="set_user_name">UserName</string>
     <string name="set_user_email">Email</string>
     <string name="set_user_coincount">Coins</string>
     <string name="set_user_rank">Rank</string>
+    <string name="set_area">地区</string>
+    <string name="set_time_zone">TimeZone</string>
 </resources>

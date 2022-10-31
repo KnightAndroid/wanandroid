@@ -136,6 +136,7 @@ public class RoutePathActivity {
        public static final String Set_AutoNightMode = Set + "/set_nightmode_pager";
        public static final String Set_PersonalDeviceMessage = Set + "/set_personal_device_message";
        public static final String Set_PersonalMessage = Set + "/set_personal_message";
+       public static final String Set_DeViceMessage = Set + "/set_device_message";
     }
 
     /**
