@@ -6,9 +6,11 @@ import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
 import android.os.Build;
 
+import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.Enumeration;
+import java.util.LinkedList;
 
 /**
  * @author created by knight
@@ -77,13 +79,31 @@ public class NetWorkUtils {
      * @param userIPV4
      * @return
      */
-//    public static String getIpAddress(final boolean userIPV4) {
-//        try {
-//            Enumeration<NetworkInterface> nis = NetworkInterface.getNetworkInterfaces();
-//
-//        } catch (SocketException e) {
-//            e.printStackTrace();
-//
-//        }
-//    }
+    public static String getIpAddress(final boolean userIPV4) {
+        try {
+            Enumeration<NetworkInterface> nis = NetworkInterface.getNetworkInterfaces();
+            LinkedList<InetAddress> adds = new LinkedList<>();
+            while (nis.hasMoreElements()) {
+                NetworkInterface ni = nis.nextElement();
+                if (!ni.isUp() || ni.isLoopback()) continue;
+                Enumeration<InetAddress> addresses = ni.getInetAddresses();
+                while (addresses.hasMoreElements()) {
+                    adds.addFirst(addresses.nextElement());
+                }
+            }
+            for (InetAddress add:adds) {
+                if (!add.isLoopbackAddress()) {
+                    String hostAddress = add.getHostAddress();
+                    boolean isIPV4 = hostAddress.indexOf(":") < 0;
+                    if (userIPV4) {
+                        if (isIPV4) return hostAddress;
+                    }
+                }
+            }
+
+        } catch (SocketException e) {
+            e.printStackTrace();
+
+        }
+    }
 }
