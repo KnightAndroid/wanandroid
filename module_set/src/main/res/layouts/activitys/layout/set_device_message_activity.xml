@@ -170,5 +170,66 @@
                 android:layout_marginRight="@dimen/base_dimen_20"
                 />
         </RelativeLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_1"
+            android:layout_marginTop="@dimen/base_dimen_10"
+            android:background="@color/base_item_bottom_view" />
+        <!--ip地址-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/base_dimen_10"
+            android:layout_marginLeft="@dimen/base_dimen_26"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/set_ip_address"
+                android:textColor="@color/base_color_title"
+                android:textSize="@dimen/base_dimen_text_size_18" />
+
+            <TextView
+                android:id="@+id/tv_ip_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/base_dimen_20"
+                />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base_dimen_1"
+            android:layout_marginTop="@dimen/base_dimen_10"
+            android:background="@color/base_item_bottom_view" />
+        <!-- Mac地址 -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/base_dimen_10"
+            android:layout_marginLeft="@dimen/base_dimen_26"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/set_mac_address"
+                android:textColor="@color/base_color_title"
+                android:textSize="@dimen/base_dimen_text_size_18" />
+
+            <TextView
+                android:id="@+id/tv_mac_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/base_dimen_20"
+                />
+        </RelativeLayout>
     </LinearLayout>
 </layout>

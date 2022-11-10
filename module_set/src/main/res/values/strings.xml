@@ -56,4 +56,6 @@
     <string name="set_user_rank">排名</string>
     <string name="set_area">地区</string>
     <string name="set_time_zone">时区</string>
+    <string name="set_ip_address">IP地址</string>
+    <string name="set_mac_address">Mac地址</string>
 </resources>

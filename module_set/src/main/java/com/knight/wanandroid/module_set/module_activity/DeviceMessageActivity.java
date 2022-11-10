@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.knight.wanandroid.library_base.baseactivity.BaseDBActivity;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
+import com.knight.wanandroid.library_common.utils.NetWorkUtils;
 import com.knight.wanandroid.library_util.ScreenUtils;
 import com.knight.wanandroid.module_set.R;
 import com.knight.wanandroid.module_set.databinding.SetDeviceMessageActivityBinding;
@@ -24,11 +25,15 @@ public class DeviceMessageActivity extends BaseDBActivity<SetDeviceMessageActivi
 
     @Override
     public void initView(Bundle savedInstanceState) {
+        mDatabind.includeSetDeviceMessageToobar.baseIvBack.setOnClickListener(v->{finish();});
         mDatabind.tvDeviceSystemVersion.setText(DeviceUtils.getSystemVersion());
         mDatabind.tvAndroidSdkVersion.setText(DeviceUtils.getAndroidSdkVersion()+"");
-        mDatabind.tvScreenSize.setText(ScreenUtils.getScreenHeight(this) + "x" + ScreenUtils.getScreenWidth(this));
+        mDatabind.tvScreenSize.setText(ScreenUtils.getScreenHeightWithStatus(this) + "x" + ScreenUtils.getScreenWidth(this));
         mDatabind.tvArea.setText(DeviceUtils.getCountry());
         mDatabind.tvTimeZone.setText(DeviceUtils.getTimeZone());
+        mDatabind.tvIpAddress.setText(NetWorkUtils.getIpAddress(true));
+        mDatabind.tvMacAddress.setText(NetWorkUtils.getMacAddress());
+
     }
 
     @Override

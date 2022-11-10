@@ -98,7 +98,7 @@ public class ScreenUtils {
 
     /**
      *
-     * 返回屏幕的高
+     * 返回屏幕的高(不包含状态栏)
      * @param activity
      * @return
      */
@@ -108,6 +108,16 @@ public class ScreenUtils {
     }
 
 
+    /**
+     *
+     * 返回屏幕的高(包含状态栏)
+     * @param activity
+     * @return
+     */
+    public static int getScreenHeightWithStatus(Context activity){
+        DisplayMetrics dMetrics = activity.getResources().getDisplayMetrics();
+        return dMetrics.heightPixels + StatusBarUtils.getStatusBarHeight(activity);
+    }
 
 
 
