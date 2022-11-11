@@ -59,4 +59,6 @@
     <string name="set_time_zone">TimeZone</string>
     <string name="set_ip_address">IP Address</string>
     <string name="set_mac_address">Mac Address</string>
+    <string name="set_sim_message">Sim Message</string>
+    <string name="set_unique_id">Unique Id</string>
 </resources>

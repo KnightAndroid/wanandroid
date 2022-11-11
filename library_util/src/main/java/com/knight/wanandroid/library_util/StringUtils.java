@@ -7,6 +7,7 @@ import android.text.style.ForegroundColorSpan;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.security.MessageDigest;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -352,6 +353,40 @@ public class StringUtils {
             }
         }
         return style;
+    }
+
+    /**
+     * 转16进制字符串
+     *
+     * @param data 数据
+     * @return 16进制字符串
+     */
+    public static String bytesToHex(byte[] data) {
+        StringBuilder sb = new StringBuilder();
+        String stmp;
+        for (int n = 0; n < data.length; n++) {
+            stmp = (Integer.toHexString(data[n] & 0xFF));
+            if (stmp.length() == 1)
+                sb.append("0");
+            sb.append(stmp);
+        }
+        return sb.toString().toUpperCase(Locale.CHINA);
+    }
+    /**
+     * 取SHA1
+     *
+     * @param data 数据
+     * @return 对应的hash值
+     */
+    public static byte[] getHashByString(String data) {
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA1");
+            messageDigest.reset();
+            messageDigest.update(data.getBytes("UTF-8"));
+            return messageDigest.digest();
+        } catch (Exception e) {
+            return "".getBytes();
+        }
     }
 
 

@@ -58,4 +58,6 @@
     <string name="set_time_zone">时区</string>
     <string name="set_ip_address">IP地址</string>
     <string name="set_mac_address">Mac地址</string>
+    <string name="set_sim_message">Sim卡信息</string>
+    <string name="set_unique_id">设备唯一Id</string>
 </resources>

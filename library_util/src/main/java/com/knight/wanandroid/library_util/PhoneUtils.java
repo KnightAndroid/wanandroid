@@ -3,6 +3,7 @@ package com.knight.wanandroid.library_util;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
+import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
@@ -12,6 +13,7 @@ import com.knight.wanandroid.library_common.provider.ApplicationProvider;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.UUID;
 
 /**
  * Author:Knight
@@ -41,6 +43,56 @@ public class PhoneUtils {
         return "";
     }
 
+    /**
+     *
+     * 获取DeviceId
+     * @param context
+     * @return 返回唯一id
+     */
+    public static String getDeviceUUID(Context context) {
+        StringBuilder sbDeviceId = new StringBuilder();
+        String imei = getIMEI();
+        String androidId = getAndroidId(context);
+        String serial = getSerial();
+        String id = getDeviceUUID().replace("-","");
+
+        if (!TextUtils.isEmpty(imei)) {
+           sbDeviceId.append(imei);
+           sbDeviceId.append("|");
+        }
+
+        if (!TextUtils.isEmpty(androidId)) {
+            sbDeviceId.append(androidId);
+            sbDeviceId.append("|");
+        }
+
+        if (!TextUtils.isEmpty(serial)) {
+            sbDeviceId.append(serial);
+            sbDeviceId.append("|");
+        }
+
+        if (!TextUtils.isEmpty(id)) {
+            sbDeviceId.append(id);
+        }
+
+        //一系列的字符串  ----11 硬件标识有关   手机
+        //生成SHA1，统一DeviceId长度
+        if (sbDeviceId.length() > 0) {
+            try {
+                byte[] hash = StringUtils.getHashByString(sbDeviceId.toString());
+                String sha1 = StringUtils.bytesToHex(hash);
+                if (sha1 != null && sha1.length() > 0) {
+                    //返回最终的DeviceId
+                    return sha1;
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        return null;
+
+    }
+
 
     @SuppressLint("HardwareIds")
     public static String getSerial() {
@@ -55,10 +107,47 @@ public class PhoneUtils {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ? Build.getSerial() : Build.SERIAL;
     }
 
+
+    /**
+     *
+     * 获得设备的AndroidId
+     * @param context 上下文
+     * @return 设备的AndroidId
+     */
+    private static String getAndroidId(Context context) {
+        return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+    }
+    /**
+     *
+     * 获取IMEI
+     * @return IMEI
+     */
     public static String getIMEI() {
         return getImeiOrMeid(true);
     }
 
+
+    /**
+     *
+     * 获得硬件uuid(根据硬件相关属性,生成uuid) 数字 0-10
+     * @return
+     */
+    private static String getDeviceUUID() {
+        String dev = "100001" + Build.BOARD
+                + Build.BRAND
+                + Build.DEVICE
+                + Build.HARDWARE
+                + Build.ID
+                + Build.MODEL
+                + Build.PRODUCT
+                + Build.SERIAL;
+        return new UUID(dev.hashCode(),Build.SERIAL.hashCode()).toString();
+    }
+    /**
+     *
+     * 获取IMEI或者Meid
+     * @return IMEI
+     */
     public static String getImeiOrMeid(boolean isImei) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             return "";
@@ -150,6 +239,12 @@ public class PhoneUtils {
         return s1;
     }
 
+
+    /**
+     *
+     * 获取IMSI
+     * @return
+     */
     public static String getIMSI() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             try {
@@ -167,6 +262,22 @@ public class PhoneUtils {
         return tm.getPhoneType();
     }
 
+
+    /**
+     * 返回手机电话卡运营商
+     *
+     * @return the sim operator name
+     */
+    public static String getSimOperatorName() {
+        TelephonyManager tm = getTelephonyManager();
+        return tm.getSimOperatorName();
+    }
+
+    /**
+     *
+     * 判断是哪个运营商
+     * @return
+     */
     public static String getSimOperatorByMnc() {
         TelephonyManager tm = getTelephonyManager();
         String operator = tm.getSimOperator();
