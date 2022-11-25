@@ -2,11 +2,12 @@ package com.knight.wanandroid.library_base.initconfig;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.franmontiel.persistentcookiejar.PersistentCookieJar;
-import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
-import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
+//import com.franmontiel.persistentcookiejar.PersistentCookieJar;
+//import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
+//import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.kingja.loadsir.core.LoadSir;
 import com.knight.wanandroid.library_aop.loginintercept.ILoginFilter;
 import com.knight.wanandroid.library_aop.loginintercept.LoginManager;
@@ -38,9 +39,17 @@ import com.tencent.bugly.crashreport.CrashReport;
 import com.wanandroid.knight.library_database.mananger.DataBaseManager;
 
 import java.io.File;
+import java.net.CookieManager;
+import java.net.CookiePolicy;
+import java.net.CookieStore;
 import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.Nullable;
+
+import net.gotev.cookiestore.InMemoryCookieStore;
+import net.gotev.cookiestore.SharedPreferencesCookieStore;
+import net.gotev.cookiestore.okhttp.JavaNetCookieJar;
+
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 
@@ -132,6 +141,8 @@ public class ModuleConfig {
      * @param application
      */
     private void initOkhttp(Application application) {
+
+        CookieManager cookieManager = new CookieManager(createCookieStore(application,"myCookies",true), CookiePolicy.ACCEPT_ALL);
         //缓存目录
         File cacheFile = new File(application.getCacheDir(), "knight_wanandroid");
         Cache cache = new Cache(cacheFile, 1024 * 1024 * 50);
@@ -148,7 +159,8 @@ public class ModuleConfig {
                 .addInterceptor(new BaseUrlInterceptor())
                 .addInterceptor(new CacheInterceptor())
                 .cache(cache)
-                .cookieJar(new PersistentCookieJar(new SetCookieCache(),new SharedPrefsCookiePersistor(application)))
+                .cookieJar(new JavaNetCookieJar(cookieManager))
+               // .cookieJar(new PersistentCookieJar(new SetCookieCache(),new SharedPrefsCookiePersistor(application)))
                 .build();
         HttpConfig.with(okHttpClient)
                 .setLogEnabled(BuildConfig.DEBUG)
@@ -208,6 +220,16 @@ public class ModuleConfig {
     private UserInfoEntity initUser(){
         UserInfoEntity userInfoEntity = CacheUtils.getDataInfo(MMkvConstants.USER,UserInfoEntity.class);
         return userInfoEntity;
+    }
+
+
+
+    private CookieStore  createCookieStore(Context context, String name, boolean presistent) {
+        if (presistent) {
+           return new SharedPreferencesCookieStore(context.getApplicationContext(),name);
+        } else {
+           return new InMemoryCookieStore(name);
+        }
     }
 
 

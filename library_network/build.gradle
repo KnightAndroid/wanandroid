@@ -37,7 +37,10 @@ dependencies {
     //gson
     api "com.squareup.retrofit2:converter-gson:2.6.2"
     //Cookie https://github.com/franmontiel/PersistentCookieJar
-    api "com.github.franmontiel:PersistentCookieJar:$CookieVersion"
+   // api "com.github.franmontiel:PersistentCookieJar:$CookieVersion"
+    //Cookie库引入
+    api "net.gotev:cookie-store-okhttp:1.5.0"
+    api "net.gotev:cookie-store:1.5.0"
     implementation "androidx.appcompat:appcompat:1.2.0"
     implementation "androidx.annotation:annotation:$annoationVersion"
     implementation 'androidx.lifecycle:lifecycle-common:2.1.0'

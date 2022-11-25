@@ -46,7 +46,7 @@ ext{
     //全局加载视图框架
     loadsirVersion = "1.3.8"
     //cookie自动化管理
-    CookieVersion = "v1.0.0"
+  //  CookieVersion = "v1.0.0"
     //refreshVersion刷新框架
     smartRefreshVersion = "2.0.3"
     //分包问题 65536
