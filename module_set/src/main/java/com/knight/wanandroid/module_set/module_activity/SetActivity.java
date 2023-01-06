@@ -105,6 +105,8 @@ public final class SetActivity extends BaseActivity<SetActivityBinding, SetPrese
         //退出登录成功
         CacheUtils.loginOut();
         ModuleConfig.getInstance().user = null;
+        //清除cookie
+        ModuleConfig.getInstance().getCookieManager().getCookieStore().removeAll();
         EventBus.getDefault().post(new EventBusUtils.LogoutSuccess());
     }
 

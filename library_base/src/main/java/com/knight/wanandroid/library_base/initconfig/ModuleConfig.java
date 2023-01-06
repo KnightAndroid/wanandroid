@@ -2,12 +2,10 @@ package com.knight.wanandroid.library_base.initconfig;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.SharedPreferences;
+
+import androidx.annotation.Nullable;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-//import com.franmontiel.persistentcookiejar.PersistentCookieJar;
-//import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
-//import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.kingja.loadsir.core.LoadSir;
 import com.knight.wanandroid.library_aop.loginintercept.ILoginFilter;
 import com.knight.wanandroid.library_aop.loginintercept.LoginManager;
@@ -25,6 +23,9 @@ import com.knight.wanandroid.library_network.HttpConfig;
 import com.knight.wanandroid.library_network.config.IRequestApi;
 import com.knight.wanandroid.library_network.config.IRequestInterceptor;
 import com.knight.wanandroid.library_network.config.IRequestServer;
+import com.knight.wanandroid.library_network.cookie.InMemoryCookieStore;
+import com.knight.wanandroid.library_network.cookie.JavaNetCookieJar;
+import com.knight.wanandroid.library_network.cookie.SharedPreferencesCookieStore;
 import com.knight.wanandroid.library_network.data.HttpHeaders;
 import com.knight.wanandroid.library_network.data.HttpParams;
 import com.knight.wanandroid.library_network.interceptor.BaseUrlInterceptor;
@@ -44,12 +45,6 @@ import java.net.CookiePolicy;
 import java.net.CookieStore;
 import java.util.concurrent.TimeUnit;
 
-import androidx.annotation.Nullable;
-
-import net.gotev.cookiestore.InMemoryCookieStore;
-import net.gotev.cookiestore.SharedPreferencesCookieStore;
-import net.gotev.cookiestore.okhttp.JavaNetCookieJar;
-
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 
@@ -62,13 +57,15 @@ import okhttp3.OkHttpClient;
 public class ModuleConfig {
 
     public UserInfoEntity user = null;
+    private CookieManager cookieManager;
+
 
     private ModuleConfig(){
 
     }
 
     private static class SingleHolder{
-        private static ModuleConfig instance = new ModuleConfig();
+        private static final ModuleConfig instance = new ModuleConfig();
     }
 
     public static ModuleConfig getInstance(){
@@ -142,7 +139,7 @@ public class ModuleConfig {
      */
     private void initOkhttp(Application application) {
 
-        CookieManager cookieManager = new CookieManager(createCookieStore(application,"myCookies",true), CookiePolicy.ACCEPT_ALL);
+        cookieManager = new CookieManager(createCookieStore(application,"myCookies",true), CookiePolicy.ACCEPT_ALL);
         //缓存目录
         File cacheFile = new File(application.getCacheDir(), "knight_wanandroid");
         Cache cache = new Cache(cacheFile, 1024 * 1024 * 50);
@@ -176,6 +173,12 @@ public class ModuleConfig {
                 .setRetryCount(1)
                 .setRetryTime(1000)
                 .into();
+       // cookieManager.getCookieStore().removeAll();
+    }
+
+
+    public CookieManager getCookieManager () {
+        return cookieManager;
     }
 
     /**
@@ -224,7 +227,7 @@ public class ModuleConfig {
 
 
 
-    private CookieStore  createCookieStore(Context context, String name, boolean presistent) {
+    private CookieStore createCookieStore(Context context, String name, boolean presistent) {
         if (presistent) {
            return new SharedPreferencesCookieStore(context.getApplicationContext(),name);
         } else {

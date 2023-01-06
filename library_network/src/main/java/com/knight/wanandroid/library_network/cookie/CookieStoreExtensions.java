@@ -52,7 +52,7 @@ public class CookieStoreExtensions {
 
     }
 
-    public synchronized void syncToWebKitCookieManager(CookieStore cookieStore) {
+    public synchronized static void syncToWebKitCookieManager(CookieStore cookieStore) {
        CookieManager cookieManager =  CookieManager.getInstance();
        for (HttpCookie httpCookie: cookieStore.getCookies()) {
            String hostUrl = "";
@@ -70,7 +70,7 @@ public class CookieStoreExtensions {
     }
 
 
-    public synchronized void removeAll(CookieManager cookieManager) {
+    public synchronized static void removeAll(CookieManager cookieManager) {
         if (Build.VERSION.SDK_INT >= 21) {
             cookieManager.removeAllCookies(null);
             cookieManager.flush();
