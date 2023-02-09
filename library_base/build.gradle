@@ -79,6 +79,9 @@ dependencies {
     //版本更新
     api "com.tencent.bugly:crashreport:$buglyVersion"
 
+    api "com.google.auto.service:auto-service:$autoservice"
+
+
 
 
 }

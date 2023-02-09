@@ -89,4 +89,6 @@ ext{
     sketchPhotoVersion = "2.7.1"
     //骨架屏显示
     shimmerlayout = "2.1.0"
+    //Auto-service
+    autoservice = "1.0.1"
 }

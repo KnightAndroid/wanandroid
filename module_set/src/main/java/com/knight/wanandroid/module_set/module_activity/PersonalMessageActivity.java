@@ -5,13 +5,12 @@ import android.text.TextUtils;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.knight.wanandroid.library_base.baseactivity.BaseDBActivity;
-import com.knight.wanandroid.library_base.entity.UserInfoEntity;
 import com.knight.wanandroid.library_base.initconfig.ModuleConfig;
 import com.knight.wanandroid.library_base.route.RoutePathActivity;
-import com.knight.wanandroid.library_common.constant.MMkvConstants;
-import com.knight.wanandroid.library_common.utils.CacheUtils;
+import com.knight.wanandroid.library_base.util.ServiceApiFactory;
 import com.knight.wanandroid.module_set.R;
 import com.knight.wanandroid.module_set.databinding.SetMessagePersonalActivityBinding;
+import com.knight.wanandroid.module_set.module_external.MineExternalContact;
 
 /**
  * Author:Knight
@@ -36,7 +35,8 @@ public class PersonalMessageActivity extends BaseDBActivity<SetMessagePersonalAc
         }
 
         mDatabind.tvCoinCount.setText(ModuleConfig.getInstance().user.getCoinCount()+"");
-        mDatabind.tvRank.setText(CacheUtils.getUserRank());
+        MineExternalContact mineExternalContact = ServiceApiFactory.getInstance().getService(MineExternalContact.class);
+        mDatabind.tvRank.setText(mineExternalContact.getUserRank());
     }
 
     @Override

@@ -29,4 +29,7 @@ android {
 dependencies {
     implementation project (':library_base')
     annotationProcessor "com.alibaba:arouter-compiler:$arouterVersion"
+    //implementation project(":module_mine-api")
+    //Java SPI
+    annotationProcessor "com.google.auto.service:auto-service:$autoservice"
 }

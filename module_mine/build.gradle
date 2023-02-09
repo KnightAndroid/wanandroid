@@ -30,4 +30,8 @@ dependencies {
     implementation project (':library_componentbase')
     implementation project (':library_biometric')
     annotationProcessor "com.alibaba:arouter-compiler:$arouterVersion"
+    implementation project(":module_set-api")
+
+    //Java SPI
+    annotationProcessor "com.google.auto.service:auto-service:$autoservice"
 }
