@@ -123,6 +123,19 @@
 ![wanandroid_normal_release.png](https://gitee.com/MengSuiXinSuoYuan/wanandroid_server/raw/master/wanandroid_picture/wanandroid_normal_release.png)
 
 ## 更新日志
+### 1.2.2(16)
+-  wanandroid 第十六版发布
+-  增加接入合作方目录
+-  完善个人信息查询和设备管理
+-  增加获取ip地址方法,获取sim卡和设备唯一id方法
+-  增加获取sim卡和设备唯一id方法
+-  引入cookie库
+-  完善模块间接口API化
+-  修复一些问题
+-  发布时间：2023/02/12
+
+
+
 ### 1.2.1(15)
 -  wanandroid 第十五版发布
 -  增加工具、课程页面

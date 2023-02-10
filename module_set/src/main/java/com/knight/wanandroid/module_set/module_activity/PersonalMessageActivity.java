@@ -37,6 +37,10 @@ public class PersonalMessageActivity extends BaseDBActivity<SetMessagePersonalAc
         mDatabind.tvCoinCount.setText(ModuleConfig.getInstance().user.getCoinCount()+"");
         MineExternalContact mineExternalContact = ServiceApiFactory.getInstance().getService(MineExternalContact.class);
         mDatabind.tvRank.setText(mineExternalContact.getUserRank());
+
+        mDatabind.includePersonalMessageToolbar.baseIvBack.setOnClickListener(v ->{
+            finish();
+        });
     }
 
     @Override
