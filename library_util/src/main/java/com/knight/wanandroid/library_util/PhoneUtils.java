@@ -110,7 +110,7 @@ public class PhoneUtils {
 
     /**
      *
-     * 获得设备的AndroidId
+     * 获得设备的AndroidId 使用Android 0以上时,AndroidId的行为将发生变化，每个用户的每个应用程序的AndroidId都不一样
      * @param context 上下文
      * @return 设备的AndroidId
      */

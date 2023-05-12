@@ -81,7 +81,4 @@ dependencies {
     //SPI(Service Provider Interface) Java 动态服务发现机制,通过SPI机制,直接跨模块查找到想要的接口实现类 https://github.com/google/auto
     api "com.google.auto.service:auto-service:$autoservice"
 
-
-
-
 }

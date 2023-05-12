@@ -146,7 +146,7 @@
             android:layout_marginTop="@dimen/base_dimen_10"
             android:background="@color/base_item_bottom_view" />
 
-        <!--地区-->
+        <!--时区-->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
