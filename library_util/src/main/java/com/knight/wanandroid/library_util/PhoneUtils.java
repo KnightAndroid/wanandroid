@@ -286,7 +286,7 @@ public class PhoneUtils {
             case "46000":
             case "46002":
             case "46007":
-            case "46020":
+            case "46004":
                 return "中国移动";
             case "46001":
             case "46006":
