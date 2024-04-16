@@ -1,7 +1,9 @@
+# 此项目不在维护,请转站同款以下项目->
+**Kotlin MVVM版：**[https://github.com/KnightAndroid/wanandroidByKotlin](https://github.com/KnightAndroid/wanandroidByKotlin)
 ## WanAndroid
 这是一个不断迭代，功能全面，简单易用的wanandroid APP
 
-**Kotlin MVVM版：**[https://github.com/KnightAndroid/wanandroidByKotlin](https://github.com/KnightAndroid/wanandroidByKotlin)
+
 
 ## 前言
 
